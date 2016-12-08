@@ -1,0 +1,60 @@
+@import "base.scss";
+
+
+.editor-left {
+  background-color: #595959;
+  float: left;
+  height: 100%;
+  overflow: visible;
+  position: relative;
+  width: 180px;
+}
+
+.editor-view {
+  background: #cccccc;
+  height: 100%;
+  left: 180px;
+  position: absolute;
+  right: 320px;
+}
+
+.editor-right {
+  background-color: #4B4B4B;
+  border-left: 1px solid #E9E9E9;
+  float: right;
+  height: 100%;
+  width: 320px;
+}
+
+.sub-nav {
+  background-color: #383838;
+  height: 34px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 98;
+}
+
+.sub-nav li:first-child {
+  border-right: solid 1px #1A1A1A;
+}
+.sub-nav>li {
+  border-top: solid 1px #757575;
+  box-sizing: border-box;
+  color: #FFF;
+  cursor: pointer;
+  float: left;
+  font-size: 12px;
+  height: 34px;
+  line-height: 34px;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  text-align: center;
+  width: 50%;
+}
+.sub-nav-active {
+  background-color: #595959 !important;
+  border-bottom: 0 !important;
+  opacity: 1 !important;
+  filter: alpha(opacity=100)!important;
+}
