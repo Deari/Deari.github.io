@@ -14,8 +14,7 @@ const productTarget = {
 
 export default compose(
   DropTarget('product',
-    productTarget,
-    (connect, monitor) => ({
+    productTarget, (connect, monitor) => ({
       connectDropTarget: connect.dropTarget(),
       isOver           : monitor.isOver(),
       canDrop          : monitor.canDrop()
