@@ -1,13 +1,9 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { fetchProducts } from '../modules/product'
-//import { compose } from 'redux'
-//
-//export default compose(
-//  DropTarget(dragTypes, storyTarget, collect),
-//  connect(mapStateToProps)
-//)(StoryEditor);
+import { DragDropContext } from 'react-dnd'
+import HTML5Backend from 'react-dnd-html5-backend'
 
+import { fetchProducts } from '../modules/product'
 
 import Shop from '../components/Shop'
 
@@ -17,5 +13,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({ product: state.product })
 
-//export default Shop
-export default connect(mapStateToProps, mapDispatchToProps)(Shop)
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  DragDropContext(HTML5Backend)
+)(Shop)
