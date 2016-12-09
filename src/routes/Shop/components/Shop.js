@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import './Shop.scss'
 
+import Product from './Product'
+
 export class Shop extends Component {
 
 
   render() {
-    const props = this.props
-    console.log("_____________________")
-    console.log(props)
+    const {product} = this.props
+console.log(product)
     //const products = props.fetchProducts
-
 
     return <div id="editor-main">
       <div className="editor-left">
@@ -19,10 +19,10 @@ export class Shop extends Component {
         </ul>
 
         <div>
-
+          <Product {...product}/>
         </div>
 
-        {JSON.stringify(this.props.product)}
+        {/*{JSON.stringify(this.props.product)}*/}
       </div>
       <div className="editor-view">
         asdfas   <button onClick={::this.props.fetchProducts}>fetch</button>
