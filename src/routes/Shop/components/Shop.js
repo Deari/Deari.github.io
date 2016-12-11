@@ -16,11 +16,11 @@ export class Shop extends Component {
     return <div id="editor-main">
       <div className="editor-left">
         <ul className="sub-nav">
-          <li className="sub-nav-active">页面</li>
-          <li>图层</li>
+          <li className="sub-nav-active">组件</li>
+          <li>容器</li>
         </ul>
 
-        <div>
+        <div className="sub-content">
           <Product {...product}/>
         </div>
 

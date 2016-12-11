@@ -5,7 +5,10 @@ import './Product.scss'
 
 const productSource = {
   beginDrag(props) {
-    return { name: props.name }
+    return {
+      name     : props.name,
+      productId: props.productId,
+    }
   }
 }
 

@@ -2,14 +2,12 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
 const initialState = {
   products: [
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
-    { name: 'WIFI', width: 1, height: 1 },
+    { productId: 101, name: 'WIFI', width: 1, height: 1 },
+    { productId: 102, name: 'BeaconI', width: 1, height: 1 },
+    { productId: 103, name: 'WIFiI', width: 1, height: 1 },
+    { productId: 104, name: 'WIFI', width: 1, height: 1 },
+    { productId: 105, name: 'WIFI', width: 1, height: 1 },
+    { productId: 106, name: 'WIFI', width: 1, height: 1 },
   ]
 }
 
@@ -34,15 +32,12 @@ export const actions = {
   fetchProducts,
 }
 
-
 const ACTION_HANDLERS = {
   [REQUEST_PRODUCTS]: (state, action) => ({ ...action.data })
 }
 
 export default function productReducer(state = {}, action) {
-
   const handler = ACTION_HANDLERS[ action.type ]
-  const result = handler ? handler(state, action) : state
-  return result
+  return handler ? handler(state, action) : state
 }
 

@@ -1,10 +1,15 @@
-import React from 'react'
+import React, {Component} from 'react'
 import './Preview.scss'
 
-export const Preview = (props) => (
-  <div className="preview-container">
-    {JSON.stringify(props)}
-  </div>
-)
+export class Preview extends Component{
+  render() {
+    const { canDrop, isOver, connectDropTarget } = this.props;
+    const isActive = canDrop && isOver;
+    return connectDropTarget(<div className="preview-container">
+      {JSON.stringify(this.props)}
+    </div>)
+  }
+
+}
 
 export default Preview
