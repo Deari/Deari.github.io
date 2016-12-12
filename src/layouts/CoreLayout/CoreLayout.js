@@ -9,6 +9,7 @@ export const CoreLayout = ({ children }) => (
     <div className='core-layout__viewport'>
       {children}
     </div>
+    ds
   </div>
 )
 

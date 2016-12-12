@@ -1,9 +1,17 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import './Preview.scss'
 
 export class Preview extends Component{
+
+  static propTypes = {
+    //onDrop: PropTypes.func.isRequired,
+  }
+
   render() {
-    const { canDrop, isOver, connectDropTarget } = this.props;
+    //console.log(this.props)
+    //console.log("-----------")
+    //console.log(this.props.dispatch)
+    const { canDrop, isOver, connectDropTarget, onDrop } = this.props;
     const isActive = canDrop && isOver;
     return connectDropTarget(<div className="preview-container">
       {JSON.stringify(this.props)}
