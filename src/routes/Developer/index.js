@@ -1,17 +1,8 @@
-import React from 'react'
-
-
-class App extends React.Component {
-  render() {
-    return <div>Appdf</div>
-  }
-}
+import List from './businessList/list';
 
 export default (store) => ({
   path: 'developer',
-
-
   getComponent (nextState, cb) {
-    cb(null, App)
+    cb(null, List)
   }
 })

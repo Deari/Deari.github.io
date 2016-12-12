@@ -1,0 +1,17 @@
+.tab-container {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  height: 60px;
+  li {
+    float: left;
+    &.active {
+      color: lightseagreen;
+    }
+  }  
+}
+.btn-container {
+  button {
+    margin-right: 20px;
+  }
+}
