@@ -20,6 +20,10 @@ export const Header = () => (
     <Link to='/developer' activeClassName='route--active'>
       Developer
     </Link>
+    {' · '}
+    <Link to='/1' activeClassName='route--active'>
+      Nest Router Demo
+    </Link>
   </div>
 )
 
