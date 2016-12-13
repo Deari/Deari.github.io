@@ -30,9 +30,11 @@
 - 开发者中心-开放硬件-开发者文档 /developer/hardware/doc
 
 - 开发者中心-开放硬件-下载中心 /developer/hardware/download
-- 开发者中心-开放硬件-我的硬件 /developer/hardware/list
-- 开发者中心-开放硬件-我的硬件-已发布 /developer/hardware/listtype/:type=1
-- 开发者中心-开放硬件-我的硬件-未发布 /developer/hardware/listtype/:type=2
+- 开发者中心-开放硬件-我的硬件 /developer/hardware/list/:type
+
+- 开放市场 /open
+- 开放市场-开放硬件 /open/hardware
+- 开放市场-开放硬件-硬件详情 /open/hardware/detail/:id
 
 
 
