@@ -5,7 +5,7 @@ import './HomeView.scss'
 export const HomeView = () => (
   <div>
     <div className='banner'>
-    	<div className='login_in fr'>
+    	<div className='login_in'>
     		<div className='loginin_top'>
     			<h5>我是商家</h5>
 	    		<span>|</span>

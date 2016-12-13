@@ -1,3 +1,4 @@
+@import "../../../layouts/CoreLayout/CoreLayout";
 .duck {
   display: block;
   width: 120px;
@@ -8,21 +9,29 @@
   background: url(../assets/home_bannerbg.jpg) no-repeat;
 }
 .login_in{
+  @include float-right;
   margin: 20px 40px;
   width: 440px; height: 330px;
   background: #ffffff;
   border-radius: 4px;
+  form{
+    margin: 20px 0;
+    
+  }
 }
 .loginin_top{
   height: 66px;
   line-height: 66px;
+  @include line-bottom;
   h5{
     float: left;
     width: 49%;
+    font-size: 20px;
     text-align: center;
   }
   span{
     float: left;
+    color: $white-color;
   }
 }
 .home_reminder{
@@ -31,12 +40,13 @@
   text-align: center;
   background: #ffffff;
 }
-.reminder_m{
+.home_f{
+  div{
+    @include float-left;
+    padding: 20px 70px; 
+    width:33%;
+    text-align: center;
+  }
   
-}
-.home_f div{
-  padding: 20px 70px; 
-  width:33%;
-  text-align: center;
 }
 

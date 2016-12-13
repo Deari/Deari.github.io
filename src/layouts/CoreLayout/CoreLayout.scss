@@ -1,4 +1,30 @@
-//.core-layout__viewport {
-//padding-top: 4rem;
-//}
-$primary-color:                   #2692fb;
+$lightblue-color: #2692fb;  //主题蓝
+
+$white-color: #999999;
+
+$header-height: 60px;
+
+
+
+
+@mixin float-left {
+  float: left !important;
+}
+@mixin float-right {
+  float: right !important;
+}
+@mixin float-none {
+  float: none !important;
+}
+
+
+@mixin line-bottom{
+  border-bottom: 1px solid $white-color;
+}
+@mixin navselect-bottom{
+  border-bottom: 2px solid $lightblue-color;
+  background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
+}
+
+
+
