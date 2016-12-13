@@ -3,9 +3,9 @@ import Header from '../../components/Header'
 import './CoreLayout.scss'
 import '../../styles/core.scss'
 
-export const CoreLayout = ({ children }) => (
+export const CoreLayout = ({ header, children }) => (
   <div className='container-full text-center'>
-    <Header />
+    { header ? header : <Header /> }
     <div className='core-layout__viewport'>
       {children}
     </div>

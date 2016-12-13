@@ -23,7 +23,6 @@ export class Shop extends Component {
         <div>
           <Product {...product}/>
         </div>
-
       </div>
       <div className="editor-view">
         <button onClick={::this.props.fetchProducts}>fetch</button>
@@ -37,7 +36,6 @@ export class Shop extends Component {
 }
 
 export default Shop
-
 
 Shop.propTypes = {
   products: PropTypes.array

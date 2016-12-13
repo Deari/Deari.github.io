@@ -17,7 +17,10 @@ const webpackConfig = {
   devtool : project.compiler_devtool,
   resolve : {
     root       : project.paths.client(),
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json'],
+    alias: {
+      
+    }
   },
   module : {}
 }
@@ -45,10 +48,15 @@ webpackConfig.output = {
 // ------------------------------------
 // Externals
 // ------------------------------------
-webpackConfig.externals = {}
+webpackConfig.externals = {
+   'react': 'React',
+   'react-dom': 'ReactDOM',
+}
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
 webpackConfig.externals['react/lib/ReactContext'] = true
 webpackConfig.externals['react/addons'] = true
+
+webpackConfig.module.noParse = []
 
 // ------------------------------------
 // Plugins
