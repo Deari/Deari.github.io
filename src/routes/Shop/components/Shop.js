@@ -1,5 +1,5 @@
 import React from 'react'
-import './Shop.scss'
+// import './Shop.scss'
 
 export const Shop = () => (
   <div id="editor-main">
@@ -8,14 +8,8 @@ export const Shop = () => (
         <li className="sub-nav-active">页面</li>
         <li>图层</li>
       </ul>
-
     </div>
-    <div className="editor-view">
-      asdfas
-    </div>
-    <div className="editor-right">
-      right
-    </div>
+    <div>这是商家中心内容</div>
   </div>
 )
 
