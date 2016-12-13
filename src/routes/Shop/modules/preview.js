@@ -1,9 +1,12 @@
+import randomstring from 'randomstring'
+
+
 const ADD_ELEMENT = 'ADD_ELEMENT'
 
 export const addElement = (item) => {
   return {
-    type: ADD_ELEMENT,
-    element: {...item}
+    type   : ADD_ELEMENT,
+    element: { ...item },
   }
 }
 
@@ -14,8 +17,19 @@ export const actions = {
 const ACTION_HANDLERS = {
   [ADD_ELEMENT]: (state, action) => {
     const elements = state.elements
-    elements.push(action.element)
-    return {...state, ...{elements}}
+    const element = {
+      ...{
+        id: randomstring.generate({
+          length        : 7,
+          charset       : 'alphabetic',
+          capitalization: 'uppercase',
+        })
+      },
+      ...action.element,
+    }
+
+    elements.push(element)
+    return { ...state, ...{ elements } }
   }
 }
 

@@ -1,22 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 
-
 export class Element extends Component {
-
   render() {
-    const { name, children, dispatch, selectElement, ...rest} = this.props
-    return <div {...rest} onClick={selectElement}>
+    const { name, id, children, dispatch, selectElement, ...rest } = this.props
+    return <div {...rest} onClick={selectElement.bind(this, id)}>
       {name}
       {children}
     </div>
   }
-
 }
 
 
 Element.defaultProps = {
-  selectElement: ()=>{}
+  selectElement: ()=> {}
 }
-
 
 export default Element

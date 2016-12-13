@@ -30,8 +30,7 @@ export class Preview extends Component {
         <div className="preview-container">
           <ReactGridLayout className="layout" layout={layout} cols={4} rowHeight={30} width={300}>
             <div key={'a'}>a</div>
-            <Element key={'b'} name="aaa"/>
-
+            <Element key='b' id="b" name="aaa"/>
             <div key={'c'}>c</div>
           </ReactGridLayout>
         </div>

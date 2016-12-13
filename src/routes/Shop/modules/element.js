@@ -1,5 +1,6 @@
-export const selectElement = () => {
+export const selectElement = (id) => {
   console.log('element')
+  console.log(id)
   return { type: 'aaa', asd: 123 }
 
 }
