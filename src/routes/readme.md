@@ -8,9 +8,15 @@
 
 - 商家中心-店铺管理 /shop/manage
 - 商家中心-店铺管理-我的店铺 /shop/manage/myshop
-- 商家中心-店铺管理-商家应用 /shop/manage/applations
-- 商家中心-店铺管理-店铺组件 /shop/manage/components
+
+- 商家中心-店铺管理-商家应用 /shop/manage/apps
+- 商家中心-店铺管理-商家应用-详情 /shop/manage/apps/:aid
+
+- 商家中心-店铺管理-店铺组件 /shop/manage/widgets
+- 商家中心-店铺管理-店铺组件-详情 /shop/manage/widgets/:wid
+
 - 商家中心-店铺管理-我的硬件 /shop/manage/hardware
+- 商家中心-店铺管理-我的硬件-详情 /shop/manage/hardware/:hid
 
 - 开发者中心 /developer
 - 开发者中心-商家应用-开发者文档 /developer/apps

@@ -8,10 +8,7 @@ export const Header = () => (
     <IndexLink to='/' activeClassName='route--active'>
       Home
     </IndexLink>
-    {' · '}
-    <Link to='/counter' activeClassName='route--active'>
-      Counter
-    </Link>
+   
     {' · '}
     <Link to='/shop' activeClassName='route--active'>
       Shop
@@ -21,8 +18,8 @@ export const Header = () => (
       Developer
     </Link>
     {' · '}
-    <Link to='/1' activeClassName='route--active'>
-      Nest Router Demo
+    <Link to='/open' activeClassName='route--active'>
+      Open
     </Link>
   </div>
 )
