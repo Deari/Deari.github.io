@@ -3,3 +3,40 @@
   width: 120px;
   margin: 1.5rem auto;
 }
+.banner{
+  height: 480px;
+  background: url(../assets/home_bannerbg.jpg) no-repeat;
+}
+.login_in{
+  margin: 20px 40px;
+  width: 440px; height: 330px;
+  background: #ffffff;
+  border-radius: 4px;
+}
+.loginin_top{
+  height: 66px;
+  line-height: 66px;
+  h5{
+    float: left;
+    width: 49%;
+    text-align: center;
+  }
+  span{
+    float: left;
+  }
+}
+.home_reminder{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #ffffff;
+}
+.reminder_m{
+  
+}
+.home_f div{
+  padding: 20px 70px; 
+  width:33%;
+  text-align: center;
+}
+
