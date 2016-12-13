@@ -37,11 +37,7 @@ export default (store) => ({
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        {
-          path: 'api',
-          component: ApiDoc
-        },
-
+        require('./routes/Api'),
         require('./routes/Apps'),
         require('./routes/Hardware'),
         require('./routes/Widgets')
