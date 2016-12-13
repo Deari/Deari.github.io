@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-
+import HardwareList from  './List'
 import Doc from './Doc'
 
 class Container extends React.Component {
@@ -39,7 +39,8 @@ module.exports =  {
     require.ensure([], (require) => {
       cb(null, [
         require('./Download'),
-        require('./List')
+        require('./List'),
+        require('./Create')
       ])
     })
   }
