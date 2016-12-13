@@ -8,10 +8,6 @@ import Preview from '../components/Preview'
 
 // http://placeholder.qiniudn.com/150x100/4CD964/fff
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({
-  //AddElement:
-}, dispatch)
-
 const mapStateToProps = state => ({
   preview: state.preview
 })
