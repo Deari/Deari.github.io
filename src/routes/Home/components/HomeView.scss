@@ -41,12 +41,18 @@
   background: #ffffff;
 }
 .home_f{
-  div{
+  a{
     @include float-left;
     padding: 20px 70px; 
     width:33%;
     text-align: center;
   }
-  
 }
-
+.developer_f{
+   a{
+    @include float-left;
+    padding: 20px 70px; 
+    width:25%;
+    text-align: center;
+  }
+}

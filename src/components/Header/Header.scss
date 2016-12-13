@@ -7,12 +7,12 @@
 
 .header {
   margin: 0 auto;
-  width: 1100px;
+  width: $view-width;
   height: $header-height;
   h1{
     @include float-left;
     font-size: 26px;
-    line-height: 60px;
+    line-height: $header-height;
     color: $lightblue-color;
     i {
       display: inline-block;
@@ -28,15 +28,56 @@
     position: relative;
     @include float-right;
     font-size: 20px;
-    line-height: 58px;
+    line-height: $header-height - 2;
     a{
       display: inline-block;
       margin: 0 20px;
     }
-    .nav-select{
-      
-
-
+  }
+}
+//二级导航
+.nav-second{
+  background: $navsecond-bg;
+  height: 1000px;
+  .navs-nav{
+    margin: $view-margin;
+    padding-left: $navsecond-padding-left;
+    width: $view-width;
+    height: $navsecond-height;
+    line-height: $navsecond-line-height;
+    li{
+    @include float-left;
+    padding: 0 20px;
+    margin: 0 0 0 ;
+    background-image: none;
     }
   }
 }
+//三级导航
+.cContent{
+  margin: $view-margin;
+  width: $view-width;
+  .navThird{
+    @include float-left;
+    width: $navThird-width;
+    background: $white-color;
+    ul{
+      padding-left: $navThirdli-padding-left;
+      font-size: $navThirdOne-font-size;
+      li{
+        height: $navThirdLi-height;
+        line-height: $navThirdLi-height;
+        ul{
+          
+        }
+      }
+    }
+  }
+  .ccContent{
+    @include float-right;
+    width: $ccContent-width;
+    background: $white-color;
+  }
+
+}
+

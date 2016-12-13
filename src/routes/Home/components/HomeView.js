@@ -30,36 +30,23 @@ export const HomeView = () => (
 			<span className='reminder_m'>系统公告：蓝海BO开放平台关于处理“二元期权”类信息的公告</span>
 			<span>查看更多</span>
 		</div>
-		<div className='home_f'>
-			<div className='fl'>
-				<i></i>
-				<h3>商家中心</h3>
-				<p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-				<a>了解更多</a>
-			</div>
-			<div className='fl'>
-				<i></i>
-				<h3>商家中心</h3>
-				<p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-				<a>了解更多</a>
-			</div>
-			<div className='fl'>
-				<i></i>
-				<h3>商家中心</h3>
-				<p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-				<a>了解更多</a>
-			</div>
-		</div>
-    <h4>Welcome!</h4>
-    <Link to='/shop' activeClassName='route--active'>
-      商家中心
+    <div className='home_f'>
+      <Link to='/shop' activeClassName='route--active'>
+        商家中心
+        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+        <span>了解更多</span>
       </Link>
       <Link to='/developer' activeClassName='route--active'>
-      开发者中心
+        开发者中心
+        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+        <span>了解更多</span>
       </Link>
       <Link to='/open' activeClassName='route--active'>
-      开放市场
+        开放市场
+        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+        <span>了解更多</span>
       </Link>
+    </div>
   </div>
 )
 
