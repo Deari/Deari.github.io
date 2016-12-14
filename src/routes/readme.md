@@ -8,9 +8,15 @@
 
 - 商家中心-店铺管理 /shop/manage
 - 商家中心-店铺管理-我的店铺 /shop/manage/myshop
-- 商家中心-店铺管理-商家应用 /shop/manage/applations
-- 商家中心-店铺管理-店铺组件 /shop/manage/components
+
+- 商家中心-店铺管理-商家应用 /shop/manage/apps
+- 商家中心-店铺管理-商家应用-详情 /shop/manage/apps/:aid
+
+- 商家中心-店铺管理-店铺组件 /shop/manage/widgets
+- 商家中心-店铺管理-店铺组件-详情 /shop/manage/widgets/:wid
+
 - 商家中心-店铺管理-我的硬件 /shop/manage/hardware
+- 商家中心-店铺管理-我的硬件-详情 /shop/manage/hardware/:hid
 
 - 开发者中心 /developer
 - 开发者中心-商家应用-开发者文档 /developer/apps
@@ -30,9 +36,11 @@
 - 开发者中心-开放硬件-开发者文档 /developer/hardware/doc
 
 - 开发者中心-开放硬件-下载中心 /developer/hardware/download
-- 开发者中心-开放硬件-我的硬件 /developer/hardware/list
-- 开发者中心-开放硬件-我的硬件-已发布 /developer/hardware/listtype/:type=1
-- 开发者中心-开放硬件-我的硬件-未发布 /developer/hardware/listtype/:type=2
+- 开发者中心-开放硬件-我的硬件 /developer/hardware/list/:type
+
+- 开放市场 /open
+- 开放市场-开放硬件 /open/hardware
+- 开放市场-开放硬件-硬件详情 /open/hardware/detail/:id
 
 
 
