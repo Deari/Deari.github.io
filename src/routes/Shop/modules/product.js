@@ -2,12 +2,54 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
 const initialState = {
   products: [
-    { productId: 101, name: 'WIFI', width: 1, height: 1 },
-    { productId: 102, name: 'BeaconI', width: 1, height: 1 },
-    { productId: 103, name: 'WIFiI', width: 1, height: 1 },
-    { productId: 104, name: 'WIFI', width: 1, height: 1 },
-    { productId: 105, name: 'WIFI', width: 1, height: 1 },
-    { productId: 106, name: 'WIFI', width: 1, height: 1 },
+    {
+      productId: 101,
+      name     : 'WIFI',
+      w        : 2,
+      h        : 1,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg',
+    },
+    {
+      productId: 102,
+      name     : 'Beacon',
+      w        : 3,
+      h        : 1,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
+    },
+    {
+      productId: 103,
+      name     : 'IMG1',
+      w        : 1,
+      h        : 1,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
+    },
+    {
+      productId: 104,
+      name     : 'IMG2',
+      w        : 2,
+      h        : 1,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
+    },
+    {
+      productId: 105,
+      name     : 'IMG3',
+      w        : 1,
+      h        : 3,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
+    },
+    {
+      productId: 106,
+      name     : 'IMG4',
+      w        : 2,
+      h        : 2,
+      thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
+      imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
+    },
   ]
 }
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose, bindActionCreators } from 'redux'
 import { DropTarget } from 'react-dnd'
-import { addElement } from '../modules/preview'
+import { addElement, setLayout } from '../modules/preview'
 
 
 import Preview from '../components/Preview'
@@ -12,6 +12,13 @@ const mapStateToProps = state => ({
   preview: state.preview
 })
 
+
+const mapDispatchToProps = dispatch => ({
+  setLayout(layout) {
+    dispatch(setLayout({layout: layout}))
+  }
+})
+
 const productTarget = {
   drop(props, monitor, component) {
     props.dispatch(addElement(monitor.getItem()))
@@ -19,7 +26,7 @@ const productTarget = {
 }
 
 export default compose(
-  connect(mapStateToProps),
+  connect(mapStateToProps, mapDispatchToProps),
   DropTarget('product',
     productTarget, (connect, monitor) => ({
       connectDropTarget: connect.dropTarget(),

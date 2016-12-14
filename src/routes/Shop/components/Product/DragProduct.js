@@ -5,20 +5,21 @@ import './Product.scss'
 
 const productSource = {
   beginDrag(props) {
+    const { name, productId, type, w, h } = props
     return {
-      name     : props.name,
-      productId: props.productId,
+      name, productId, type, w, h
     }
   }
 }
 
-const Product = ({ name, imgSrc, width = 1, height = 1, connectDragSource }) =>
+const Product = ({ name, imgSrc, w = 1, h = 1, connectDragSource }) =>
   connectDragSource(
     <div>
       <img className={'product-img'}
+           width={100}
            src={imgSrc || 'http://placeholder.qiniudn.com/100x50/808080/fff' }
            alt={name}/>
-      <span>{name}-{width}x{height}</span>
+      <span>{name}-{w}x{h}</span>
     </div>
   )
 

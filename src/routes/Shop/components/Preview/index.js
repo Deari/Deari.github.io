@@ -11,6 +11,17 @@ export class Preview extends Component {
     canDrop          : PropTypes.bool.isRequired,
     isOver           : PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
+    setLayout        : PropTypes.func.isRequired,
+  }
+
+  state = {
+    layout: {}
+  }
+
+  onLayoutChange(layout) {
+    this.props.setLayout(layout.map(l => ({
+      i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
+    })))
   }
 
   render() {
@@ -24,14 +35,17 @@ export class Preview extends Component {
     ];
     return connectDropTarget(
       <div>
-        <pre style={{ "fontSize": '14px' }}>
+        <pre style={{ "fontSize": '12px' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
         <div className="preview-container">
-          <ReactGridLayout className="layout" layout={layout} cols={4} rowHeight={30} width={300}>
+          <ReactGridLayout className="layout" layout={layout} cols={4} rowHeight={30} width={300}
+                           onLayoutChange={::this.onLayoutChange}>
             <div key={'a'}>a</div>
             <Element key='b' id="b" name="aaa"/>
             <div key={'c'}>c</div>
+            <div key="d" data-grid={{ x: 4, y: 0, w: 1, h: 2 }}>d</div>
+
           </ReactGridLayout>
         </div>
       </div>

@@ -7,5 +7,5 @@ const mapDispatchToProps = {
   selectElement
 }
 
+//https://github.com/STRML/react-grid-layout/blob/master/test/examples/1-basic.jsx
 export default connect(undefined, mapDispatchToProps)(Element)
-//export default Element
