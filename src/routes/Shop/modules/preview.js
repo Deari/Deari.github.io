@@ -37,7 +37,8 @@ const ACTION_HANDLERS = {
 }
 
 const defaultState = {
-  elements: []
+  elements: [],
+  layout  : [],
 }
 
 export default function productReducer(state = defaultState, action) {

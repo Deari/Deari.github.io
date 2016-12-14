@@ -16,7 +16,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setLayout(layout) {
     dispatch(setLayout({layout: layout}))
-  }
+  },
+  dispatch,
 })
 
 const productTarget = {

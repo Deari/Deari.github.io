@@ -12,10 +12,7 @@ export class Preview extends Component {
     isOver           : PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     setLayout        : PropTypes.func.isRequired,
-  }
-
-  state = {
-    layout: {}
+    preview          : PropTypes.object.isRequired,
   }
 
   onLayoutChange(layout) {
@@ -24,28 +21,33 @@ export class Preview extends Component {
     })))
   }
 
-  render() {
-    const { canDrop, isOver, connectDropTarget } = this.props
-    //const isActive = canDrop && isOver;
+  getLayout(e) {
+    const { layout } = this.props.preview
+    return layout[ e.id ] ? layout[ e.id ] : { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+  }
 
-    var layout = [
-      { i: 'a', x: 0, y: 0, w: 1, h: 2 },
-      { i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4 },
-      { i: 'c', x: 4, y: 0, w: 1, h: 2 }
-    ];
+  render() {
+    const { canDrop, isOver, connectDropTarget, preview } = this.props
+    //const isActive = canDrop && isOver;
+    const layout = preview.layout
+    console.log(layout)
     return connectDropTarget(
       <div>
         <pre style={{ "fontSize": '12px' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
         <div className="preview-container">
-          <ReactGridLayout className="layout" layout={layout} cols={4} rowHeight={30} width={300}
+          <ReactGridLayout className="layout"
+                           layout={layout}
+                           cols={4}
+                           rowHeight={30}
+                           width={300}
                            onLayoutChange={::this.onLayoutChange}>
-            <div key={'a'}>a</div>
-            <Element key='b' id="b" name="aaa"/>
-            <div key={'c'}>c</div>
-            <div key="d" data-grid={{ x: 4, y: 0, w: 1, h: 2 }}>d</div>
-
+            {preview.elements.map(e =>
+              <div key={e.id}
+                   data-grid={this.getLayout(e)}>
+                <Element {...e}/>
+              </div>)}
           </ReactGridLayout>
         </div>
       </div>
