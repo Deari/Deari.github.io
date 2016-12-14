@@ -1,23 +1,29 @@
 import React from 'react'
-import  { injectReducer } from '../../store/reducers'
-//import  product from './containers/ProductContainer'
-//import Shop from './containers/ShopContainer'
-
+import { IndexLink, Link } from 'react-router'
+import Doc from './components/Doc';
+import Layout from './components/Layout';
 
 export default (store) => ({
   path: 'shop',
+  component: Layout,
 
-  //component: Shop
+  indexRoute: {
+    component: Doc,
+  },
 
-  getComponent (nextState, cb) {
-
+  getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
-      const Shop = require('./containers/ShopContainer').default
-      const product = require('./modules/product').default
-
-      injectReducer(store, { key: 'product', reducer: product })
-      cb(null, Shop)
+      cb(null, [
+        require('./routes/ManageShop'),
+      ])
     })
-  }
+  },
+
+  // getComponent (nextState, cb) {
+
+  //   const Shop = require('./containers/ShopContainer').default
+
+  //   cb(null, Shop)
+  // }
 })
 

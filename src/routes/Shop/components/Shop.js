@@ -34,7 +34,6 @@ export class Shop extends Component {
     </div>
   }
 }
-
 export default Shop
 
 Shop.propTypes = {
