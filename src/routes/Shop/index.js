@@ -3,6 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import Doc from './components/Doc';
 import Layout from './components/Layout';
 
+
 export default (store) => ({
   path: 'shop',
   component: Layout,
