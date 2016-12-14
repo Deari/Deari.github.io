@@ -6,7 +6,7 @@ import { IndexLink, Link } from 'react-router'
 class Item extends React.Component {
   render() {
     const {item} = this.props;
-    let btnClass = "btn";
+    let btnClass = "bbbbbbbtn";
     console.log(item.type)
     if(item.type){
       btnClass+="active"; 
