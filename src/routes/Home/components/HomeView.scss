@@ -11,12 +11,15 @@
 .login_in{
   @include float-right;
   margin: 20px 40px;
-  width: 440px; height: 330px;
+  width: 400px; height: 330px;
   background: #ffffff;
   border-radius: 4px;
   form{
     margin: 20px 0;
-    
+    .form-control{
+      @include form-control;
+      width: $form-small-width;
+    }
   }
 }
 .loginin_top{
@@ -24,28 +27,86 @@
   line-height: 66px;
   @include line-bottom;
   h5{
-    float: left;
+    @include float-left;
     width: 49%;
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 66px;
     text-align: center;
   }
   span{
-    float: left;
-    color: $white-color;
+    @include float-left;
+    color: $navsecond-bg;
   }
 }
 .home_reminder{
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  background: #ffffff;
+  clear: both;
+  height: $reminder-height;
+  line-height: $reminder-height;
+  color: $gray-color;
+  font-size: $homefpSize;
+  background: $navsecond-bg;
+  div{
+    margin: $view-margin;
+    width: $view-width;
+    span:nth-of-type(1){
+      padding-left: 24px;
+      background: url(../assets/remind_trumpet.png) no-repeat left center;
+      background-size: 18px 16px;
+      i{
+        width: 24px; height: 14px;
+        background: url(../assets/remind_newicon.png) no-repeat;
+        background-size: 100%;
+      }
+    }
+    span:nth-of-type(2){
+      @include float-right;
+      padding-right: 14px;
+      background: url(../assets/more_into.png) no-repeat right center;
+      background-size: 8px 16px;
+    }
+  }
 }
 .home_f{
+  @include float-clear;
+  margin: 40px auto;
+  width: $view-width;
+  border: 1px solid $navsecond-bg;
   a{
     @include float-left;
-    padding: 20px 70px; 
-    width:33%;
+    @include line-right;
+    margin: 50px 0;
+    padding: 0 40px; 
+    width:33.3%;
     text-align: center;
+    h3{
+      color: $darkgray-color;
+      font-size: $homefhSize;
+      line-height: 44px;
+    }
+    p,span{
+      color: $gray-color;
+      font-size: $homefpSize;
+      line-height: 26px;
+    }
+    span{
+      text-decoration: underline;
+    }
+    i{
+      width: 80px; height: 80px;
+      background: url(../assets/home_f.png) no-repeat;
+    }
+    .homef-business{
+      background-position: 0 0;
+    }
+    .homef-developer{
+      background-position: -80px 0;
+    }
+    .homef-openmarket{
+      background-position: -160px 0;
+    }
+  }
+  a:nth-last-child(1){
+    border-right: none;
   }
 }
 .developer_f{

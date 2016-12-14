@@ -44,7 +44,7 @@
     padding-left: $navsecond-padding-left;
     width: $view-width;
     height: $navsecond-height;
-    line-height: $navsecond-line-height;
+    line-height: $navsecond-height;
     li{
     @include float-left;
     padding: 0 20px;
