@@ -1,5 +1,58 @@
+@import "../../../layouts/CoreLayout/CoreLayout";
 .duck {
   display: block;
   width: 120px;
   margin: 1.5rem auto;
+}
+.banner{
+  height: 480px;
+  background: url(../assets/home_bannerbg.jpg) no-repeat;
+}
+.login_in{
+  @include float-right;
+  margin: 20px 40px;
+  width: 440px; height: 330px;
+  background: #ffffff;
+  border-radius: 4px;
+  form{
+    margin: 20px 0;
+    
+  }
+}
+.loginin_top{
+  height: 66px;
+  line-height: 66px;
+  @include line-bottom;
+  h5{
+    float: left;
+    width: 49%;
+    font-size: 20px;
+    text-align: center;
+  }
+  span{
+    float: left;
+    color: $white-color;
+  }
+}
+.home_reminder{
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: #ffffff;
+}
+.home_f{
+  a{
+    @include float-left;
+    padding: 20px 70px; 
+    width:33%;
+    text-align: center;
+  }
+}
+.developer_f{
+   a{
+    @include float-left;
+    padding: 20px 70px; 
+    width:25%;
+    text-align: center;
+  }
 }

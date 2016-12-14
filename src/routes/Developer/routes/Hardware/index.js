@@ -2,11 +2,12 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import HardwareList from  './List'
 import Doc from './Doc'
+import '../../../../components/Header/Header'
 
 class Container extends React.Component {
   render () {
-    return <div>
-      <ul>
+    return <div className="nav-second">
+      <ul className="navs-nav">
         <li>
           <IndexLink to='/developer/hardware' activeClassName='route--active'>
           开发者文档

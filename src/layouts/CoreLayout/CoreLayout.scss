@@ -1,3 +1,31 @@
-.core-layout__viewport {
-  padding-top: 4rem;
+$lightblue-color: #2692fb;  //主题蓝
+$white-color: #ffffff;
+$navsecond-bg: #eeeeee;
+$gray-color: #999999;
+
+
+//宽高
+$view-width: 1100px;
+$view-margin: 0 auto;
+$header-height: 60px;
+$navsecond-height: 50px;
+  $navsecond-line-height: 50px;
+  $navsecond-padding-left: 190px;
+$navThird-width: 200px;
+  $navThirdLi-height:30px;
+  $navThirdli-padding-left: 20px;
+  $navThirdOne-font-size: 14px;
+$ccContent-width: 890px;
+
+//float
+@mixin float-left { float: left !important;}
+@mixin float-right { float: right !important;}
+//line
+@mixin line-bottom{ border-bottom: 1px solid $white-color;}
+@mixin navselect-bottom{
+  border-bottom: 2px solid $lightblue-color;
+  background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
+
+
+

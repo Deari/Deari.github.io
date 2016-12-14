@@ -2,11 +2,12 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import Doc from '../../components/WidgetDevDoc'
 import AppList from './List'
+import '../../../../components/Header/Header'
 
 class Container extends React.Component {
   render () {
-    return <div>
-      <ul>
+    return <div className="nav-second">
+      <ul className="navs-nav">
         <li>
           <IndexLink to='/developer/widgets' activeClassName='route--active'>
           开发者文档
