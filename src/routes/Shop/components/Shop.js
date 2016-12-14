@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react'
+import React from 'react'
 import { IndexLink, Link } from 'react-router'
 
 export const Shop = (props) => (
