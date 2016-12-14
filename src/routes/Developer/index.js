@@ -52,5 +52,5 @@ export default (store) => ({
         require('./routes/Widgets')
       ])
     })
-  }
+    }
 })
