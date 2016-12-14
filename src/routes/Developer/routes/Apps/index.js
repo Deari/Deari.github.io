@@ -34,7 +34,8 @@ module.exports =  {
     require.ensure([], (require) => {
       cb(null, [
         require('./List'),
-        require('./Create')
+        require('./Create'),
+        require('./Detail')
       ])
     })
   }
