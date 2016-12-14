@@ -18,6 +18,7 @@ export default (store) => ({
       ])
     })
   },
+  
   // getComponent (nextState, cb) {
 
   //   const Shop = require('./containers/ShopContainer').default
