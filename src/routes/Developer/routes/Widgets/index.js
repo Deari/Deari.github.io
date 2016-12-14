@@ -34,10 +34,8 @@ module.exports =  {
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        {
-          path: 'list',
-          component: AppList
-        }
+        require('./List'),
+        require('./Create')
       ])
     })
   }
