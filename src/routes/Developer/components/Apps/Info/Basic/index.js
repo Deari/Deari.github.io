@@ -1,11 +1,10 @@
-import React from 'react';
-import './index.scss';
+import React from 'react'
+import './index.scss'
 
-class BasicInfo extends React.Component {
+class Basic extends React.Component {
   render() {
     return (
       <div>
-      <form className="container bo-form-container">
         <fieldset className="col-sm-4">
           <div className="form-group row">
             <input type="text" className="form-control" placeholder="应用名称" />
@@ -15,14 +14,13 @@ class BasicInfo extends React.Component {
           </div>
           <div className="form-group row">
             <div className="img-container">
-              <img src="..." alt="..." className="img-thumbnail" />
+              <img src="" alt="上传图片" className="img-thumbnail" />
             </div>
           </div>
           <div className="form-group row">
-            {/*<input type="file" name="选择图片" className="form-control-file form-control-sm upload-btn" />*/}
             <span className="sl-custom-file">
               <input type="button" className="btn btn-primary" value="选择图片" />
-              <input type="file" className="ui-input-file" />
+              <input type="file" className="ui-input-file" accept="image/*" />
             </span>
           </div>
           <div className="form-group row">
@@ -38,20 +36,9 @@ class BasicInfo extends React.Component {
             <input type="text" className="form-control" placeholder="标签" />
           </div>
         </fieldset>
-      </form>
-      <form className="container bo-form-container">
-        <fieldset className="col-sm-6">
-          <div className="form-group row">
-            <textarea className="form-control" rows="5"></textarea>
-          </div>
-          <div className="form-group row">
-            <input type="text" className="form-control" placeholder="版本号" />
-          </div>
-        </fieldset>
-      </form>
       </div>
     )
   }
 }
 
-export default BasicInfo;
+export default Basic;

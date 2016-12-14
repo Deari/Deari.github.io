@@ -4,7 +4,6 @@ import Home from './Home'
 import CounterRoute from './Counter'
 import Shop from './Shop'
 import Developer from './Developer'
-import BusinessApp from './Developer/businessApp'
 import Demo from './1'
 import Header from '../components/Header2'
 
@@ -19,7 +18,6 @@ export const createRoutes = (store) => ({
     CounterRoute(store),
     Shop(store),
     Developer(store),
-    BusinessApp(store),
     Demo(store),
   ]
 })
