@@ -37,3 +37,7 @@ export const Shop = (props) => (
 )
 
 export default Shop
+
+Shop.propTypes = {
+  products: PropTypes.array
+}
