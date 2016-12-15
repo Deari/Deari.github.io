@@ -1,6 +1,9 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
+import '../../../styles/base.scss'
+import '../../../styles/form.scss'
+import '../../../styles/button.scss'
 import { IndexLink, Link } from 'react-router'
 
 export const HomeView = () => (
@@ -15,14 +18,14 @@ export const HomeView = () => (
     		<form>
     			<input className="form-control" type="text/css" placeholder="用户名"/>
     			<input className="form-control" type="text/css" placeholder="请输入密码"/>
-    			<div>
+    			<div className="password-box">
     				<label>
-    					<input type="radio"/>
+    					<input type="checkbox"/>
     					记住密码
     				</label>
-    				<a>忘记密码</a>
+    				<a className="float-right">忘记密码</a>
     			</div>
-    			<button>登录</button>
+    			<button className="btn bg-btn-blue">登录</button>
     		</form>
     	</div>
     </div>
