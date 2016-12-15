@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import '../../../components/Header/Header'
+import '../../../../components/Header/Header'
 
 class Doc extends React.Component {
   render() {
