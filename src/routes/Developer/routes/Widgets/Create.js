@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Info from '../../components/Apps/Info'
+import WidgetInfo from '../../components/widgets/Info'
 
 class Create extends React.Component {
   render() {
