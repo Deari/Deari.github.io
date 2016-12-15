@@ -5,17 +5,21 @@
 // Just remove them if they're not what you want
 html {
   box-sizing: border-box;
+  font-family: "微软雅黑","sans-serif";
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
+html, body {
+  margin: 0;padding: 0;
   height: 100%;
 }
-
-*,
-*:before,
-*:after {
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, 
+code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ul , li, ol, 
+fieldset, form, label, legend,a,table {
+  margin: 0;padding: 0;
+  text-decoration:none; list-style:none;
+}
+*,*:before,*:after {
   box-sizing: inherit;
 }
+i{ display: inline-block;}
+

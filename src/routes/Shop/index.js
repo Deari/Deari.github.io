@@ -1,22 +1,21 @@
 import React from 'react'
-import { injectReducer } from '../../store/reducers'
-//import  product from './containers/ProductContainer'
-//import Shop from './containers/ShopContainer'
-
+import { IndexLink, Link } from 'react-router'
+import Doc from './components/Doc';
+import Layout from './components/Layout';
 
 export default (store) => ({
   path: 'shop',
+  component: Layout,
 
-  getComponent (nextState, cb) {
+  indexRoute: {
+    component: Doc,
+  },
 
+  getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
-      const Shop = require('./containers/ShopContainer').default
-      const product = require('./modules/product').default
-      const preview = require('./modules/preview').default
-
-      injectReducer(store, { key: 'product', reducer: product })
-      injectReducer(store, { key: 'preview', reducer: preview })
-      cb(null, Shop)
+      cb(null, [
+        require('./routes/ManageShop')(store),
+      ])
     })
-  }
+  },
 })

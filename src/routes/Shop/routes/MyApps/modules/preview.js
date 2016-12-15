@@ -1,6 +1,6 @@
 //import randomstring from 'randomstring'
 
-import { getRandomString } from '../../../components/utils'
+import { getRandomString } from '../../../../../components/utils'
 
 const ADD_ELEMENT = 'ADD_ELEMENT'
 const SET_LAYOUT = 'SET_LAYOUT'

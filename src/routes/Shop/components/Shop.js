@@ -1,43 +1,40 @@
-import React, { Component, PropTypes } from 'react'
-import './Shop.scss'
+import React from 'react'
+import { IndexLink, Link } from 'react-router'
 
-import Product from '../containers/ProductContainer'
-import Preview from '../containers/PreviewContainer'
+export const Shop = (props) => (
+  <div id="editor-main">
+    <div className="editor-left">
+      <ul className="sub-nav">
+        <li className="sub-nav-active">
+          <IndexLink to='/shop/manage' activeClassName='route--active'>
+            我的店铺
+          </IndexLink>
+        </li>
 
-export class Shop extends Component {
+        <li>
+          <Link to='/shop/manage/apps' activeClassName='route--active'>
+            我的商家应用
+          </Link>
+        </li>
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
+        <li>
+          <Link to='/shop/manage/widgets' activeClassName='route--active'>
+            我的店铺组件
+          </Link>
+        </li>
 
-  render() {
-    const { product } = this.props
-
-    return <div id="editor-main">
-      <div className="editor-left">
-        <ul className="sub-nav">
-          <li className="sub-nav-active">组件</li>
-          <li>容器</li>
-        </ul>
-
-        <div className="sub-content">
-          <Product {...product}/>
-        </div>
-
-      </div>
-      <div className="editor-view">
-        <button onClick={::this.props.fetchProducts}>fetch</button>
-        <Preview/>
-      </div>
-      <div className="editor-right">
-        right
-      </div>
+        <li>
+          <Link to='/shop/manage/hardware' activeClassName='route--active'>
+            我的硬件
+          </Link>
+        </li>
+      </ul>
     </div>
-  }
-}
+    <div>{props.children}</div>
+  </div>
+)
 
 export default Shop
-
 
 Shop.propTypes = {
   products: PropTypes.array

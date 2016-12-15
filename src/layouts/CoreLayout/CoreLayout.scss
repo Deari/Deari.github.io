@@ -1,3 +1,50 @@
-.core-layout__viewport {
-  padding-top: 4rem;
+$lightblue-color: #2692fb;  //主题蓝
+$white-color: #ffffff;
+$navsecond-bg: #eeeeee;     //背景、分割线、border、input
+$darkgray-color: #333333;
+$gray-color: #666666;
+$lightgray-color: #999999;
+
+
+//宽高
+$view-width: 1100px;
+$view-margin: 0 auto;
+$header-height: 60px;
+$navsecond-height: 50px;
+  $navsecond-padding-left: 190px;
+$navThird-width: 200px;
+  $navThirdLi-height:30px;
+  $navThirdli-padding-left: 20px;
+  $navThirdOne-font-size: 14px;
+$ccContent-width: 890px;
+$reminder-height: 40px;
+//float
+@mixin float-left { float: left !important;}
+@mixin float-right { float: right !important;}
+@mixin float-clear { overflow: hidden;}
+//line
+@mixin line-bottom{ border-bottom: 1px solid $navsecond-bg;}
+@mixin line-right{ border-right: 1px solid $navsecond-bg;}
+@mixin navselect-bottom{
+  border-bottom: 2px solid $lightblue-color;
+  background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
+//font-size
+$homefhSize: 22px;
+$homefpSize: 14px;
+
+//form
+$form-height: 40px;
+$form-small-width: 330px;
+@mixin form-control {
+  display: block;
+  margin: 5px 0;
+  padding-left: 10px;
+  height: $form-height;
+  border: 1px solid $navsecond-bg;
+}
+
+
+
+
+
