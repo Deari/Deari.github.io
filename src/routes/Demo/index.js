@@ -1,7 +1,10 @@
 import { injectReducer } from '../../store/reducers'
 
+const Test = ()=>(<div>This is a Test.</div>);
+
 export default (store) => ({
-  path : '/1',
+  path : 'demo',
+  // component: Test,
 
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
