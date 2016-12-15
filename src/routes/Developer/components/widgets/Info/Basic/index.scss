@@ -19,3 +19,24 @@
   -ms-filter:"alpha(opacity=0)";
   cursor:pointer;
 }
+.selectBox {
+  display: inline-block;
+  overflow: hidden;
+  margin:0 80px;
+  label{
+    text-align: center;
+    float:left;
+     img{     
+      display: block;
+      height:255px;
+      width:200px; 
+      border-radius: 15%;
+      background:#ccc;
+    }
+    img.active{
+      background:blue；
+    }
+  }
+ 
+ 
+}

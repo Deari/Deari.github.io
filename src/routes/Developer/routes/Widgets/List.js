@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import AppsList from '../../components/Apps/List'
+import AppsList from '../../components/widgets/List'
 import fetchUtil from '../../../utils/fetchUtil'
 class AppList extends React.Component {
   async componentDidMount() {
