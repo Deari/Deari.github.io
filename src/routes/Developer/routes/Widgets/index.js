@@ -1,7 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Doc from '../../components/WidgetDevDoc'
-import AppList from './List'
+import Doc from '../../components/widgets/Doc'
 import '../../../../components/Header/Header'
 
 class Container extends React.Component {
