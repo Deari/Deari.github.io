@@ -4,7 +4,41 @@ import './index.scss'
 class Basic extends React.Component {
   constructor() {
     super();
+    this.state = {
+      selectedTags: [],
+      tags: [
+        {id: 0, name: '标签一'},
+        {id: 1, name: '标签二'},
+        {id: 2, name: '标签三'},
+        {id: 3, name: '标签四'},
+        {id: 4, name: '标签五'},
+        {id: 5, name: '标签六'},
+        {id: 6, name: '标签七'},
+      ]
+    };
   }
+  selectTag(item) {
+    var selectedTags = this.state.selectedTags;
+    if (selectedTags.length === 0) {
+      selectedTags.push(item);
+    } else {
+      for (var i=0; i<selectedTags.length; i++) {
+        if (selectedTags[i].id === item.id) {
+          console.log(i, selectedTags[i].id);
+          selectedTags.splice(i, 1);
+          this.setState({selectedTags: selectedTags});
+          console.log('splice',this.state.selectedTags);
+          return;
+        } else {
+          selectedTags.push(item);
+          this.setState({selectedTags: selectedTags});
+          console.log('push',this.state.selectedTags);
+          return;
+        }
+      }
+    }
+  }
+
   render() {
     return (
       <div>
@@ -36,7 +70,18 @@ class Basic extends React.Component {
             </select>
           </div>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="标签" />
+            <label>标签</label>
+            <div>
+              <ul className="tags-container">
+              {
+                this.state.tags.map((item, index) => {
+                  return <li className="active" 
+                             key={item.id} 
+                             onClick={this.selectTag.bind(this, item)}>{item.name}</li>
+                })
+              }
+              </ul>
+            </div>
           </div>
         </fieldset>
       </div>

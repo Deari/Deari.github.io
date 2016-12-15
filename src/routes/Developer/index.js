@@ -1,7 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import ApiDoc from './components/ApiDoc'
-import '../Home/components/HomeView'
+import '../Home/components/HomeView.scss'
 
 class Nav extends React.Component {
   render() {
