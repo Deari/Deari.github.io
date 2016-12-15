@@ -7,7 +7,10 @@ class Basic extends React.Component {
       <div>
         <fieldset className="col-sm-4">
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="应用名称" />
+            <input type="text" className="form-control" placeholder="店铺组件名称" />
+          </div>
+          <div className="form-group row">
+            
           </div>
           <div className="form-group row">
             <input type="text" className="form-control" placeholder="描述" />
