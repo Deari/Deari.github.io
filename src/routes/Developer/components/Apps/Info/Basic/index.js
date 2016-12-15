@@ -5,7 +5,7 @@ class Basic extends React.Component {
   render() {
     return (
       <div>
-        <fieldset className="col-sm-4">
+        <fieldset className="col-md-4">
           <div className="form-group row">
             <input type="text" className="form-control" placeholder="应用名称" />
           </div>

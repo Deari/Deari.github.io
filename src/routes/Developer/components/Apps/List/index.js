@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from '../../../../../components/List'
 import './index.scss'
+import '../../../../../styles/base.scss'
+import '../../../../../styles/button.scss'
 
 class AppsList extends React.Component {
   constructor() {
@@ -17,15 +19,34 @@ class AppsList extends React.Component {
   }
   render() {
     return (
-      <div className="container">
-        <Link to='/developer/apps/create'><button className="btn btn-primary">+ 创建商家应用</button></Link>
-        <div className="list-title">
-          <div className="col-sm-8 no-padding-left">名称</div>
-          <div className="col-sm-2 no-padding-left">状态</div>
-          <div className="col-sm-2 no-padding-left">操作</div>
+      <div className="cContent">
+        <div className="navThird">
+          <ul>
+            <li>待审核</li>
+            <li>已审核</li>
+          </ul>
         </div>
-        <List data={this.state.listData} />
-      </div>
+        <div className="ccContent">
+          <div>
+            <Link className="float-clear display-block margin-bottom" to='/developer/apps/create'>
+              <div className="width110 float-right">
+                <button className="btn bg-btn-blue">+ 创建应用</button>
+              </div>
+            </Link>
+            <div className="list-title">
+              <div className="col-md-3">图例</div>
+              <div className="col-md-5">应用介绍</div>
+              <div className="col-md-2">状态</div>
+              <div className="col-md-2">操作</div>
+            </div>
+            <List data={this.state.listData} />
+          </div>
+        </div>
+    </div>
+
+
+
+
     )
   }
 }
