@@ -1,10 +1,10 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
+import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import '../../../styles/base.scss'
 import '../../../styles/form.scss'
 import '../../../styles/button.scss'
-import { IndexLink, Link } from 'react-router'
 
 export const HomeView = () => (
   <div>
@@ -60,4 +60,4 @@ export const HomeView = () => (
   </div>
 )
 
-export default HomeView
+export default HomeView;

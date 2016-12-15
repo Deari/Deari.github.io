@@ -1,0 +1,14 @@
+@import "grid-layout.css";
+
+.preview-container {
+  background: white;
+  width: 300px;
+  height: 500px;
+
+
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -250px;
+  position: absolute;
+  top: 50%;
+}

@@ -24,7 +24,7 @@ class FetchUtil {
     params = getURLByObj(params)
     options = {
       method : 'GET',
-      ...jsonHeaders,
+      // ...jsonHeaders,
       ...options
     }
 
@@ -71,7 +71,7 @@ class FetchUtil {
 
     options = {
       method : 'POST',
-      ...jsonHeaders,
+      // ...jsonHeaders,
       ...options,
       body   : JSON.stringify(params)
     }
@@ -83,22 +83,51 @@ class FetchUtil {
             const resp = await res.json();
             return resolve(resp);
           } catch(e) {
-            return reject({
-              type: 1,
-              err: e
-            })
+            return reject(e)
           }
         } else {
-          return reject({
-            type: 2,
-            err: res
-          })
+          return reject(e)
         }
       })['catch'](e=> {
-        return reject({
-          type: 3,
-          err: e
-        })
+        return reject(e)
+      })
+    })
+  }
+
+  static async request(method, url, params = {}, options = {}) {
+    if(!method) {
+      return reject(-100, 'method is empty')
+    } 
+
+    if (!url.trim()) {
+      return reject(-101, 'URL is empty')
+    }
+
+    if (!isObject(params) || !isObject(options)) {
+      return reject(-102, 'The type of params and options must be a Object')
+    }
+
+    options = {
+      method : method,
+      // ...jsonHeaders,
+      ...options,
+      body   : JSON.stringify(params)
+    }
+
+    return new Promise((resolve, reject)=> {
+      fetch(url, options).then(async res=> {
+        if (res.ok) {
+          try {
+            const resp = await res.json();
+            return resolve(resp);
+          } catch(e) {
+            return reject(e)
+          }
+        } else {
+          return reject(e)
+        }
+      })['catch'](e=> {
+        return reject(e)
       })
     })
   }
