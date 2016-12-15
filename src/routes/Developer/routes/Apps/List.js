@@ -2,6 +2,7 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import AppsList from '../../components/Apps/List';
 import fetch from '../../../../../fetch'
+import fetchUtil from '../../../utils/fetchUtil.js';
 
 class AppList extends React.Component {
   async componentDidMount() {
