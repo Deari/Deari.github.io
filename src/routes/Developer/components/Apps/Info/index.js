@@ -18,8 +18,11 @@ class Info extends React.Component {
   }
   render() {
     return (
-      <div>
-        <form className="container bo-form-container" onSubmit={this.save.bind(this)} >
+      <div className="cContent bg-white cContent-onenav">
+        <div className="cContent-nav">
+          <h3>创建应用</h3>
+        </div>
+        <form className="bo-form-container" onSubmit={this.save.bind(this)} >
           <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
             <div name="填写基本信息"><Basic /></div>
             <div name="填写平台信息"><Platform /></div>
