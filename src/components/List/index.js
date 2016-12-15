@@ -20,12 +20,12 @@ class List extends React.Component {
               <div className="col-md-8 no-padding-left">
                 <div className="info-img-container">
                   <div className="img-container">
-                    <img src={item.url} className="img-rounded" />
+                    <img src={item.appLogo} className="img-rounded" />
                   </div>
                 </div>
                 <div className="info-content">
-                  <div className="info-name" title={item.name}>{showName + '名称 : '}{item.name}</div>
-                  <div className="info-name" title={item.state}>{showName + '介绍 : '}{item.state}</div>
+                  <div className="info-name" title={item.name}>{showName + '名称 : '}{item.appName}</div>
+                  <div className="info-name" title={item.state}>{showName + '介绍 : '}{item.appDesc}</div>
                   <Link to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>
                 </div>
               </div>

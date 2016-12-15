@@ -1,21 +1,31 @@
 import React from 'react'
 import { Link } from 'react-router'
 import List from '../../../../../components/List'
+import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
 import '../../../../../styles/base.scss'
 import '../../../../../styles/button.scss'
 
 class AppsList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      listData: [
-        {url: "./a.jpg", developerId: 987, name: "namenamenamenamenamenamenamenamenamenamenamenamename one", state: 'state one'},
-        {url: "./a.jpg", developerId: 876, name: "name two", state: 'two'},
-        {url: "./a.jpg", developerId: 765, name: "name three", state: 'three'},
-        {url: "./a.jpg", developerId: 654, name: "name four", state: 'four'},
-      ]
-    };
+ 
+  state = {
+      listData:[]
+  }
+  
+  async componentDidMount() {
+    const apiUrl = `http://10.1.115.14:8006/bo/v1/web/developer/1/app`
+    try {
+      const res = await fetchUtil.getJSON(apiUrl);
+      console.log(res.data.list[0])
+      if(res.status === 200){
+        alert('成功')
+        this.setState({listData:res.data.list})
+      }
+    } catch (e) {
+      alert('失败')
+      console.log(e)
+    }
+   
   }
   render() {
     return (
