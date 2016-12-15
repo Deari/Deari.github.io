@@ -8,3 +8,6 @@ coverage
 
 .idea/
 colosseum.iml
+
+.project
+npm-debug.log.*

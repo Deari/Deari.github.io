@@ -5,10 +5,12 @@
   @include navselect-bottom;
 }
 
-.header {
+.g-header {
   margin: 0 auto;
   width: $view-width;
   height: $header-height;
+  overflow: hidden;
+  
   h1{
     @include float-left;
     font-size: 26px;
@@ -58,10 +60,11 @@
 .cContent{
   margin: $view-margin;
   width: $view-width;
+  min-height: 800px;
   .navThird{
     @include float-left;
     width: $navThird-width;
-    min-height: 600px;
+    min-height: 800px;
     background: $white-color;
     .navThirdHover{/*选中样式*/
       color: $white-color;
@@ -92,7 +95,7 @@
     @include float-right;
     padding: 20px 26px;
     width: $ccContent-width;
-    min-height: 600px;
+    min-height: 800px;
     background: $white-color;
     dt{
       padding-top: 30px;
