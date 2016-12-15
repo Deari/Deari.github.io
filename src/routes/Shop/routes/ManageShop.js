@@ -3,7 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import MyShop from './MyShop/'
 // import './Shop.scss'
 class Shop extends React.Component {
-  render (){
+  render() {
     return <div id="editor-main">
       <div className="editor-left">
         <ul className="sub-nav">
@@ -37,21 +37,23 @@ class Shop extends React.Component {
   }
 }
 
-module.exports = {
-  path: 'manage',
-  component: Shop,
-  indexRoute: {
-    component: MyShop
-  },
+module.exports = function (store) {
+  return {
+    path      : 'manage',
+    component : Shop,
+    indexRoute: {
+      component: MyShop
+    },
 
-  getChildRoutes (partialNextState, cb) {
-    require.ensure([], (require) => {
-      cb(null, [
-        require('./MyApps/index'),
-        require('./MyApps/Detail'),
-        require('./MyHardware/index'),
-        require('./MyWidgets/index')
-      ])
-    })
-  },
+    getChildRoutes (partialNextState, cb) {
+      require.ensure([], (require) => {
+
+        cb(null, [
+          require('./MyApps/index').default(store),
+          require('./MyHardware/index'),
+          require('./MyWidgets/index')
+        ])
+      })
+    },
+  }
 }
