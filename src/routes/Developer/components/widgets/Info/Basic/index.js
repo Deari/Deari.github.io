@@ -2,12 +2,48 @@ import React from 'react'
 import './index.scss'
 
 class Basic extends React.Component {
+  componentDidMount() {
+    
+    const mod = this.refs.mod;
+    const lit = this.refs.lit;
+    const big = this.refs.big;
+    console.log(mod.checked)
+    console.log(lit.checked)
+    console.log(big.checked)
+  }
+  select(){
+    alert()
+    const rad = this.refs;
+    console.log(rad)
+  }
   render() {
     return (
       <div>
-        <fieldset className="col-sm-4">
+        <fieldset>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="应用名称" />
+            <span>店铺组件名称：</span>
+            <input type="text" className="form-control" placeholder="组件名称" />
+          </div>
+          <div className="form-group row">
+            <div>选择尺寸：</div>
+            <div className='selectBox'>
+              <label onClick={this.select}>
+                <img src="" />
+                <input name="size" type="radio" value="2X1" ref="lit"/>
+              </label>
+            </div>
+            <div className='selectBox'>
+              <label onClick={this.select}>
+                <img src="" />
+                <input name="size" type="radio" value="1X1" ref="mod"/>
+              </label>
+            </div>
+            <div className='selectBox'>
+              <label onClick={this.select}>
+                <img src="" />
+                <input name="size" type="radio" value="2X2"ref="big"/>
+              </label>
+            </div>
           </div>
           <div className="form-group row">
             <input type="text" className="form-control" placeholder="描述" />
