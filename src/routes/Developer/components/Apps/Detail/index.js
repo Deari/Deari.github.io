@@ -1,28 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router'
-import List from '../../../../../components/List'
+import Version from '../../../../../components/Version'
 
 class AppsDetail extends React.Component {
   constructor() {
     super();
     this.state = {
-      listData: [
-        {url: "./a.jpg", name: "namenamenamenamenamenamenamenamenamenamenamenamename one", state: 'state one'},
-        {url: "./a.jpg", name: "name two", state: 'two'},
-        {url: "./a.jpg", name: "name three", state: 'three'},
-        {url: "./a.jpg", name: "name four", state: 'four'},
-      ]
+      data: {
+        codeVersion: '0.2.0.2312',
+        code_desc: 'asdfasdfasdfasdfasdsdfa'
+      }
     };
   }
   render() {
     return (
-      <div className="container">
-        <div className="list-title">
-          <div className="col-sm-8 no-padding-left">名称</div>
-          <div className="col-sm-2 no-padding-left">状态</div>
-          <div className="col-sm-2 no-padding-left">操作</div>
-        </div>
-      </div>
+      <Version data={this.state.data} linkUrl="/developer/apps/876/edit" />
     )
   }
 }

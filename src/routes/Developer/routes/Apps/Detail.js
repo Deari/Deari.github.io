@@ -1,5 +1,4 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import AppsDetail from '../../components/Apps/Detail'
 
 class Detail extends React.Component {

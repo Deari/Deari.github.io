@@ -19,7 +19,7 @@ class List extends React.Component {
               <div className="col-sm-8 no-padding-left">
                 <div className="info-img-container">
                   <div className="img-container">
-                    <img src={item.url} className="img-thumbnail" />
+                    <img src={item.url} className="img-rounded" />
                   </div>
                 </div>
                 <div className="info-content">

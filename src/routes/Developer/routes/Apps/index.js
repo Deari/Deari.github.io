@@ -35,7 +35,8 @@ module.exports =  {
       cb(null, [
         require('./List'),
         require('./Create'),
-        require('./Detail')
+        require('./Detail'),
+        require('./Edit')
       ])
     })
   }
