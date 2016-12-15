@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
-import './Shop.scss'
+import './Editor.scss'
 
-import Product from '../containers/ProductContainer'
-import Preview from '../containers/PreviewContainer'
+import Product from '../../containers/ProductContainer'
+import Preview from '../../containers/PreviewContainer'
 
-export class Shop extends Component {
+export class Editor extends Component {
 
   componentDidMount() {
     this.props.fetchProducts()
@@ -36,9 +36,9 @@ export class Shop extends Component {
   }
 }
 
-export default Shop
+export default Editor
 
 
-Shop.propTypes = {
+Editor.propTypes = {
   products: PropTypes.array
 }

@@ -5,7 +5,7 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 import { fetchProducts } from '../modules/product'
 
-import Shop from '../components/Shop'
+import Editor from '../components/Editor'
 
 const mapDispatchToProps = {
   fetchProducts
@@ -16,4 +16,4 @@ const mapStateToProps = state => ({ product: state.product })
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   DragDropContext(HTML5Backend)
-)(Shop)
+)(Editor)
