@@ -2,7 +2,7 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 
 export const Shop = (props) => (
-  <div id="editor-main">
+  <div>
     <div className="editor-left">
       <ul className="sub-nav">
         <li className="sub-nav-active">
