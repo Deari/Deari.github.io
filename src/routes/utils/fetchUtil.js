@@ -24,7 +24,7 @@ class FetchUtil {
     params = getURLByObj(params)
     options = {
       method : 'GET',
-      ...jsonHeaders,
+      // ...jsonHeaders,
       ...options
     }
 
@@ -71,7 +71,7 @@ class FetchUtil {
 
     options = {
       method : 'POST',
-      ...jsonHeaders,
+      // ...jsonHeaders,
       ...options,
       body   : JSON.stringify(params)
     }
@@ -109,7 +109,7 @@ class FetchUtil {
 
     options = {
       method : method,
-      ...jsonHeaders,
+      // ...jsonHeaders,
       ...options,
       body   : JSON.stringify(params)
     }

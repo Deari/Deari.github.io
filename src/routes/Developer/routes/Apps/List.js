@@ -7,7 +7,7 @@ class AppList extends React.Component {
   async componentDidMount() {
     const apiUrl = `http://10.1.115.14:8006/bo/v1/web/developer/1/app`
     try {
-      const res = await fetchUtil.postJSON(apiUrl);
+      const res = await fetchUtil.getJSON(apiUrl);
       console.log(res)
     } catch (e) {
       console.log(e)
