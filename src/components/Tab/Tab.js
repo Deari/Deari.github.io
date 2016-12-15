@@ -45,11 +45,11 @@ class Tab extends React.Component {
         {
           React.Children.map(this.props.children, (item, index) => {
             return (
-              <li className={"col-sm-4 " + this.tabIndex(index)}
+              <li className={this.tabIndex(index)}
                   style={{cursor: this.showCursor(index)}}
                   onClick={(index < this.state.currentIndex) ? 
                             this.clickTabBtn.bind(this, index) : ''}>
-                <div>{index + 1}</div>
+                <div className="tabc-oneprogress">{index + 1}</div>
                 {item.props.name}
               </li>
             )
