@@ -1,29 +1,34 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
-import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
+import '../../../styles/base.scss'
+import '../../../styles/form.scss'
+import '../../../styles/button.scss'
+import { IndexLink, Link } from 'react-router'
 
 export const HomeView = () => (
   <div>
     <div className='banner'>
-    	<div className='login_in'>
-    		<div className='loginin_top'>
-    			<h5>我是商家</h5>
-	    		<span>|</span>
-	    		<h5>我是开发者</h5>
-    		</div>
-    		<form>
-    			<input className="form-control" type="text/css" placeholder="用户名"/>
-    			<input className="form-control" type="text/css" placeholder="请输入密码"/>
-    			<div>
-    				<label>
-    					<input type="radio"/>
-    					记住密码
-    				</label>
-    				<a>忘记密码</a>
-    			</div>
-    			<button>登录</button>
-    		</form>
+    	<div className="view-width">
+      	<div className='login_in'>
+          <div className='loginin_top'>
+            <h5>我是商家</h5>
+            <span>|</span>
+            <h5>我是开发者</h5>
+          </div>
+          <form>
+            <input className="form-control" type="text/css" placeholder="用户名"/>
+            <input className="form-control" type="text/css" placeholder="请输入密码"/>
+            <div className="password-box">
+              <label>
+                <input type="checkbox"/>
+                记住密码
+              </label>
+              <a className="float-right">忘记密码</a>
+            </div>
+            <button className="btn bg-btn-blue">登录</button>
+          </form>
+        </div>
     	</div>
     </div>
 		<div className='home_reminder'>
