@@ -16,14 +16,14 @@ export class Editor extends Component {
     return <div id="editor-main">
       <div className="editor-left">
         <ul className="sub-nav">
-          <li className="sub-nav-active">组件</li>
-          <li>容器</li>
+          <li className="sub-nav-active">我的店铺组件</li>
         </ul>
-
         <div className="sub-content">
           <Product {...product}/>
         </div>
-
+        <ul className="sub-nav">
+          <li className="sub-nav">更多店铺组件</li>
+        </ul>
       </div>
       <div className="editor-view">
         <button onClick={::this.props.fetchProducts}>fetch</button>
