@@ -7,6 +7,10 @@
 .banner{
   height: 480px;
   background: url(../assets/home_bannerbg.jpg) no-repeat;
+  .view-width{
+    width: $view-width;
+    margin: $view-margin;
+  }
 }
 .login_in{
   @include float-right;
@@ -43,6 +47,7 @@
   }
   span{
     @include float-left;
+    width: 2%;
     color: $navsecond-bg;
   }
 }
