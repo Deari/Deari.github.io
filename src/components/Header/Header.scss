@@ -37,13 +37,14 @@
 }
 //二级导航
 .nav-second{
+  @include float-clear;
   background: $navsecond-bg;
-  height: 1000px;
   .navs-nav{
     margin: $view-margin;
     padding-left: $navsecond-padding-left;
     width: $view-width;
     height: $navsecond-height;
+    font-size: $navsecond-font-size;
     line-height: $navsecond-height;
     li{
     @include float-left;
@@ -60,23 +61,51 @@
   .navThird{
     @include float-left;
     width: $navThird-width;
+    min-height: 600px;
     background: $white-color;
+    .navThirdHover{/*选中样式*/
+      color: $white-color;
+      background: $lightblue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
+      background-size: 6px;
+    }
     ul{
-      padding-left: $navThirdli-padding-left;
-      font-size: $navThirdOne-font-size;
+      height: $navThirdLi-height;
+      font-size: $navsecond-font-size;
+      line-height: $navThirdLi-height;
       li{
+        @include line-bottom;
+        padding-left: $navThirdli-padding-left;
         height: $navThirdLi-height;
         line-height: $navThirdLi-height;
+        background: url(../../routes/Home/assets/more_into_gray.png) no-repeat 10px center;
+        background-size: 6px;
         ul{
-
+          li{
+            border-bottom: none;
+            background-image: none;
+          }
         }
       }
     }
   }
   .ccContent{
     @include float-right;
+    padding: 20px 26px;
     width: $ccContent-width;
+    min-height: 600px;
     background: $white-color;
+    dt{
+      padding-top: 30px;
+      font-size: 20px;
+      line-height: 50px;
+    }
+    dd{
+      font-size: 16px;
+      line-height: 40px;
+      div{
+        height: 20px;
+      }
+    }
   }
 
 }

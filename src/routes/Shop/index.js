@@ -15,6 +15,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/ManageShop')(store),
+        require('./routes/MyApps/Edit')(store),
       ])
     })
   },

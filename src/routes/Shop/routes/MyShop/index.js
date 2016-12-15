@@ -3,7 +3,7 @@ import { IndexLink, Link } from 'react-router'
 
 class MyShop extends React.Component {
   render() {
-    return <div>这是我的店铺</div>
+    return <div>这是我的店铺<Link to="/shop/edit">edit</Link></div>
   }
 }
 

@@ -50,7 +50,6 @@ module.exports = function (store) {
 
         cb(null, [
           require('./MyApps/index').default(store),
-          require('./MyApps/Detail'),
           require('./MyHardware/index'),
           require('./MyWidgets/index')
         ])
