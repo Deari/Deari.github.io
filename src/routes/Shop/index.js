@@ -14,16 +14,9 @@ export default (store) => ({
   getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/ManageShop'),
+        require('./routes/ManageShop')(store),
+        require('./routes/Editor')(store),
       ])
     })
   },
-
-  // getComponent (nextState, cb) {
-
-  //   const Shop = require('./containers/ShopContainer').default
-
-  //   cb(null, Shop)
-  // }
 })
-
