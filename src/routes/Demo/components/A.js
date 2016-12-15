@@ -20,7 +20,25 @@ class A extends React.Component {
         }
 
         <form>
-
+          <h4>选择尺寸：</h4>
+          <div className='selectBox'>
+          <label onClick={this.select}>
+            <img src=""/>
+            <input name="size" type="radio" value="2X1" />
+          </label>
+          </div>
+          <div className='selectBox'>
+          <label onClick={this.select}>
+            <img src=""/>
+            <input name="size" type="radio" value="1X1" />
+          </label>
+          </div>
+          <div className='selectBox'>
+          <label onClick={this.select}>
+            <img src=""/>
+            <input name="size" type="radio" value="2X2" />
+          </label>
+          </div>
         </form>
       </div>
     )
