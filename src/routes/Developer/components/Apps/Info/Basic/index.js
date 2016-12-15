@@ -2,6 +2,9 @@ import React from 'react'
 import './index.scss'
 
 class Basic extends React.Component {
+  constructor() {
+    super();
+  }
   render() {
     return (
       <div>
