@@ -20,6 +20,7 @@
   user-select: none;
   background-image: none;
   border-radius: 4px;
+  border: none;
 }
 .btn-lg{
   padding: 10px 16px;
@@ -39,7 +40,7 @@
 .btn-default{
   color: $btn-black-color;
   background-color: $btn-white-color;
-  border-color: $btn-black-color;
+  border: 1px solid $btn-black-color;
   &:hover{
     color: $btn-blue-color;
     background: $navsecond-bg;
@@ -49,7 +50,6 @@
 .btn-primary{
   color: $btn-white-color;
   background-color: $btn-blue-color;
-  border: 1px solid ;
   &:hover {
     color: $btn-white-color;
     background-color: $btn-darkblue-color;

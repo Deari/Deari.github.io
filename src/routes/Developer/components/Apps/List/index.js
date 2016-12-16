@@ -3,8 +3,7 @@ import { Link } from 'react-router'
 import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
-import '../../../../../styles/tools.scss'
-import '../../../../../styles/button.scss'
+import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
  

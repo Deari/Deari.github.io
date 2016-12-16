@@ -39,7 +39,7 @@ class AppsList extends React.Component {
           <div>
             <Link className="ccContentBtn" to='/developer/widgets/create'>
               <div className="width110 float-right">
-                <button className="btn bg-btn-blue">+ 创建应用</button>
+                <button className="btn btn-primary">+ 创建应用</button>
               </div>
             </Link>
             <div className="list-title">
