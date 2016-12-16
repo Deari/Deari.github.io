@@ -3,6 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 import Login from '../Login'
 import {ShopNav, DevNav, OpenNav} from './Navigation'
+import '../../styles/_base.scss'
 
 const NavRules = [
   {
@@ -44,16 +45,19 @@ export const Header = ({location}) => {
     }
   })
 
-  return <div className='header'>
-    <h1>
-      <Link to='/'>
-        <i></i><span>BO开放平台</span>
-      </Link>
-      {title ? <small>{title}</small> : null}
-	  </h1>
-    <Login />
-    {nav}
-  </div>
+  return <div className="container">
+      <div className='g-header'>
+        <h1 className="navbar-brand">
+          <Link to='/'>
+            <i></i><span>BO开放平台</span>
+          </Link>
+          {title ? <small>{title}</small> : null}
+        </h1>
+        <div>
+        <Login />
+        {nav}
+        </div>
+      </div>
+    </div>
 }
-
 export default Header
