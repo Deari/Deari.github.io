@@ -11,14 +11,26 @@ class Info extends React.Component {
       isSubmitted: false
     };
   }
+   state = {
+    isSubmitted: false,
+    appName: "",
+    appLogo: "",
+    appDesc: "",
+    categoryId: ""
+  }
+  fromList(data){
+    alert(1)
+  }
   save(e) {
     const puid = 123;
     const pLoginToken = 456;
     e.preventDefault();
     console.log("click save");
+    this.fromList()
     if(puid,pLoginToken){
       this.setState({isSubmitted: true});  
     }
+    console.log(this.state)
   }
   render() {
     return (
@@ -30,8 +42,8 @@ class Info extends React.Component {
             action={`http://10.1.115.14:8006/bo/v1/web/developer/1/app`}
         		method="post" >
           <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
-            <div name="填写基本信息"><Basic /></div>
-            <div name="填写平台信息"><Platform /></div>
+            <div name="填写基本信息"><Basic onChange={::this.fromList}/></div>
+            <div name="填写平台信息"><Platform onChange={::this.fromList}/></div>
             <div name="提交成功">
               <div className="success-container">提交成功，等待审核</div>
             </div>
