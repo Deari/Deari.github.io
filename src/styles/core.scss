@@ -1,16 +1,12 @@
-@import 'base';
 @import '~normalize.css/normalize';
 
 // Some best-practice CSS that's useful for most apps
 // Just remove them if they're not what you want
-html {
-  box-sizing: border-box;
-  font-family: "微软雅黑","sans-serif";
-}
-
 html, body {
   margin: 0;padding: 0;
   height: 100%;
+  box-sizing: border-box;
+  font-family: "微软雅黑","sans-serif";
 }
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, 
 code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ul , li, ol, 
@@ -21,8 +17,12 @@ fieldset, form, label, legend,a,table {
 *,*:before,*:after {
   box-sizing: inherit;
 }
-i{ display: inline-block;}
-
 h1, h2, h3, h4, h5, h6{
     font-weight: normal;
+}
+i{ 
+  display: inline-block;
+}
+a{
+  cursor: pointer;
 }

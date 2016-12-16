@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
-import '../../../../../styles/base.scss'
+import '../../../../../styles/tools.scss'
 import '../../../../../styles/button.scss'
 
 class AppsList extends React.Component {
@@ -40,7 +40,7 @@ class AppsList extends React.Component {
           <div>
             <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
-                <button className="btn bg-btn-blue">+ 创建应用</button>
+                <button className="btn btn-primary">+ 创建应用</button>
               </div>
             </Link>
             <div className="list-title">

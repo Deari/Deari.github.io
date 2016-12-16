@@ -1,3 +1,16 @@
+.view-width{
+  margin: 0 auto;
+  width: 1100px;
+  .list-title{
+    height: 48px;
+    line-height: 48px;
+    background: #f6f8f9;
+    border-top: #eeeeee;
+    div{
+      float: left;
+    }
+  }
+}
 .list-title {
   height: 50px;
   line-height: 50px;
