@@ -38,7 +38,7 @@ class AppsList extends React.Component {
         </div>
         <div className="ccContent">
           <div>
-            <Link className="float-clear display-block margin-bottom" to='/developer/apps/create'>
+            <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
                 <button className="btn bg-btn-blue">+ 创建应用</button>
               </div>

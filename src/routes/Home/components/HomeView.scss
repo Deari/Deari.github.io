@@ -52,7 +52,6 @@
   }
 }
 .home_reminder{
-  clear: both;
   height: $reminder-height;
   line-height: $reminder-height;
   color: $gray-color;
@@ -61,6 +60,7 @@
   div{
     margin: $view-margin;
     width: $view-width;
+    overflow: hidden;
     span:nth-of-type(1){
       padding-left: 24px;
       background: url(../assets/remind_trumpet.png) no-repeat left center;
@@ -84,13 +84,21 @@
   margin: 40px auto;
   width: $view-width;
   border: 1px solid $navsecond-bg;
-  a{
+  .homef_width{
+    width:33%;
+  }
+  .developer_width{
+    width:25%;
+  }
+  li{
     @include float-left;
     @include line-right;
     margin: 50px 0;
     padding: 0 40px; 
-    width:33.3%;
     text-align: center;
+    a{
+      display: block;
+    }
     h3{
       color: $darkgray-color;
       font-size: $homefhSize;
@@ -118,15 +126,7 @@
       background-position: -160px 0;
     }
   }
-  a:nth-last-child(1){
+  li:nth-last-child(1){
     border-right: none;
-  }
-}
-.developer_f{
-   a{
-    @include float-left;
-    padding: 20px 70px; 
-    width:25%;
-    text-align: center;
   }
 }

@@ -37,25 +37,33 @@ export const HomeView = () => (
         <span>查看更多</span>
 			</div>
 		</div>
-    <div className='home_f'>
-      <Link to='/shop' activeClassName='route--active'>
-        <i className="homef-business"></i>
-        <h3>商家中心</h3>
-        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-        <span>了解更多</span>
-      </Link>
-      <Link to='/developer' activeClassName='route--active'>
-        <i className="homef-developer"></i>
-        <h3>开发者中心</h3>
-        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-        <span>了解更多</span>
-      </Link>
-      <Link to='/open' activeClassName='route--active'>
-        <i className="homef-openmarket"></i>
-        <h3>开放市场</h3>
-        <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
-        <span>了解更多</span>
-      </Link>
+    <div>
+      <ul className='home_f'>
+        <li className="homef_width">
+          <Link to='/shop' activeClassName='route--active'>
+          <i className="homef-business"></i>
+          <h3>商家中心</h3>
+          <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+          <span>了解更多</span>
+        </Link>
+        </li>
+        <li className="homef_width">
+          <Link to='/developer' activeClassName='route--active'>
+            <i className="homef-developer"></i>
+            <h3>开发者中心</h3>
+            <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+            <span>了解更多</span>
+          </Link>
+        </li>
+        <li className="homef_width">
+          <Link to='/open' activeClassName='route--active'>
+            <i className="homef-openmarket"></i>
+            <h3>开放市场</h3>
+            <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
+            <span>了解更多</span>
+          </Link>
+        </li>
+      </ul>
     </div>
   </div>
 )
