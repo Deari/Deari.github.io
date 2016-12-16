@@ -2,7 +2,7 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import './HomeView.scss'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
-import '../../../styles/base.scss'
+import '../../../styles/tools.scss'
 import '../../../styles/form.scss'
 import '../../../styles/button.scss'
 
@@ -19,14 +19,14 @@ export const HomeView = () => (
           <form>
             <input className="form-control" type="text/css" placeholder="用户名"/>
             <input className="form-control" type="text/css" placeholder="请输入密码"/>
-            <div className="password-box">
+            <div className="checkbox">
               <label>
                 <input type="checkbox"/>
                 记住密码
               </label>
               <a className="float-right">忘记密码</a>
             </div>
-            <button className="btn bg-btn-blue">登录</button>
+            <button className="btn btn-primary btn-lg">登录</button>
           </form>
         </div>
     	</div>

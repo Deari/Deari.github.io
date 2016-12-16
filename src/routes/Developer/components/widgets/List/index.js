@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from '../../../../../components/List'
 import './index.scss'
-import '../../../../../styles/base.scss'
+import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
   constructor() {
@@ -19,7 +19,7 @@ class AppsList extends React.Component {
   render() {
     return (
       <div className="view-width">
-        <Link to='/developer/widgets/create'><button className="btn bg-btn-blue">+ 创建商家应用</button></Link>
+        <Link to='/developer/widgets/create'><button className="btn btn-primary">+ 创建商家应用</button></Link>
         <div className="list-title">
           <div className="col-md-8 no-padding-left">名称</div>
           <div className="col-md-2 no-padding-left">状态</div>
