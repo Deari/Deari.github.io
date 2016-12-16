@@ -44,7 +44,7 @@ export const Header = ({location}) => {
     }
   })
 
-  return <div className='header'>
+  return <div className='g-header'>
     <h1>
       <Link to='/'>
         <i></i><span>BO开放平台</span>

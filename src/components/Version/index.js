@@ -29,6 +29,7 @@ class LastVersion extends React.Component {
   render() {
     var linkUrl = this.props.linkUrl;
     var data = this.props.data;
+    console.log(data)
     return (
       <div className="container">
           <h5 className="version-title">版本管理</h5>

@@ -5,10 +5,11 @@
   @include navselect-bottom;
 }
 
-.header {
+.g-header {
   margin: 0 auto;
   width: $view-width;
   height: $header-height;
+  overflow: hidden;
   h1{
     @include float-left;
     font-size: 26px;
@@ -37,7 +38,6 @@
 }
 //二级导航
 .nav-second{
-  @include float-clear;
   background: $navsecond-bg;
   .navs-nav{
     margin: $view-margin;
