@@ -4,7 +4,7 @@ import MyShop from './MyShop/'
 // import './Shop.scss'
 class Shop extends React.Component {
   render() {
-    return <div id="editor-main">
+    return <div>
       <div className="editor-left">
         <ul className="sub-nav">
           <li className="sub-nav-active">
