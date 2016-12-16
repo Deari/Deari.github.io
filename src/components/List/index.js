@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import './index.scss'
 import '../../styles/button.scss'
+import '../../styles/base.scss'
 
 class List extends React.Component {
   getLinkUrl(developerId) {
@@ -13,7 +14,7 @@ class List extends React.Component {
     var showName = this.props.showName;
     var linkUrl = this.props.linkUrl;
     return (
-      <div>
+      <div className="listContent">
         {
           data.map( (item, index) => (
             <div key={index} className="list-container">
