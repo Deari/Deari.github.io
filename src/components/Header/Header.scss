@@ -58,10 +58,11 @@
 .cContent{
   margin: $view-margin;
   width: $view-width;
+  min-height: 800px;
   .navThird{
     @include float-left;
     width: $navThird-width;
-    min-height: 600px;
+    min-height: 800px;
     background: $white-color;
     .navThirdHover{/*选中样式*/
       color: $white-color;
@@ -92,7 +93,7 @@
     @include float-right;
     padding: 20px 26px;
     width: $ccContent-width;
-    min-height: 600px;
+    min-height: 800px;
     background: $white-color;
     dt{
       padding-top: 30px;

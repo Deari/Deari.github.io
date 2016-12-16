@@ -1,14 +1,15 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import ApiDoc from './components/ApiDoc'
-import '../Home/components/HomeView'
+import './Home/components/HomeView.scss'
 
 class Nav extends React.Component {
   render() {
-    return <ul className="developer_f">
+    return <ul className="developer_f float-clear">
       <li>
         <Link to='/developer/apps' activeClassName='route--active'>
-          商家应用
+          <i className="homef-business"></i>
+          <h3>商家中心</h3>
           <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
           <span>了解更多</span>
         </Link>
