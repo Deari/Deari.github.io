@@ -28,15 +28,15 @@ class AppsList extends React.Component {
   }
   render() {
     return (
-      <div className="cContent">
-        <div className="navThird">
+      <div className="cContent clx">
+        <div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className="navThirdHover">待审核</li>
             <li>已审核</li>
           </ul>
         </div>
-        <div className="ccContent">
-          <div>
+        <div className="col-sm-10 col-md-10">
+          <div className="ccContent">
             <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>

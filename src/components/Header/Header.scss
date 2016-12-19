@@ -11,6 +11,7 @@
     font-size: 26px;
     a{
       color: $text-blue-color;
+      padding-right:16px;
       i {
         display: inline-block;
         margin-right: 6px;
@@ -44,12 +45,9 @@
 }
 //三级导航
 .cContent{
-  margin: $view-margin;
-  width: $view-width;
   min-height: 800px;
   .navThird{
-    @include float-left;
-    width: $navThird-width;
+    padding: 0;
     min-height: 800px;
     background: $bg-white-color;
     .navThirdHover{/*选中样式*/
@@ -78,9 +76,7 @@
     }
   }
   .ccContent{
-    @include float-right;
-    padding: 20px 26px;
-    width: $ccContent-width;
+    padding: 0 10px;
     min-height: 800px;
     background: $bg-white-color;
     dt{
