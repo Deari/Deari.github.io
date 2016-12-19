@@ -40,7 +40,7 @@ class LastVersion extends React.Component {
               <dd className="col-sm-10">{data.codeVersion}</dd>
               <dt className="col-sm-12">版本介绍 ：</dt>
               <dt className="col-sm-12">
-                <textarea className="col-sm-12" rows="5" disabled>{data.code_desc}</textarea>
+                <textarea className="col-sm-12" rows="5" disabled>{data.codeDesc}</textarea>
               </dt>
               <dt className="col-sm-12">
                 <a href="javascript:;" onClick={this.showAllVersions.bind(this)}>查看历史版本</a>
