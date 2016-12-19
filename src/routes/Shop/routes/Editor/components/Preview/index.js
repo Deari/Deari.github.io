@@ -21,16 +21,24 @@ export class Preview extends Component {
     })))
   }
 
-  getLayout(e) {
+  generateLayout(e) {
     const { layout } = this.props.preview
     return layout[ e.id ] ? layout[ e.id ] : { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+  }
+
+  generateDOM() {
+    const elements = this.props.preview.elements
+    return elements.map(e => <div key={e.id}
+                                  onClick={this.props.selectElement.bind(null, e.id)}
+                                  data-grid={this.generateLayout(e)}>
+      <Element {...e} />
+    </div>)
   }
 
   render() {
     const { canDrop, isOver, connectDropTarget, preview } = this.props
     //const isActive = canDrop && isOver;
     const layout = preview.layout
-    console.log(layout)
     return connectDropTarget(
       <div>
         <pre style={{ "fontSize": '12px' }}>
@@ -39,15 +47,11 @@ export class Preview extends Component {
         <div className="preview-container">
           <ReactGridLayout className="layout"
                            layout={layout}
-                           cols={4}
+                           cols={2}
                            rowHeight={30}
                            width={300}
                            onLayoutChange={::this.onLayoutChange}>
-            {preview.elements.map(e =>
-              <div key={e.id}
-                   data-grid={this.getLayout(e)}>
-                <Element {...e}/>
-              </div>)}
+            {this.generateDOM()}
           </ReactGridLayout>
         </div>
       </div>
