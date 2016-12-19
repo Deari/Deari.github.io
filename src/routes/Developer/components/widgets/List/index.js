@@ -11,7 +11,7 @@ class AppsList extends React.Component {
   }
   
   async componentDidMount() {
-    const apiUrl = `http://10.1.115.14:8006/bo/v1/web/developer/1/widget`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widget`
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       console.log(res.data.list[0])
