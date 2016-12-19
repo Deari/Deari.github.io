@@ -31,7 +31,7 @@ class AppsList extends React.Component {
       <div className="cContent">
         <div className="navThird">
           <ul>
-            <li>待审核</li>
+            <li className="navThirdHover">待审核</li>
             <li>已审核</li>
           </ul>
         </div>

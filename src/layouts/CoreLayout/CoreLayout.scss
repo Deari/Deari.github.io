@@ -1,5 +1,7 @@
 //text-size
   $text-font-size: 18px;
+//text-line-heigh
+  $text-line-height: 40px;
 //text-color
   $text-white-color: #ffffff;
   $text-blue-color: #2692fb;
@@ -40,7 +42,6 @@ $reminder-height: 40px;
 //float
 @mixin float-left { float: left;}
 @mixin float-right { float: right;}
-@mixin float-clear { overflow: hidden;}
 //line
 $border-top: 1px solid $border-color;
 @mixin line-bottom{ border-bottom: 1px solid $border-color;}
