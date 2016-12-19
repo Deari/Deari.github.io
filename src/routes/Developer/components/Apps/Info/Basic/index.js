@@ -1,7 +1,22 @@
 import React from 'react'
 import './index.scss'
+import Tags from '../../../../../../components/Tags'
 
 class Basic extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      tags: [
+        {id: 0, name: '标签一'},
+        {id: 1, name: '标签二'},
+        {id: 2, name: '标签三'},
+        {id: 3, name: '标签四'},
+        {id: 4, name: '标签五'},
+        {id: 5, name: '标签六'},
+        {id: 6, name: '标签七'},
+      ]
+    };
+  }
   render() {
     return (
       <div>
@@ -33,7 +48,8 @@ class Basic extends React.Component {
             </select>
           </div>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="标签"/>
+            <label>标签</label>
+            <Tags data={this.state.tags} />
           </div>
         </fieldset>
       </div>

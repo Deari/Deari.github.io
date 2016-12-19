@@ -2,33 +2,108 @@ import React from 'react'
 import { IndexLink, Link } from 'react-router'
 
 class Container extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      category: [
+        {categoryId: 1, categoryName: '分类一'},
+        {categoryId: 2, categoryName: '分类二'},
+        {categoryId: 3, categoryName: '分类三'},
+        {categoryId: 4, categoryName: '分类四'},
+        {categoryId: 5, categoryName: '分类五'},
+      ],
+      "apps": [
+        { 
+          "appId": 111,
+          "appType": 10,
+          "appName": "app1",
+          "appLogo": " ",
+        },
+        { 
+          "appId": 222,
+          "appType": 11,
+          "appName": "app2",
+          "appLogo": " ",
+        },
+        { 
+          "appId": 333,
+          "appType": 12,
+          "appName": "app3",
+          "appLogo": " ",
+        },
+        { 
+          "appId": 444,
+          "appType": 13,
+          "appName": "app4",
+          "appLogo": " ",
+        },
+        { 
+          "appId": 555,
+          "appType": 14,
+          "appName": "app5",
+          "appLogo": " ",
+        },
+        { 
+          "appId": 666,
+          "appType": 15,
+          "appName": "app6",
+          "appLogo": " ",
+        },
+      ]
+    }
+  }
+  selectCategory(item) {
+    var category = this.state.category;
+    for (var i=0; i<category.length; i++) {
+      if (category[i].categoryId === item.categoryId) {
+        category[i].checked = true;
+      } else {
+        category[i].checked = false;
+      }
+    }
+    this.setState({category: category});
+  }
   render () {
-    return <div>
-      <ul>
-        <li>
-          全部分类
-        </li>
-        <li>
-          分类1
-        </li>
-        <li>
-          分类2
-        </li>
-      </ul>
-      <div> 商家应用列表</div>
-      <ul>
-        <li>
-          <Link to='/open/apps/detail/1' activeClassName='route--active'>
-          应用1
-          </Link>
-        </li>
-        <li>
-          <Link to='/open/apps/detail/2' activeClassName='route--active'>
-          应用2
-          </Link>
-        </li>
-      </ul>
-    </div>
+    return (
+      <div className="nav-second">
+        <div className="cContent">
+          <div className="navThird">
+            <ul>
+              <li className="">
+                全部分类
+                <ul>
+                {
+                  this.state.category.map((item, index) => {
+                    return <li className={item.checked ? 'navThirdHover' : ''}
+                               onClick={this.selectCategory.bind(this, item)}
+                               key={item.categoryId}>{item.categoryName}</li>
+                  })
+                }
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div className="ccContent">
+            <ul>
+            {
+              this.state.apps.map((item, index) => {
+                return (
+                  <li>
+                    <Link to={'/open/apps/detail/' + item.appId}>
+                      <img src={item.appLogo} alt="LOGO"/>
+                      <span>{item.appName}</span>
+                      <span>{item.appType}</span>
+                    </Link>
+                    <Link><button className="btn">下载</button></Link>
+                  </li>
+                )
+              })
+            }
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 

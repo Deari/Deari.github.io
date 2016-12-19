@@ -31,24 +31,17 @@ class LastVersion extends React.Component {
     var data = this.props.data;
     console.log(data)
     return (
-      <div className="container">
-          <h5 className="version-title">版本管理</h5>
-          <hr />
-          <div className="version-container">
-            <dl className="dl-horizontal">
-              <dt className="col-sm-2">版本号 ：</dt>
-              <dd className="col-sm-10">{data.codeVersion}</dd>
-              <dt className="col-sm-12">版本介绍 ：</dt>
-              <dt className="col-sm-12">
-                <textarea className="col-sm-12" rows="5" disabled>{data.code_desc}</textarea>
-              </dt>
-              <dt className="col-sm-12">
-                <a href="javascript:;" onClick={this.showAllVersions.bind(this)}>查看历史版本</a>
-              </dt>
-            </dl>
-          </div>
-          <hr />
-          <Link to={linkUrl}><button className="btn btn-primary version-btn">+ 发布新版本</button></Link>
+      <div>
+        <h4 className="version-title">版本管理</h4>
+        <hr />
+        <div className="version-container">
+          版本号 ：{data.codeVersion}
+          版本介绍 ：
+          <textarea className="col-sm-12" rows="5" disabled>{data.code_desc}</textarea>
+          <a href="javascript:;" onClick={this.showAllVersions.bind(this)}>查看历史版本</a>
+        </div>
+        <hr />
+        <Link to={linkUrl}><button className="btn btn-primary version-btn">+ 发布新版本</button></Link>
       </div>
     )
   }
