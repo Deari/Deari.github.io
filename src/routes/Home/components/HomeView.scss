@@ -1,4 +1,5 @@
 @import "../../../layouts/CoreLayout/CoreLayout";
+
 .duck {
   display: block;
   width: 120px;
@@ -43,15 +44,15 @@
   span{
     @include float-left;
     width: 2%;
-    color: $navsecond-bg;
+    color: $text-bggray-color;
   }
 }
 .home_reminder{
   height: $reminder-height;
   line-height: $reminder-height;
-  color: $gray-color;
+  color: $text-gray6-color;
   font-size: $homefpSize;
-  background: $navsecond-bg;
+  background: $bg-gray-color;
   div{
     span:nth-of-type(1){
       padding-left: 24px;
@@ -88,12 +89,12 @@
       display: block;
     }
     h3{
-      color: $darkgray-color;
+      color: $text-gray3-color;
       font-size: $homefhSize;
       line-height: 44px;
     }
     p,span{
-      color: $gray-color;
+      color: $text-gray6-color;
       font-size: $homefpSize;
       line-height: 26px;
     }

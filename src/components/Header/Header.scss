@@ -1,7 +1,7 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 .route--active {
   font-weight: bold;
-  color: $lightblue-color;
+  color: $text-blue-color;
   @include navselect-bottom;
 }
 .g-header {
@@ -10,8 +10,7 @@
     @include float-left;
     font-size: 26px;
     a{
-      color: $lightblue-color;
-      padding-right: 16px;
+      color: $text-blue-color;
       i {
         display: inline-block;
         margin-right: 6px;
@@ -27,7 +26,7 @@
 }
 //二级导航
 .nav-second{
-  background: $navsecond-bg;
+  background: $bg-gray-color;
   .navs-nav{
     margin: $view-margin;
     padding-left: $navsecond-padding-left;
@@ -52,10 +51,10 @@
     @include float-left;
     width: $navThird-width;
     min-height: 800px;
-    background: $white-color;
+    background: $bg-white-color;
     .navThirdHover{/*选中样式*/
-      color: $white-color;
-      background: $lightblue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
+      color: $text-white-color;
+      background: $bg-blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
       background-size: 6px;
     }
     ul{
@@ -83,7 +82,7 @@
     padding: 20px 26px;
     width: $ccContent-width;
     min-height: 800px;
-    background: $white-color;
+    background: $bg-white-color;
     dt{
       padding-top: 30px;
       font-size: 20px;
