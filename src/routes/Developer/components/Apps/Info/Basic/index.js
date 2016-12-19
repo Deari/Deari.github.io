@@ -2,40 +2,25 @@ import React from 'react'
 import './index.scss'
 
 class Basic extends React.Component {
-  state = {
-    appName: "",
-    appLogo: "",
-    appDesc: "",
-    categoryId: ""
-  }
-  // handleChange(name, event) {
-  //   var newState = {};
-  //   newState[name] = (name == "checked" ? event.target.checked : event.target.value);
-  //   this.setState(newState);
-  //   value={this.state} onChange={this.handleChange.bind(this, "username")}
-  // }
-  getValue(){
-    this.props.fromList()
-  }
   render() {
     return (
       <div>
         <fieldset className="col-md-4">
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="应用名称" onChange={this.getValue}/>
+            <input type="text" className="form-control" placeholder="应用名称" name="appName"/>
           </div>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="描述" onChange={this.getValue}/>
+            <input type="text" className="form-control" placeholder="描述"/>
           </div>
           <div className="form-group row">
             <div className="img-container">
-              <img src="" alt="上传图片" className="img-thumbnail" onChange={this.getValue}/>
+              <img src="" alt="上传图片" className="img-thumbnail" name='appLogo'/>
             </div>
           </div>
           <div className="form-group row">
             <span className="sl-custom-file">
-              <input type="button" className="btn btn-primary" value="选择图片" onChange={this.getValue}/>
-              <input type="file" className="ui-input-file" accept="image/*" onChange={this.getValue}/>
+              <input type="button" className="btn btn-primary" value="选择图片"/>
+              <input type="file" className="ui-input-file" accept="image/*"/>
             </span>
           </div>
           <div className="form-group row">
@@ -48,7 +33,7 @@ class Basic extends React.Component {
             </select>
           </div>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="标签" onChange={this.getValue}/>
+            <input type="text" className="form-control" placeholder="标签"/>
           </div>
         </fieldset>
       </div>
