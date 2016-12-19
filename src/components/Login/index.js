@@ -22,18 +22,23 @@ export default class Login extends Component {
 
   loginHandle = ()=>{
     alert('show login modal');
-  }
+  } 
 
   render (){
     return this.state.isLogin ? (
-      <div>
-        <span>已登录</span>
+      <div className="logined">
+        <div className="nav navbar-nav navbar-right">
+          <span><img src="../../Home/Duck.jpg" /></span> | 
+          <span>退出</span>
+        </div>
       </div>
     ) : (
-      <ul className="nav navbar-nav navbar-right">
-        <li onClick={this.registerHandle}>立即注册 | </li> 
-        <li onClick={this.loginHandle}>使用帮助</li>
-      </ul>
+      <div className="loginIn">
+        <div className="nav navbar-nav navbar-right">
+          <span onClick={this.registerHandle}>立即注册</span> | 
+          <span onClick={this.loginHandle}>使用帮助</span>
+        </div>
+      </div>
     )
   }
 }

@@ -5,7 +5,7 @@
   margin: 1.5rem auto;
 }
 .banner{
-  height: 480px;
+  height:505px;
   background: url(../assets/home_bannerbg.jpg) no-repeat;
   .view-width{
     width: $view-width;
@@ -14,10 +14,11 @@
 }
 .login_in{
   @include float-right;
-  margin: 20px 40px;
+  margin: 28px 0px;
   width: 400px; height: 330px;
   background: #ffffff;
   border-radius: 4px;
+  overflow: hidden;
   form{
     padding: 20px 40px;
     input{
@@ -52,9 +53,6 @@
   font-size: $homefpSize;
   background: $navsecond-bg;
   div{
-    margin: $view-margin;
-    width: $view-width;
-    overflow: hidden;
     span:nth-of-type(1){
       padding-left: 24px;
       background: url(../assets/remind_trumpet.png) no-repeat left center;
@@ -74,21 +72,17 @@
   }
 }
 .home_f{
-  @include float-clear;
-  margin: 40px auto;
-  width: $view-width;
+  margin: 19px auto;
+  overflow:hidden;
   border: 1px solid $navsecond-bg;
-  .homef_width{
-    width:33%;
-  }
   .developer_width{
     width:25%;
   }
   li{
     @include float-left;
     @include line-right;
-    margin: 50px 0;
-    padding: 0 40px; 
+    margin: 27px 0;
+    padding: 0 43px; 
     text-align: center;
     a{
       display: block;
@@ -124,3 +118,4 @@
     border-right: none;
   }
 }
+.clx{overflow:auto;zoom:1;width:100%;}
