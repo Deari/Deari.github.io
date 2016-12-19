@@ -51,7 +51,7 @@ class AppsList extends React.Component {
             <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
           </div>
         </div>
-    </div>
+      </div>
     )
   }
 }
