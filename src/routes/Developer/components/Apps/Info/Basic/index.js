@@ -25,7 +25,7 @@ class Basic extends React.Component {
             <input type="text" className="form-control" placeholder="应用名称" name="appName"/>
           </div>
           <div className="form-group row">
-            <input type="text" className="form-control" placeholder="描述"/>
+            <input type="text" className="form-control" placeholder="描述" name="appDesc"/>
           </div>
           <div className="form-group row">
             <div className="img-container">
@@ -39,7 +39,7 @@ class Basic extends React.Component {
             </span>
           </div>
           <div className="form-group row">
-            <select className="form-control">
+            <select className="form-control" name="appOption">
               <option>分类1</option>
               <option>分类2</option>
               <option>分类3</option>
@@ -47,7 +47,7 @@ class Basic extends React.Component {
               <option>分类5</option>
             </select>
           </div>
-          <div className="form-group row">
+          <div className="form-group row" name="appTit">
             <label>标签</label>
             <Tags data={this.state.tags} />
           </div>

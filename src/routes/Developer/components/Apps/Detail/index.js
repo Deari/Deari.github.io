@@ -9,13 +9,13 @@ class AppsDetail extends React.Component {
 
   async componentDidMount() {
     
-    const apiUrl = `http://10.1.115.14:8006/bo/v1/web/developer/1/app/1`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app/1`
     try {
       const res = await fetchUtil.getJSON(apiUrl);
-      console.log(res.data.versions)
+      console.log(res.data)
       if (res.status === 200) {
         alert('成功')
-        this.setState({ data: res.data.versions })
+        this.setState({ data: res.data })
       }
     } catch (e) {
       alert('失败')
