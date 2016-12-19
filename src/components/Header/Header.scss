@@ -1,9 +1,18 @@
 @import "../../layouts/CoreLayout/CoreLayout";
-.route--active {
+.g-header{
+  .route--active {
   font-weight: bold;
   color: $text-blue-color;
   @include navselect-bottom;
+  } 
 }
+.navbar-nav{
+  .route--active {
+  font-weight: bold;
+  color: $text-blue-color;
+  }   
+}
+
 .g-header {
   height: $header-height + 10;
   h1{
@@ -132,7 +141,6 @@
   display: block;
   padding: 10px 15px;
   font-weight: 500;
-  color: #563d7c;
 }
 .navbar-right {
     float: right!important;
