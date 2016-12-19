@@ -1,11 +1,11 @@
 import React from 'react'
 import './index.scss'
+import Tags from '../../../../../../components/Tags'
 
 class Basic extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedTags: [],
       tags: [
         {id: 0, name: '标签一'},
         {id: 1, name: '标签二'},
@@ -17,12 +17,12 @@ class Basic extends React.Component {
       ]
     };
   }
-  state = {
-    appName: "",
-    appLogo: "",
-    appDesc: "",
-    categoryId: ""
-  }
+  // state = {
+  //   appName: "",
+  //   appLogo: "",
+  //   appDesc: "",
+  //   categoryId: ""
+  // }
   // handleChange(name, event) {
   //   var newState = {};
   //   newState[name] = (name == "checked" ? event.target.checked : event.target.value);
@@ -32,28 +32,6 @@ class Basic extends React.Component {
   getValue(){
     this.props.fromList()
   }
-  selectTag(item) {
-    var selectedTags = this.state.selectedTags;
-    if (selectedTags.length === 0) {
-      selectedTags.push(item);
-    } else {
-      for (var i=0; i<selectedTags.length; i++) {
-        if (selectedTags[i].id === item.id) {
-          console.log(i, selectedTags[i].id);
-          selectedTags.splice(i, 1);
-          this.setState({selectedTags: selectedTags});
-          console.log('splice',this.state.selectedTags);
-          return;
-        } else {
-          selectedTags.push(item);
-          this.setState({selectedTags: selectedTags});
-          console.log('push',this.state.selectedTags);
-          return;
-        }
-      }
-    }
-  }
-
   render() {
     return (
       <div>
@@ -86,17 +64,7 @@ class Basic extends React.Component {
           </div>
           <div className="form-group row">
             <label>标签</label>
-            <div>
-              <ul className="tags-container">
-              {
-                this.state.tags.map((item, index) => {
-                  return <li className="active" 
-                             key={item.id} 
-                             onClick={this.selectTag.bind(this, item)}>{item.name}</li>
-                })
-              }
-              </ul>
-            </div>
+            <Tags data={this.state.tags} />
           </div>
         </fieldset>
       </div>
