@@ -1,25 +1,26 @@
-$lightblue-color: #2692fb;  //主题蓝
-$white-color: #ffffff;
-$navsecond-bg: #f6f8f9;     //背景、分割线、border、input
-$darkgray-color: #333333;
-$gray-color: #666666;
-$lightgray-color: #eeeeee;
-$black-color: #000000;
 //text-size
   $text-font-size: 18px;
 //text-color
   $text-white-color: #ffffff;
   $text-blue-color: #2692fb;
   $text-red-color: #fc5c63;
+  $text-bggray-color: #f6f8f9;
   $text-black-color: #000000;
+  $text-gray3-color: #333333;
+  $text-gray6-color: #666666;
+  $text-gray9-color: #999999;
 //bg-color
   $bg-white-color: #ffffff;
   $bg-gray-color: #f6f8f9;
+  $bg-blue-color: #2692fb;
 //btn-color
   $btn-white-color: #ffffff;
   $btn-blue-color: #2692fb;
   $btn-darkblue-color: #177fe4;
+  $btn-bggray-color: #f6f8f9;
   $btn-black-color: #000000;
+//border-color
+  $border-color: #eeeeee;
 //form-color 
   $form-success-color: #3c763d;
   $form-warning-color: #8a6d3b;
@@ -41,12 +42,12 @@ $reminder-height: 40px;
 @mixin float-right { float: right;}
 @mixin float-clear { overflow: hidden;}
 //line
-$border-top: 1px solid $lightgray-color;
-@mixin line-bottom{ border-bottom: 1px solid $lightgray-color;}
-@mixin line-top{ border-bottom: 1px solid $lightgray-color;}
-@mixin line-right{ border-right: 1px solid $lightgray-color;}
+$border-top: 1px solid $border-color;
+@mixin line-bottom{ border-bottom: 1px solid $border-color;}
+@mixin line-top{ border-bottom: 1px solid $border-color;}
+@mixin line-right{ border-right: 1px solid $border-color;}
 @mixin navselect-bottom{
-  border-bottom: 2px solid $lightblue-color;
+  border-bottom: 2px solid $btn-blue-color;
   background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
 //font-size
