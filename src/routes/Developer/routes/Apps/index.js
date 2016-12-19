@@ -7,7 +7,7 @@ import '../../../../components/Header/Header'
 class Container extends React.Component {
   render () {
     return <div className="bg-gray">
-      <div className="container">
+      <div className="container pb10">
        <div className="row clx">
            <div className="col-md-10 col-md-offset-2">
               <ul className="nav navbar-nav clx">
