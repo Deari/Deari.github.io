@@ -15,6 +15,16 @@ export class Preview extends Component {
     preview          : PropTypes.object.isRequired,
   }
 
+  static defaultProps = {
+    gridProps: {
+      className: "layout",
+      cols     : 2,
+      rowHeight: 100,
+      width    : 315,
+      margin   : [ 0, 0, 0, 10 ],
+    }
+  }
+
   onLayoutChange(layout) {
     this.props.setLayout(layout.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
@@ -36,7 +46,7 @@ export class Preview extends Component {
   }
 
   render() {
-    const { canDrop, isOver, connectDropTarget, preview } = this.props
+    const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     //const isActive = canDrop && isOver;
     const layout = preview.layout
     return connectDropTarget(
@@ -45,13 +55,10 @@ export class Preview extends Component {
         <div className="preview">
           <div className="bg-phone">
             <div className="shop-info">
-              <ReactGridLayout className="layout"
-                             layout={layout}
-                             cols={4}
-                             rowHeight={30}
-                             onLayoutChange={::this.onLayoutChange}>
-              {this.generateDOM()}
-            </ReactGridLayout>
+              <ReactGridLayout {...gridProps}
+                               onLayoutChange={::this.onLayoutChange}>
+                {this.generateDOM()}
+              </ReactGridLayout>
             </div>
           </div>
         </div>
