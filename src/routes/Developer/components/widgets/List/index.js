@@ -11,7 +11,7 @@ class AppsList extends React.Component {
   }
   
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widget`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widgets`
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       console.log(res.data.list[0])
@@ -37,7 +37,7 @@ class AppsList extends React.Component {
         </div>
         <div className="col-sm-10 col-md-10">
           <div className="ccContent">
-            <Link className="ccContentBtn" to='/developer/apps/create'>
+            <Link className="ccContentBtn" to='/developer/widgets/create'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>
               </div>
@@ -48,7 +48,7 @@ class AppsList extends React.Component {
               <div className="col-md-2">状态</div>
               <div className="col-md-2">操作</div>
             </div>
-            <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
+            <List data={this.state.listData} showName="組件" linkUrl="/developer/widgets/create" />
           </div>
         </div>
       </div>

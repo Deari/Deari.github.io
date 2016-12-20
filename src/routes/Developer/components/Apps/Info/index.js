@@ -12,7 +12,7 @@ class Info extends React.Component {
     isSubmitted: false,
     categoryId: ""
   }
-   save(e) {
+  async save(e) {
      const puid = 123;
      const pLoginToken = 456;
      e.preventDefault();
@@ -26,19 +26,23 @@ class Info extends React.Component {
          appName: formData.get('appName'),
          appLogo: '../img/12.jpg',
          appDesc: formData.get('appDesc'),
-         categoryId: 4      
+         categoryId: 4,
+         platform: 2,
+
        }
-       const url = 'http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app'
-       fetch(url, {
+       const vesion = {}
+      
+       const url = 'http://10.1.115.14:8006/bo/v1/web/developer/1/app'
+       const res = await fetch(url, {
          method: "POST",
          headers: {
            "Content-Type": "application/x-www-form-urlencoded"
          },
-         body: querystring.stringify(data)
+         body: data
        })
        this.setState({ isSubmitted: true });
      }
-   }
+  }
   render() {
     return (
       <div className="cContent bg-white cContent-onenav">

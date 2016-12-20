@@ -1,6 +1,9 @@
 import React from 'react'
 import './index.scss'
 import Tags from '../../../../../../components/Tags'
+import fetchUtil from '../../../../../utils/fetchUtil'
+import fetch from '../../../../../../../fetch'
+const querystring = require('querystring');
 
 class Basic extends React.Component {
   constructor() {
@@ -17,6 +20,21 @@ class Basic extends React.Component {
       ]
     };
   }
+   imgUpload(){
+    var data = new FormData()
+    data.append('fileName', this.refs.appLogo.files[0])
+    data.append('width', 640)
+    const url ="http://api.intra.sit.ffan.net/bo/v1/web/photo/upload";
+    const img =  fetch(url, {
+      method: "POST",
+      body: data
+    })
+    img.then(function(data){
+      console.log(data)
+    })
+    console.log()
+  }
+
   render() {
     return (
       <fieldset className="form-container clx">
@@ -32,12 +50,12 @@ class Basic extends React.Component {
         <div className="form-group col-md-12">
           <label>选择LOGO:</label>
           <div className="img-container">
-            <img src="" alt="上传图片" className="img-thumbnail" name='appLogo'/>
+            <img src="" alt="上传图片"  className="img-thumbnail"/>
           </div>
           <div>
             <span className="sl-custom-file">
               <input type="button" className="btn btn-primary" value="选择图片"/>
-              <input type="file" className="ui-input-file" accept="image/*"/>
+              <input type="file" className="ui-input-file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
             </span>
           </div>
         </div>
