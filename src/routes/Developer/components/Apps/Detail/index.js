@@ -27,44 +27,36 @@ class AppsDetail extends React.Component {
   componentDidMount() {
     this.getVersions().then(
       res => {
-        console.log("response ", res)
-        this.versions = res.versions;
         res && res.versions && this.setState({ data: res.versions });
       }
     )
   }
   async showBasicInfo() {
+    if(!this.state.showVersion) return;
     this.setState({showVersion: false});
     const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/app/1`;
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       if (res.status == 200) {
-        this.basicInfo = res.data;
         res.data && this.setState({ data: res.data });
       }
     } catch(e) {
       console.log(e);
     }
   }
-  async showVersion() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app/1/code`
-    try {
-      const res = await fetchUtil.getJSON(apiUrl);
-      if (res.status === 200) {
-        this.versions = res.data.versions;
-        res.data && res.data.versions && this.setState({ data: res.data.versions });
+  showVersion() {
+    if(this.state.showVersion) return;
+    this.getVersions().then(
+      res => {
+        res && res.versions && this.setState({ data: res.versions });
         this.setState({showVersion: true});
-      } else {
-        console.log("res ", res);
       }
-    } catch (e) {
-      console.log(e);
-    }
+    )
   }
   render() {
     return (
-      <div className="cContent">
-        <div className="navThird">
+      <div className="cContent clx">
+        <div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className={this.state.showVersion ? '' : 'navThirdHover'} 
                 onClick={this.showBasicInfo.bind(this)}>基本信息</li>
@@ -72,13 +64,15 @@ class AppsDetail extends React.Component {
                 onClick={this.showVersion.bind(this)}>版本管理</li>
           </ul>
         </div>
-        <div className="ccContent">
-        {
-          this.state.showVersion ? (this.state.data ?
-            <Version data={this.state.data} linkUrl="/developer/apps/876/edit" /> : 
-            React.createElement("div", {}, "页面加载中...") ) : 
-            <BasicInfo data={this.state.data} />
-        }
+        <div className="col-sm-10 col-md-10">
+          <div className="ccContent">
+          {
+            this.state.showVersion ? (this.state.data ?
+              <Version data={this.state.data} linkUrl={`/developer/apps/edit/${this.state.data[0].appId}`} /> : 
+              React.createElement("div", {}, "页面加载中...") ) : 
+              <BasicInfo data={this.state.data} />
+          }
+          </div>
         </div>
       </div>
     )
