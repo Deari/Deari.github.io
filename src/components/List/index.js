@@ -38,7 +38,7 @@ class List extends React.Component {
               </div>
               <div className="info-status col-md-2">{item.state}</div>
               <div className="info-btn col-md-2">
-                <Link to={'/developer/' + name + 's/detail/' + item.developerId}>
+                <Link to={'/developer/' + name + 's/detail/' + item.appId}>
                   <button className="btn btn-default">管理</button>
                 </Link>
               </div>

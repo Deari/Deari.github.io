@@ -8,6 +8,6 @@ class Edit extends React.Component {
 }
 
 module.exports = {
-  path: ':id/edit',
+  path: 'edit/:id',
   component: Edit
 }
