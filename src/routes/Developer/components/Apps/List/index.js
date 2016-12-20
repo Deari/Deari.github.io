@@ -6,37 +6,37 @@ import './index.scss'
 import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
- 
-  state = {
-      listData:[]
+  constructor() {
+    super();
+    this.state = {
+      listData: []
+    }
   }
-  
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`;
     try {
       const res = await fetchUtil.getJSON(apiUrl);
-      console.log(res.data.list[0])
+      console.log(res)
       if(res.status === 200){
-        alert('成功')
-        this.setState({listData:res.data.list})
+        this.setState({listData: res.data.list})
+      } else {
+        console.log("res ", res);
       }
     } catch (e) {
-      alert('失败')
       console.log(e)
     }
-   
   }
   render() {
     return (
-      <div className="cContent">
-        <div className="navThird">
+      <div className="cContent clx">
+        <div className="col-sm-2 col-md-2 navThird">
           <ul>
-            <li>待审核</li>
+            <li className="navThirdHover">待审核</li>
             <li>已审核</li>
           </ul>
         </div>
-        <div className="ccContent">
-          <div>
+        <div className="col-sm-10 col-md-10">
+          <div className="ccContent">
             <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>

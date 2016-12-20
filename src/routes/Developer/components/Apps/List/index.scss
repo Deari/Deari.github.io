@@ -1,14 +1,15 @@
 @import "../../../../../layouts/CoreLayout/CoreLayout";
 
 .ccContentBtn{
-      display: block;
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  overflow: hidden;
+}
 .list-title {
   height: 48px;
   line-height: 48px;
-  background: $navsecond-bg;
+  background: $bg-gray-color;
   border-top: $border-top;
 }
 .no-padding-left {

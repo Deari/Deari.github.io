@@ -15,41 +15,56 @@ export class Preview extends Component {
     preview          : PropTypes.object.isRequired,
   }
 
+  static defaultProps = {
+    gridProps: {
+      className: "layout",
+      cols     : 2,
+      rowHeight: 100,
+      width    : 315,
+      margin   : [ 0, 0, 0, 10 ],
+    }
+  }
+
   onLayoutChange(layout) {
     this.props.setLayout(layout.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
     })))
   }
 
-  getLayout(e) {
+  generateLayout(e) {
     const { layout } = this.props.preview
     return layout[ e.id ] ? layout[ e.id ] : { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
   }
 
+  generateDOM() {
+    const elements = this.props.preview.elements
+    return elements.map(e => <div key={e.id}
+                                  onClick={this.props.selectElement.bind(null, e.id)}
+                                  data-grid={this.generateLayout(e)}>
+      <Element {...e} />
+    </div>)
+  }
+
   render() {
-    const { canDrop, isOver, connectDropTarget, preview } = this.props
+    const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     //const isActive = canDrop && isOver;
     const layout = preview.layout
-    console.log(layout)
     return connectDropTarget(
       <div>
+
+        <div className="preview">
+          <div className="bg-phone">
+            <div className="shop-info">
+              <ReactGridLayout {...gridProps}
+                               onLayoutChange={::this.onLayoutChange}>
+                {this.generateDOM()}
+              </ReactGridLayout>
+            </div>
+          </div>
+        </div>
         <pre style={{ "fontSize": '12px' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
-        <div className="preview-container">
-          <ReactGridLayout className="layout"
-                           layout={layout}
-                           cols={4}
-                           rowHeight={30}
-                           width={300}
-                           onLayoutChange={::this.onLayoutChange}>
-            {preview.elements.map(e =>
-              <div key={e.id}
-                   data-grid={this.getLayout(e)}>
-                <Element {...e}/>
-              </div>)}
-          </ReactGridLayout>
-        </div>
       </div>
     )
   }

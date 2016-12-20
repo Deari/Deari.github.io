@@ -33,7 +33,7 @@ export const DevNav = ()=>(
 
 export const OpenNav = ()=>(
   <div>
-    <Link to='/open/apps' activeClassName='route--active'>
+    <Link to='/open/apps' activeClassName='route---active'>
       商家应用
     </Link>
     <Link to='/open/widgets' activeClassName='route--active'>

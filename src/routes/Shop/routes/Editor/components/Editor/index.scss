@@ -1,4 +1,3 @@
-@import "../../../../../../layouts/CoreLayout/CoreLayout";
 #editor-main {
   .editor-left {
     float    : left;
@@ -25,7 +24,7 @@
 
   .sub-nav {
     height   : 34px;
-    //position : absolute;
+    position : absolute;
     top      : 0;
     width    : 100%;
     z-index  : 98;
@@ -54,6 +53,6 @@
   }
 
   .sub-content {
-    //padding-top : 34px;
+    padding-top : 34px;
   }
 }
