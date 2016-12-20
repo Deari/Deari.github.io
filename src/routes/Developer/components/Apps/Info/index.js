@@ -10,9 +10,6 @@ const querystring = require('querystring');
 class Info extends React.Component {
    state = {
     isSubmitted: false,
-    appName: "",
-    appLogo: "",
-    appDesc: "",
     categoryId: ""
   }
    save(e) {
@@ -21,22 +18,19 @@ class Info extends React.Component {
      e.preventDefault();
      if (puid, pLoginToken) {
        console.log("click save");
-       const appName = new FormData(this.refs.from).get('appName')
+       const formData = new FormData(this.refs.from) 
+       const appName = formData.get('appName')
        // const categoryId = new FormData(this.refs.from).get('categoryId')
-       const appDesc = new FormData(this.refs.from).get('appDesc')
-       const appOption = new FormData(this.refs.from).get('appOption')
-       const appTit = new FormData(this.refs.from).get('appTit')
        // const appLogo = new FormData(this.refs.from).get('appLogo')
-       const appInformat = new FormData(this.refs.from).get('appInformat')
-       const appVersion = new FormData(this.refs.from).get('appVersion')
        const data = {
-         appName: appName,
+         appName: formData.get('appName'),
          appLogo: '../img/12.jpg',
-         appDesc: appDesc,
+         appDesc: formData.get('appDesc'),
          categoryId: 13213,
-         appOption: appOption,
-         appInformat: appInformat,
-         appVersion: appVersion
+         appOption: formData.get('appOption'),
+         appTit: formData.get('appTit'),
+         appInformat: formData.get('appInformat'),
+         appVersion: formData.get('appVersion')       
        }
        const url = 'http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app'
        fetch(url, {
