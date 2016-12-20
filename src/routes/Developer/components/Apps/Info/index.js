@@ -26,11 +26,7 @@ class Info extends React.Component {
          appName: formData.get('appName'),
          appLogo: '../img/12.jpg',
          appDesc: formData.get('appDesc'),
-         categoryId: 13213,
-         appOption: formData.get('appOption'),
-         appTit: formData.get('appTit'),
-         appInformat: formData.get('appInformat'),
-         appVersion: formData.get('appVersion')       
+         categoryId: 4      
        }
        const url = 'http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app'
        fetch(url, {

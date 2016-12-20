@@ -27,7 +27,7 @@ class Basic extends React.Component {
         <hr/>
         <div className="form-group col-md-12">
           <label>文字介绍:</label>
-          <textarea className="form-control" rows="3"></textarea>
+          <textarea className="form-control" rows="3" name='appDesc'></textarea>
         </div>
         <div className="form-group col-md-12">
           <label>选择LOGO:</label>
@@ -43,7 +43,7 @@ class Basic extends React.Component {
         </div>
         <div className="form-group col-md-12">
           <label>分类:</label>
-          <select className="form-control">
+          <select className="form-control" name='appOption'>
             <option>分类1</option>
             <option>分类2</option>
             <option>分类3</option>
@@ -51,7 +51,7 @@ class Basic extends React.Component {
             <option>分类5</option>
           </select>
         </div>
-        <div className="form-group col-md-12">
+        <div className="form-group col-md-12" name='appTit'>
           <label>产品标签:</label>
           <Tags data={this.state.tags} />
         </div>
