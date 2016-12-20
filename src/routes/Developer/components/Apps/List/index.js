@@ -14,7 +14,7 @@ class AppsList extends React.Component {
     }
   }
   async getList() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`;
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/apps`;
     try {
       const res = await fetchUtil.getJSON(apiUrl, {reviewStatus: this.state.reviewStatus});
       if(res.status === 200){
