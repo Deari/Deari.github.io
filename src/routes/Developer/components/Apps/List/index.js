@@ -6,33 +6,52 @@ import './index.scss'
 import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
- 
-  state = {
-      listData:[]
+  constructor() {
+    super();
+    this.state = {
+      listData: [],
+      reviewStatus: 1
+    }
   }
-  
-  async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`
+  async getList() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`;
     try {
-      const res = await fetchUtil.getJSON(apiUrl);
-      console.log(res.data.list[0])
+      const res = await fetchUtil.getJSON(apiUrl, {reviewStatus: this.state.reviewStatus});
       if(res.status === 200){
-        alert('成功')
-        this.setState({listData:res.data.list})
+        return res.data && res.data.list && res.data.list
+      } else {
+        console.log("res ", res);
       }
     } catch (e) {
-      alert('失败')
       console.log(e)
     }
-   
+  }
+  componentDidMount() {
+    this.getList().then(
+      response => {
+        response && this.setState({listData: response})
+      }
+    )
+  }
+  changeList(value) {
+    if (value === this.state.reviewStatus) return;
+    this.setState({reviewStatus: value}, () => {
+      this.getList().then(
+        response => {
+          response && this.setState({listData: response})
+        }
+      )
+    });
   }
   render() {
     return (
       <div className="cContent clx">
         <div className="col-sm-2 col-md-2 navThird">
           <ul>
-            <li className="navThirdHover">待审核</li>
-            <li>已审核</li>
+            <li className={this.state.reviewStatus === 1 ? 'navThirdHover' : ''}
+                onClick={this.changeList.bind(this, 1)}>待审核</li>
+            <li className={this.state.reviewStatus === 2 ? 'navThirdHover' : ''}
+                onClick={this.changeList.bind(this, 2)}>已审核</li>
           </ul>
         </div>
         <div className="col-sm-10 col-md-10">

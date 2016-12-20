@@ -1,38 +1,62 @@
 import React from 'react'
 import Version from '../../../../../components/Version'
 import fetchUtil from '../../../../utils/fetchUtil'
+import BasicInfo from './BasicInfo'
 
 class AppsDetail extends React.Component {
-  state = {
-    data: []
+  constructor() {
+    super();
+    this.state = {
+      showVersion: true,
+      data: null
+    };
   }
-
-  async componentDidMount() {
-    
-    const apiUrl = `http://10.1.115.14:8006/bo/v1/web/developer/1/app/1`
+  async getVersions() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app/1/code`
     try {
       const res = await fetchUtil.getJSON(apiUrl);
-      console.log(res.data.versions)
       if (res.status === 200) {
-        alert('成功')
-        this.setState({ data: res.data.versions })
+        return res.data;
+      } else {
+        console.log("res ", res);
       }
     } catch (e) {
-      alert('失败')
-      console.log(e)
+      console.log(e);
     }
-
   }
-  showBasicInfo() {
+  componentDidMount() {
+    this.getVersions().then(
+      res => {
+        res && res.versions && this.setState({ data: res.versions });
+      }
+    )
+  }
+  async showBasicInfo() {
+    if(!this.state.showVersion) return;
     this.setState({showVersion: false});
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/app/1`;
+    try {
+      const res = await fetchUtil.getJSON(apiUrl);
+      if (res.status == 200) {
+        res.data && this.setState({ data: res.data });
+      }
+    } catch(e) {
+      console.log(e);
+    }
   }
   showVersion() {
-    this.setState({showVersion: true});
+    if(this.state.showVersion) return;
+    this.getVersions().then(
+      res => {
+        res && res.versions && this.setState({ data: res.versions });
+        this.setState({showVersion: true});
+      }
+    )
   }
   render() {
     return (
-      <div className="cContent">
-        <div className="navThird">
+      <div className="cContent clx">
+        <div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className={this.state.showVersion ? '' : 'navThirdHover'} 
                 onClick={this.showBasicInfo.bind(this)}>基本信息</li>
@@ -40,29 +64,17 @@ class AppsDetail extends React.Component {
                 onClick={this.showVersion.bind(this)}>版本管理</li>
           </ul>
         </div>
-        <div className="ccContent">
-        {
-          this.state.showVersion ? 
-          <Version data={this.state.data} linkUrl="/developer/apps/876/edit" /> :
-          <BasicInfo />
-        }
+        <div className="col-sm-10 col-md-10">
+          <div className="ccContent">
+          {
+            this.state.showVersion ? (this.state.data ?
+              <Version data={this.state.data} linkUrl={`/developer/apps/edit/${this.state.data[0].appId}`} /> : 
+              React.createElement("div", {}, "页面加载中...") ) : 
+              <BasicInfo data={this.state.data} />
+          }
+          </div>
         </div>
       </div>
-    )
-  }
-}
-
-class BasicInfo extends React.Component {
-  render() {
-    return (
-      <div>
-        <img />
-        应用名称: 名称
-        分类：分类3
-        描述：撒打发斯蒂芬
-        标签：标签一 标签二
-      </div>
-
     )
   }
 }

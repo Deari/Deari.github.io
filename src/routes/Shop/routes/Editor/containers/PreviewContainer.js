@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose, bindActionCreators } from 'redux'
 import { DropTarget } from 'react-dnd'
-import { addElement, setLayout } from '../modules/preview'
+import { addElement, setLayout, selectElement } from '../modules/preview'
 
 
 import Preview from '../components/Preview'
@@ -16,6 +16,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   setLayout(layout) {
     dispatch(setLayout({layout: layout}))
+  },
+  selectElement(id) {
+    dispatch(selectElement(id))
   },
   dispatch,
 })
