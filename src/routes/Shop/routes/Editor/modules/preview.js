@@ -29,22 +29,26 @@ export const actions = {
 }
 
 const ACTION_HANDLERS = {
-  [ADD_ELEMENT]   : (state, action) => {
-    const elements = state.elements
-    const element = {
-      ...{ id: getRandomString({}) },
-      ...action.element,
-    }
-    elements.push(element)
-    return { ...state, ...{ elements } }
-  },
-  [SET_LAYOUT]    : (state, action) =>
-    ({ ...state, ...action.layout }),
+  [ADD_ELEMENT]: (state, action) => ({
+    ...state, elements: [ ...state.elements,
+      {
+        id      : getRandomString({}),
+        selected: false,
+        ...action.element,
+      } ]
+  }),
+
+  [SET_LAYOUT]: (state, action) =>({
+    ...state, ...action.layout
+  }),
+
+
   [SELECT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => ({
       ...element, selected: element.id === action.id
     }))
-  })
+  }),
+
 }
 
 const defaultState = {
