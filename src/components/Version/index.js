@@ -6,7 +6,7 @@ class Version extends React.Component {
   constructor() {
     super();
     this.state = {
-      showAll: false
+      showAll: false,
     }
   }
   changeState() {
@@ -21,6 +21,7 @@ class Version extends React.Component {
   }
 }
 
+
 class LastVersion extends React.Component {
   showAllVersions(e) {
     e.preventDefault();
@@ -28,8 +29,7 @@ class LastVersion extends React.Component {
   }
   render() {
     var linkUrl = this.props.linkUrl;
-    var data = this.props.data;
-    console.log(data)
+    var data = this.props.data[0];
     return (
       <div>
         <h4 className="version-title">版本管理</h4>
@@ -37,7 +37,7 @@ class LastVersion extends React.Component {
         <div className="version-container">
           版本号 ：{data.codeVersion}
           版本介绍 ：
-          <textarea className="col-sm-12" rows="5" disabled>{data.code_desc}</textarea>
+          <textarea className="col-sm-12" rows="5" disabled>{data.codeDesc}</textarea>
           <a href="javascript:;" onClick={this.showAllVersions.bind(this)}>查看历史版本</a>
         </div>
         <hr />
@@ -46,6 +46,7 @@ class LastVersion extends React.Component {
     )
   }
 }
+
 
 class AllVersions extends React.Component {
   showAllVersions(e) {
@@ -61,7 +62,19 @@ class AllVersions extends React.Component {
         </div>
         <div className="version-title">版本记录</div>
         <hr />
-        {JSON.stringify(data)}
+        {
+          data.map((item, index) => {
+            return (
+              <ul>
+                <li>
+                  版本：{item.codeVersion}
+                  发布时间：{item.createTime}
+                  介绍：{item.codeDesc}
+                </li>
+              </ul>
+            )
+          })
+        }
       </div>
     )
   }

@@ -8,6 +8,6 @@ class Detail extends React.Component {
 }
 
 module.exports = {
-  path: ':id/detail',
+  path: 'detail/:id',
   component: Detail
 }
