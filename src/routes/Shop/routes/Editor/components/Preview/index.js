@@ -41,9 +41,7 @@ export class Preview extends Component {
     const layout = preview.layout
     return connectDropTarget(
       <div>
-        <pre style={{ "fontSize": '12px' }}>
-          {JSON.stringify(this.props, null, 2)}
-        </pre>
+
         <div className="preview">
           <div className="bg-phone">
             <div className="shop-info">
@@ -52,15 +50,14 @@ export class Preview extends Component {
                              cols={4}
                              rowHeight={30}
                              onLayoutChange={::this.onLayoutChange}>
-              {preview.elements.map(e =>
-                <div key={e.id}
-                     data-grid={this.getLayout(e)}>
-                  <Element {...e}/>
-                </div>)}
+              {this.generateDOM()}
             </ReactGridLayout>
             </div>
           </div>
         </div>
+        <pre style={{ "fontSize": '12px' }}>
+          {JSON.stringify(this.props, null, 2)}
+        </pre>
       </div>
     )
   }

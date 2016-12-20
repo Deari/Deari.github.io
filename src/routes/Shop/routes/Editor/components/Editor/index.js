@@ -34,8 +34,8 @@ export class Editor extends Component {
                   <div className="col-sm-8 col-md-8">
                     <div className="bg-white">
                       <div className="editor-view">
-                        <button onClick={::this.props.fetchProducts}>fetch</button>
                         <Preview/>
+                        <button onClick={::this.props.fetchProducts}>fetch</button>
                       </div>
                     </div>
                   </div>
