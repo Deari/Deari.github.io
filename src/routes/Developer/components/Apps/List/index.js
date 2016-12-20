@@ -1,21 +1,30 @@
 import React from 'react'
 import { Link } from 'react-router'
 import List from '../../../../../components/List'
+import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
-import '../../../../../styles/base.scss'
-import '../../../../../styles/button.scss'
+import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      listData: [
-        {url: "./a.jpg", developerId: 987, name: "namenamenamenamenamenamenamenamenamenamenamenamename one", state: 'state one'},
-        {url: "./a.jpg", developerId: 876, name: "name two", state: 'two'},
-        {url: "./a.jpg", developerId: 765, name: "name three", state: 'three'},
-        {url: "./a.jpg", developerId: 654, name: "name four", state: 'four'},
-      ]
-    };
+ 
+  state = {
+      listData:[]
+  }
+  
+  async componentDidMount() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`
+    try {
+      const res = await fetchUtil.getJSON(apiUrl);
+      console.log(res.data.list[0])
+      if(res.status === 200){
+        alert('成功')
+        this.setState({listData:res.data.list})
+      }
+    } catch (e) {
+      alert('失败')
+      console.log(e)
+    }
+   
   }
   render() {
     return (
@@ -28,9 +37,9 @@ class AppsList extends React.Component {
         </div>
         <div className="ccContent">
           <div>
-            <Link className="float-clear display-block margin-bottom" to='/developer/apps/create'>
+            <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
-                <button className="btn bg-btn-blue">+ 创建应用</button>
+                <button className="btn btn-primary">+ 创建应用</button>
               </div>
             </Link>
             <div className="list-title">
@@ -42,7 +51,7 @@ class AppsList extends React.Component {
             <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
           </div>
         </div>
-    </div>
+      </div>
     )
   }
 }

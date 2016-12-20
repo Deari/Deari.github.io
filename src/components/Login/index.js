@@ -30,10 +30,10 @@ export default class Login extends Component {
         <span>已登录</span>
       </div>
     ) : (
-      <div>
-        <span onClick={this.registerHandle}>注册</span> | 
-        <span onClick={this.loginHandle}>登陆</span>
-      </div>
+      <ul className="nav navbar-nav navbar-right">
+        <li onClick={this.registerHandle}>立即注册 | </li> 
+        <li onClick={this.loginHandle}>使用帮助</li>
+      </ul>
     )
   }
 }

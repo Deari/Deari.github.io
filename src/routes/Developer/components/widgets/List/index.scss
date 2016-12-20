@@ -1,6 +1,15 @@
+@import "../../../../../layouts/CoreLayout/CoreLayout";
+
+.ccContentBtn{
+      display: block;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
 .list-title {
-  height: 50px;
-  line-height: 50px;
+  height: 48px;
+  line-height: 48px;
+  background: $navsecond-bg;
+  border-top: $border-top;
 }
 .no-padding-left {
   padding-left: 0px;

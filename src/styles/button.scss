@@ -1,45 +1,57 @@
-$lightblue-color: #2692fb;  //主题蓝
-$white-color: #ffffff;
-$navsecond-bg: #f6f8f9;     //背景、分割线、border、input
-$black-color: #000000;
-$darkgray-color: #333333;
-$gray-color: #666666;
-$lightgray-color: #eeeeee;
-
-$btn-big-height: 38px;
-
-.width110{
-  width: 110px;
-}
+@import '../layouts/CoreLayout/CoreLayout';
 
 .btn{
   display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
   width: 100%;
-  height: $btn-big-height;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
   border-radius: 4px;
   border: none;
-  outline: none;
-  cursor: pointer;
 }
-//蓝色的按钮 
-.bg-btn-blue {
-  color: $white-color;
-  background-color: $lightblue-color;
-  &:hover {
-    color: $white-color;
-    background-color: #1885ee;
-  }
-  &:focus {
-    color: $white-color;
-  }
+.btn-lg{
+  padding: 10px 16px;
+  font-size: 20px;
+  line-height: 24px;
 }
-//边框按钮
-.border-btn-black{
-  color: $black-color;
-  border: 1px solid $black-color;
-  background: none;
+.btn-sm{
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.btn-xs{
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 18px;
+}
+.btn-default{
+  color: $btn-black-color;
+  background-color: $btn-white-color;
+  border: 1px solid $btn-black-color;
   &:hover{
-    color: $lightblue-color;
-    border: 1px solid $lightblue-color;
+    color: $btn-blue-color;
+    background: $navsecond-bg;
+    border: 1px solid $btn-blue-color;
+  }
+}
+.btn-primary{
+  color: $btn-white-color;
+  background-color: $btn-blue-color;
+  &:hover {
+    color: $btn-white-color;
+    background-color: $btn-darkblue-color;
   }
 }

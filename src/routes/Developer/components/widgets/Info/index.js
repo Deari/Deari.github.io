@@ -5,24 +5,33 @@ import Basic from './Basic'
 import Platform from './Platform'
 
 class Info extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isSubmitted: false
-    };
+
+  state = {
+    isSubmitted: false,
+    appName: "",
+    appLogo: "",
+    appDesc: "",
+    categoryId: ""
+  }
+  fromList(){
+    alert(1)
   }
   save(e) {
     e.preventDefault();
-    console.log("click save");
-    this.setState({isSubmitted: true});
+    this.fromList()
+    console.log(this.refs)
+    this.setState({ isSubmitted: true });
+    
+    console.log(this.state)
   }
+
   render() {
     return (
       <div>
-        <form className="container bo-form-container" onSubmit={this.save.bind(this)} >
+        <form className="container bo-form-container" onSubmit={this.save.bind(this)} ref='from'>
           <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
-            <div name="填写基本信息"><Basic /></div>
-            <div name="填写平台信息"><Platform /></div>
+            <div name="填写基本信息"><Basic onChange={::this.fromList}/></div>
+            <div name="填写平台信息"><Platform onChange={::this.fromList}/></div>
             <div name="提交成功">
               <div className="success-container">提交成功，等待审核</div>
             </div>
