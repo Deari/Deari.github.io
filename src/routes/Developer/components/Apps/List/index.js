@@ -6,25 +6,25 @@ import './index.scss'
 import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
- 
-  state = {
-      listData:[]
+  constructor() {
+    super();
+    this.state = {
+      listData: []
+    }
   }
-  
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`;
     try {
       const res = await fetchUtil.getJSON(apiUrl);
-      console.log(res.data.list[0])
+      console.log(res)
       if(res.status === 200){
-        alert('成功')
-        this.setState({listData:res.data.list})
+        this.setState({listData: res.data.list})
+      } else {
+        console.log("res ", res);
       }
     } catch (e) {
-      alert('失败')
       console.log(e)
     }
-   
   }
   render() {
     return (
