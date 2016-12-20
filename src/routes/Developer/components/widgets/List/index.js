@@ -28,16 +28,16 @@ class AppsList extends React.Component {
  
   render() {
     return (
-      <div className="cContent">
-        <div className="navThird">
+      <div className="cContent container clx">
+        <div className="col-sm-2 col-md-2 navThird">
           <ul>
-            <li>待审核</li>
+            <li className="navThirdHover">待审核</li>
             <li>已审核</li>
           </ul>
         </div>
-        <div className="ccContent">
-          <div>
-            <Link className="ccContentBtn" to='/developer/widgets/create'>
+        <div className="col-sm-10 col-md-10">
+          <div className="ccContent">
+            <Link className="ccContentBtn" to='/developer/apps/create'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>
               </div>
@@ -48,7 +48,7 @@ class AppsList extends React.Component {
               <div className="col-md-2">状态</div>
               <div className="col-md-2">操作</div>
             </div>
-            <List data={this.state.listData} showName="组件" linkUrl="/developer/widgets/create" />
+            <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
           </div>
         </div>
       </div>
