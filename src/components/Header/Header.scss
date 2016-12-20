@@ -1,17 +1,26 @@
 @import "../../layouts/CoreLayout/CoreLayout";
-.route--active {
+.g-header{
+  .route--active {
   font-weight: bold;
-  color: $lightblue-color;
+  color: $text-blue-color;
   @include navselect-bottom;
+  } 
 }
+.navbar-nav{
+  .route--active {
+  font-weight: bold;
+  color: $text-blue-color;
+  }   
+}
+
 .g-header {
-  width: $view-width;
-  height: $header-height;
+  height: $header-height + 10;
   h1{
     @include float-left;
     font-size: 26px;
     a{
-      color: $lightblue-color;
+      color: $text-blue-color;
+      padding-right:16px;
       i {
         display: inline-block;
         margin-right: 6px;
@@ -24,20 +33,10 @@
     }
     
   }
-  div{
-    position: relative;
-    @include float-right;
-    font-size: 20px;
-    line-height: $header-height - 2;
-    a{
-      display: inline-block;
-      margin: 0 20px;
-    }
-  }
 }
 //二级导航
 .nav-second{
-  background: $navsecond-bg;
+  background: $bg-gray-color;
   .navs-nav{
     margin: $view-margin;
     padding-left: $navsecond-padding-left;
@@ -55,17 +54,14 @@
 }
 //三级导航
 .cContent{
-  margin: $view-margin;
-  width: $view-width;
   min-height: 800px;
   .navThird{
-    @include float-left;
-    width: $navThird-width;
+    padding: 0;
     min-height: 800px;
-    background: $white-color;
+    background: $bg-white-color;
     .navThirdHover{/*选中样式*/
-      color: $white-color;
-      background: $lightblue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
+      color: $text-white-color;
+      background: $bg-blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
       background-size: 6px;
     }
     ul{
@@ -89,11 +85,9 @@
     }
   }
   .ccContent{
-    @include float-right;
-    padding: 20px 26px;
-    width: $ccContent-width;
+    padding: 0 10px;
     min-height: 800px;
-    background: $white-color;
+    background: $bg-white-color;
     dt{
       padding-top: 30px;
       font-size: 20px;
@@ -109,6 +103,7 @@
   }
 
 }
+.border-top-bule{border-top:2px solid #2692fb;}
 .container>.navbar-header,.container>.navbar-collapse {
   margin-right:-15px;
   margin-left:-15px
@@ -137,9 +132,6 @@
   padding: 11px 15px;
   font-size: 18px;
 }
-.navbar-nav {
-  margin: 7.5px -15px;
-}
 .nav>li {
   position: relative;
   display: block;
@@ -149,8 +141,47 @@
   display: block;
   padding: 10px 15px;
   font-weight: 500;
-  color: #563d7c;
 }
+.navbar-right {
+    float: right!important;
+    font-size: $homefhSize - 8;
+    color: $text-blue-color;
+    span{
+      padding:0 5px 0 10px;
+      cursor: pointer;
+      line-height: 70px;
+    }
+  }
+  .logined{
+    padding-top:13px;
+    .navbar-right{
+      font-size: $homefhSize - 7;
+      color: #999; /*需要在corelayout里添加*/
+    }
+    span{
+      img{
+        width: 44px; /*需要在corelayout里添加*/
+        height: 44px; /*需要在corelayout里添加*/
+        vertical-align: top;
+      }
+    }
+  }
+  .nav-list{
+    .navbar-right{
+      font-size: $homefhSize - 2;
+      a{
+        position: relative;
+        float: left;
+        display: block;
+        padding:0 24px;
+        line-height: 68px;
+        color:$text-black-color;
+      }
+      .route--active{
+        color:$text-blue-color;
+      }
+    }
+  }
 @media (min-width:768px) {
   .container>.navbar-header,.container>.navbar-collapse {
     margin-right:0;
@@ -184,7 +215,9 @@
     padding-bottom: 15px;
   }
   .navbar-right {
-    float: right!important;
+    span{
+      line-height: 70px;
+    }
   }
 }
 

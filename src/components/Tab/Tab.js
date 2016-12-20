@@ -40,8 +40,9 @@ class Tab extends React.Component {
         isSubmitted = this.props.isSubmitted,
         linkUrl = this.props.linkUrl;
     return (
-      <div className="container">
-        <ul className="tab-container">
+      <div>
+        <div className="bg-gray">
+        <ul className="tab-container clx">
         {
           React.Children.map(this.props.children, (item, index) => {
             return (
@@ -56,6 +57,7 @@ class Tab extends React.Component {
           })  
         }
         </ul>
+        </div>
         {
           React.Children.map(this.props.children, (item, index) => {
             return (
@@ -66,8 +68,7 @@ class Tab extends React.Component {
           })
         }
         <hr />
-        <div className="container">
-          <div className="btn-container">
+        <div className="btn-container btn btn-primary">
           {
             this.state.currentIndex < len-2 ? React.createElement("button", 
             {className: "btn btn-primary", type: "button", onClick: this.clickNext.bind(this, len)}, 
@@ -89,7 +90,6 @@ class Tab extends React.Component {
               {className: "btn btn-primary", type: "button"}, "完成") : ''
           }
           </Link>
-          </div>
         </div>
       </div>
     )

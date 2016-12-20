@@ -36,19 +36,22 @@ export class Preview extends Component {
         <pre style={{ "fontSize": '12px' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
-        <div className="preview-container">
-          <ReactGridLayout className="layout"
-                           layout={layout}
-                           cols={4}
-                           rowHeight={30}
-                           width={300}
-                           onLayoutChange={::this.onLayoutChange}>
-            {preview.elements.map(e =>
-              <div key={e.id}
-                   data-grid={this.getLayout(e)}>
-                <Element {...e}/>
-              </div>)}
-          </ReactGridLayout>
+        <div className="preview">
+          <div className="bg-phone">
+            <div className="shop-info">
+              <ReactGridLayout className="layout"
+                             layout={layout}
+                             cols={4}
+                             rowHeight={30}
+                             onLayoutChange={::this.onLayoutChange}>
+              {preview.elements.map(e =>
+                <div key={e.id}
+                     data-grid={this.getLayout(e)}>
+                  <Element {...e}/>
+                </div>)}
+            </ReactGridLayout>
+            </div>
+          </div>
         </div>
       </div>
     )

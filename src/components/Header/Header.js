@@ -45,7 +45,8 @@ export const Header = ({location}) => {
     }
   })
 
-  return <div className="container">
+  return <div className="bg-white border-top-bule">
+   <div className="container">
       <div className='g-header'>
         <h1 className="navbar-brand">
           <Link to='/'>
@@ -54,10 +55,15 @@ export const Header = ({location}) => {
           {title ? <small>{title}</small> : null}
         </h1>
         <div>
-        <Login />
-        {nav}
+          <Login />
+          <div className="nav-list">
+            <div className="nav navbar-nav navbar-right">
+              {nav}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+  </div>
 }
 export default Header
