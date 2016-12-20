@@ -2,33 +2,38 @@
 $bg-phone-width:354px;
 $bg-phone-height:642px;
 .myshop-content{
-  padding-top: $default-padding-top
+  padding-top: $default-padding-top + 70;
 }
 .preview{
   width:$bg-phone-width;
-  min-height:800px;
   margin:0 auto;
   padding-top:$default-padding-top;
 }
 .bg-phone{
-  position:relative;
+  position:absolute;
+  top:50%;
+  left:50%;
+  margin-left:-($bg-phone-width/2);
+  margin-top:-($bg-phone-height/2);
   width:$bg-phone-width;
   height:$bg-phone-height;
-  background-image:url(../../../Home/assets/bg_phone.jpg);
+  background-image:url(../../../Home/assets/bg_phone.png);
 }
 .shop-info{
   position:absolute;
   top:50%;
   left:50%;
-  margin-left:-156px;
-  margin-top:-247px;
-  width: $bg-phone-width - 39;
+  margin-left:-(($bg-phone-width - 39)/2)+2;
+  margin-top:-(($bg-phone-height - 175)/2)-13;
+  width: $bg-phone-width - 41;
   height: $bg-phone-height - 175;
+  background:#f6f5f5;
+  overflow-y:scroll;
 }
 .temp-img{
   background-image:url(../../../Home/assets/temp.jpg);
   width: $bg-phone-width - 40;
-  height: $bg-phone-height - 408;
+  height: $bg-phone-height - 418;
 }
 .preview .btn{
   margin-top:40px;
@@ -78,3 +83,15 @@ $bg-phone-height:642px;
   border-top:1px solid #dbdddf;
   border-bottom:1px solid #dbdddf;
 }
+
+.nav-fixed{
+  width: 16%;
+  height: 100%;
+  position: fixed;
+  background: #fff;
+}
+.sub-nav-menu{
+  height:95%;
+  overflow-y:scroll;
+}
+.editor-right{}

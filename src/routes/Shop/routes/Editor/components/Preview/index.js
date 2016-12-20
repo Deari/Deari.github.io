@@ -37,8 +37,8 @@ export class Preview extends Component {
           {JSON.stringify(this.props, null, 2)}
         </pre>
         <div className="preview">
-          <div className="bg-phone">
-            <div className="shop-info">
+          <div className="bg-phone"></div>
+          <div className="shop-info">
               <ReactGridLayout className="layout"
                              layout={layout}
                              cols={4}
@@ -51,7 +51,6 @@ export class Preview extends Component {
                 </div>)}
             </ReactGridLayout>
             </div>
-          </div>
         </div>
       </div>
     )

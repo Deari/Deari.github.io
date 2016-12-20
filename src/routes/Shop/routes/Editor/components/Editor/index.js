@@ -14,24 +14,28 @@ export class Editor extends Component {
   render() {
     const { product } = this.props
 
-    return <div className="bg-gray">
-            <div className="myshop-content">
-              <div className="cContent clx">
-                <div id="editor-main clx">
+    return <div className="bg-gray height-100">
+            <div className="myshop-content height-100">
+              <div className="cContent height-100 clx">
+                <div id="editor-main clx" className="height-100">
                   <div className="col-sm-2 col-md-2 navThird">
-                    <ul className="sub-nav">
-                      <li className="navThirdHover">我的店铺组件</li>
-                    </ul>
-                    <div className="sub-content clx">
-                      <Product {...product}/>
+                    <div className="nav-fixed">
+                      <ul className="sub-nav">
+                        <li className="navThirdHover">我的店铺组件</li>
+                      </ul>
+                      <div className="sub-nav-menu">
+                        <div className="sub-content clx">
+                          <Product {...product}/>
+                        </div>
+                        <div className="sub-banner"></div>
+                        <div className="sub-banner"></div>
+                        <p className="sub-info">鼠标按住上方店铺组件，拖动到右侧手机屏幕中进行编辑</p>
+                        <a className="btn-more">更多店铺组件</a>
+                        </div>
                     </div>
-                    <div className="sub-banner"></div>
-                    <div className="sub-banner"></div>
-                    <p className="sub-info">鼠标按住上方店铺组件，拖动到右侧手机屏幕中进行编辑</p>
-                    <a className="btn-more">更多店铺组件</a>
                   </div>
-                  <div className="col-sm-8 col-md-8">
-                    <div className="bg-white">
+                  <div className="col-sm-8 col-md-8 height-100">
+                    <div className="bg-white height-100">
                       <div className="editor-view">
                         <button onClick={::this.props.fetchProducts}>fetch</button>
                         <Preview/>
@@ -39,8 +43,10 @@ export class Editor extends Component {
                     </div>
                   </div>
                    <div className="col-sm-2 col-md-2 bg-white">
-                      <div className="editor-right">
-                        right
+                      <div className="nav-fixed">
+                        <div className="editor-right sub-nav-menu">
+                          right
+                        </div>
                       </div>
                   </div>
                 </div>
