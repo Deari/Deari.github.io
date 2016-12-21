@@ -20,8 +20,9 @@ export class Preview extends Component {
       className: "layout",
       cols     : 2,
       rowHeight: 100,
+      selectedCls : 'selected',
       width    : 315,
-      margin   : [ 0, 0, 0, 10 ],
+      margin   : [ 10, 10 ],
     }
   }
 
@@ -38,37 +39,47 @@ export class Preview extends Component {
 
   generateDOM() {
     const elements = this.props.preview.elements
-    return elements.map(e => <div key={e.id}
+    return elements.map(e => {
+      const className = e.selected ? 'selected' :  ''
+      return <div key={e.id}
+                                  className={className}
                                   onClick={this.props.selectElement.bind(null, e.id)}
                                   data-grid={this.generateLayout(e)}>
       <Element {...e} />
-    </div>)
+    </div>})
   }
 
   render() {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     //const isActive = canDrop && isOver;
-    const layout = preview.layout
+    //const layout = preview.layout
     return connectDropTarget(
       <div>
-
         <div className="preview">
           <div className="bg-phone"></div>
           <div className="shop-info">
               <ReactGridLayout className="layout"
-                             layout={layout}
-                             cols={4}
-                             rowHeight={30}
+                               {...gridProps}
                              onLayoutChange={::this.onLayoutChange}>
-              {preview.elements.map(e =>
-                <div key={e.id}
-                     data-grid={this.getLayout(e)}>
-                  <Element {...e}/>
-                </div>)}
+              {this.generateDOM()}
             </ReactGridLayout>
             </div>
         </div>
-        <pre style={{ "fontSize": '12px' }}>
+        <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
+          {JSON.stringify(this.props, null, 2)}
+        </pre>
+      </div><div>
+        <div className="preview">
+          <div className="bg-phone"></div>
+          <div className="shop-info">
+              <ReactGridLayout className="layout"
+                               {...gridProps}
+                             onLayoutChange={::this.onLayoutChange}>
+              {this.generateDOM()}
+            </ReactGridLayout>
+            </div>
+        </div>
+        <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
       </div>
