@@ -6,12 +6,8 @@
   margin: 1.5rem auto;
 }
 .banner{
-  height:505px;
+  height:460px;
   background: url(../assets/home_bannerbg.jpg) no-repeat;
-  .view-width{
-    width: $view-width;
-    margin: $view-margin;
-  }
 }
 .login_in{
   @include float-right;

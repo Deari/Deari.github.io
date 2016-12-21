@@ -5,7 +5,7 @@ import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import '../../../styles/_base.scss'
 
 export const HomeView = () => (
-  <div>
+  <div className="height-70">
     <div className='banner'>
         <div className="container">
           <div className="clx">

@@ -56,14 +56,14 @@ export class Preview extends Component {
     return connectDropTarget(
       <div>
         <div className="preview">
-          <div className="bg-phone">
-            <div className="shop-info">
-              <ReactGridLayout {...gridProps}
-                               onLayoutChange={::this.onLayoutChange}>
-                {this.generateDOM()}
-              </ReactGridLayout>
+          <div className="bg-phone"></div>
+          <div className="shop-info">
+              <ReactGridLayout className="layout"
+                               {...gridProps}
+                             onLayoutChange={::this.onLayoutChange}>
+              {this.generateDOM()}
+            </ReactGridLayout>
             </div>
-          </div>
         </div>
         <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
           {JSON.stringify(this.props, null, 2)}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router' 
+import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 import Login from '../Login'
 import {ShopNav, DevNav, OpenNav} from './Navigation'
@@ -33,9 +33,6 @@ const NavRules = [
 
 export const Header = ({location}) => {
   const path = location.pathname;
-
-  console.log(location);
-  
   let nav, title;
 
   NavRules.map(({pathRe, navC, titleC})=>{
@@ -45,7 +42,7 @@ export const Header = ({location}) => {
     }
   })
 
-  return <div className="bg-white border-top-bule">
+  return <div className="bg-white border-top-bule fixed-top0">
    <div className="container">
       <div className='g-header'>
         <h1 className="navbar-brand">
