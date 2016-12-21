@@ -45,7 +45,7 @@ export const Header = ({location}) => {
     }
   })
 
-  return <div className="bg-white border-top-bule">
+  return <div className="bg-white border-top-bule fixed-top0">
    <div className="container">
       <div className='g-header'>
         <h1 className="navbar-brand">
