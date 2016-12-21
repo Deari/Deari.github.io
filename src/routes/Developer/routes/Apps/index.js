@@ -34,7 +34,7 @@ class Container extends React.Component {
   }
 }
 
-module.exports =  {
+module.exports = store => ({
   path: 'apps',
   component: Container,
   indexRoute: {
@@ -45,10 +45,10 @@ module.exports =  {
     require.ensure([], (require) => {
       cb(null, [
         require('./List'),
-        require('./Create'),
+        require('./Create')(store),
         require('./Detail'),
         require('./Edit')
       ])
     })
   }
-}
+})
