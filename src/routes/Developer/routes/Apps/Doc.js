@@ -7,7 +7,7 @@ class Doc extends React.Component {
       <div className="col-sm-2 col-md-2 navThird">
         <ul>
           <li className="navThirdHover">
-          介绍
+          介绍-应用
           </li>
         </ul>
         <ul>

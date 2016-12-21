@@ -28,10 +28,10 @@ class AppsList extends React.Component {
  
   render() {
     return (
-      <div className="cContent container clx">
+      <div className="cContent clx">
         <div className="col-sm-2 col-md-2 navThird">
           <ul>
-            <li className="navThirdHover">待审核</li>
+            <li className="navThirdHover">待审核-组件</li>
             <li>已审核</li>
           </ul>
         </div>

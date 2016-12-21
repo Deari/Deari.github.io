@@ -65,41 +65,45 @@ class Container extends React.Component {
   }
   render () {
     return (
-      <div className="nav-second">
-        <div className="cContent">
-          <div className="navThird">
-            <ul>
-              <li className="">
-                全部分类
+      <div className="bg-gray pt10">
+        <div className="nav-second container">
+          <div className="cContent row">
+            <div className="navThird col-md-2 col-sm-2">
+              <ul>
+                <li className="">
+                  全部分类
+                  <ul>
+                  {
+                    this.state.category.map((item, index) => {
+                      return <li className={item.checked ? 'navThirdHover' : ''}
+                                 onClick={this.selectCategory.bind(this, item)}
+                                 key={item.categoryId}>{item.categoryName}</li>
+                    })
+                  }
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div className="col-md-10 col-sm-10">
+              <div className="ccContent">
                 <ul>
                 {
-                  this.state.category.map((item, index) => {
-                    return <li className={item.checked ? 'navThirdHover' : ''}
-                               onClick={this.selectCategory.bind(this, item)}
-                               key={item.categoryId}>{item.categoryName}</li>
+                  this.state.apps.map((item, index) => {
+                    return (
+                      <li>
+                        <Link to={'/open/apps/detail/' + item.appId}>
+                          <img src={item.appLogo} alt="LOGO"/>
+                          <span>{item.appName}</span>
+                          <span>{item.appType}</span>
+                        </Link>
+                        <Link><button className="btn">下载</button></Link>
+                      </li>
+                    )
                   })
                 }
                 </ul>
-              </li>
-            </ul>
-          </div>
-          <div className="ccContent">
-            <ul>
-            {
-              this.state.apps.map((item, index) => {
-                return (
-                  <li>
-                    <Link to={'/open/apps/detail/' + item.appId}>
-                      <img src={item.appLogo} alt="LOGO"/>
-                      <span>{item.appName}</span>
-                      <span>{item.appType}</span>
-                    </Link>
-                    <Link><button className="btn">下载</button></Link>
-                  </li>
-                )
-              })
-            }
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

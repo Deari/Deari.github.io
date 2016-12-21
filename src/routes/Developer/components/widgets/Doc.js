@@ -1,6 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import '../../../../components/Header/Header'
+import '../../../../styles/_base.scss'
 
 class Doc extends React.Component {
   render() {
@@ -8,7 +9,7 @@ class Doc extends React.Component {
       <div className="col-sm-2 col-md-2 navThird">
         <ul>
           <li className="navThirdHover">
-          介绍
+          介绍-组件
           </li>
         </ul>
         <ul>

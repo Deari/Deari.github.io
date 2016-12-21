@@ -1,5 +1,9 @@
 //text-size
   $text-font-size: 18px;
+  $homefhSize: 22px;  //尽量用这个
+  $homefpSize: 14px;
+//font-line-height
+$text-line-height: 40px;
 //text-line-heigh
   $text-line-height: 40px;
 //text-color
@@ -11,6 +15,7 @@
   $text-gray3-color: #333333;
   $text-gray6-color: #666666;
   $text-gray9-color: #999999;
+  
 //bg-color
   $bg-white-color: #ffffff;
   $bg-gray-color: #f6f8f9;
@@ -32,6 +37,9 @@
   $default-padding-bottom: 40px;
   $default-padding-left: 40px;
   $default-padding-right: 40px;
+//img-size
+  $img-width: 100px;
+  $img-height: 100px;
 //宽高
 $view-width: 1100px;
 $view-margin: 0 auto;
@@ -56,11 +64,5 @@ $border-top: 1px solid $border-color;
   border-bottom: 2px solid $btn-blue-color;
   background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
-//font-size
-$homefhSize: 22px;
-$homefpSize: 14px;
-
-
-
 
 
