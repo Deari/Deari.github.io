@@ -50,8 +50,8 @@ class Info extends React.Component {
        verData.append("fileName", this.state.fileName);
        verData.append("fileLink", this.state.fileLink);
        verData.append("codeDesc", formData.get('codeDesc'));
-       //data.append("",this.state.fileLink);
-       data.append("rnFrameworkVersion", 2);
+       //verData.append("",this.state.fileLink);
+       verData.append("rnFrameworkVersion", 2);
        const verRes = await fetch(url, {
          method: "POST",
          body: verData
@@ -63,8 +63,8 @@ class Info extends React.Component {
   onSelected(appLogo,appTages){
       this.setState({appLogo:appLogo,appTages:appTages})
   }
-  fileSelected(){
-
+  fileSelected(fileName,fileLink){
+     this.setState({fileName:fileName,fileLink:fileLink})
   }
   render() {
     return (

@@ -10,8 +10,9 @@ class Platform extends React.Component {
       body: data
     })
     const file = await fileRes.json();
-    const fileUrl = file.data.url 
-    console.log(file.data)
+    const fileUrl = file.data.url;
+    const fileName = file.data.originalName 
+    this.props.onFinish(fileName,fileUrl)
   }
 
   render() {
