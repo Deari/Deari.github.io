@@ -1,9 +1,9 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import Info from '../../components/Hardwares/Info'
 
 class Create extends React.Component {
   render() {
-    return <div>hello 开发硬件-创建硬件</div>
+    return <Info />
   }
 }
 
