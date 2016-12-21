@@ -1,0 +1,77 @@
+@import "../../layouts/CoreLayout/CoreLayout";
+
+.Detail-container{
+  .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
+    width: $img-width + 50px;
+  }
+  .Detail-downloadBtn{
+    margin-top: 20px;
+  }
+  .Detail-appImg,.Detail-weatherImg{
+    background: #eeeeee;
+    overflow: hidden;
+  }
+  .Detail-appImg{
+    height: $img-height + 50px;
+    border-radius: 16px;
+  }
+  .Detail-weatherImg{
+    height: $img-height - 20px;
+    border: 1px solid #999999;
+  }
+  .Detail-detail{
+    h3{
+      font-size: $text-font-size + 4px;
+      line-height: $text-line-height;
+    }
+    dl{
+      padding-top: $default-padding-top - 30px;
+      padding-bottom: $default-padding-bottom - 26px;
+      dt {
+        line-height: $text-line-height + 10px;
+      }
+      dd{
+        line-height: $text-line-height - 12px;
+        span{
+          padding-right: $default-padding-right - 30px;
+          font-weight: bold;
+          vertical-align: text-bottom;
+        }
+      }
+    }
+  }
+}
+.Detail-moreApps{
+  h3{
+    font-size: $text-font-size - 2px;
+    line-height: $text-line-height;
+  }
+  ul{
+    padding-top: $default-padding-top - 20px;
+    padding-bottom: $default-padding-bottom - 20px;
+    li{
+      .Detail-appBox{
+        margin: 0 auto;
+        width: $img-width - 18px;
+        text-align: center;
+        .Detail-appImg{
+        width: $img-width - 18px;
+        height: $img-height - 18px;
+        border-radius: 6px;
+        overflow: hidden;
+        background: #eeeeee;
+        }
+        h5{
+        font-size: $text-font-size - 2px;
+        color: $text-black-color;
+        padding-top: $default-padding-top - 26px;
+        }
+        p{
+        font-size: $text-font-size - 4px;
+        color: $text-gray6-color;
+        line-height: $text-line-height - 10px;
+        }
+      }
+    }
+  }
+}

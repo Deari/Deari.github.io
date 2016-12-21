@@ -13,8 +13,7 @@ export class Editor extends Component {
 
   render() {
     const { product } = this.props
-
-       <div className="bg-gray height-100">
+    return <div className="bg-gray height-100">
             <div className="myshop-content height-100">
               <div className="cContent height-100 clx">
                 <div id="editor-main clx" className="height-100">
