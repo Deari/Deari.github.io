@@ -2,32 +2,23 @@ import React from 'react'
 import './index.scss'
 
 class Tags extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      tags: []
-    };
-  }
-  componentDidMount() {
-    this.setState({tags: this.props.data});
-  }
+  state = {
+      tags: this.props.data,
+      checkedTag: []
+  };
+
   selectTag(item) {
-    var tags = this.state.tags;
-    for (var i=0; i<tags.length; i++) {
-      if (tags[i].id === item.id) {
-        tags[i].checked = tags[i].checked ? false : true;
-      } else {
-        tags[i].checked = tags[i].checked ? true : false;
-      }
-    }
-    this.setState({tags: tags});
+    item.checked = true;
+    this.state.checkedTag.push(item);
+    this.forceUpdate();
+    this.props.onChecked(this.state.checkedTag)
   }
   render() {
     return (
       <div>
         <ul className="tags-container">
         {
-          this.state.tags.map((item, index) => {
+         this.state.tags.map((item, index) => {
             return <li key={item.id} 
                        className={item.checked ? 'active' : ''}
                        onClick={this.selectTag.bind(this, item)}>{item.name}</li>
