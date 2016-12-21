@@ -6,8 +6,8 @@ import './index.scss'
 import '../../../../../styles/_base.scss'
 
 class AppsList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       listData: [],
       reviewStatus: 1

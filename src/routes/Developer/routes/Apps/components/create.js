@@ -1,31 +1,51 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
-//import
+import { validate, warn } from '../modules/validate'
+import renderField, { renderTextArea } from '../components/renderField'
+
+import WizardFormFirstPage from './firstStep'
+import WizardFormSecondPage from './secondStep'
+
+
+const Step = (props)=>(
+  <div>{props.children}</div>
+)
+
 
 class ContactForm extends Component {
+  state = {
+    page: 1
+  }
+
+  onStep = ()=>{
+    console.log(this.state.page);
+  }
+
+  nextPage = ()=> {
+    this.setState({page: this.state.page + 1});
+  }
+
+  previousPage = ()=>{
+    this.setState({page: this.state.page - 1})
+  }
+
   render() {
-    console.log(this.props)
-    const { handleSubmit } = this.props;
+    const { onSubmit } = this.props;
+    const { page } = this.state;
+    
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="firstName">First Name</label>
-          <Field name="firstName" component="input" type="text"/>
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name</label>
-          <Field name="lastName" component="input" type="text"/>
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <Field name="email" component="input" type="email"/>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <div>
+        <Step>{this.state.page}</Step>
+        {page === 1 && <WizardFormFirstPage onSubmit={this.nextPage}/>}
+        {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={onSubmit}/>}
+      </div>
     );
   }
 }
 
-export default reduxForm({
-  form: 'create'
-})(ContactForm)
+ContactForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+}
+
+export default ContactForm;
+

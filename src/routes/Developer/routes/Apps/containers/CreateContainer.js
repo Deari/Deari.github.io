@@ -23,13 +23,17 @@ import Create from '../components/create'
 
 
 export default class CreateContainer extends React.Component {
+
   handleSubmit = (values) => {
     // Do something with the form values
     console.log(values);
   }
+
   render() {
     return (
-      <Create onSubmit={this.handleSubmit} />
+      <div>
+        <Create onSubmit={this.handleSubmit} />
+      </div>
     );
   }
 }
