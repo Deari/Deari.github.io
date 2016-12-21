@@ -2,10 +2,10 @@ import React, { Component, PropTypes } from 'react'
 
 export class Element extends Component {
   render() {
-    const { name, id, productId, defaultLayout, children, dispatch, selectElement, ...rest } = this.props
+    const { name, id, productId, selected, children, dispatch, selectElement, ...rest } = this.props
+    console.log(selected)
     return <div
-      {...rest}
-      onClick={selectElement.bind(this, id)}>
+      {...rest}>
       {name}
       {children}
     </div>

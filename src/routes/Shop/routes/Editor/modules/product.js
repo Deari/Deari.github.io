@@ -16,8 +16,8 @@ const initialState = {
       productId: 102,
       name     : 'Beacon',
       defaultLayout: {
-        w        : 2,
-        h        : 2,
+        w        : 1,
+        h        : 1,
       },
       thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
@@ -26,8 +26,8 @@ const initialState = {
       productId: 103,
       name     : 'IMG1',
       defaultLayout: {
-        w        : 2,
-        h        : 2,
+        w        : 1,
+        h        : 1,
       },
       thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
@@ -36,8 +36,8 @@ const initialState = {
       productId: 104,
       name     : 'IMG2',
       defaultLayout: {
-        w        : 2,
-        h        : 2,
+        w        : 1,
+        h        : 3,
       },
       thumbnail: 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc   : 'http://www.scstorage.com/img/wifi-pic.jpg'
