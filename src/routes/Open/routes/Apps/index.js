@@ -1,17 +1,12 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import fetchUtil from '../../../utils/fetchUtil'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: [
-        {categoryId: 1, categoryName: '分类一'},
-        {categoryId: 2, categoryName: '分类二'},
-        {categoryId: 3, categoryName: '分类三'},
-        {categoryId: 4, categoryName: '分类四'},
-        {categoryId: 5, categoryName: '分类五'},
-      ],
+      category: [],
       "apps": [
         { 
           "appId": 111,
@@ -50,6 +45,26 @@ class Container extends React.Component {
           "appLogo": " ",
         },
       ]
+    }
+  }
+  getCategory() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  getList(categoryId) {
+    var categoryId = categoryId || '10';
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/market/category/${categoryId}/apps`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  async componentDidMount() {
+    try {
+      let result = await Promise.all([this.getCategory(), this.getList()]);
+      this.setState({
+        category: result[0].data.list,
+        apps: result[1].data.list,
+      })
+    } catch (e) {
+      console.log("e ", e);
     }
   }
   selectCategory(item) {
