@@ -1,5 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import '../../../../styles/_base.scss'
+import '../../index.scss'
 
 class Detail extends React.Component {
   render() {
@@ -8,27 +10,27 @@ class Detail extends React.Component {
         <div className="container">
           <div className="row bg-white p40">
             <div className="Detail-container clx">
-              <div className="col-sm-3 col-md-3">
-                <div className="Detail-appImg"></div>
+              <div className="col-sm-8 col-md-8">
+                <div className="Detail-hardwareImg"></div>
+              </div>
+              <div className="col-sm-4 col-md-4 hardware-price">
+                <p>硬件名称:<span className="text-black-color">BEACON</span></p>
+                <p>库存：<span className="text-black-color">123456件</span></p>
+                <p className="pt">价格：<span className="text-red-color">345元</span></p>
                 <div className="Detail-downloadBtn">
                   <button className="btn btn-primary">下载</button>
                 </div>
               </div>
-              <div className="col-sm-9 col-md-9 Detail-detail">
-                <h3>应用名称-蓝海商品管理APP</h3>
-                <dl>
-                  <dt><span className="text-color-blue">版本：1.11.8的细节功能</span> （时间：2016-12-1）</dt>
-                  <dd><span>.</span>(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</dd>
-                  <dd><span>.</span>(假字)中国人气MMO网络游戏《梦幻西游》推出的同名手游！</dd>
-                  <dd><span>.</span>(假字)将游戏场景打造成一幅“游戏画卷”。相比起惯用的场景贴图手法而造成的视觉单调而言，所有场景都由美工手绘完成。游戏中，分为人、魔、仙三界，而你可以选择人物和门派，玩法和PC版梦幻西游一致。</dd>
-                </dl>
-                <dl>
-                  <dt><span className="text-color-blue">作者：蓝海开发团队；</span></dt>
-                  <dd><span>.</span>(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</dd>
-                  <dd><span>.</span>(假字)中国人气MMO网络游戏《梦幻西游》推出的同名手游！</dd>
-                  <dd><span>.</span>(假字)将游戏场景打造成一幅“游戏画卷”。相比起惯用的场景贴图手法而造成的视觉单调而言，所有场景都由美工手绘完成。游戏中，分为人、魔、仙三界，而你可以选择人物和门派，玩法和PC版梦幻西游一致。Q版造型的可爱人物，浓郁古典风的精美场景，原汁原味的经典玩法，尽在手游重现，随时随地领略梦幻西游的精彩与快乐！</dd>
-                </dl>
+            </div>
+            <div className="Detail-hardware">
+              <div className="clx">
+                <a className="hardware-hover">商品介绍</a>
+                <a>规格参数</a>
               </div>
+              <dl>
+                <dt>文字介绍：</dt>
+                <dd>感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价259元的Thouway户外蓝牙音箱1套（含赠送配件：Micro USB充电线×1，AUX音频线×1，音箱布套×1)。感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价259元的Thouway户外蓝牙音箱1套（含赠送配件：Micro USB充电线×1，AUX音频线×1，音箱布套×1)。感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价</dd>
+              </dl>
             </div>
             <hr/>
             <div className="Detail-moreApps">

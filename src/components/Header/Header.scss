@@ -1,19 +1,36 @@
 @import "../../layouts/CoreLayout/CoreLayout";
-.g-header{
+
   .route--active {
   font-weight: bold;
   color: $text-blue-color;
   @include navselect-bottom;
   } 
-}
+
 .navbar-nav{
   .route--active {
   font-weight: bold;
   color: $text-blue-color;
   }   
 }
-
+.header-wrapper {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+.header-bg {
+    background: #fff;
+    border-top: 2px solid red;
+    position: absolute;
+    z-index: -1;
+    height: 70px;
+    top: 0;
+    left: 0;
+    right: 0;
+}
 .g-header {
+  
   height: $header-height + 10;
   h1{
     @include float-left;

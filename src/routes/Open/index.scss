@@ -7,7 +7,7 @@
   .Detail-downloadBtn{
     margin-top: 20px;
   }
-  .Detail-appImg,.Detail-weatherImg{
+  .Detail-appImg,.Detail-weatherImg,.Detail-hardwareImg{
     background: #eeeeee;
     overflow: hidden;
   }
@@ -18,6 +18,10 @@
   .Detail-weatherImg{
     height: $img-height - 20px;
     border: 1px solid #999999;
+  }
+  .Detail-hardwareImg{
+    width: $img-width + 560px;
+    height: $img-height + 210px;
   }
   .Detail-detail{
     h3{
@@ -39,6 +43,44 @@
         }
       }
     }
+  }
+}
+.hardware-price{
+  p{
+    font-size: $text-font-size + 2px;
+    color: $text-gray9-color;
+    line-height: $text-line-height;
+    .text-red-color{
+      font-size: $text-font-size + 24px;
+    }
+  }
+  .pt{
+    padding-top: $default-padding-top;
+  }
+  .Detail-downloadBtn{
+    padding-top: $default-padding-top + 50px;
+    width: 100%;
+  }
+}
+.Detail-hardware{
+  div{
+    padding-top: $default-padding-top - 20px;
+    @include line-bottom;
+    a{
+      float: left;
+      padding: $default-padding-right - 20px;
+      font-size: $text-font-size;
+    }
+    .hardware-hover{
+      color: $btn-blue-color;
+      border-bottom: 2px solid $border-blue-color;
+    }
+  }
+  dl{
+    padding-top: $default-padding-top - 20px;
+    padding-left: $default-padding-left - 20px;
+    padding-right: $default-padding-right - 20px;
+    line-height: $text-line-height;
   }
 }
 .Detail-moreApps{
