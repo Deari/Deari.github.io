@@ -59,15 +59,9 @@ export class Preview extends Component {
           <div className="bg-phone"></div>
           <div className="shop-info">
               <ReactGridLayout className="layout"
-                             layout={layout}
-                             cols={4}
-                             rowHeight={30}
+                               {...gridProps}
                              onLayoutChange={::this.onLayoutChange}>
-              {preview.elements.map(e =>
-                <div key={e.id}
-                     data-grid={this.getLayout(e)}>
-                  <Element {...e}/>
-                </div>)}
+              {this.generateDOM()}
             </ReactGridLayout>
             </div>
         </div>
