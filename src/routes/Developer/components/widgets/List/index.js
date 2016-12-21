@@ -7,13 +7,14 @@ import '../../../../../styles/_base.scss'
 class AppsList extends React.Component {
  
   state = {
-      listData:[]
+      listData:[],
+      reviewStatus: 1
   }
   
   async componentDidMount() {
     const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widgets`
     try {
-      const res = await fetchUtil.getJSON(apiUrl);
+      const res = await fetchUtil.getJSON(apiUrl ,{reviewStatus: this.state.reviewStatus});
       console.log(res.data.list[0])
       if(res.status === 200){
         alert('成功')

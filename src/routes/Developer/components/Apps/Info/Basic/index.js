@@ -5,6 +5,14 @@ import fetchUtil from '../../../../../utils/fetchUtil'
 import fetch from '../../../../../../../fetch'
 const querystring = require('querystring');
 
+const unique1 = function(arr){
+	var n = []; 
+	for(var i = 0; i < arr.length; i++) {
+		if (n.indexOf(arr[i]) == -1) n.push(arr[i]);
+	}
+	return n;
+}
+
 class Basic extends React.Component {
   constructor() {
     super();
@@ -17,24 +25,29 @@ class Basic extends React.Component {
         {id: 4, name: '标签五'},
         {id: 5, name: '标签六'},
         {id: 6, name: '标签七'},
-      ]
+      ],
+      imgUrl:""
     };
   }
-   imgUpload(){
-    var data = new FormData()
+   
+   async imgUpload(){
+    let data = new FormData()
     data.append('fileName', this.refs.appLogo.files[0])
     data.append('width', 640)
     const url ="http://api.intra.sit.ffan.net/bo/v1/web/photo/upload";
-    const img =  fetch(url, {
+    const imgObj = await fetch(url, {
       method: "POST",
       body: data
     })
-    img.then(function(data){
-      console.log(data)
-    })
-    console.log()
+    const img = await imgObj.json();
+    const imgUrl = img.data.url
+    //console.log(imgUrl)
+    this.setState({imgUrl:imgUrl})
   }
-
+  handleCheck(CheckedArr){
+    const tags = unique1(CheckedArr)
+    this.props.onFinish(this.state.imgUrl,tags)
+  }
   render() {
     return (
       <fieldset className="form-container clx">
@@ -50,7 +63,7 @@ class Basic extends React.Component {
         <div className="form-group col-md-12">
           <label>选择LOGO:</label>
           <div className="img-container">
-            <img src="" alt="上传图片"  className="img-thumbnail"/>
+            <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
           </div>
           <div>
             <span className="sl-custom-file">
@@ -62,16 +75,16 @@ class Basic extends React.Component {
         <div className="form-group col-md-12">
           <label>分类:</label>
           <select className="form-control" name='appOption'>
-            <option>分类1</option>
-            <option>分类2</option>
-            <option>分类3</option>
-            <option>分类4</option>
-            <option>分类5</option>
+            <option value="1">分类1</option>
+            <option value="2">分类2</option>
+            <option value="3">分类3</option>
+            <option value="4">分类4</option>
+            <option value="5">分类5</option>
           </select>
         </div>
-        <div className="form-group col-md-12" name='appTit'>
+        <div className="form-group col-md-12">
           <label>产品标签:</label>
-          <Tags data={this.state.tags} />
+          <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
       </fieldset>
     )
