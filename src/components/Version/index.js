@@ -14,7 +14,7 @@ class Version extends React.Component {
   }
   render() {
     var linkUrl = this.props.linkUrl;
-    var data = this.props.data;
+    var data = this.props.data || [];
     return this.state.showAll ? 
            <AllVersions data={data} changeState={this.changeState.bind(this)}/> : 
            <LastVersion data={data} linkUrl={linkUrl} changeState={this.changeState.bind(this)}/>  
@@ -29,7 +29,7 @@ class LastVersion extends React.Component {
   }
   render() {
     var linkUrl = this.props.linkUrl;
-    var data = this.props.data[0];
+    var data = this.props.data[0] || [];
     return (
       <div>
         <h4 className="version-title">版本管理</h4>
