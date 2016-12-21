@@ -22,7 +22,7 @@ class Basic extends React.Component {
       <fieldset className="form-container clx">
         <div className="form-group col-md-12">
           <label className="col-md-2">商家应用名称:</label>
-          <input className="form-control col-md-4" type="text" placeholder="应用名称" name="appName"/>
+          <input className="form-control col-md-10" type="text" placeholder="应用名称" name="appName"/>
         </div>
         <hr/>
         <div className="form-group col-md-12">

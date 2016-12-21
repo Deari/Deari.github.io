@@ -14,7 +14,7 @@ class Nav extends React.Component {
         <li className="developer_width">
           <Link to='/developer/apps' activeClassName='route--active'>
             <i className="homef-business"></i>
-            <h3>商家中心</h3>
+            <h3>商家应用</h3>
             <p>一种新的开放能力，可以在微信内被便捷地获取和传播，同时具有出色的使用体验。</p>
             <span>了解更多</span>
           </Link>
