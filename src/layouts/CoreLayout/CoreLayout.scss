@@ -1,6 +1,6 @@
 //text-size
   $text-font-size: 18px;
-  $homefhSize: 22px;  //尽量用这个
+  $homefhSize: 22px;
   $homefpSize: 14px;
 //font-line-height
 $text-line-height: 40px;
@@ -27,7 +27,8 @@ $text-line-height: 40px;
   $btn-bggray-color: #f6f8f9;
   $btn-black-color: #000000;
 //border-color
-  $border-color: #eeeeee;
+  $border-gray-color: #eeeeee;
+  $border-blue-color: #2692fb;
 //form-color 
   $form-success-color: #3c763d;
   $form-warning-color: #8a6d3b;
@@ -56,13 +57,14 @@ $reminder-height: 40px;
 @mixin float-left { float: left;}
 @mixin float-right { float: right;}
 //line
-$border-top: 1px solid $border-color;
-@mixin line-bottom{ border-bottom: 1px solid $border-color;}
-@mixin line-top{ border-bottom: 1px solid $border-color;}
-@mixin line-right{ border-right: 1px solid $border-color;}
+$border-top: 1px solid $border-gray-color;
+@mixin line-bottom{ border-bottom: 1px solid $border-gray-color;}
+@mixin line-top{ border-bottom: 1px solid $border-gray-color;}
+@mixin line-right{ border-right: 1px solid $border-gray-color;}
 @mixin navselect-bottom{
   border-bottom: 2px solid $btn-blue-color;
   background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
-
-
+.core-layout__viewport {
+    padding-top: 70px;
+}

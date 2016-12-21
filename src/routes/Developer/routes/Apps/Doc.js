@@ -18,14 +18,6 @@ class Doc extends React.Component {
         <ul>
           <li>
           开发
-            <ul>
-              <li>接入指南
-                <ul>
-                  <li>Android接入指南</li>
-                  <li>IOS接入指南</li>
-                </ul>
-              </li>
-            </ul>
           </li>
         </ul>
       </div>

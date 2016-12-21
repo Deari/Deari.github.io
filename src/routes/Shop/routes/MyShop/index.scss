@@ -1,11 +1,9 @@
 @import "../../../../layouts/CoreLayout/CoreLayout";
 $bg-phone-width:354px;
 $bg-phone-height:642px;
-.myshop-content{
-  padding-top: $default-padding-top + 70;
-}
 .preview{
   width:$bg-phone-width;
+  min-height: 800px;
   margin:0 auto;
   padding-top:$default-padding-top;
 }
