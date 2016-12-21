@@ -1,50 +1,15 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import fetchUtil from '../../../utils/fetchUtil'
+import './index.scss'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
+      isAll: true,
       category: [],
-      "apps": [
-        { 
-          "appId": 111,
-          "appType": 10,
-          "appName": "app1",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 222,
-          "appType": 11,
-          "appName": "app2",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 333,
-          "appType": 12,
-          "appName": "app3",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 444,
-          "appType": 13,
-          "appName": "app4",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 555,
-          "appType": 14,
-          "appName": "app5",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 666,
-          "appType": 15,
-          "appName": "app6",
-          "appLogo": " ",
-        },
-      ]
+      "apps": []
     }
   }
   getCategory() {
@@ -52,7 +17,7 @@ class Container extends React.Component {
     return fetchUtil.getJSON(apiUrl);
   }
   getList(categoryId) {
-    var categoryId = categoryId || '10';
+    var categoryId = categoryId || 'all';
     const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/market/category/${categoryId}/apps`;
     return fetchUtil.getJSON(apiUrl);
   }
@@ -67,7 +32,9 @@ class Container extends React.Component {
       console.log("e ", e);
     }
   }
-  selectCategory(item) {
+  async selectCategory(item, e) {
+    e.stopPropagation();
+    if (item.checked) return;
     var category = this.state.category;
     for (var i=0; i<category.length; i++) {
       if (category[i].categoryId === item.categoryId) {
@@ -76,16 +43,47 @@ class Container extends React.Component {
         category[i].checked = false;
       }
     }
-    this.setState({category: category});
+    try {
+      const result = await this.getList(item.categoryId);
+      if (result.status === 200 && result.data) {
+        this.setState({
+          category: category,
+          apps: result.data.list,
+          isAll: false
+        });
+      }
+    } catch (e) {
+      console.log("e ", e);
+    }
+  }
+  async selectAll(e) {
+    if (this.state.isAll) return;
+    var category = this.state.category;
+    for (var i=0; i<category.length; i++) {
+      category[i].checked = false;
+    }
+    try {
+      const result = await this.getList();
+      if (result.status === 200 && result.data) {
+        this.setState({
+          category: category,
+          apps: result.data.list,
+          isAll: true
+        });
+      }
+    } catch (e) {
+      console.log("e ", e);
+    }
   }
   render () {
+    console.log("isAll ", this.state.isAll)
     return (
       <div className="bg-gray pt10">
         <div className="nav-second container">
           <div className="cContent row">
             <div className="navThird col-md-2 col-sm-2">
               <ul>
-                <li className="">
+                <li className={this.state.isAll ? 'navThirdHover' : ''} onClick={this.selectAll.bind(this)}>
                   全部分类
                   <ul>
                   {
