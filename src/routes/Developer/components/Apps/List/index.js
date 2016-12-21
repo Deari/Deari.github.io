@@ -49,7 +49,7 @@ class AppsList extends React.Component {
         <div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className={this.state.reviewStatus === 1 ? 'navThirdHover' : ''}
-                onClick={this.changeList.bind(this, 1)}>待审核</li>
+                onClick={this.changeList.bind(this, 1)}>待审核-应用</li>
             <li className={this.state.reviewStatus === 2 ? 'navThirdHover' : ''}
                 onClick={this.changeList.bind(this, 2)}>已审核</li>
           </ul>
