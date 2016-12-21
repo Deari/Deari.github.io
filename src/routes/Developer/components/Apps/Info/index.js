@@ -74,15 +74,9 @@ class Info extends React.Component {
         </div>
         <form className="bo-form-container" onSubmit={this.save.bind(this)}
         		method="post" ref='from' enctype="application/x-www-form-urlencoded">
-<<<<<<< HEAD
           <Tab linkUrl="/developer/apps/list" btnInfo={this.btnInfo} onClickNext={this.clickNext.bind(this)}>
             <div name="填写基本信息"><Basic/></div>
             <div name="填写平台信息"><Platform/></div>
-=======
-          <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
-            <div name="填写基本信息"><Basic onFinish={::this.onSelected}/></div>
-            <div name="填写平台信息"><Platform onFinish={::this.fileSelected}/></div>
->>>>>>> dev-renhao
             <div name="提交成功">
               <div className="success-container">提交成功，等待审核</div>
             </div>
