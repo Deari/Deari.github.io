@@ -12,7 +12,7 @@ class AppsDetail extends React.Component {
     };
   }
   async getVersions() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app/1/code`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/app/1/codes`
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       if (res.status === 200) {
@@ -68,7 +68,9 @@ class AppsDetail extends React.Component {
           <div className="ccContent">
           {
             this.state.showVersion ? (this.state.data ?
-              <Version data={this.state.data} linkUrl={`/developer/apps/edit/${this.state.data[0].appId}`} /> : 
+              <Version data={this.state.data} 
+                       linkUrl={this.state.data[0] && this.state.data[0].appId ? 
+                       `/developer/apps/edit/${this.state.data[0].appId}` : ''} /> : 
               React.createElement("div", {}, "页面加载中...") ) : 
               <BasicInfo data={this.state.data} />
           }

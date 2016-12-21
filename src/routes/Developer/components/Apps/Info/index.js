@@ -8,10 +8,22 @@ import fetch from '../../../../../../fetch'
 const querystring = require('querystring');
 
 class Info extends React.Component {
+  clickNext() {
+    return {
+      status: 200
+    }
+  }
    state = {
     isSubmitted: false,
+    appName: "",
+    appLogo: "",
+    appDesc: "",
     categoryId: ""
   }
+  btnInfo = [
+    {step: 2, nextName: "提交审核"},
+    {step: 3, nextName: "完成"},
+  ]
    save(e) {
      const puid = 123;
      const pLoginToken = 456;
@@ -47,7 +59,7 @@ class Info extends React.Component {
         </div>
         <form className="bo-form-container" onSubmit={this.save.bind(this)}
         		method="post" ref='from' enctype="application/x-www-form-urlencoded">
-          <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
+          <Tab linkUrl="/developer/apps/list" btnInfo={this.btnInfo} onClickNext={this.clickNext.bind(this)}>
             <div name="填写基本信息"><Basic/></div>
             <div name="填写平台信息"><Platform/></div>
             <div name="提交成功">

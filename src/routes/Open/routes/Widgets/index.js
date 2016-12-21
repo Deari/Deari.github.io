@@ -64,10 +64,10 @@ class Container extends React.Component {
     this.setState({category: category});
   }
   render () {
-    return (
-      <div className="nav-second">
-        <div className="cContent">
-          <div className="navThird">
+    return (<div className="bg-gray pt10">
+      <div className="nav-second container">
+        <div className="cContent row">
+          <div className="navThird col-md-2 col-sm-2">
             <ul>
               <li className="">
                 全部分类
@@ -83,25 +83,28 @@ class Container extends React.Component {
               </li>
             </ul>
           </div>
-          <div className="ccContent">
-            <ul>
-            {
-              this.state.widgets.map((item, index) => {
-                return (
-                  <li>
-                    <Link to={'/open/widgets/detail/' + item.widgetId}>
-                      <img src={item.widgetLogo} alt="LOGO"/>
-                      <span>{item.widgetName}</span>
-                      <span>{item.widgetType}</span>
-                    </Link>
-                    <Link><button className="btn">下载</button></Link>
-                  </li>
-                )
-              })
-            }
-            </ul>
+          <div className="col-md-10 col-sm-10">
+            <div className="ccContent">
+              <ul>
+              {
+                this.state.widgets.map((item, index) => {
+                  return (
+                    <li>
+                      <Link to={'/open/widgets/detail/' + item.widgetId}>
+                        <img src={item.widgetLogo} alt="LOGO"/>
+                        <span>{item.widgetName}</span>
+                        <span>{item.widgetType}</span>
+                      </Link>
+                      <Link><button className="btn">下载</button></Link>
+                    </li>
+                  )
+                })
+              }
+              </ul>
+            </div>
           </div>
         </div>
+      </div>
       </div>
     )
   }
