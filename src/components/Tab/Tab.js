@@ -36,16 +36,23 @@ class Tab extends React.Component {
     }
   }
   getBtnName() {
-    let btnInfo = this.props.btnInfo;
-    let currentIndex = this.state.currentIndex;
-    let btnName = {
-      preName: "上一步",
-      nextName: "下一步"
-    };
-    for (var i=0; i<btnInfo.length; i++) {
-      if (btnInfo[i].step === (currentIndex + 1)) {
-        btnName.preName = btnInfo[i].preName ? btnInfo[i].preName : "上一步";
-        btnName.nextName = btnInfo[i].nextName ? btnInfo[i].nextName : "下一步";
+    let btnInfo = this.props.btnInfo,
+       currentIndex = this.state.currentIndex,
+       len = this.props.children.length,
+       btnName = {
+        preName: "上一步",
+        nextName: "下一步"
+      };
+    if (btnInfo && btnInfo.length > 0) {
+      for (var i=0; i<btnInfo.length; i++) {
+        if (btnInfo[i].step === (currentIndex + 1)) {
+          btnName.preName = btnInfo[i].preName ? btnInfo[i].preName : "上一步";
+          btnName.nextName = btnInfo[i].nextName ? btnInfo[i].nextName : "下一步";
+        }
+      }
+    } else {
+      if((len - 1) === currentIndex) {
+        btnName.nextName = "提交审核";
       }
     }
     return btnName;
@@ -84,17 +91,28 @@ class Tab extends React.Component {
           })
         }
         <hr />
-        <div className="btn-container btn btn-primary">
+        <div className="btn-container col-md-12">
           {
-            currentIndex > 0 ? React.createElement( "button", 
-            {className: "btn btn-secondary", type: "button", onClick: this.clickPrev.bind(this, len)}, 
-            this.getBtnName(this).preName ) : ''
+            currentIndex > 0 ? React.createElement( "div", {className: "btn-width"}, 
+              React.createElement( "button", 
+                {className: "btn btn-secondary", type: "button", onClick: this.clickPrev.bind(this, len)}, 
+                this.getBtnName(this).preName ) ) : ''
           }
           {
-            currentIndex < len ? React.createElement( "button", 
-            {className: "btn btn-primary", type: "button", onClick: this.clickNext.bind(this, len)}, 
-            this.getBtnName(this).nextName ) : ''
-            }
+            (isSubmitted && (currentIndex === (len-1))) ? 
+            <Link to={linkUrl}>
+              {
+                currentIndex < len ? React.createElement( "div", {className: "btn-width"}, 
+                  React.createElement( "button", 
+                    {className: "btn btn-primary", type: "button", onClick: this.clickNext.bind(this, len)}, 
+                    this.getBtnName(this).nextName ) ) : ''
+              }
+            </Link> : 
+            currentIndex < len ? React.createElement( "div", {className: "btn-width"}, 
+              React.createElement( "button", 
+                {className: "btn btn-primary", type: "button", onClick: this.clickNext.bind(this, len)}, 
+                this.getBtnName(this).nextName ) ) : ''
+          }
         </div>
       </div>
     )

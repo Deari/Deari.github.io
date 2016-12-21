@@ -11,9 +11,6 @@ class Info extends React.Component {
     this.state = {
       isSubmitted: false,
     };
-    this.btnInfo = [
-      {step: 4, nextName: "提交审核"}
-    ];
   }
   render() {
     return (
@@ -22,7 +19,7 @@ class Info extends React.Component {
           <h3>创建硬件</h3>
         </div>
         <div className="bo-form-container">
-          <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list" btnInfo={this.btnInfo}>
+          <Tab isSubmitted={this.state.isSubmitted} linkUrl="/developer/apps/list">
             <div name="功能录入"><Basic/></div>
             <div name="获取SDK"><Basic/></div>
             <div name="设备调试"><Basic/></div>
