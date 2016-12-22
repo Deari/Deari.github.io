@@ -1,11 +1,15 @@
 @import "../../../../../../layouts/CoreLayout/CoreLayout";
+
 $bg-phone-width:354px;
 $bg-phone-height:642px;
 
-/****** editor-container ******/
 
-#editor-container {
-  padding-top: $default-padding-top + 70;
+/**************************
+ * mobile-editor-container
+ **************************/
+
+#mobile-editor-container {
+  //padding-top: $default-padding-top + 70;
   .preview{
     width:$bg-phone-width;
     margin:0 auto;
@@ -99,7 +103,9 @@ $bg-phone-height:642px;
   .editor-right{}
 }
 
-/****** editor-main ******/
+/**************************
+ * editor-main
+ **************************/
 
 #editor-main {
   .editor-left {

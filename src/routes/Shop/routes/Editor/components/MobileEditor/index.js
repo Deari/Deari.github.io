@@ -3,7 +3,8 @@ import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
 import Detail from '../../containers/DetailContainer'
 
-import './Editor.scss'
+import './MobileEditor.scss'
+
 
 export class Editor extends Component {
 
@@ -13,7 +14,7 @@ export class Editor extends Component {
 
   render() {
     const { product } = this.props
-    return <div className="bg-gray height-100" id="editor-container">
+    return <div className="bg-gray height-100" id="mobile-editor-container">
             <div className="height-100">
               <div className="cContent height-100 clx">
                 <div id="editor-main clx" className="height-100">

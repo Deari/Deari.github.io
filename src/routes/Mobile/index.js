@@ -1,10 +1,7 @@
 import React from 'react'
-
+//import '../../styles/_base.scss'
 const Mobile = (props, context) => {
-  context.displayHeader = function () {
-    return false
-  }
-  return <div><h1>sadfasdf</h1></div>
+  return <div className="height-100">{props.children}</div>
 }
 
 Mobile.contextTypes = {
@@ -13,16 +10,24 @@ Mobile.contextTypes = {
 
 export default store => ({
   path: 'm',
+
   getComponent(nextState, cb) {
-    console.log(nextState)
     require.ensure([], (require) => {
       cb(null, {
-        aaa     : false,
-        children: Mobile
+        hideHeader: true,
+        children  : Mobile
       })
     })
+  },
 
-  }
+
+  getChildRoutes (partialNextState, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        require('../Shop/routes/Editor')(store),
+      ])
+    })
+  },
 
 })
 

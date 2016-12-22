@@ -5,6 +5,7 @@ import Open from './Open'
 import Shop from './Shop'
 import Developer from './Developer'
 import Demo from './Demo'
+import Mobile from './Mobile'
 
 /*  Note: Instead of using JSX, we recommend using react-router
  PlainRoute objects to build route definitions.   */
@@ -14,6 +15,7 @@ export const createRoutes = (store) => ({
   component  : CoreLayout,
   indexRoute : Home,
   childRoutes: [
+    Mobile(store),
     Open(store),
     Shop(store),
     Developer(store),
