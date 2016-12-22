@@ -21,8 +21,8 @@ export class Preview extends Component {
       cols     : 2,
       rowHeight: 100,
       selectedCls : 'selected',
-      width    : 315,
-      margin   : [ 10, 10 ],
+      width    : 310,
+      margin   : [0,10],
     }
   }
 
@@ -65,7 +65,7 @@ export class Preview extends Component {
             </ReactGridLayout>
             </div>
         </div>
-        <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
+        <pre style={{ "fontSize": '20px', "top": 0,"position": 'absolute' }}>
           {JSON.stringify(this.props, null, 2)}
         </pre>
       </div>

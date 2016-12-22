@@ -11,3 +11,7 @@ colosseum.iml
 
 .project
 npm-debug.log.*
+
+.sass-cache/
+JSON
+JSON.map
