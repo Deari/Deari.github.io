@@ -46,7 +46,7 @@ export const Header = ({location}) => {
     <div className='header-wrapper'>
       <div className='header-bg'></div>
       <div className='g-header container'>
-        <h1 className="navbar-brand">
+        <h1>
           <Link to='/'>
             <i></i><span>BO开放平台</span>
           </Link>
