@@ -31,7 +31,9 @@ const NavRules = [
   }
 ];
 
-export const Header = ({location}) => {
+export const Header = ({location, hideHeader}) => {
+
+  if (hideHeader) return <div></div>
   const path = location.pathname;
   let nav, title;
 
