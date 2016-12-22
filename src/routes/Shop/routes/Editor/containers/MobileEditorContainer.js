@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import { compose } from 'redux'
 import { DragDropContext } from 'react-dnd'
-import HTML5Backend from 'react-dnd-html5-backend'
+//import HTML5Backend from 'react-dnd-html5-backend'
+import TouchBackend from 'react-dnd-touch-backend';
 
 import { fetchProducts } from '../modules/product'
 
@@ -15,5 +16,5 @@ const mapStateToProps = state => ({ product: state.product })
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
-  DragDropContext(HTML5Backend)
+  DragDropContext(TouchBackend)
 )(Editor)

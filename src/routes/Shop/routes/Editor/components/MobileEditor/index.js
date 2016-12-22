@@ -34,7 +34,7 @@ export class Editor extends Component {
                         </div>
                     </div>
                   </div>
-                  <div className="col-sm-8 col-md-8 height-100">
+                  <div className="col-sm-8 col-md-10 height-100">
                     <div className="bg-white height-100">
                       <div className="editor-view">
                         <Preview/>
@@ -42,13 +42,13 @@ export class Editor extends Component {
                       </div>
                     </div>
                   </div>
-                   <div className="col-sm-2 col-md-2 bg-white">
-                      <div className="nav-fixed">
-                        <div className="editor-right sub-nav-menu">
-                          <Detail/>
-                        </div>
-                      </div>
-                  </div>
+                   {/*<div className="col-sm-2 col-md-2 bg-white">*/}
+                      {/*<div className="nav-fixed">*/}
+                        {/*<div className="editor-right sub-nav-menu">*/}
+                          {/*<Detail/>*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
                 </div>
               </div>
             </div>
