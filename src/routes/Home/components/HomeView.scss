@@ -6,9 +6,32 @@
   margin: 1.5rem auto;
 }
 .home-banner{
-  height: $default-height + 360px;
+  height: $default-height + 350px;
   background: url(../assets/banner-bg1.jpg) no-repeat;
   background-size: 100%;
+  text-align: center;
+  dl{
+    padding-top: $default-padding-top + 70px;
+    color: $white-color;
+    line-height: $text-line-height + 20px;
+    text-shadow: 1px 0 2px rgba(72,70,134,0.6);
+    dt{
+      font-size: $text-font-size + 30px;
+    }
+    dd{
+      font-size: $text-font-size + 12px;
+    }
+  }
+  p{
+    color: $white-color;
+    a{
+      margin: 10px;
+    }
+    a:last-of-type{
+      background: rgba(255,255,255,0.3);
+    }
+  }
+  
 }
 .home_reminder{
   height: $default-height - 60px;
