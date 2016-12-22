@@ -24,6 +24,7 @@ class List extends React.Component {
     return (
       <div className="listContent">
         {
+          data.length == 0 ? <div style={{textAlign: "center"}}>没有更多数据了~</div> :
           data.map( (item, index) => (
             <div key={index} className="list-container">
               <div className="info-img-container col-md-2">

@@ -58,7 +58,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Api'),
-        require('./routes/Apps'),
+        require('./routes/Apps')(store),
         require('./routes/Hardware'),
         require('./routes/Widgets')
       ])
