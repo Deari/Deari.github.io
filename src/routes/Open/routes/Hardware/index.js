@@ -1,99 +1,71 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import Category from '../../../../components/category'
+import fetchUtil from '../../../utils/fetchUtil'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: [
-        {categoryId: 1, categoryName: '分类一'},
-        {categoryId: 2, categoryName: '分类二'},
-        {categoryId: 3, categoryName: '分类三'},
-        {categoryId: 4, categoryName: '分类四'},
-        {categoryId: 5, categoryName: '分类五'},
-      ],
-      "hardware": [
-        { 
-          "hardwareId": 111,
-          "hardwareType": 10,
-          "hardwareName": "hardware1",
-          "hardwareLogo": " ",
-        },
-        { 
-          "hardwareId": 222,
-          "hardwareType": 11,
-          "hardwareName": "hardware2",
-          "hardwareLogo": " ",
-        },
-        { 
-          "hardwareId": 333,
-          "hardwareType": 12,
-          "hardwareName": "hardware3",
-          "hardwareLogo": " ",
-        },
-        { 
-          "hardwareId": 444,
-          "hardwareType": 13,
-          "hardwareName": "hardware4",
-          "hardwareLogo": " ",
-        },
-        { 
-          "hardwareId": 555,
-          "hardwareType": 14,
-          "hardwareName": "hardware5",
-          "hardwareLogo": " ",
-        },
-        { 
-          "hardwareId": 666,
-          "hardwareType": 15,
-          "hardwareName": "hardware6",
-          "hardwareLogo": " ",
-        },
-      ]
+      category: [],
+      "hardwares": []
     }
   }
-  selectCategory(item) {
-    var category = this.state.category;
-    for (var i=0; i<category.length; i++) {
-      if (category[i].categoryId === item.categoryId) {
-        category[i].checked = true;
-      } else {
-        category[i].checked = false;
-      }
+  getCategory() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/hardware/getCategory`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  getList(categoryId) {
+    var categoryId = categoryId || 'all';
+    const apiUrl = `http://api.intra.sit.ffan.net//bo/v1/public/hardware/list${categoryId}`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  async componentDidMount() {
+    try {
+      let result = await Promise.all([this.getCategory(), this.getList()]);
+      result[0].data.list.unshift({
+        categoryId: 'all',
+        categoryName: '全部分类'
+      })
+      this.setState({
+        category: result[0].data.list,
+        hardware: result[1].data.list,
+      })
+    } catch (e) {
+      console.log("e ", e);
     }
-    this.setState({category: category});
+  }
+  async changeSelect(categoryId) {
+    try {
+      const res = await this.getList(categoryId);
+      if (res.status === 200) {
+        res.data && this.setState({hardware: res.data.list ? res.data.list : ''});
+      } else {
+        window.alert(res.msg);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
   }
   render () {
     return (<div className="bg-gray pt10">
       <div className="nav-second container">
         <div className="cContent row">
           <div className="navThird col-md-2 col-sm-2">
-            <ul>
-              <li className="">
-                全部分类
-                <ul>
-                {
-                  this.state.category.map((item, index) => {
-                    return <li className={item.checked ? 'navThirdHover' : ''}
-                               onClick={this.selectCategory.bind(this, item)}
-                               key={item.categoryId}>{item.categoryName}</li>
-                  })
-                }
-                </ul>
-              </li>
-            </ul>
+            <Category data={this.state.category} onChangeSelect={this.changeSelect.bind(this)}/>
           </div>
           <div className="col-md-10 col-sm-10">
             <div className="ccContent">
               <ul>
               {
-                this.state.hardware.map((item, index) => {
+                this.state.hardwares.map((item, index) => {
                   return (
                     <li>
-                      <Link to={'/open/hardware/detail/' + item.hardwareId}>
-                        <img src={item.hardwareLogo} alt="LOGO"/>
-                        <span>{item.hardwareName}</span>
-                        <span>{item.hardwareType}</span>
+                      <Link to={'/open/hardware/detail/' + item.appId}>
+                        <img src={item.appLogo} alt="LOGO"/>
+                        <span>{item.appName}</span>
+                        <span>{item.appType}</span>
                       </Link>
                       <Link><button className="btn">下载</button></Link>
                     </li>
@@ -112,7 +84,6 @@ class Container extends React.Component {
 
 module.exports =  {
   path: 'hardware',
-  // component: Container,
   indexRoute: {
     component: Container
   },
