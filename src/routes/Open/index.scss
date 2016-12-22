@@ -2,7 +2,7 @@
 
 .Detail-container{
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
-    width: $img-width + 50px;
+    width: $default-width + 50px;
   }
   .Detail-downloadBtn{
     margin-top: 20px;
@@ -12,20 +12,20 @@
     overflow: hidden;
   }
   .Detail-appImg{
-    height: $img-height + 50px;
+    height: $default-height + 50px;
     border-radius: 16px;
   }
   .Detail-weatherImg{
-    height: $img-height - 20px;
+    height: $default-height - 20px;
     border: 1px solid #999999;
   }
   .Detail-hardwareImg{
-    width: $img-width + 560px;
-    height: $img-height + 210px;
+    width: $default-width + 560px;
+    height: $default-height + 210px;
   }
   .Detail-detail{
     h3{
-      font-size: $text-font-size + 4px;
+      font-size: $text-font-size + 6px;
       line-height: $text-line-height;
     }
     dl{
@@ -47,11 +47,11 @@
 }
 .hardware-price{
   p{
-    font-size: $text-font-size + 2px;
-    color: $text-gray9-color;
+    font-size: $text-font-size + 4px;
+    color: $gray9-color;
     line-height: $text-line-height;
     .text-red-color{
-      font-size: $text-font-size + 24px;
+      font-size: $text-font-size + 26px;
     }
   }
   .pt{
@@ -65,15 +65,15 @@
 .Detail-hardware{
   div{
     padding-top: $default-padding-top - 20px;
-    @include line-bottom;
+    @include border-bottom;
     a{
       float: left;
       padding: $default-padding-right - 20px;
-      font-size: $text-font-size;
+      font-size: $text-font-size - 2px;
     }
     .hardware-hover{
-      color: $btn-blue-color;
-      border-bottom: 2px solid $border-blue-color;
+      color: $blue-color;
+      border-bottom: 2px solid $blue-color;
     }
   }
   dl{
@@ -85,7 +85,7 @@
 }
 .Detail-moreApps{
   h3{
-    font-size: $text-font-size - 2px;
+    font-size: $text-font-size - 4px;
     line-height: $text-line-height;
   }
   ul{
@@ -94,23 +94,23 @@
     li{
       .Detail-appBox{
         margin: 0 auto;
-        width: $img-width - 18px;
+        width: $default-width - 18px;
         text-align: center;
         .Detail-appImg{
-        width: $img-width - 18px;
-        height: $img-height - 18px;
+        width: $default-width - 18px;
+        height: $default-height - 18px;
         border-radius: 6px;
         overflow: hidden;
         background: #eeeeee;
         }
         h5{
-        font-size: $text-font-size - 2px;
-        color: $text-black-color;
+        font-size: $text-font-size - 4px;
+        color: $black-color;
         padding-top: $default-padding-top - 26px;
         }
         p{
         font-size: $text-font-size - 4px;
-        color: $text-gray6-color;
+        color: $gray6-color;
         line-height: $text-line-height - 10px;
         }
       }

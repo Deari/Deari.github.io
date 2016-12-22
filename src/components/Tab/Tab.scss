@@ -10,12 +10,12 @@
     float: left;
     margin: 0 20px;
     width: 160px;
-    color: $text-gray6-color;
+    color: $gray6-color;
     text-align: center;
     &.active {
-      color: $text-blue-color;
+      color: $blue-color;
       div{
-        background: $bg-blue-color;
+        background: $blue-color;
       }
     }
   }
@@ -25,8 +25,8 @@
     width: 64px;
     height: 64px;
     line-height: 64px;
-    color: $text-white-color;
-    font-size: $text-font-size + 20px;
+    color: $white-color;
+    font-size: $text-font-size + 22px;
     border-radius: 50%;
     text-align: center;
     background: #c2c6d0;
@@ -37,7 +37,7 @@
   position: absolute;
   top: 40%;
   width: 110px;
-  border: 1px solid $border-gray-color;
+  border: 1px solid $graye-color;
   z-index: -1;
 }
 .tab-container::before{
