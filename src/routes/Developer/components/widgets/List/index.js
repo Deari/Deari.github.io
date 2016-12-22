@@ -12,7 +12,7 @@ class AppsList extends React.Component {
   }
   
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widgets`
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/widgets`
     try {
       const res = await fetchUtil.getJSON(apiUrl ,{reviewStatus: this.state.reviewStatus});
       console.log(res.data.list[0])

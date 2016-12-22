@@ -1,9 +1,7 @@
 import React from 'react'
 import './index.scss'
 import Tags from '../../../../../../components/Tags'
-import fetchUtil from '../../../../../utils/fetchUtil'
 import fetch from '../../../../../../../fetch'
-const querystring = require('querystring');
 
 const unique1 = function(arr){
 	var n = []; 
