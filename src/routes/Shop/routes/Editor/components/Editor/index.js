@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
+import Detail from '../../containers/DetailContainer'
+
 import './Editor.scss'
-import '../../../../../../styles/_base.scss'
+//import '../../../../../../styles/_base.scss'
 
 
 export class Editor extends Component {
@@ -44,7 +46,7 @@ export class Editor extends Component {
                    <div className="col-sm-2 col-md-2 bg-white">
                       <div className="nav-fixed">
                         <div className="editor-right sub-nav-menu">
-                          right
+                          <Detail/>
                         </div>
                       </div>
                   </div>
