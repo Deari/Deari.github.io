@@ -19,7 +19,7 @@ const Product = ({ name, imgSrc, defaultLayout, connectDragSource }) =>
            width={100}
            src={imgSrc || 'http://placeholder.qiniudn.com/100x50/808080/fff' }
            alt={name}/>
-      <span>{name}-{defaultLayout.w}x{defaultLayout.h}</span>
+      {/*<span>{name}-{defaultLayout.w}x{defaultLayout.h}</span>*/}
     </div>
   )
 
