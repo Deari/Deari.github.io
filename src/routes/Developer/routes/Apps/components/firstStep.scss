@@ -4,24 +4,41 @@
     line-height: 46px;
   }
 }
-.sl-custom-file{
-  position:relative;
-  display:inline-block;
-  zoom:1;
-  cursor:pointer;
-  overflow:hidden;
-  vertical-align:middle;
+form{
+    div{
+        margin: 28px 0 45px; 
+        overflow: hidden;
+        label{ 
+            width: 78px; 
+            font-size: 16px; 
+            color: #000000; 
+            padding-left: 11px; 
+            margin-right: 45px; 
+            line-height: 30px; 
+            float: left; 
+            text-align: right;
+        }
+        div{
+            margin: 0;
+            float: left;
+            input{
+                width: 549px; 
+                height: 29px; 
+                font-size: 15px; 
+                color: #020202; 
+                border: 1px solid #313131; 
+                padding-left: 9px;
+            }
+            p{
+                font-size: 13px; 
+                color: #999999; 
+                line-height: 24px;
+            }
+        }
+    }
 }
-.sl-custom-file .ui-input-file{
-  position:absolute;
-  right:0;
-  top:0;
-  _zoom:30;
-  font-size:300px\9;
-  height:100%;
-  _height:auto;
-  opacity:0;
-  filter:alpha(opacity=0);
-  -ms-filter:"alpha(opacity=0)";
-  cursor:pointer;
+
+.sl-custom-file{
+  width: 130px; height: 33px; line-height: 33px; text-align: center; font-size: 14px; color: #000000; display: block; border: 1px solid #000; border-radius: 2px; background: #fff; position: relative; margin: 20px 0 23px;
+  
 }

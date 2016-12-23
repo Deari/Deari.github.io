@@ -72,23 +72,30 @@ class WizardFormFirstPage extends React.Component {
       <form onSubmit={handleSubmit}>
        
         <Field name="appName" type="text" component={renderField}
-          label="商家应用名称："
+          label="应用名称"
           /> 
-        <Field name="appDesc" type="text" component={renderField}
-          label="文字介绍："
-          />
-        <div className="img-container">
-          <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
+        <div>
+        	<label>应用图片</label>
+        	<div>
+        		<p>请上传应用高清图片</p>
+				<p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+			    <span className="sl-custom-file">
+			      <input type="button" className="btn btn-primary" value="选择文件"/>
+			      <input type="file" className="ui-input-file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
+			    </span>
+        		<div className="img-container">
+			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
+			    </div>
+        	</div>
         </div>
-        <span className="sl-custom-file">
-          <input type="button" className="btn btn-primary" value="选择图片"/>
-          <input type="file" className="ui-input-file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
-        </span>
+        <Field name="appDesc" type="text" component={renderField}
+          label="应用简介"
+          />
+        <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr}/>
         <div>
           <label>产品标签:</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
-        <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr}/>
         <div>
           <button type="submit" className="next">Next</button>
         </div>
