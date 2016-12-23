@@ -51,38 +51,6 @@ class Container extends React.Component {
   }
   render () {
     return (
-<<<<<<< HEAD
-      <div className="bg-gray pt10">
-        <div className="nav-second container">
-          <div className="cContent row">
-            <div className="navThird col-md-2 col-sm-2">
-              <Category data={this.state.category} onChangeSelect={this.changeSelect.bind(this)}/>
-            </div>
-            <div className="col-md-10 col-sm-10">
-              <div className="ccContent">
-                { 
-                  this.state.apps && this.state.apps.length > 0 ?
-                  <ul>
-                  {
-                    this.state.apps.map((item, index) => {
-                      return (
-                        <li>
-                          <Link to={'/open/apps/detail/' + item.appId}>
-                            <img src={item.appLogo} alt="LOGO"/>
-                            <span>{item.appName}</span>
-                            <span>{item.appType}</span>
-                          </Link>
-                          <a href={item.fileLink} target="_blank" download=""><button className="btn">下载</button></a>
-                        </li>
-                      )
-                    })
-                  }
-                  </ul> :
-                  <div>敬请期待</div>
-                }
-              </div>
-            </div>
-=======
       <div className="core-layout__viewport bg-gray">
         <div className="container clx">
           <div className="sub-nav">
@@ -146,7 +114,6 @@ class Container extends React.Component {
               })
             }
             </ul>
->>>>>>> 75f8a3fe9ac956692c67846adf0590bb7dbd1313
           </div>
         </div>
       </div>
