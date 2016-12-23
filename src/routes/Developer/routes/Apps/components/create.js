@@ -2,13 +2,18 @@ import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import renderField, { renderTextArea } from '../components/renderField'
+import './create.scss'
 
 import WizardFormFirstPage from './firstStep'
 import WizardFormSecondPage from './secondStep'
 import WizardFormThirdPage from './thirdstep'
 
 const Step = (props)=>(
-  <div>{props.children}</div>
+  <div className='branchBox'>
+    <div className={props.page == 1? 'branch active':'branch'}>1</div>
+    <div className={props.page == 2? 'branch active':'branch'}>2</div>
+    <div className={props.page == 3? 'branch active':'branch'}>3</div>
+  </div>
 )
 
 
@@ -102,7 +107,7 @@ class ContactForm extends Component {
     const { page } = this.state;
     return (
       <div>
-        <Step>{this.state.page}</Step>
+        <Step page={page}/>
         {page === 1 && <WizardFormFirstPage onSubmit={this.firstPageSubmit} getParams={::this.onGetParams} getImgSrc={::this.getImgUrl}/>}
         {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={this.secondPageSubmit} getParams={::this.fileSelected}/>}
         {page === 3 && <WizardFormThirdPage/>}

@@ -1,0 +1,18 @@
+.branchBox{
+  overflow: hidden;
+}
+.branch{
+  width: 67px;
+  height:67px;
+  border-radius: 50%;
+  background-color: #c2c6d0;
+  text-align: center;
+  line-height: 67px;
+  float:left;
+  color:#fff;
+  font-size: 26px;
+  margin: 0 50px;
+}
+.active{
+  background-color: blue;
+}

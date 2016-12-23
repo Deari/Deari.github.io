@@ -14,14 +14,15 @@ class Tags extends React.Component {
     this.props.onChecked(this.state.checkedTag)
   }
   render() {
+    console.log( this.state.tags)
     return (
       <div>
         <ul className="tags-container">
         {
          this.state.tags.map((item, index) => {
-            return <li key={item.id} 
+            return <li key={item.tagId} 
                        className={item.checked ? 'active' : ''}
-                       onClick={this.selectTag.bind(this, item)}>{item.name}</li>
+                       onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
           })
         }
         </ul>

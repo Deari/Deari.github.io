@@ -28,26 +28,26 @@ export const warn = values => {
   return warnings
 }
 
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+// const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
-export const asyncValidate = (values/*, dispatch */) => {
-  console.log(values, '===');
+// export const asyncValidate = (values/*, dispatch */) => {
+//   console.log(values, '===');
 
-  return sleep(1000) // simulate server latency
-    .then(() => {
-      if ([ 'john', 'paul', 'george', 'ringo' ].includes(values.username)) {
-        throw { username: 'That username is taken' }
-      }
-    })
-}
+//   return sleep(1000) // simulate server latency
+//     .then(() => {
+//       if ([ 'john', 'paul', 'george', 'ringo' ].includes(values.username)) {
+//         throw { username: 'That username is taken' }
+//       }
+//     })
+// }
 
-export const repeatCheck = (username) => {
-  // return'Invalid';
+// export const repeatCheck = (username) => {
+//   // return'Invalid';
 
-   return sleep(1000) // simulate server latency
-    .then(() => {
-      if ([ 'john', 'paul', 'george', 'ringo' ].includes(username)) {
-        throw { username: 'That username is taken' }
-      }
-    })
-}
+//    return sleep(1000) // simulate server latency
+//     .then(() => {
+//       if ([ 'john', 'paul', 'george', 'ringo' ].includes(username)) {
+//         throw { username: 'That username is taken' }
+//       }
+//     })
+// }
