@@ -1,7 +1,4 @@
 import React, {Component} from 'react'
-//import { createStore, combineReducers} from 'redux'
-//import {connect} from 'react-redux'
-//import { reducer as formReducer } from 'redux-form'
 import Create from '../components/create'
 
 
