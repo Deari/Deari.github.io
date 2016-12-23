@@ -3,7 +3,6 @@ import './index.scss'
 
 class Tags extends React.Component {
   state = {
-      tags: this.props.data,
       checkedTag: []
   };
 
@@ -14,17 +13,17 @@ class Tags extends React.Component {
     this.props.onChecked(this.state.checkedTag)
   }
   render() {
-    console.log( this.state.tags)
+    const { data: tags } = this.props
     return (
       <div>
         <ul className="tags-container">
-        {
-         this.state.tags.map((item, index) => {
-            return <li key={item.tagId} 
-                       className={item.checked ? 'active' : ''}
-                       onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
-          })
-        }
+          {
+            tags.map((item, index) => {
+              return <li key={item.tagId}
+                className={item.checked ? 'active' : ''}
+                onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
+            })
+          }
         </ul>
       </div>
     )

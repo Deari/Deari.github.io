@@ -25,14 +25,9 @@ class ContactForm extends Component {
     appId:0,
     fileObj:{}
   }
-  onStep = ()=>{
-    console.log(this.state.page);
-  }
-
   nextPage = ()=> {
     this.setState({page: this.state.page + 1});
   }
-
   previousPage = ()=>{
     this.setState({page: this.state.page - 1})
   }
@@ -46,15 +41,22 @@ class ContactForm extends Component {
   } 
   firstPageSubmit = async (values) => {
     // Do something with the form values
-    console.log(values);
-    console.log("click save");
+    //console.log(values);
+    //console.log("click save");
     const tageList = this.state.appTages
-    var data = new FormData();
-    data.append("appName", values.appName);
-    data.append("appLogo", this.state.appLogo);
-    data.append("appDesc", values.appDesc);
-    data.append("categoryId", values.categoryId);
-    data.append("platform", 2);
+    let data = new FormData();
+    const dataList = {
+      appName:values.appName,
+      appLogo:this.state.appLogo,
+      appDesc:values.appDesc,
+      categoryId:values.categoryId,
+      platform:2
+    }
+    for(var key in dataList){
+      if(dataList[key]){
+        data.append(key, dataList[key])
+      }
+    }
     for (var i = 0; i < tageList.length; i++) {
       data.append("tags[]", tageList[i]);
     }
@@ -66,9 +68,14 @@ class ContactForm extends Component {
           body: data
       });
       const resp = await res.json();
-      const id = resp.data.app.appId;
-      this.setState({ appId: id },this.nextPage());
+      if (resp.status == 200) {
+        const id = resp.data.app.appId;
+        this.setState({ appId: id }, this.nextPage());
+      }else{
+        alert("服务端验证不通过，请进一步核对信息")
+      }
     }catch(e){
+      alert(e.msg)
       console.log(e)
     }
   }
@@ -108,9 +115,23 @@ class ContactForm extends Component {
     return (
       <div>
         <Step page={page}/>
-        {page === 1 && <WizardFormFirstPage onSubmit={this.firstPageSubmit} getParams={::this.onGetParams} getImgSrc={::this.getImgUrl}/>}
-        {page === 2 && <WizardFormSecondPage previousPage={this.previousPage} onSubmit={this.secondPageSubmit} getParams={::this.fileSelected}/>}
-        {page === 3 && <WizardFormThirdPage/>}
+        {
+          page === 1 && <WizardFormFirstPage 
+                          onSubmit={this.firstPageSubmit} 
+                          getParams={::this.onGetParams} 
+                          getImgSrc={::this.getImgUrl}
+                          />
+        }
+        {
+          page === 2 && <WizardFormSecondPage 
+                          previousPage={this.previousPage} 
+                          onSubmit={this.secondPageSubmit} 
+                          getParams={::this.fileSelected}
+                          />
+        }
+        {
+          page === 3 && <WizardFormThirdPage/>
+        }
       </div>
     );
   }

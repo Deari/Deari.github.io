@@ -15,21 +15,17 @@ const unique1 = function(arr){
 	return n;
 }
 class WizardFormFirstPage extends React.Component {
+  
   state = {
     tags: [
-      { tagId: 0, tagName: '标签一' },
-      { tagId: 1, tagName: '标签二' },
-      { tagId: 2, tagName: '标签三' },
-      { tagId: 3, tagName: '标签四' },
-      { tagId: 4, tagName: '标签五' },
-      { tagId: 5, tagName: '标签六' },
-      { tagId: 6, tagName: '标签七' },
+      { tagId: 0, tagName: '数据丢失' },
     ],
     optionArr:[
       {categoryId:0,categoryName:"数据丢失"}
     ],
     imgUrl: ""
   }
+
   async imgUpload(e) {
     let data = new FormData()
     data.append('fileName', e.target.files[0])
@@ -44,11 +40,7 @@ class WizardFormFirstPage extends React.Component {
     this.setState({ imgUrl: imgUrl })
     this.props.getImgSrc(imgUrl)
   }
-  handleCheck(CheckedArr) {
-    const tags = unique1(CheckedArr)
-    this.props.getParams(tags)
-  }
-    //
+
   async componentDidMount() {
     const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
     try {
@@ -64,7 +56,6 @@ class WizardFormFirstPage extends React.Component {
     try {
       const tagsRes = await fetchUtil.getJSON(tagsUrl);
       if(tagsRes.status === 200){
-        console.log(tagsRes.data)
         this.setState({tags:tagsRes.data})
       }
     } catch (e) {
@@ -73,16 +64,18 @@ class WizardFormFirstPage extends React.Component {
     }
   }
 
-  
+  handleCheck(CheckedArr) {
+    const tags = unique1(CheckedArr)
+    this.props.getParams(tags)
+  }
 
   render() {
     const { handleSubmit } = this.props
-    console.log(this.state.tags)
     return (
       <form onSubmit={handleSubmit}>
         <Field name="appName" type="text" component={renderField}
           label="应用名称"
-          /> 
+          />
         <div>
           <label>应用图片</label>
           <div>
@@ -108,11 +101,12 @@ class WizardFormFirstPage extends React.Component {
 
         <div>
           <button type="submit" className="next">Next</button>
-        </div> 
+        </div>
       </form>
     )
   }
 }
+
 export default reduxForm({
   form: 'wizard',              // <------ same form name
   destroyOnUnmount: false,     // <------ preserve form data
