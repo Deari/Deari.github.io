@@ -14,17 +14,17 @@ export const ShopNav = ()=>(
 );
 
 export const DevNav = ()=>(
-  <div>
-    <Link to='/developer/apps' activeClassName='route--active'>
+  <div className="nav-list">
+    <Link to='/developer/apps' activeClassName='active'>
       商家应用
     </Link>
-    <Link to='/developer/widgets' activeClassName='route--active'>
+    <Link to='/developer/widgets' activeClassName='active'>
       店铺组件
     </Link>
-    <Link to='/developer/api' activeClassName='route--active'>
+    <Link to='/developer/api' activeClassName='active'>
       API
     </Link>
-    <Link to='/developer/hardware' activeClassName='route--active'>
+    <Link to='/developer/hardware' activeClassName='active'>
       开发硬件
     </Link>
   </div>
@@ -32,14 +32,14 @@ export const DevNav = ()=>(
 
 
 export const OpenNav = ()=>(
-  <div>
-    <Link to='/open/apps' activeClassName='route---active'>
+  <div className="nav-list">
+    <Link to='/open/apps' activeClassName='active'>
       商家应用
     </Link>
-    <Link to='/open/widgets' activeClassName='route--active'>
+    <Link to='/open/widgets' activeClassName='active'>
       店铺组件
     </Link>
-    <Link to='/open/hardware' activeClassName='route--active'>
+    <Link to='/open/hardware' activeClassName='active'>
       开发硬件
     </Link>
   </div>
