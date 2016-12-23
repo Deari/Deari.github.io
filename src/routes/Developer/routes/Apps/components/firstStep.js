@@ -17,13 +17,13 @@ const unique1 = function(arr){
 class WizardFormFirstPage extends React.Component {
   state = {
     tags: [
-      { id: 0, name: '标签一' },
-      { id: 1, name: '标签二' },
-      { id: 2, name: '标签三' },
-      { id: 3, name: '标签四' },
-      { id: 4, name: '标签五' },
-      { id: 5, name: '标签六' },
-      { id: 6, name: '标签七' },
+      { tagId: 0, tagName: '标签一' },
+      { tagId: 1, tagName: '标签二' },
+      { tagId: 2, tagName: '标签三' },
+      { tagId: 3, tagName: '标签四' },
+      { tagId: 4, tagName: '标签五' },
+      { tagId: 5, tagName: '标签六' },
+      { tagId: 6, tagName: '标签七' },
     ],
     optionArr:[
       {categoryId:0,categoryName:"数据丢失"}
@@ -48,15 +48,24 @@ class WizardFormFirstPage extends React.Component {
     const tags = unique1(CheckedArr)
     this.props.getParams(tags)
   }
-    
+    //
   async componentDidMount() {
     const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
     try {
-      const res = await fetchUtil.getJSON(apiUrl ,{reviewStatus: this.state.reviewStatus});
-      console.log(res.data)
+      const res = await fetchUtil.getJSON(apiUrl);
       if(res.status === 200){
-        // alert('成功')
         this.setState({optionArr:res.data.list})
+      }
+    } catch (e) {
+      alert('失败')
+      console.log(e)
+    }
+    const tagsUrl = 'http://api.intra.sit.ffan.net/bo/v1/public/app/tags'
+    try {
+      const tagsRes = await fetchUtil.getJSON(tagsUrl);
+      if(tagsRes.status === 200){
+        console.log(tagsRes.data)
+        this.setState({tags:tagsRes.data})
       }
     } catch (e) {
       alert('失败')
@@ -68,9 +77,9 @@ class WizardFormFirstPage extends React.Component {
 
   render() {
     const { handleSubmit } = this.props
+    console.log(this.state.tags)
     return (
       <form onSubmit={handleSubmit}>
-       
         <Field name="appName" type="text" component={renderField}
           label="应用名称"
           /> 
@@ -91,15 +100,14 @@ class WizardFormFirstPage extends React.Component {
         <Field name="appDesc" type="text" component={renderField}
           label="应用简介"
           />
-        <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr}/>
+        <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr} />
         <div>
           <label>产品标签:</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
         <div>
           <button type="submit" className="next">Next</button>
-        </div>
-        
+        </div> 
       </form>
     )
   }
@@ -108,8 +116,6 @@ export default reduxForm({
   form: 'wizard',              // <------ same form name
   destroyOnUnmount: false,     // <------ preserve form data
   validate,
-  asyncValidate,
-  asyncBlurFields: [ 'username' ]
 })(WizardFormFirstPage)
 
 
