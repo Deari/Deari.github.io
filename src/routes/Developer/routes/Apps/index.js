@@ -7,7 +7,7 @@ import '../../../../components/Header/Header'
 class Container extends React.Component {
   render () {
     return <div className="bg-gray">
-      <div className="container pb10">
+      <div className="container">
        <div className="row clx">
            <div className="col-md-10 col-md-offset-2">
               <ul className="nav navbar-nav clx">
@@ -34,7 +34,7 @@ class Container extends React.Component {
   }
 }
 
-module.exports =  {
+module.exports = store => ({
   path: 'apps',
   component: Container,
   indexRoute: {
@@ -45,10 +45,10 @@ module.exports =  {
     require.ensure([], (require) => {
       cb(null, [
         require('./List'),
-        require('./Create'),
+        require('./Create')(store),
         require('./Detail'),
         require('./Edit')
       ])
     })
   }
-}
+})
