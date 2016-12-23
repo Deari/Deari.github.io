@@ -1,13 +1,13 @@
 $white-color: #ffffff;
 $blue-color: #2692fb;
-$bluedark-color: #177fe4;  //btn:hover
+$bluedark-color: #1c89f3;  //btn:hover
 $red-color: #fc5c63;
-$black-color: #000000;
-$grayf-color: #f6f8f9;
-$graye-color: #eeeeee;
-$gray3-color: #333333;
-$gray6-color: #666666;
-$gray9-color: #999999;
+$black-color: #000;
+$grayf-color: #f1f1f3;
+$graye-color: #eee;
+$gray3-color: #333;
+$gray6-color: #666;
+$gray9-color: #999;
 //form-color 
   $form-success-color: #3c763d;
   $form-warning-color: #8a6d3b;
@@ -27,6 +27,10 @@ $gray9-color: #999999;
 //float
 @mixin float-left { float: left;}
 @mixin float-right { float: right;}
+@mixin clx{
+   *zoom: 1;
+   &:after{ clear: both; display: block; height: 0; visibility: hidden; content: "";}
+}
 //border
 @mixin border-bottom{ border-bottom: 1px solid $graye-color;}
 @mixin border-top{ border-top: 1px solid $graye-color;}
