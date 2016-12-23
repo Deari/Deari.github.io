@@ -6,14 +6,8 @@ import Tags from '../../../../../components/Tags'
 import './firstStep.scss'
 import fetch from '../../../../../../fetch'
 import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from '../../../../utils/domain'
 
-const unique1 = function(arr){
-	var n = []; 
-	for(var i = 0; i < arr.length; i++) {
-		if (n.indexOf(arr[i]) == -1) n.push(arr[i]);
-	}
-	return n;
-}
 class WizardFormFirstPage extends React.Component {
   
   state = {
@@ -29,7 +23,10 @@ class WizardFormFirstPage extends React.Component {
   async imgUpload(e) {
     let data = new FormData()
     data.append('fileName', e.target.files[0])
-    const url = "http://api.intra.sit.ffan.net/bo/v1/web/photo/upload";
+    const url = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/photo/upload"
+    )
     const imgObj = await fetch(url, {
       method: "POST",
       body: data
@@ -42,21 +39,27 @@ class WizardFormFirstPage extends React.Component {
   }
 
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
+    const apiUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/public/app/categories"
+    )
     try {
       const res = await fetchUtil.getJSON(apiUrl);
-      if(res.status === 200){
-        this.setState({optionArr:res.data.list})
+      if (res.status === 200) {
+        this.setState({ optionArr: res.data.list })
       }
     } catch (e) {
       alert('失败')
       console.log(e)
     }
-    const tagsUrl = 'http://api.intra.sit.ffan.net/bo/v1/public/app/tags'
+    const tagsUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/public/app/tags"
+    )
     try {
-      const tagsRes = await fetchUtil.getJSON(tagsUrl);
-      if(tagsRes.status === 200){
-        this.setState({tags:tagsRes.data})
+    const tagsRes = await fetchUtil.getJSON(tagsUrl);
+      if (tagsRes.status === 200) {
+        this.setState({ tags: tagsRes.data })
       }
     } catch (e) {
       alert('失败')
@@ -65,8 +68,7 @@ class WizardFormFirstPage extends React.Component {
   }
 
   handleCheck(CheckedArr) {
-    const tags = unique1(CheckedArr)
-    this.props.getParams(tags)
+    this.props.getParams(CheckedArr)
   }
 
   render() {

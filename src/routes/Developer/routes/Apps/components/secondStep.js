@@ -2,12 +2,16 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import renderField, { renderTextArea } from './renderField'
 import { validate } from '../modules/validate'
+import { getDomain } from '../../../../utils/domain'
 
 class WizardFormSecondPage extends React.Component {
   async fileUpload() {
     let data = new FormData()
     data.append('fileName', this.refs.appFile.files[0])
-    const url = "http://api.intra.sit.ffan.net/bo/v1/web/file/upload";
+    const url = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/file/upload"
+    )
     try {
       const fileRes = await fetch(url, {
         method: "POST",

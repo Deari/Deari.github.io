@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import renderField, { renderTextArea } from '../components/renderField'
 import './create.scss'
+import { getDomain } from '../../../../utils/domain'
 
 import WizardFormFirstPage from './firstStep'
 import WizardFormSecondPage from './secondStep'
@@ -74,8 +75,10 @@ class ContactForm extends Component {
     for (var i = 0; i < tageList.length; i++) {
       data.append("tags[]", tageList[i]);
     }
-    const url = 'http://api.intra.sit.ffan.net/bo/v1/web/developer/app'
-    
+    const url = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/developer/app"
+    )
     try{
       const res = await fetch(url, {
           method: "POST",
@@ -98,9 +101,12 @@ class ContactForm extends Component {
   fileSelected(fileObj){
     this.setState({fileObj:fileObj})
   }
-  secondPageSubmit = (values) => {
+  secondPageSubmit = async (values) => {
     // Do something with the form values
-    const verUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/app/${this.state.appId}/code`
+    const verUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/developer/app/" + this.state.appId + "/code"
+    )
     var verData = new FormData();
     const fileObj = this.state.fileObj
     const fileList = {
@@ -117,11 +123,21 @@ class ContactForm extends Component {
       }
     }
     verData.append("codeDesc", values.codeDesc)
-    fetch(verUrl, {
-      method: "POST",
-      body: verData
-    })
-    this.nextPage()
+    try{
+      const codeRes = await fetch(verUrl, {
+        method: "POST",
+        body: verData
+      })
+      const codeResp = await codeRes.json();
+      if (codeResp.status == 200) {
+        this.nextPage()
+      }else{
+        alert("服务端验证不通过，请进一步核对信息")
+      }
+    }catch(e){
+      alert(e.msg)
+      console.log(e)
+    }
   }
 
   render() {
