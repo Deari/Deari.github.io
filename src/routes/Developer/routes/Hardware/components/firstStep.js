@@ -1,6 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { renderField, renderSelect } from './renderField'
+import { renderField, renderSelect, renderTextarea } from './renderField'
 import { validate }  from '../modules/validate'
 import fetchUtil from '../../../../utils/fetchUtil'
 
@@ -24,13 +24,31 @@ class HardwareFirstPage extends React.Component {
       console.log(e)
     }
   }
+  imgUpload() {
+
+  }
 
   render() {
     const { handleSubmit, submitting, pristine, invalid } = this.props
     const { options, categoryChilds } = this.state
     return (
       <form onSubmit={handleSubmit}>
-        <Field name="hardwareName" type="text" label="产品名称" component={renderField} />
+        <Field name="hardwareName" type="text" label="硬件名称" component={renderField} />
+        <div>
+        	<label>硬件LOGO</label>
+        	<div>
+        		<p>请上传硬件高清图片</p>
+				    <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+            <span>
+              <input type="button" value="选择文件"/>
+              <input type="file" accept=".png" onChange={this.imgUpload.bind(this)}/>
+            </span>
+        		<div className="img-container">
+              <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
+            </div>
+        	</div>
+        </div>
+        <Field name="hardwareDesc" label="硬件介绍" component={renderTextarea} />
         <Field name="majorCategoryId" label="分类" component={renderSelect} options={options}/>
         <Field name="minorCategoryId" component={renderSelect} options={categoryChilds}/>      
         <Field name="hardwareMode" type="text" label="产品型号" component={renderField} />

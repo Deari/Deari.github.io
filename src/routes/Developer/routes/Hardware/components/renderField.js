@@ -26,4 +26,14 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
   </div>
 )
 
+export const renderTextarea = ({ input, label, type, placeholder, meta: { touched, error, warning } }) => (
+  <div>
+    <label>{label}</label>
+    <div>
+      <textarea {...input} placeholder={placeholder ? placeholder : label}></textarea>
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+)
+
 export default renderField;
