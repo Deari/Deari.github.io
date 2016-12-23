@@ -6,80 +6,227 @@
   margin: 1.5rem auto;
 }
 .home-banner{
-  height: $default-height + 360px;
+  height: $default-height + 350px;
   background: url(../assets/banner-bg1.jpg) no-repeat;
   background-size: 100%;
+  text-align: center;
+  dl{
+    padding-top: $default-padding-top + 70px;
+    color: $white-color;
+    line-height: $text-line-height + 20px;
+    text-shadow: 1px 0 2px rgba(72,70,134,0.6);
+    dt{
+      font-size: $text-font-size + 30px;
+    }
+    dd{
+      font-size: $text-font-size + 12px;
+    }
+  }
+  p{
+    color: $white-color;
+    a{
+      margin: 10px;
+    }
+    a:last-of-type{
+      background: rgba(255,255,255,0.3);
+      &:hover{
+        background: rgba(255,255,255,0.4);
+      }
+    }
+  }
 }
-.home_reminder{
+.home-reminder{
   height: $default-height - 60px;
   line-height: $text-line-height;
   color: $gray6-color;
-  font-size: $text-font-size + 4px;
+  font-size: $text-font-size - 6px;
   background: $grayf-color;
-  div{
-    span:nth-of-type(1){
-      padding-left: 24px;
-      background: url(../assets/remind_trumpet.png) no-repeat left center;
-      background-size: 18px 16px;
-      i{
-        width: 24px; height: 14px;
-        background: url(../assets/remind_newicon.png) no-repeat;
-        background-size: 100%;
+  span{
+    padding-left: 24px;
+    .icon-laba{
+      font-size: $text-font-size;
+    }
+    i:nth-of-type(2){
+      width: 24px; height: 14px;
+      background: url(../assets/remind_newicon.png) no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+  a{
+    @include float-right;
+    padding-right: 14px;
+    background: url(../assets/more_into_gray.png) no-repeat right center;
+    background-size: 8px 16px;
+  }
+}
+.home-market{
+  @include clx;
+  padding-top: $default-padding-top;
+  padding-bottom: $default-padding-bottom;
+  text-align: center;
+  h3{
+    font-size: $text-font-size + 16px;
+    color: $black-color;
+    line-height: $text-line-height + 10px;
+    span{
+      font-size: $text-font-size + 18px;
+    }
+  }
+  p{
+    font-size: $text-font-size - 6px;
+    color: $gray9-color;
+    line-height: $text-line-height;
+  }
+  ul{
+    padding-top: $default-padding-top - 24px;
+    li{
+      @include float-left;
+      padding-left: $default-padding-left - 16px;
+      padding-right: $default-padding-right - 16px;
+      width: 25%;
+      &:hover{
+        opacity: 0.8;
+      }
+      a{
+        display: block;
+        height: $default-height + 200px;
+        p{
+          padding-top: $default-padding-top - 30px;
+          font-size: $text-font-size + 4px;
+          color: $white-color;
+          line-height: $text-line-height + 20px;
+        }
+        i{
+          display: block;
+          margin: 0 auto;
+          width: $default-width;
+          height: $default-height;
+          font-size: $text-font-size + 30px;
+          line-height: $text-line-height + 60px;
+          text-align: center;
+          background: $white-color;
+          border-radius: 50%;
+        }
+        span{
+          display: block;
+          padding-top: $default-padding-top - 20px;
+          padding-left: $default-padding-left - 24px;
+          padding-right: $default-padding-right - 24px;
+          color: $white-color;
+          line-height: $text-line-height - 16px;
+        }
       }
     }
-    span:nth-of-type(2){
-      @include float-right;
-      padding-right: 14px;
-      background: url(../assets/more_into_gray.png) no-repeat right center;
-      background-size: 8px 16px;
-    }
+  }
+  li:nth-of-type(1) a{
+    background: #2a89dd;
+  }
+  li:nth-of-type(2) a{
+    background: #6189d8;
+  }
+  li:nth-of-type(3) a{
+    background: #42a7bd;
+  }
+  li:nth-of-type(4) a{
+    background: #5ac49d;
+  }
+  li:nth-of-type(1) i{
+    color: #2a89dd;
+  }
+  li:nth-of-type(2) i{
+    color: #6189d8;
+  }
+  li:nth-of-type(3) i{
+    color: #42a7bd;
+  }
+  li:nth-of-type(4) i{
+    color: #5ac49d;
   }
 }
-.home_f{
-  margin: 19px auto;
-  overflow:hidden;
-  border: 1px solid $graye-color;
-  .developer_width{
-    width:25%;
-  }
-  li{
-    @include float-left;
-    @include border-right;
-    margin: 27px 0;
-    padding: 0 43px; 
+.home-casus{
+  padding-top: $default-padding-top - 30px;
+  padding-bottom: $default-padding-bottom - 20px;
+  ul{
+    padding-top: $default-padding-top;
     text-align: center;
-    a{
+    li{
+      padding-bottom: $default-padding-bottom;
+      @include float-left;
+      position: relative;
+      padding-left: $default-padding-left - 26px;
+      padding-right: $default-padding-right - 26px;
+      width: 25%;
+      a{
+        display: block;
+        padding: 34px 20px;
+        height: $default-height + 220px;
+        border: 2px solid $graye-color;
+      }
+      a:hover{
+        border-color: $blue-color;
+        p{
+          color: $blue-color;
+        }
+      }
+      h3{
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        margin-left: -35px;
+        width: 70px;
+        color: $blue-color;
+        font-size: $text-font-size - 2px;
+        background: $white-color;
+      }
+      p{
+        padding-top: $default-padding-top + 30px;
+        color: $gray9-color;
+        font-size: $text-font-size - 6px;
+        line-height: $text-line-height - 16px;
+      }
+    }
+  }
+  .home-casus-img{
+    i{
       display: block;
     }
-    h3{
-      color: $gray3-color;
-      font-size: $text-font-size + 4px;
-      line-height: 44px;
+    i:nth-of-type(1){
+      width: 100%;
+      height: $default-height + 30px;
+      background: #eee url(../assets/temp-img1.jpg) no-repeat;
+      background-size: 100%;
     }
-    p,span{
-      color: $gray6-color;
-      font-size: $text-font-size + 4px;
-      line-height: 26px;
+    i:nth-of-type(2){
+      position: absolute;
+      left: 50%;
+      top: 142px;
+      margin-left: -25px;
+      width: $default-width - 50px;
+      height: $default-height - 50px;
+      border-radius: 50%;
+      border: 1px solid $gray9-color;
+      background: #eee url(../assets/temp-img2.jpg) no-repeat;
+      background-size: 100%;
     }
-    span{
-      text-decoration: underline;
-    }
-    i{
-      width: 80px; height: 80px;
-      background: url(../assets/home_f.png) no-repeat;
-    }
-    .homef-business{
-      background-position: 0 0;
-    }
-    .homef-developer{
-      background-position: -80px 0;
-    }
-    .homef-openmarket{
-      background-position: -160px 0;
-    }
-  }
-  li:nth-last-child(1){
-    border-right: none;
   }
 }
-.clx{overflow:auto;zoom:1;width:100%;}
+.home-casus-header{
+  position: relative;
+  padding-bottom: $default-padding-bottom - 20px;
+  text-align: center;
+  h3{
+    width: 160px;
+    margin: 0 auto;
+    font-size: $text-font-size + 10px;
+    background: $white-color;
+  }
+  i{
+    display: block;
+    position: absolute;
+    top: 16px;
+    width: 100%;
+    height: 1px;
+    background: $grayf-color;
+    z-index: -1;
+  }
+}
