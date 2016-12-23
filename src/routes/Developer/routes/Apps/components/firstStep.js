@@ -23,17 +23,15 @@ class WizardFormFirstPage extends React.Component {
   async imgUpload(e) {
     let data = new FormData()
     data.append('fileName', e.target.files[0])
+    console.log(typeof(data))
     const url = getDomain(
       "http://api.intra.",
       "ffan.net/bo/v1/web/photo/upload"
     )
-    const imgObj = await fetch(url, {
-      method: "POST",
-      body: data
-    })
-    const img = await imgObj.json();
-    const imgUrl = img.data.url
-    //console.log(imgUrl)
+    const imgObj = await fetchUtil.postJSON(url,data,{"type":"formData"})
+    const imgUrl = imgObj.data.url
+    console.log(imgUrl)
+    
     this.setState({ imgUrl: imgUrl })
     this.props.getImgSrc(imgUrl)
   }
