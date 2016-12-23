@@ -11,6 +11,7 @@
   margin-top: 16px;
   width: 876px;
   h2{
+    @include clx;
     font-size: $text-font-size - 2px;
     line-height: $text-line-height + 20px;
     color: $black-color;
@@ -29,10 +30,10 @@
     }
   }
   ul{
-    @include clx;
+//  @include clx;
     li{
-      float: left;
-      width: 100% / 3;
+//    float: left;
+//    width: 100% / 3;
     }
   }
 }

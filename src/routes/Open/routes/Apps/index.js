@@ -105,7 +105,7 @@ class Container extends React.Component {
                 </p>
               </form>
             </h2>
-            <ul className="clx">
+            <ul>
             {
               this.state.apps.map((item, index) => {
                 return (
