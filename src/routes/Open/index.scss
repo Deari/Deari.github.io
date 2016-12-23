@@ -1,5 +1,45 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
+@mixin sub-nav{
+  @include float-left;
+  width: 210px;
+  height: 600px;   //暂时占位
+  background: $white-color;
+}
+@mixin sub-container{
+  @include float-right;
+  margin-top: 16px;
+  width: 876px;
+  h2{
+    font-size: $text-font-size - 2px;
+    line-height: $text-line-height + 20px;
+    color: $black-color;
+    form{
+      @include float-right;
+      font-size: $text-font-size - 6px;
+      color: $gray9-color;
+      p{
+        @include float-left;
+        padding: 0 4px;
+      }
+      select{
+        display: inline-block;
+        height: 28px;
+      }
+    }
+  }
+  ul{
+    @include clx;
+    li{
+      float: left;
+      width: 100% / 3;
+    }
+  }
+}
+@mixin sub-container-banner{
+  width: 100%;
+  height: $default-height + 176px;
+}
 .Detail-container{
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
     width: $default-width + 50px;
