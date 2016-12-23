@@ -6,7 +6,7 @@ export default class Clock extends Component {
 
   style = {
     color     : 'white',
-    fontSize  : '30px',
+    fontSize  : '20px',
     fontWeight: '400',
     lineHeight: '100px',
     textAlign : 'center',
@@ -16,10 +16,10 @@ export default class Clock extends Component {
   }
 
   state = { time: '' }
-
   componentDidMount() {
+    const that = this
     this.timer = setInterval(() => {
-      this.setState({ time: moment().format('hh:mm:ss') })
+      this.setState({ time: moment().format(that.formatString) })
     }, 1000)
   }
 
@@ -28,7 +28,9 @@ export default class Clock extends Component {
   }
 
   render() {
-    console.log(this.props.layout)
+    const width = this.props.layout.w
+    //console.log(this.props.layout)
+    this.formatString = (width == 1) ? 'hh:mm:ss' : 'YYYY-MM-DD hh:mm:ss'
     return <div style={this.style}>{this.state.time}</div>
   }
 }
