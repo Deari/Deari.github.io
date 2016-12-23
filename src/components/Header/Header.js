@@ -31,7 +31,9 @@ const NavRules = [
   }
 ];
 
-export const Header = ({location}) => {
+export const Header = ({location, hideHeader}) => {
+
+  if (hideHeader) return <div></div>
   const path = location.pathname;
   let nav, title;
 
@@ -46,7 +48,7 @@ export const Header = ({location}) => {
     <div className='header-wrapper'>
       <div className='header-bg'></div>
       <div className='g-header container'>
-        <h1 className="navbar-brand">
+        <h1>
           <Link to='/'>
             <i></i><span>BO开放平台</span>
           </Link>

@@ -1,17 +1,5 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
-  .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  @include navselect-bottom;
-  } 
-
-.navbar-nav{
-  .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  }   
-}
 //header new style begin
 $border-bule-color:#2692FB;
 $zindex:0;
@@ -36,36 +24,43 @@ $header-height:70px;
     @include absolute;
     @include position-direction;
     background: $white-color;
-    border-top: 2px solid $border-bule-color;
+    border-top: 2px solid $blue-color;
     height: $header-height + 7;
   }
   .g-header {
     height: $header-height + 7;
     h1 {
       @include float-left;
-      font-size: 26px;
+      padding-top : $default-padding-right - 25;
+      font-size: $text-font-size + 6;
+      a{
+          color: $blue-color;
+      }
+      i {
+        display: inline-block;
+        margin-right: $default-padding-right - 22;
+        width: $default-width - 57;
+        height: $default-height - 56;
+        background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
+        background-size: 100%;
+        vertical-align:sub;
+      }
     }
   }
 }
 
-.g-header {
-  h1{
-    @include float-left;
-    font-size: 26px;
-    a{
-      color: $blue-color;
-      padding-right:16px;
-      i {
-        display: inline-block;
-        margin-right: 6px;
-        width: 36px;
-        height: 36px;
-        background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
-        background-size: 100%;
-        vertical-align: sub;
-      }
-    }
-  }
+
+ .route--active {
+  font-weight: bold;
+  color: $blue-color;
+  @include navselect-bottom;
+  } 
+
+.navbar-nav{
+  .route--active {
+  font-weight: bold;
+  color: $blue-color;
+  }   
 }
 //二级导航
 .nav-second{

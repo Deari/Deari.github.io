@@ -3,7 +3,8 @@ import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
 import Detail from '../../containers/DetailContainer'
 
-import './Editor.scss'
+import './MobileEditor.scss'
+
 
 export class Editor extends Component {
 
@@ -13,16 +14,15 @@ export class Editor extends Component {
 
   render() {
     const { product } = this.props
-    return <div className="bg-gray height-100" id="editor-container">
-            <div className="height-100">
-              <div className="cContent height-100 clx">
-                <div id="editor-main clx" className="height-100">
-                  <div className="col-sm-2 col-md-2 navThird">
+    return <div id="mobile-editor-container">
+              <div className="cContent">
+                <div id="editor-main">
+                  <div className="navThird">
                     <div className="nav-fixed">
                       <ul className="sub-nav">
                         <li className="navThirdHover">我的店铺组件</li>
                       </ul>
-                      <div className="sub-nav-menu">
+                      <div className="sub-nav-menu scrollbar">
                         <div className="sub-content clx">
                           <Product {...product}/>
                         </div>
@@ -33,24 +33,19 @@ export class Editor extends Component {
                         </div>
                     </div>
                   </div>
-                  <div className="col-sm-8 col-md-8 height-100">
-                    <div className="bg-white height-100">
-                      <div className="editor-view">
-                        <Preview/>
-                        <button onClick={::this.props.fetchProducts}>fetch</button>
-                      </div>
-                    </div>
+                  <div className="editor-view">
+                    <Preview/>
+                    {/*<button onClick={::this.props.fetchProducts}>fetch</button>*/}
                   </div>
-                   <div className="col-sm-2 col-md-2 bg-white">
-                      <div className="nav-fixed">
-                        <div className="editor-right sub-nav-menu">
-                          <Detail/>
-                        </div>
-                      </div>
-                  </div>
+                   {/*<div className="col-sm-2 col-md-2 bg-white">*/}
+                      {/*<div className="nav-fixed">*/}
+                        {/*<div className="editor-right sub-nav-menu">*/}
+                          {/*<Detail/>*/}
+                        {/*</div>*/}
+                      {/*</div>*/}
+                  {/*</div>*/}
                 </div>
               </div>
-            </div>
         </div>
   }
 }
