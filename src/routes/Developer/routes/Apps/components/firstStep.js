@@ -77,31 +77,30 @@ class WizardFormFirstPage extends React.Component {
           label="应用名称"
           />
         <div>
-          <label>应用图片</label>
-          <div>
-            <p>请上传应用高清图片</p>
-            <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-            <div className="img-container">
-              <img src={this.state.imgUrl} alt="上传图片" className="img-thumbnail" />
-            </div>
-            <span className="sl-custom-file">
-              <input type="button" className="btn btn-primary" value="选择图片" />
-              <input type="file" className="ui-input-file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)} />
-            </span>
-          </div>
+        	<label>应用图片</label>
+        	<div>
+        		<p>请上传应用高清图片</p>
+				<p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+			    <span>
+			      <input type="button" value="选择文件"/>
+			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
+			    </span>
+        		<div className="img-container">
+			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
+			    </div>
+        	</div>
         </div>
-        <Field name="appDesc" type="text" component={renderField}
+        <Field name="appDesc" type="text" component={renderTextArea}
           label="应用简介"
           />
         <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr} />
         <div>
-          <label>产品标签:</label>
+          <label>产品标签</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
-
-        <div>
-          <button type="submit" className="next">Next</button>
-        </div>
+        <div className="btn_submit">
+          <button type="submit" className="next">下一步</button>
+        </div> 
       </form>
     )
   }

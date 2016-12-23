@@ -5,10 +5,14 @@ class WizardFormFirstPage extends React.Component {
   
   render(){
     return(
-      <div>
+      <div className="step_finish">
         <i></i>
         <span>提交成功，等待审核</span>
-        <a href="/developer/apps">完成</a>
+        <div className="btn_submit btn_submit_two">
+        	<a href="/developer/apps">
+        		<button>完成</button>
+        	</a>
+        </div>
       </div>
      
     )
