@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1482395829065'); /* IE9*/
-  src: url('iconfont.eot?t=1482395829065#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1482395829065') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1482395829065') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1482395829065#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1482484826230'); /* IE9*/
+  src: url('iconfont.eot?t=1482484826230#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1482484826230') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1482484826230') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1482484826230#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -13,7 +13,6 @@
   font-style:normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  vertical-align: middle;
 }
 
 .icon-user:before { content: "\e600"; }
@@ -30,7 +29,7 @@
 
 .icon-success:before { content: "\e62a"; }
 
-.icon-yonghu:before { content: "\e605"; }
+.icon-team:before { content: "\e605"; }
 
 .icon-member-management:before { content: "\e63e"; }
 
@@ -44,7 +43,7 @@
 
 .icon-hot-control:before { content: "\e644"; }
 
-.icon-arrU:before { content: "\e645"; }
+.icon-toparrow:before { content: "\e645"; }
 
 .icon-data-analysis:before { content: "\e647"; }
 

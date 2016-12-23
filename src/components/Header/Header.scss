@@ -35,7 +35,7 @@ $header-height:70px;
     z-index: $zindex - 1;
     @include absolute;
     @include position-direction;
-    background: $bg-white-color;
+    background: $white-color;
     border-top: 2px solid $border-bule-color;
     height: $header-height + 7;
   }
