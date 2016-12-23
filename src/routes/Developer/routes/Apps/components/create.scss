@@ -33,11 +33,14 @@
         span:last-child{
             font-size: 14px; 
             color: #666666;
-        }
+        } 
       }
       .branch.active{
           span:first-child{
            background: -webkit-linear-gradient(#57acff,#2692fb);
+          }
+          span:last-child{
+            color: #2692fb;
           }
       }
       .branchBox_line{
