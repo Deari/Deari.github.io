@@ -1,18 +1,51 @@
-.branchBox{
-  overflow: hidden;
-}
-.branch{
-  width: 67px;
-  height:67px;
-  border-radius: 50%;
-  background-color: #c2c6d0;
-  text-align: center;
-  line-height: 67px;
-  float:left;
-  color:#fff;
-  font-size: 26px;
-  margin: 0 50px;
-}
-.active{
-  background-color: blue;
+.step{
+    width: 876px; 
+    float: right; 
+    background: #fff; 
+    padding: 0 15px;
+    h2{
+        font-size: 16px; 
+        color: #000000; 
+        height: 49px; 
+        line-height: 49px; 
+        padding-left: 11px;
+    }
+    .branchBox{
+      background: #eff3f3; 
+      padding: 25px 52px 12px; 
+      overflow: hidden;
+      .branch{
+        float:left; 
+        text-align: center;
+        span:first-child{
+            width: 67px; 
+            height: 67px; 
+            display: block; 
+            border-radius: 50%; 
+            background: #c2c6d0; 
+            box-shadow: 5px 5px 5px rgba(209,211,218,0.23) inset;
+            font-size: 35px; 
+            color: #fff; 
+            line-height: 67px; 
+            text-align: center; 
+            margin: 0 27px 10px;
+        }
+        span:last-child{
+            font-size: 14px; 
+            color: #666666;
+        }
+      }
+      .branch.active{
+          span:first-child{
+           background: -webkit-linear-gradient(#57acff,#2692fb);
+          }
+      }
+      .branchBox_line{
+          width: 180px; 
+          height: 2px; 
+          background: #bbbfca; 
+          float: left; 
+          margin-top: 32px;
+      }
+    }
 }
