@@ -1,67 +1,52 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import Category from '../../../../components/category'
+import fetchUtil from '../../../utils/fetchUtil'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: [
-        {categoryId: 1, categoryName: '分类一'},
-        {categoryId: 2, categoryName: '分类二'},
-        {categoryId: 3, categoryName: '分类三'},
-        {categoryId: 4, categoryName: '分类四'},
-        {categoryId: 5, categoryName: '分类五'},
-      ],
-      "apps": [
-        { 
-          "appId": 111,
-          "appType": 10,
-          "appName": "app1",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 222,
-          "appType": 11,
-          "appName": "app2",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 333,
-          "appType": 12,
-          "appName": "app3",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 444,
-          "appType": 13,
-          "appName": "app4",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 555,
-          "appType": 14,
-          "appName": "app5",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 666,
-          "appType": 15,
-          "appName": "app6",
-          "appLogo": " ",
-        },
-      ]
+      category: [],
+      "apps": []
     }
   }
-  selectCategory(item) {
-    var category = this.state.category;
-    for (var i=0; i<category.length; i++) {
-      if (category[i].categoryId === item.categoryId) {
-        category[i].checked = true;
-      } else {
-        category[i].checked = false;
-      }
+  getCategory() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  getList(categoryId) {
+    var categoryId = categoryId || 'all';
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/market/category/${categoryId}/apps`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  async componentDidMount() {
+    try {
+      let result = await Promise.all([this.getCategory(), this.getList()]);
+      result[0].data.list.unshift({
+        categoryId: 'all',
+        categoryName: '全部分类'
+      })
+      this.setState({
+        category: result[0].data.list,
+        apps: result[1].data.list,
+      })
+    } catch (e) {
+      console.log("e ", e);
     }
-    this.setState({category: category});
+  }
+  async changeSelect(categoryId) {
+    try {
+      const res = await this.getList(categoryId);
+      if (res.status === 200) {
+        res.data && this.setState({apps: res.data.list ? res.data.list : ''});
+      } else {
+        window.alert(res.msg);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
   }
   render () {
     return (
@@ -69,39 +54,30 @@ class Container extends React.Component {
         <div className="nav-second container">
           <div className="cContent row">
             <div className="navThird col-md-2 col-sm-2">
-              <ul>
-                <li className="">
-                  全部分类
-                  <ul>
-                  {
-                    this.state.category.map((item, index) => {
-                      return <li className={item.checked ? 'navThirdHover' : ''}
-                                 onClick={this.selectCategory.bind(this, item)}
-                                 key={item.categoryId}>{item.categoryName}</li>
-                    })
-                  }
-                  </ul>
-                </li>
-              </ul>
+              <Category data={this.state.category} onChangeSelect={this.changeSelect.bind(this)}/>
             </div>
             <div className="col-md-10 col-sm-10">
               <div className="ccContent">
-                <ul>
-                {
-                  this.state.apps.map((item, index) => {
-                    return (
-                      <li className="col-md-3 ">
-                        <Link to={'/open/apps/detail/' + item.appId}>
-                          <img className="" src={item.appLogo} alt="LOGO"/>
-                          <p>{item.appName}</p>
-                          <span>{item.appType}</span>
-                        </Link>
-                        <Link><button className="btn">下载dfd</button></Link>
-                      </li>
-                    )
-                  })
+                { 
+                  this.state.apps && this.state.apps.length > 0 ?
+                  <ul>
+                  {
+                    this.state.apps.map((item, index) => {
+                      return (
+                        <li>
+                          <Link to={'/open/apps/detail/' + item.appId}>
+                            <img src={item.appLogo} alt="LOGO"/>
+                            <span>{item.appName}</span>
+                            <span>{item.appType}</span>
+                          </Link>
+                          <a href={item.fileLink} target="_blank" download=""><button className="btn">下载</button></a>
+                        </li>
+                      )
+                    })
+                  }
+                  </ul> :
+                  <div>敬请期待</div>
                 }
-                </ul>
               </div>
             </div>
           </div>

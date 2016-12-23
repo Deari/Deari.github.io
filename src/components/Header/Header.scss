@@ -104,6 +104,7 @@ $header-height:70px;
       line-height: $navThirdLi-height;
       li{
         @include line-bottom;
+        color: #333;
         padding-left: $navThirdli-padding-left;
         height: $navThirdLi-height;
         line-height: $navThirdLi-height;
