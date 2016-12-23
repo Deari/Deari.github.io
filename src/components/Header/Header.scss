@@ -12,26 +12,43 @@
   color: $blue-color;
   }   
 }
+//header new style begin
+$border-bule-color:#2692FB;
+$zindex:0;
+$header-height:70px;
+@mixin position-direction{
+    top: 0;
+    right: 0;
+    left: 0;
+}
+@mixin absolute{
+  position:absolute;
+}
+@mixin fixed{
+  position:fixed;
+}
 .header-wrapper {
-    position: fixed;
-    z-index: 9;
-    top: 0;
-    right: 0;
-    left: 0;
-    box-shadow: 0 0 16px -4px #bec0c7;
+  z-index: $zindex + 1;
+  @include fixed;
+  @include position-direction;
+  .header-bg {
+    z-index: $zindex - 1;
+    @include absolute;
+    @include position-direction;
+    background: $bg-white-color;
+    border-top: 2px solid $border-bule-color;
+    height: $header-height + 7;
+  }
+  .g-header {
+    height: $header-height + 7;
+    h1 {
+      @include float-left;
+      font-size: 26px;
+    }
+  }
 }
-.header-bg {
-    background: #fff;
-    border-top: 2px solid $blue-color;
-    position: absolute;
-    z-index: -1;
-    height: 70px;
-    top: 0;
-    left: 0;
-    right: 0;
-}
+
 .g-header {
-  height: $default-height - 30px;
   h1{
     @include float-left;
     font-size: 26px;
