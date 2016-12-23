@@ -7,9 +7,13 @@ class Tags extends React.Component {
   };
 
   selectTag(item) {
-    item.checked = true;
-    this.state.checkedTag.push(item);
+    item.checked = !item.checked;
     this.forceUpdate();
+    if (item.checked) {
+      this.state.checkedTag.push(item);      
+    }else{
+      this.state.checkedTag.pop(item);
+    }
     this.props.onChecked(this.state.checkedTag)
   }
   render() {
