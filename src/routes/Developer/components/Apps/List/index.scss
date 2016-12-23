@@ -9,8 +9,8 @@
 .list-title {
   height: 48px;
   line-height: 48px;
-  background: $bg-gray-color;
-  border-top: $border-top;
+  background: $grayf-color;
+  @include border-top;
 }
 .no-padding-left {
   padding-left: 0px;
