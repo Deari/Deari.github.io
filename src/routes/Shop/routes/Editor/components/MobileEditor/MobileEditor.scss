@@ -19,17 +19,17 @@ $bg-phone-height:642px;
   background-color: #F2F2F2;
 }
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar,#mobile-editor-container .shop-info::-webkit-scrollbar
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar
 {
   width: 15px;
   background-color: #F2F2F2;
 }
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-thumb,#mobile-editor-container .shop-info::-webkit-scrollbar-thumb
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-thumb
 {
   background-color: #D7D7D7;
 }
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar,#mobile-editor-container .shop-info::-webkit-scrollbar
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar
 {
   width: 15px;
   background-color: #F2F2F2;
@@ -56,16 +56,15 @@ $bg-phone-height:642px;
     line-height: 33px;
   }
   .preview{
-    position:relative;
-    width:$bg-phone-width;
-    margin:0 auto;
-    padding-top:$default-padding-top;
-    padding-bottom:$default-padding-bottom;
+    position: relative;
+    width: 280px;
+    margin: 0 auto;
+    padding-top: 7px;
+    padding-bottom:7px;
   }
   .bg-phone{
-    width: 354px;
-    height: 642px;
-    margin: 0 auto;
+    width: 280px;
+    height: 507px;
     background-size: 100%;
     margin:0 auto;
     background-image:url(../../../../../Home/assets/bg_phone.png);
@@ -74,10 +73,10 @@ $bg-phone-height:642px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -155px;
-    margin-top: -246px;
-    width: 313px;
-    height: 467px;
+    margin-left: -123px;
+    margin-top: -194px;
+    width: 248px;
+    height: 368px;
     background: #f6f5f5;
     overflow-y: scroll;
   }
@@ -153,7 +152,14 @@ $bg-phone-height:642px;
 @media (max-width:768px) {
   #mobile-editor-container {
     .shop-info{
-      margin-top: -246px;
+      margin-top: -195px;
+    }
+    .preview{
+      position: relative;
+      width: 280px;
+      margin: 0 auto;
+      padding-top: 40px;
+      padding-bottom: 40px;
     }
   }
 }
@@ -174,8 +180,8 @@ $bg-phone-height:642px;
       position: absolute;
       top: 0;
       bottom: 0;
-      margin-left: 25%;
-      width: 75%;
+      margin-left: 26%;
+      width: 74%;
       background: #fff;
   }
 
