@@ -45,7 +45,7 @@ export class Preview extends Component {
                                   className={className}
                                   onClick={this.props.selectElement.bind(null, e.id)}
                                   data-grid={this.generateLayout(e)}>
-      <Element {...e} />
+      <Element {...e} layout={this.generateLayout(e)}/>
     </div>})
   }
 
