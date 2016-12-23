@@ -9,29 +9,29 @@ $bg-phone-height:642px;
  **************************/
 
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-track
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-track,#mobile-editor-container .shop-info::-webkit-scrollbar-track
 {
   background-color: #F2F2F2;
 }
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-track
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-track,#mobile-editor-container .shop-info::-webkit-scrollbar-track
 {
   background-color: #F2F2F2;
 }
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar,#mobile-editor-container .shop-info::-webkit-scrollbar
 {
-  width: 12px;
+  width: 15px;
   background-color: #F2F2F2;
 }
 
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-thumb
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar-thumb,#mobile-editor-container .shop-info::-webkit-scrollbar-thumb
 {
   background-color: #D7D7D7;
 }
-#mobile-editor-container .sub-nav-menu::-webkit-scrollbar
+#mobile-editor-container .sub-nav-menu::-webkit-scrollbar,#mobile-editor-container .shop-info::-webkit-scrollbar
 {
-  width: 12px;
+  width: 15px;
   background-color: #F2F2F2;
 }
 
@@ -60,10 +60,11 @@ $bg-phone-height:642px;
     width:$bg-phone-width;
     margin:0 auto;
     padding-top:$default-padding-top;
+    padding-bottom:$default-padding-bottom;
   }
   .bg-phone{
-    width: 236px;
-    height: 428px;
+    width: 354px;
+    height: 642px;
     margin: 0 auto;
     background-size: 100%;
     margin:0 auto;
@@ -73,10 +74,10 @@ $bg-phone-height:642px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -103px;
-    margin-top: -144px;
-    width: 208px;
-    height: 311px;
+    margin-left: -155px;
+    margin-top: -246px;
+    width: 313px;
+    height: 467px;
     background: #f6f5f5;
     overflow-y: scroll;
   }
@@ -149,7 +150,13 @@ $bg-phone-height:642px;
   }
   .editor-right{}
 }
-
+@media (max-width:768px) {
+  #mobile-editor-container {
+    .shop-info{
+      margin-top: -246px;
+    }
+  }
+}
 /**************************
  * editor-main
  **************************/
@@ -164,7 +171,7 @@ $bg-phone-height:642px;
   }
 
   .editor-view {
-      position: fixed;
+      position: absolute;
       top: 0;
       bottom: 0;
       margin-left: 25%;
