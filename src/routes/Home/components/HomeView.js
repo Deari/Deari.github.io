@@ -40,21 +40,21 @@ export const HomeView = () => (
           </li>
           <li>
             <a>
-              <p>应用市场</p>
+              <p>组件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
             <a>
-              <p>应用市场</p>
+              <p>API市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
             <a>
-              <p>应用市场</p>
+              <p>硬件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
