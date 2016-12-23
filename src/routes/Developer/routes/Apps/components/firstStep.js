@@ -98,16 +98,9 @@ class WizardFormFirstPage extends React.Component {
           <label>产品标签</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
-<<<<<<< HEAD
-
-        <div>
-          <button type="submit" className="next">Next</button>
-        </div>
-=======
         <div className="btn_submit">
           <button type="submit" className="next">下一步</button>
         </div> 
->>>>>>> 74699417c14f03686841b1b43c48fae710b692ae
       </form>
     )
   }
