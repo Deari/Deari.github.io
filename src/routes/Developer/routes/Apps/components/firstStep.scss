@@ -4,7 +4,48 @@
     line-height: 46px;
   }
 }
+@mixin submit_btn{
+    width: 132px;
+    height: 35px;
+    background: #1a8ffe;
+    border-radius: 2px;
+    border: 0;
+    font-size: 13px;
+    color: #fff;
+    line-height: 35px;
+    text-align: center;
+    margin: 30px auto;
+    display: block;
+    cursor: pointer;
+}
+@mixin btn_submit{
+    margin: 0 14px;
+    height: 129px;
+    border-top: 1px solid #ededed;
+    button{
+      @include submit_btn;
+    }
+}
+@mixin btn_submit_two{
+    div{
+        width: 276px;
+        margin: 30px auto;
+        float: inherit;
+        button{
+            @include submit_btn;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        button:last-child{
+            margin-right: 0;
+        }
+    }
+}
 form{
+    width: 876px; 
+    float: right; 
+    padding: 0 15px;
+    background: #fff;
     div{
         margin: 28px 0 45px; 
         overflow: hidden;
@@ -21,7 +62,7 @@ form{
         div{
             margin: 0;
             float: left;
-            input{
+            input[type="text"]{
                 width: 549px; 
                 height: 29px; 
                 font-size: 15px; 
@@ -29,16 +70,111 @@ form{
                 border: 1px solid #313131; 
                 padding-left: 9px;
             }
+            textarea{
+                width: 549px; 
+                height: 140px; 
+                border: 2px solid #dddddd; 
+                resize: none;
+            }
+            select{
+                 width: 372px; 
+                 height: 28px; 
+                 font-size: 13px;  
+                 padding: 0 8px; 
+            }
             p{
                 font-size: 13px; 
                 color: #999999; 
                 line-height: 24px;
             }
+            span{
+                display: block;
+                position: relative;
+                cursor: pointer;
+                input[type="button"]{
+                    width: 130px; 
+                    height: 33px; 
+                    line-height: 30px; 
+                    text-align: center; 
+                    font-size: 14px; 
+                    color: #000000; 
+                    display: block; 
+                    border: 1px solid #000; 
+                    border-radius: 2px; 
+                    background: #fff; 
+                    position: relative; 
+                    margin: 20px 0 23px;
+                    cursor: pointer;
+                }
+                input[type="file"]{
+                    width: 130px; 
+                    height: 33px; 
+                    position: absolute; 
+                    left: 0; 
+                    top: 0; 
+                    opacity: 0; 
+                    filter: alpha(opacity=0); 
+                    cursor: pointer;
+                }
+            }
+            div.img-container{
+                img{
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+            .tags-container{
+                li{
+                    width: 74px;
+                    height: 29px;
+                    line-height: 29px;
+                    font-size: 13px;
+                    color: #aaaaaa;
+                    text-align: center;
+                    border: 1px solid #a0a0a0;
+                    border-radius: 2px;
+                    &.active,&:hover{
+                        background-color: dodgerblue;
+                        color: #fff;
+                        border-color: dodgerblue;
+                    }
+                }
+            }
         }
     }
+    div.btn_submit{
+       @include btn_submit;
+    } 
+    /*第二、三步公用样式*/
+    div.btn_submit_two{
+       @include btn_submit_two;
+    } 
+}
+/*第三步*/
+.step_finish{
+    width: 876px; 
+    height: 239px;
+    font-size: 13px;
+    color: #000000;
+    line-height: 239px;
+    text-align: center;
+    float: right; 
+    padding: 0 15px;
+    background: #fff;
+    i{
+        width: 66px;
+        height: 66px;
+        background: url(../../../../Home/assets/success.png) no-repeat;
+        background-size: 100%;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 25px;
+    }
+    div.btn_submit{
+       @include btn_submit;
+    } 
+    div.btn_submit_two{
+       @include btn_submit_two;
+    } 
 }
 
-.sl-custom-file{
-  width: 130px; height: 33px; line-height: 33px; text-align: center; font-size: 14px; color: #000000; display: block; border: 1px solid #000; border-radius: 2px; background: #fff; position: relative; margin: 20px 0 23px;
-  
-}

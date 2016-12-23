@@ -30,12 +30,17 @@ class WizardFormSecondPage extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-        <div className="form-group row">
-          <input type="file" className="form-control-file form-control-sm upload-btn" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
-        </div>
         <div>
-          <button type="button" className="previous" onClick={previousPage}>Previous</button>
-          <button type="submit" className="next" disabled={pristine || submitting}> 提交</button>
+        	<label>应用文件</label>
+        	<div className="form-group">
+	          <input type="file" className="form-control-file form-control-sm upload-btn" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
+	        </div>
+        </div>
+        <div className="btn_submit btn_submit_two">
+        	<div>
+	          <button type="button" className="previous" onClick={previousPage}>上一步</button>
+	          <button type="submit" className="next" disabled={pristine || submitting}> 提交</button>
+        	</div>
         </div>
       </form>
     ) 
