@@ -5,50 +5,17 @@
   width: 120px;
   margin: 1.5rem auto;
 }
-.banner{
-  height:460px;
-  background: url(../assets/home_bannerbg.jpg) no-repeat;
-}
-.login_in{
-  @include float-right;
-  margin: 28px 0px;
-  width: 400px; height: 330px;
-  background: #ffffff;
-  border-radius: 4px;
-  overflow: hidden;
-  form{
-    padding: 20px 40px;
-    input{
-      border-radius: 0;
-    }
-    input:nth-of-type(2){
-      border-top: none;
-    }
-  }
-}
-.loginin_top{
-  height: 66px;
-  line-height: 66px;
-  @include line-bottom;
-  h5{
-    @include float-left;
-    width: 49%;
-    font-size: 18px;
-    line-height: 66px;
-    text-align: center;
-  }
-  span{
-    @include float-left;
-    width: 2%;
-    color: $text-bggray-color;
-  }
+.home-banner{
+  height: $default-height + 360px;
+  background: url(../assets/banner-bg1.jpg) no-repeat;
+  background-size: 100%;
 }
 .home_reminder{
-  height: $reminder-height;
-  line-height: $reminder-height;
-  color: $text-gray6-color;
-  font-size: $homefpSize;
-  background: $bg-gray-color;
+  height: $default-height - 60px;
+  line-height: $text-line-height;
+  color: $gray6-color;
+  font-size: $text-font-size + 4px;
+  background: $grayf-color;
   div{
     span:nth-of-type(1){
       padding-left: 24px;
@@ -71,13 +38,13 @@
 .home_f{
   margin: 19px auto;
   overflow:hidden;
-  border: 1px solid $border-color;
+  border: 1px solid $graye-color;
   .developer_width{
     width:25%;
   }
   li{
     @include float-left;
-    @include line-right;
+    @include border-right;
     margin: 27px 0;
     padding: 0 43px; 
     text-align: center;
@@ -85,13 +52,13 @@
       display: block;
     }
     h3{
-      color: $text-gray3-color;
-      font-size: $homefhSize;
+      color: $gray3-color;
+      font-size: $text-font-size + 4px;
       line-height: 44px;
     }
     p,span{
-      color: $text-gray6-color;
-      font-size: $homefpSize;
+      color: $gray6-color;
+      font-size: $text-font-size + 4px;
       line-height: 26px;
     }
     span{

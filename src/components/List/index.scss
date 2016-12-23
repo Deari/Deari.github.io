@@ -25,21 +25,21 @@
     line-height: $text-line-height - 16px;
     
     .info-name {
-      font-size: $text-font-size - 2px;
-      color: $text-black-color;
+      font-size: $text-font-size - 4px;
+      color: $black-color;
     }
     .info-introduce{
-      font-size: $text-font-size - 4px;
-      color: $text-gray9-color;
+      font-size: $text-font-size - 6px;
+      color: $gray9-color;
     }
     .info-link{
-      font-size: $text-font-size - 2px;
-      color: $text-black-color;
+      font-size: $text-font-size - 4px;
+      color: $black-color;
       text-decoration: underline;
     }
   }
   .info-status{
-    font-size: $text-font-size - 4px;
+    font-size: $text-font-size - 6px;
     line-height: 100px;
     word-break:keep-all;white-space:nowrap;text-overflow:elipsis;
   }

@@ -1,7 +1,7 @@
 import React from 'react'
 //import '../../styles/_base.scss'
 const Mobile = (props, context) => {
-  return <div className="height-100">{props.children}</div>
+  return <div>{props.children}</div>
 }
 
 Mobile.contextTypes = {

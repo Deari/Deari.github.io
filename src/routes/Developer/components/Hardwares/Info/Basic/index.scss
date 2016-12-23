@@ -1,8 +1,13 @@
+.form-container{
+  margin: 40px 0;
+  label{
+    line-height: 46px;
+  }
+}
 .sl-custom-file{
   position:relative;
   display:inline-block;
   zoom:1;
-  padding-top: 10px;
   cursor:pointer;
   overflow:hidden;
   vertical-align:middle;
@@ -19,25 +24,4 @@
   filter:alpha(opacity=0);
   -ms-filter:"alpha(opacity=0)";
   cursor:pointer;
-}
-.selectBox {
-  display: inline-block;
-  overflow: hidden;
-  margin:0 80px;
-  label{
-    text-align: center;
-    float:left;
-     img{     
-      display: block;
-      height:255px;
-      width:200px; 
-      border-radius: 15%;
-      background:#ccc;
-    }
-    img.active{
-      background:blue；
-    }
-  }
- 
- 
 }

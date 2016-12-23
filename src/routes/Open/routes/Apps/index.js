@@ -90,13 +90,13 @@ class Container extends React.Component {
                 {
                   this.state.apps.map((item, index) => {
                     return (
-                      <li>
+                      <li className="col-md-3 ">
                         <Link to={'/open/apps/detail/' + item.appId}>
-                          <img src={item.appLogo} alt="LOGO"/>
-                          <span>{item.appName}</span>
+                          <img className="" src={item.appLogo} alt="LOGO"/>
+                          <p>{item.appName}</p>
                           <span>{item.appType}</span>
                         </Link>
-                        <Link><button className="btn">下载</button></Link>
+                        <Link><button className="btn">下载dfd</button></Link>
                       </li>
                     )
                   })

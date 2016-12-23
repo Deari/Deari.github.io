@@ -44,10 +44,11 @@ export const Header = ({location, hideHeader}) => {
     }
   })
 
-  return <div className="bg-white border-top-bule fixed-top0">
-   <div className="container">
-      <div className='g-header'>
-        <h1 className="navbar-brand">
+  return (
+    <div className='header-wrapper'>
+      <div className='header-bg'></div>
+      <div className='g-header container'>
+        <h1>
           <Link to='/'>
             <i></i><span>BO开放平台</span>
           </Link>
@@ -63,6 +64,6 @@ export const Header = ({location, hideHeader}) => {
         </div>
       </div>
     </div>
-  </div>
+  )
 }
 export default Header

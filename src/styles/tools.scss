@@ -1,6 +1,6 @@
-.float-left { 
-    float: left;
-}
+@import "../layouts/CoreLayout/CoreLayout";
+
+.float-left { float: left;}
 .float-right { float: right;}
 .fixed-top0{
 	position:fixed;
@@ -8,35 +8,35 @@
 	width:100%;
 	z-index:10;
 }
-.padding-top-70{
-  padding-top:70px;
-}
+
 .height-100{height:100%}
 .display-block{ display: block;}
 .display-inlineblock{ display: inline-block;}
 
 .cContent-onenav{ padding: 10px 40px;}
 .margin-bottom{ margin-bottom: 20px;}
+.pt10{ padding-top: 10px;}
+.pb10{ padding-bottom: 10px;}
+.pt40{ padding: 40px 0 10px 0;}
+.pt72{ padding-top: 72px;}   //后期删除
+.padding-top-70{ padding-top:70px;}
+.p40{ padding: 40px;}
 
-.bg-white{
-  background: #ffffff;
-}
-.bg-gray{
-  background: #f6f8f9;
-}
+.bg-white{ background: $white-color;}
+.bg-gray{ background: $grayf-color;}
 
+.text-blue-color{ color: $blue-color;}
+.text-red-color{ color:$red-color;}
+.text-gray9-color{ color: $gray9-color;}
+.text-black-color{ color: $black-color;}
 .container { padding: 0 15px;}
-.row { argin: 0 -15px;}
+.row { margin: 0 -15px;}
 .col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12 {
   position: relative;
   float: left;
   min-height: 1px;
   padding: 0 15px;
 }
-
-
-.pb10{ padding-bottom: 10px;}
-
 .container-full,.core-layout__viewport{
 	height:100%;
 }

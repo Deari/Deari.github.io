@@ -14,7 +14,7 @@ class AppsList extends React.Component {
     }
   }
   async getList() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/app`;
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/apps`;
     try {
       const res = await fetchUtil.getJSON(apiUrl, {reviewStatus: this.state.reviewStatus});
       if(res.status === 200){
@@ -49,14 +49,14 @@ class AppsList extends React.Component {
         <div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className={this.state.reviewStatus === 1 ? 'navThirdHover' : ''}
-                onClick={this.changeList.bind(this, 1)}>待审核</li>
+                onClick={this.changeList.bind(this, 1)}>待审核-应用</li>
             <li className={this.state.reviewStatus === 2 ? 'navThirdHover' : ''}
                 onClick={this.changeList.bind(this, 2)}>已审核</li>
           </ul>
         </div>
         <div className="col-sm-10 col-md-10">
           <div className="ccContent">
-            <Link className="ccContentBtn" to='/developer/apps/create'>
+            <Link className="ccContentBtn" to='/developer/apps/create?'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>
               </div>
