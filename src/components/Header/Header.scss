@@ -1,17 +1,5 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
-  .route--active {
-  font-weight: bold;
-  color: $text-blue-color;
-  @include navselect-bottom;
-  } 
-
-.navbar-nav{
-  .route--active {
-  font-weight: bold;
-  color: $text-blue-color;
-  }   
-}
 //header new style begin
 $border-bule-color:#2692FB;
 $zindex:0;
@@ -35,48 +23,52 @@ $header-height:70px;
     z-index: $zindex - 1;
     @include absolute;
     @include position-direction;
-    background: $bg-white-color;
-    border-top: 2px solid $border-bule-color;
+    background: $white-color;
+    border-top: 2px solid $blue-color;
     height: $header-height + 7;
   }
   .g-header {
     height: $header-height + 7;
     h1 {
       @include float-left;
-      font-size: 26px;
-    }
-  }
-}
-
-.g-header {
-  h1{
-    @include float-left;
-    font-size: 26px;
-    a{
-      color: $text-blue-color;
-      padding-right:16px;
+      padding-top : $default-padding-right - 25;
+      font-size: $text-font-size + 6;
+      a{
+          color: $blue-color;
+      }
       i {
         display: inline-block;
-        margin-right: 6px;
-        width: 36px;
-        height: 36px;
+        margin-right: $default-padding-right - 22;
+        width: $default-width - 57;
+        height: $default-height - 56;
         background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
         background-size: 100%;
-        vertical-align: sub;
+        vertical-align:sub;
       }
     }
   }
 }
+
+
+ .route--active {
+  font-weight: bold;
+  color: $blue-color;
+  @include navselect-bottom;
+  } 
+
+.navbar-nav{
+  .route--active {
+  font-weight: bold;
+  color: $blue-color;
+  }   
+}
 //二级导航
 .nav-second{
-  background: $bg-gray-color;
+  background: $grayf-color;
   .navs-nav{
-    margin: $view-margin;
-    padding-left: $navsecond-padding-left;
-    width: $view-width;
-    height: $navsecond-height;
-    font-size: $navsecond-font-size;
-    line-height: $navsecond-height;
+    height: $default-height - 46px;
+    font-size: $text-font-size - 4px;
+    line-height: $default-height - 46px;
     li{
     @include float-left;
     padding: 0 20px;
@@ -92,22 +84,21 @@ $header-height:70px;
   .navThird{
     padding: 0;
     min-height: 800px;
-    background: $bg-white-color;
+    background: $white-color;
     .navThirdHover{/*选中样式*/
-      color: $text-white-color;
-      background: $bg-blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
+      color: $white-color;
+      background: $blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
       background-size: 6px;
     }
     ul{
-      height: $navThirdLi-height;
-      font-size: $navsecond-font-size;
-      line-height: $navThirdLi-height;
+      height: $default-height - 60px;
+      font-size: $text-font-size - 4px;
+      line-height: $default-height - 60px;
       li{
-        @include line-bottom;
-        color: #333;
-        padding-left: $navThirdli-padding-left;
-        height: $navThirdLi-height;
-        line-height: $navThirdLi-height;
+        @include border-bottom;
+        padding-left: $default-padding-left - 30px;
+        height: $default-height - 60px;
+        line-height: $default-height - 60px;
         background: url(../../routes/Home/assets/more_into_gray.png) no-repeat 10px center;
         background-size: 6px;
         ul{
@@ -122,7 +113,7 @@ $header-height:70px;
   .ccContent{
     padding: 0 10px;
     min-height: 800px;
-    background: $bg-white-color;
+    background: $white-color;
     dt{
       padding-top: 30px;
       font-size: 20px;
@@ -163,7 +154,7 @@ $header-height:70px;
 }
 .navbar-brand {
   float: left;
-  height: $header-height;
+  height: $default-height - 40px;
   padding: 11px 15px;
   font-size: 18px;
 }
@@ -179,8 +170,8 @@ $header-height:70px;
 }
 .navbar-right {
     float: right!important;
-    font-size: $homefhSize - 8;
-    color: $text-blue-color;
+    font-size: $text-font-size - 6px;
+    color: $blue-color;
     span{
       padding:0 5px 0 10px;
       cursor: pointer;
@@ -190,7 +181,7 @@ $header-height:70px;
   .logined{
     padding-top:13px;
     .navbar-right{
-      font-size: $homefhSize - 7;
+      font-size: $text-font-size - 4px;
       color: #999; /*需要在corelayout里添加*/
     }
     span{
@@ -203,17 +194,17 @@ $header-height:70px;
   }
   .nav-list{
     .navbar-right{
-      font-size: $homefhSize - 2;
+      font-size: $text-font-size + 4px;
       a{
         position: relative;
         float: left;
         display: block;
         padding:0 24px;
         line-height: 68px;
-        color:$text-black-color;
+        color:$black-color;
       }
       .route--active{
-        color:$text-blue-color;
+        color:$blue-color;
       }
     }
   }

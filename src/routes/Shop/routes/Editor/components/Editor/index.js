@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
-import './Editor.scss'
-import '../../../../../../styles/_base.scss'
+import Detail from '../../containers/DetailContainer'
 
+import './Editor.scss'
 
 export class Editor extends Component {
 
@@ -13,8 +13,8 @@ export class Editor extends Component {
 
   render() {
     const { product } = this.props
-    return <div className="bg-gray height-100">
-            <div className="myshop-content height-100">
+    return <div className="bg-gray height-100" id="editor-container">
+            <div className="height-100">
               <div className="cContent height-100 clx">
                 <div id="editor-main clx" className="height-100">
                   <div className="col-sm-2 col-md-2 navThird">
@@ -44,7 +44,7 @@ export class Editor extends Component {
                    <div className="col-sm-2 col-md-2 bg-white">
                       <div className="nav-fixed">
                         <div className="editor-right sub-nav-menu">
-                          right
+                          <Detail/>
                         </div>
                       </div>
                   </div>
