@@ -1,11 +1,15 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect, renderFile}from './renderField'
+import renderField, { renderTextArea, renderSelect}from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
+
 import Tags from '../../../../../components/Tags'
-import './firstStep.scss'
+
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
+
+import './firstStep.scss'
+
 
 class WizardFormFirstPage extends React.Component {
   

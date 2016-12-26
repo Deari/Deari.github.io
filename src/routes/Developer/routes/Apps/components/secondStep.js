@@ -1,7 +1,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea } from './renderField'
+
+import renderField, { renderTextArea } from '../modules/renderField'
 import { validate } from '../modules/validate'
+
 import { getDomain } from '../../../../utils/domain'
 
 class WizardFormSecondPage extends React.Component {

@@ -1,39 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
+
 import { validate, warn } from '../modules/validate'
-import renderField, { renderTextArea } from '../components/renderField'
-import './create.scss'
+
+import FirstStep from '../components/FirstStep'
+import SecondStep from '../components/SecondStep'
+import Complete from '../components/Complete'
+
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import WizardFormFirstPage from './firstStep'
-import WizardFormSecondPage from './secondStep'
-import WizardFormThirdPage from './thirdstep'
 
-const Step = (props)=>(
-  <div className="step">
-  	<h2>发布新应用</h2>
-  	<div className='branchBox'>
-	    <div className={props.page == 1? 'branch active':'branch'}>
-	    	<span>1</span>
-	    	<span>填写基本信息</span>
-	    </div>
-	    <div className="branchBox_line"></div>
-	    <div className={props.page == 2? 'branch active':'branch'}>
-	    	<span>2</span>
-	    	<span>填写版本信息</span>
-	    </div>
-	    <div className="branchBox_line"></div>
-	    <div className={props.page == 3? 'branch active':'branch'}>
-	    	<span>3</span>
-	    	<span>提交成功</span>
-	    </div>
-  	</div>
-  </div>
-)
-
-
-class ContactForm extends Component {
+class CreateContainer extends Component {
   state={
     page: 1,
     appLogo:'',
@@ -160,24 +138,27 @@ class ContactForm extends Component {
       <div>
         <Step page={page}/>
         {
-          page === 1 && <WizardFormFirstPage 
-                          onSubmit={this.firstPageSubmit} 
-                          getParams={::this.onGetParams} 
-                          getImgSrc={::this.getImgUrl}
-                          initialValues={initialValue}
-                          initImgUrl={imgUrl}
-                          initCheckedTags={checked}
-                          />
+          page === 1 && 
+            <FirstStep 
+              onSubmit={this.firstPageSubmit} 
+              getParams={::this.onGetParams} 
+              getImgSrc={::this.getImgUrl}
+              initialValues={initialValue}
+              initImgUrl={imgUrl}
+              initCheckedTags={checked}
+            />
         }
         {
-          page === 2 && <WizardFormSecondPage 
-                          previousPage={this.previousPage} 
-                          onSubmit={this.secondPageSubmit} 
-                          getParams={::this.fileSelected}
-                          />
+          page === 2 && 
+            <SecondStep 
+              previousPage={this.previousPage} 
+              onSubmit={this.secondPageSubmit} 
+              getParams={::this.fileSelected}
+            />
         }
         {
-          page === 3 && <WizardFormThirdPage previousPage={this.previousPage}/>
+          page === 3 && 
+          <Complete previousPage={this.previousPage}/>
         }
       </div>
     );
@@ -185,5 +166,4 @@ class ContactForm extends Component {
 }
 
 
-export default ContactForm;
-
+export default CreateContainer;
