@@ -1,0 +1,67 @@
+@import "../../layouts/CoreLayout/CoreLayout";
+
+.sidebar{
+  position: fixed;
+  top: 77px;
+  bottom: 0;
+  width: $default-width + 110;
+  padding :0 $default-padding-left - 30;
+  background: $white-color;
+  .create-btn{
+    display: block;
+    width: $default-width + 30;
+    height: $default-height - 70;
+    margin: $default-margin-top - 1 auto $default-margin-bottom - 6;
+    border: 1px solid $blue-color;
+    font-size: $text-font-size - 5;
+    color: $blue-color;
+    text-align: center;
+    line-height: $text-line-height - 10;
+    border-radius: 2px;
+    i{
+      padding-right: $default-padding-right - 36;
+    }
+  }
+  .help-menu{
+    border-top: 1px solid $graye-color;
+    li{
+      padding: $default-padding-top - 25 $default-padding-left - 30;
+      font-size: $text-font-size - 5;
+      border-bottom: 1px solid $graye-color;
+      cursor: pointer;
+      i{
+        padding-right: $default-padding-right - 34;
+      }
+      &:hover{
+        color: $blue-color;
+        border-bottom: 1px solid $blue-color;
+      }
+    }
+    .active{
+      color: $white-color;
+      background: $blue-color;
+      border-radius: 2px;
+    }
+  }
+  .tag-list{
+    margin-top: $default-margin-top - 10;
+    li{
+      padding: $default-padding-top - 25 $default-padding-left - 30;
+      font-size: $text-font-size - 5;
+      cursor: pointer;
+      border-bottom: 1px solid $white-color;
+      i{
+        padding-right: $default-padding-right - 34;
+      }
+      &:hover{
+        color: $blue-color;
+        border-bottom: 1px solid $blue-color;
+      }
+    }
+    .active{
+      color: $white-color;
+      background: $blue-color;
+      border-radius: 2px;
+    }
+  }
+}
