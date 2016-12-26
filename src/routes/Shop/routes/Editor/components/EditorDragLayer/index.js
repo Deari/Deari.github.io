@@ -11,6 +11,7 @@ const layerStyles = {
   width: '100%',
   height: '100%',
   background: "cyan",
+  opacity: 0.4,
 }
 
 function getItemStyles(props) {
@@ -45,8 +46,6 @@ export class ProductDragLayer extends Component {
   }
 
 }
-
-
 
 ProductDragLayer.propTypes = {
   item: PropTypes.object,
