@@ -3,34 +3,20 @@ import { IndexLink, Link } from 'react-router'
 import Doc from './Doc'
 import '../../../../styles/_base.scss'
 import '../../../../components/Header/Header'
+import '../../../Open/routes/Apps/index.scss'
 
 class Container extends React.Component {
   render () {
-    return <div className="bg-gray">
-      <div className="container">
-       <div className="row clx">
-           <div className="col-md-10 col-md-offset-2">
-              <ul className="nav navbar-nav clx">
-                <li>
-                  <IndexLink to='/developer/apps' activeClassName='route--active'>
-                  开发者文档
-                  </IndexLink>
-                </li>
-                <li>
-                  <Link to='/developer/apps/list' activeClassName='route--active'>
-                  我的应用
-                  </Link>
-                </li>
-              </ul>
-           </div>
-       </div>
-      </div>
-      <div className="container pt10">
-        <div className="row">
-          {this.props.children}
-        </div>
-      </div>
-    </div>
+    return 	<div className="core-layout__viewport bg-gray">
+			     		<div className="container clx">
+			     			<div className="sub-nav">
+			     				<ul><li class="">全部分类<ul></ul></li></ul>
+			     			</div>
+			     			<div className="sub-container">
+					          {this.props.children}
+					      </div>
+			     		</div>
+     				</div>
   }
 }
 

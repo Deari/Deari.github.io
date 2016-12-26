@@ -1,0 +1,22 @@
+@import "../../index";
+
+.sub-nav{
+  @include sub-nav;
+}
+.sub-container{
+  @include sub-container;
+  .sub-container-banner{
+    @include sub-container-banner;
+    background: url(../../../Home/assets/sub-container-banner1.jpg) no-repeat;
+    background-size: 100%;
+  }
+  .icon-hot-control{
+    font-size: $text-font-size - 2px;
+  }
+  ul{
+    
+  }
+}
+
+
+
