@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { DragSource } from 'react-dnd'
 
-import './Product.scss'
+
 
 const productSource = {
   beginDrag(props) {

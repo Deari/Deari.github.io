@@ -1,16 +1,14 @@
 import React, { Component, PropTypes } from 'react'
-import DragProduct from './DragProduct'
+import './Product.scss'
 
-const ProductContainer = ({ products }) => (<ul>
-  {products.map((p, i)=> <li key={i}><DragProduct {...p}/></li>)}
-</ul>)
 
-ProductContainer.defaultProps = {
-  products: []
-}
+import ProductContainer from './ProductContainer'
+import ProductDragLayer from './ProductDragLayer'
 
-ProductContainer.propTypes = {
-  products: PropTypes.array,
-}
 
-export default ProductContainer
+const Product = props => (<div>
+  <ProductContainer {...props} />
+  <ProductDragLayer {...props} />
+</div>)
+
+export default Product

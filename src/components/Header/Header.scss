@@ -32,12 +32,10 @@ $header-height:70px;
     height: $header-height + 7;
     h1 {
       @include float-left;
-      margin-top: $default-margin-top - 20;
-      font-size: $text-font-size - 4;
+      margin-top: $default-margin-top - 26;
       line-height: $text-line-height + 4;
       a{
-        padding-right: $default-padding-right - 34;
-        padding-left: $default-padding-left - 34;
+        font-size: $text-font-size - 4;
         color: $gray6-color;
       }
       i {
@@ -49,17 +47,20 @@ $header-height:70px;
         background-size: 100%;
         vertical-align:sub;
       }
+      small{
+        padding-left: $default-padding-left - 20;
+        border-left: 1px solid $graya-color;
+      }
       a.logo-text{
-          padding-right: $default-padding-right - 34;
+          padding-right: $default-padding-right - 20;
           font-size: $text-font-size + 6;
           color: $blue-color;
-          border-right: 1px solid $graya-color;
       }
     }
     .nav-list{
       @include float-right;
-      font-size: $text-font-size -5;
-      line-height: $text-line-height + 33;
+      font-size: $text-font-size - 4;
+      line-height: $text-line-height + 34;
       a{
         @include float-left;
         margin-right: $default-margin-right - 7;
