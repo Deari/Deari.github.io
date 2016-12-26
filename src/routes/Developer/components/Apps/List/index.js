@@ -4,17 +4,22 @@ import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
 import '../../../../../styles/_base.scss'
+import { getDomain } from '../../../../utils/domain';
 
 class AppsList extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       listData: [],
       reviewStatus: 1
     }
   }
   async getList() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/apps`;
+
+    const apiUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/developer/apps"
+    )
     try {
       const res = await fetchUtil.getJSON(apiUrl, {reviewStatus: this.state.reviewStatus});
       if(res.status === 200){

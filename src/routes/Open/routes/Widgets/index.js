@@ -1,99 +1,71 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import Category from '../../../../components/category'
+import fetchUtil from '../../../utils/fetchUtil'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: [
-        {categoryId: 1, categoryName: '分类一'},
-        {categoryId: 2, categoryName: '分类二'},
-        {categoryId: 3, categoryName: '分类三'},
-        {categoryId: 4, categoryName: '分类四'},
-        {categoryId: 5, categoryName: '分类五'},
-      ],
-      "widgets": [
-        { 
-          "widgetId": 111,
-          "widgetType": 10,
-          "widgetName": "widget1",
-          "widgetLogo": " ",
-        },
-        { 
-          "widgetId": 222,
-          "widgetType": 11,
-          "widgetName": "widget2",
-          "widgetLogo": " ",
-        },
-        { 
-          "widgetId": 333,
-          "widgetType": 12,
-          "widgetName": "widget3",
-          "widgetLogo": " ",
-        },
-        { 
-          "widgetId": 444,
-          "widgetType": 13,
-          "widgetName": "widget4",
-          "widgetLogo": " ",
-        },
-        { 
-          "widgetId": 555,
-          "widgetType": 14,
-          "widgetName": "widget5",
-          "widgetLogo": " ",
-        },
-        { 
-          "widgetId": 666,
-          "widgetType": 15,
-          "widgetName": "widget6",
-          "widgetLogo": " ",
-        },
-      ]
+      category: [],
+      "apps": []
     }
   }
-  selectCategory(item) {
-    var category = this.state.category;
-    for (var i=0; i<category.length; i++) {
-      if (category[i].categoryId === item.categoryId) {
-        category[i].checked = true;
-      } else {
-        category[i].checked = false;
-      }
+  getCategory() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/widget/categories`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  getList(categoryId) {
+    var categoryId = categoryId || 'all';
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/market/category/${categoryId}/widgets`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  async componentDidMount() {
+    try {
+      let result = await Promise.all([this.getCategory(), this.getList()]);
+      result[0].data.list.unshift({
+        categoryId: 'all',
+        categoryName: '全部分类'
+      })
+      this.setState({
+        category: result[0].data.list,
+        apps: result[1].data.list,
+      })
+    } catch (e) {
+      console.log("e ", e);
     }
-    this.setState({category: category});
+  }
+  async changeSelect(categoryId) {
+    try {
+      const res = await this.getList(categoryId);
+      if (res.status === 200) {
+        res.data && this.setState({apps: res.data.list ? res.data.list : ''});
+      } else {
+        window.alert(res.msg);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
   }
   render () {
     return (<div className="bg-gray pt10">
       <div className="nav-second container">
         <div className="cContent row">
           <div className="navThird col-md-2 col-sm-2">
-            <ul>
-              <li className="">
-                全部分类
-                <ul>
-                {
-                  this.state.category.map((item, index) => {
-                    return <li className={item.checked ? 'navThirdHover' : ''}
-                               onClick={this.selectCategory.bind(this, item)}
-                               key={item.categoryId}>{item.categoryName}</li>
-                  })
-                }
-                </ul>
-              </li>
-            </ul>
+            <Category data={this.state.category} onChangeSelect={this.changeSelect.bind(this)}/>
           </div>
           <div className="col-md-10 col-sm-10">
             <div className="ccContent">
               <ul>
               {
-                this.state.widgets.map((item, index) => {
+                this.state.apps.map((item, index) => {
                   return (
                     <li>
-                      <Link to={'/open/widgets/detail/' + item.widgetId}>
-                        <img src={item.widgetLogo} alt="LOGO"/>
-                        <span>{item.widgetName}</span>
-                        <span>{item.widgetType}</span>
+                      <Link to={'/open/apps/detail/' + item.appId}>
+                        <img src={item.appLogo} alt="LOGO"/>
+                        <span>{item.appName}</span>
+                        <span>{item.appType}</span>
                       </Link>
                       <Link><button className="btn">下载</button></Link>
                     </li>

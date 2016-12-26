@@ -1,5 +1,5 @@
 import React from 'react'
-//import '../../styles/_base.scss'
+
 const Mobile = (props, context) => {
   return <div>{props.children}</div>
 }
