@@ -1,35 +1,41 @@
 import React from 'react'
 import './index.scss'
-
+const remove = function (arr, val) {
+  var index = arr.indexOf(val);
+  if (index > -1) {
+    arr.splice(index, 1);
+  }
+};
 class Tags extends React.Component {
   state = {
-      checkedTag: []
+      checkedTag: this.props.checkedArr
   };
 
   selectTag(item) {
+    const list = this.state.checkedTag
     item.checked = !item.checked;
     this.forceUpdate();
     if (item.checked) {
-      this.state.checkedTag.push(item);      
-    }else{
-      this.state.checkedTag.pop(item);
+      list.push(item);
+    } else {
+      remove(list, item)
     }
-    this.props.onChecked(this.state.checkedTag)
+    console.log(list)
+    this.props.onChecked(list)
   }
   render() {
-    const { data: tags } = this.props
+    const { data:tags} = this.props
     return (
-      <div>
         <ul className="tags-container">
           {
             tags.map((item, index) => {
               return <li key={item.tagId}
-                className={item.checked ? 'active' : ''}
-                onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
+                      className={item.checked ? 'active' : ''}
+                      onClick={this.selectTag.bind(this, item)}
+                     >{item.tagName}</li>
             })
           }
         </ul>
-      </div>
     )
   }
 }

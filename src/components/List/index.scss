@@ -23,7 +23,6 @@
   }
   .info-content {
     line-height: $text-line-height - 16px;
-    
     .info-name {
       font-size: $text-font-size - 4px;
       color: $black-color;
@@ -46,4 +45,8 @@
   .info-btn{
     line-height: 100px;
   }
+}
+.list-none{
+  text-align: center;
+  padding: 40px 0;
 }
