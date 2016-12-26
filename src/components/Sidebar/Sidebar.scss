@@ -41,6 +41,9 @@
       color: $white-color;
       background: $blue-color;
       border-radius: 2px;
+      &:hover{
+        color: $white-color;
+      }
     }
   }
   .tag-list{
@@ -62,6 +65,9 @@
       color: $white-color;
       background: $blue-color;
       border-radius: 2px;
+      &:hover{
+        color: $white-color;
+      }
     }
   }
 }
