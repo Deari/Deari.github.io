@@ -59,7 +59,7 @@ export default (store) => ({
       cb(null, [
         require('./routes/Api'),
         require('./routes/Apps')(store),
-        require('./routes/Hardware'),
+        require('./routes/Hardware')(store),
         require('./routes/Widgets')
       ])
     })

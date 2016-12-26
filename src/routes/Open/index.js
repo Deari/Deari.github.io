@@ -1,6 +1,8 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 // import ApiDoc from './components/ApiDoc'
+import '../../styles/_base.scss'
+import '../../styles/iconfont/iconfont.css'
 
 class Nav extends React.Component {
   render() {

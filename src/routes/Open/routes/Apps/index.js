@@ -1,7 +1,9 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
+import './index.scss'
 import Category from '../../../../components/category'
 import fetchUtil from '../../../utils/fetchUtil'
+import  Slidebar from '../../../../components/Sidebar'
 
 class Container extends React.Component {
   constructor() {
@@ -50,36 +52,75 @@ class Container extends React.Component {
   }
   render () {
     return (
-      <div className="bg-gray pt10">
-        <div className="nav-second container">
-          <div className="cContent row">
-            <div className="navThird col-md-2 col-sm-2">
-              <Category data={this.state.category} onChangeSelect={this.changeSelect.bind(this)}/>
-            </div>
-            <div className="col-md-10 col-sm-10">
-              <div className="ccContent">
-                { 
-                  this.state.apps && this.state.apps.length > 0 ?
-                  <ul>
-                  {
-                    this.state.apps.map((item, index) => {
-                      return (
-                        <li>
-                          <Link to={'/open/apps/detail/' + item.appId}>
-                            <img src={item.appLogo} alt="LOGO"/>
-                            <span>{item.appName}</span>
-                            <span>{item.appType}</span>
-                          </Link>
-                          <a href={item.fileLink} target="_blank" download=""><button className="btn">下载</button></a>
-                        </li>
-                      )
-                    })
-                  }
-                  </ul> :
-                  <div>敬请期待</div>
+      <div className="core-layout__viewport bg-gray">
+        <div className="container clx">
+          {/*<div className="sub-nav">*/}
+            <Slidebar />
+            {/*<ul>
+              <li className="">
+                全部分类
+                <ul>
+                {
+                  this.state.category.map((item, index) => {
+                    return <li className={item.checked ? 'navThirdHover' : ''}
+                               onClick={this.selectCategory.bind(this, item)}
+                               key={item.categoryId}>{item.categoryName}</li>
+                  })
                 }
-              </div>
-            </div>
+                </ul>
+              </li>
+            </ul>
+          </div>*/}
+          <div className="sub-container">
+            <div className="sub-container-banner"></div>
+            <h2 className="open-content-nav">
+              <i className="iconfont icon-hot-control"></i>热门控件
+              <form>
+                <p>
+                  <select className="form-control">
+                    <option>默认排序</option>
+                    <option>默认1排序</option>
+                    <option>默认2排序</option>
+                  </select>
+                </p>
+                <p>
+                  <select className="form-control">
+                    <option>价格排序</option>
+                    <option>价格1排序</option>
+                    <option>价格2排序</option>
+                  </select>
+                </p>
+              </form>
+            </h2>
+            <ul className="open-content-list">
+            {
+              this.state.apps.map((item, index) => {
+                return (
+                  <li>
+                    <div>
+                      <p className="open-list-start">
+                        <i className="iconfont icon-star icon-start-hover"></i>
+                        <i className="iconfont icon-uncollected"></i>
+                      </p>
+                      <Link to={'/open/apps/detail/' + item.appId}>
+                      <p className="pt10">{item.appName}</p>
+                      <span className="font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
+                      <img className="" src={item.appLogo} alt="LOGO"/>
+                      {/*<span>{item.appType}</span>*/}
+                      <span className="font-hidden">全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据，精确到区、县。支持按模糊地址、指定区域地址查询邮编。88888、县。支持按模糊地址、指定区域地址查询邮编。</span>
+                    </Link>
+                    <Link className="open-list-price">免费</Link>
+                    <p>
+                      <a><i className="iconfont icon-team"></i>165</a>
+                      <a><i className="iconfont icon-star"></i>251</a>
+                      <a><i className="iconfont icon-toparrow"></i>100%</a>
+                    </p>
+                    </div>
+                  </li>
+                )
+              })
+            }
+            </ul>
           </div>
         </div>
       </div>

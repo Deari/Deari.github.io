@@ -1,8 +1,109 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
+@mixin open-content-list{
+  @include clx;
+  li{
+    float: left;
+    position: relative;
+    margin-bottom: 14px;
+    padding-left: $default-padding-left - 32px;
+    padding-right: $default-padding-right - 32px;
+    width: $sub-container-width/3;
+    text-align: center;
+    div{
+      background: $white-color;
+      border-radius: 4px;
+      overflow: hidden;
+      &:hover{
+        box-shadow: 0 0 8px rgba(187,187,187,0.9);
+      }
+    }
+    p{
+      font-size: $text-font-size - 2px;
+      color: $black-color;
+    }
+    span{
+      display: block;
+      padding: 0 10px;
+      font-size: $text-font-size - 8px;
+      color: $gray6-color;
+      line-height: $text-line-height - 16px;
+    }
+    span:nth-of-type(1){
+      height:  $text-font-size + 2px;
+    }
+    span:nth-of-type(2){
+      max-height:  $text-font-size*3 + 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    p:last-of-type{
+      a{
+        display: inline-block;
+        width: $sub-list-width/3;
+        text-align: center;
+        font-size: $text-font-size - 4px;
+        color: $gray9-color;
+        line-height: $text-line-height - 4px;
+        background: #dde1e7;
+        @include border-right;
+        border-color: $white-color;
+      }
+      a:last-of-type{
+        border: none;
+      }
+      a:hover{
+        color: $blue-color;
+      }
+    }
+    img{
+      margin: 20px 0;
+      width: $default-width + 28px;
+      height: $default-height - 4px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+  }
+}
+@mixin open-content-nav{
+  @include clx;
+  font-size: $text-font-size - 2px;
+  line-height: $text-line-height + 20px;
+  color: $black-color;
+  form{
+    @include float-right;
+    font-size: $text-font-size - 6px;
+    color: $gray9-color;
+    p{
+      @include float-left;
+      padding: 0 4px;
+    }
+    select{
+      display: inline-block;
+      height: 30px;
+    }
+  }
+}
+@mixin open-list-price{
+  display: block;
+  margin-top: 8px;
+  font-size: $text-font-size - 2px;
+  color: $blue-color;
+  line-height: $text-line-height;
+  @include border-top;
+  &:hover{
+    font-weight: bold;
+  }
+}
+@mixin sub-container-banner{
+  width: 100%;
+  height: $default-height + 176px;
+}
+
 .Detail-container{
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
-    width: $img-width + 50px;
+    width: $default-width + 50px;
   }
   .Detail-downloadBtn{
     margin-top: 20px;
@@ -12,20 +113,20 @@
     overflow: hidden;
   }
   .Detail-appImg{
-    height: $img-height + 50px;
+    height: $default-height + 50px;
     border-radius: 16px;
   }
   .Detail-weatherImg{
-    height: $img-height - 20px;
+    height: $default-height - 20px;
     border: 1px solid #999999;
   }
   .Detail-hardwareImg{
-    width: $img-width + 560px;
-    height: $img-height + 210px;
+    width: $default-width + 560px;
+    height: $default-height + 210px;
   }
   .Detail-detail{
     h3{
-      font-size: $text-font-size + 4px;
+      font-size: $text-font-size + 6px;
       line-height: $text-line-height;
     }
     dl{
@@ -47,11 +148,11 @@
 }
 .hardware-price{
   p{
-    font-size: $text-font-size + 2px;
-    color: $text-gray9-color;
+    font-size: $text-font-size + 4px;
+    color: $gray9-color;
     line-height: $text-line-height;
     .text-red-color{
-      font-size: $text-font-size + 24px;
+      font-size: $text-font-size + 26px;
     }
   }
   .pt{
@@ -65,15 +166,15 @@
 .Detail-hardware{
   div{
     padding-top: $default-padding-top - 20px;
-    @include line-bottom;
+    @include border-bottom;
     a{
       float: left;
       padding: $default-padding-right - 20px;
-      font-size: $text-font-size;
+      font-size: $text-font-size - 2px;
     }
     .hardware-hover{
-      color: $btn-blue-color;
-      border-bottom: 2px solid $border-blue-color;
+      color: $blue-color;
+      border-bottom: 2px solid $blue-color;
     }
   }
   dl{
@@ -85,7 +186,7 @@
 }
 .Detail-moreApps{
   h3{
-    font-size: $text-font-size - 2px;
+    font-size: $text-font-size - 4px;
     line-height: $text-line-height;
   }
   ul{
@@ -94,23 +195,23 @@
     li{
       .Detail-appBox{
         margin: 0 auto;
-        width: $img-width - 18px;
+        width: $default-width - 18px;
         text-align: center;
         .Detail-appImg{
-        width: $img-width - 18px;
-        height: $img-height - 18px;
+        width: $default-width - 18px;
+        height: $default-height - 18px;
         border-radius: 6px;
         overflow: hidden;
         background: #eeeeee;
         }
         h5{
-        font-size: $text-font-size - 2px;
-        color: $text-black-color;
+        font-size: $text-font-size - 4px;
+        color: $black-color;
         padding-top: $default-padding-top - 26px;
         }
         p{
         font-size: $text-font-size - 4px;
-        color: $text-gray6-color;
+        color: $gray6-color;
         line-height: $text-line-height - 10px;
         }
       }

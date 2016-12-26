@@ -4,7 +4,6 @@
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  width: 100%;
   font-size: 14px;
   font-weight: 400;
   line-height: 1.42857143;
@@ -19,6 +18,7 @@
   -ms-user-select: none;
   user-select: none;
   background-image: none;
+  background: $white-color;
   border-radius: 4px;
   border: none;
 }
@@ -38,20 +38,20 @@
   line-height: 18px;
 }
 .btn-default{
-  color: $btn-black-color;
-  background-color: $btn-white-color;
-  border: 1px solid $btn-black-color;
+  color: $black-color;
+  background-color: $white-color;
+  border: 1px solid $black-color;
   &:hover{
-    color: $btn-blue-color;
-    background: $bg-gray-color;
-    border: 1px solid $btn-blue-color;
+    color: $blue-color;
+    background: $grayf-color;
+    border: 1px solid $blue-color;
   }
 }
 .btn-primary{
-  color: $btn-white-color;
-  background-color: $btn-blue-color;
+  color: $white-color;
+  background-color: $blue-color;
   &:hover {
-    color: $btn-white-color;
-    background-color: $btn-darkblue-color;
+    color: $white-color;
+    background-color: $bluedark-color;
   }
 }

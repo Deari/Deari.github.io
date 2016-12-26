@@ -17,12 +17,12 @@ export class Preview extends Component {
 
   static defaultProps = {
     gridProps: {
-      className: "layout",
-      cols     : 2,
-      rowHeight: 100,
-      selectedCls : 'selected',
-      width    : 315,
-      margin   : [ 10, 10 ],
+      className  : "layout",
+      cols       : 2,
+      rowHeight  : 100,
+      selectedCls: 'selected',
+      width      : 240,
+      margin     : [ 0, 0 ],
     }
   }
 
@@ -33,20 +33,26 @@ export class Preview extends Component {
   }
 
   generateLayout(e) {
-    const { layout } = this.props.preview
-    return layout[ e.id ] ? layout[ e.id ] : { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+    let { layout } = this.props.preview
+    try {
+      const lay = layout.find(l => l.i === e.id)
+      return lay || { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+    } catch (e) {
+      alert(e)
+    }
   }
 
   generateDOM() {
     const elements = this.props.preview.elements
     return elements.map(e => {
-      const className = e.selected ? 'selected' :  ''
+      const className = e.selected ? 'selected' : ''
       return <div key={e.id}
-                                  className={className}
-                                  onClick={this.props.selectElement.bind(null, e.id)}
-                                  data-grid={this.generateLayout(e)}>
-      <Element {...e} />
-    </div>})
+                  className={className}
+                  onClick={this.props.selectElement.bind(null, e.id)}
+                  data-grid={this.generateLayout(e)}>
+        <Element {...e} layout={this.generateLayout(e)}/>
+      </div>
+    })
   }
 
   render() {
@@ -54,24 +60,22 @@ export class Preview extends Component {
     //const isActive = canDrop && isOver;
     //const layout = preview.layout
     return connectDropTarget(
-      <div>
-        <div className="preview">
-          <div className="bg-phone"></div>
+
           <div className="shop-info">
-              <ReactGridLayout className="layout"
-                               {...gridProps}
+            <ReactGridLayout className="layout"
+                             {...gridProps}
                              onLayoutChange={::this.onLayoutChange}>
               {this.generateDOM()}
             </ReactGridLayout>
-            </div>
-        </div>
-        <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
-          {JSON.stringify(this.props, null, 2)}
-        </pre>
-      </div>
+          </div>
+
     )
   }
 
 }
 
 export default Preview
+
+//{<pre style={{ "fontSize": '10px', "top": 0,"position": 'absolute' }}>
+//         {JSON.stringify(this.props, null, 2)}
+//         </pre>}

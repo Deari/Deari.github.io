@@ -1,13 +1,12 @@
 @import "../layouts/CoreLayout/CoreLayout";
 
-.float-left { float: left;}
-.float-right { float: right;}
-.fixed-top0{
-	position:fixed;
-	top:0;
-	width:100%;
-	z-index:10;
+.container{
+  width: 1100px;
+  margin: 0 auto;
 }
+.float-left { @include float-left;}
+.float-right { @include float-right;}
+.clx{ @include clx;}
 
 .height-100{height:100%}
 .display-block{ display: block;}
@@ -18,25 +17,19 @@
 .pt10{ padding-top: 10px;}
 .pb10{ padding-bottom: 10px;}
 .pt40{ padding: 40px 0 10px 0;}
-.pt72{ padding-top: 72px;}   //后期删除
 .padding-top-70{ padding-top:70px;}
 .p40{ padding: 40px;}
 
-.bg-white{ background: $bg-white-color;}
-.bg-gray{ background: $bg-gray-color;}
+.bg-white{ background: $white-color;}
+.bg-gray{ background: $grayf-color;}
 
-.text-blue-color{ color: $text-blue-color;}
-.text-red-color{ color:$text-red-color;}
-.text-gray9-color{ color: $text-gray9-color;}
-.text-black-color{ color: $text-black-color;}
-.container { padding: 0 15px;}
-.row { margin: 0 -15px;}
-.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12 {
-  position: relative;
-  float: left;
-  min-height: 1px;
-  padding: 0 15px;
-}
-.container-full,.core-layout__viewport{
-	height:100%;
+.text-blue-color{ color: $blue-color;}
+.text-red-color{ color:$red-color;}
+.text-gray9-color{ color: $gray9-color;}
+.text-black-color{ color: $black-color;}
+
+.font-nowrap{ white-space:nowrap;}  //不换行
+.font-hidden{
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

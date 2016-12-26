@@ -4,6 +4,7 @@ import './Header.scss'
 import Login from '../Login'
 import {ShopNav, DevNav, OpenNav} from './Navigation'
 import '../../styles/_base.scss'
+import '../../styles/iconfont/iconfont.css'
 
 const NavRules = [
   {
@@ -31,7 +32,9 @@ const NavRules = [
   }
 ];
 
-export const Header = ({location}) => {
+export const Header = ({location, hideHeader}) => {
+
+  if (hideHeader) return <div></div>
   const path = location.pathname;
   let nav, title;
 
@@ -46,20 +49,18 @@ export const Header = ({location}) => {
     <div className='header-wrapper'>
       <div className='header-bg'></div>
       <div className='g-header container'>
-        <h1 className="navbar-brand">
-          <Link to='/'>
+        <h1>
+          <Link to='/' className="logo-text">
             <i></i><span>BO开放平台</span>
           </Link>
           {title ? <small>{title}</small> : null}
         </h1>
-        <div>
-          <Login />
-          <div className="nav-list">
-            <div className="nav navbar-nav navbar-right">
-              {nav}
-            </div>
-          </div>
-        </div>
+        <Login />
+        <form>
+          <i className="iconfont icon-search"></i>
+          <input type="text" placeholder="搜索API" />
+        </form>
+        {nav}
       </div>
     </div>
   )
