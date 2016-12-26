@@ -2,7 +2,6 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import './HomeView.scss'
-import'../../../styles/iconfont/iconfont.css'
 
 export const HomeView = () => (
   <div className="core-layout__viewport">
@@ -62,12 +61,12 @@ export const HomeView = () => (
         </ul>
       </div>
     </div>
-    <div className="home-casus container">
-      <div className="home-casus-header">
+    <div className="home-casus">
+      <div className="home-casus-header container">
         <h3>成功案例</h3>
         <i></i>
       </div>
-      <ul className="clx">
+      <ul className="container clx">
         <li>
           <a>
             <h3>服装</h3>

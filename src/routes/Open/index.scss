@@ -1,16 +1,5 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
-@mixin sub-nav{
-  @include float-left;
-  width: $default-width + 110px;
-  height: 600px;   //暂时占位
-  background: $white-color;
-}
-@mixin sub-container{
-  @include float-right;
-  margin-top: 16px;
-  width: $sub-container-width;
-}
 @mixin open-content-list{
   @include clx;
   li{

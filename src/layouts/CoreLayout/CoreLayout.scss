@@ -50,3 +50,8 @@ $gray9-color: #999;
 .core-layout__viewport {
     padding-top: 77px;
 }
+@mixin sub-container{  //内容区域盒子
+  @include float-right;
+  margin-top: 16px;
+  width: $sub-container-width;
+}

@@ -40,7 +40,6 @@
   line-height: $text-line-height;
   color: $gray6-color;
   font-size: $text-font-size - 6px;
-  background: $grayf-color;
   span{
     padding-left: 24px;
     .icon-laba{
@@ -64,6 +63,7 @@
   padding-top: $default-padding-top;
   padding-bottom: $default-padding-bottom;
   text-align: center;
+  background: $white-color;
   h3{
     font-size: $text-font-size + 16px;
     color: $black-color;
@@ -152,6 +152,7 @@
 .home-casus{
   padding-top: $default-padding-top - 30px;
   padding-bottom: $default-padding-bottom - 20px;
+  background: $white-color;
   ul{
     padding-top: $default-padding-top;
     text-align: center;
@@ -220,6 +221,7 @@
   position: relative;
   padding-bottom: $default-padding-bottom - 20px;
   text-align: center;
+  z-index: 1;
   h3{
     width: 160px;
     margin: 0 auto;

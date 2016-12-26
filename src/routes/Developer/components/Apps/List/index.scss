@@ -1,11 +1,22 @@
 @import "../../../../../layouts/CoreLayout/CoreLayout";
 
-.ccContentBtn{
-  display: block;
-  height: 60px;
-  line-height: 60px;
-  overflow: hidden;
+.sub-container{
+  @include sub-container;
 }
+.plf{
+  padding: 24px 12px;
+}
+.sub-content-tab{
+  @include clx;
+  li{
+    float: left;
+    padding: 0 14px;
+    font-size: $text-font-size - 4;
+    color: $gray3-color;
+    line-height: $text-line-height + 4;
+  }
+}
+
 .list-title {
   height: 48px;
   line-height: 48px;

@@ -61,17 +61,23 @@ class AppsList extends React.Component {
                 onClick={this.changeList.bind(this, 2)}>已审核</li>
           </ul>
         </div>*/}
-        <div className="sub-container">
-          <Link className="ccContentBtn" to='/developer/apps/create?'>
-              <div className="width110 float-right">
-                <button className="btn btn-primary">+ 创建应用</button>
-              </div>
-            </Link>
+        <div className="sub-container plf bg-white">
+          {/*<Link className="create-app" to='/developer/apps/create?'>
+            <button className="btn btn-primary float-right">+ 创建应用zzg</button>
+          </Link>*/}
+          <ul className="sub-content-tab">
+            <li>全部</li>
+            <li>已审核</li>
+            <li>未审核</li>
+          </ul>
+           
             <div className="list-title">
-              <div className="col-md-3">图例</div>
-              <div className="col-md-5">应用介绍</div>
-              <div className="col-md-2">状态</div>
-              <div className="col-md-2">操作</div>
+              <div>LOGO</div>
+              <div>应用名称</div>
+              <div>价格</div>
+              <div>状态</div>
+              <div>已下载</div>
+              <div>操作</div>
             </div>
             <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
         </div>
