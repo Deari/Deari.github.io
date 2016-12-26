@@ -114,14 +114,13 @@ class Container extends React.Component {
                       <p className="open-list-start">
                         <i className="iconfont icon-star icon-start-hover"></i>
                         <i className="iconfont icon-uncollected"></i>
-                        
                       </p>
                       <Link to={'/open/apps/detail/' + item.appId}>
                       <p className="pt10">{item.appName}</p>
-                      <span><i className="user-img"></i>极速数据(北京)</span>
+                      <span className="font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
                       <img className="" src={item.appLogo} alt="LOGO"/>
                       {/*<span>{item.appType}</span>*/}
-                      <span>全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据，精确到区、县。支持按模糊地址、指定区域地址查询邮编。</span>
+                      <span className="font-hidden">全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据，精确到区、县。支持按模糊地址、指定区域地址查询邮编。88888、县。支持按模糊地址、指定区域地址查询邮编。</span>
                     </Link>
                     <Link className="open-list-price">免费</Link>
                     <p>

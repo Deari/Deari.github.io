@@ -26,7 +26,7 @@
       border-radius: 4px;
       overflow: hidden;
       &:hover{
-        box-shadow: 0 0 8px rgba(187,187,187,0.8);
+        box-shadow: 0 0 8px rgba(187,187,187,0.9);
       }
     }
     p{
@@ -39,6 +39,15 @@
       font-size: $text-font-size - 8px;
       color: $gray6-color;
       line-height: $text-line-height - 16px;
+    }
+    span:nth-of-type(1){
+      height:  $text-font-size + 2px;
+    }
+    span:nth-of-type(2){
+      max-height:  $text-font-size*3 + 10px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
     p:last-of-type{
       a{
@@ -98,11 +107,11 @@
     font-weight: bold;
   }
 }
-
 @mixin sub-container-banner{
   width: 100%;
   height: $default-height + 176px;
 }
+
 .Detail-container{
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
     width: $default-width + 50px;
