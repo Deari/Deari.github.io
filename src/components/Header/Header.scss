@@ -49,12 +49,12 @@ $header-height:70px;
       }
       small{
         padding-left: $default-padding-left - 20;
+        border-left: 1px solid $graya-color;
       }
       a.logo-text{
           padding-right: $default-padding-right - 20;
           font-size: $text-font-size + 6;
           color: $blue-color;
-          border-right: 1px solid $graya-color;
       }
     }
     .nav-list{
