@@ -9,6 +9,7 @@ class WizardFormFirstPage extends React.Component {
         <i></i>
         <span>提交成功，等待审核</span>
         <div className="btn_submit btn_submit_two">
+          <button onClick={this.props.previousPage}>上一步</button>
         	<a href="/developer/apps">
         		<button>完成</button>
         	</a>
