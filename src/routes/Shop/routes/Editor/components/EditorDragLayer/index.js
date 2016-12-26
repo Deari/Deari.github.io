@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { DragLayer } from 'react-dnd'
-
+import Product from '../Product/Product'
 
 const layerStyles = {
   position: 'fixed',
@@ -11,6 +11,7 @@ const layerStyles = {
   width: '100%',
   height: '100%',
   background: "cyan",
+  opacity: 0.4,
 }
 
 function getItemStyles(props) {
@@ -18,37 +19,37 @@ function getItemStyles(props) {
   if (!currentOffset) {
     return {
       display: 'none'
-    };
+    }
   }
 
-  var x = currentOffset.x;
-  var y = currentOffset.y;
-  var transform = 'translate(' + x + 'px, ' + y + 'px)';
+  const transform = `translate(${currentOffset.x}px, ${currentOffset.y}px)`;
   return {
     transform: transform,
     WebkitTransform: transform
-  };
+  }
 }
 
-export class ProductDragLayer extends Component {
+export class EditorDragLayer extends Component {
 
   render() {
     const { item, itemType, isDragging } = this.props
+    //console.log(item)
+    //console.log(itemType)
     if (!isDragging) {
       return null
     }
     return <div style={layerStyles}>
       <div style={getItemStyles(this.props)}>
-        aaaa
+        <div>
+          <Product {...item}/>
+        </div>
       </div>
     </div>
   }
 
 }
 
-
-
-ProductDragLayer.propTypes = {
+EditorDragLayer.propTypes = {
   item: PropTypes.object,
   itemType: PropTypes.string,
   currentOffset: PropTypes.shape({
@@ -56,7 +57,7 @@ ProductDragLayer.propTypes = {
     y: PropTypes.number.isRequired
   }),
   isDragging: PropTypes.bool.isRequired
-};
+}
 
 function collect(monitor) {
   return {
@@ -64,7 +65,7 @@ function collect(monitor) {
     itemType: monitor.getItemType(),
     currentOffset: monitor.getSourceClientOffset(),
     isDragging: monitor.isDragging()
-  };
+  }
 }
 
-export default DragLayer(collect)(ProductDragLayer)
+export default DragLayer(collect)(EditorDragLayer)

@@ -3,7 +3,6 @@ import { compose, bindActionCreators } from 'redux'
 import { DropTarget } from 'react-dnd'
 import { addElement, setLayout, selectElement } from '../modules/preview'
 
-
 import Preview from '../components/Preview'
 
 // http://placeholder.qiniudn.com/150x100/4CD964/fff
