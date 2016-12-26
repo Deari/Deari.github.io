@@ -3,11 +3,11 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 
 export const ShopNav = ()=>(
-  <div>
-    <IndexLink to='/shop' activeClassName='route--active'>
+  <div className="nav-list">
+    <IndexLink to='/shop' activeClassName='active'>
       商家指南
     </IndexLink>
-    <Link to='/shop/manage' activeClassName='route--active'>
+    <Link to='/shop/manage' activeClassName='active'>
       店铺管理
     </Link>
   </div>

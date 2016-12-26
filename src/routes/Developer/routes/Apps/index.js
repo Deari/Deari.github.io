@@ -6,31 +6,11 @@ import '../../../../components/Header/Header'
 
 class Container extends React.Component {
   render () {
-    return <div className="bg-gray">
-      <div className="container">
-       <div className="row clx">
-           <div className="col-md-10 col-md-offset-2">
-              <ul className="nav navbar-nav clx">
-                <li>
-                  <IndexLink to='/developer/apps' activeClassName='route--active'>
-                  开发者文档
-                  </IndexLink>
-                </li>
-                <li>
-                  <Link to='/developer/apps/list' activeClassName='route--active'>
-                  我的应用
-                  </Link>
-                </li>
-              </ul>
-           </div>
-       </div>
+    return (
+      <div className="core-layout__viewport bg-gray">
+        {this.props.children}
       </div>
-      <div className="container pt10">
-        <div className="row">
-          {this.props.children}
-        </div>
-      </div>
-    </div>
+    )
   }
 }
 
