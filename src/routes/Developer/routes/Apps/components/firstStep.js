@@ -72,21 +72,21 @@ class WizardFormFirstPage extends React.Component {
   render() {
     const { handleSubmit } = this.props
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="step_form">
         <Field name="appName" type="text" component={renderField}
           label="应用名称"
-          />
-        <div>
-        	<label>应用图片</label>
-        	<div>
-        		<p>请上传应用高清图片</p>
-				<p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-			    <span>
-			      <input type="button" value="选择文件"/>
-			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
+          /> 
+        <div className="step_form_row">
+        	<label className="step_form_row_label">应用图片</label>
+        	<div className="step_form_row_right">
+        		<p className="step_form_row_right_p">请上传应用高清图片</p>
+				<p className="step_form_row_right_p">400*400像素，仅支持PNG格式，大小不超过300KB</p>
+			    <span className="step_form_row_right_file">
+			      <input type="button" value="选择文件" className="step_form_row_right_file_btn"/>
+			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)} className="step_form_row_right_file_upload"/>
 			    </span>
-        		<div className="img-container">
-			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
+        		<div>
+			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail" className="step_form_row_right_img"/>
 			    </div>
         	</div>
         </div>
@@ -94,11 +94,11 @@ class WizardFormFirstPage extends React.Component {
           label="应用简介"
           />
         <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr} />
-        <div>
-          <label>产品标签</label>
+        <div className="step_form_row">
+          <label className="step_form_row_label">产品标签</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
-        <div className="btn_submit">
+        <div className="step_form_btn">
           <button type="submit" className="next">下一步</button>
         </div> 
       </form>

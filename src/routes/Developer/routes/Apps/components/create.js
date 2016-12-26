@@ -11,21 +11,21 @@ import WizardFormThirdPage from './thirdstep'
 
 const Step = (props)=>(
   <div className="step">
-  	<h2>发布新应用</h2>
-  	<div className='branchBox'>
-	    <div className={props.page == 1? 'branch active':'branch'}>
-	    	<span>1</span>
-	    	<span>填写基本信息</span>
+  	<h2 className="step_h2">发布新应用</h2>
+  	<div className='step_branchBox'>
+	    <div className={props.page == 1? 'step_branch active after':'step_branch'}>
+	    	<span className="step_branch_num">1</span>
+	    	<span className="step_branch_text">填写基本信息</span>
 	    </div>
-	    <div className="branchBox_line"></div>
-	    <div className={props.page == 2? 'branch active':'branch'}>
-	    	<span>2</span>
-	    	<span>填写版本信息</span>
+	    <div className="step_branch_line"></div>
+	    <div className={props.page == 2? 'step_branch active':'step_branch'}>
+	    	<span className="step_branch_num">2</span>
+	    	<span className="step_branch_text">填写版本信息</span>
 	    </div>
-	    <div className="branchBox_line"></div>
-	    <div className={props.page == 3? 'branch active':'branch'}>
-	    	<span>3</span>
-	    	<span>提交成功</span>
+	    <div className="step_branch_line"></div>
+	    <div className={props.page == 3? 'step_branch active':'step_branch'}>
+	    	<span className="step_branch_num">3</span>
+	    	<span className="step_branch_text">提交成功</span>
 	    </div>
   	</div>
   </div>
