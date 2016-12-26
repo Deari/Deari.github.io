@@ -21,7 +21,7 @@ export class Preview extends Component {
       cols       : 2,
       rowHeight  : 100,
       selectedCls: 'selected',
-      width      : 240,
+      width      : 270,
       margin     : [ 0, 0 ],
     }
   }

@@ -1,5 +1,121 @@
 @import "../../../../../../layouts/CoreLayout/CoreLayout";
 
+/**************************
+ * new-mobile-editor-container
+ **************************/
+.sidebar{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: $default-width + 120;
+  background: $white-color;
+  .side-title{
+    padding: $default-padding-top - 28 $default-padding-left - 25;
+    font-size: $text-font-size - 4;
+    color: $white-color;
+    background: $blue-color;
+    i{
+      padding-right: $default-padding-right - 35;
+    }
+  }
+  .gui-list{
+    padding-bottom: $default-padding-bottom - 35;
+    li{
+      @include float-left;
+      width: 50%;
+      padding: $default-padding-top - 35;
+      .img{
+        border:1px solid $gray9-color;
+        background: $graye-color;
+      }
+      img{
+        margin: 0 auto;
+      } 
+    }
+  }
+  .sub-banner-pd{
+    padding: 0 $default-padding-left - 35;
+  }
+  .sub-banner{
+    margin-bottom: $default-margin-bottom - 30;
+    height: $default-height - 40;
+    border:1px solid $gray9-color;
+    background: $graye-color;
+  }
+  .sub-info{
+    padding: $default-padding-top - 25 $default-padding-left - 30;
+    font-size: $text-font-size - 6;
+    color:$gray9-color;
+    .icon-circle{
+      display:inline-block;
+      width:7px;
+      height:7px;
+      margin-right: $default-margin-right - 33;
+      background:$gray6-color;
+      border-radius:50%;
+    }
+  }
+  .btn-more{
+    display:block;
+    margin-top: $default-margin-top + 20;
+    padding: $default-padding-top - 30 0;
+    font-size: $text-font-size - 4;
+    text-align:center;
+    color: $gray6-color;
+    border-top:1px solid $graye-color;
+    border-bottom:1px solid $graye-color;
+    .icon-hot-control{
+      padding-right: $default-padding-top - 35;
+    }
+  }
+}
+.editor-view{
+  @include float-right;
+  width: $default-width + 630;
+  height: $default-height + 500;
+  background: $white-color;
+  .preview{
+    position:relative;
+    width: $default-width + 226;
+    height: $default-height + 490;
+    margin:5px auto;
+    .bg-phone{
+      width: $default-width + 226;
+      height: $default-height + 490;
+      background-size: 100%;
+      margin:5px auto;
+      background-image:url(../../../../../Home/assets/bg_phone.png);
+    }
+    .shop-info{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -($default-width + 183)/2;
+      margin-top: -($default-height + 353)/2;
+      width: $default-width + 184;
+      height: $default-height + 329;
+      background: #f6f5f5;
+      overflow-y: scroll;
+    }
+  }
+}
+
+@media (max-width:600px) {
+  .editor-view{
+    width: $default-width + 270;
+    height: $default-height + 860;
+    .preview{
+      .bg-phone{
+        margin:100px auto;
+      }
+      .shop-info{
+        margin-top: -225.5px;
+      }
+    }
+  }
+}
+
 $bg-phone-width:354px;
 $bg-phone-height:642px;
 
