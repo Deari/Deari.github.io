@@ -1,5 +1,34 @@
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import { DragLayer } from 'react-dnd'
+
+
+const layerStyles = {
+  position: 'fixed',
+  pointerEvents: 'none',
+  zIndex: 100,
+  left: 0,
+  top: 0,
+  width: '100%',
+  height: '100%',
+  background: "cyan",
+}
+
+function getItemStyles(props) {
+  const currentOffset = props.currentOffset;
+  if (!currentOffset) {
+    return {
+      display: 'none'
+    };
+  }
+
+  var x = currentOffset.x;
+  var y = currentOffset.y;
+  var transform = 'translate(' + x + 'px, ' + y + 'px)';
+  return {
+    transform: transform,
+    WebkitTransform: transform
+  };
+}
 
 export class ProductDragLayer extends Component {
 
@@ -8,10 +37,15 @@ export class ProductDragLayer extends Component {
     if (!isDragging) {
       return null
     }
-    return <div>aaaa</div>
+    return <div style={layerStyles}>
+      <div style={getItemStyles(this.props)}>
+        aaaa
+      </div>
+    </div>
   }
 
 }
+
 
 
 ProductDragLayer.propTypes = {
