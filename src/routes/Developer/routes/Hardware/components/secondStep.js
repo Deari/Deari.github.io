@@ -10,8 +10,9 @@ class HardwareSecondPage extends React.Component {
     sdkTypeList: [],
     osList: [],
     platformList: [],
-    imgUrl: '',
-    fileName: ''
+    hardwarePics: [],
+    hardwareReport: '',
+    
   }
 
   async componentDidMount() {
@@ -32,6 +33,7 @@ class HardwareSecondPage extends React.Component {
     }
   }
   async upload(type, e) {
+    if (this.state.hardwarePics.length === 4) return;
     const hardwareLogo = e.target.files ? e.target.files[0] : '';
     if (!hardwareLogo) return;
     let formData = new FormData()
@@ -43,13 +45,20 @@ class HardwareSecondPage extends React.Component {
     });
     const result = await res.json();
     if (result.data) {
-      type === 'photo' ? this.setState({imgUrl: result.data.url}) : this.setState({fileName: result.data.name});
+      let pics = this.state.hardwarePics;
+      pics.push(result.data);
+      if (type === 'photo') {
+        this.setState({hardwarePics: pics}, () => {
+        }) 
+      } else {
+        this.setState({hardwareReport: result.data});
+      }
     }
   }
 
   render() {
     const { handleSubmit, submitting, pristine, invalid } = this.props
-    const { sdkTypeList, osList, platformList, imgUrl, fileName } = this.state
+    const { sdkTypeList, osList, platformList, hardwarePics, hardwareReport } = this.state
     return (
       <form onSubmit={handleSubmit}>
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
@@ -63,20 +72,24 @@ class HardwareSecondPage extends React.Component {
               <input type="file" accept=".png" onChange={this.upload.bind(this, 'photo')}/>
             </span>
         		<div className="img-container">
-              <img src={imgUrl} alt="上传图片"  className="img-thumbnail"/>
+              {
+                hardwarePics.map( (item, index) => {
+                  return <img src={item.url} alt="硬件图片"  className="img-thumbnail"/>
+                } )
+              }
             </div>
         	</div>
         </div>
+        <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
         <Field name="hardwareProducer" type="text" label="生产厂家" component={renderField} />
-        <Field name="hardwarePp" type="text" label="硬件品牌" component={renderField} />
         <div>
           <label>通讯方式</label>
           <div>
             <label><Field name="commType1" component="input" type="checkbox" value="1"/> WIFI</label>
-            <label><Field name="commType2" component="input" type="checkbox" value="2"/> 蓝牙</label>
+            <label><Field name="commType2" component="input" type="checkbox" value="1"/> 蓝牙</label>
           </div>
         </div>
-        <Field name="hardwareDetail" label="详细功描述" component={renderTextarea} />
+        <Field name="hardwareDetail" label="详细功能描述" component={renderTextarea} />
         <Field name="sdkType" label="SDK类型" component={renderSelect} options={sdkTypeList}/>
         <Field name="os" label="操作平台" component={renderSelect} options={osList}/>
         <Field name="hardwarePlatform" label="硬件平台" component={renderSelect} options={platformList}/>
@@ -87,7 +100,7 @@ class HardwareSecondPage extends React.Component {
               <input type="button" value="选择文件"/>
               <input type="file" onChange={this.upload.bind(this, 'file')}/>
             </span>
-            <span>{fileName}</span>
+            <span>{hardwareReport.fileName}</span>
         	</div>
         </div>        
         <div>
