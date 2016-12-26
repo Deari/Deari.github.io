@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import './Product.scss'
+
 
 import ProductContainer from './ProductContainer'
-//import ProductDragLayer from './ProductDragLayer'
-//const Product = props => (<div>
-//  <ProductContainer {...props} />
-//</div>)
+
+// 目前只有一个列表
 
 export default ProductContainer
