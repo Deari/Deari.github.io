@@ -12,7 +12,7 @@ export default store => ({
   path: 'm',
 
   getComponent(nextState, cb) {
-    require.ensure([], (require) => {
+    require.ensure([], () => {
       cb(null, {
         hideHeader: true,
         children  : Mobile
@@ -25,6 +25,7 @@ export default store => ({
     require.ensure([], (require) => {
       cb(null, [
         require('../Shop/routes/Editor')(store),
+        require('./routes/Member').default(store),
       ])
     })
   },
