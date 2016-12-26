@@ -40,7 +40,7 @@ const initialState = {
       name         : 'IMG2',
       defaultLayout: {
         w: 1,
-        h: 3,
+        h: 2,
       },
       thumbnail    : 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc       : 'http://www.scstorage.com/img/wifi-pic.jpg'
@@ -49,8 +49,8 @@ const initialState = {
       productId    : 105,
       name         : 'IMG3',
       defaultLayout: {
-        w: 2,
-        h: 2,
+        w: 1,
+        h: 1,
       },
       thumbnail    : 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc       : 'http://www.scstorage.com/img/wifi-pic.jpg'
@@ -60,7 +60,7 @@ const initialState = {
       name         : 'IMG4',
       defaultLayout: {
         w: 2,
-        h: 2,
+        h: 1,
       },
       thumbnail    : 'http://www.scstorage.com/img/wifi-pic.jpg',
       imgSrc       : 'http://www.scstorage.com/img/wifi-pic.jpg'

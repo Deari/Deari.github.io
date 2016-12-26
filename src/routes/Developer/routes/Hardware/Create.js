@@ -1,13 +1,15 @@
 import React from 'react'
-import Info from '../../components/Hardwares/Info'
+import { injectReducer } from '../../../../store/reducers'
+import { reducer as formReducer } from 'redux-form'
 
-class Create extends React.Component {
-  render() {
-    return <Info />
-  }
-}
-
-module.exports = {
+module.exports = (store) => ({
   path: 'create',
-  component: Create
-}
+
+  getComponent (nextState, cb) {
+    require.ensure([], (require) => {
+      const Create = require('./containers/CreateContainer').default
+      injectReducer(store, { key: 'form', reducer: formReducer })
+      cb(null, Create)
+    })
+  }
+})

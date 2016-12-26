@@ -5,14 +5,16 @@ class Platform extends React.Component {
   async fileUpload() {
     let data = new FormData()
     data.append('fileName', this.refs.appFile.files[0])
+    data.append('platform', 2)
     const url = "http://api.intra.sit.ffan.net/bo/v1/web/file/upload";
     const fileRes = await fetch(url, {
       method: "POST",
       body: data
     })
     const file = await fileRes.json();
-    const fileUrl = file.data.url 
-    console.log(file.data)
+    const fileUrl = file.data.url;
+    const fileName = file.data.originalName 
+    this.props.onFinish(fileName,fileUrl)
   }
 
   render() {

@@ -4,6 +4,8 @@ import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
 import './index.scss'
 import '../../../../../styles/_base.scss'
+import { getDomain } from '../../../../utils/domain';
+
 class AppsList extends React.Component {
  
   state = {
@@ -12,7 +14,10 @@ class AppsList extends React.Component {
   }
   
   async componentDidMount() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/1/widgets`
+    const apiUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/developer/widgets"
+    )
     try {
       const res = await fetchUtil.getJSON(apiUrl ,{reviewStatus: this.state.reviewStatus});
       console.log(res.data.list[0])

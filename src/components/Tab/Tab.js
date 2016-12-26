@@ -7,6 +7,7 @@ class Tab extends React.Component {
     super();
     this.state = {
       currentIndex: 0,
+      btnType: "button"
     };
   }
   tabIndex(index) {
@@ -18,17 +19,13 @@ class Tab extends React.Component {
   isCurrentIndex(index) {
     return this.state.currentIndex === index ? 'block' : 'none';
   }
-  // componentWillReceiveProps(nextProps) {
-  //   var len = nextProps.children.length;
-  //   if (nextProps.isSubmitted) this.clickNext(len);
-  // }
   clickTabBtn(index) {
     this.setState({ currentIndex: index });
   }
-  async clickNext(len) {
+  async clickNext(len , e) {
+    e.preventDefault();
     let result = await this.props.onClickNext();
     let linkUrl = this.props.linkUrl;
-    console.log(result); 
     if (result.status !== 200) {
       window.alert(result.msg);
     } else {
@@ -62,6 +59,7 @@ class Tab extends React.Component {
     } else {
       if((len - 1) === currentIndex) {
         btnName.nextName = "提交审核";
+        this.setState({btnType: 'submit'});
       }
     }
     return btnName;
@@ -111,7 +109,7 @@ class Tab extends React.Component {
           {
             currentIndex < len 
               ? React.createElement( "div", {className: "btn-width"}, 
-                  React.createElement( "button", {className: "btn btn-primary", type: "button", onClick: this.clickNext.bind(this, len)}, 
+                  React.createElement( "button", {className: "btn btn-primary", type: this.state.btnType, onClick: this.clickNext.bind(this, len)}, 
                   this.getBtnName(this).nextName ))
               : ''
           }
@@ -120,7 +118,4 @@ class Tab extends React.Component {
     )
   }
 }
-// (linkUrl && (currentIndex === (len-1))) 
-//                       ? React.createElement( "a", {href: isSubmitted ? linkUrl : '/developer', className: "link-btn-a"}, this.getBtnName(this).nextName ) 
-//                       : this.getBtnName(this).nextName )) 
 export default Tab;
