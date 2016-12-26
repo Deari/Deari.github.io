@@ -7,19 +7,19 @@ import './Sidebar.scss'
 export const Sidebar = ({location, hideHeader}) => {
   return (
     <div className='sidebar'>
-      <a><i></i>创建新组件</a>
-      <ul>
-        <li><i></i>我的应用</li>
-        <li><i></i>应用文档</li>
+      <a className="create-btn"><i className="iconfont icon-create"></i>创建新组件</a>
+      <ul className="help-menu">
+        <li><i className="iconfont icon-application"></i>我的应用</li>
+        <li><i className="iconfont icon-file"></i>应用文档</li>
       </ul>
-      <ul>
-        <li><i></i>全部标签</li>
-        <li><i></i>营销常用</li>
-        <li><i></i>会员管理</li>
-        <li><i></i>数据分析</li>
-        <li><i></i>交易应用</li>
-        <li><i></i>支付系统</li>
-        <li><i></i>物流系统</li>
+      <ul className="tag-list">
+        <li className="active"><i className="iconfont icon-label"></i>全部标签</li>
+        <li><i className="iconfont icon-market-common"></i>营销常用</li>
+        <li><i className="iconfont icon-member-management"></i>会员管理</li>
+        <li><i className="iconfont icon-data-analysis"></i>数据分析</li>
+        <li><i className="iconfont icon-trade"></i>交易应用</li>
+        <li><i className="iconfont icon-pay"></i>支付系统</li>
+        <li><i className="iconfont icon-logistics"></i>物流系统</li>
       </ul>
     </div>
   )

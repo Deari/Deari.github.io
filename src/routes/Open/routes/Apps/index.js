@@ -69,7 +69,7 @@ class Container extends React.Component {
     return (
       <div className="core-layout__viewport bg-gray">
         <div className="container clx">
-          <div className="sub-nav">
+          {/*<div className="sub-nav">*/}
             <Slidebar />
             {/*<ul>
               <li className="">
@@ -84,8 +84,8 @@ class Container extends React.Component {
                 }
                 </ul>
               </li>
-            </ul>*/}
-          </div>
+            </ul>
+          </div>*/}
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">

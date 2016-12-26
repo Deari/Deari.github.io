@@ -1,148 +1,67 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
-//header new style begin
-$border-bule-color:#2692FB;
-$zindex:0;
-$header-height:70px;
-@mixin position-direction{
-    top: 0;
-    right: 0;
-    left: 0;
-}
-@mixin absolute{
-  position:absolute;
-}
-@mixin fixed{
-  position:fixed;
-}
-.header-wrapper {
-  z-index: $zindex + 1;
-  @include fixed;
-  @include position-direction;
-  .header-bg {
-    z-index: $zindex - 1;
-    @include absolute;
-    @include position-direction;
-    background: $white-color;
-    border-top: 2px solid $blue-color;
-    height: $header-height + 7;
-    border-bottom: 1px solid $graya-color;
+.sidebar{
+  position: fixed;
+  top: 77px;
+  bottom: 0;
+  width: $default-width + 110;
+  padding :0 $default-padding-left - 30;
+  background: $white-color;
+  .create-btn{
+    display: block;
+    width: $default-width + 30;
+    height: $default-height - 70;
+    margin: $default-margin-top - 1 auto $default-margin-bottom - 6;
+    border: 1px solid $blue-color;
+    font-size: $text-font-size - 5;
+    color: $blue-color;
+    text-align: center;
+    line-height: $text-line-height - 10;
+    border-radius: 2px;
+    i{
+      padding-right: $default-padding-right - 36;
+    }
   }
-  .g-header {
-    height: $header-height + 7;
-    h1 {
-      @include float-left;
-      margin-top: $default-margin-top - 20;
-      font-size: $text-font-size - 4;
-      line-height: $text-line-height + 4;
-      a{
+  .help-menu{
+    border-top: 1px solid $graye-color;
+    li{
+      padding: $default-padding-top - 25 $default-padding-left - 30;
+      font-size: $text-font-size - 5;
+      border-bottom: 1px solid $graye-color;
+      cursor: pointer;
+      i{
         padding-right: $default-padding-right - 34;
-        padding-left: $default-padding-left - 34;
-        color: $gray6-color;
       }
-      i {
-        @include float-left;
-        margin-right: $default-margin-right - 34;
-        width: $default-width - 57;
-        height: $default-height - 56;
-        background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
-        background-size: 100%;
-        vertical-align:sub;
-      }
-      a.logo-text{
-          padding-right: $default-padding-right - 34;
-          font-size: $text-font-size + 6;
-          color: $blue-color;
-          border-right: 1px solid $graya-color;
-      }
-    }
-    .nav-list{
-      @include float-right;
-      font-size: $text-font-size -5;
-      line-height: $text-line-height + 33;
-      a{
-        @include float-left;
-        margin-right: $default-margin-right - 7;
-        padding-left: $default-padding-left - 28;
-        padding-right: $default-padding-right - 28;
-        color: $black-color;
-      }
-      a.active{
+      &:hover{
         color: $blue-color;
-        @include navselect-bottom;
+        border-bottom: 1px solid $blue-color;
       }
     }
-    form{
-      @include float-right;
-      margin-top: $default-margin-top - 19;
-      margin-right: $default-margin-right - 25;
-      padding-top: $default-padding-top - 35;
-      padding-bottom: $default-padding-bottom - 35;
-      padding-left: $default-padding-left - 35;
-      padding-right: $default-padding-right - 35;
-      background: $graye-color;
-      border-radius: 14px;
-      input{
-        width: $default-width - 5;
-        padding-left: $default-padding-left - 30; 
-        font-size: $text-font-size - 7;
-        color: $gray9-color;
-        background: $graye-color;
-        border:0;
-        &::-webkit-input-placeholder{
-          font-size: $text-font-size - 7;
-          font-family: 'Microsoft Yahei';
-          color: $gray9-color;
-        }
-        &:focus::-webkit-input-placeholder{
-          border: 0;
-        }
+    .active{
+      color: $white-color;
+      background: $blue-color;
+      border-radius: 2px;
+    }
+  }
+  .tag-list{
+    margin-top: $default-margin-top - 10;
+    li{
+      padding: $default-padding-top - 25 $default-padding-left - 30;
+      font-size: $text-font-size - 5;
+      cursor: pointer;
+      border-bottom: 1px solid $white-color;
+      i{
+        padding-right: $default-padding-right - 34;
+      }
+      &:hover{
+        color: $blue-color;
+        border-bottom: 1px solid $blue-color;
       }
     }
-    .loginIn{
-      @include float-right;
-      margin-top: $default-margin-top - 20;
-      span{
-        display:inline-block;
-        width: $default-width - 40;
-        height: $default-height - 70;
-        margin-left: $default-margin-left - 30;
-        font-size: $text-font-size - 5;
-        text-align: center;
-        line-height: $text-line-height - 10;
-        border-radius: 2px;
-        cursor:pointer;
-        &:first-child{
-          border: 1px solid $blue-color;
-          color: $blue-color;
-          background: $white-color;
-        }
-        &:last-child{
-          color: $white-color;
-          background: $blue-color;
-        }
-      }
-    }
-    .logined{
-      @include float-right;      
-      padding-top: $default-padding-top - 25;
-      font-size: $text-font-size - 6;
-      color: $gray9-color;
-      span{
-        img{
-          width: $default-width - 60;
-          height: $default-height - 60;
-          vertical-align: top;
-        }
-        &:first-child{
-          padding-right: $default-padding-right - 33;
-        }
-        &:last-child{
-          padding-left: $default-padding-left - 33;
-          border-left: 1px solid $gray9-color;
-          vertical-align: bottom;
-        }
-      }
+    .active{
+      color: $white-color;
+      background: $blue-color;
+      border-radius: 2px;
     }
   }
 }
