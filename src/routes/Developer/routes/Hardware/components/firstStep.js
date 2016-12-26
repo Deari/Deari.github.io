@@ -3,10 +3,9 @@ import { Field, reduxForm } from 'redux-form'
 import { renderField, renderSelect, renderTextarea } from './renderField'
 import { validate }  from '../modules/validate'
 import fetchUtil from '../../../../utils/fetchUtil'
-import fetch from '../../../../../../fetch'
 import Tags from '../../../../../components/Tags'
 import '../../Apps/components/firstStep.scss'
-
+import { getDomain } from '../../../../utils/domain'
 
 class HardwareFirstPage extends React.Component {
   state = {
@@ -16,17 +15,14 @@ class HardwareFirstPage extends React.Component {
     imgUrl: ''
   }
   async getCategory() {
-    console.log("getCategory")
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/hardware/getCategory`;
+    const apiUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/hardware/getCategory"
+    );
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       if(res.status === 200){
-        let result = [];
-        for (var i in res.data.list) {
-          result.push(res.data.list[i]);
-        }
-        console.log("result ", result)
-        res.data && res.data.list && this.setState({ categorys: result })
+        res.data && res.data.list && this.setCategorys(res.data.list)
       } else {
         res.msg && window.alert(res.msg);
       }
@@ -34,8 +30,56 @@ class HardwareFirstPage extends React.Component {
       console.log(e)
     }
   }
+  setCategorys(listData) {
+    const categorys = this.transformCategorys(listData);
+    this.setCategoryChilds(categorys);
+  }
+  setCategoryChilds(categorys) {
+    for (let i=0; i<categorys.length; i++) {
+      categorys[i].categoryChilds = this.transformCategorys(categorys[i].categoryChilds);
+    }
+    // categorys.unshift({key: 0, value: "请选择", categoryChilds: [{key: 0, value: "请选择"}]})
+    this.setState({
+      categorys: categorys, 
+      categoryChilds: categorys[0].categoryChilds
+    })
+  }
+  transformCategorys(listData) {
+    let newCategory = [];
+    for (let i=0; i<listData.length; i++) {
+      let obj = listData[i];
+      obj.key = listData[i].categoryId;
+      obj.value = listData[i].categoryName;
+      this.categoryChilds = listData[i].categoryChilds;
+      newCategory.push(obj);
+    }
+    return newCategory;
+  }
+  getCategoryChilds(key) {
+    let { categorys } = this.state;
+    for (let i=0; i<categorys.length; i++) {
+      // categorys[i].categoryChilds.unshift({key: 0, value: "请选择"})
+      if (parseInt(categorys[i].key) === parseInt(key)) {
+        this.setState({categoryChilds: categorys[i].categoryChilds});
+        return
+      } else {
+        this.setState({categoryChilds: []})
+      }
+    }
+  }
+  changeCategory() {
+    let key = this.refs.majorCategoryId.value;
+    if (key) {
+      this.getCategoryChilds(key)
+      this.props.onChangeCategory(key)
+    }
+  }
+
   async getTags() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/tags`;
+    const apiUrl = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/public/app/tags"
+    );
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       if(res.status === 200){
@@ -60,18 +104,22 @@ class HardwareFirstPage extends React.Component {
     if (!hardwareLogo) return;
     let formData = new FormData()
     formData.append('fileName', hardwareLogo)
-    const url = `http://api.intra.sit.ffan.net/bo/v1/web/photo/upload`
-    const res = await fetch(url, {
-      method: "POST",
-      body: formData
-    });
-    const imgObj = await res.json();
-    if (imgObj.data && imgObj.data.url) this.setState({imgUrl: imgObj.data.url});
+    const url = getDomain(
+      "http://api.intra.",
+      "ffan.net/bo/v1/web/photo/upload"
+    );
+    const imgInfo = await fetchUtil.postJSON(url, formData, {"type": "formData"});
+    console.log("imgUpload ", imgInfo);
+    if (imgInfo.data && imgInfo.data.url) {
+      this.props.onSelectLogo(imgInfo.data.url);
+      this.setState({imgUrl: imgInfo.data.url});
+    }
   }
-  tagsChecked() {
-
+  tagsChecked(tags) {
+    tags && this.props.onTagChange(tags)
   }
   render() {
+    console.log("props ", this.props);
     const { handleSubmit } = this.props
     const { categorys, categoryChilds, tags, imgUrl } = this.state
     return (
@@ -91,8 +139,21 @@ class HardwareFirstPage extends React.Component {
             </div>
         	</div>
         </div>
-        <Field name="hardwareDesc" label="硬件介绍" component={renderTextarea} />
-        <Field name="majorCategoryId" label="分类" component={renderSelect} options={categorys}/>
+        <Field name="hardwareFunction" label="硬件介绍" component={renderTextarea} />
+        <div>
+          <label>分类</label>
+          <div>
+            <select name="majorCategoryId" ref="majorCategoryId" onChange={this.changeCategory.bind(this)}>
+             <option>请选择</option>
+              {
+                categorys.map( (item, index) => {
+                  return ( <option key={item.key} value={item.key}>{item.value}</option> )
+                })
+              }
+            </select>
+          </div>
+        </div>
+        {/*<Field name="majorCategoryId" label="分类" component={renderSelect} ref="majorCategoryId" options={categorys} onChange={this.changeCategory.bind(this)} />*/}
         <Field name="minorCategoryId" component={renderSelect} options={categoryChilds}/> 
         <div>
           <label>标签</label>
@@ -106,10 +167,10 @@ class HardwareFirstPage extends React.Component {
   }
 }
 
-export default reduxForm({
+HardwareFirstPage = reduxForm({
   form: 'hardware',            
   destroyOnUnmount: false,     // <------ preserve form data
   validate,
-  // asyncValidate,
-  // asyncBlurFields: [ 'username' ]
 })(HardwareFirstPage)
+
+export default HardwareFirstPage

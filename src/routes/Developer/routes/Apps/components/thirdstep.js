@@ -18,5 +18,3 @@ class WizardFormFirstPage extends React.Component {
     )
   }
 }
-
-export default WizardFormFirstPage
