@@ -21,6 +21,11 @@ $gray9-color: #999;
   $default-padding-bottom: 40px;
   $default-padding-left: 40px;
   $default-padding-right: 40px;
+//margin
+  $default-margin-top: 40px;
+  $default-margin-bottom: 40px;
+  $default-margin-left: 40px;
+  $default-margin-right: 40px;  
 //宽高
   $default-width: 100px;
   $default-height: 100px;
@@ -40,5 +45,5 @@ $gray9-color: #999;
   background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
 .core-layout__viewport {
-    padding-top: 70px;
+    padding-top: 78px;
 }
