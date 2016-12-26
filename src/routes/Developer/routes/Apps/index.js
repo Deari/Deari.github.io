@@ -7,16 +7,11 @@ import '../../../Open/routes/Apps/index.scss'
 
 class Container extends React.Component {
   render () {
-    return 	<div className="core-layout__viewport bg-gray">
-			     		<div className="container clx">
-			     			<div className="sub-nav">
-			     				<ul><li class="">全部分类<ul></ul></li></ul>
-			     			</div>
-			     			<div className="sub-container">
-					          {this.props.children}
-					      </div>
-			     		</div>
-     				</div>
+    return (
+      <div className="core-layout__viewport">
+        {this.props.children}
+      </div>
+    )
   }
 }
 

@@ -2,7 +2,6 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import './HomeView.scss'
-import'../../../styles/iconfont/iconfont.css'
 
 export const HomeView = () => (
   <div className="core-layout__viewport">
@@ -30,30 +29,30 @@ export const HomeView = () => (
       <div className="container">
         <h3>为超过<span>176，4600</span>客户服务</h3>
         <p>数据由万达提供</p>
-        <ul>
+        <ul className="clx">
           <li>
-            <a>
+            <a className="a-bg1">
               <p>应用市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
-            <a>
+            <a className="a-bg2">
               <p>组件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
-            <a>
+            <a className="a-bg3">
               <p>API市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
-            <a>
+            <a className="a-bg4">
               <p>硬件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
@@ -62,12 +61,12 @@ export const HomeView = () => (
         </ul>
       </div>
     </div>
-    <div className="home-casus container">
-      <div className="home-casus-header">
+    <div className="home-casus">
+      <div className="home-casus-header container">
         <h3>成功案例</h3>
         <i></i>
       </div>
-      <ul>
+      <ul className="container clx">
         <li>
           <a>
             <h3>服装</h3>
@@ -109,6 +108,11 @@ export const HomeView = () => (
           </a>
         </li>
       </ul>
+    </div>
+    <div className="footer">
+      <div className="container">
+        <p>万达科技有限公司官网 2010-2018 Wanda 版权所有 京ICP备 1000000000号</p>
+      </div>
     </div>
   </div>
 )

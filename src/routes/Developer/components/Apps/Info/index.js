@@ -73,7 +73,7 @@ class Info extends React.Component {
     return (
       <div className="cContent bg-white cContent-onenav">
         <div className="cContent-nav">
-          <h3>创建应用</h3>
+          <h3>创建应用aaa</h3>
         </div>
         <form className="bo-form-container" onSubmit={this.save.bind(this)}
         		method="post" ref='from' enctype="application/x-www-form-urlencoded">
