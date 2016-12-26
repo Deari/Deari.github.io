@@ -21,8 +21,8 @@ export class Preview extends Component {
       cols     : 2,
       rowHeight: 100,
       selectedCls : 'selected',
-      width    : 315,
-      margin   : [ 10, 10 ],
+      width    : 240,
+      margin   : [0,0],
     }
   }
 
@@ -45,7 +45,7 @@ export class Preview extends Component {
                                   className={className}
                                   onClick={this.props.selectElement.bind(null, e.id)}
                                   data-grid={this.generateLayout(e)}>
-      <Element {...e} />
+      <Element {...e} layout={this.generateLayout(e)}/>
     </div>})
   }
 
@@ -65,9 +65,9 @@ export class Preview extends Component {
             </ReactGridLayout>
             </div>
         </div>
-        <pre style={{ "fontSize": '12px', "top": 0,"position": 'absolute' }}>
+        {/*<pre style={{ "fontSize": '20px', "top": 0,"position": 'absolute' }}>
           {JSON.stringify(this.props, null, 2)}
-        </pre>
+        </pre>*/}
       </div>
     )
   }

@@ -1,54 +1,58 @@
+@import "../../../../../layouts/CoreLayout/CoreLayout.scss";
+$step_background:#eff3f3;
+$step_rotate_background:#c2c6d0;
+$branch_line_background:#bbbfca;
+
 .step{
-    width: 876px; 
-    float: right; 
-    background: #fff; 
-    padding: 0 15px;
-    h2{
-        font-size: 16px; 
-        color: #000000; 
-        height: 49px; 
-        line-height: 49px; 
-        padding-left: 11px;
+    width: 100%;
+    background: $white-color; 
+    padding: 0 $default-padding-left - 25px;
+    & &_h2{
+        font-size: $text-font-size - 4px; 
+        color: $black-color; 
+        height: $default-height - 51px; 
+        line-height: $default-height - 51px; 
+        padding-left: $default-padding-left - 29px;
     }
-    .branchBox{
-      background: #eff3f3; 
-      padding: 25px 52px 12px; 
-      overflow: hidden;
-      .branch{
-        float:left; 
+    &_branchBox{
+        background: $step_background; 
+        padding: $default-padding-top - 15px $default-padding-left + 12px  $default-padding-bottom - 28px; 
+        @include clx;
+    }
+    &_branch{
+        @include float-left; 
         text-align: center;
-        span:first-child{
-            width: 67px; 
-            height: 67px; 
-            display: block; 
+        &_num{
+            width: $default-width - 33px; 
+            height: $default-height - 33px; 
+            display: block;
             border-radius: 50%; 
-            background: #c2c6d0; 
+            background: $step_rotate_background; 
             box-shadow: 5px 5px 5px rgba(209,211,218,0.23) inset;
-            font-size: 35px; 
-            color: #fff; 
-            line-height: 67px; 
+            font-size: $text-font-size + 15px; 
+            color: $white-color; 
+            line-height: $default-height - 33px; 
             text-align: center; 
-            margin: 0 27px 10px;
+            margin: 0 $default-padding-left - 13px $default-padding-bottom - 30px;
         }
-        span:last-child{
-            font-size: 14px; 
-            color: #666666;
-        } 
+        &_text{
+            font-size: $text-font-size - 6px; 
+            color: $gray6-color;
+        }
+    }
+    &_branch.active{
+      .step_branch_num{
+       background: -webkit-linear-gradient(#57acff,$blue-color);
       }
-      .branch.active{
-          span:first-child{
-           background: -webkit-linear-gradient(#57acff,#2692fb);
-          }
-          span:last-child{
-            color: #2692fb;
-          }
+      .step_branch_text{
+        color: $blue-color;
       }
-      .branchBox_line{
-          width: 180px; 
-          height: 2px; 
-          background: #bbbfca; 
-          float: left; 
-          margin-top: 32px;
-      }
+    }
+    &_branch_line{
+        width: $default-width + 80px; 
+        height: $default-height - 98px; 
+        background: $branch_line_background; 
+        @include float-left;
+        margin-top: $default-margin-top - 8px;
     }
 }
