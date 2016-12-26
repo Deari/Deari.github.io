@@ -1,6 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import './index.scss'
+import  Slidebar from '../../../../components/Sidebar'
 
 class Container extends React.Component {
   constructor() {
@@ -68,8 +69,9 @@ class Container extends React.Component {
     return (
       <div className="core-layout__viewport bg-gray">
         <div className="container clx">
-          <div className="sub-nav">
-            <ul>
+          {/*<div className="sub-nav">*/}
+            <Slidebar />
+            {/*<ul>
               <li className="">
                 全部分类
                 <ul>
@@ -83,7 +85,7 @@ class Container extends React.Component {
                 </ul>
               </li>
             </ul>
-          </div>
+          </div>*/}
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
