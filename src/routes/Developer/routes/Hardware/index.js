@@ -1,6 +1,5 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import HardwareList from  './List'
 import Doc from './Doc'
 import '../../../../styles/_base.scss'
 import '../../../../components/Header/Header'
@@ -40,7 +39,7 @@ class Container extends React.Component {
   }
 }
 
-module.exports =  {
+module.exports = store => ({
   path: 'hardware',
   component: Container,
   indexRoute: {
@@ -52,8 +51,8 @@ module.exports =  {
       cb(null, [
         require('./Download'),
         require('./List'),
-        require('./Create')
+        require('./Create')(store)
       ])
     })
   }
-}
+})
