@@ -16,6 +16,7 @@ export default (store) => ({
       cb(null, [
         require('./routes/ManageShop')(store),
         require('./routes/Editor')(store),
+        require('./routes/Preview')(store),
       ])
     })
   },
