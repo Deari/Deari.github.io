@@ -7,7 +7,7 @@ import '../../../../components/Header/Header'
 class Container extends React.Component {
   render () {
     return (
-      <div className="core-layout__viewport bg-gray">
+      <div className="core-layout__viewport">
         {this.props.children}
       </div>
     )
