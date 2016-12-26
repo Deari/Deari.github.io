@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
+import Slidebar from '../../../../../components/Sidebar'
 import './index.scss'
 import '../../../../../styles/_base.scss'
 
@@ -45,18 +46,18 @@ class AppsList extends React.Component {
   }
   render() {
     return (
-      <div className="cContent clx">
-        <div className="col-sm-2 col-md-2 navThird">
+      <div className="container clx">
+        <Slidebar />
+        {/*<div className="col-sm-2 col-md-2 navThird">
           <ul>
             <li className={this.state.reviewStatus === 1 ? 'navThirdHover' : ''}
                 onClick={this.changeList.bind(this, 1)}>待审核-应用</li>
             <li className={this.state.reviewStatus === 2 ? 'navThirdHover' : ''}
                 onClick={this.changeList.bind(this, 2)}>已审核</li>
           </ul>
-        </div>
-        <div className="col-sm-10 col-md-10">
-          <div className="ccContent">
-            <Link className="ccContentBtn" to='/developer/apps/create?'>
+        </div>*/}
+        <div className="sub-container">
+          <Link className="ccContentBtn" to='/developer/apps/create?'>
               <div className="width110 float-right">
                 <button className="btn btn-primary">+ 创建应用</button>
               </div>
@@ -68,7 +69,6 @@ class AppsList extends React.Component {
               <div className="col-md-2">操作</div>
             </div>
             <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
-          </div>
         </div>
       </div>
     )
