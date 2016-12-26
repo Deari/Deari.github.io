@@ -26,18 +26,14 @@ export default class Login extends Component {
 
   render (){
     return this.state.isLogin ? (
-      <div className="logined">
-        <div className="nav navbar-nav navbar-right">
-          <span><img src="../../Home/Duck.jpg" /></span> | 
-          <span>退出</span>
-        </div>
+      <div className="loginIn">
+          <span onClick={this.registerHandle}>注册</span> 
+          <span onClick={this.loginHandle}>登录</span>
       </div>
     ) : (
-      <div className="loginIn">
-        <div className="nav navbar-nav navbar-right">
-          <span onClick={this.registerHandle}>立即注册</span> | 
-          <span onClick={this.loginHandle}>使用帮助</span>
-        </div>
+      <div className="logined">
+          <span><img src="../../Home/Duck.jpg" /></span>
+          <span>退出</span>
       </div>
     )
   }

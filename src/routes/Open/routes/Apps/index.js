@@ -1,75 +1,62 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import './index.scss'
+import Category from '../../../../components/category'
+import fetchUtil from '../../../utils/fetchUtil'
+import  Slidebar from '../../../../components/Sidebar'
 
 class Container extends React.Component {
   constructor() {
     super();
     this.state = {
-      category: [
-        {categoryId: 1, categoryName: '分类一'},
-        {categoryId: 2, categoryName: '分类二'},
-        {categoryId: 3, categoryName: '分类三'},
-        {categoryId: 4, categoryName: '分类四'},
-        {categoryId: 5, categoryName: '分类五'},
-      ],
-      "apps": [
-        { 
-          "appId": 111,
-          "appType": 10,
-          "appName": "app1",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 222,
-          "appType": 11,
-          "appName": "app2",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 333,
-          "appType": 12,
-          "appName": "app3",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 444,
-          "appType": 13,
-          "appName": "app4",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 555,
-          "appType": 14,
-          "appName": "app5",
-          "appLogo": " ",
-        },
-        { 
-          "appId": 666,
-          "appType": 15,
-          "appName": "app6",
-          "appLogo": " ",
-        },
-      ]
+      category: [],
+      "apps": []
     }
   }
-  selectCategory(item) {
-    var category = this.state.category;
-    for (var i=0; i<category.length; i++) {
-      if (category[i].categoryId === item.categoryId) {
-        category[i].checked = true;
-      } else {
-        category[i].checked = false;
-      }
+  getCategory() {
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/public/app/categories`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  getList(categoryId) {
+    var categoryId = categoryId || 'all';
+    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/market/category/${categoryId}/apps`;
+    return fetchUtil.getJSON(apiUrl);
+  }
+  async componentDidMount() {
+    try {
+      let result = await Promise.all([this.getCategory(), this.getList()]);
+      result[0].data.list.unshift({
+        categoryId: 'all',
+        categoryName: '全部分类'
+      })
+      this.setState({
+        category: result[0].data.list,
+        apps: result[1].data.list,
+      })
+    } catch (e) {
+      console.log("e ", e);
     }
-    this.setState({category: category});
+  }
+  async changeSelect(categoryId) {
+    try {
+      const res = await this.getList(categoryId);
+      if (res.status === 200) {
+        res.data && this.setState({apps: res.data.list ? res.data.list : ''});
+      } else {
+        window.alert(res.msg);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
   }
   render () {
     return (
       <div className="core-layout__viewport bg-gray">
         <div className="container clx">
-          <div className="sub-nav">
-            <ul>
+          {/*<div className="sub-nav">*/}
+            <Slidebar />
+            {/*<ul>
               <li className="">
                 全部分类
                 <ul>
@@ -83,10 +70,10 @@ class Container extends React.Component {
                 </ul>
               </li>
             </ul>
-          </div>
+          </div>*/}
           <div className="sub-container">
             <div className="sub-container-banner"></div>
-            <h2>
+            <h2 className="open-content-nav">
               <i className="iconfont icon-hot-control"></i>热门控件
               <form>
                 <p>
@@ -105,25 +92,31 @@ class Container extends React.Component {
                 </p>
               </form>
             </h2>
-            <ul>
+            <ul className="open-content-list">
             {
               this.state.apps.map((item, index) => {
                 return (
                   <li>
-                    <Link to={'/open/apps/detail/' + item.appId}>
-                      <p>{item.appName}</p>
-                      <span>极速数据(北京)</span>
+                    <div>
+                      <p className="open-list-start">
+                        <i className="iconfont icon-star icon-start-hover"></i>
+                        <i className="iconfont icon-uncollected"></i>
+                        
+                      </p>
+                      <Link to={'/open/apps/detail/' + item.appId}>
+                      <p className="pt10">{item.appName}</p>
+                      <span><i className="user-img"></i>极速数据(北京)</span>
                       <img className="" src={item.appLogo} alt="LOGO"/>
                       {/*<span>{item.appType}</span>*/}
                       <span>全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据，精确到区、县。支持按模糊地址、指定区域地址查询邮编。</span>
                     </Link>
-                    <p><Link>免费</Link></p>
+                    <Link className="open-list-price">免费</Link>
                     <p>
-                      <span class="hot_control_li_money">￥20<i>元</i></span>
-                      <span class="hot_control_li_bottom"><i class="iconfont icon-team"></i>165</span>
-                      <span class="hot_control_li_bottom"><i class="iconfont icon-star"></i>251</span>
-                      <span class="hot_control_li_bottom"><i class="iconfont icon-arrU"></i>100%</span>
+                      <a><i className="iconfont icon-team"></i>165</a>
+                      <a><i className="iconfont icon-star"></i>251</a>
+                      <a><i className="iconfont icon-toparrow"></i>100%</a>
                     </p>
+                    </div>
                   </li>
                 )
               })
