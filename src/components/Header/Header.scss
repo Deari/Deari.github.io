@@ -49,68 +49,6 @@ $header-height:70px;
       }
       small{
         padding-left: $default-padding-left - 20;
-    }
-  }
-}
-
-
- .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  @include navselect-bottom;
-  } 
-
-.navbar-nav{
-  .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  }   
-}
-//二级导航
-.nav-second{
-  background: $grayf-color;
-  .navs-nav{
-    height: $default-height - 46px;
-    font-size: $text-font-size - 4px;
-    line-height: $default-height - 46px;
-    li{
-    @include float-left;
-    padding: 0 20px;
-    margin: 0 0 0 ;
-    background-image: none;
-    }
-  }
-}
-//三级导航
-.cContent{
-  padding-top: 20px;
-  min-height: 800px;
-  .navThird{
-    padding: 0;
-    min-height: 800px;
-    background: $white-color;
-    .navThirdHover{/*选中样式*/
-      color: $white-color;
-      background: $blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
-      background-size: 6px;
-    }
-    ul{
-      height: $default-height - 60px;
-      font-size: $text-font-size - 4px;
-      line-height: $default-height - 60px;
-      li{
-        @include border-bottom;
-        padding-left: $default-padding-left - 30px;
-        height: $default-height - 60px;
-        line-height: $default-height - 60px;
-        background: url(../../routes/Home/assets/more_into_gray.png) no-repeat 10px center;
-        background-size: 6px;
-        ul{
-          li{
-            border-bottom: none;
-            background-image: none;
-          }
-        }
       }
       a.logo-text{
           padding-right: $default-padding-right - 20;
