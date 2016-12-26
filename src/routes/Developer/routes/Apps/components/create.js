@@ -4,6 +4,7 @@ import { validate, warn } from '../modules/validate'
 import renderField, { renderTextArea } from '../components/renderField'
 import './create.scss'
 import { getDomain } from '../../../../utils/domain'
+import fetchUtil from '../../../../utils/fetchUtil'
 
 import WizardFormFirstPage from './firstStep'
 import WizardFormSecondPage from './secondStep'
@@ -38,7 +39,10 @@ class ContactForm extends Component {
     appLogo:'',
     appTages:[],
     appId:0,
-    fileObj:{}
+    fileObj:{},
+    imgUrl:"",
+    checked: [],
+    initialValue:{}
   }
   nextPage = ()=> {
     this.setState({page: this.state.page + 1});
@@ -80,13 +84,9 @@ class ContactForm extends Component {
       "ffan.net/bo/v1/web/developer/app"
     )
     try{
-      const res = await fetch(url, {
-          method: "POST",
-          body: data
-      });
-      const resp = await res.json();
-      if (resp.status == 200) {
-        const id = resp.data.app.appId;
+      const res = await fetchUtil.postJSON(url,data,{"type":"formData"})
+      if (res.status == 200) {
+        const id = res.data.app.appId;
         this.setState({ appId: id }, this.nextPage());
       }else{
         alert("服务端验证不通过，请进一步核对信息")
@@ -117,31 +117,45 @@ class ContactForm extends Component {
       rnFrameworkVersion: fileObj.rnFrameworkVersion,
       platform: fileObj.platform
     }
-    for(var key in fileList){
-      if(fileList[key]){
+    for (var key in fileList) {
+      if (fileList[key]) {
         verData.append(key, fileList[key])
       }
     }
     verData.append("codeDesc", values.codeDesc)
-    try{
-      const codeRes = await fetch(verUrl, {
-        method: "POST",
-        body: verData
-      })
-      const codeResp = await codeRes.json();
-      if (codeResp.status == 200) {
+    try {
+      const codeRes = await fetchUtil.postJSON(url, verData, { "type": "formData" })
+      if (codeRes.status == 200) {
         this.nextPage()
-      }else{
+      } else {
         alert("服务端验证不通过，请进一步核对信息")
       }
-    }catch(e){
+    } catch (e) {
       alert(e.msg)
       console.log(e)
     }
   }
 
+   async componentDidMount() {
+     const appId = 111
+     if(appId){
+       const url = getDomain(
+         "http://api.intra.",
+         'ffan.net/bo/v1/web/app/' + appId
+       )
+       const res = await fetchUtil.getJSON(url)
+       const initialValue = {
+         "appName": res.data.appName,
+         "appDesc": res.data.appDesc,
+         "categoryId": res.data.categoryId
+       }
+       this.setState({imgUrl:res.data.appLogo,checked:res.data.tags,initialValue:initialValue})
+     }
+   }
+
   render() {
-    const { page } = this.state;
+    const { page, initialValue, checked, imgUrl } = this.state;
+    console.log(imgUrl)
     return (
       <div>
         <Step page={page}/>
@@ -150,6 +164,9 @@ class ContactForm extends Component {
                           onSubmit={this.firstPageSubmit} 
                           getParams={::this.onGetParams} 
                           getImgSrc={::this.getImgUrl}
+                          initialValues={initialValue}
+                          initImgUrl={imgUrl}
+                          initCheckedTags={checked}
                           />
         }
         {
@@ -160,16 +177,13 @@ class ContactForm extends Component {
                           />
         }
         {
-          page === 3 && <WizardFormThirdPage/>
+          page === 3 && <WizardFormThirdPage previousPage={this.previousPage}/>
         }
       </div>
     );
   }
 }
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
-}
 
 export default ContactForm;
 
