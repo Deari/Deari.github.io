@@ -68,16 +68,16 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
-
-    options = {
+    const optionsHeader = options.header
+    const reqsOptions = {
       method : 'POST',
       // ...jsonHeaders,
-      ...options,
-      body   : JSON.stringify(params)
+      ...optionsHeader,
+      body   : options.type === "formData" ? params : JSON.stringify(params)
     }
 
     return new Promise((resolve, reject)=> {
-      fetch(url, options).then(async res=> {
+      fetch(url, reqsOptions).then(async res=> {
         if (res.ok) {
           try {
             const resp = await res.json();
