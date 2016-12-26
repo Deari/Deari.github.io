@@ -26,6 +26,7 @@ export default store => ({
       cb(null, [
         require('../Shop/routes/Editor')(store),
         require('./routes/Member').default(store),
+        require('./routes/UserPreivew').default(store),
       ])
     })
   },
