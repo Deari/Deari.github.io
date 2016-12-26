@@ -45,17 +45,20 @@ class Info extends React.Component {
        const resp = await res.json();
        const id = resp.data.app.appId;
        const verUrl = `http://api.intra.sit.ffan.net/bo/v1/web/developer/app/${id}/code`
-       console.log(verUrl)
-       var verData = new FormData();
-       verData.append("fileName", this.state.fileName);
-       verData.append("fileLink", this.state.fileLink);
-       verData.append("codeDesc", formData.get('codeDesc'));
-       //data.append("",this.state.fileLink);
-       data.append("rnFrameworkVersion", 2);
-       const verRes = await fetch(url, {
-         method: "POST",
-         body: verData
-       })
+       if(id){
+        var verData = new FormData();
+        verData.append("fileName", this.state.fileName);
+        verData.append("fileLink", this.state.fileLink);
+        verData.append("codeDesc", formData.get('codeDesc'));
+        verData.append("rnFrameworkVersion", 2);
+        verData.append("platform", 2);
+        verData.append("moduleName", "main");
+        verData.append("setting", "{\"a\":1}");
+        fetch(verUrl, {
+          method: "POST",
+          body: verData
+        })
+       }
        this.setState({ isSubmitted: true });
      }
   }
@@ -63,8 +66,8 @@ class Info extends React.Component {
   onSelected(appLogo,appTages){
       this.setState({appLogo:appLogo,appTages:appTages})
   }
-  fileSelected(){
-
+  fileSelected(fileName,fileLink){
+     this.setState({fileName:fileName,fileLink:fileLink})
   }
   render() {
     return (

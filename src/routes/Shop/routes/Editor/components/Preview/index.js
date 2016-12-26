@@ -71,9 +71,9 @@ export class Preview extends Component {
             </ReactGridLayout>
           </div>
         </div>
-        {/*<pre style={{ "fontSize": '20px', "top": 0,"position": 'absolute' }}>
+        {<pre style={{ "fontSize": '20px', "top": 0,"position": 'absolute' }}>
          {JSON.stringify(this.props, null, 2)}
-         </pre>*/}
+         </pre>}
       </div>
     )
   }
