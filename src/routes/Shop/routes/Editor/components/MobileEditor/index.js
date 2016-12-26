@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
-import Detail from '../../containers/DetailContainer'
+import EditorDragLayer from '../EditorDragLayer'
 
 import './MobileEditor.scss'
 
@@ -49,6 +49,7 @@ export class Editor extends Component {
           {/*</div>*/}
         </div>
       </div>
+      <EditorDragLayer/>
     </div>
   }
 }
