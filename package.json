@@ -36,7 +36,7 @@
       }
     },
     "deploy": {
-      "command": "npm run lint && npm run test && npm run clean && npm run compile",
+      "command": "npm run clean && npm run compile",
       "env": {
         "DEBUG": "app:*"
       }
@@ -120,6 +120,7 @@
     "yargs": "^6.3.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.0",
     "babel-plugin-istanbul": "^3.0.0",
     "chai": "^3.4.1",

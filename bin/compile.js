@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const debug = require('debug')('app:bin:compile')
 const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
-const GitRepo = require('git-repository');
+const GitRepo = require('git-repository')
 
 // Wrapper around webpack to promisify its compiler and supply friendly logging
 const webpackCompiler = (webpackConfig) =>
@@ -77,11 +77,11 @@ async function gitDeploy(){
   await repo.setRemote(remote.name, remote.url);
 
   // Fetch the remote repository if it exists
-  if ((await repo.hasRef(remote.url, 'master'))) {
-    await repo.fetch(remote.name);
-    await repo.reset(`${remote.name}/master`, { hard: true });
-    await repo.clean({ force: true });
-  }
+  // if ((await repo.hasRef(remote.url, 'master'))) {
+  //   await repo.fetch(remote.name);
+  //   await repo.reset(`${remote.name}/master`, { hard: true });
+  //   await repo.clean({ force: true });
+  // }
 
   // Build the project in RELEASE mode which
   // generates optimized and minimized bundles
@@ -91,10 +91,12 @@ async function gitDeploy(){
     // Push the contents of the build folder to the remote server via Git
     await repo.add('--all .');
     await repo.commit('Update');
-    await repo.push(remote.name, 'master');
+    await repo.push(remote.name, 'master', {
+      force: 1
+    });
     // Check if the site was successfully deployed
-    const response = await fetch(remote.website);
-    console.log(`${remote.website} -> ${response.statusCode}`);
+    // const response = await fetch(remote.website);
+    // console.log(`${remote.website} -> ${response.statusCode}`);
 
   } catch (e) {
     console.log('-- deploy error --');
