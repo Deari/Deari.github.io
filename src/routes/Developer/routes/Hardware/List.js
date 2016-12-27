@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import HardwaresList from '../../components/Hardwares/List';
-class List extends React.Component {
+class HardwareList extends React.Component {
   render() {
     return <HardwaresList/>
   }
@@ -9,5 +9,5 @@ class List extends React.Component {
 
 module.exports = {
   path: 'list',
-  component: List
+  component: HardwareList
 }
