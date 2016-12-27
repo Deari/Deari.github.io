@@ -29,8 +29,8 @@ class OpenList extends React.Component {
     }
   }
   getLinkUrl(item) {
-    if (!item[`${typeName}Id`]) return ''
     const { typeName } = this.state
+    if (!item[`${typeName}Id`]) return `/open/${typeName}s`
     let link = ''
     if (item.appType === 2) {
       link = '/open/widgets/detail/' + item[`${typeName}Id`]

@@ -53,9 +53,16 @@ class Sidebar extends React.Component {
       if ( path.search(tagRules[i].ruleReg) != -1 ) return tagRules[i].ruleName
     }
   }
+  isShowTags() {
+    const path = location.pathname
+    let regexp = new RegExp('\/open\/')
+    return path.search(regexp) != -1 ? true : false
+  }
   // 切换标签
   changeTag(item, index, e) {
     e.stopPropagation()
+    let { currentIndex } = this.state
+    if (currentIndex === index ) return
     this.setState({ currentIndex: index })
     this.props.onTagChange(item.tagId)
   }
@@ -66,20 +73,27 @@ class Sidebar extends React.Component {
       <div className='sidebar'>
         <Link className="create-btn" to={ `/developer/${ruleName}/create` }><i className="iconfont icon-create"></i>创建新组件</Link>
         <ul className="help-menu">
-          <li><Link to={ `/developer/${ruleName}/list` }><i className="iconfont icon-application"></i>我的应用</Link></li>
-          <li><Link to={ `/developer/${ruleName}` }><i className="iconfont icon-file"></i>应用文档</Link></li>
+          <li>
+            <Link to={ `/developer/${ruleName}/list` }><i className="iconfont icon-application"></i>我的应用</Link>
+          </li>
+          <li>
+            <Link to={ `/developer/${ruleName}` }><i className="iconfont icon-file"></i>应用文档</Link>
+          </li>
         </ul>
-        <ul className="tag-list">
         {
-          tags.map(( item, index ) => {
-            return <li key={ item.tagId } onClick={ this.changeTag.bind(this, item, index) }>
-              <a className={ currentIndex === index ? 'active' : '' }>
-                <i className={`iconfont icon-sidebar${ item.tagId }`}></i>{ item.tagName }
-              </a>
-            </li>
-          })
+          this.isShowTags() ?
+          <ul className="tag-list">
+          {
+            tags.map(( item, index ) => {
+              return <li key={ item.tagId } onClick={ this.changeTag.bind(this, item, index) }>
+                <a className={ currentIndex === index ? 'active' : '' }>
+                  <i className={`iconfont icon-sidebar${ item.tagId }`}></i>{ item.tagName }
+                </a>
+              </li>
+            })
+          }
+          </ul> : ''
         }
-        </ul>
       </div>
     )
   }
