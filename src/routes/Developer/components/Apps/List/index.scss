@@ -27,6 +27,7 @@
 .list-title {
   margin-top: $default-margin-top - 10;
   height: $default-height - 50;
+  color: $gray6-color;
   line-height: $text-line-height + 10;
   background: $graye-color;
   @include border-top;

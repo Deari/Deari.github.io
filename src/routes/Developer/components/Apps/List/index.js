@@ -69,6 +69,7 @@ class AppsList extends React.Component {
             <li><a className="tab-active">全部</a></li>
             <li><a>已审核</a></li>
             <li><a>未审核</a></li>
+            <li><a>未提交</a></li>
           </ul>
           <ul className="list-title">
             <li className="w124">LOGO</li>

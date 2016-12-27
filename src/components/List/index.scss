@@ -1,13 +1,15 @@
 @import "../../layouts/CoreLayout/CoreLayout";
+@import "../../styles/_base.scss";
 
 .list-container {
-  padding: 10px;
+  padding: 10px 0;
   @include clx;
   .list-item-center {
     height: 50px;
     line-height: 50px;
   }
   .info-img-container {
+    padding-left: $default-padding-left - 30;
     div{
       width: 100px;
       height: 100px;
@@ -20,6 +22,7 @@
     }
   }
   .info-content {
+    padding-left: $default-padding-left - 34;
     line-height: $text-line-height - 16px;
     .info-name {
       font-size: $text-font-size - 4px;
@@ -43,7 +46,27 @@
   }
   .info-btn{
     text-align: center;
-    line-height: $text-line-height + 60;
+    a{
+      display: block;
+      margin: 6px 0;
+      button{
+        width: 80px;
+        @include btn;
+        @include btn-default;
+        @include btn-xs;
+      }
+    }
+    .no-active{
+      button{
+        opacity: 0.3;
+        &:hover{
+          color: $black-color;
+          background-color: $white-color;
+          border: 1px solid $black-color;
+          cursor: not-allowed;
+        }
+      }
+    }
   }
 }
 .list-none{
