@@ -67,7 +67,7 @@ class AppsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w114">操作</li>
           </ul>
-          <List data={this.state.listData} showName="硬件" linkUrl="/developer/Hardwares/create" />
+          <List data={this.state.listData} showName="硬件"/>
         </div>
       </div>
     )
