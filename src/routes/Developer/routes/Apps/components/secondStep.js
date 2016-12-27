@@ -13,19 +13,16 @@ class WizardFormSecondPage extends React.Component {
       "http://api.intra.",
       "ffan.net/bo/v1/web/file/upload"
     )
-    try {
-      const fileRes = await fetch(url, {
-        method: "POST",
-        body: data
-      })
-      const file = await fileRes.json();
-      if(file.data.status === 200){
-        alert(OK)
+    try {    
+      const fileRes =  await fetchUtil.postJSON(url,data,{"type":"formData"});
+      const fileObj = fileRes.data;
+      if(fileObj.status === 200){
+         this.props.getParams(fileObj, fileObj)
+      }else{
+        alert('服务端验证不通过，请进一步核对信息')
       }
-      const fileObj = file.data;
-      console.log(fileObj)
-      this.props.getParams(fileObj, fileObj)
     } catch(e){
+      alert(e.msg)
       console.log(e)
     }
   }

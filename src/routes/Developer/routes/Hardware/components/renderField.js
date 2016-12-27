@@ -8,11 +8,12 @@ export const renderField = ({ input, label, type, placeholder, meta: { touched, 
   </div>
 )
 
-export const renderSelect = ({ input, label, options, meta: { touched, error, warning } }) => (
+export const renderSelect = ({ input, label, options, onChange, disabled, meta: { touched, error, warning } }) => (
   <div>
     <label>{label}</label>
     <div>
       <select {...input}>
+      <option>请选择</option>
       {
         options.map( (item, index) => {
             return (
@@ -21,7 +22,7 @@ export const renderSelect = ({ input, label, options, meta: { touched, error, wa
         } )
       }
       </select>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {touched && ((error && <span>{error}</span>) || (warning && <span>warn{warning}</span>))}
     </div>
   </div>
 )
