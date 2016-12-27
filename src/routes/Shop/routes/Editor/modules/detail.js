@@ -8,10 +8,7 @@ function makeActionCreator(type, ...argNames) {
   }
 }
 
-
 const SELECT_ELEMENT = 'SELECT_ELEMENT'
-
-
 const SAVE_DETAIL = 'SAVE_DETAIL'
 
 export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
@@ -23,7 +20,7 @@ const ACTION_HANDLERS = {
   },
 
   [SAVE_DETAIL]: (state, action) => {
-
+    console.log('---save----')
     console.log(state)
     return state
   }
@@ -32,7 +29,6 @@ const ACTION_HANDLERS = {
 //export const actions = {
 //  saveDetail,
 //}
-
 
 export default function detailReducer(state = {}, action) {
   const handler = ACTION_HANDLERS[ action.type ]

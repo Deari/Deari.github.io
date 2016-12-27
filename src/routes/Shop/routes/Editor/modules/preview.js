@@ -1,18 +1,21 @@
 import { getRandomString } from '../../../../../components/utils'
 
+function makeActionCreator(type, ...argNames) {
+  return function (...args) {
+    let action = { type }
+    argNames.forEach((arg, index) => {
+      action[ argNames[ index ] ] = args[ index ]
+    })
+    return action
+  }
+}
+
 const ADD_ELEMENT = 'ADD_ELEMENT'
 const SET_LAYOUT = 'SET_LAYOUT'
 const SELECT_ELEMENT = 'SELECT_ELEMENT'
 
-export const addElement = (element) => ({
-  type: ADD_ELEMENT,
-  element,
-})
-
-export const setLayout = layout => ({
-  type: SET_LAYOUT,
-  layout,
-})
+export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
+export const setLayout = makeActionCreator(SET_LAYOUT, 'layout')
 
 export const selectElement = id => (dispatch, getState) => dispatch({
   type: SELECT_ELEMENT,
@@ -39,7 +42,6 @@ const ACTION_HANDLERS = {
   [SET_LAYOUT]: (state, action) => ({
     ...state, ...action.layout
   }),
-
 
   [SELECT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => ({
