@@ -73,7 +73,7 @@ class FetchUtil {
       method : 'POST',
       // ...jsonHeaders,
       ...optionsHeader,
-      body   : options.type === "formData" ? params : JSON.stringify(params)
+      body   : !options.jsonStringify ? params : JSON.stringify(params)
     }
 
     return new Promise((resolve, reject)=> {
