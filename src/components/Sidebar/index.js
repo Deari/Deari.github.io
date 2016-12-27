@@ -75,7 +75,7 @@ class Sidebar extends React.Component {
           tags.map(( item, index ) => {
             return <li key={ item.tagId } onClick={ this.changeTag.bind(this, item, index) }>
               <a className={ currentIndex === index ? 'active' : '' }>
-                <i className={`iconfont icon-${ item.tagId }`}></i>{ item.tagName }
+                <i className={`iconfont icon-sidebar${ item.tagId }`}></i>{ item.tagName }
               </a>
             </li>
           })
