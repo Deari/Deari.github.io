@@ -1,4 +1,4 @@
-import './thirdstep.scss'
+import './complete.scss'
 const Complete = ()=>(
   <div className="step-finish">
     <i className="iconfont icon-finish"></i>

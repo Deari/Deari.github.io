@@ -7,7 +7,6 @@ import { test } from '../modules/create'
 
 import FirstStepForm from '../components/FirstStepForm'
 import SecondStepForm from '../components/SecondStepForm'
-import SecondStep from '../components/SecondStep'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
@@ -116,7 +115,7 @@ class CreateContainer extends Component {
         }
         {
           page === 2 && 
-            <SecondStep 
+            <SecondStepForm 
               previousPage={()=>toggleStep(1)} 
               updateForm={this.props.updateForm2}
               onSubmit={::this.submitSecondForm} 
