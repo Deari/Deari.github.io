@@ -31,32 +31,32 @@ export const HomeView = () => (
         <p>数据由万达提供</p>
         <ul className="clx">
           <li>
-            <a className="a-bg1">
+            <Link className="a-bg1" to="/open/apps">
               <p>应用市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="a-bg2">
+            <Link className="a-bg2" to="/open/widgets">
               <p>组件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="a-bg3">
+            <Link className="a-bg3">
               <p>API市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="a-bg4">
+            <Link className="a-bg4" to="/open/hardware">
               <p>硬件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

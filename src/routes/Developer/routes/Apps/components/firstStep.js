@@ -1,11 +1,15 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect, renderFile}from './renderField'
+import renderField, { renderTextArea, renderSelect}from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
+
 import Tags from '../../../../../components/Tags'
-import './firstStep.scss'
+
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
+
+import './firstStep.scss'
+
 
 class WizardFormFirstPage extends React.Component {
   
@@ -81,20 +85,20 @@ class WizardFormFirstPage extends React.Component {
       <form onSubmit={handleSubmit} className="step_form">
         <Field name="appName" type="text" component={renderField}
           label="应用名称"
-          />
-        <div>
-          <label>应用图片</label>
-          <div>
-            <p>请上传应用高清图片</p>
-            <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-            <span>
-              <input type="button" value="选择文件" />
-              <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)} />
-            </span>
-            <div className="img-container">
-              <img src={this.state.imgUrl} alt="上传图片" className="img-thumbnail" />
-            </div>
-          </div>
+          /> 
+        <div className="step_form_row">
+        	<label className="step_form_row_label">应用图片</label>
+        	<div className="step_form_row_right">
+        		<p className="step_form_row_right_p">请上传应用高清图片</p>
+				<p className="step_form_row_right_p">400*400像素，仅支持PNG格式，大小不超过300KB</p>
+			    <span className="step_form_row_right_file">
+			      <input type="button" value="选择文件" className="step_form_row_right_file_btn"/>
+			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)} className="step_form_row_right_file_upload"/>
+			    </span>
+        		<div>
+			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail" className="step_form_row_right_img"/>
+			    </div>
+        	</div>
         </div>
         <Field name="appDesc" type="text" component={renderTextArea}
           label="应用简介"

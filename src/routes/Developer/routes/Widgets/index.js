@@ -5,23 +5,11 @@ import '../../../../components/Header/Header.scss'
 
 class Container extends React.Component {
   render () {
-    return <div className="core-layout__viewport">
-      {/*<div className="container">
-        <ul className="nav navbar-nav clx">
-          <li>
-            <IndexLink to='/developer/widgets' activeClassName='route--active'>
-                              开发者文档
-            </IndexLink>
-          </li>
-          <li>
-            <Link to='/developer/widgets/list' activeClassName='route--active'>
-                              我的组件
-            </Link>
-          </li>
-        </ul>
-      </div>*/}
-      {this.props.children}
-  </div>
+    return (
+      <div className="core-layout__viewport">
+        {this.props.children}
+      </div>
+    )
   }
 }
 
