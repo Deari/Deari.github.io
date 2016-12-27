@@ -11,11 +11,11 @@ class List extends React.Component {;
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      name: this.props.showName === '应用' ? 'app' : this.props.showName === '组件' ? 'widget' :'hardware'
+      name: this.props.showName === '硬件' ? 'hardware' : 'app'
     })
   }
   render() {
-    const {data,showName,linkUrl} = this.props
+    const {data,showName} = this.props
     console.log(data)
     const {name} = this.state
     return (
@@ -38,10 +38,10 @@ class List extends React.Component {;
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w114">
-                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? '':"no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "no-active" : item.codeId ? '':'no-active' } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>编辑</button>
                 </Link>
-                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? "no-active": ''} to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "no-active" : item.codeId ?'no-active': ''} to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>发布新版本</button>
                 </Link>
                 <Link className={name === 'hardware' ? "" : "no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
