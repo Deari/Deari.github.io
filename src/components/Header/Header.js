@@ -48,20 +48,30 @@ export const Header = ({location, hideHeader}) => {
   return (
     <div className='header-wrapper'>
       <div className='header-bg'></div>
-      <div className='g-header container'>
-        <h1>
-          <Link to='/' className="logo-text">
-            <i></i><span>BO开放平台</span>
+      <div className='g-header container '>
+        
+        <h1 className="title pull-left ">
+          <Link to='/' className="logo">
+            <i className="icon"></i>
+            <span className="text">BO开放平台</span>
+
           </Link>
-          <span className="logo-line"></span>
-          {title ? <small>{title}</small> : null}
+          {title ? <small className="small-title">{title}</small> : null}
         </h1>
-        <Login />
-        <form>
-          <i className="iconfont icon-search"></i>
-          <input type="text" placeholder="搜索API" />
-        </form>
-        {nav}
+        
+        <div className="pull-right">
+          <div className="nav item">
+            { nav }
+          </div>
+
+          { title ? <div className="search">
+              <i className="iconfont icon-search"></i>
+              <input type="text" placeholder="搜索API" />
+            </div>
+            : null
+          }
+          <Login />
+        </div>
       </div>
     </div>
   )
