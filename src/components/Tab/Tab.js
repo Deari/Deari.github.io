@@ -70,7 +70,7 @@ class Tab extends React.Component {
         linkUrl = this.props.linkUrl;
     return (
       <div>
-        <div className="bg-gray">
+        <div>
         <ul className="tab-container clx">
         {
           React.Children.map(this.props.children, (item, index) => {

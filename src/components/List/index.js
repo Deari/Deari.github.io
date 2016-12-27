@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import './index.scss'
-import '../../styles/button.scss'
-import '../../styles/tools.scss'
+import '../../styles/_base.scss'
 
 class List extends React.Component {;
     state = {
@@ -24,12 +23,12 @@ class List extends React.Component {;
           data.length == 0 ? <div className="list-none">没有更多数据了~</div> :
           data.map( (item, index) => (
             <div key={index} className="list-container">
-              <div className="info-img-container w119">
+              <div className="info-img-container w124">
                 <div>
                   <img src={item[name+'Logo']} />
                 </div>
               </div>
-              <div className="info-content w338">
+              <div className="info-content w342">
                 <div className="info-name" title={item[name+'Name']}>{showName + '名称 : '}{item[name+'Name']}</div>
                 <div className="info-introduce" title={item[name+'Desc']}>{showName + '介绍 : '}{item[name+'Desc']}</div>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
