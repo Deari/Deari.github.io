@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
-import '../../Apps/components/create.scss'
+// import '../../Apps/components/create.scss'
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
+
 
 import HardwareFirstPage from './firstStep'
 import HardwareSecondPage from './secondStep'

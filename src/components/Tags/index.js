@@ -27,13 +27,13 @@ class Tags extends React.Component {
     const { data:tags} = this.props
     return (
         <ul className="step_form_row_right step_form_row_right_ul">
-        {
-         this.state.tags.map((item, index) => {
-            return <li key={item.tagId} 
-                       className={item.checked ? 'step_form_row_right_li active' : 'step_form_row_right_li'}
-                       onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
-          })
-        }
+          {
+            tags.map((item, index) => {
+              return <li key={item.tagId}
+                className={item.checked ?  'step_form_row_right_li active' : 'step_form_row_right_li'}
+                onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
+            })
+          }
         </ul>
     )
   }

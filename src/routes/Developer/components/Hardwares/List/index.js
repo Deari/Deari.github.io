@@ -1,90 +1,77 @@
 import React from 'react'
 import { Link } from 'react-router'
+import List from '../../../../../components/List'
 import fetchUtil from '../../../../utils/fetchUtil'
+import Slidebar from '../../../../../components/Sidebar'
+import './index.scss'
+import '../../../../../styles/_base.scss'
+import { getDomain } from '../../../../utils/domain';
 
-class HardwaresList extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      listData: [],
-      status: 'published'
-    }
+class AppsList extends React.Component {
+  state = {
+    listData: [],
+    status : -2  //-1 0 1 2 
   }
-  async getList() {
-    const apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/hardware/myHardware/${this.state.status}`;
+  
+  async getList(isFirst) {
+
+    let apiUrl = isFirst? 
+    getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/myHardware") :
+    getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/myHardware/"+this.state.status)
+
     try {
       const res = await fetchUtil.getJSON(apiUrl);
       if(res.status === 200){
-        return res.data && res.data.list && res.data.list
+        return res.data && res.data.list
       } else {
-        window.alert(res.msg);
+        console.log("res ", res);
+        return []
       }
     } catch (e) {
       console.log(e)
     }
   }
+
   componentDidMount() {
-    this.getList().then(
-      response => {
-        response && this.setState({listData: response})
-      }
-    )
+    this.changeList(-1)
   }
+
+
   changeList(value) {
     if (value === this.state.status) return;
-    this.setState({status: value}, () => {
-      this.getList().then(
-        response => {
-          response && this.setState({listData: response})
-        }
-      )
+    this.setState({ status : value }, async () => {
+      let resp = value >= 0 ? await this.getList() : await this.getList(true);
+      this.setState({ listData: resp })
+      if (!resp.length) {
+        console.log("noData")
+      }
     });
   }
+
   render() {
-    let status = this.state.status;
-    let listData = this.state.listData;
     return (
-      <div className="cContent clx">
-        <div className="col-sm-2 col-md-2 navThird">
-          <ul>
-            <li className={status === 'published' ? 'navThirdHover' : ''}
-                onClick={this.changeList.bind(this, 'published')}>已经发布产品</li>
-            <li className={status === 'unpublished' ? 'navThirdHover' : ''}
-                onClick={this.changeList.bind(this, 'unpublished')}>未发布产品</li>
+      <div className="container clx">
+        <Slidebar />
+        <div className="sub-container plf bg-white">
+          <ul className="sub-content-tab">
+            <li><a className={this.state.status === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
+            <li><a className={this.state.status === 0 ? 'tab-active' : ''} onClick={this.changeList.bind(this,0)}>已审核</a></li>
+            <li><a className={this.state.status === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>未审核</a></li>
+            <li><a className={this.state.status === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>未提交</a></li>
           </ul>
-        </div>
-        <div className="col-sm-10 col-md-10">
-          <div className="ccContent">
-            <Link className="ccContentBtn" to='/developer/hardware/create'>
-              <div className="width110 float-right">
-                <button className="btn btn-primary">+ 创建硬件</button>
-              </div>
-            </Link>
-            <div className="">
-              <ul>
-              {
-                listData.map((item, index) => {
-                  return (
-                    <li>
-                      <a href="javascript:;">
-                        产品名称： {item.hardwareName}
-                        <img src={item.hardwareLogo} alt="LOGO" />
-                        产品PID： {item.hardwarePid}
-                        创建时间： {item.createTime}
-                        更新时间： {item.updateTime}
-                      </a>
-                      {status === 'unpublished' ? <Link to='/developer/hardware/edit/1'><button className="btn">继续</button></Link> : ''}
-                    </li>
-                  )
-                })
-              }
-              </ul>
-            </div>
-          </div>
+          <ul className="list-title">
+            <li className="w124">LOGO</li>
+            <li className="w342">应用名称</li>
+            <li className="w90">价格</li>
+            <li className="w90">状态</li>
+            <li className="w90">已下载</li>
+            <li className="w114">操作</li>
+          </ul>
+          <List data={this.state.listData} showName="硬件" linkUrl="/developer/Hardwares/create" />
         </div>
       </div>
     )
   }
 }
 
-export default HardwaresList;
+export default AppsList;

@@ -18,16 +18,12 @@ export const renderTextArea = ({ input, label, type, meta: { touched, error, war
   </div>
 )
 
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, optionArr }) => (
+export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
   <div className="step_form_row">
     <label className="step_form_row_label">{label}</label>
     <div className="step_form_row_right">
       <select {...input} className="step_form_row_right_select">
-        {
-         optionArr.map((item, index) => {
-            return <option key={item.categoryId} value={item.categoryId}>{item.categoryName}</option>
-          })
-        }
+        {children}
       </select>
       {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
     </div>

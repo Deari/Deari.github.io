@@ -1,30 +1,148 @@
-import React, {Component} from 'react'
-import Create from '../components/create'
+import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 
+import { validate, warn } from '../modules/validate'
+import { test } from '../modules/create'
 
-//const reducers = {
-  // ... your other reducers here ...
-  //form: formReducer     // <---- Mounted at 'form'
-//}
+import FirstStepForm from '../components/FirstStepForm'
+import SecondStepForm from '../components/SecondStepForm'
+import SecondStep from '../components/SecondStep'
+import Complete from '../components/Complete'
+import Step from '../components/Step'
 
+import { getDomain } from '../../../../utils/domain'
+import fetchUtil from '../../../../utils/fetchUtil'
 
-//const reducer = combineReducers(reducers)
-//const store = createStore(reducer)
+import { toggleStep, submitCreateForm, fetchTags, fetchCates,
+  toggleTag, updateForm2 } from '../modules/create'
 
-//const mapDispatchToProps = {
-//  form: formReducer,
-//  handleSubmit: () => {}
-//}
+class CreateContainer extends Component {
 
-//export default connect(undefined, mapDispatchToProps)(Create)
+  async componentDidMount() {
+    // console.log("props:", this.props);
+    this.props.fetchTags()
+    this.props.fetchCates()
+  }
 
+  imageUpload(e) {
+    return console.log("imageUpload");
 
-export default class CreateContainer extends React.Component {
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
+    const formData = new FormData()
+    formData.append('fileName', e.target.files[0])
+
+    fetchUtil.postJSON(url, formData, {
+      jsonStringify: false 
+    }).then(res=>{
+      console.log(`Upload Success: `, res)
+      // do something
+    }).catch(e=>{
+      console.log(`Upload Failed.`)
+      // do something
+    })
+  }
+
+  fileUpload(e) {
+    console.log(e);
+  }
+
+  submitFirstForm(values) {
+
+    console.log(values);
+
+    const formData = new FormData();
+
+    for(let key in values) {
+      if(key == 'tags') {
+        for(let v of values[key]){
+          formData.append('tags[]', v)
+        }
+      } else {
+        formData.append(key, values[key])
+      }
+    }
+
+    this.props.submitCreateForm(formData).then(()=>{
+      this.props.toggleStep(2);
+    });
+  }
+
+  submitSecondForm(values) {
+    console.log(values);
+
+    // Do something with the form values
+    const url = getDomain(
+      `http://api.intra.`,`ffan.net/bo/v1/web/developer/app/${values.appId}/code`
+    )
+
+    const formData = new FormData();
+
+    for(let key in values) {
+      formData.append(key, values[key]);
+    }
+
+    formData.append('fileName', values['originalName']);
+    formData.append('fileLink', values['url']);
+   
+    // return this.props.toggleStep(3);
+
+    fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
+      if (res.status == 200) {
+        this.props.toggleStep(3);
+      } else {
+        console.warn(res);
+      }
+    })
+  }
+
   render() {
+    const { toggleStep, toggleTag, create } = this.props;
+    const { page, tags, cates, form, form2 } = create;
+
     return (
       <div>
-        <Create/>
+        <Step page={page}/>
+        {
+          page === 1 && 
+            <FirstStepForm 
+              onSubmit={::this.submitFirstForm} 
+              imageUpload={::this.imageUpload}
+              toggleTag={toggleTag}
+              tags={tags}
+              cates={cates}
+              initialValues={form}
+            />
+        }
+        {
+          page === 2 && 
+            <SecondStep 
+              previousPage={()=>toggleStep(1)} 
+              updateForm={this.props.updateForm2}
+              onSubmit={::this.submitSecondForm} 
+              initialValues={form2}
+            />
+        }
+        {
+          page === 3 && 
+          <Complete />
+        }
       </div>
     );
   }
 }
+
+const mapDispatchToProps = {
+  toggleStep,
+  toggleTag,
+  submitCreateForm,
+  fetchTags,
+  fetchCates,
+  updateForm2
+}
+
+const mapStateToProps = ({ create }) => ({
+  create,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
