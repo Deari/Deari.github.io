@@ -184,10 +184,17 @@
   margin-top: $default-margin-top - 20;
   padding: 0 $default-padding-left - 20;
   .moreApp-list{
+    padding-bottom: $default-padding-bottom - 10;
     border-top: 1px solid $graya-color;
     h3{
       padding: $default-padding-top - 20 0;
       font-size: $text-font-size - 4;
+    }
+    .open-content-list{
+      margin-top: $default-margin-top - 20;
+      p{
+        text-align:center;
+      }
     }
   }
 }

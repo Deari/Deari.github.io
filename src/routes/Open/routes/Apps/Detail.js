@@ -4,6 +4,7 @@ import fetchUtil from '../../../utils/fetchUtil'
 import moment from 'moment'
 import Relative from '../../../../components/Relative'
 import Slidebar from '../../../../components/Sidebar'
+import OpenList from '../../../../components/OpenList'
 import '../../../../styles/_base.scss'
 import '../../index.scss'
 
@@ -12,7 +13,8 @@ class Detail extends React.Component {
     super();
     this.state = {
       data: [],
-      widgets: []
+      widgets: [],
+      listData: []
     };
   }
   async componentDidMount() {
@@ -37,6 +39,7 @@ class Detail extends React.Component {
   }
   render() {
     let data = this.state.data;
+    let { listData } = this.state
     return (
       <div className="core-layout__viewport">
         <div className="container clx">
@@ -61,7 +64,7 @@ class Detail extends React.Component {
               <div className="detail-moreApps">
                 <div className="moreApp-list">
                   <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
-                  <Relative data={this.state.widgets} />
+                  <OpenList listData={listData} typeName="app" />
                 </div>
               </div>
             </div>
