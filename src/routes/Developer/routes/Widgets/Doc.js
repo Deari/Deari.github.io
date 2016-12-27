@@ -7,7 +7,8 @@ import './Doc.scss'
 
 class Doc extends React.Component {
   render() {
-    return <div className="container clx">
+    return (
+    <div className="container clx">
       <Slidebar />
       <div className="sub-container plf bg-white">
         <dl className="doc-info">
@@ -27,6 +28,7 @@ class Doc extends React.Component {
         </dl>
       </div>
     </div>
+    )
   }
 }
 

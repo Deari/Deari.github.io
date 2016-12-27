@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Doc from '../../components/widgets/Doc'
+import Doc from './Doc'
 import '../../../../components/Header/Header.scss'
 
 class Container extends React.Component {
