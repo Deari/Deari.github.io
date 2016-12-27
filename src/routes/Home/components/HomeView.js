@@ -11,8 +11,10 @@ export const HomeView = () => (
         <dd>为开发者提供最全面 最权威的API服务</dd>
       </dl>
       <p>
+       <Link className="btn btn-primary btn-lg" to="/developer/api">浏览API</Link>
         <a className="btn btn-primary btn-lg">浏览API</a>
         <a className="btn btn-lg">发布API</a>
+        <Link className="btn btn-primary btn-lg" to="/developer/api">浏览API</Link>
       </p>
     </div>
     <div className="home-reminder">
