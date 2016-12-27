@@ -38,13 +38,13 @@ class List extends React.Component {;
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w114">
-                <Link className={name === 'hardware'? "no-active" : "" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? '':"no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>编辑</button>
                 </Link>
-                <Link className={name === 'hardware'? "no-active" : "" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? "no-active": ''} to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>发布新版本</button>
                 </Link>
-                <Link className={name === 'hardware'? "" : "no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "" : "no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>调试硬件</button>
                 </Link>
               </div>
