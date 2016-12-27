@@ -35,7 +35,7 @@ $header-height:70px;
       margin-top: $default-margin-top - 26;
       line-height: $text-line-height + 4;
       a{
-        font-size: $text-font-size - 4;
+        font-size: $text-font-size - 2;
         color: $gray6-color;
       }
       i {
@@ -47,69 +47,6 @@ $header-height:70px;
         background-size: 100%;
         vertical-align:sub;
       }
-    }
-  }
-}
-
-
- .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  @include navselect-bottom;
-  } 
-
-.navbar-nav{
-  .route--active {
-  font-weight: bold;
-  color: $blue-color;
-  }   
-}
-//二级导航
-.nav-second{
-  background: $grayf-color;
-  .navs-nav{
-    height: $default-height - 46px;
-    font-size: $text-font-size - 4px;
-    line-height: $default-height - 46px;
-    li{
-    @include float-left;
-    padding: 0 20px;
-    margin: 0 0 0 ;
-    background-image: none;
-    }
-  }
-}
-//三级导航
-.cContent{
-  padding-top: 20px;
-  min-height: 800px;
-  .navThird{
-    padding: 0;
-    min-height: 800px;
-    background: $white-color;
-    .navThirdHover{/*选中样式*/
-      color: $white-color;
-      background: $blue-color url(../../routes/Home/assets/more_into_white.png) no-repeat 10px center;
-      background-size: 6px;
-    }
-    ul{
-      height: $default-height - 60px;
-      font-size: $text-font-size - 4px;
-      line-height: $default-height - 60px;
-      li{
-        @include border-bottom;
-        padding-left: $default-padding-left - 30px;
-        height: $default-height - 60px;
-        line-height: $default-height - 60px;
-        background: url(../../routes/Home/assets/more_into_gray.png) no-repeat 10px center;
-        background-size: 6px;
-        ul{
-          li{
-            border-bottom: none;
-            background-image: none;
-          }
-        }
-      }
       a.logo-text{
           padding-right: $default-padding-right - 20;
           font-size: $text-font-size + 6;
@@ -118,13 +55,14 @@ $header-height:70px;
     }
     .nav-list{
       @include float-right;
-      font-size: $text-font-size - 4;
-      line-height: $text-line-height + 34;
+      padding-top: $default-padding-top - 30;
+      font-size: $text-font-size - 2;
+      line-height: $text-line-height + 24;
       a{
         @include float-left;
-        margin-right: $default-margin-right - 7;
-        padding-left: $default-padding-left - 28;
-        padding-right: $default-padding-right - 28;
+        margin-right: $default-margin-right - 12;
+        padding-left: $default-padding-left - 30;
+        padding-right: $default-padding-right - 30;
         color: $black-color;
       }
       a.active{
@@ -134,28 +72,28 @@ $header-height:70px;
     }
     form{
       @include float-right;
-      margin-top: $default-margin-top - 19;
-      margin-right: $default-margin-right - 25;
-      padding-top: $default-padding-top - 35;
-      padding-bottom: $default-padding-bottom - 35;
-      padding-left: $default-padding-left - 35;
-      padding-right: $default-padding-right - 35;
+      margin-top: $default-margin-top - 12;
+      margin-right: $default-margin-right - 12;
+      padding: $default-padding-top - 38 $default-padding-left - 36;
       background: $graye-color;
       border-radius: 14px;
+      .icon-search{
+        font-size: $text-font-size + 2;
+        color: #8a8a8a;
+        vertical-align: middle;
+      }
       input{
         width: $default-width - 5;
-        padding-left: $default-padding-left - 30; 
-        font-size: $text-font-size - 7;
+        padding-left: $default-padding-left - 36; 
+        font-size: $text-font-size - 6;
         color: $gray9-color;
         background: $graye-color;
         border:0;
+        outline: none;
         &::-webkit-input-placeholder{
-          font-size: $text-font-size - 7;
+          font-size: $text-font-size - 6;
           font-family: 'Microsoft Yahei';
           color: $gray9-color;
-        }
-        &:focus::-webkit-input-placeholder{
-          border: 0;
         }
       }
     }
@@ -185,7 +123,7 @@ $header-height:70px;
     }
     .logined{
       @include float-right;      
-      padding-top: $default-padding-top - 25;
+      padding-top: $default-padding-top - 22;
       font-size: $text-font-size - 6;
       color: $gray9-color;
       span{
@@ -195,7 +133,7 @@ $header-height:70px;
           vertical-align: top;
         }
         &:first-child{
-          padding-right: $default-padding-right - 33;
+          padding-right: $default-padding-right - 26;
         }
         &:last-child{
           padding-left: $default-padding-left - 33;
@@ -205,4 +143,8 @@ $header-height:70px;
       }
     }
   }
+}
+.logo-line{
+  border-right: 1px solid #cacaca;
+  font-size: $text-font-size;
 }

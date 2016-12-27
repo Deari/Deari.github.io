@@ -12,7 +12,7 @@ class AppsList extends React.Component {
     super(props);
     this.state = {
       listData: [],
-      reviewStatus: 1
+      reviewStatus: 0   //1 he 0
     }
   }
   async getList() {
@@ -66,20 +66,20 @@ class AppsList extends React.Component {
             <button className="btn btn-primary float-right">+ 创建应用zzg</button>
           </Link>*/}
           <ul className="sub-content-tab">
-            <li>全部</li>
-            <li>已审核</li>
-            <li>未审核</li>
+            <li><a className="tab-active">全部</a></li>
+            <li><a>已审核</a></li>
+            <li><a>未审核</a></li>
+            <li><a>未提交</a></li>
           </ul>
-           
-            <div className="list-title">
-              <div>LOGO</div>
-              <div>应用名称</div>
-              <div>价格</div>
-              <div>状态</div>
-              <div>已下载</div>
-              <div>操作</div>
-            </div>
-            <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
+          <ul className="list-title">
+            <li className="w124">LOGO</li>
+            <li className="w342">应用名称</li>
+            <li className="w90">价格</li>
+            <li className="w90">状态</li>
+            <li className="w90">已下载</li>
+            <li className="w114">操作</li>
+          </ul>
+          <List data={this.state.listData} showName="应用" linkUrl="/developer/apps/create" />
         </div>
       </div>
     )
