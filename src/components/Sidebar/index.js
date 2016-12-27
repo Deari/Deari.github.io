@@ -13,7 +13,7 @@ export const Sidebar = ({location, hideHeader}) => {
         <li><a><i className="iconfont icon-file"></i>应用文档</a></li>
       </ul>
       <ul className="tag-list">
-        <li><a><i className="iconfont icon-label"></i>全部标签</a></li>
+        <li><a><i className="iconfont icon-sidebar0"></i>全部标签</a></li>
         <li><a><i className="iconfont icon-sidebar7"></i>营销常用</a></li>
         <li><a><i className="iconfont icon-sidebar1"></i>会员管理</a></li>
         <li><a><i className="iconfont icon-sidebar2"></i>数据分析</a></li>
