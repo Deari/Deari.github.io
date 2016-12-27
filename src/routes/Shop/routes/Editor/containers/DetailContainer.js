@@ -1,4 +1,13 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Detail from '../components/Detail'
 
-export default connect()(Detail)
+
+const mapStateToProps = state => ({
+  detail: state.detail
+})
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+export default connect(mapStateToProps)(Detail)

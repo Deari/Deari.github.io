@@ -11,7 +11,6 @@ const productSource = {
     //}
   }
 }
-
 const DragProduct = ({connectDragSource, ...props}) => connectDragSource(<div><Product {...props}/></div>)
 
 export default DragSource('product', productSource, (connect, monitor) => ({

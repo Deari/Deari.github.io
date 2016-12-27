@@ -19,9 +19,11 @@ module.exports = (store) => ({
 
       const product = require('./modules/product').default
       const preview = require('./modules/preview').default
+      const detail = require('./modules/detail').default
 
       injectReducer(store, { key: 'product', reducer: product })
       injectReducer(store, { key: 'preview', reducer: preview })
+      injectReducer(store, { key: 'detail', reducer: detail })
       cb(null, Editor)
     })
   }
