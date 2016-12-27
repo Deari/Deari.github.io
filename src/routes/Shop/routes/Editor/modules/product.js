@@ -90,7 +90,9 @@ export const actions = {
 }
 
 const ACTION_HANDLERS = {
-  [REQUEST_PRODUCTS]: (state, action) => ({ ...action.data })
+  [REQUEST_PRODUCTS]: (state, action) => {
+    return {...state, ...action.data }
+  }
 }
 
 export default function productReducer(state = {}, action) {

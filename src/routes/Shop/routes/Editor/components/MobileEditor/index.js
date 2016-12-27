@@ -17,25 +17,24 @@ const rightSideBarStyle = {
   right: 0,
 }
 
+const LeftSideBar = props => (
+  <div className='sidebar'>
+    <h3 className="side-title"><i className="iconfont icon-arrR"></i>我的店铺组件</h3>
+    <Product/>
+    <div className="sub-banner-pd">
+      <div className="sub-banner"></div>
+      <div className="sub-banner"></div>
+    </div>
+    <p className="sub-info"><i className="icon-circle"></i>鼠标按住上方店铺组件，拖动到右侧手机屏幕中进行编辑</p>
+    <a className="btn-more"><i className="iconfont icon-hot-control"></i>更多店铺组件</a>
+  </div>
+)
+
 export class Editor extends Component {
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
-
   render() {
-    const { product } = this.props
     return <div className="clx">
-      <div className='sidebar'>
-        <h3 className="side-title"><i className="iconfont icon-arrR"></i>我的店铺组件</h3>
-        <Product {...product}/>
-        <div className="sub-banner-pd">
-          <div className="sub-banner"></div>
-          <div className="sub-banner"></div>
-        </div>
-        <p className="sub-info"><i className="icon-circle"></i>鼠标按住上方店铺组件，拖动到右侧手机屏幕中进行编辑</p>
-        <a className="btn-more"><i className="iconfont icon-hot-control"></i>更多店铺组件</a>
-      </div>
+      <LeftSideBar/>
       <div className="editor-view">
         <div className="preview">
           <div className="bg-phone"></div>
@@ -45,13 +44,14 @@ export class Editor extends Component {
       <div className="right-sidebar" style={rightSideBarStyle}>
         <Detail/>
       </div>
+      <pre>
+      </pre>
       <EditorDragLayer/>
     </div>
   }
 }
 
 export default Editor
-
 
 Editor.propTypes = {
   products: PropTypes.array
