@@ -18,7 +18,7 @@ export const renderTextArea = ({ input, label, type, meta: { touched, error, war
   </div>
 )
 
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, optionArr }) => (
+export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
   <div className="step_form_row">
     <label className="step_form_row_label">{label}</label>
     <div className="step_form_row_right">
