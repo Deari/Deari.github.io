@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import '../../Apps/components/create.scss'
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
 
