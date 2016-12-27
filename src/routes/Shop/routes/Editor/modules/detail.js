@@ -8,11 +8,21 @@ function makeActionCreator(type, ...argNames) {
   }
 }
 
+
+const SELECT_ELEMENT = 'SELECT_ELEMENT'
+
+
 const SAVE_DETAIL = 'SAVE_DETAIL'
 
 export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
 
 const ACTION_HANDLERS = {
+
+  [SELECT_ELEMENT]: (state, action) => {
+    console.log(action)
+    return state
+  },
+
   [SAVE_DETAIL]: (state, action) => {
 
     console.log(state)

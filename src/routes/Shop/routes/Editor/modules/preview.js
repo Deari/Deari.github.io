@@ -16,11 +16,11 @@ export const setLayout = layout => ({
   layout,
 })
 
-export const selectElement = id => ({
+export const selectElement = id => (dispatch, getState) => dispatch({
   type: SELECT_ELEMENT,
   id,
+  selectedElement: getState().preview.elements.find(e => e.id === id),
 })
-
 
 export const actions = {
   addElement,
@@ -32,13 +32,13 @@ const ACTION_HANDLERS = {
   [ADD_ELEMENT]: (state, action) => ({
     ...state, elements: [ ...state.elements,
       {
-        id      : getRandomString({}),
+        id: getRandomString({}),
         selected: false,
         ...action.element,
       } ]
   }),
 
-  [SET_LAYOUT]: (state, action) =>({
+  [SET_LAYOUT]: (state, action) => ({
     ...state, ...action.layout
   }),
 
@@ -53,7 +53,7 @@ const ACTION_HANDLERS = {
 
 const defaultState = {
   elements: [],
-  layout  : [],
+  layout: [],
 }
 
 export default function productReducer(state = defaultState, action) {
