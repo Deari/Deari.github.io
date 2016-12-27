@@ -1,4 +1,4 @@
-@import "../../index";
+@import "../../routes/Open/index";
 
 .sub-container{
   @include sub-container;
@@ -8,7 +8,7 @@
 }
 .sub-container-banner{
   @include sub-container-banner;
-  background: url(../../../Home/assets/sub-container-banner1.jpg) no-repeat;
+  background: url(../../routes/Home/assets/sub-container-banner1.jpg) no-repeat;
   background-size: 100%;
 }
 .open-content-nav{
@@ -25,7 +25,7 @@
   height: 18px;
   border-radius: 50%;
   overflow: hidden;
-  background: url(../../../Home/assets/nav_logo.png) no-repeat;
+  background: url(../../routes/Home/assets/nav_logo.png) no-repeat;
   background-size: 100%;
   vertical-align: middle;
 }
