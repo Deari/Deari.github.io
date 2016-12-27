@@ -17,7 +17,6 @@ class Sidebar extends React.Component {
   async componentDidMount() {
     const ruleName = this.getRule()
     const { tags } = this.state
-    console.log("ruleName ", ruleName)
     try {
       const apiUrl = getDomain(
         `http://api.intra.`,
@@ -38,15 +37,15 @@ class Sidebar extends React.Component {
     const tagRules = [
       {
         ruleReg: new RegExp('\/apps\/?'),
-        ruleName: 'app'
+        ruleName: 'apps'
       },
       {
         ruleReg: new RegExp('\/widgets\/?'),
         ruleName: 'widgets'
       },
       {
-        ruleReg: new RegExp('\/hardware\/?'),
-        ruleName: 'hardware'
+        ruleReg: new RegExp('\/hardwares\/?'),
+        ruleName: 'hardwares'
       },
     ]
     const path = location.pathname
@@ -65,10 +64,10 @@ class Sidebar extends React.Component {
     const ruleName = this.getRule()
     return (
       <div className='sidebar'>
-        <Link className="create-btn" to={ `/developer/${ruleName}s/create` }><i className="iconfont icon-create"></i>创建新组件</Link>
+        <Link className="create-btn" to={ `/developer/${ruleName}/create` }><i className="iconfont icon-create"></i>创建新组件</Link>
         <ul className="help-menu">
-          <li><Link to={ `/developer/${ruleName}s/list` }><i className="iconfont icon-application"></i>我的应用</Link></li>
-          <li><Link to={ `/developer/${ruleName}s` }><i className="iconfont icon-file"></i>应用文档</Link></li>
+          <li><Link to={ `/developer/${ruleName}/list` }><i className="iconfont icon-application"></i>我的应用</Link></li>
+          <li><Link to={ `/developer/${ruleName}` }><i className="iconfont icon-file"></i>应用文档</Link></li>
         </ul>
         <ul className="tag-list">
         {
