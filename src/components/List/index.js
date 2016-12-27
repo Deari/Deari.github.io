@@ -34,12 +34,18 @@ class List extends React.Component {;
                 <div className="info-introduce" title={item[name+'Desc']}>{showName + '介绍 : '}{item[name+'Desc']}</div>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
               </div>
-              <div className="w90">免费</div>
+              <div className="info-price w90">免费</div>
               <div className="info-status w90">{item.state}</div>
-              <div className="w90">已下载</div>
+              <div className="info-download w90">100</div>
               <div className="info-btn w114">
-                <Link to={'/developer/' + name + 's/detail/' + item.appId}>
-                  <button className="btn btn-default">管理</button>
+                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? '':"no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                  <button>编辑</button>
+                </Link>
+                <Link className={name === 'hardware' ? "no-active" : item[name+'id'] ? "no-active": ''} to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                  <button>发布新版本</button>
+                </Link>
+                <Link className={name === 'hardware' ? "" : "no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                  <button>调试硬件</button>
                 </Link>
               </div>
             </div>
