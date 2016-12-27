@@ -8,7 +8,7 @@ import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
 
-import './firstStep.scss'
+import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
   

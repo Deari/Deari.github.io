@@ -1,0 +1,46 @@
+@import "../../layouts/CoreLayout/CoreLayout";
+.login-wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.loginIn {
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    width: $default-width - 40;
+    height: $default-height - 70;
+    font-size: $text-font-size - 5;
+    text-align: center;
+    line-height: $text-line-height - 10;
+    border-radius: 2px;
+    cursor: pointer;
+    &:first-child {
+      border: 1px solid $blue-color;
+      color: $blue-color;
+      background: $white-color;
+    }
+    &:last-child {
+      color: $white-color;
+      background: $blue-color;
+      margin-left: $default-margin-left - 30;
+    }
+  }
+}
+
+.logined {
+  color: $gray9-color;
+  font-size: 0;
+  img {
+    width: $default-width - 60;
+    height: $default-height - 60;
+    border: 1px solid #ccc;
+  }
+  span {
+    font-size: 14px;
+    margin-left: 7px;
+    padding-left: 7px;
+    border-left: 1px solid $gray9-color;
+    vertical-align: bottom;
+  }
+}
