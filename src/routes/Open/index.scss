@@ -100,8 +100,51 @@
   width: 100%;
   height: $default-height + 176px;
 }
+/*Apps detail*/
+.detail-container{
+  padding: $default-padding-top - 20;
+  @include clx;
+  .detail-download{
+    @include float-left;
+    width: $default-width + 55;
+    .appImg{
+      width: $default-width + 55;
+      height: $default-height + 55;
+      border-radius: 16px;
+    }
+    .btn-download{
+      display: block;
+      margin-top: $default-margin-top - 15;
+    }
+  }
+  .detail-info{
+    @include float-right;
+    width: $default-width + 530;
+    .detail-tittle{
+      font-size: $text-font-size - 4;
+      color: $black-color;
+      dd{
 
-.Detail-container{
+      }
+    }
+    h2{
+      
+    }
+    .info-list{
+      margin-top: $default-margin-top - 5;
+      font-size: $text-font-size - 4;
+      color: $black-color;
+      dt{
+        margin-bottom: $default-margin-top - 15;
+      }
+      .text-blue-color{
+        color: $blue-color;
+      }
+    }
+  }
+  .detail-moreApps{
+
+  }
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
     width: $default-width + 50px;
   }
@@ -124,25 +167,10 @@
     width: $default-width + 560px;
     height: $default-height + 210px;
   }
-  .Detail-detail{
+  .detail-info{
     h3{
       font-size: $text-font-size + 6px;
       line-height: $text-line-height;
-    }
-    dl{
-      padding-top: $default-padding-top - 30px;
-      padding-bottom: $default-padding-bottom - 26px;
-      dt {
-        line-height: $text-line-height + 10px;
-      }
-      dd{
-        line-height: $text-line-height - 12px;
-        span{
-          padding-right: $default-padding-right - 30px;
-          font-weight: bold;
-          vertical-align: text-bottom;
-        }
-      }
     }
   }
 }

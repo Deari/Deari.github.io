@@ -25,6 +25,9 @@ i{
 a{
   cursor: pointer;
 }
+a:active{
+  color: inherit; 
+}
 hr{
   border: 1px solid #eeeeee;
 }
