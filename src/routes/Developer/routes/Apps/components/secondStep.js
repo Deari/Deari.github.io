@@ -7,6 +7,7 @@ import { validate } from '../modules/validate'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
+
 class WizardFormSecondPage extends React.Component {
   state = {
     fileUrl: ''
@@ -36,22 +37,19 @@ class WizardFormSecondPage extends React.Component {
     const { handleSubmit, pristine, submitting, previousPage } = this.props
 
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="step_form">
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-
-        <div>
-        	<label>应用文件</label>
-        	<div className="form-group">
-	          <input type="file" className="form-control-file form-control-sm upload-btn" 
-            ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
+        <div className="step_form_row">
+        	<label className="step_form_row_label">应用文件</label>
+        	<div className="step_form_row_right step_form_row_right_browse">
+        		<input type="text" className="step_form_row_right_inputName"/>
+        		<input type="button" value="浏览" className="step_form_row_right_inputB"/>
+	          <input type="file" className="step_form_row_right_inputF" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
 	        </div>
         </div>
-
-        <div className="btn_submit btn_submit_two">
-        	<div>
+        <div className="step_form_btn">
 	          <button type="button" className="previous" onClick={previousPage}>上一步</button>
-	          <button type="submit" className="next" disabled={submitting}> 提交</button>
-        	</div>
+	          <button type="submit" className="next" disabled={pristine || submitting}> 提交</button>
         </div>
       </form>
     ) 
