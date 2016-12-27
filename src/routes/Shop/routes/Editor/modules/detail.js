@@ -19,8 +19,7 @@ export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
 const ACTION_HANDLERS = {
 
   [SELECT_ELEMENT]: (state, action) => {
-    console.log(action)
-    return state
+    return { ...state, element: action.selectedElement }
   },
 
   [SAVE_DETAIL]: (state, action) => {
@@ -29,6 +28,10 @@ const ACTION_HANDLERS = {
     return state
   }
 }
+
+//export const actions = {
+//  saveDetail,
+//}
 
 
 export default function detailReducer(state = {}, action) {

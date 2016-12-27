@@ -1,5 +1,3 @@
-//import randomstring from 'randomstring'
-
 import { getRandomString } from '../../../../../components/utils'
 
 const ADD_ELEMENT = 'ADD_ELEMENT'
