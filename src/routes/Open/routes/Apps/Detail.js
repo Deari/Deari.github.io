@@ -52,19 +52,16 @@ class Detail extends React.Component {
                     <dt>应用名称-{data.appName}</dt>
                     <dd><i className="user-img"></i>极速数据（企业）</dd>
                   </dl>
-                  
-                  <dl className="info-list">
-      <dt><span className="text-blue-color">版本：{data.lastCodeVersion ? `${data.lastCodeVersion}的细节功能` : ``}</span> （时间：{data.updateTime}）</dt>
-                    <dd>{data.appDesc}</dd>
-                  </dl>
-                  <dl className="info-list">
-                    <dt><span className="text-blue-color">作者：{data.developerName}</span></dt>
-                    <dd>(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</dd>
-                  </dl>
-                  <div className="detail-moreApps">
-                    <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
-                    <Relative data={this.state.widgets} />
-                  </div>
+                  <h3 className="app-title">版本：{data.lastCodeVersion ? `${data.lastCodeVersion}的细节功能` : ``} <span>（时间：{data.updateTime}）</span></h3>
+                  <p className="app-text">{data.appDesc}</p>
+                  <h3 className="app-title">作者：{data.developerName}</h3>
+                  <p className="app-text">(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</p>
+                </div>
+              </div>
+              <div className="detail-moreApps">
+                <div className="moreApp-list">
+                  <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
+                  <Relative data={this.state.widgets} />
                 </div>
               </div>
             </div>

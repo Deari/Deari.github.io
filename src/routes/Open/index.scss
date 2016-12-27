@@ -124,11 +124,26 @@
       font-size: $text-font-size - 4;
       color: $black-color;
       dd{
-
+        margin-top: $default-margin-top - 26;
+        font-size: $text-font-size - 8;
+        color: $gray6-color;
+        i{
+          margin-right: $default-margin-right - 35; 
+        }
       }
     }
-    h2{
-      
+    .app-title{
+      margin-top: $default-margin-top - 10;
+      font-size: $text-font-size - 4;
+      color: $blue-color;
+      span{
+        color: $black-color;
+      }
+    }
+    .app-text{
+      margin-top: $default-margin-top - 25;
+      font-size: $text-font-size - 6;
+      color: $black-color;
     }
     .info-list{
       margin-top: $default-margin-top - 5;
@@ -141,9 +156,6 @@
         color: $blue-color;
       }
     }
-  }
-  .detail-moreApps{
-
   }
   .Detail-downloadBtn,.Detail-appImg,.Detail-weatherImg{
     width: $default-width + 50px;
@@ -167,10 +179,15 @@
     width: $default-width + 560px;
     height: $default-height + 210px;
   }
-  .detail-info{
+}
+.detail-moreApps{
+  margin-top: $default-margin-top - 20;
+  padding: 0 $default-padding-left - 20;
+  .moreApp-list{
+    border-top: 1px solid $graya-color;
     h3{
-      font-size: $text-font-size + 6px;
-      line-height: $text-line-height;
+      padding: $default-padding-top - 20 0;
+      font-size: $text-font-size - 4;
     }
   }
 }
@@ -210,39 +227,5 @@
     padding-left: $default-padding-left - 20px;
     padding-right: $default-padding-right - 20px;
     line-height: $text-line-height;
-  }
-}
-.Detail-moreApps{
-  h3{
-    font-size: $text-font-size - 4px;
-    line-height: $text-line-height;
-  }
-  ul{
-    padding-top: $default-padding-top - 20px;
-    padding-bottom: $default-padding-bottom - 20px;
-    li{
-      .Detail-appBox{
-        margin: 0 auto;
-        width: $default-width - 18px;
-        text-align: center;
-        .Detail-appImg{
-        width: $default-width - 18px;
-        height: $default-height - 18px;
-        border-radius: 6px;
-        overflow: hidden;
-        background: #eeeeee;
-        }
-        h5{
-        font-size: $text-font-size - 4px;
-        color: $black-color;
-        padding-top: $default-padding-top - 26px;
-        }
-        p{
-        font-size: $text-font-size - 4px;
-        color: $gray6-color;
-        line-height: $text-line-height - 10px;
-        }
-      }
-    }
   }
 }
