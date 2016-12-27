@@ -77,3 +77,4 @@ export const Header = ({location, hideHeader}) => {
   )
 }
 export default Header
+ //  <span className="logo-line"></span>  {title ? <small>{title}</small> : null}
