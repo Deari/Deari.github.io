@@ -26,7 +26,7 @@ class Tags extends React.Component {
   render() {
     const { data:tags} = this.props
     return (
-        <ul className="step_form_row_right step_form_row_right_ul">
+        <ul className="row-right step_form_row_right_ul">
           {
             tags.map((item, index) => {
               return <li key={item.tagId}

@@ -82,20 +82,21 @@ class WizardFormFirstPage extends React.Component {
   render() {
     const { handleSubmit,initCheckedTags} = this.props
     return (
-      <form onSubmit={handleSubmit} className="step_form">
+      <form onSubmit={handleSubmit}>
         <Field name="appName" type="text" component={renderField}
-          label="应用名称" /> 
-        <div className="step_form_row">
-        	<label className="step_form_row_label">应用图片</label>
-        	<div className="step_form_row_right">
-        		<p className="step_form_row_right_p">请上传应用高清图片</p>
-				<p className="step_form_row_right_p">400*400像素，仅支持PNG格式，大小不超过300KB</p>
-			    <span className="step_form_row_right_file">
-			      <input type="button" value="选择文件" className="step_form_row_right_file_btn"/>
-			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)} className="step_form_row_right_file_upload"/>
+          label="应用名称"
+          /> 
+        <div className="form-row">
+        	<label>应用图片</label>
+        	<div className="row-right">
+        		<p>请上传应用高清图片</p>
+						<p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+			    <span>
+			      <input type="button" value="选择文件"/>
+			      <input type="file" accept="image/*" ref='appLogo' onChange={this.imgUpload.bind(this)}/>
 			    </span>
-        		<div>
-			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail" className="step_form_row_right_img"/>
+        	<div>
+			      <img src={this.state.imgUrl} alt="上传图片"  className="img-thumbnail"/>
 			    </div>
         	</div>
         </div>
@@ -103,11 +104,11 @@ class WizardFormFirstPage extends React.Component {
           label="应用简介"
           />
         <Field name="categoryId" component={renderSelect} label="分类:" optionArr={this.state.optionArr} />
-        <div className="step_form_row">
-          <label className="step_form_row_label">产品标签</label>
+        <div className="form-row">
+          <label>产品标签</label>
           <Tags data={this.state.tags} onChecked={::this.handleCheck}/>
         </div>
-        <div className="step_form_btn">
+        <div className="form-btn">
           <button type="submit" className="next">下一步</button>
         </div>
       </form>
