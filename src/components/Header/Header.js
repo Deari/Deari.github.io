@@ -53,6 +53,7 @@ export const Header = ({location, hideHeader}) => {
           <Link to='/' className="logo-text">
             <i></i><span>BO开放平台</span>
           </Link>
+          <span className="logo-line"></span>
           {title ? <small>{title}</small> : null}
         </h1>
         <Login />

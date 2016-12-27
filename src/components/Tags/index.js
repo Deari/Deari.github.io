@@ -27,6 +27,7 @@ class Tags extends React.Component {
     const { data:tags} = this.props
     return (
         <ul className="step_form_row_right step_form_row_right_ul">
+<<<<<<< HEAD
           {
             tags.map((item, index) => {
               return <li key={item.tagId}
@@ -34,6 +35,15 @@ class Tags extends React.Component {
                 onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
             })
           }
+=======
+        {
+         this.state.tags.map((item, index) => {
+            return <li key={item.tagId} 
+                       className={item.checked ? 'step_form_row_right_li active' : 'step_form_row_right_li'}
+                       onClick={this.selectTag.bind(this, item)}>{item.tagName}</li>
+          })
+        }
+>>>>>>> 62371ad650e83311b495accde46d174fc01520be
         </ul>
     )
   }
