@@ -2,8 +2,7 @@
 
 .list-container {
   padding: 10px;
-  clear: both;
-  overflow: hidden;
+  @include clx;
   .list-item-center {
     height: 50px;
     line-height: 50px;
@@ -15,7 +14,6 @@
       img {
         width: 100%;
         height: 100%;
-        border-radius: 16px;
         overflow: hidden;
         background: #eeeeee;
       }
@@ -30,20 +28,22 @@
     .info-introduce{
       font-size: $text-font-size - 6px;
       color: $gray9-color;
-    }
-    .info-link{
-      font-size: $text-font-size - 4px;
-      color: $black-color;
-      text-decoration: underline;
+      max-height: 70px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
-  .info-status{
-    font-size: $text-font-size - 6px;
-    line-height: 100px;
+  .info-price,.info-status,.info-download{
+    height: $default-height;
+    font-size: $text-font-size - 6;
+    text-align: center;
+    line-height: $text-line-height + 60;
     word-break:keep-all;white-space:nowrap;text-overflow:elipsis;
   }
   .info-btn{
-    line-height: 100px;
+    text-align: center;
+    line-height: $text-line-height + 60;
   }
 }
 .list-none{

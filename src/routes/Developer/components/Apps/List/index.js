@@ -12,7 +12,7 @@ class AppsList extends React.Component {
     super(props);
     this.state = {
       listData: [],
-      reviewStatus: 1
+      reviewStatus: 0   //1 he 0
     }
   }
   async getList() {
