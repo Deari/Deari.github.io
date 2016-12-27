@@ -57,9 +57,7 @@ export class Preview extends Component {
 
   render() {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
-    //const isActive = canDrop && isOver;
-    //const layout = preview.layout
-    return connectDropTarget(
+   return connectDropTarget(
 
           <div className="shop-info">
             <ReactGridLayout className="layout"

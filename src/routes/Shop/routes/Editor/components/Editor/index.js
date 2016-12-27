@@ -7,12 +7,12 @@ import './Editor.scss'
 
 export class Editor extends Component {
 
-  componentDidMount() {
-    this.props.fetchProducts()
-  }
+  //componentDidMount() {
+  //  this.props.fetchProducts()
+  //}
 
   render() {
-    const { product } = this.props
+    const { product, detail } = this.props
     return <div className="bg-gray height-100" id="editor-container">
             <div className="height-100">
               <div className="cContent height-100 clx">
@@ -24,7 +24,7 @@ export class Editor extends Component {
                       </ul>
                       <div className="sub-nav-menu">
                         <div className="sub-content clx">
-                          <Product {...product}/>
+                          <Product/>
                         </div>
                         <div className="sub-banner"></div>
                         <div className="sub-banner"></div>
@@ -37,7 +37,7 @@ export class Editor extends Component {
                     <div className="bg-white height-100">
                       <div className="editor-view">
                         <Preview/>
-                        <button onClick={::this.props.fetchProducts}>fetch</button>
+
                       </div>
                     </div>
                   </div>
