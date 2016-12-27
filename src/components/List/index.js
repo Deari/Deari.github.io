@@ -4,23 +4,20 @@ import './index.scss'
 import '../../styles/button.scss'
 import '../../styles/tools.scss'
 
-class List extends React.Component {
-  constructor() {
-    super();
-    this.state = {
+class List extends React.Component {;
+    state = {
       name: 'app'
     };
-  }
+
   componentWillReceiveProps(nextProps) {
     this.setState({
-      name: this.props.showName === '应用' ? 'app' : 'widget'
+      name: this.props.showName === '应用' ? 'app' : this.props.showName === '组件' ? 'widget' :'hardware'
     })
   }
   render() {
-    var data = this.props.data,
-        showName = this.props.showName,
-        linkUrl = this.props.linkUrl,
-        name = this.state.name;
+    const {data,showName,linkUrl} = this.props
+    console.log(data)
+    const {name} = this.state
     return (
       <div className="listContent">
         {
@@ -41,13 +38,13 @@ class List extends React.Component {
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w114">
-                <Link to={'/developer/' + name + 's/detail/' + item.appId}>
+                <Link className={name === 'hardware'? "no-active" : "" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>编辑</button>
                 </Link>
-                <Link to={'/developer/' + name + 's/detail/' + item.appId}>
+                <Link className={name === 'hardware'? "no-active" : "" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>发布新版本</button>
                 </Link>
-                <Link className="no-active" to={'/developer/' + name + 's/detail/' + item.appId}>
+                <Link className={name === 'hardware'? "" : "no-active" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
                   <button>调试硬件</button>
                 </Link>
               </div>
