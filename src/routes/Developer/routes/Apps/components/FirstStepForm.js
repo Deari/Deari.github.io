@@ -15,9 +15,9 @@ class FirstStepForm extends Component {
   renderUploadImage(){
     const { imageUrl, imageUpload } = this.props;
 
-    return <div>
+    return <div className="form-row">
       <label>应用图片</label>
-      <div>
+      <div className="row-right">
         <p>请上传应用高清图片</p>
         <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
         <span>
@@ -56,9 +56,9 @@ class FirstStepForm extends Component {
           }
         </Field>
         
-        <div>
+        <div className="form-row">
           <label>产品标签</label>
-          <ul className="tags-container">
+          <ul className="row-right max-width">
             {
               tags.map((item) => (
                 <li 
@@ -75,8 +75,10 @@ class FirstStepForm extends Component {
           </ul>
         </div>
         
-        <div className="btn_submit">
-          <button type="submit" className="next">下一步</button>
+        <div className="form-btn">
+          <div>
+          	<button type="submit" className="next">下一步</button>
+          </div>
         </div>
       </form>
     )

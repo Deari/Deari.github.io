@@ -37,19 +37,21 @@ class WizardFormSecondPage extends React.Component {
     const { handleSubmit, pristine, submitting, previousPage } = this.props
 
     return (
-      <form onSubmit={handleSubmit} className="step_form">
+      <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-        <div className="step_form_row">
-        	<label className="step_form_row_label">应用文件</label>
-        	<div className="step_form_row_right step_form_row_right_browse">
-        		<input type="text" className="step_form_row_right_inputName"/>
-        		<input type="button" value="浏览" className="step_form_row_right_inputB"/>
-	          <input type="file" className="step_form_row_right_inputF" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
+        <div className="form-row file-position">
+        	<label>应用文件</label>
+        	<div className="row-right">
+        		<span className="file-name"></span>
+        		<div className="file-btn">浏览</div>
+	          <input type="file" className="form-file" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
 	        </div>
         </div>
-        <div className="step_form_btn">
-	          <button type="button" className="previous" onClick={previousPage}>上一步</button>
-	          <button type="submit" className="next" disabled={pristine || submitting}> 提交</button>
+        <div className="form-btn">
+	          <div>
+	          	<button type="button" className="previous" onClick={previousPage}>上一步</button>
+	          	<button type="submit" className="next" disabled={pristine || submitting}> 提交</button>
+	          </div>
         </div>
       </form>
     ) 
