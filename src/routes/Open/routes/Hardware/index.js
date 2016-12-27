@@ -61,7 +61,7 @@ class Container extends React.Component {
                 </p>
               </form>
             </h2>
-            <OpenList listData={apps} typeName="app" />
+            <OpenList listData={apps} typeName="hardware" />
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ class Container extends React.Component {
 }
 
 module.exports =  {
-  path: 'hardware',
+  path: 'hardwares',
   indexRoute: {
     component: Container
   },
