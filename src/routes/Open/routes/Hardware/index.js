@@ -15,7 +15,7 @@ class Container extends React.Component {
     let id = tagId || 'all';
     let apiUrl = getDomain(
       `http://api.intra.`, 
-      `ffan.net/bo/v1/web/market/tag/${id}/widgets`
+      `ffan.net/bo/v1/web/market/tag/${id}/hardware`
     ) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
@@ -61,7 +61,7 @@ class Container extends React.Component {
                 </p>
               </form>
             </h2>
-            <OpenList listData={apps} typeName="app" />
+            <OpenList listData={apps} typeName="hardware" />
           </div>
         </div>
       </div>
@@ -70,7 +70,7 @@ class Container extends React.Component {
 }
 
 module.exports =  {
-  path: 'hardware',
+  path: 'hardwares',
   indexRoute: {
     component: Container
   },
