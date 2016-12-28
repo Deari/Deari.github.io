@@ -40,32 +40,30 @@ class Main extends React.Component {
   render () {
     const { apps } = this.state
     return (
-      <div className="core-layout__viewport bg-gray">
-        <div className="container clx">
-          <Sidebar onTagChange={this.tagChange.bind(this)} />
-          <div className="sub-container">
-            <div className="sub-container-banner"></div>
-            <h2 className="open-content-nav">
-              <i className="iconfont icon-hot-control"></i>热门控件
-              <form>
-                <p>
-                  <select className="form-control">
-                    <option>默认排序</option>
-                    <option>默认1排序</option>
-                    <option>默认2排序</option>
-                  </select>
-                </p>
-                <p>
-                  <select className="form-control">
-                    <option>价格排序</option>
-                    <option>价格1排序</option>
-                    <option>价格2排序</option>
-                  </select>
-                </p>
-              </form>
-            </h2>
-            <OpenList listData={apps} typeName="app" />
-          </div>
+      <div className="container clx">
+        <Sidebar onTagChange={this.tagChange.bind(this)} />
+        <div className="sub-container">
+          <div className="sub-container-banner"></div>
+          <h2 className="open-content-nav">
+            <i className="iconfont icon-hot-control"></i>热门控件
+            <form>
+              <p>
+                <select className="form-control">
+                  <option>默认排序</option>
+                  <option>默认1排序</option>
+                  <option>默认2排序</option>
+                </select>
+              </p>
+              <p>
+                <select className="form-control">
+                  <option>价格排序</option>
+                  <option>价格1排序</option>
+                  <option>价格2排序</option>
+                </select>
+              </p>
+            </form>
+          </h2>
+          <OpenList listData={apps} typeName="app" />
         </div>
       </div>
     )
