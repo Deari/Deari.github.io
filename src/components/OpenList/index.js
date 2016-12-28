@@ -12,6 +12,33 @@ class OpenList extends React.Component {
     const { listData, typeName } = nextProps
     this.setState({ listData: listData, typeName: typeName})
   }
+  clickStar(item) {
+    let { listData, typeName } = this.state
+    for (let i=0; i<listData.length; i++) {
+      if (listData[i][`${typeName}Id`] === item[`${typeName}Id`]) {
+        if (listData[i].checkedStar) {
+          listData[i].checkedStar = false;
+          this.setState({listData: listData})
+          return;
+        } else {
+          listData[i].checkedStar = true;
+          this.setState({listData: listData})
+          return
+        }
+      }
+    }
+  }
+  getLinkUrl(item) {
+    const { typeName } = this.state
+    if (!item[`${typeName}Id`]) return `/open/${typeName}s`
+    let link = ''
+    if (item.appType === 2) {
+      link = '/open/widgets/detail/' + item[`${typeName}Id`]
+    } else {
+      link = `/open/${typeName}s/detail/` + item[`${typeName}Id`]
+    }
+    return link
+  }
   render() {
     const { listData, typeName } = this.state
     return (
@@ -22,11 +49,11 @@ class OpenList extends React.Component {
           return (
             <li>
               <div>
-                <p className="open-list-start">
+                <p className="open-list-start" onClick={this.clickStar.bind(this, item)}>
                   <i className="iconfont icon-star icon-start-hover"></i>
-                  <i className="iconfont icon-uncollected"></i>
+                  { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
                 </p>
-                <Link to={ `/open/${typeName}s/detail/${item[`${typeName}Id`]}` }>
+                <Link to={this.getLinkUrl.bind(this, item)}>
                 <p className="pt10">{ item[`${typeName}Name`] }</p>
                 <span className="font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
                 <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>

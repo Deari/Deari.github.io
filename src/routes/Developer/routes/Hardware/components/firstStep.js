@@ -4,7 +4,7 @@ import { renderField, renderSelect, renderTextarea } from './renderField'
 import { validate }  from '../modules/validate'
 import fetchUtil from '../../../../utils/fetchUtil'
 import Tags from '../../../../../components/Tags'
-import '../../Apps/components/firstStep.scss'
+// import '../../Apps/components/firstStep.scss'
 import { getDomain } from '../../../../utils/domain'
 
 class HardwareFirstPage extends React.Component {

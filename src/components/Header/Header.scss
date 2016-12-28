@@ -1,5 +1,18 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+.border {
+  border: 1px solid red;
+}
+
+
+
 //header new style begin
 $border-bule-color:#2692FB;
 $zindex:0;
@@ -25,59 +38,76 @@ $header-height:70px;
     @include position-direction;
     background: $white-color;
     border-top: 2px solid $blue-color;
-    height: $header-height + 7;
+    height: 77px;
     border-bottom: 1px solid $graya-color;
   }
   .g-header {
-    height: $header-height + 7;
-    h1 {
-      @include float-left;
-      margin-top: $default-margin-top - 26;
-      line-height: $text-line-height + 4;
-      a{
-        font-size: $text-font-size - 2;
-        color: $gray6-color;
+    overflow: hidden;
+    height: 77px;
+    .title {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      .logo {
+        float: left;
+        margin-right: 20px;
       }
-      i {
-        @include float-left;
+
+      .small-title{
+        float: left;
+        padding-left: 20px;
+        border-left: 1px solid #cacaca;
+        font-size: 18px;
+        & > a {
+          color: $gray6-color;
+        }
+      }
+  
+      .icon, .text {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .text {
+        color: $blue-color;
+        font-size: 26px;
+      }
+
+      .icon {
         margin-right: $default-margin-right - 34;
         width: $default-width - 57;
         height: $default-height - 56;
         background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
         background-size: 100%;
-        vertical-align:sub;
       }
-      small{
-        padding-left: $default-padding-left - 20;
-      }
-      a.logo-text{
-          padding-right: $default-padding-right - 20;
-          font-size: $text-font-size + 6;
-          color: $blue-color;
+
+     
+    }
+
+    .nav {
+      display: inline-block;
+      .nav-list {
+        & > a {
+          display: inline-block;
+          margin-left: 15px;
+          height: 77px;
+          line-height: 77px;
+          padding: 0 10px;
+          font-size: 18px;
+          color: $black-color;
+          &.active {
+            color: $blue-color;
+            @include navselect-bottom;
+          }
+        }
       }
     }
-    .nav-list{
-      @include float-right;
-      padding-top: $default-padding-top - 30;
-      font-size: $text-font-size - 2;
-      line-height: $text-line-height + 24;
-      a{
-        @include float-left;
-        margin-right: $default-margin-right - 12;
-        padding-left: $default-padding-left - 30;
-        padding-right: $default-padding-right - 30;
-        color: $black-color;
-      }
-      a.active{
-        color: $blue-color;
-        @include navselect-bottom;
-      }
-    }
-    form{
-      @include float-right;
-      margin-top: $default-margin-top - 12;
-      margin-right: $default-margin-right - 12;
-      padding: $default-padding-top - 38 $default-padding-left - 36;
+    
+    
+    .search {
+      display: inline-block;
+      margin: 0 28px;
+      padding: 2px 4px;
       background: $graye-color;
       border-radius: 14px;
       .icon-search{
@@ -100,54 +130,5 @@ $header-height:70px;
         }
       }
     }
-    .loginIn{
-      @include float-right;
-      margin-top: $default-margin-top - 20;
-      span{
-        display:inline-block;
-        width: $default-width - 40;
-        height: $default-height - 70;
-        margin-left: $default-margin-left - 30;
-        font-size: $text-font-size - 5;
-        text-align: center;
-        line-height: $text-line-height - 10;
-        border-radius: 2px;
-        cursor:pointer;
-        &:first-child{
-          border: 1px solid $blue-color;
-          color: $blue-color;
-          background: $white-color;
-        }
-        &:last-child{
-          color: $white-color;
-          background: $blue-color;
-        }
-      }
-    }
-    .logined{
-      @include float-right;      
-      padding-top: $default-padding-top - 22;
-      font-size: $text-font-size - 6;
-      color: $gray9-color;
-      span{
-        img{
-          width: $default-width - 60;
-          height: $default-height - 60;
-          vertical-align: top;
-        }
-        &:first-child{
-          padding-right: $default-padding-right - 26;
-        }
-        &:last-child{
-          padding-left: $default-padding-left - 33;
-          border-left: 1px solid $gray9-color;
-          vertical-align: bottom;
-        }
-      }
-    }
   }
-}
-.logo-line{
-  border-right: 1px solid #cacaca;
-  font-size: $text-font-size;
 }

@@ -41,15 +41,16 @@
       line-height: $text-line-height - 10;
     }
     a:hover{
-      color: $blue-color;
-      border-bottom: 1px solid $blue-color;
-    }
-    .active{
       color: $white-color;
       background: $blue-color;
       border-radius: 2px;
+    }
+    .active{
+      color: $blue-color;
+      border-bottom: 1px solid $blue-color;
       &:hover{
-        color: $white-color;
+        color: $blue-color;
+        background: none;
       }
     }
   }
