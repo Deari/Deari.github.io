@@ -15,7 +15,7 @@ class Container extends React.Component {
     let id = tagId || 'all';
     let apiUrl = getDomain(
       `http://api.intra.`, 
-      `ffan.net/bo/v1/web/market/tag/${id}/widgets`
+      `ffan.net/bo/v1/web/market/tag/${id}/hardware`
     ) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
