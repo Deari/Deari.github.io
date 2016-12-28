@@ -1,7 +1,4 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
-import './main.scss'
-import Category from '../../../components/category'
 import fetchUtil from '../../utils/fetchUtil'
 import { getDomain } from '../../utils/domain'
 import Sidebar from '../../../components/Sidebar'
