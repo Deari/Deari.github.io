@@ -4,7 +4,7 @@ import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import './HomeView.scss'
 
 export const HomeView = () => (
-  <div className="core-layout__viewport">
+  <div className="">
     <div className="home-banner">
       <dl>
         <dt>API集市</dt>
