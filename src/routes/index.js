@@ -10,8 +10,8 @@ import Demo from './Demo'
 import Mobile from './Mobile'
 
 import Apps from './Apps'
-// import Widgets from './Widgets'
-// import Hardware from './Hardware'
+import Widgets from './Widgets'
+import Hardware from './Hardware'
 
 import '../styles/_base.scss'
 
@@ -28,7 +28,9 @@ export const createRoutes = (store) => ({
     Shop(store),
     Developer(store),
     Demo(store),
-    Apps(store)
+    Apps(store),
+    Widgets(store),
+    Hardware(store)
   ]
 })
 
