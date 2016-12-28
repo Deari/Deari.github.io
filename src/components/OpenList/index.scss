@@ -1,27 +1,110 @@
-@import "../../routes/Open/index";
+@import "../../layouts/CoreLayout/CoreLayout";
 
 .sub-container{
   @include sub-container;
 }
 .open-content-list{
-  @include open-content-list;
+  @include clx;
+  li{
+    float: left;
+    position: relative;
+    margin-bottom: 14px;
+    padding: 0 8px;
+    width: $sub-container-width/3;
+    text-align: center;
+    div{
+      background: $white-color;
+      border-radius: 4px;
+      overflow: hidden;
+      &:hover{
+        box-shadow: 0 0 8px rgba(187,187,187,0.9);
+      }
+    }
+    img{
+      margin: 20px 0;
+      width: 128px;
+      height: 96px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+  }
 }
 .open-content-info{
-  @include open-content-info;
+  display: block;
+  .open-info-name{
+      padding-top: 16px;
+      font-size: 18px;
+      color: $black-color;
+  }
+  .open-user-name{
+    display: block;
+    padding: 0 10px;
+    font-size: 12px;
+    color: $gray6-color;
+    line-height: 24px;
+  }
+  .open-info-introduce{
+    max-height:  70px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
 }
+.open-list-show{
+  a{
+    display: inline-block;
+    width: $sub-list-width/3;
+    text-align: center;
+    font-size: 16px;
+    color: $gray9-color;
+    line-height: 38px;
+    background: #dde1e7;
+    @include border-right;
+    border-color: $white-color;
+    }
+  a:last-of-type{
+    border: none;
+  }
+}
+
 .sub-container-banner{
-  @include sub-container-banner;
+  width: 100%;
+  height: 276px;
   background: url(../../routes/Home/assets/sub-container-banner1.jpg) no-repeat;
   background-size: 100%;
 }
 .open-content-nav{
-  @include open-content-nav;
+  @include clx;
+  font-size: 18px;
+  line-height: 60px;
+  color: $black-color;
+  form{
+    @include float-right;
+    font-size: 14px;
+    color: $gray9-color;
+    p{
+      @include float-left;
+      padding: 0 4px;
+    }
+    select{
+      display: inline-block;
+      height: 30px;
+    }
+  }
 }
 .icon-hot-control{
-  font-size: $text-font-size - 2px;
+  font-size: 18px;
 }
 .open-list-price{
-  @include open-list-price;
+  display: block;
+  margin-top: 8px;
+  font-size: 18px;
+  color: $blue-color;
+  line-height: 40px;
+  @include border-top;
+  &:hover{
+    font-weight: bold;
+  }
 }
 .user-img{
   width: 18px;
@@ -38,7 +121,7 @@
   right: 36px;
   i{
     position: absolute;
-    font-size: $text-font-size + 2px;
+    font-size: 22px;
     cursor: pointer;
   }
 }
