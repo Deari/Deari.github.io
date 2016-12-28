@@ -66,6 +66,10 @@ class Detail extends React.Component {
                   <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
                   <OpenList listData={listData} typeName="app" />
                 </div>
+                <div className="moreApp-list">
+                  <h3><span className="float-right text-gray9-color">更多>></span>相关的开放硬件</h3>
+                  <OpenList listData={listData} typeName="app" />
+                </div>
               </div>
             </div>
         </div>
