@@ -7,9 +7,15 @@ import './index.scss'
 
 class Doc extends React.Component {
   render() {
+    const urls = {
+      create: { url: `/apps/create` },
+      list: { url: `/apps/list` },
+      doc: { url: `/apps/doc`, active: true }
+    }
+
     return (
     <div className="container clx">
-      <Slidebar />
+      <Slidebar urls={urls} />
       <div className="sub-container plf bg-white">
         <dl className="doc-info">
             <dt>1. 介绍我们的产品定位</dt>
