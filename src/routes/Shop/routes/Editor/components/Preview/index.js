@@ -58,7 +58,6 @@ export class Preview extends Component {
   render() {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
    return connectDropTarget(
-
           <div className="shop-info">
             <ReactGridLayout className="layout"
                              {...gridProps}
@@ -66,7 +65,6 @@ export class Preview extends Component {
               {this.generateDOM()}
             </ReactGridLayout>
           </div>
-
     )
   }
 
@@ -74,6 +72,3 @@ export class Preview extends Component {
 
 export default Preview
 
-//{<pre style={{ "fontSize": '10px', "top": 0,"position": 'absolute' }}>
-//         {JSON.stringify(this.props, null, 2)}
-//         </pre>}
