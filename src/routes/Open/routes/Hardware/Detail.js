@@ -46,29 +46,22 @@ class Detail extends React.Component {
             <Slidebar />
             <div className="sub-container bg-white">
               <div className="detail-container">
-              <div className="col-sm-8 col-md-8">
-                <div className="Detail-hardwareImg"></div>
-              </div>
-              <div className="col-sm-4 col-md-4 hardware-price">
-                <p>硬件名称:<span className="text-black-color">BEACON</span></p>
-                <p>库存：<span className="text-black-color">123456件</span></p>
-                <p className="pt">价格：<span className="text-red-color">345元</span></p>
-                <div className="Detail-downloadBtn">
-                  <button className="btn btn-primary">下载</button>
-                </div>
+              <div className="silder pull-left"></div>
+              <div className="price pull-right">
+                <p className="title">硬件名称:<span className="text">BEACON</span></p>
+                <p className="title">库存:<span className="text">123456件</span></p>
+                <p className="title mt40">价格:<span className="text text-lg-red">345元</span></p>
+                <a className="btn btn-primary">下载</a>
               </div>
             </div>
-            <div className="Detail-hardware">
-              <div className="clx">
-                <a className="hardware-hover">商品介绍</a>
+            <div className="tab-detail-info">
+              <div className="tab">
+                <a className="active">商品介绍</a>
                 <a>规格参数</a>
               </div>
-              <dl>
-                <dt>文字介绍：</dt>
-                <dd>感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价259元的Thouway户外蓝牙音箱1套（含赠送配件：Micro USB充电线×1，AUX音频线×1，音箱布套×1)。感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价259元的Thouway户外蓝牙音箱1套（含赠送配件：Micro USB充电线×1，AUX音频线×1，音箱布套×1)。感谢您对Thouway户外蓝牙音箱的鼎力支持，支持者将以众筹价格获得低于市场价</dd>
-              </dl>
+              <p className="text">相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件
+              相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件相关的店铺组件</p>
             </div>
-            <hr/>
             <div className="detail-moreApps">
                 <div className="moreApp-list">
                   <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
