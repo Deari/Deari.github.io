@@ -1,5 +1,4 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
 import Doc from './Doc'
 import '../../../../styles/_base.scss'
 import '../../../../components/Header/Header'
