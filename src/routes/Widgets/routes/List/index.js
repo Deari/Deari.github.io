@@ -48,9 +48,15 @@ class widgetsList extends React.Component {
   }
 
   render() {
+    const urls = {
+      create: { url: `/widgets/create` },
+      list: { url: `/widgets/list`, active: true },
+      doc: { url: `/widgets/doc` }
+    }
+
     return (
       <div className="container clx">
-        <Slidebar />
+        <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
           <ul className="sub-content-tab">
             <li><a className={this.state.reviewStatus === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>

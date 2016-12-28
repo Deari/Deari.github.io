@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
+import Sidebar from '../../../../../components/Sidebar'
 import FirstStepForm from '../components/FirstStepForm'
 import SecondStepForm from '../components/SecondStepForm'
 import Complete from '../components/Complete'
@@ -127,33 +128,42 @@ class CreateContainer extends Component {
     const { toggleStep, toggleTag, create } = this.props;
     const { page, tags, cates, form, form2 } = create;
 
+    const urls = {
+      create: { url: `/apps/create` },
+      list: { url: `/apps/list` },
+      doc: { url: `/apps/doc` }
+    }
+
     return (
-      <div>
-        <Step page={page}/>
-        {
-          page === 1 && 
-            <FirstStepForm 
-              onSubmit={::this.submitFirst} 
-              imageUpload={::this.imageUpload}
-              toggleTag={toggleTag}
-              tags={tags}
-              cates={cates}
-              initialValues={form}
-            />
-        }
-        {
-          page === 2 && 
-            <SecondStepForm 
-              previousPage={()=>toggleStep(1)} 
-              fileUpload={::this.fileUpload}
-              onSubmit={::this.submitSecond} 
-              initialValues={form2}
-            />
-        }
-        {
-          page === 3 && 
-          <Complete />
-        }
+      <div className="container clx">
+        <Sidebar urls={urls} />
+        <div className="sub-container">
+          <Step page={page}/>
+          {
+            page === 1 && 
+              <FirstStepForm 
+                onSubmit={::this.submitFirst} 
+                imageUpload={::this.imageUpload}
+                toggleTag={toggleTag}
+                tags={tags}
+                cates={cates}
+                initialValues={form}
+              />
+          }
+          {
+            page === 2 && 
+              <SecondStepForm 
+                previousPage={()=>toggleStep(1)} 
+                fileUpload={::this.fileUpload}
+                onSubmit={::this.submitSecond} 
+                initialValues={form2}
+              />
+          }
+          {
+            page === 3 && 
+            <Complete />
+          }
+        </div>
       </div>
     );
   }

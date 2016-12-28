@@ -27,6 +27,8 @@
 
 .icon-lock:before { content: "\e60b"; }
 
+.icon-radio:before { content: "\e607"; }
+
 .icon-laba:before { content: "\e64b"; }
 
 .icon-success:before { content: "\e62a"; }
@@ -86,4 +88,6 @@
 .icon-shoppingcar:before { content: "\e65a"; }
 
 .icon-vip:before { content: "\e65b"; }
+
+.icon-radio1:before { content: "\e617"; }
 
