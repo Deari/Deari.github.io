@@ -40,11 +40,7 @@ const ACTION_HANDLERS = {
   }),
 
   [SET_LAYOUT]: (state, action) => ({
-<<<<<<< HEAD
-    ...state, ...action.layout
-=======
     ...state, ...action.layouts
->>>>>>> dev-new
   }),
 
   [SELECT_ELEMENT]: (state, action) => ({
@@ -57,11 +53,7 @@ const ACTION_HANDLERS = {
 
 const defaultState = {
   elements: [],
-<<<<<<< HEAD
-  layout: [],
-=======
   layouts: [],
->>>>>>> dev-new
 }
 
 export default function productReducer(state = defaultState, action) {
