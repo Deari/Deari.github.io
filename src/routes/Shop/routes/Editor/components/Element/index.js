@@ -16,7 +16,6 @@ export class Element extends Component {
   }
 }
 
-
 Element.defaultProps = {
   selectElement: ()=> {}
 }
