@@ -1,0 +1,153 @@
+@import "../../../../layouts/CoreLayout/CoreLayout";
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.border {
+  border: 1px solid red;
+}
+.btn{
+  display:block;
+  margin:0 auto;
+  font-size:14px;
+  line-height:40px;
+  color: $white-color;
+  text-align:center;
+  border-radius:2px;
+  & > i{
+    padding-right:5px;
+    vertical-align: middle;
+  }
+}
+.btn-blue{
+  background:$blue-color;
+}
+.btn-orange{
+  background:#fea628;
+}
+.btn-red{
+  background:#f06261;
+}
+.btn-lg-w{
+  display:inline-block;
+  width:160px;
+}
+.btn-lg{
+  width:160px;
+  height:40px;
+  padding:0;
+}
+.btn-md{
+  width:135px;
+  padding:0;
+}
+.btn-sm{
+  width:105px;
+  padding:0;
+}
+.container{
+  width:960px;
+  margin:0 auto;
+  .sidebar{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    background: $white-color;
+    .nav{
+      .item{
+        padding:10px 0;
+        border-bottom:1px solid $graye-color;
+        & > a{
+          display:block;
+          margin:0 auto;
+          padding:0 15px;
+          width:224px;
+          height:38px;
+          line-height:38px;
+          border-radius:2px;
+          .iconfont{
+            padding-right:15px;
+          }
+        }
+      }
+      .active{
+        & > a{
+          color: $white-color;
+          background: $blue-color;
+        }
+      }
+    }
+  }
+  .content{
+    width:690px;
+    .chart-list{
+      padding-top:5px;
+      overflow:hidden;
+      .item{
+        display:inline-block;
+        margin:5px;
+        padding:15px;
+        width:326px;
+        background: $white-color;
+        border-radius:2px;
+        overflow:hidden;
+        .chartImg{
+          width:210px;
+          height:110px;
+          border:1px solid $graye-color;
+        }
+      }
+      .data{
+        overflow:hidden;
+        .category{
+          margin-bottom:15px;
+          font-size:17px;
+          color:$black-color;
+          dd{
+            margin-top:5px;
+            font-size:18px;
+            color:$blue-color;
+          }
+        }
+        .text{
+          margin-top:5px;
+          font-size:12px;
+          color:$gray6-color;
+          & > span{
+            padding-left:5px;
+          }
+        }
+      }
+    }
+  }
+  .data-analysis{
+    margin:10px 24px 15px 5px;
+    padding-bottom:5px;
+    background: $white-color;
+    border-radius:2px;
+    .title{
+      margin-bottom:5px;
+      padding:15px;
+      font-size:18px;
+      color:$black-color;
+      border-bottom:1px solid $graye-color;
+    }
+    .analysis{
+      padding:5px 45px;
+    }
+    .text{
+      display:inline-block;
+      padding-left:10px;
+      font-size:14px;
+      color:$black-color;
+      & > span{
+        color:$gray6-color;
+      }
+    }
+  }
+}
+
