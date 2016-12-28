@@ -94,6 +94,6 @@ const App = () => {
 }
 
 export default store => ({
-  path: 'member',
+  path: 'template',
   component: App
 })
