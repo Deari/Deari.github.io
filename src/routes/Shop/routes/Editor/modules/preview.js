@@ -1,26 +1,27 @@
-//import randomstring from 'randomstring'
-
 import { getRandomString } from '../../../../../components/utils'
+
+function makeActionCreator(type, ...argNames) {
+  return function (...args) {
+    let action = { type }
+    argNames.forEach((arg, index) => {
+      action[ argNames[ index ] ] = args[ index ]
+    })
+    return action
+  }
+}
 
 const ADD_ELEMENT = 'ADD_ELEMENT'
 const SET_LAYOUT = 'SET_LAYOUT'
 const SELECT_ELEMENT = 'SELECT_ELEMENT'
 
-export const addElement = (element) => ({
-  type: ADD_ELEMENT,
-  element,
-})
+export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
+export const setLayout = makeActionCreator(SET_LAYOUT, 'layout')
 
-export const setLayout = layout => ({
-  type: SET_LAYOUT,
-  layout,
-})
-
-export const selectElement = id => ({
+export const selectElement = id => (dispatch, getState) => dispatch({
   type: SELECT_ELEMENT,
   id,
+  selectedElement: getState().preview.elements.find(e => e.id === id),
 })
-
 
 export const actions = {
   addElement,
@@ -32,16 +33,15 @@ const ACTION_HANDLERS = {
   [ADD_ELEMENT]: (state, action) => ({
     ...state, elements: [ ...state.elements,
       {
-        id      : getRandomString({}),
+        id: getRandomString({}),
         selected: false,
         ...action.element,
       } ]
   }),
 
-  [SET_LAYOUT]: (state, action) =>({
+  [SET_LAYOUT]: (state, action) => ({
     ...state, ...action.layout
   }),
-
 
   [SELECT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => ({
@@ -53,7 +53,7 @@ const ACTION_HANDLERS = {
 
 const defaultState = {
   elements: [],
-  layout  : [],
+  layout: [],
 }
 
 export default function productReducer(state = defaultState, action) {

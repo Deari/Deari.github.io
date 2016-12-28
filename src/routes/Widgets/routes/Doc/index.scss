@@ -1,0 +1,13 @@
+@import "../../../../layouts/CoreLayout/CoreLayout.scss";
+
+.doc-info{
+  padding: 20px 20px 10px 20px;
+  dt{
+    font-size: $text-font-size + 2;
+    line-height: $text-line-height + 10;
+  }
+  dd{
+    font-size: $text-font-size - 4;
+    line-height: $text-line-height - 6;
+  }
+}

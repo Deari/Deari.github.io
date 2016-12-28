@@ -55,12 +55,13 @@ export default (store) => ({
     component: Nav
   },
   getChildRoutes(partialNextState, cb) {
+
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Api'),
         require('./routes/Apps')(store),
         require('./routes/Hardware')(store),
-        require('./routes/Widgets')
+        require('./routes/Widgets')(store)
       ])
     })
     }

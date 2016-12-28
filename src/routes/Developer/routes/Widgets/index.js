@@ -1,6 +1,6 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Doc from '../../components/widgets/Doc'
+import Doc from './Doc'
 import '../../../../components/Header/Header.scss'
 
 class Container extends React.Component {
@@ -13,7 +13,7 @@ class Container extends React.Component {
   }
 }
 
-module.exports =  {
+module.exports = store =>  ({
   path: 'widgets',
   component: Container,
   indexRoute: {
@@ -24,8 +24,8 @@ module.exports =  {
     require.ensure([], (require) => {
       cb(null, [
         require('./List'),
-        require('./Create')
+        require('./Create')(store)
       ])
     })
   }
-}
+})

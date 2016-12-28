@@ -46,25 +46,27 @@
   }
   .info-btn{
     text-align: center;
+    line-height: $text-line-height + 46;
     a{
       display: block;
       margin: 6px 0;
       button{
-        width: 80px;
-        @include btn;
-        @include btn-default;
-        @include btn-xs;
-      }
-    }
-    .no-active{
-      button{
-        opacity: 0.3;
+        display: none;
         &:hover{
           color: $black-color;
           background-color: $white-color;
           border: 1px solid $black-color;
           cursor: not-allowed;
         }
+      }
+    }
+    .active{
+      display: block;
+      button{
+        width: 80px;
+        @include btn;
+        @include btn-default;
+        @include btn-xs;
       }
     }
   }
