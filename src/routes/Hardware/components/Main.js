@@ -81,7 +81,6 @@ class Main extends React.Component {
   render () {
     const { listData, tags, activeTag, urls, detailLink } = this.state
     return (
-      <div className="core-layout__viewport bg-gray">
         <div className="container clx">
           <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} />
           <div className="sub-container">
@@ -108,7 +107,6 @@ class Main extends React.Component {
             <OpenList listData={listData} typeName="hardware" detailLink={detailLink} clickStar={this.clickStar.bind(this)} />
           </div>
         </div>
-      </div>
     )
   }
 }
