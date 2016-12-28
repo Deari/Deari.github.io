@@ -34,7 +34,7 @@ class SecondStepForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit}>
-        <Field name="codeDesc" component={renderTextArea} label="版本介绍" />
+        <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
         <div className="form-row file-position">
         	<label>应用文件</label>
         	<div className="row-right">

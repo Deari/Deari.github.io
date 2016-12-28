@@ -9,10 +9,30 @@ import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
 
 import './firstStepForm.scss'
-import RenderUploadImage from './Uploadimage'
-
 
 class FirstStepForm extends Component {
+  
+  renderUploadImage(){
+    const { imageUrl, imageUpload } = this.props;
+
+    return <div className="form-row">
+      <label>应用图片</label>
+      <div className="row-right">
+        <p>请上传应用高清图片</p>
+        <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+        <span>
+          <input type="button" value="选择文件" />
+          <input type="file" accept="image/*" ref='appLogo' onChange={imageUpload} />
+        </span>
+        <div className="img-container">
+          <img src={imageUrl} alt="上传图片" className="img-thumbnail" />
+        </div>
+      </div>
+    </div>
+  }
+
+
+
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
     return (
@@ -20,7 +40,9 @@ class FirstStepForm extends Component {
         <Field label="应用名称" name="appName" type="text" 
           component={renderField}
         />
-        <RenderUploadImage/>
+
+        {/*this.renderUploadImage()*/}
+       
         <Field label="应用简介" name="appDesc" component={renderTextArea} />
 
         <Field label="分类" name="categoryId" component={renderSelect}>

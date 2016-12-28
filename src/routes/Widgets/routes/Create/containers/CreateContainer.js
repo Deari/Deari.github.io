@@ -72,7 +72,7 @@ class CreateContainer extends Component {
 
     // Do something with the form values
     const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/app/${values.appId}/code`
+      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${values.appId}/code`
     )
 
     const formData = new FormData();

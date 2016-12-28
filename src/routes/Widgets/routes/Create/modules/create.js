@@ -157,7 +157,7 @@ export default function createReducer(state = initialState, action) {
 export const submitCreateForm = (formData) => {
   return (dispatch) => {
     dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/widget`)
     return fetchUtil.postJSON(url, formData, { jsonStringify: false})
       .then((res)=>{
         if(res.status == 200) {
@@ -174,7 +174,7 @@ export const submitCreateForm = (formData) => {
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/widget/tags");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
