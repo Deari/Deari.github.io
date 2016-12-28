@@ -3,10 +3,13 @@ $border-color:#dddddd;
 $text-color:#020202;
 .form-row{
     width: $sub-container-width;
-    padding: $default-margin-top - 12px $default-padding-left - 25px $default-margin-bottom + 5px; 
+    padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
     @include clx;
     overflow: hidden;
     background: $white-color;
+    &:not(:first-child){
+        padding-top: 0;
+    }
     label{ 
         width: $default-width - 22px; 
         font-size: $text-font-size - 4px; 
@@ -20,34 +23,34 @@ $text-color:#020202;
         i{
             position: absolute;
             top: 1px;
-            left: 548px;
+            left: 657px;
         }
     }
     .row-right{
         margin: 0;
         @include float-left; 
         input[type="text"]{
-            width: $default-width + 349px; 
+            width: 574px; 
             height: $default-height - 71px; 
             font-size: $text-font-size - 5px; 
             color: $text-color; 
             border: 1px solid $border-color; 
             padding-left: $default-padding-left - 31px;
             outline: none;
-            input[type="text"]::selection{
-                background: #ace4fe;
-            }
+        }
+        input[type="text"]::selection{
+            background: #ace4fe;
         }
         textarea{
-            width: $default-width + 349px; 
+            width: 574px; 
             height: $default-height + 40px; 
-            border: 2px solid $border-color; 
+            border: 1px solid $border-color; 
             resize: none;
             outline: none;
             padding: $default-padding-left - 30px;
         }
         select{
-             width: $default-width + 272px; 
+             width: 199px; 
              height: $default-height - 72px; 
              font-size: $text-font-size - 7px;  
              padding: 0 $default-padding-left - 32px; 
@@ -55,7 +58,7 @@ $text-color:#020202;
              appearance:none;
              -moz-appearance:none;
              -webkit-appearance:none;
-             background: url(../../../../Home/assets/arrD.png) no-repeat 352px center;
+             background: url(../../../../Home/assets/arrD.png) no-repeat 178px center;
              background-size: 12px 6px;
              cursor: pointer;
              border-color: $border-color;
@@ -111,7 +114,7 @@ $text-color:#020202;
             border: 1px solid $border-color;
             border-radius: 2px;
             float: left;
-            margin: 0 $default-margin-right - 25px $default-margin-bottom - 20px 0;
+            margin: 0 $default-margin-right - 20px $default-margin-bottom - 20px 0;
             cursor: pointer;
             &.active,&:hover{
                 background-color: dodgerblue;
@@ -146,8 +149,8 @@ $text-color:#020202;
             width: $default-width - 52px;
             height: $default-height - 71px;
             position: absolute;
-            left:348px;
-            top: 30px;
+            left:400px;
+            top: 2px;
             filter: alpha(opacity=0);
             opacity: 0;
             cursor: pointer;
@@ -155,7 +158,7 @@ $text-color:#020202;
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
-        width: $default-width + 450px;
+        width: 574px;
     }
 }
 .form-row.file-position{
@@ -164,7 +167,7 @@ $text-color:#020202;
 .form-btn{
     width: $sub-container-width;
     background: $white-color;
-    padding: 0 $default-padding-left - 25px;
+    padding: 0 93px 0 80px;
     height: $default-height + 29px;
     text-align: center;
     div{
@@ -188,4 +191,13 @@ $text-color:#020202;
         }
     }
 } 
-
+.form-row .row-name{
+    width: 94px;
+    margin-right:39px;
+}
+.form-btn div .row-btn{
+    margin-right: 10px;
+}
+.row-select{
+    margin-right:10px;
+}

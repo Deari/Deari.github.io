@@ -2,7 +2,7 @@ import './step.scss'
 
 const Step = (props)=>(
   <div className="step">
-  	<h2>发布新应用</h2>
+  	<h2>创建硬件</h2>
   	<div className='branchBox'>
 	    <div className={props.page == 1? 'branch active':'branch'}>
 	    	<span>1</span>

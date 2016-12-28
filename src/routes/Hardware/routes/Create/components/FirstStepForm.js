@@ -16,7 +16,7 @@ class FirstStepForm extends Component {
     const { imageUrl, imageUpload } = this.props;
 
     return <div className="form-row">
-      <label>硬件LOGO</label>
+      <label className="row-name">硬件LOGO</label>
       <div className="row-right">
         <p>请上传硬件高清图片</p>
         <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
@@ -46,7 +46,7 @@ class FirstStepForm extends Component {
         <div className="form-row">
           <label>分类</label>
           <div className="row-right">
-            <select name="majorCategoryId" ref="majorCategoryId">
+            <select name="majorCategoryId" ref="majorCategoryId" className="row-select" >
               <option>请选择分类</option>
               {
                 cates.map( (item, index) => (
@@ -54,19 +54,20 @@ class FirstStepForm extends Component {
                 ))
               }
             </select>
+            <Field name="minorCategoryId" component="select">
+		          <option>请选择分类</option>
+		          {
+		            cates.map((item) => (
+		              <option value={item.categoryId}>
+		                {item.categoryName}
+		              </option>
+		            ))
+		          }
+		        </Field>
           </div>
         </div>
 
-        <Field name="minorCategoryId" component={renderSelect}>
-          <option>请选择分类</option>
-          {
-            cates.map((item) => (
-              <option value={item.categoryId}>
-                {item.categoryName}
-              </option>
-            ))
-          }
-        </Field>
+        
         
         <div className="form-row">
           <label>标签</label>
