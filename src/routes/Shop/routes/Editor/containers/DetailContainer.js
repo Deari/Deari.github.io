@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import Detail from '../components/Detail'
-import { saveDetail } from '../modules/detail'
+import { saveDetail, savePage } from '../modules/detail'
 
 const mapStateToProps = state => ({
   detail: state.detail
 })
 
 const mapDispatchToProps = {
-  saveDetail
+  saveDetail,
+  savePage,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

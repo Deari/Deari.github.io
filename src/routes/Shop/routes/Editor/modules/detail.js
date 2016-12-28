@@ -1,3 +1,5 @@
+import fetchUtil from '../../../../utils/fetchUtil'
+
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
     let action = { type }
@@ -12,6 +14,18 @@ const SELECT_ELEMENT = 'SELECT_ELEMENT'
 const SAVE_DETAIL = 'SAVE_DETAIL'
 
 export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
+
+export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
+  fetchUtil.postJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish'
+    , {
+      viewData: { elements: [ 111, 3333, 4444 ] },
+      templateId: 1
+    }
+  ).then(v => {
+    console.log(v.data)
+    resolve()
+  })
+})
 
 const ACTION_HANDLERS = {
 

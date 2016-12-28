@@ -7,7 +7,6 @@ export class ProductContainer extends Component {
   componentDidMount() {
     setTimeout(function () {
       this.props.fetchProducts()
-
     }.bind(this), 1000)
   }
 
