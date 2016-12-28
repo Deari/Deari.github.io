@@ -1,3 +1,5 @@
+import fetchUtil from '../../../../utils/fetchUtil'
+
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
     let action = { type }
@@ -8,18 +10,39 @@ function makeActionCreator(type, ...argNames) {
   }
 }
 
+const SELECT_ELEMENT = 'SELECT_ELEMENT'
 const SAVE_DETAIL = 'SAVE_DETAIL'
 
 export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
 
-const ACTION_HANDLERS = {
-  [SAVE_DETAIL]: (state, action) => {
+export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
+  fetchUtil.postJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish'
+    , {
+      viewData: { elements: [ 111, 3333, 4444 ] },
+      templateId: 1
+    }
+  ).then(v => {
+    console.log(v.data)
+    resolve()
+  })
+})
 
+const ACTION_HANDLERS = {
+
+  [SELECT_ELEMENT]: (state, action) => {
+    return { ...state, element: action.selectedElement }
+  },
+
+  [SAVE_DETAIL]: (state, action) => {
+    console.log('---save----')
     console.log(state)
     return state
   }
 }
 
+//export const actions = {
+//  saveDetail,
+//}
 
 export default function detailReducer(state = {}, action) {
   const handler = ACTION_HANDLERS[ action.type ]

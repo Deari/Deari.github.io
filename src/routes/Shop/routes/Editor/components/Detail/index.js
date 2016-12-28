@@ -1,8 +1,16 @@
 import React, { Component } from 'react'
 
-export const Detail = (props) => {
+export const Detail = ({ detail, saveDetail, savePage}) => {
+  //console.log(props.detail)
+  console.log('--------------')
+  console.log(savePage)
   return <div id="detail-container">
-    <button className="button">保存</button>
+    <button className="button" onClick={savePage}>保存</button>
+    <pre style={{fontSize: 10}}>
+        {
+          JSON.stringify(detail || {}, null, 2)
+        }
+    </pre>
   </div>
 }
 
