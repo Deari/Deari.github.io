@@ -1,4 +1,3 @@
-
 const RenderUploadImage = (props) => (
   <div className="form-row">
     <label>应用图片</label>

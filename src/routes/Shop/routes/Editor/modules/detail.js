@@ -16,13 +16,14 @@ const SAVE_DETAIL = 'SAVE_DETAIL'
 export const saveDetail = makeActionCreator(SAVE_DETAIL, 'id')
 
 export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
-  fetchUtil.postJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish'
-    , {
-      viewData: { elements: [ 111, 3333, 4444 ] },
-      templateId: 1
-    }
+  const state = getState()
+  console.log(state)
+  fetchUtil.postForm('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish',
+    {
+      viewData: state.preview,
+    },
   ).then(v => {
-    console.log(v.data)
+    //console.log(v.data)
     resolve()
   })
 })
@@ -34,8 +35,6 @@ const ACTION_HANDLERS = {
   },
 
   [SAVE_DETAIL]: (state, action) => {
-    console.log('---save----')
-    console.log(state)
     return state
   }
 }
