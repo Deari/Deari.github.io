@@ -14,9 +14,9 @@ export default (store) => ({
       cb(null, [
         require('./routes/Create')(store),
         // require('./routes/Detail')(store),
-        // require('./routes/List')(store),
+        require('./routes/List')(store),
         // require('./routes/Editor')(store),
-        // require('./routes/Doc')
+        require('./routes/Doc')
       ])
     })
   }
