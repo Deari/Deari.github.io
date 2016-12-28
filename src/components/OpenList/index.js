@@ -1,46 +1,11 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import { Link } from 'react-router'
 import './index.scss'
 
 class OpenList extends React.Component {
-  state = {
-    listData: [],
-    typeName: ''
-  }
-  componentWillReceiveProps( nextProps ) {
-    if ( !nextProps.listData ) return
-    const { listData, typeName } = nextProps
-    this.setState({ listData: listData, typeName: typeName})
-  }
-  clickStar(item) {
-    let { listData, typeName } = this.state
-    for (let i=0; i<listData.length; i++) {
-      if (listData[i][`${typeName}Id`] === item[`${typeName}Id`]) {
-        if (listData[i].checkedStar) {
-          listData[i].checkedStar = false;
-          this.setState({listData: listData})
-          return;
-        } else {
-          listData[i].checkedStar = true;
-          this.setState({listData: listData})
-          return
-        }
-      }
-    }
-  }
-  getLinkUrl(item) {
-    const { typeName } = this.state
-    if (!item[`${typeName}Id`]) return `/open/${typeName}s`
-    let link = ''
-    if (item.appType === 2) {
-      link = '/open/widgets/detail/' + item[`${typeName}Id`]
-    } else {
-      link = `/open/${typeName}s/detail/` + item[`${typeName}Id`]
-    }
-    return link
-  }
   render() {
-    const { listData, typeName } = this.state
+    const { typeName, detailLink, clickStar } = this.props
+    const listData = this.props.listData || []
     return (
       <ul className="open-content-list">
       {
@@ -49,11 +14,11 @@ class OpenList extends React.Component {
           return (
             <li>
               <div>
-                <p className="open-list-start" onClick={this.clickStar.bind(this, item)}>
+                <p className="open-list-start" onClick={() => {clickStar && clickStar(item)}}>
                   <i className="iconfont icon-star icon-start-hover"></i>
                   { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
                 </p>
-                <Link className="open-content-info" to={this.getLinkUrl.bind(this, item)}>
+                <Link className="open-content-info" to={detailLink + item[`${typeName}Id`]}>
                   <p className="open-info-name">{ item[`${typeName}Name`] }</p>
                   <span className="open-user-name font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
                   <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>

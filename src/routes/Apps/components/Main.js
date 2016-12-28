@@ -5,11 +5,16 @@ import Sidebar from '../../../components/Sidebar'
 import OpenList from '../../../components/OpenList'
 
 class Main extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      "apps": []
-    }
+  state = {
+    listData: [],
+    tags: [], 
+    activeTag: 0,
+    urls: {
+      create: { url: `/apps/create` },
+      list: { url: `/apps/list` },
+      doc: { url: `/apps/doc` }
+    },
+    detailLink: '/apps/detail/'
   }
   async getList(tagId) {
     let id = tagId || 'all';
@@ -20,7 +25,7 @@ class Main extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
-        res.data && this.setState({ apps: res.data.list })
+        res.data && this.setState({ listData: res.data.list })
       } else {
         res.msg && window.alert(res.msg)
       }
@@ -28,17 +33,56 @@ class Main extends React.Component {
       console.log("e ", e);
     }
   }
-  componentDidMount() {
-    this.getList()
+  async getTags() {
+    let apiUrl = getDomain(
+      `http://api.intra.`,
+      `ffan.net/bo/v1/public/common/tags?type=apps`
+    );
+    try {
+      let res = await fetchUtil.getJSON(apiUrl)
+      if (res.status === 200) {
+        res.data && this.setState({ tags: res.data })
+      } else {
+        res.msg && window.alert(res.msg)
+      }
+    } catch (e) {
+      console.log("e ", e);
+    }
+  }
+  async componentDidMount() {
+    await this.getTags()
+    await this.getList()
+    let { tags } = this.state
+    tags.unshift({ tagId: 0, tagName: "全部" })
+    this.setState({ tags: tags })
   }
   tagChange(tagId) {
+    let { activeTag } = this.state
+    if ( activeTag === tagId ) return
+    this.setState({ activeTag: tagId })
     this.getList(tagId)
   }
+  clickStar(item) {
+    let { listData } = this.state
+    for (let i=0; i<listData.length; i++) {
+      if (listData[i].appId === item.appId) {
+        if (listData[i].checkedStar) {
+          listData[i].checkedStar = false;
+          this.setState({listData: listData})
+          return;
+        } else {
+          listData[i].checkedStar = true;
+          this.setState({listData: listData})
+          return
+        }
+      }
+    }
+  }
   render () {
-    const { apps } = this.state
+    const { listData, tags, activeTag, urls, detailLink } = this.state
     return (
       <div className="container clx">
-        <Sidebar onTagChange={this.tagChange.bind(this)} />
+        <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} />
         <div className="sub-container">
           <div className="sub-container-banner"></div>
           <h2 className="open-content-nav">
@@ -60,12 +104,11 @@ class Main extends React.Component {
               </p>
             </form>
           </h2>
-          <OpenList listData={apps} typeName="app" />
+          <OpenList listData={listData} typeName="app" detailLink={detailLink} clickStar={this.clickStar.bind(this)} />
         </div>
       </div>
     )
   }
 }
-
 
 export default Main;
