@@ -1,14 +1,18 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
-import Info from '../../components/widgets/Info'
+import { injectReducer } from '../../../../store/reducers'
+import { reducer as formReducer } from 'redux-form'
 
-class Create extends React.Component {
-  render() {
-    return <Info />
-  }
-}
-
-module.exports = {
+module.exports = (store) => ({
   path: 'create',
-  component: Create
-}
+
+  getComponent (nextState, cb) {
+    require.ensure([], (require) => {
+      const Create = require('./containers/CreateContainer').default;
+      const createReducer = require('./modules/create').default;
+      injectReducer(store, { key: 'form', reducer: formReducer })
+      injectReducer(store, { key: 'create', reducer: createReducer })
+
+      cb(null, Create)
+    })
+  }
+})

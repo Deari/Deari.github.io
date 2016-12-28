@@ -7,12 +7,7 @@ import './Editor.scss'
 
 export class Editor extends Component {
 
-  //componentDidMount() {
-  //  this.props.fetchProducts()
-  //}
-
   render() {
-    const { product, detail } = this.props
     return <div className="bg-gray height-100" id="editor-container">
             <div className="height-100">
               <div className="cContent height-100 clx">
@@ -56,7 +51,6 @@ export class Editor extends Component {
 }
 
 export default Editor
-
 
 Editor.propTypes = {
   products: PropTypes.array

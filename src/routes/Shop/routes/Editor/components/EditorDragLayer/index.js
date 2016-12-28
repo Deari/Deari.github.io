@@ -33,8 +33,6 @@ export class EditorDragLayer extends Component {
 
   render() {
     const { item, itemType, isDragging } = this.props
-    //console.log(item)
-    //console.log(itemType)
     if (!isDragging) {
       return null
     }

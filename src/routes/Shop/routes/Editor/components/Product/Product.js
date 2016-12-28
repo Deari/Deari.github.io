@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react'
 import './Product.scss'
 
-const Product = ({ name, imgSrc, defaultLayout }) =>
+const Product = ({ appName, appThumb, defaultLayout }) =>
   <div>
     <img className={'product-img'}
          height={50}
-         src={imgSrc || 'http://placeholder.qiniudn.com/100x100/808080/fff' }
-         alt={name}/>
+         src={appThumb || 'http://placeholder.qiniudn.com/100x100/808080/fff' }
+         alt={appName}/>
     {/*<span>{name}-{defaultLayout.w}x{defaultLayout.h}</span>*/}
   </div>
 

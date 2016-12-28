@@ -8,6 +8,11 @@ import Shop from './Shop'
 import Developer from './Developer'
 import Demo from './Demo'
 import Mobile from './Mobile'
+
+import Apps from './Apps'
+import Widgets from './Widgets'
+import Hardware from './Hardware'
+
 import '../styles/_base.scss'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -22,7 +27,10 @@ export const createRoutes = (store) => ({
     Open(store),
     Shop(store),
     Developer(store),
-    Demo(store)
+    Demo(store),
+    Apps(store),
+    Widgets(store),
+    Hardware(store)
   ]
 })
 

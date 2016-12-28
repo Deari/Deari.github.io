@@ -3,11 +3,12 @@ import { IndexLink, Link } from 'react-router'
 import Slidebar from '../../../../components/Sidebar'
 import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
-import './Doc.scss'
+import './index.scss'
 
 class Doc extends React.Component {
   render() {
-    return <div className="container clx">
+    return (
+    <div className="container clx">
       <Slidebar />
       <div className="sub-container plf bg-white">
         <dl className="doc-info">
@@ -27,7 +28,11 @@ class Doc extends React.Component {
         </dl>
       </div>
     </div>
+    )
   }
 }
 
-export default Doc;
+module.exports = ({
+  path: 'doc',
+  component: Doc
+})
