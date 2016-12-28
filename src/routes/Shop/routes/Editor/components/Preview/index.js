@@ -26,16 +26,16 @@ export class Preview extends Component {
     }
   }
 
-  onLayoutChange(layout) {
-    this.props.setLayout(layout.map(l => ({
+  onLayoutChange(layouts) {
+    this.props.setLayout(layouts.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
     })))
   }
 
   generateLayout(e) {
-    let { layout } = this.props.preview
+    let { layouts } = this.props.preview
     try {
-      const lay = layout.find(l => l.i === e.id)
+      const lay = layouts.find(l => l.i === e.id)
       return lay || { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
     } catch (e) {
       alert(e)

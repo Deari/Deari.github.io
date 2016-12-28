@@ -13,8 +13,8 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-  setLayout(layout) {
-    dispatch(setLayout({layout: layout}))
+  setLayout(layouts) {
+    dispatch(setLayout({layouts: layouts}))
   },
   selectElement(id) {
     dispatch(selectElement(id))
