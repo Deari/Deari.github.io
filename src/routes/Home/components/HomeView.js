@@ -4,7 +4,7 @@ import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import './HomeView.scss'
 
 export const HomeView = () => (
-  <div className="core-layout__viewport">
+  <div className="">
     <div className="home-banner">
       <dl>
         <dt>API集市</dt>
@@ -31,14 +31,14 @@ export const HomeView = () => (
         <p>数据由万达提供</p>
         <ul className="clx">
           <li>
-            <Link className="a-bg1" to="/open/apps">
+            <Link className="a-bg1" to="/apps">
               <p>应用市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </Link>
           </li>
           <li>
-            <Link className="a-bg2" to="/open/widgets">
+            <Link className="a-bg2" to="/widgets">
               <p>组件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
@@ -52,7 +52,7 @@ export const HomeView = () => (
             </Link>
           </li>
           <li>
-            <Link className="a-bg4" to="/open/hardware">
+            <Link className="a-bg4" to="/hardware">
               <p>硬件市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
