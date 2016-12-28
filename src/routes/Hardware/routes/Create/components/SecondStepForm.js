@@ -116,19 +116,17 @@ class SecondStepForm extends React.Component {
 
         <div className="form-row file-position">
         	<label>上传测试报告</label>
-          <div className="row-right">
-            <span>
-              <input type="button" value="选择文件"/>
-              <input type="file" ref='hardwareReport' name='hardwareReport' onChange={this.fileUpload.bind(this)}/>
-            </span>
-            <span>文件名</span>
-        	</div>
+        	<div className="row-right">
+        		<span className="file-name"></span>
+        		<div className="file-btn">浏览</div>
+	          <input type="file" className="form-file" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
+	        </div>
         </div>
 
         <div className="form-btn">
 	          <div>
 	          	<button type="button" className="previous" onClick={previousPage}>上一步</button>
-              <a href={sdkDowload} target="_blank"><button type="button">下载SDK</button></a>
+              <a href={sdkDowload} target="_blank" className="row-btn"><button type="button" >下载SDK</button></a>
 	          	<button type="submit" className="next" disabled={submitting}>提交提交审核</button>
 	          </div>
         </div>
