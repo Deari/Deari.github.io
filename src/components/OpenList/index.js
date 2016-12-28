@@ -53,18 +53,18 @@ class OpenList extends React.Component {
                   <i className="iconfont icon-star icon-start-hover"></i>
                   { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
                 </p>
-                <Link to={this.getLinkUrl.bind(this, item)}>
-                <p className="pt10">{ item[`${typeName}Name`] }</p>
-                <span className="font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
-                <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
-                <span className="font-hidden">{ item[`${typeName}Desc`] }</span>
-              </Link>
-              <Link className="open-list-price">免费</Link>
-              <p>
-                <a><i className="iconfont icon-team"></i>165</a>
-                <a><i className="iconfont icon-star"></i>251</a>
-                <a><i className="iconfont icon-toparrow"></i>100%</a>
-              </p>
+                <Link className="open-content-info" to={this.getLinkUrl.bind(this, item)}>
+                  <p className="open-info-name">{ item[`${typeName}Name`] }</p>
+                  <span className="open-user-name font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
+                  <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
+                  <span className="open-info-introduce font-hidden">{ item[`${typeName}Desc`] }</span>
+                </Link>
+                <Link className="open-list-price">免费</Link>
+                <p className="open-list-show">
+                  <a><i className="iconfont icon-team"></i>165</a>
+                  <a><i className="iconfont icon-star"></i>251</a>
+                  <a><i className="iconfont icon-toparrow"></i>100%</a>
+                </p>
               </div>
             </li>
           )
