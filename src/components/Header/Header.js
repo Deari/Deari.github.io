@@ -7,12 +7,15 @@ import '../../styles/_base.scss'
 import '../../styles/iconfont/iconfont.css'
 
 export const Header = ({location, hideHeader}) => {
+  if (hideHeader) {
+    return null
+  }
 
   return (
     <div className='header-wrapper'>
       <div className='header-bg'></div>
       <div className='g-header container '>
-        
+
         <h1 className="title pull-left ">
           <Link to='/' className="logo">
             <i className="icon"></i>
@@ -21,7 +24,7 @@ export const Header = ({location, hideHeader}) => {
           </Link>
           <small className="small-title">开发者平台</small>
         </h1>
-        
+
         <div className="pull-right">
           <div className="nav">
             <div className="nav-list">

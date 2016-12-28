@@ -13,7 +13,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Create')(store),
-        // require('./routes/Detail')(store),
+        require('./routes/Detail')(store),
         require('./routes/List')(store),
         // require('./routes/Editor')(store),
         require('./routes/Doc')
