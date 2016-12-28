@@ -1,92 +1,76 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router'
+import { RouterHandler, Link } from 'react-router'
+import fetchUtil from '../../../utils/fetchUtil'
+import moment from 'moment'
+import Relative from '../../../../components/Relative'
+import Slidebar from '../../../../components/Sidebar'
+import OpenList from '../../../../components/OpenList'
 import '../../../../styles/_base.scss'
 import '../../index.scss'
 
 class Detail extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      data: [],
+      widgets: [],
+      listData: []
+    };
+  }
+  async componentDidMount() {
+    console.log(this.props)
+    let id = this.props.params.id;
+    let apiUrl = `http://api.intra.sit.ffan.net/bo/v1/web/app/${id}`;
+    try {
+      let res = await fetchUtil.getJSON(apiUrl);
+      if (res && res.status === 200) {
+        res.data && this.formatData(res.data);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  formatData(data) {
+    if (data.updateTime) {
+      data.updateTime = moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+      data.createTime = moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    }
+    this.setState({data: data});
+  }
   render() {
-    return <div className="bg-gray pt40">
-        <div className="container">
-          <div className="row bg-white p40">
-            <div className="Detail-container clx">
-              <div className="col-sm-3 col-md-3">
-                <div className="Detail-weatherImg"></div>
-                <div className="Detail-downloadBtn">
-                  <button className="btn btn-primary">下载</button>
+    let data = this.state.data;
+    let { listData } = this.state
+    return (
+      <div className="core-layout__viewport">
+        <div className="container clx">
+            <Slidebar />
+            <div className="sub-container bg-white">
+              <div className="detail-container">
+                <div className="detail-download">
+                  <img className="appImg" src={data.appLogo} alt="LOGO"/>
+                  <a className="btn btn-primary btn-download" href={data.fileLink} target="_blank" download="">下载</a>
+                </div>
+                <div className="detail-info">
+                  <dl className="detail-tittle">
+                    <dt>应用名称-{data.appName}</dt>
+                    <dd><i className="user-img"></i>极速数据（企业）</dd>
+                  </dl>
+                  <h3 className="app-title">版本：{data.lastCodeVersion ? `${data.lastCodeVersion}的细节功能` : ``} <span>（时间：{data.updateTime}）</span></h3>
+                  <p className="app-text">{data.appDesc}</p>
+                  <h3 className="app-title">作者：{data.developerName}</h3>
+                  <p className="app-text">(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</p>
                 </div>
               </div>
-              <div className="col-sm-5 col-md-5 Detail-detail">
-                <h3>应用名称-蓝海商品管理APP</h3>
-                <dl>
-                  <dt><span className="text-blue-color">版本：1.11.8的细节功能</span> （时间：2016-12-1）</dt>
-                  <dd><span>.</span>(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</dd>
-                  <dd><span>.</span>(假字)中国人气MMO网络游戏《梦幻西游》推出的同名手游！</dd>
-                </dl>
-                <dl>
-                  <dt><span className="text-blue-color">作者：蓝海开发团队；</span></dt>
-                  <dd><span>.</span>(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</dd>
-                  <dd><span>.</span>(假字)中国人气MMO网络游戏《梦幻西游》推出的同名手游！</dd>
-                </dl>
+              <div className="detail-moreApps">
+                <div className="moreApp-list">
+                  <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
+                  <OpenList listData={listData} typeName="app" />
+                </div>
               </div>
-              <div className="col-sm-4 col-md-4"></div>
             </div>
-            <hr/>
-            <div className="Detail-moreApps">
-              <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
-              <ul className="clx">
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-                <li className="col-md-2 col-sm-2">
-                  <div className="Detail-appBox">
-                    <div className="Detail-appImg"></div>
-                    <h5>澜海APP</h5>
-                    <p>工具类型</p>
-                    <button className="btn btn-default btn-xs">下载</button>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
+    )
   }
 }
 
