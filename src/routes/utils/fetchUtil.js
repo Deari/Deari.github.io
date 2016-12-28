@@ -23,34 +23,78 @@ class FetchUtil {
 
     params = getURLByObj(params)
     options = {
-      method : 'GET',
+      method: 'GET',
       // ...jsonHeaders,
       ...options
     }
 
     const quesMark = new RegExp('\\?').test(url) ? '&' : '?'
     const getURL = `${url}${quesMark}${params}`
-    return new Promise((resolve, reject)=> {
-      fetch(getURL, options).then(async res=> {
+    return new Promise((resolve, reject) => {
+      fetch(getURL, options).then(async res => {
         if (res.ok) {
           try {
             const resp = await res.json();
-            if (options['passDate']) {
+            if (options[ 'passDate' ]) {
               resp._date = res.headers.get('date');
             }
             return resolve(resp);
-          } catch(e) {
+          } catch (e) {
             return reject(e)
           }
         } else {
           return reject(res)
         }
-      })['catch'](e=> {
+      })[ 'catch' ](e => {
         return reject(e)
       })
     })
 
   }
+
+  static async postForm(url, params = {}, options = {}) {
+
+    if (!url.trim()) {
+      return reject(-101, 'URL is empty')
+    }
+
+
+    if (!isObject(params) || !isObject(options)) {
+      return reject(-102, 'The type of params and options must be a Object')
+    }
+
+    const fromData = new FormData()
+
+    for (const p in params) {
+      fromData.append(p, JSON.stringify(params[p]))
+    }
+
+    params = getURLByObj(params)
+    const reqsOptions = {
+      method: 'POST',
+      body : fromData,
+      ...options
+    }
+
+    return new Promise((resolve, reject) => {
+      fetch(url, reqsOptions).then(async res => {
+        if (res.ok) {
+          try {
+            const resp = await res.json();
+            return resolve(resp);
+          } catch (e) {
+            return reject(e)
+          }
+        } else {
+          return reject(e)
+        }
+      })[ 'catch' ](e => {
+        return reject(e)
+      })
+    })
+
+  }
+
 
   /**
 
@@ -70,34 +114,34 @@ class FetchUtil {
     }
     const optionsHeader = options.header
     const reqsOptions = {
-      method : 'POST',
+      method: 'POST',
       // ...jsonHeaders,
       ...optionsHeader,
-      body   : !options.jsonStringify ? params : JSON.stringify(params)
+      body: !options.jsonStringify ? params : JSON.stringify(params)
     }
 
-    return new Promise((resolve, reject)=> {
-      fetch(url, reqsOptions).then(async res=> {
+    return new Promise((resolve, reject) => {
+      fetch(url, reqsOptions).then(async res => {
         if (res.ok) {
           try {
             const resp = await res.json();
             return resolve(resp);
-          } catch(e) {
+          } catch (e) {
             return reject(e)
           }
         } else {
           return reject(e)
         }
-      })['catch'](e=> {
+      })[ 'catch' ](e => {
         return reject(e)
       })
     })
   }
 
   static async request(method, url, params = {}, options = {}) {
-    if(!method) {
+    if (!method) {
       return reject(-100, 'method is empty')
-    } 
+    }
 
     if (!url.trim()) {
       return reject(-101, 'URL is empty')
@@ -108,25 +152,25 @@ class FetchUtil {
     }
 
     options = {
-      method : method,
+      method: method,
       // ...jsonHeaders,
       ...options,
-      body   : JSON.stringify(params)
+      body: JSON.stringify(params)
     }
 
-    return new Promise((resolve, reject)=> {
-      fetch(url, options).then(async res=> {
+    return new Promise((resolve, reject) => {
+      fetch(url, options).then(async res => {
         if (res.ok) {
           try {
             const resp = await res.json();
             return resolve(resp);
-          } catch(e) {
+          } catch (e) {
             return reject(e)
           }
         } else {
           return reject(e)
         }
-      })['catch'](e=> {
+      })[ 'catch' ](e => {
         return reject(e)
       })
     })
@@ -138,19 +182,19 @@ export function isObject(x) {
 }
 
 export function reject(status, message) {
-  return Promise.reject({status, message})
+  return Promise.reject({ status, message })
 }
 
 export function getURLByObj(params) {
   return Object.keys(params).map(function (prop) {
-    return [prop, params[prop]].map(encodeURIComponent).join('=');
+    return [ prop, params[ prop ] ].map(encodeURIComponent).join('=');
   }).join('&');
 }
 
 const jsonHeaders = {
   headers: {
-    "Accept"       : "application/json",
-    "Content-Type" : "application/json",
+    "Accept": "application/json",
+    "Content-Type": "application/json",
     "Cache-Control": "no-cache",
   }
 }
