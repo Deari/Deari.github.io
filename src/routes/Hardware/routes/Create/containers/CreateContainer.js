@@ -25,7 +25,8 @@ class CreateContainer extends Component {
   }
 
   imageUpload(e) {
-    return console.log("imageUpload");
+    // return console.log("imageUpload");
+
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
@@ -71,7 +72,7 @@ class CreateContainer extends Component {
 
     // Do something with the form values
     const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${values.appId}/code`
+      `http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step2`
     )
 
     const formData = new FormData();

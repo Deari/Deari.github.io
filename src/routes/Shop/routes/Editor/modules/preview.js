@@ -15,7 +15,7 @@ const SET_LAYOUT = 'SET_LAYOUT'
 const SELECT_ELEMENT = 'SELECT_ELEMENT'
 
 export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
-export const setLayout = makeActionCreator(SET_LAYOUT, 'layout')
+export const setLayout = makeActionCreator(SET_LAYOUT, 'layouts')
 
 export const selectElement = id => (dispatch, getState) => dispatch({
   type: SELECT_ELEMENT,
@@ -40,7 +40,7 @@ const ACTION_HANDLERS = {
   }),
 
   [SET_LAYOUT]: (state, action) => ({
-    ...state, ...action.layout
+    ...state, ...action.layouts
   }),
 
   [SELECT_ELEMENT]: (state, action) => ({
@@ -53,7 +53,7 @@ const ACTION_HANDLERS = {
 
 const defaultState = {
   elements: [],
-  layout: [],
+  layouts: [],
 }
 
 export default function productReducer(state = defaultState, action) {

@@ -134,17 +134,26 @@ const initialState = {
   }],
   
   form: {
-    appName: '',
-    appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
-    appDesc: '',
-    categoryId: 0,
-    platform: 2,
+    hardwareName: '',
+    hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    hardwareFunction: '',
+    majorCategoryId: 0,
+    minorCategoryId: 0,
     tags: [],
   },
 
   form2: {
-    codeDesc: 'sasdasdas',
-    appId: '',
+    hardwareMode: '',
+    hardwarePics: [],
+    hardwareBrand: '',
+    hardwareProducer: '',
+    commType1: 0,
+    commType2: 0,
+    hardwareDetail: '',
+    sdkType: 0,
+    os: 0,
+    hardwarePlatform: 0,
+    hardwareReport: ''
   }
 }
 
@@ -157,7 +166,7 @@ export default function createReducer(state = initialState, action) {
 export const submitCreateForm = (formData) => {
   return (dispatch) => {
     dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/widget`)
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
     return fetchUtil.postJSON(url, formData, { jsonStringify: false})
       .then((res)=>{
         if(res.status == 200) {
@@ -174,7 +183,7 @@ export const submitCreateForm = (formData) => {
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/widget/tags");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardwares");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -190,7 +199,7 @@ export const fetchCates = () => {
   return (dispatch) => {
 
     // 拉取 select 列表数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
