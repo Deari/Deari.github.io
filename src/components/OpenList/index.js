@@ -60,7 +60,7 @@ class OpenList extends React.Component {
                   <span className="open-info-introduce font-hidden">{ item[`${typeName}Desc`] }</span>
                 </Link>
                 <Link className="open-list-price">免费</Link>
-                <p>
+                <p className="open-list-show">
                   <a><i className="iconfont icon-team"></i>165</a>
                   <a><i className="iconfont icon-star"></i>251</a>
                   <a><i className="iconfont icon-toparrow"></i>100%</a>
