@@ -13,7 +13,7 @@ import './firstStepForm.scss'
 class FirstStepForm extends Component {
   
   renderUploadImage(){
-    const { imageUrl, imageUpload } = this.props;
+    const { imageUpload, initialValues } = this.props;
 
     return <div className="form-row">
       <label>应用图片</label>
@@ -22,10 +22,10 @@ class FirstStepForm extends Component {
         <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
         <span>
           <input type="button" value="选择文件" />
-          <input type="file" accept="image/*" ref='appLogo' onChange={imageUpload} />
+          <input type="file" accept="image/*" onChange={imageUpload} />
         </span>
         <div className="img-container">
-          <img src={imageUrl} alt="上传图片" className="img-thumbnail" />
+          <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
         </div>
       </div>
     </div>
@@ -41,7 +41,7 @@ class FirstStepForm extends Component {
           component={renderField}
         />
 
-        {/*this.renderUploadImage()*/}
+        {this.renderUploadImage()}
        
         <Field label="应用简介" name="appDesc" component={renderTextArea} />
 
@@ -92,7 +92,6 @@ FirstStepForm.propTypes = {
 export default reduxForm({
   form: 'firstStepForm',   
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,     
   // validate,
   enableReinitialize: true
 })(FirstStepForm)

@@ -9,28 +9,10 @@ import fetchUtil from '../../../../utils/fetchUtil'
 
 class SecondStepForm extends React.Component {
 
-  async fileUpload() {
-    const { updateForm } = this.props;
-    const  formData = new FormData()
-    
-    formData.append('fileName', this.refs.appFile.files[0])
-
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/file/upload")
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false
-    }).then(res=>{
-      console.info(res);
-      if(res.status === 200){
-        updateForm(res.data)
-      } else{
-        console.warn(res);
-      }
-    })
-  }
-
   render(){
 
-    const { handleSubmit, pristine, submitting, previousPage } = this.props
+    const { handleSubmit, pristine, submitting, previousPage,
+      fileUpload } = this.props
 
     return (
       <form onSubmit={handleSubmit}>
@@ -40,7 +22,7 @@ class SecondStepForm extends React.Component {
         	<div className="row-right">
         		<span className="file-name"></span>
         		<div className="file-btn">浏览</div>
-	          <input type="file" className="form-file" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
+	          <input type="file" className="form-file" ref='appFile' name='appFile' onChange={fileUpload} />
 	        </div>
         </div>
         <div className="form-btn">
@@ -57,7 +39,6 @@ class SecondStepForm extends React.Component {
 
 export default reduxForm({
   form: 'secondStepForm', 
-  destroyOnUnmount: false,
   enableReinitialize: true
   // validate
 })(SecondStepForm)

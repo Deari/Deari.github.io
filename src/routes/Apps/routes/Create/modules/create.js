@@ -19,17 +19,15 @@ export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
 })
 
-export const completeSubmitCreate = (appId)=>({
+export const updateAppId = (appId)=>({
   type: SUBMIT_CREATE_COMPLETE,
   appId
 })
 
-export const getTags = (data) => {
-  return {
-    type: RECEIVE_TAGS,
-    data
-  }
-}
+export const getTags = (data) => ({
+  type: RECEIVE_TAGS,
+  data
+})
 
 export const getCates = (data) => ({
   type: RECEIVE_CATES,
@@ -129,7 +127,7 @@ const initialState = {
     categoryName: "正在加载..."
   }],
   tags: [{
-    tagId: 1,
+    tagId: 0,
     tagName: '正在加载...'
   }],
   
@@ -143,8 +141,8 @@ const initialState = {
   },
 
   form2: {
-    codeDesc: 'sasdasdas',
-    appId: '',
+    codeDesc: '测试修改',
+    appId: '146',
   }
 }
 
