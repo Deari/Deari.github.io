@@ -6,6 +6,9 @@
 .open-content-list{
   @include open-content-list;
 }
+.open-content-info{
+  @include open-content-info;
+}
 .sub-container-banner{
   @include sub-container-banner;
   background: url(../../routes/Home/assets/sub-container-banner1.jpg) no-repeat;
@@ -36,6 +39,7 @@
   i{
     position: absolute;
     font-size: $text-font-size + 2px;
+    cursor: pointer;
   }
 }
 .icon-uncollected{
