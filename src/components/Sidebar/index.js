@@ -9,12 +9,13 @@ class Sidebar extends React.Component {
     const { activeTag, onTagChange } = this.props
     const tags = this.props.tags || []
     const urls = this.props.urls || {create: {}, list: {}, doc: {}}
+    const type = this.props.type || "应用"
     return (
       <div className='sidebar'>
         <Link className="create-btn" to={urls.create.url}><i className="iconfont icon-create"></i>创建新组件</Link>
         <ul className="help-menu">
-          <li><Link to={urls.list.url} className={(urls.list.active && 'active') || ''}><i className="iconfont icon-application"></i>我的应用</Link></li>
-          <li><Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}><i className="iconfont icon-file"></i>应用文档</Link></li>
+          <li><Link to={urls.list.url} className={(urls.list.active && 'active') || ''}><i className="iconfont icon-application"></i>{'我的'+ type }</Link></li>
+          <li><Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}><i className="iconfont icon-file"></i>开发者文档</Link></li>
         </ul>
         <ul className="tag-list">
           { tags.map( ( item, index ) => {
