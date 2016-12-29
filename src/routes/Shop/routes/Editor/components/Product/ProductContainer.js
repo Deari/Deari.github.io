@@ -13,9 +13,9 @@ export class ProductContainer extends Component {
   render() {
     const { products = [] } = this.props.product
     console.log(products)
-    return <ul className="gui-list clx">
-      {products.map((p, i) => <li key={i}>
-        <div className="img"><DragProduct {...p}/></div>
+    return <ul className="gui-list">
+      {products.map((p, i) => <li className="items" key={i}>
+        <DragProduct {...p}/>
       </li>)}
     </ul>
   }
