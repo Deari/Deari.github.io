@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
+import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect}from '../modules/renderField'
+import renderField, { renderTextArea, renderSelect, renderTags}from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-// import Tags from '../../../../../components/Tags'
+import { toggleStep, updateAppId, fetchTags, fetchCates,
+  toggleTag, updateForm2 } from '../modules/create'
 
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
@@ -12,26 +14,21 @@ import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
   
-  renderUploadImage(){
-    const { imageUpload, initialValues } = this.props;
+  imageUpload(e) {
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
+    const formData = new FormData()
+    formData.append('fileName', e.target.files[0])
 
-    return <div className="form-row">
-      <label>应用图片</label>
-      <div className="row-right">
-        <p>请上传应用高清图片</p>
-        <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-        <span>
-          <input type="button" value="选择文件" />
-          <input type="file" accept="image/*" onChange={imageUpload} />
-        </span>
-        <div className="img-container">
-          <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
-        </div>
-      </div>
-    </div>
+    fetchUtil.postJSON(url, formData, {
+      jsonStringify: false 
+    }).then(res=>{
+      console.log(`Upload Success: `, res)
+      // do something
+    }).catch(e=>{
+      console.log(`Upload Failed.`)
+      // do something
+    })
   }
-
-
 
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
@@ -41,7 +38,20 @@ class FirstStepForm extends Component {
           component={renderField}
         />
 
-        {this.renderUploadImage()}
+        <div className="form-row">
+          <label>应用图片</label>
+          <div className="row-right">
+            <p>请上传应用高清图片</p>
+            <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+            <span>
+              <input type="button" value="选择文件" />
+              <input type="file" accept="image/*" onChange={::this.imageUpload} />
+            </span>
+            <div className="img-container">
+              <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
+            </div>
+          </div>
+        </div>
        
         <Field label="应用简介" name="appDesc" component={renderTextArea} />
 
@@ -56,25 +66,10 @@ class FirstStepForm extends Component {
           }
         </Field>
         
-        <div className="form-row">
-          <label>产品标签</label>
-          <ul className="row-right max-width">
-            {
-              tags.map((item) => (
-                <li 
-                  className={
-                    ((tagId)=>{
-                      return initialValues.tags.indexOf(tagId) > -1 ? 'active' : ''
-                    })(item.tagId)
-                  }
-                  key={item.tagId}
-                  onClick={()=>toggleTag(item.tagId)}
-                >{item.tagName}</li>
-              ))
-            }
-          </ul>
-        </div>
-        
+        <Field label="产品标签" name="tags"
+          component={renderTags} tags={tags}
+        />
+
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">下一步</button>
@@ -89,11 +84,25 @@ FirstStepForm.propTypes = {
   handleSubmit : PropTypes.func.isRequired,
 }
 
-export default reduxForm({
-  form: 'firstStepForm',   
+
+const mapDispatchToProps = {
+  toggleTag,
+}
+
+export default connect(
+  state=>({
+    initialValues: state.create.form,
+    tags: state.create.tags,
+    cates: state.create.cates
+  }),
+
+  mapDispatchToProps
+
+)(reduxForm({
+  form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
   // validate,
-  enableReinitialize: true
-})(FirstStepForm)
+})(FirstStepForm))
+
 
 

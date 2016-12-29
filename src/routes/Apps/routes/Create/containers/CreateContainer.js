@@ -6,64 +6,29 @@ import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
 import Sidebar from '../../../../../components/Sidebar'
-import FirstStepForm from '../components/FirstStepForm'
-import SecondStepForm from '../components/SecondStepForm'
+import FirstStep from '../components/FirstStepForm'
+import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates,
-  toggleTag, updateForm2 } from '../modules/create'
+import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
 
 class CreateContainer extends Component {
   
-  async componentDidMount() {
+  componentDidMount() {
     // console.log("props:", this.props);
     this.props.fetchTags()
     this.props.fetchCates()
   }
 
-  imageUpload(e) {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
-    const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
-
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
-    }).then(res=>{
-      console.log(`Upload Success: `, res)
-      // do something
-    }).catch(e=>{
-      console.log(`Upload Failed.`)
-      // do something
-    })
-  }
-
-  fileUpload(e) {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/file/upload")
-    const  formData = new FormData()
-    formData.append('fileName', e.target.files[0])
-    console.log(e.target.files[0].name);
-
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false
-    }).then(res=>{
-      console.info(res);
-      if(res.status === 200){
-        this.props.updateForm2(res.data)
-      } else{
-        console.warn(res);
-      }
-    }).catch(e=>{
-      console.warn(e);
-    })
-  }
-
   submitFirst(values) {
 
-    console.log(values);
+    console.log(values, "====");
+        this.props.toggleStep(2);
+// return;    
 
     const formData = new FormData();
 
@@ -81,21 +46,27 @@ class CreateContainer extends Component {
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        console.info(res.data)
+        console.info("表单一提交成功")
+        
         this.props.updateAppId(res.data.appId);
-        // dispatch(completeSubmitCreate(res.data.app.appId));
+        
         this.props.toggleStep(2);
+
       } else {
-        throw Error('submit error');
+        console.warn("表单一提交失败：", res)
       }
     }).catch(e=>{
-      console.log(e);
+      console.log('网络错误：', e);
       this.props.toggleStep(2);
     })
   }
 
   submitSecond(values) {
+    
     console.log(values);
+
+    const file = this.props.create.file;
+
     if(!values.appId) {
       return;
     }
@@ -104,29 +75,31 @@ class CreateContainer extends Component {
     const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
 
     const formData = new FormData();
+    
     for(let key in values) {
       formData.append(key, values[key]);
     }
+    for(let key in file) {
+      formData.append(key, file[key]);
+    }
 
-    formData.append('fileName', values['originalName']);
-    formData.append('fileLink', values['url']);
-   
+    formData.append('fileName', file['originalName']);
+    formData.append('fileLink', file['url']);
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
+        console.info('表单二提交成功')
         this.props.toggleStep(3);
       } else {
-        console.warn(res);
+        console.warn('表单二提交失败：', res)
       }
     }).catch(e=>{
-      console.warn(e);
-      // this.props.toggleStep(3);
+      console.warn('网络错误', e);
     })
   }
 
   render() {
-    const { toggleStep, toggleTag, create } = this.props;
-    const { page, tags, cates, form, form2 } = create;
+    const { page } =this.props.create;
 
     const urls = {
       create: { url: `/apps/create` },
@@ -140,28 +113,13 @@ class CreateContainer extends Component {
         <div className="sub-container">
           <Step page={page}/>
           {
-            page === 1 && 
-              <FirstStepForm 
-                onSubmit={::this.submitFirst} 
-                imageUpload={::this.imageUpload}
-                toggleTag={toggleTag}
-                tags={tags}
-                cates={cates}
-                initialValues={form}
-              />
+            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && 
-              <SecondStepForm 
-                previousPage={()=>toggleStep(1)} 
-                fileUpload={::this.fileUpload}
-                onSubmit={::this.submitSecond} 
-                initialValues={form2}
-              />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
           }
           {
-            page === 3 && 
-            <Complete />
+            page === 3 && <Complete />
           }
         </div>
       </div>
@@ -171,15 +129,15 @@ class CreateContainer extends Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  toggleTag,
-  updateAppId,
   fetchTags,
   fetchCates,
-  updateForm2
+  updateAppId
 }
 
-const mapStateToProps = ({ create }) => ({
-  create,
-})
+const mapStateToProps = (state) => {
+  return {
+    create: state.create
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
