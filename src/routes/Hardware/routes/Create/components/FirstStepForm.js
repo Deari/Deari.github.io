@@ -3,6 +3,7 @@ import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import renderField, { renderTextArea, renderSelect, renderTags,
   renderImageUpload, renderCorDropdown }from '../modules/renderField'
+
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
 import { toggleTag } from '../modules/create'
@@ -12,9 +13,7 @@ import { getDomain } from '../../../../utils/domain'
 
 import './firstStepForm.scss'
 
-
 class FirstStepForm extends Component {
-
 
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
@@ -25,9 +24,6 @@ class FirstStepForm extends Component {
         />
 
         <Field label="硬件LOGO" name="hardwareLogo" type="text" 
-          component={renderImageUpload}/>
-
-        <Field label="硬件图片" name="hardwarePics" type="text" 
           component={renderImageUpload}/>
 
         <Field label="硬件介绍" name="hardwareFunction" component={renderTextArea} />
