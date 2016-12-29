@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect } from '../modules/renderField'
-import { validate, asyncValidate, repeatCheck } from '../modules/validate'
+import renderField, { renderTextArea, renderSelect, renderSizeRadioBox } from '../modules/renderField'
+import { validate, asyncValidate, repeatCheck} from '../modules/validate'
 
 // import Tags from '../../../../../components/Tags'
 
@@ -42,6 +42,9 @@ class FirstStepForm extends Component {
         <Field label="组件名称" name="appName" type="text"
           component={renderField}
           />
+
+        <Field label="尺寸" name="size" component={renderSizeRadioBox}/>
+
         <div className="form-row">
           <label>尺寸</label>
           <div className="row-right">

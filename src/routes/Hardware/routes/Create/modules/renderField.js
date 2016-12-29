@@ -21,7 +21,7 @@ export const renderTextArea = ({ input, label, type, meta: { touched, error, war
 )
 
 /**
- * 关联下啦列表框
+ * 关联下拉列表框
  */
 export class renderCorDropdown extends Component {
 
