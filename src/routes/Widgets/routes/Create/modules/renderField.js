@@ -36,6 +36,8 @@ export class renderSizeRadioBox extends Component {
   render() {
     const props = this.props
 
+    //get
+
     const list = [
       { image: 'img1', value: '2X1' },
       { image: 'img2', value: '1X1' },
@@ -43,17 +45,48 @@ export class renderSizeRadioBox extends Component {
     ]
 
     return <div className="form-row">
-      <label>{props.label}</label>
+      <label>尺寸</label>
       <div className="row-right">
         <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+        <div className="row-size">
+          <span className="row-img img1"></span>
+          <div className="row-radio">
+            <input type="radio" name="radio" value=""/>
+            <span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+          </div>
+        </div>
+        <div className="row-size">
+          <span className="row-img img2"></span>
+          <div className="row-radio">
+            <input type="radio" name="radio" value=""/>
+            <span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+          </div>
+        </div>
+        <div className="row-size">
+          <span className="row-img img3"></span>
+          <div className="row-radio">
+            <input type="radio" name="radio" value=""/>
+            <span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+
+          </div>
+        </div>
         <div className="row-size">
           <span className="row-img img4"></span>
           <div className="row-radio">
             <input type="radio" name="radio" value=""/>
             <span>
-              <i className="iconfont icon-radio1"></i>
-              <i className="iconfont icon-radio"></i>
-            </span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
           </div>
         </div>
       </div>

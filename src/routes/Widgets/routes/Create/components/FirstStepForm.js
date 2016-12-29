@@ -46,50 +46,51 @@ class FirstStepForm extends Component {
         <Field label="尺寸" name="size" component={renderSizeRadioBox}/>
 
         <div className="form-row">
-          <label>尺寸</label>
-          <div className="row-right">
-            <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-            <div className="row-size">
-             <label >
-              <span className="row-img img1"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio active"></i>
-                <input type="radio" className="row-inputR" name="size" value="2X1" onChange={this.select}/>
-              </span>
-             </label>
-            </div>
-            <div className="row-size">
-             <label>
-              <span className="row-img img2"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" className="row-inputR"  name="size" value="1X1" onChange={this.select} />
-              </span>
-             </label>
-            </div>
-            <div className="row-size">
-            <label>
-              <span className="row-img img3"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" className="row-inputR"  name="size" value="2X2" onChange={this.select}/>
-              </span>
-              </label>
-            </div>
-            <div className="row-size">
-              <label>
-                <span className="row-img img4"></span>
-                <span className="row-radio">
-                  <i className="iconfont icon-radio1"></i>
-                  <i className="iconfont icon-radio"></i>
-                  <input type="radio" className="row-inputR" name="size" value="2X2" />
-                </span>
-              </label>
-            </div>
-          </div>
+        	<label>尺寸</label>
+        	<div className="row-right">
+        		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
+        		<div className="row-size">
+        				<span className="row-img img1"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img2"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img3"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+
+				        </div>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img4"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        	</div>
         </div>
         {/*this.renderUploadImage()*/}
 
