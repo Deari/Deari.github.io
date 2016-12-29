@@ -166,24 +166,6 @@ export default function createReducer(state = initialState, action) {
  return handler ? handler(state, action) : state
 }
 
-
-export const submitCreateForm = (formData) => {
-  return (dispatch) => {
-    dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
-    return fetchUtil.postJSON(url, formData, { jsonStringify: false})
-      .then((res)=>{
-        if(res.status == 200) {
-          dispatch(completeSubmitCreate(res.data.app.appId));
-        } else {
-          throw Error('submit error');
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-  }
-}
-
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
