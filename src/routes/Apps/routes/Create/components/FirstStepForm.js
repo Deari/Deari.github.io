@@ -5,8 +5,7 @@ import renderField, { renderTextArea, renderSelect, renderTags,
   renderImageUpload }from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates,
-  toggleTag, updateForm2 } from '../modules/create'
+import { toggleTag } from '../modules/create'
 
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
@@ -14,27 +13,6 @@ import { getDomain } from '../../../../utils/domain'
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
-  
-  renderUploadImage(){
-    const { imageUpload, initialValues } = this.props;
-
-    return <div className="form-row">
-      <label>应用图片</label>
-      <div className="row-right">
-        <p>请上传应用高清图片</p>
-        <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-        <span>
-          <input type="button" value="选择文件" />
-          <input type="file" accept="image/*" onChange={imageUpload} />
-        </span>
-        <div className="img-container">
-          <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
-        </div>
-      </div>
-    </div>
-  }
-
-
 
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
@@ -82,20 +60,22 @@ const mapDispatchToProps = {
   toggleTag,
 }
 
+const mapStateToProps = (state) => {
+  return {
+    initialValues: state.appsCreate.form,
+    tags: state.appsCreate.tags,
+    cates: state.appsCreate.cates
+  }
+}
+
 export default connect(
-  state=>({
-    initialValues: state.create.form,
-    tags: state.create.tags,
-    cates: state.create.cates
-  }),
-
+  mapStateToProps,
   mapDispatchToProps
-
 )(reduxForm({
   form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
   destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
+  // forceUnregisterOnUnmount: true,
   // validate,
 })(FirstStepForm))
 

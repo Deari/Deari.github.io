@@ -134,16 +134,19 @@ const initialState = {
   }],
 
   form: {
-    hardwareName: '',
+    hardwareName: '默认硬件1',
     hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     hardwareFunction: '',
     majorCategoryId: 0,
     minorCategoryId: 0,
+    category: {
+
+    },
     tags: [],
   },
 
   form2: {
-    hardwareMode: '',
+    hardwareMode: '默认数据',
     hardwarePics: [],
     hardwareBrand: '',
     hardwareProducer: '',
@@ -154,30 +157,13 @@ const initialState = {
     os: 0,
     hardwarePlatform: 0,
     hardwareReport: ''
+
   }
 }
 
 export default function createReducer(state = initialState, action) {
  const handler = ACTION_HANDLERS[ action.type ]
  return handler ? handler(state, action) : state
-}
-
-
-export const submitCreateForm = (formData) => {
-  return (dispatch) => {
-    dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
-    return fetchUtil.postJSON(url, formData, { jsonStringify: false})
-      .then((res)=>{
-        if(res.status == 200) {
-          dispatch(completeSubmitCreate(res.data.app.appId));
-        } else {
-          throw Error('submit error');
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-  }
 }
 
 export const fetchTags = () => {
@@ -203,8 +189,6 @@ export const fetchCates = () => {
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
-        console.log('---- cate ----')
-        console.log(res.data.list)
         dispatch(getCates(res.data && res.data.list));
       } else {
         throw Error ('get Categories error');

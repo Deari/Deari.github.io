@@ -53,7 +53,7 @@ class CreateContainer extends Component {
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         console.info("表单一提交成功")
-        appId = res.data.appId
+        appId = res.data.appId;
         console.log((res.data.appId));
         
         this.props.toggleStep(2);
@@ -77,9 +77,14 @@ class CreateContainer extends Component {
 
     // return;
 
-    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
+    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${appId}/code`)
 
     const formData = new FormData();
+
+    console.log(values.file);
+
+    // return;
+
     const params = {
       'appId': appId,
       'codeDesc': values.codeDesc,
@@ -145,7 +150,7 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    create: state.create
+    create: state.appsCreate
   }
 }
 

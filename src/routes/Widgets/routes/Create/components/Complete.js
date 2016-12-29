@@ -4,7 +4,7 @@ const Complete = ()=>(
     <i className="iconfont icon-finish"></i>
     <span>提交成功，等待审核</span>
     <div className="form-btn">
-      <a href="/developer/apps">
+      <a href="/widgets/apps">
         <button>完成</button>
       </a>
     </div>

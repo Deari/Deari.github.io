@@ -1,82 +1,85 @@
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect } from '../modules/renderField'
+import renderField, {
+  renderTextArea, renderSelect, renderTags,
+  renderImageUpload,
+  renderSizeRadioBox
+} from '../modules/renderField'
+
 import { validate, asyncValidate, repeatCheck } from '../modules/validate'
 
-// import Tags from '../../../../../components/Tags'
-
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+//import fetchUtil from '../../../../utils/fetchUtil'
+//import { getDomain } from '../../../../utils/domain'
 
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
 
-  renderUploadImage() {
-    const { imageUpload, initialValues } = this.props;
-
-    return <div className="form-row">
-      <label>应用图片</label>
-      <div className="row-right">
-        <p>请上传应用高清图片</p>
-        <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-        <span>
-          <input type="button" value="选择文件" />
-          <input type="file" accept="image/*" onChange={imageUpload} />
-        </span>
-        <div className="img-container">
-          <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
-        </div>
-      </div>
-    </div>
-  }
-
   render() {
-    const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
+    const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text"
           component={renderField}
           />
+
+        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
+
         <div className="form-row">
         	<label>尺寸</label>
         	<div className="row-right">
         		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
         		<div className="row-size">
         				<span className="row-img img1"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio active"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         		<div className="row-size">
         				<span className="row-img img2"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         		<div className="row-size">
         				<span className="row-img img3"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+
+				        </div>
         		</div>
-        		<div className="row-size">
+        		<div className="row-size row-last">
         				<span className="row-img img4"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         	</div>
         </div>
-        {/*this.renderUploadImage()*/}
+
+        <Field label="组件LOGO" name="appLogo" type="text"
+          component={renderImageUpload}/>
+
+        <Field label="组件缩略图" name="appPreviewImage" type="text"
+          component={renderImageUpload}/>
 
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
 
@@ -91,24 +94,9 @@ class FirstStepForm extends Component {
           }
         </Field>
 
-        <div className="form-row">
-          <label>产品标签</label>
-          <ul className="row-right max-width">
-            {
-              tags.map((item) => (
-                <li
-                  className={
-                    ((tagId) => {
-                      return initialValues.tags.indexOf(tagId) > -1 ? 'active' : ''
-                    })(item.tagId)
-                  }
-                  key={item.tagId}
-                  onClick={() => toggleTag(item.tagId)}
-                  >{item.tagName}</li>
-              ))
-            }
-          </ul>
-        </div>
+        <Field label="产品标签" name="tags"
+          component={renderTags} tags={tags}
+        />
 
         <div className="form-btn">
           <div>
@@ -117,18 +105,35 @@ class FirstStepForm extends Component {
         </div>
       </form>
     )
+
   }
 }
 
 FirstStepForm.propTypes = {
-  handleSubmit : PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 }
 
-export default reduxForm({
-  form: 'firstStepForm',   
-  fields: ['appName', 'appDesc'],
-  // validate,
-  enableReinitialize: true
-})(FirstStepForm)
+const mapDispatchToProps = {
 
+}
+
+const mapStateToProps = (state)=> {
+  return {
+    initialValues: state.widgetCreate.form,
+    tags: state.widgetCreate.tags,
+    sizeList: state.widgetCreate.sizeList,
+    cates: state.widgetCreate.cates
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(reduxForm({
+  form: 'widgetsCreateFirst',
+  fields: ['appName', 'appDesc'],
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+  // validate,
+})(FirstStepForm))
 
