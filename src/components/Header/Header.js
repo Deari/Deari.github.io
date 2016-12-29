@@ -35,9 +35,9 @@ export const Header = ({ location, hideHeader }) => {
                 <Link to='/widgets' activeClassName='active'>
                   组件市场
                 </Link>
-                <Link to='apistore.intra.test.ffan.net' activeClassName='active'>
+                <a href='http://apistore.intra.test.ffan.net' activeClassName='active'>
                   API
-                </Link>
+                </a>
                 <Link to='/hardware' activeClassName='active'>
                   硬件市场
                 </Link>
