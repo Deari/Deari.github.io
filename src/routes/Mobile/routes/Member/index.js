@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './index.scss'
 const App = () => {
   return (
-  	<div className="container">
+  	<div className="m-container">
   		<div className="sidebar">
   			<ul className="nav">
   				<li className="item active">
