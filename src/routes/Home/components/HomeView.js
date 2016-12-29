@@ -11,8 +11,8 @@ export const HomeView = () => (
         <dd>为开发者提供最全面 最权威的API服务</dd>
       </dl>
       <p>
-       <Link className="btn btn-primary btn-lg" to="/api">浏览API</Link>
-       <Link className="btn btn-lg" to="/api">发布API</Link>
+       <a className="btn btn-primary btn-lg" href="http://apistore.intra.test.ffan.net">浏览API</a>
+       <a className="btn btn-lg" href="http://apistore.intra.test.ffan.net/#!/login">发布API</a>
       </p>
     </div>
     <div className="home-reminder">

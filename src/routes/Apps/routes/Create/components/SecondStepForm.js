@@ -15,18 +15,13 @@ class SecondStepForm extends React.Component {
 
   render(){
 
-    const { handleSubmit, pristine, submitting, toggleStep } = this.props
+    const { handleSubmit, submitting, toggleStep } = this.props
 
     return (
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
         <Field name="file" component={renderFile} label="应用文件" />
 
-        <Field name="appId" component={({ input }) => (
-            <input type="hidden" {...input} onChange={()=>input.onChange(123)} />
-          )}
-        />
-        
         <div className="form-btn">
           <div>
             <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
@@ -45,7 +40,7 @@ const mapDispatchToProps = {
 
 export default connect(
   state=>({
-    initialValues: state.create.form2,
+    initialValues: state.appsCreate.form2,
   }),
 
   mapDispatchToProps
