@@ -203,8 +203,6 @@ export const fetchCates = () => {
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
-        console.log('---- cate ----')
-        console.log(res.data.list)
         dispatch(getCates(res.data && res.data.list));
       } else {
         throw Error ('get Categories error');

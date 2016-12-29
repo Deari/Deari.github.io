@@ -34,7 +34,6 @@ export class renderCorDropdown extends Component {
   changeMajor = e => {
     const majorCategoryId = e.target.value
     const selectCate = this.props.cates.find(cate => cate.categoryId == majorCategoryId)
-    console.log(selectCate)
 
     if (selectCate) {
       this.setState({
@@ -62,6 +61,12 @@ export class renderCorDropdown extends Component {
           majorCategoryId,
           minorCategoryId,
         })
+      })
+    } else {
+      // 次要分类没选择
+      input.onChange({
+        majorCategoryId,
+        minorCategoryId: -1,
       })
     }
   }
