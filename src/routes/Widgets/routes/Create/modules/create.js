@@ -146,8 +146,6 @@ const initialState = {
     categoryId: 1,
     platform: 2,
     tags: [1],
-    widgetH: 1,
-    widgetW: 1
   },
   form2: {
     codeDesc: 'sasdasdas',

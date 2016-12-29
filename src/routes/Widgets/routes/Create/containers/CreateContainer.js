@@ -30,7 +30,6 @@ class CreateContainer extends Component {
 
     console.log(values);
     // this.props.toggleStep(2);
-
     // return;
 
     const formData = new FormData();
@@ -40,7 +39,13 @@ class CreateContainer extends Component {
         for(let v of values[key]){
           formData.append('tags[]', v)
         }
-      } else {
+      }else if(key =='size'){
+        const val = values[key].split('x')
+        const sizeKey = ['widgetH', 'widgetW']
+        for (let i = 0; i < val.length; i++) {
+          formData.append(sizeKey[i], val[i])
+        }
+      }else{
         formData.append(key, values[key])
       }
     }
