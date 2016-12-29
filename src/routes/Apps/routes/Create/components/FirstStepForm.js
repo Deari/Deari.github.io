@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react'
+import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect}from '../modules/renderField'
+import renderField, { renderTextArea, renderSelect, renderTags,
+  renderImageUpload }from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-// import Tags from '../../../../../components/Tags'
+import { toggleStep, updateAppId, fetchTags, fetchCates,
+  toggleTag, updateForm2 } from '../modules/create'
 
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
@@ -38,10 +41,10 @@ class FirstStepForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field label="应用名称" name="appName" type="text" 
-          component={renderField}
-        />
+          component={renderField}/>
 
-        {this.renderUploadImage()}
+        <Field label="应用图片" name="appLogo" type="text" 
+          component={renderImageUpload}/>
        
         <Field label="应用简介" name="appDesc" component={renderTextArea} />
 
@@ -56,25 +59,10 @@ class FirstStepForm extends Component {
           }
         </Field>
         
-        <div className="form-row">
-          <label>产品标签</label>
-          <ul className="row-right max-width">
-            {
-              tags.map((item) => (
-                <li 
-                  className={
-                    ((tagId)=>{
-                      return initialValues.tags.indexOf(tagId) > -1 ? 'active' : ''
-                    })(item.tagId)
-                  }
-                  key={item.tagId}
-                  onClick={()=>toggleTag(item.tagId)}
-                >{item.tagName}</li>
-              ))
-            }
-          </ul>
-        </div>
-        
+        <Field label="产品标签" name="tags"
+          component={renderTags} tags={tags}
+        />
+
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">下一步</button>
@@ -89,11 +77,25 @@ FirstStepForm.propTypes = {
   handleSubmit : PropTypes.func.isRequired,
 }
 
-export default reduxForm({
-  form: 'firstStepForm',   
+
+const mapDispatchToProps = {
+  toggleTag,
+}
+
+export default connect(
+  state=>({
+    initialValues: state.create.form,
+    tags: state.create.tags,
+    cates: state.create.cates
+  }),
+
+  mapDispatchToProps
+
+)(reduxForm({
+  form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
   // validate,
-  enableReinitialize: true
-})(FirstStepForm)
+})(FirstStepForm))
+
 
 

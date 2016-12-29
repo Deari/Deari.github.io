@@ -67,6 +67,9 @@
         @include btn;
         @include btn-default;
         @include btn-xs;
+        &:hover{
+          cursor: pointer;
+        }
       }
     }
   }
