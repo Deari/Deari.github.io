@@ -2,8 +2,8 @@ import React from 'react'
 import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
-
-import renderField, { renderTextArea, renderFile, renderSelect } from '../modules/renderField'
+  
+import renderField, { renderTextArea, renderFile, renderSelect, renderImageUpload } from '../modules/renderField'
 import { validate } from '../modules/validate'
 
 import { getDomain } from '../../../../utils/domain'
@@ -26,6 +26,9 @@ class SecondStepForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
+        <Field label="硬件图片" name="hardwarePics" type="text" 
+          component={renderImageUpload} />
+
         <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
 
         <Field name="hardwareProducer" type="text" label="生产厂家" component={renderField} />

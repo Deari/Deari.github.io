@@ -197,4 +197,24 @@ export const fetchCates = () => {
   }
 }
 
+export const getSdkInfo = () => {
+  return (dispatch) => {
+
+    // 硬件SDK分类信息
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getSdkInfo");
+
+    return fetchUtil.getJSON(url).then(res=>{
+      console.info(res)
+      if(res.status == 200) {
+        // dispatch(getCates(res.data && res.data.list));
+      } else {
+        throw Error ('getSdkInfo error');
+      }
+    });
+  }
+}
+
+
+
+
 

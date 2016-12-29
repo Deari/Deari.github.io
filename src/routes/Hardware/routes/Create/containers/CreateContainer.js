@@ -30,6 +30,9 @@ class CreateContainer extends Component {
   submitFirst(values) {
     
     console.log(values);
+    this.props.toggleStep(2);
+    
+    return 
 
     const formData = new FormData();
     const params = {
@@ -48,7 +51,7 @@ class CreateContainer extends Component {
       formData.append("tags[]", values.tags[key]);
     }
 
-    const url = getDomain(`http://api.intra.`,`/bo/v1/web/hardware/addHardware/1`)
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
@@ -65,7 +68,6 @@ class CreateContainer extends Component {
       }
     }).catch(e=>{
       console.log('网络错误：', e);
-      this.props.toggleStep(2);
     })
     
   }
