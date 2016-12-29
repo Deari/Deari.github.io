@@ -21,6 +21,11 @@ class SecondStepForm extends React.Component {
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
         <Field name="file" component={renderFile} label="应用文件" />
+
+        <Field name="appId" component={({ input }) => (
+            <input type="hidden" {...input} onChange={()=>input.onChange(123)} />
+          )}
+        />
         
         <div className="form-btn">
           <div>

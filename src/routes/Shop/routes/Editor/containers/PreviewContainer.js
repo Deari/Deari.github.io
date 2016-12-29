@@ -11,7 +11,6 @@ const mapStateToProps = state => ({
   preview: state.preview
 })
 
-
 const mapDispatchToProps = dispatch => ({
   setLayout(layouts) {
     dispatch(setLayout({layouts: layouts}))

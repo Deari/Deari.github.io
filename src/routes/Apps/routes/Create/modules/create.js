@@ -149,18 +149,15 @@ const initialState = {
     appName: 'test',
     appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     appDesc: '1111',
-    categoryId: 0,
+    categoryId: 1,
     platform: 2,
     tags: [1,2],
   },
 
   form2: {
     codeDesc: '测试修改',
-    appId: '',
-    file: null
+    // appId: '',
   },
-
-  file: null
 }
 
 export default function createReducer(state = initialState, action) {

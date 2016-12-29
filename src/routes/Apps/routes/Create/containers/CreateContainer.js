@@ -16,6 +16,8 @@ import fetchUtil from '../../../../utils/fetchUtil'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
 
+let appId;
+
 class CreateContainer extends Component {
   
   componentDidMount() {
@@ -27,8 +29,12 @@ class CreateContainer extends Component {
   submitFirst(values) {
 
     console.log(values, "====");
-        // this.props.toggleStep(2);
-// return;    
+
+    // this.props.updateAppId(123456);
+    
+    // this.props.toggleStep(2);
+
+    // return;
 
     const formData = new FormData();
 
@@ -47,8 +53,8 @@ class CreateContainer extends Component {
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         console.info("表单一提交成功")
-        
-        this.props.updateAppId(res.data.appId);
+        appId = res.data.appId
+        console.log((res.data.appId));
         
         this.props.toggleStep(2);
 
@@ -65,26 +71,29 @@ class CreateContainer extends Component {
     
     console.log(values);
 
-    const file = this.props.create.file;
+    // if(!values.appId) {
+    //   return console.warn("need appId")
+    // }
 
-    if(!values.appId) {
-      return;
-    }
+    // return;
 
-    // const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/widget/${values.appId}/code`)
     const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
 
     const formData = new FormData();
-    
-    for(let key in values) {
-      formData.append(key, values[key]);
-    }
-    for(let key in file) {
-      formData.append(key, file[key]);
+    const params = {
+      'appId': appId,
+      'codeDesc': values.codeDesc,
+      'fileName': values.file.originalName,
+      'fileLink': values.file.url
+    };
+
+    for(let key in values.file) {
+      params[key] = values.file[key]
     }
 
-    formData.append('fileName', file['originalName']);
-    formData.append('fileLink', file['url']);
+    for(let key in params) {
+      formData.append(key, params[key])
+    }
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {

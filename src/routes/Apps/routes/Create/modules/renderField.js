@@ -75,8 +75,6 @@ export class renderTags extends Component {
   
 }
 
-
-
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
