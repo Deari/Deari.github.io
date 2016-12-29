@@ -36,14 +36,14 @@ class FirstStepForm extends Component {
   }
 
   render() {
-    const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
+    const { handleSubmit, toggleTag, tags, cates, initialValues, sizeList } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text"
           component={renderField}
           />
 
-        <Field label="尺寸" name="size" component={renderSizeRadioBox}/>
+        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
 
         <div className="form-row">
         	<label>尺寸</label>

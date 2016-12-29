@@ -33,62 +33,37 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
 )
 
 export class renderSizeRadioBox extends Component {
+
+  onClickHandler = first => {
+     this.props.input.onChange(first)
+  }
+
   render() {
     const props = this.props
-
-    //get
+    console.log('--------')
+    console.log(props)
+    const selected = props.input.value
 
     const list = [
-      { image: 'img1', value: '2X1' },
-      { image: 'img2', value: '1X1' },
-      { image: 'img3', value: '2X2' },
+      { image: 'img1', value: '2x1' },
+      { image: 'img2', value: '1x1' },
+      { image: 'img3', value: '2x2' },
     ]
 
     return <div className="form-row">
       <label>尺寸</label>
       <div className="row-right">
         <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-        <div className="row-size">
-          <span className="row-img img1"></span>
+        {list.map(item => <div className="row-size" onClick={this.onClickHandler.bind(null, item.value)}>
+          <span className={`${item.image} row-img`}></span>
           <div className="row-radio">
-            <input type="radio" name="radio" value=""/>
+            <input type="radio" name="radio" checked={selected == item.value}/>
             <span>
 										<i className="iconfont icon-radio1"></i>
 							      <i className="iconfont icon-radio"></i>
 							    </span>
           </div>
-        </div>
-        <div className="row-size">
-          <span className="row-img img2"></span>
-          <div className="row-radio">
-            <input type="radio" name="radio" value=""/>
-            <span>
-										<i className="iconfont icon-radio1"></i>
-							      <i className="iconfont icon-radio"></i>
-							    </span>
-          </div>
-        </div>
-        <div className="row-size">
-          <span className="row-img img3"></span>
-          <div className="row-radio">
-            <input type="radio" name="radio" value=""/>
-            <span>
-										<i className="iconfont icon-radio1"></i>
-							      <i className="iconfont icon-radio"></i>
-							    </span>
-
-          </div>
-        </div>
-        <div className="row-size">
-          <span className="row-img img4"></span>
-          <div className="row-radio">
-            <input type="radio" name="radio" value=""/>
-            <span>
-										<i className="iconfont icon-radio1"></i>
-							      <i className="iconfont icon-radio"></i>
-							    </span>
-          </div>
-        </div>
+        </div>)}
       </div>
     </div>
   }

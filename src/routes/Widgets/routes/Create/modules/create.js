@@ -124,7 +124,7 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   page: 1,
-  cates: [{ 
+  cates: [{
     categoryId: 0,
     categoryName: "正在加载..."
   }],
@@ -132,7 +132,11 @@ const initialState = {
     tagId: 1,
     tagName: '正在加载...'
   }],
-  
+  sizeList :[
+    { image: 'img1', value: '2x1' },
+    { image: 'img2', value: '1x1' },
+    { image: 'img3', value: '2x2' },
+  ],
   form: {
     appName: '',
     appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
@@ -140,8 +144,8 @@ const initialState = {
     categoryId: 0,
     platform: 2,
     tags: [],
-  },
 
+  },
   form2: {
     codeDesc: 'sasdasdas',
     appId: '',
