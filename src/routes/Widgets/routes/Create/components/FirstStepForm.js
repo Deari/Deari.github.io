@@ -38,13 +38,51 @@ class FirstStepForm extends Component {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <Field label="应用名称" name="appName" type="text" 
+        <Field label="组件名称" name="appName" type="text" 
           component={renderField}
         />
-        
+        <div className="form-row">
+        	<label>尺寸</label>
+        	<div className="row-right">
+        		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
+        		<div className="row-size">
+        				<span className="row-img img1"></span>
+        				<span className="row-radio">
+        					<i className="iconfont icon-radio1"></i>
+        					<i className="iconfont icon-radio"></i>
+        					<input type="radio"/>
+        				</span>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img2"></span>
+        				<span className="row-radio">
+        					<i className="iconfont icon-radio1"></i>
+        					<i className="iconfont icon-radio"></i>
+        					<input type="radio"/>
+        				</span>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img3"></span>
+        				<span className="row-radio">
+        					<i className="iconfont icon-radio1"></i>
+        					<i className="iconfont icon-radio"></i>
+        					<input type="radio"/>
+        				</span>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img4"></span>
+        				<span className="row-radio">
+        					<i className="iconfont icon-radio1"></i>
+        					<i className="iconfont icon-radio"></i>
+        					<input type="radio"/>
+        				</span>
+        		</div>
+        	</div>
+        </div>
+        <RenderUploadImage/>
         {/*this.renderUploadImage() <RenderUploadImage/>*/}
        
-        <Field label="应用简介" name="appDesc" component={renderTextArea} />
+        <Field label="组件简介" name="appDesc" component={renderTextArea} />
 
         <Field label="分类" name="categoryId" component={renderSelect}>
           <option>请选择分类</option>

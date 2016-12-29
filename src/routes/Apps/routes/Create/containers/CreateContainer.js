@@ -5,6 +5,7 @@ import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
+import Sidebar from '../../../../../components/Sidebar'
 import FirstStepForm from '../components/FirstStepForm'
 import SecondStepForm from '../components/SecondStepForm'
 import Complete from '../components/Complete'
@@ -13,11 +14,11 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, submitCreateForm, fetchTags, fetchCates,
+import { toggleStep, updateAppId, fetchTags, fetchCates,
   toggleTag, updateForm2 } from '../modules/create'
 
 class CreateContainer extends Component {
-
+  
   async componentDidMount() {
     // console.log("props:", this.props);
     this.props.fetchTags()
@@ -25,8 +26,6 @@ class CreateContainer extends Component {
   }
 
   imageUpload(e) {
-    return console.log("imageUpload");
-
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
@@ -43,10 +42,26 @@ class CreateContainer extends Component {
   }
 
   fileUpload(e) {
-    console.log(e);
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/file/upload")
+    const  formData = new FormData()
+    formData.append('fileName', e.target.files[0])
+    console.log(e.target.files[0].name);
+
+    fetchUtil.postJSON(url, formData, {
+      jsonStringify: false
+    }).then(res=>{
+      console.info(res);
+      if(res.status === 200){
+        this.props.updateForm2(res.data)
+      } else{
+        console.warn(res);
+      }
+    }).catch(e=>{
+      console.warn(e);
+    })
   }
 
-  submitFirstForm(values) {
+  submitFirst(values) {
 
     console.log(values);
 
@@ -62,21 +77,33 @@ class CreateContainer extends Component {
       }
     }
 
-    this.props.submitCreateForm(formData).then(()=>{
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
+    
+    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+      if(res.status == 200) {
+        console.info(res.data)
+        this.props.updateAppId(res.data.appId);
+        // dispatch(completeSubmitCreate(res.data.app.appId));
+        this.props.toggleStep(2);
+      } else {
+        throw Error('submit error');
+      }
+    }).catch(e=>{
+      console.log(e);
       this.props.toggleStep(2);
-    });
+    })
   }
 
-  submitSecondForm(values) {
+  submitSecond(values) {
     console.log(values);
+    if(!values.appId) {
+      return;
+    }
 
-    // Do something with the form values
-    const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/app/${values.appId}/code`
-    )
+    // const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/widget/${values.appId}/code`)
+    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
 
     const formData = new FormData();
-
     for(let key in values) {
       formData.append(key, values[key]);
     }
@@ -84,7 +111,6 @@ class CreateContainer extends Component {
     formData.append('fileName', values['originalName']);
     formData.append('fileLink', values['url']);
    
-    // return this.props.toggleStep(3);
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
@@ -92,6 +118,9 @@ class CreateContainer extends Component {
       } else {
         console.warn(res);
       }
+    }).catch(e=>{
+      console.warn(e);
+      // this.props.toggleStep(3);
     })
   }
 
@@ -99,33 +128,42 @@ class CreateContainer extends Component {
     const { toggleStep, toggleTag, create } = this.props;
     const { page, tags, cates, form, form2 } = create;
 
+    const urls = {
+      create: { url: `/apps/create` },
+      list: { url: `/apps/list` },
+      doc: { url: `/apps/doc` }
+    }
+
     return (
-      <div>
-        <Step page={page}/>
-        {
-          page === 1 && 
-            <FirstStepForm 
-              onSubmit={::this.submitFirstForm} 
-              imageUpload={::this.imageUpload}
-              toggleTag={toggleTag}
-              tags={tags}
-              cates={cates}
-              initialValues={form}
-            />
-        }
-        {
-          page === 2 && 
-            <SecondStepForm 
-              previousPage={()=>toggleStep(1)} 
-              updateForm={this.props.updateForm2}
-              onSubmit={::this.submitSecondForm} 
-              initialValues={form2}
-            />
-        }
-        {
-          page === 3 && 
-          <Complete />
-        }
+      <div className="container clx">
+        <Sidebar urls={urls} />
+        <div className="sub-container">
+          <Step page={page}/>
+          {
+            page === 1 && 
+              <FirstStepForm 
+                onSubmit={::this.submitFirst} 
+                imageUpload={::this.imageUpload}
+                toggleTag={toggleTag}
+                tags={tags}
+                cates={cates}
+                initialValues={form}
+              />
+          }
+          {
+            page === 2 && 
+              <SecondStepForm 
+                previousPage={()=>toggleStep(1)} 
+                fileUpload={::this.fileUpload}
+                onSubmit={::this.submitSecond} 
+                initialValues={form2}
+              />
+          }
+          {
+            page === 3 && 
+            <Complete />
+          }
+        </div>
       </div>
     );
   }
@@ -134,7 +172,7 @@ class CreateContainer extends Component {
 const mapDispatchToProps = {
   toggleStep,
   toggleTag,
-  submitCreateForm,
+  updateAppId,
   fetchTags,
   fetchCates,
   updateForm2

@@ -3,7 +3,7 @@ $border-color:#dddddd;
 $text-color:#020202;
 .form-row{
     width: $sub-container-width;
-    padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px; 
+    padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
     @include clx;
     overflow: hidden;
     background: $white-color;
@@ -15,7 +15,7 @@ $text-color:#020202;
         font-size: $text-font-size - 4px; 
         color: $black-color; 
         padding-left: $default-padding-left - 29px; 
-        margin-right: 31px; 
+        margin-right: $default-margin-right + 5px; 
         line-height: $text-line-height - 10px; 
         @include float-left; 
         text-align: right;
@@ -149,8 +149,8 @@ $text-color:#020202;
             width: $default-width - 52px;
             height: $default-height - 71px;
             position: absolute;
-            left:348px;
-            top: 30px;
+            left:400px;
+            top: 2px;
             filter: alpha(opacity=0);
             opacity: 0;
             cursor: pointer;
@@ -189,43 +189,15 @@ $text-color:#020202;
          button:last-child{
             margin-right: 0;
         }
-        .previous{
-            background: $white-color;
-            border: 1px solid $gray6-color ;
-            color: $black-color;
-            line-height: 30px;
-        } 
     }
 } 
-.row-size{
-    @include float-left;
-    margin:14px 70px 8px 0;
-    .row-img{
-        width: 78px;
-        height: 150px;
-    }
-    .img1{
-        background: url(../../../../Home/assets/size1.png) no-repeat;
-        background-size: 100%;
-    }
-    .img2{
-        background: url(../../../../Home/assets/size2.png) no-repeat;
-        background-size: 100%;
-    }
-    .img3{
-        background: url(../../../../Home/assets/size3.png) no-repeat;
-        background-size: 100%;
-    }
-    .img4{
-        background: url(../../../../Home/assets/size4.png) no-repeat;
-        background-size: 100%;
-    }
-    .row-radio{
-        display: block;
-        text-align: center;
-        i{
-            font-size: 18px;
-            color: black;
-        }
-    }
+.form-row .row-name{
+    width: 94px;
+    margin-right:39px;
+}
+.form-btn div .row-btn{
+    margin-right: 10px;
+}
+.row-select{
+    margin-right:10px;
 }

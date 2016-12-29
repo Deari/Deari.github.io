@@ -19,15 +19,17 @@ export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
 })
 
-export const updateAppId = (appId)=>({
+export const completeSubmitCreate = (appId)=>({
   type: SUBMIT_CREATE_COMPLETE,
   appId
 })
 
-export const getTags = (data) => ({
-  type: RECEIVE_TAGS,
-  data
-})
+export const getTags = (data) => {
+  return {
+    type: RECEIVE_TAGS,
+    data
+  }
+}
 
 export const getCates = (data) => ({
   type: RECEIVE_CATES,
@@ -121,28 +123,37 @@ const ACTION_HANDLERS = {
 }
 
 const initialState = {
-  page: 1,
+  page: 2,
   cates: [{ 
     categoryId: 0,
     categoryName: "正在加载..."
   }],
   tags: [{
-    tagId: 0,
+    tagId: 1,
     tagName: '正在加载...'
   }],
   
   form: {
-    appName: '',
-    appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
-    appDesc: '',
-    categoryId: 0,
-    platform: 2,
+    hardwareName: '',
+    hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    hardwareFunction: '',
+    majorCategoryId: 0,
+    minorCategoryId: 0,
     tags: [],
   },
 
   form2: {
-    codeDesc: '测试修改',
-    appId: '146',
+    hardwareMode: '',
+    hardwarePics: [],
+    hardwareBrand: '',
+    hardwareProducer: '',
+    commType1: 0,
+    commType2: 0,
+    hardwareDetail: '',
+    sdkType: 0,
+    os: 0,
+    hardwarePlatform: 0,
+    hardwareReport: ''
   }
 }
 
@@ -155,7 +166,7 @@ export default function createReducer(state = initialState, action) {
 export const submitCreateForm = (formData) => {
   return (dispatch) => {
     dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
     return fetchUtil.postJSON(url, formData, { jsonStringify: false})
       .then((res)=>{
         if(res.status == 200) {
@@ -172,7 +183,7 @@ export const submitCreateForm = (formData) => {
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardwares");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -188,7 +199,7 @@ export const fetchCates = () => {
   return (dispatch) => {
 
     // 拉取 select 列表数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {

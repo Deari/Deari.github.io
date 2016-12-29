@@ -49,9 +49,15 @@ class HardwaresList extends React.Component {
   }
 
   render() {
+    const urls = {
+      create: { url: `/hardware/create` },
+      list: { url: `/hardware/list`, active: true },
+      doc: { url: `/hardware/doc` }
+    }
+
     return (
       <div className="container clx">
-        <Slidebar />
+        <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
           <ul className="sub-content-tab">
             <li><a className={this.state.status === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>

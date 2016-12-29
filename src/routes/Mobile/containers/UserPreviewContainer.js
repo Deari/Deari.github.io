@@ -22,7 +22,6 @@ export const Promised = (promiseProp, Wrapped) => class extends Component {
   }
 
   render() {
-    //console.log(this.state.preview)
     return <Wrapped {...this.state.preview} />
   }
 }

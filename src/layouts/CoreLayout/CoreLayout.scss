@@ -1,57 +1,67 @@
-$white-color: #ffffff;
-$blue-color: #2692fb;
-$bluedark-color: #1c89f3;  //btn:hover
-$red-color: #fc5c63;
-$black-color: #000;
-$grayf-color: #f1f1f3;
-$graye-color: #eee;
-$graya-color: #aaa;
-$gray3-color: #333;
-$gray6-color: #666;
-$gray9-color: #999;
-//form-color 
-  $form-success-color: #3c763d;
-  $form-warning-color: #8a6d3b;
-  $form-error-color: #a94442;
+$white-color : #ffffff;
+$blue-color : #2692fb;
+$bluedark-color : #1c89f3; //btn:hover
+$red-color : #fc5c63;
+$black-color : #000;
+$grayf-color : #f1f1f3;
+$graye-color : #eee;
+$graya-color : #aaa;
+$gray3-color : #333;
+$gray6-color : #666;
+$gray9-color : #999;
+//form-color
+$form-success-color : #3c763d;
+$form-warning-color : #8a6d3b;
+$form-error-color : #a94442;
 //text-size
-  $text-font-size: 20px;
+$text-font-size : 20px;
 //font-line-height
-  $text-line-height: 40px;
+$text-line-height : 40px;
 //padding
-  $default-padding-top: 40px;
-  $default-padding-bottom: 40px;
-  $default-padding-left: 40px;
-  $default-padding-right: 40px;
+$default-padding-top : 40px;
+$default-padding-bottom : 40px;
+$default-padding-left : 40px;
+$default-padding-right : 40px;
 //margin
-  $default-margin-top: 40px;
-  $default-margin-bottom: 40px;
-  $default-margin-left: 40px;
-  $default-margin-right: 40px;  
+$default-margin-top : 40px;
+$default-margin-bottom : 40px;
+$default-margin-left : 40px;
+$default-margin-right : 40px;
 //宽高
-  $default-width: 100px;
-    $sub-container-width: $default-width + 774px;     //内容区右侧宽度871px
-    $sub-list-width: $sub-container-width/3 - 16px;;  //内容区右侧-组件宽度（16为左右padding值）
-  $default-height: 100px;
+$default-width : 100px;
+$sub-container-width : $default-width + 774px; //内容区右侧宽度871px
+$sub-list-width : $sub-container-width/3 - 16px;
+; //内容区右侧-组件宽度（16为左右padding值）
+$default-height : 100px;
 //float
-@mixin float-left { float: left;}
-@mixin float-right { float: right;}
-@mixin clx{
-   *zoom: 1;
-   &:after{ clear: both; display: block; height: 0; visibility: hidden; content: "";}
+@mixin float-left { float : left; }
+
+@mixin float-right { float : right; }
+
+@mixin clx {
+  *zoom : 1;
+  &:after { clear : both; display : block; height : 0; visibility : hidden; content : ""; }
 }
+
 //border
-@mixin border-bottom{ border-bottom: 1px solid $graye-color;}
-@mixin border-top{ border-top: 1px solid $graye-color;}
-@mixin border-right{ border-right: 1px solid $graye-color;}
-@mixin navselect-bottom{
-  border-bottom: 2px solid $blue-color;
-  background: url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
+@mixin border-bottom { border-bottom : 1px solid $graye-color; }
+
+@mixin border-top { border-top : 1px solid $graye-color; }
+
+@mixin border-right { border-right : 1px solid $graye-color; }
+
+@mixin navselect-bottom {
+  border-bottom : 2px solid $blue-color;
+  background    : url(../../routes/Home/assets/sanjiao.png) no-repeat bottom center;
 }
+
 .core-layout__viewport {
-    padding-top: 77px;
+  // 全局样式，慎重！
+  //padding-top: 77px;
 }
-@mixin sub-container{  //内容区域盒子
+
+@mixin sub-container { //内容区域盒子
   @include float-right;
-  margin-top: 16px;
-  width: $sub-container-width;
+  margin-top : 16px;
+  width      : $sub-container-width;
 }
