@@ -6,7 +6,6 @@ import { validate } from '../modules/validate'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
-import RenderUploadImage from './UploadImg'
 
 class SecondStepForm extends React.Component {
 
@@ -35,7 +34,6 @@ class SecondStepForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-        <RenderUploadImage/>
         <div className="form-row file-position">
         	<label>应用文件</label>
         	<div className="row-right">
