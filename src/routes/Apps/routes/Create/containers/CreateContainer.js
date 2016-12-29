@@ -80,6 +80,11 @@ class CreateContainer extends Component {
     const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${appId}/code`)
 
     const formData = new FormData();
+
+    console.log(values.file);
+
+    // return;
+
     const params = {
       'appId': appId,
       'codeDesc': values.codeDesc,

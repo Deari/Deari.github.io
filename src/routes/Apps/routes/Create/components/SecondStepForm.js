@@ -15,7 +15,7 @@ class SecondStepForm extends React.Component {
 
   render(){
 
-    const { handleSubmit, pristine, submitting, toggleStep } = this.props
+    const { handleSubmit, submitting, toggleStep } = this.props
 
     return (
       <form onSubmit={handleSubmit}>

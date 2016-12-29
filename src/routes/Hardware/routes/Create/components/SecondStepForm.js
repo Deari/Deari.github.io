@@ -1,55 +1,17 @@
 import React from 'react'
+import { connect} from 'react-redux'
+
 import { Field, reduxForm } from 'redux-form'
 
-import renderField, { renderTextArea, renderSelect } from '../modules/renderField'
+import renderField, { renderTextArea, renderFile, renderSelect } from '../modules/renderField'
 import { validate } from '../modules/validate'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
+import { toggleStep } from '../modules/create'
+
 class SecondStepForm extends React.Component {
-
-  renderUploadImage(){
-    const { imageUrl, imageUpload } = this.props;
-    let hardwarePics = []
-    return <div className="form-row">
-      <label>硬件图片</label>
-      <div className="row-right">
-        <p>请上传硬件真实图片</p>
-        <p>要求细节清晰，尺寸不限，最多上传4张，每张大小不超过1M。</p>
-        <span>
-          <input type="button" value="选择文件" />
-          <input type="file" accept=".png" ref='hardwareLogo' onChange={imageUpload} />
-        </span>
-        <div className="img-container">
-          {
-            hardwarePics.map( (item, index) => {
-              return <img src={item.url} alt="硬件图片"  className="img-thumbnail"/>
-            } )
-          }
-        </div>
-      </div>
-    </div>
-  }
-
-  async fileUpload() {
-    const { updateForm } = this.props;
-    const  formData = new FormData()
-    
-    formData.append('fileName', this.refs.appFile.files[0])
-
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/file/upload")
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false
-    }).then(res=>{
-      console.info(res);
-      if(res.status === 200){
-        updateForm(res.data)
-      } else{
-        console.warn(res);
-      }
-    })
-  }
 
   render(){
 
@@ -59,14 +21,11 @@ class SecondStepForm extends React.Component {
 
     const sdkDowload = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/getSdkUrl`)
 
-    const { handleSubmit, pristine, submitting, previousPage } = this.props
+    const { handleSubmit, submitting, toggleStep } = this.props
 
     return (
       <form onSubmit={handleSubmit}>
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
-
-        { this.renderUploadImage() }
-
         <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
 
         <Field name="hardwareProducer" type="text" label="生产厂家" component={renderField} />
@@ -113,19 +72,12 @@ class SecondStepForm extends React.Component {
             ))
           }
         </Field>
+        <Field name="file" component={renderFile} label="测试报告" />
 
-        <div className="form-row file-position">
-        	<label>测试报告</label>
-        	<div className="row-right">
-        		<span className="file-name"></span>
-        		<div className="file-btn">浏览</div>
-	          <input type="file" className="form-file" ref='appFile' name='appFile' onChange={this.fileUpload.bind(this)} />
-	        </div>
-        </div>
 
         <div className="form-btn">
 	          <div>
-	          	<button type="button" className="previous" onClick={previousPage}>上一步</button>
+	          	<button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
               <a href={sdkDowload} target="_blank" className="row-btn"><button type="button" >下载SDK</button></a>
 	          	<button type="submit" className="next" disabled={submitting}>提交审核</button>
 	          </div>
@@ -135,11 +87,23 @@ class SecondStepForm extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'secondStepForm', 
-  destroyOnUnmount: false,
-  enableReinitialize: true
-  // validate
-})(SecondStepForm)
+
+
+const mapDispatchToProps = {
+  toggleStep,
+};
+
+export default connect(
+  state=>({
+    initialValues: state.hardwareCreate.form2,
+  }),
+
+  mapDispatchToProps
+
+)(reduxForm({
+  form: 'secondStepForm',   
+  fields: ['appName', 'appDesc'],
+  // validate,
+})(SecondStepForm))
 
 

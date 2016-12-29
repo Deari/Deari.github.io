@@ -234,8 +234,6 @@ export class renderFile extends Component {
       <div className="form-row file-position">
         <label>{label}</label>
         <div className="row-right">
-          <span className="file-name"></span>
-          <div className="file-btn">浏览</div>
           <input type="file" className="form-file" onChange={::this.fileUpload} />
         </div>
       </div>

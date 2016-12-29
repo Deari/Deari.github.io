@@ -14,7 +14,7 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
+import { toggleStep, fetchTags, fetchCates } from '../modules/create'
 
 let appId;
 let result;
@@ -28,7 +28,7 @@ class CreateContainer extends Component {
   }
 
   submitFirst(values) {
-
+    
     console.log(values);
 
     const formData = new FormData();
@@ -115,7 +115,6 @@ const mapDispatchToProps = {
   toggleStep,
   fetchTags,
   fetchCates,
-  updateAppId
 }
 
 const mapStateToProps = (state) => {
