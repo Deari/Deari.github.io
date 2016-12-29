@@ -164,7 +164,8 @@ const initialState = {
     hardwareFunction: '',
     category: {
       majorCategoryId: -1,
-      minorCategoryId: -1
+      minorCategoryId: -1,
+      minorCategories: [],
     },
     tags: [],
   },
