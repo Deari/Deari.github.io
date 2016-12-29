@@ -14,23 +14,22 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
-
-let appId;
+import { toggleStep, updateForm2, fetchTags, fetchCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
   componentDidMount() {
-    // console.log("props:", this.props);
     this.props.fetchTags()
     this.props.fetchCates()
   }
 
   submitFirst(values) {
 
-    console.log(values);
+    // console.log(values);
+    // this.props.updateForm2({ appId: 11111});
     // this.props.toggleStep(2);
     // return;
+    
     const formData = new FormData();
 
     for(let key in values) {
@@ -38,11 +37,11 @@ class CreateContainer extends Component {
         for(let v of values[key]){
           formData.append('tags[]', v)
         }
-      }else if(key =='size'){
+      } else if(key =='size'){
         for(let k in values[key]){
           formData.append( k, values[key][k])
         }
-      }else{
+      } else {
         formData.append(key, values[key])
       }
     }
@@ -51,52 +50,50 @@ class CreateContainer extends Component {
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        console.info("表单一提交成功")
-        appId = res.data.appId
-        console.log((res.data));
+        console.info("提交成功: ", res.data)
+        this.props.updateForm2({ appId: res.data.appId});
         this.props.toggleStep(2);
-
       } else {
-        console.warn("表单一提交失败：", res)
+        alert("提交失败：", JSON.stringify(res))
+        console.warn("提交失败：", res)
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      alert("网络错误：", JSON.stringify(e))
     })
 
   }
 
   submitSecond(values) {
-    console.log(values);
-
-    // Do something with the form values
-    const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${appId}/code`
-    )
-
+    console.log("values", values);
+    // return;
     const formData = new FormData();
-
-
-    const params = {
-      'appId': appId,
-      'codeDesc': values.codeDesc,
-      'fileName': values.file.originalName,
-      'fileLink': values.file.url
-    };
-
-    for(let key in values.file) {
-      params[key] = values.file[key]
-    }
-
+    const { appId, codeDesc, file } = values;
+    const params = Object.assign({}, file, {
+      appId,
+      codeDesc,
+      'fileName': file.originalName,
+      'fileLink': file.url
+    });
+  
     for(let key in params) {
       formData.append(key, params[key])
     }
 
+    const url = getDomain(
+      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${appId}/code`
+    )
+
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
+        console.info('提交成功')
         this.props.toggleStep(3);
       } else {
-        console.warn(res);
+        alert('提交失败：'+JSON.stringify(res));
+        console.warn('提交失败：', res)
       }
+    }).catch(e=>{
+      alert('提交失败：'+JSON.stringify(e));
+      console.warn('网络错误', e);
     })
   }
 
@@ -133,6 +130,7 @@ const mapDispatchToProps = {
   toggleStep,
   fetchTags,
   fetchCates,
+  updateForm2
 }
 
 const mapStateToProps = (state) => {

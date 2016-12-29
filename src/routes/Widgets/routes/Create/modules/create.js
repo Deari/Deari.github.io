@@ -138,17 +138,17 @@ const initialState = {
     { image: 'img3', value: {widgetW:2,widgetH:2} },
   ],
   form: {
-    appName: '默认组件名1',
+    appName: '',
     appThumb: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     appPreviewImage: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     appDesc: '',
     categoryId: 1,
     platform: 2,
-    tags: [1],
+    tags: [],
   },
   form2: {
-    codeDesc: 'sasdasdas',
+    codeDesc: '',
   }
 }
 

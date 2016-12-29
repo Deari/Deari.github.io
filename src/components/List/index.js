@@ -17,6 +17,9 @@ class List extends React.Component {;
     const {data,showName} = this.props
     console.log(data)
     const {name} = this.state
+
+    console.log(name, "==");
+
     return (
       <div className="listContent">
         {
@@ -37,13 +40,13 @@ class List extends React.Component {;
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w114">
-                <Link className={name === 'hardware' ? "" : item.codeId ? 'active':'' } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "" : item.codeId ? 'active':'' } to={'/' + name + 's/edit/' + item[name+'Id']}>
                   <button>编辑</button>
                 </Link>
-                <Link className={name === 'hardware' ? "" : item.codeId ? '': 'active'} to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "" : item.codeId ? '': 'active'} to={'/' + name + 's/edit/' + item[name+'Id']}>
                   <button>发布新版本</button>
                 </Link>
-                <Link className={name === 'hardware' ? "active" : "" } to={'/developer/' + name + 's/detail/' + item[name+'id']}>
+                <Link className={name === 'hardware' ? "active" : "" } to={'/' + name + 's/edit/' + item[name+'id']}>
                   <button>调试硬件</button>
                 </Link>
               </div>

@@ -12,6 +12,7 @@ const RECEIVE_TAGS = 'RECEIVE_TAGS'
 const REQUEST_CATES = 'REQUEST_CATES'
 const RECEIVE_CATES = 'RECEIVE_CATES'
 
+const UPDATE_FORM = 'UPDATE_FORM'
 const UPDATE_FORM2 = 'UPDATE_FORM2'
 
 
@@ -49,14 +50,15 @@ export const toggleTag = (tagId) => {
 }
 
 
-export const updateForm2 = (data) => {
-    console.log(12211, data);
-  
-  return {
-    type : UPDATE_FORM2,
-    data
-  }
-}
+export const updateForm2 = (data) => ({
+  type : UPDATE_FORM2,
+  data
+})
+
+export const updateForm = (data) => ({
+  type : UPDATE_FORM,
+  data
+})
 
 const ACTION_HANDLERS = {
   [TOGGLE_TAG]: (state, action) => {
@@ -113,12 +115,26 @@ const ACTION_HANDLERS = {
     cates: action.data
   }),
 
+  [UPDATE_FORM]: (state, action)=>{
+    return {
+      ...state,
+      form: {
+        ...state.form,
+        ...action.data
+      }
+    }
+  },
+
   [UPDATE_FORM2]: (state, action)=>{
     return {
       ...state,
-      file: action.data
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
     }
   }
+
 }
 
 const initialState = {
@@ -156,7 +172,7 @@ const initialState = {
 
   form2: {
     codeDesc: '',
-    appId: -1,
+    platform: 2
   },
 }
 
@@ -165,27 +181,8 @@ export default function createReducer(state = initialState, action) {
  return handler ? handler(state, action) : state
 }
 
-
-export const submitCreateForm = (formData) => {
-  return (dispatch) => {
-    dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
-    return fetchUtil.postJSON(url, formData, { jsonStringify: false})
-      .then((res)=>{
-        if(res.status == 200) {
-          dispatch(completeSubmitCreate(res.data.app.appId));
-        } else {
-          throw Error('submit error');
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-  }
-}
-
 export const fetchTags = () => {
   return (dispatch) => {
-    // 拉取标签数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
 
     return fetchUtil.getJSON(url).then(res=>{
@@ -217,4 +214,51 @@ export const fetchCates = () => {
   }
 }
 
+export const getAppInfo = (appId) => {
+  return (dispatch) => {
+    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/app/${appId}`);
+    return fetchUtil.getJSON(url).then(res=>{
+      if(res.status == 200) {
+        console.log('应用详情：', res)
+        const { appName, appLogo, appDesc, categoryId, platform, tags } = res.data;
+        const tagId = tags.map(v=>v.tagId);
+
+        dispatch(updateForm({
+          appId, appName, appLogo, appDesc, categoryId, platform,
+          tags: tagId
+        }));
+        
+      } else {
+        alert('获取应用详情失败: ', JSON.stringify(res));
+        console.warn('获取应用详情失败: ', res);
+      }
+    }).catch(e=>{
+      alert('获取应用详情失败: ', JSON.stringify(e));
+      console.warn('获取应用详情失败: ', e);
+    });
+  }
+}
+
+export const getAppCodeInfo = (appId) => {
+  return (dispatch) => {
+    const url = getDomain(`http://api.intra.`, `ffan.net//bo/v1/web/developer/app/${appId}`);
+    return fetchUtil.getJSON(url).then(res=>{
+      if(res.status == 200) {
+        console.log('app code详情：', res)
+        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
+        dispatch(updateForm2({
+          appId,
+          codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
+        }));
+      } else {
+        alert('app code详情失败: ', JSON.stringify(res));
+        console.warn('app code详情失败: ', res);
+        
+      }
+    }).catch(e=>{
+      alert('app code失败: ', JSON.stringify(e));
+      console.warn('app code详情失败: ', e);
+    });
+  }
+}
 

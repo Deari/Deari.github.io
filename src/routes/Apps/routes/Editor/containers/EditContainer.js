@@ -2,30 +2,34 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import { validate, warn } from '../modules/validate'
-import { test } from '../modules/create'
-
-import Sidebar from '../../../../../components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
+import Sidebar from '../../../../../components/Sidebar'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
+import { toggleStep, updateAppId, fetchTags, fetchCates, getAppInfo,
+  getAppCodeInfo } from '../modules/edit'
 
-class CreateContainer extends Component {
+class EditContainer extends Component {
   
-  componentDidMount() {
+  componentWillMount() {
+    console.log(this.props);
+    const { params } = this.props;
+    const appId = parseInt(params.appId);
+
+    this.props.getAppInfo(appId);
+    this.props.getAppCodeInfo(appId);
     this.props.fetchTags()
     this.props.fetchCates()
   }
 
   submitFirst(values) {
 
-    // console.log("values", values);
+    console.log("values", values);
     // this.props.updateAppId(123456);
     // this.props.toggleStep(2);
     // return;
@@ -42,12 +46,12 @@ class CreateContainer extends Component {
       }
     }
 
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app/${values.appId}`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         console.info("提交成功: ", res.data);
-        this.props.updateAppId(res.data.appId);
+        // this.props.updateAppId(res.data.appId);
         this.props.toggleStep(2);
       } else {
         console.warn("提交失败：", res)
@@ -58,6 +62,8 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
+    console.log("values", values);
+
     if(!values.appId) {
       alert('缺少appId')
     }
@@ -66,12 +72,19 @@ class CreateContainer extends Component {
     const formData = new FormData();
 
     const file = values.file;
-    const params = Object.assign({}, file, {
-      'appId': values.appId,
-      'codeDesc': values.codeDesc,
-      'fileName': file.originalName,
-      'fileLink': file.url
-    })
+
+    let params = {
+      ...values
+    };
+
+    if(file) {
+      Object.assign(params, file, {
+        'fileName': file.originalName,
+        'fileLink': file.url
+      })
+    }
+
+    delete params.file;
 
     for (let key in params) {
       formData.append(key, params[key])
@@ -79,7 +92,7 @@ class CreateContainer extends Component {
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
-        console.info('提交成功')
+        console.log('提交成功: ');
         this.props.toggleStep(3);
       } else {
         alert('提交失败：'+JSON.stringify(res));
@@ -92,14 +105,14 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const { page } =this.props.create;
+    const { page } =this.props.appsEdit;
 
     const urls = {
       create: { url: `/apps/create` },
       list: { url: `/apps/list` },
       doc: { url: `/apps/doc` }
     }
-
+    
     return (
       <div className="container clx">
         <Sidebar urls={urls} />
@@ -124,13 +137,14 @@ const mapDispatchToProps = {
   toggleStep,
   fetchTags,
   fetchCates,
-  updateAppId
+  updateAppId,
+  getAppInfo,
+  getAppCodeInfo
 }
 
-const mapStateToProps = (state) => {
-  return {
-    create: state.appsCreate
-  }
-}
+const mapStateToProps = ({appsEdit}) => ({
+  appsEdit,
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditContainer)

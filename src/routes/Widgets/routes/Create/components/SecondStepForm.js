@@ -49,6 +49,8 @@ export default connect(
 )(reduxForm({
   form: 'widgetCreateSecond',   
   fields: ['appName', 'appDesc'],
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true
   // validate,
 })(SecondStepForm))
 

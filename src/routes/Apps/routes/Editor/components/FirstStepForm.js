@@ -5,7 +5,7 @@ import renderField, { renderTextArea, renderSelect, renderTags,
   renderImageUpload }from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-import { toggleTag } from '../modules/create'
+import { toggleTag } from '../modules/edit'
 
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
@@ -58,9 +58,9 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    initialValues: state.appsCreate.form,
-    tags: state.appsCreate.tags,
-    cates: state.appsCreate.cates
+    initialValues: state.appsEdit.form,
+    tags: state.appsEdit.tags,
+    cates: state.appsEdit.cates
   }
 }
 
@@ -70,9 +70,10 @@ export default connect(
 )(reduxForm({
   form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,
   // forceUnregisterOnUnmount: true,
   // validate,
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true
 })(FirstStepForm))
 
 
