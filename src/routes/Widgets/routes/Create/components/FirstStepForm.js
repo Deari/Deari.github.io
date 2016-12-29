@@ -47,35 +47,44 @@ class FirstStepForm extends Component {
         		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
         		<div className="row-size">
         				<span className="row-img img1"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio active"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         		<div className="row-size">
         				<span className="row-img img2"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         		<div className="row-size">
         				<span className="row-img img3"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				         	
+				        </div>
         		</div>
         		<div className="row-size">
         				<span className="row-img img4"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
         		</div>
         	</div>
         </div>

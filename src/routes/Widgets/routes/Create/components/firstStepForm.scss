@@ -1,6 +1,12 @@
 @import "../../../../../layouts/CoreLayout/CoreLayout.scss";
 $border-color:#dddddd;
 $text-color:#020202;
+.row-radio{position:relative; text-align: center;}
+i.icon-radio{display:none;font-size:30px;color:#cdd4dc;}
+i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
+input[type="radio"]{position:absolute;top:5px;left:23px;width:26px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
+input[type="radio"]:checked + span i.icon-radio{display: inline-block;}
+input[type="radio"]:checked + span i.icon-radio1{display: none;}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px; 
@@ -220,36 +226,6 @@ $text-color:#020202;
     .img4{
         background: url(../../../../Home/assets/size4.png) no-repeat;
         background-size: 100%;
-    }
-    .row-radio{
-        display: block;
-        position: relative;
-        i{
-            font-size: 26px;
-            color: black;
-            position: absolute;
-            top: 0;
-            &:first-child{
-                left: 26px;
-            }
-            &:nth-child(2){
-                left: 26px;
-                display: none;
-            }
-            &:nth-child(2).active{
-                display: block;
-            }
-        }
-        .row-inputR{
-            position: absolute;
-            top: 0;
-            left: 26px;
-            width: 26px;
-            height: 29px;
-            opacity: 0; 
-            filter: alpha(opacity=0); 
-            cursor: pointer;
-        }
     }
     &:last-child{
         display: none;
