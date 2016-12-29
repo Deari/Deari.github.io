@@ -76,7 +76,7 @@ class FirstStepForm extends Component {
 				         	
 				        </div>
         		</div>
-        		<div className="row-size">
+        		<div className="row-size row-last">
         				<span className="row-img img4"></span>
         				<div className="row-radio">
         					<input type="radio" name="radio" value="" />
