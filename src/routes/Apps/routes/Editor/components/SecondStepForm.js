@@ -9,7 +9,7 @@ import { validate } from '../modules/validate'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep } from '../modules/create'
+import { toggleStep } from '../modules/edit'
 
 class SecondStepForm extends React.Component {
 
@@ -40,7 +40,7 @@ const mapDispatchToProps = {
 
 export default connect(
   state=>({
-    initialValues: state.appsCreate.form2,
+    initialValues: state.appsEdit.form2,
   }),
 
   mapDispatchToProps
