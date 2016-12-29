@@ -34,14 +34,31 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
   </div>
 )
 
+export const renderSizeRadioBox = ({ input, sizeList }) => <div className="form-row">
+  <label>尺寸</label>
+  <div className="row-right">
+    <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+    {sizeList.map(item => <div className="row-size"
+                               onClick={e => { input.onChange(item.value) }}>
+      <span className={`${item.image} row-img`}></span>
+      <div className="row-radio">
+        <input type="radio" name="radio" checked={input.value == item.value}/>
+        <span>
+          <i className="iconfont icon-radio1"></i>
+          <i className="iconfont icon-radio"></i>
+        </span>
+      </div>
+    </div>)}
+  </div>
+</div>
 
 
 export class renderTags extends Component {
-  
-  handleClick (tagId) {
+
+  handleClick(tagId) {
     const { input } = this.props;
-    const newTags = input.value.filter(v=>v != tagId);
-    if(newTags.length ==input.value.length) {
+    const newTags = input.value.filter(v => v != tagId);
+    if (newTags.length == input.value.length) {
       newTags.push(tagId)
     }
 
@@ -49,7 +66,7 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, error, warning } } = this.props;
 
     return (
       <div className="form-row">
@@ -57,14 +74,14 @@ export class renderTags extends Component {
         <ul className="row-right max-width">
           {
             tags.map((item) => (
-              <li 
+              <li
                 className={
-                  ((tagId)=>{
+                  ((tagId) => {
                     return input.value.indexOf(tagId) > -1 ? 'active' : ''
                   })(item.tagId)
                 }
                 key={item.tagId}
-                onClick={()=>this.handleClick(item.tagId)}
+                onClick={() => this.handleClick(item.tagId)}
               >{item.tagName}</li>
             ))
           }
@@ -72,33 +89,33 @@ export class renderTags extends Component {
       </div>
     )
   }
-  
+
 }
 
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
+    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
+    formData.append('fileName', e.target.files[ 0 ])
 
     fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
-    }).then(res=>{
-      if(res.status == 200) {
+      jsonStringify: false
+    }).then(res => {
+      if (res.status == 200) {
         this.props.input.onChange(res.data.url)
         console.log(`Upload Success: `)
       } else {
         console.log(`Upload Failed.`, res)
       }
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e)
     })
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning }} = this.props;
-    
+    const { input, label, meta: { touched, error, warning } } = this.props;
+
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -106,17 +123,17 @@ export class renderImageUpload extends Component {
           <p>请上传应用高清图片</p>
           <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
           <span>
-            <input type="button" value="选择文件" />
-            <input type="file" accept="image/*" onChange={::this.imageUpload} />
+            <input type="button" value="选择文件"/>
+            <input type="file" accept="image/*" onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
-            <img src={input.value} alt="上传图片" className="img-thumbnail" />
+            <img src={input.value} alt="上传图片" className="img-thumbnail"/>
           </div>
         </div>
       </div>
     )
   }
-  
+
 }
 
 export class renderFile extends Component {
@@ -125,43 +142,43 @@ export class renderFile extends Component {
     const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/file/upload")
     const formData = new FormData()
 
-    formData.append('fileName', e.target.files[0])
-    
-    console.log(e.target.files[0].name);
+    formData.append('fileName', e.target.files[ 0 ])
+
+    console.log(e.target.files[ 0 ].name);
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
 
-    }).then(res=>{
+    }).then(res => {
       console.info(res);
 
-      if(res.status === 200){
-        
+      if (res.status === 200) {
+
         this.props.input.onChange(res.data)
 
-      } else{
+      } else {
         console.warn(res);
       }
 
-    }).catch(e=>{
+    }).catch(e => {
       console.warn(e);
     })
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
-    
+    const { input, tags, label, meta: { touched, error, warning } } = this.props;
+
     return (
 
       <div className="form-row file-position">
         <label>{label}</label>
         <div className="row-right">
-          <input type="file" className="form-file" onChange={::this.fileUpload} />
+          <input type="file" className="form-file" onChange={::this.fileUpload}/>
         </div>
       </div>
     )
   }
-  
+
 }
 
 export default renderField;

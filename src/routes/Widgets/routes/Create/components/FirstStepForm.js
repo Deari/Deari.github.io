@@ -4,77 +4,81 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import renderField, {
   renderTextArea, renderSelect, renderTags,
-  renderImageUpload
+  renderImageUpload,
+  renderSizeRadioBox
 } from '../modules/renderField'
 
 import { validate, asyncValidate, repeatCheck } from '../modules/validate'
 
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+//import fetchUtil from '../../../../utils/fetchUtil'
+//import { getDomain } from '../../../../utils/domain'
 
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
 
   render() {
-    const { handleSubmit, tags, cates, initialValues } = this.props;
-
+    const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text"
           component={renderField}
           />
+
+        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
+
         <div className="form-row">
-          <label>尺寸</label>
-          <div className="row-right">
-            <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-            <div className="row-size">
-             <label >
-              <span className="row-img img1"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio active"></i>
-                <input type="radio" className="row-inputR" name="size" value="2X1" onChange={this.select}/>
-              </span>
-             </label>
-            </div>
-            <div className="row-size">
-             <label>
-              <span className="row-img img2"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" className="row-inputR"  name="size" value="1X1" onChange={this.select} />
-              </span>
-             </label>
-            </div>
-            <div className="row-size">
-            <label>
-              <span className="row-img img3"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" className="row-inputR"  name="size" value="2X2" onChange={this.select}/>
-              </span>
-              </label>
-            </div>
-            <div className="row-size">
-              <label>
-                <span className="row-img img4"></span>
-                <span className="row-radio">
-                  <i className="iconfont icon-radio1"></i>
-                  <i className="iconfont icon-radio"></i>
-                  <input type="radio" className="row-inputR" name="size" value="2X2" />
-                </span>
-              </label>
-            </div>
-          </div>
+        	<label>尺寸</label>
+        	<div className="row-right">
+        		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
+        		<div className="row-size">
+        				<span className="row-img img1"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img2"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        		<div className="row-size">
+        				<span className="row-img img3"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+
+				        </div>
+        		</div>
+        		<div className="row-size row-last">
+        				<span className="row-img img4"></span>
+        				<div className="row-radio">
+        					<input type="radio" name="radio" value="" />
+									<span>
+										<i className="iconfont icon-radio1"></i>
+							      <i className="iconfont icon-radio"></i>
+							    </span>
+				        </div>
+        		</div>
+        	</div>
         </div>
 
-        <Field label="组件LOGO" name="appLogo" type="text" 
+        <Field label="组件LOGO" name="appLogo" type="text"
           component={renderImageUpload}/>
 
-        <Field label="组件缩略图" name="appPreviewImage" type="text" 
+        <Field label="组件缩略图" name="appPreviewImage" type="text"
           component={renderImageUpload}/>
 
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
@@ -110,13 +114,14 @@ FirstStepForm.propTypes = {
 }
 
 const mapDispatchToProps = {
-  
+
 }
 
 const mapStateToProps = (state)=> {
   return {
     initialValues: state.widgetCreate.form,
     tags: state.widgetCreate.tags,
+    sizeList: state.widgetCreate.sizeList,
     cates: state.widgetCreate.cates
   }
 }
