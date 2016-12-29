@@ -157,7 +157,6 @@ const initialState = {
     os: 0,
     hardwarePlatform: 0,
     hardwareReport: ''
-
   }
 }
 
@@ -165,6 +164,7 @@ export default function createReducer(state = initialState, action) {
  const handler = ACTION_HANDLERS[ action.type ]
  return handler ? handler(state, action) : state
 }
+
 
 export const fetchTags = () => {
   return (dispatch) => {

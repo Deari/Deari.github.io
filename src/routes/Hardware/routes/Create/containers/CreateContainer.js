@@ -30,8 +30,6 @@ class CreateContainer extends Component {
   submitFirst(values) {
     
     console.log(values);
-        this.props.toggleStep(2);
-return; 
 
     const formData = new FormData();
     const params = {
