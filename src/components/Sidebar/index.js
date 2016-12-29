@@ -6,7 +6,7 @@ import './Sidebar.scss'
 
 class Sidebar extends React.Component {
   render() {
-    const { activeTag, onTagChange } = this.props
+    const { activeTag, onTagChange} = this.props
     const tags = this.props.tags || []
     const urls = this.props.urls || {create: {}, list: {}, doc: {}}
     const type = this.props.type || "应用"
