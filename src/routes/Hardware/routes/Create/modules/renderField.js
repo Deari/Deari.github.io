@@ -56,7 +56,6 @@ export class renderCorDropdown extends Component {
         minorCategories: [],
         minorCategoryId: -1,
       })
-
     }
   }
 
@@ -65,18 +64,12 @@ export class renderCorDropdown extends Component {
     const minorCategoryId = e.target.value
     const { majorCategoryId, minorCategories } = input.value
 
-    if (minorCategoryId !== -1) {
-      input.onChange({
-        majorCategoryId,
-        minorCategories,
-        minorCategoryId,
-      })
-    } else {
-      // 次要分类没选择
-      input.onChange({
-        minorCategoryId: -1,
-      })
-    }
+    input.onChange({
+      majorCategoryId,
+      minorCategories,
+      minorCategoryId,
+    })
+
   }
 
   render() {

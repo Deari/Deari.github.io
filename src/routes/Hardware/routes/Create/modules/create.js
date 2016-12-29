@@ -196,7 +196,7 @@ export const fetchTags = () => {
     // 拉取标签数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardwares");
     return fetchUtil.getJSON(url).then(res=>{
-      console.info(res)
+      //console.info(res)
       if(res.status == 200) {
         dispatch(getTags(res.data));
       } else {
@@ -212,7 +212,7 @@ export const fetchCates = () => {
     // 拉取 select 列表数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{
-      console.info(res)
+      //console.info(res)
       if(res.status == 200) {
         dispatch(getCates(res.data && res.data.list));
       } else {
