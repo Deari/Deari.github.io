@@ -12,7 +12,7 @@ export const HomeView = () => (
       </dl>
       <p>
        <a className="btn btn-primary btn-lg" href="http://apistore.intra.test.ffan.net">浏览API</a>
-       <a className="btn btn-lg" href="http://apistore.intra.test.ffan.net/#!/login">发布API</a>
+       <a className="btn btn-lg" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
       </p>
     </div>
     <div className="home-reminder">
