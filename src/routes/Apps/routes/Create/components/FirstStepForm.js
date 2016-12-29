@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect, renderTags}from '../modules/renderField'
+import renderField, { renderTextArea, renderSelect, renderTags,
+  renderImageUpload }from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates,
@@ -14,44 +15,15 @@ import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
   
-  imageUpload(e) {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
-    const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
-
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
-    }).then(res=>{
-      console.log(`Upload Success: `, res)
-      // do something
-    }).catch(e=>{
-      console.log(`Upload Failed.`)
-      // do something
-    })
-  }
-
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="应用名称" name="appName" type="text" 
-          component={renderField}
-        />
+          component={renderField}/>
 
-        <div className="form-row">
-          <label>应用图片</label>
-          <div className="row-right">
-            <p>请上传应用高清图片</p>
-            <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
-            <span>
-              <input type="button" value="选择文件" />
-              <input type="file" accept="image/*" onChange={::this.imageUpload} />
-            </span>
-            <div className="img-container">
-              <img src={initialValues.appLogo} alt="上传图片" className="img-thumbnail" />
-            </div>
-          </div>
-        </div>
+        <Field label="应用图片" name="appLogo" type="text" 
+          component={renderImageUpload}/>
        
         <Field label="应用简介" name="appDesc" component={renderTextArea} />
 

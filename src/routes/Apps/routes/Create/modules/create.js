@@ -99,7 +99,6 @@ const ACTION_HANDLERS = {
         appId: action.appId
       }
     }
-    return state;
   },
 
   [RECEIVE_TAGS]: (state, action)=>{
