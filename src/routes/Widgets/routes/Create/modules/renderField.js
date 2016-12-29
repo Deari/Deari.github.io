@@ -39,7 +39,16 @@ export const renderSizeRadioBox = ({ input, sizeList }) => <div className="form-
   <div className="row-right">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>
     {sizeList.map(item => <div className="row-size"
-                               onClick={e => { input.onChange(item.value) }}>
+                               onClick={e => {                             
+                                console.log({   
+                                  widgetW:Number(item.value.split("x")[0]),
+                                  widgetH:Number(item.value.split("x")[1])
+                                })
+                                 input.onChange({   
+                                  widgetW:Number(item.value.split("x")[0]),
+                                  widgetH:Number(item.value.split("x")[1])
+                                }) 
+                                }}>
       <span className={`${item.image} row-img`}></span>
       <div className="row-radio">
         <input type="radio" name="radio" checked={input.value == item.value}/>
