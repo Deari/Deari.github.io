@@ -39,95 +39,65 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
  */
 export class renderCorDropdown extends Component {
 
-  state = {
-    majorCategoryId: -1,
-    minorCategories: [],
-    minorCategoryId: -1,
-  }
-
   changeMajor = e => {
     const { input } = this.props
     const majorCategoryId = e.target.value
     const selectCate = this.props.cates.find(cate => cate.categoryId == majorCategoryId)
 
     if (selectCate) {
-      this.setState({
-        majorCategoryId,
-        minorCategories: selectCate.categoryChilds
-      }, input.onChange({
+      input.onChange({
         majorCategoryId,
         minorCategories: selectCate.categoryChilds,
         minorCategoryId: -1,
-      }))
+      })
     } else {
-      this.setState({
+      input.onChange({
+        majorCategoryId: -1,
         minorCategories: [],
         minorCategoryId: -1,
       })
+
     }
   }
 
   changeMinor = e => {
     const { input } = this.props
-    const { majorCategoryId } = this.state
     const minorCategoryId = e.target.value
+    const { majorCategoryId, minorCategories } = input.value
 
-    if (minorCategoryId) {
-      this.setState({
-        minorCategoryId
-      }, () => {
-        input.onChange({
-          majorCategoryId,
-          minorCategories: this.state.minorCategories,
-          minorCategoryId,
-        })
+    if (minorCategoryId !== -1) {
+      input.onChange({
+        majorCategoryId,
+        minorCategories,
+        minorCategoryId,
       })
     } else {
       // 次要分类没选择
       input.onChange({
-        majorCategoryId,
         minorCategoryId: -1,
       })
     }
   }
 
-  isValid = (value) => {
-    const { majorCategoryId, minorCategoryId } = value
-    return majorCategoryId !== -1 && minorCategoryId !== -1
-  }
-
   render() {
     const props = this.props
-    const value = props.input.value
-    console.log('------------')
-    console.log(this.props)
-    console.log(value)
-    const minorCategories = value.minorCategories.length ?  value.minorCategories : this.state.minorCategories
-    const valid = this.isValid(props.input.value)
+    const { minorCategories, majorCategoryId, minorCategoryId } = props.input.value
     return <div className="form-row">
       <label>{props.label}</label>
       <div className="row-right">
-        <select className="row-select" onChange={this.changeMajor} value={valid ? value.majorCategoryId : undefined}>
+        <select className="row-select" onChange={this.changeMajor} value={majorCategoryId}>
           <option value={-1}>请选择分类</option>
-          {
-            props.cates.map(cate => (
-              <option key={cate.categoryId} value={cate.categoryId}>{cate.categoryName}</option>
-            ))
-          }
+          {props.cates.map(cate => <option key={cate.categoryId}
+                                           value={cate.categoryId}>{cate.categoryName}</option>)}
         </select>
-        <select className="row-select" onChange={this.changeMinor} value={valid ? value.minorCategoryId : undefined}>
+        <select className="row-select" onChange={this.changeMinor} value={minorCategoryId}>
           <option value={-1}>请选择分类</option>
-          {
-            minorCategories.map(cate => (
-              <option key={cate.categoryId} value={cate.categoryId}>{cate.categoryName}</option>
-            ))
-          }
+          {minorCategories.map(cate => <option key={cate.categoryId}
+                                               value={cate.categoryId}>{cate.categoryName}</option>)}
         </select>
-
       </div>
     </div>
   }
-
 }
 
 export class renderTags extends Component {
