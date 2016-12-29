@@ -203,22 +203,23 @@ webpackConfig.module.loaders.push(
 // when we don't know the public path (we know it only when HMR is enabled [in development]) we
 // need to use the extractTextPlugin to fix this issue:
 // http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
-if (!__DEV__) {
-  debug('Applying ExtractTextPlugin to CSS loaders.')
-  webpackConfig.module.loaders.filter((loader) =>
-    loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
-  ).forEach((loader) => {
-    const first = loader.loaders[0]
-    const rest = loader.loaders.slice(1)
-    loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
-    delete loader.loaders
-  })
 
-  webpackConfig.plugins.push(
-    new ExtractTextPlugin('[name].[contenthash].css', {
-      allChunks : true
-    })
-  )
-}
+// if (!__DEV__) {
+//   debug('Applying ExtractTextPlugin to CSS loaders.')
+//   webpackConfig.module.loaders.filter((loader) =>
+//     loader.loaders && loader.loaders.find((name) => /css/.test(name.split('?')[0]))
+//   ).forEach((loader) => {
+//     const first = loader.loaders[0]
+//     const rest = loader.loaders.slice(1)
+//     loader.loader = ExtractTextPlugin.extract(first, rest.join('!'))
+//     delete loader.loaders
+//   })
+
+//   webpackConfig.plugins.push(
+//     new ExtractTextPlugin('[name].[contenthash].css', {
+//       allChunks : true
+//     })
+//   )
+// }
 
 module.exports = webpackConfig

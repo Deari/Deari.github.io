@@ -17,6 +17,8 @@ export const Promised = (promiseProp, Wrapped) => class extends Component {
 
   componentDidMount() {
     promiseProp.promise.then(v => {
+      console.log(v.data)
+
       this.setState({preview: v.data.viewData})
     })
   }
