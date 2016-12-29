@@ -19,20 +19,15 @@ class FirstStepForm extends Component {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <Field label="硬件名称" name="hardwareName" type="text"
-          component={renderField}
-        />
+        <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
 
-        <Field label="硬件LOGO" name="hardwareLogo" type="text" 
-          component={renderImageUpload}/>
+        <Field label="硬件LOGO" name="hardwareLogo" type="text" component={renderImageUpload} />
 
         <Field label="硬件介绍" name="hardwareFunction" component={renderTextArea} />
 
         <Field label="分类" name="category" component={renderCorDropdown} cates={cates} />
 
-        <Field label="产品标签" name="tags"
-          component={renderTags} tags={tags}
-        />
+        <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
 
         <div className="form-btn">
           <div>
@@ -68,7 +63,7 @@ export default connect(
   fields: ['appName', 'appDesc'],
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  // validate,
+  validate,
 })(FirstStepForm))
 
 

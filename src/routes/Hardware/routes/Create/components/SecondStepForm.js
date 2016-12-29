@@ -3,31 +3,34 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
   
-import renderField, { renderTextArea, renderFile, renderSelect, renderImageUpload } from '../modules/renderField'
+import renderField, { renderTextArea, renderFile, renderSelect, renderImageUpload, renderImgsUpload } from '../modules/renderField'
 import { validate } from '../modules/validate'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep } from '../modules/create'
+import { toggleStep, fetchSdkInfo } from '../modules/create'
 
 class SecondStepForm extends React.Component {
 
-  render(){
+  async componentDidMount() {
+    await this.props.fetchSdkInfo()
+  }
 
-    let osPlatforms = []
-    let sdkTypes = []
-    let hardwarePlatforms = []
+  render(){
 
     const sdkDowload = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/getSdkUrl`)
 
     const { handleSubmit, submitting, toggleStep } = this.props
 
+    const sdkTypes = this.props.sdkTypes || []
+    const osPlatforms = this.props.osPlatforms || []
+    const hardwarePlatforms = this.props.hardwarePlatforms || []
+
     return (
       <form onSubmit={handleSubmit}>
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
-        <Field label="硬件图片" name="hardwarePics" type="text" 
-          component={renderImageUpload} />
+        <Field label="硬件图片" name="hardwarePics" type="text" component={renderImgsUpload} />
 
         <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
 
@@ -47,8 +50,8 @@ class SecondStepForm extends React.Component {
           <option>请选择SDK类型</option>
           {
             sdkTypes.map((item) => (
-              <option value={item.categoryId}>
-                {item.categoryName}
+              <option value={item.key}>
+                {item.value}
               </option>
             ))
           }
@@ -58,8 +61,8 @@ class SecondStepForm extends React.Component {
           <option>请选择操作平台</option>
           {
             osPlatforms.map((item) => (
-              <option value={item.categoryId}>
-                {item.categoryName}
+              <option value={item.key}>
+                {item.value}
               </option>
             ))
           }
@@ -69,13 +72,13 @@ class SecondStepForm extends React.Component {
           <option>请选择硬件平台</option>
           {
             hardwarePlatforms.map((item) => (
-              <option value={item.categoryId}>
-                {item.categoryName}
+              <option value={item.key}>
+                {item.value}
               </option>
             ))
           }
         </Field>
-        <Field name="file" component={renderFile} label="测试报告" />
+        <Field name="hardwareReport" component={renderFile} label="测试报告" />
 
 
         <div className="form-btn">
@@ -94,11 +97,15 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep,
+  fetchSdkInfo
 };
 
 export default connect(
   state=>({
     initialValues: state.hardwareCreate.form2,
+    sdkTypes: state.hardwareCreate.sdkTypes,
+    osPlatforms: state.hardwareCreate.osPlatforms,
+    hardwarePlatforms: state.hardwareCreate.hardwarePlatforms
   }),
 
   mapDispatchToProps
@@ -106,7 +113,9 @@ export default connect(
 )(reduxForm({
   form: 'secondStepForm',   
   fields: ['appName', 'appDesc'],
-  // validate,
+  destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+  validate,
 })(SecondStepForm))
 
 

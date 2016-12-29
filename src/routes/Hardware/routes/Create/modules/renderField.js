@@ -22,6 +22,18 @@ export const renderTextArea = ({ input, label, type, meta: { touched, error, war
   </div>
 )
 
+export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
+  <div className="form-row">
+    <label>{label}</label>
+    <div className="row-right">
+      <select {...input}>
+        {children}
+      </select>
+      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+    </div>
+  </div>
+)
+
 /**
  * 关联下拉列表框
  */
@@ -101,19 +113,6 @@ export class renderCorDropdown extends Component {
 
 }
 
-
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
-  <div className="form-row">
-    <label>{label}</label>
-    <div className="row-right">
-      <select {...input}>
-        {children}
-      </select>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-    </div>
-  </div>
-)
-
 export class renderTags extends Component {
   
   handleClick (tagId) {
@@ -165,9 +164,8 @@ export class renderImageUpload extends Component {
     }).then(res=>{
       if(res.status == 200) {
         this.props.input.onChange(res.data.url)
-        console.log(`Upload Success: `)
       } else {
-        console.log(`Upload Failed.`, res)
+        res.msg && window.alert(res.msg)
       }
     }).catch(e=>{
       console.log(e)
@@ -197,6 +195,70 @@ export class renderImageUpload extends Component {
   
 }
 
+export class renderImgsUpload extends Component {
+
+  state = {
+    imgs: []
+  }
+
+  componentDidMount() {
+    const { input } = this.props
+    this.setState({imgs: input.value})
+  }
+
+  imageUpload(e) {
+    const { input } = this.props
+    if (input.value.length >= 4) {
+      window.alert("最多上传四张")
+      return
+    }
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
+    const formData = new FormData()
+    formData.append('fileName', e.target.files[0])
+
+    fetchUtil.postJSON(url, formData, {
+      jsonStringify: false 
+    }).then(res=>{
+      if(res.status == 200) {
+        input.value.push(res.data.url)
+        input.onChange(input.value)
+        this.setState({imgs: input.value})
+      } else {
+        res.msg && window.alert(res.msg)
+      }
+    }).catch(e=>{
+      console.log(e)
+    })
+  }
+
+  render() {
+    const { input, label, meta: { touched, error, warning }} = this.props;
+    const { imgs } = this.state
+    
+    return (
+      <div className="form-row">
+        <label>{label}</label>
+        <div className="row-right">
+          <p>请上传硬件真实图片</p>
+          <p>要求细节清晰，尺寸不限，最多上传4张，每张大小不超过1M。</p>
+          <span>
+            <input type="button" value="选择文件" />
+            <input type="file" accept="image/*" onChange={::this.imageUpload} />
+          </span>
+          <div className="img-container">
+            {
+              imgs.map( (item, index) => {
+                return <img src={item} alt="上传图片" className="img-thumbnail" />
+               } )
+            }
+          </div>
+        </div>
+      </div>
+    )
+  }
+  
+}
+
 export class renderFile extends Component {
 
   fileUpload(e) {
@@ -204,23 +266,17 @@ export class renderFile extends Component {
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[0])
-    
-    console.log(e.target.files[0].name);
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
 
     }).then(res=>{
-      console.info(res);
-
       if(res.status === 200){
-        
-        this.props.input.onChange(res.data)
-
+        this.props.input.onChange(res.data.url)
       } else{
+        res.msg && window.alert(res.msg)
         console.warn(res);
       }
-
     }).catch(e=>{
       console.warn(e);
     })
