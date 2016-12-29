@@ -102,9 +102,6 @@
   color: $blue-color;
   line-height: 40px;
   @include border-top;
-  &:hover{
-    font-weight: bold;
-  }
 }
 .user-img{
   width: 18px;
