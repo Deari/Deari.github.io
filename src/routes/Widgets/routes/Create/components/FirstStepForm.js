@@ -39,44 +39,6 @@ class FirstStepForm extends Component {
           component={renderField}
           />
         <div className="form-row">
-<<<<<<< HEAD
-          <label>尺寸</label>
-          <div className="row-right">
-            <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-            <div className="row-size">
-              <span className="row-img img1"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" />
-              </span>
-            </div>
-            <div className="row-size">
-              <span className="row-img img2"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" />
-              </span>
-            </div>
-            <div className="row-size">
-              <span className="row-img img3"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" />
-              </span>
-            </div>
-            <div className="row-size">
-              <span className="row-img img4"></span>
-              <span className="row-radio">
-                <i className="iconfont icon-radio1"></i>
-                <i className="iconfont icon-radio"></i>
-                <input type="radio" />
-              </span>
-            </div>
-          </div>
-=======
         	<label>尺寸</label>
         	<div className="row-right">
         		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
@@ -113,7 +75,6 @@ class FirstStepForm extends Component {
         				</span>
         		</div>
         	</div>
->>>>>>> f3cae2239598d9c2f43ad762feb6c6a4dce5bba9
         </div>
         {/*this.renderUploadImage()*/}
 
