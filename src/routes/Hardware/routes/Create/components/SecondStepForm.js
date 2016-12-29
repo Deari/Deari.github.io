@@ -79,7 +79,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div>
 
-        <Field name="hardwareDetail" label="详细功能描述" component={renderTextArea} />
+        <Field name="hardwareDetail" label="功能描述" component={renderTextArea} />
 
         <Field name="sdkType" label="SDK类型" component={renderSelect}>
           <option>请选择SDK类型</option>
@@ -115,7 +115,7 @@ class SecondStepForm extends React.Component {
         </Field>
 
         <div className="form-row file-position">
-        	<label>上传测试报告</label>
+        	<label>测试报告</label>
         	<div className="row-right">
         		<span className="file-name"></span>
         		<div className="file-btn">浏览</div>
@@ -127,7 +127,7 @@ class SecondStepForm extends React.Component {
 	          <div>
 	          	<button type="button" className="previous" onClick={previousPage}>上一步</button>
               <a href={sdkDowload} target="_blank" className="row-btn"><button type="button" >下载SDK</button></a>
-	          	<button type="submit" className="next" disabled={submitting}>提交提交审核</button>
+	          	<button type="submit" className="next" disabled={submitting}>提交审核</button>
 	          </div>
         </div>
       </form>
