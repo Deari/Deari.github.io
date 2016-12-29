@@ -134,16 +134,19 @@ const initialState = {
   }],
 
   form: {
-    hardwareName: '',
+    hardwareName: '默认硬件1',
     hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
     hardwareFunction: '',
     majorCategoryId: 0,
     minorCategoryId: 0,
+    category: {
+
+    },
     tags: [],
   },
 
   form2: {
-    hardwareMode: '',
+    hardwareMode: '默认数据',
     hardwarePics: [],
     hardwareBrand: '',
     hardwareProducer: '',
@@ -154,6 +157,7 @@ const initialState = {
     os: 0,
     hardwarePlatform: 0,
     hardwareReport: ''
+
   }
 }
 
