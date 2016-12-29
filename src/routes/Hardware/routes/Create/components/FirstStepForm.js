@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect}from '../modules/renderField'
+import renderField, { renderTextArea, renderSelect, renderCorDropdown}from '../modules/renderField'
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
 // import Tags from '../../../../../components/Tags'
@@ -11,7 +11,7 @@ import { getDomain } from '../../../../utils/domain'
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
-  
+
   renderUploadImage(){
     const { imageUrl, imageUpload } = this.props;
 
@@ -35,46 +35,46 @@ class FirstStepForm extends Component {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <Field label="硬件名称" name="hardwareName" type="text" 
+        <Field label="硬件名称" name="hardwareName" type="text"
           component={renderField}
         />
 
         {this.renderUploadImage()}
-       
+
         <Field label="硬件介绍" name="hardwareFunction" component={renderTextArea} />
 
-        <div className="form-row">
-          <label>分类</label>
-          <div className="row-right">
-            <select name="majorCategoryId" ref="majorCategoryId" className="row-select" >
-              <option>请选择分类</option>
-              {
-                cates.map( (item, index) => (
-                  <option key={item.categoryId} value={item.categoryId}>{item.categoryName}</option>
-                ))
-              }
-            </select>
-            <Field name="minorCategoryId" component="select">
-		          <option>请选择分类</option>
-		          {
-		            cates.map((item) => (
-		              <option value={item.categoryId}>
-		                {item.categoryName}
-		              </option>
-		            ))
-		          }
-		        </Field>
-          </div>
-        </div>
+        <Field label="分类" name="category" component={renderCorDropdown} cates={cates} />
 
-        
-        
+        {/*<div className="form-row">*/}
+          {/*<label>分类</label>*/}
+          {/*<div className="row-right">*/}
+            {/*<select name="majorCategoryId" ref="majorCategoryId" className="row-select" >*/}
+              {/*<option>请选择分类</option>*/}
+              {/*{*/}
+                {/*cates.map( (item, index) => (*/}
+                  {/*<option key={item.categoryId} value={item.categoryId}>{item.categoryName}</option>*/}
+                {/*))*/}
+              {/*}*/}
+            {/*</select>*/}
+            {/*<Field name="minorCategoryId" component="select">*/}
+		          {/*<option>请选择分类</option>*/}
+		          {/*{*/}
+		            {/*cates.map((item) => (*/}
+		              {/*<option value={item.categoryId}>*/}
+		                {/*{item.categoryName}*/}
+		              {/*</option>*/}
+		            {/*))*/}
+		          {/*}*/}
+		        {/*</Field>*/}
+          {/*</div>*/}
+        {/*</div>*/}
+
         <div className="form-row">
           <label>标签</label>
           <ul className="row-right max-width">
             {
               tags.map((item) => (
-                <li 
+                <li
                   className={
                     ((tagId)=>{
                       return initialValues.tags.indexOf(tagId) > -1 ? 'active' : ''
@@ -87,7 +87,7 @@ class FirstStepForm extends Component {
             }
           </ul>
         </div>
-        
+
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">保存并下一步</button>
@@ -103,9 +103,9 @@ FirstStepForm.propTypes = {
 }
 
 export default reduxForm({
-  form: 'firstStepForm',   
+  form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,     
+  destroyOnUnmount: false,
   // validate,
   enableReinitialize: true
 })(FirstStepForm)

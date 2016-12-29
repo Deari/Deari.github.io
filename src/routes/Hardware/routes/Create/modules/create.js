@@ -124,7 +124,7 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   page: 2,
-  cates: [{ 
+  cates: [{
     categoryId: 0,
     categoryName: "正在加载..."
   }],
@@ -132,7 +132,7 @@ const initialState = {
     tagId: 1,
     tagName: '正在加载...'
   }],
-  
+
   form: {
     hardwareName: '',
     hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
@@ -203,6 +203,8 @@ export const fetchCates = () => {
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
+        console.log('---- cate ----')
+        console.log(res.data.list)
         dispatch(getCates(res.data && res.data.list));
       } else {
         throw Error ('get Categories error');
