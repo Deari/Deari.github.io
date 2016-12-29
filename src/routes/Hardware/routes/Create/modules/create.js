@@ -190,7 +190,6 @@ export default function createReducer(state = initialState, action) {
  return handler ? handler(state, action) : state
 }
 
-
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
@@ -208,7 +207,6 @@ export const fetchTags = () => {
 
 export const fetchCates = () => {
   return (dispatch) => {
-
     // 拉取 select 列表数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{

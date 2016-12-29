@@ -7,12 +7,12 @@
 .react-grid-item {
   transition: all 200ms ease;
   background: #cccccc;
-  border: solid 1px white;
+  //border: solid 1px white;
   transition-property: left, top;
 }
 
 .selected.react-grid-item {
-  border: solid 1px cornflowerblue;
+  //border: solid 1px cornflowerblue;
 }
 
 .react-grid-item.cssTransforms {
