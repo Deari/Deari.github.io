@@ -25,42 +25,50 @@ class FirstStepForm extends Component {
           component={renderField}
           />
         <div className="form-row">
-        	<label>尺寸</label>
-        	<div className="row-right">
-        		<p>请选择组件在手机屏幕中所占比例的尺寸</p>
-        		<div className="row-size">
-        				<span className="row-img img1"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio active"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
-        		</div>
-        		<div className="row-size">
-        				<span className="row-img img2"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
-        		</div>
-        		<div className="row-size">
-        				<span className="row-img img3"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
-        		</div>
-        		<div className="row-size">
-        				<span className="row-img img4"></span>
-        				<span className="row-radio">
-        					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio" className="row-inputR"/>
-        				</span>
-        		</div>
-        	</div>
+          <label>尺寸</label>
+          <div className="row-right">
+            <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+            <div className="row-size">
+             <label >
+              <span className="row-img img1"></span>
+              <span className="row-radio">
+                <i className="iconfont icon-radio1"></i>
+                <i className="iconfont icon-radio active"></i>
+                <input type="radio" className="row-inputR" name="size" value="2X1" onChange={this.select}/>
+              </span>
+             </label>
+            </div>
+            <div className="row-size">
+             <label>
+              <span className="row-img img2"></span>
+              <span className="row-radio">
+                <i className="iconfont icon-radio1"></i>
+                <i className="iconfont icon-radio"></i>
+                <input type="radio" className="row-inputR"  name="size" value="1X1" onChange={this.select} />
+              </span>
+             </label>
+            </div>
+            <div className="row-size">
+            <label>
+              <span className="row-img img3"></span>
+              <span className="row-radio">
+                <i className="iconfont icon-radio1"></i>
+                <i className="iconfont icon-radio"></i>
+                <input type="radio" className="row-inputR"  name="size" value="2X2" onChange={this.select}/>
+              </span>
+              </label>
+            </div>
+            <div className="row-size">
+              <label>
+                <span className="row-img img4"></span>
+                <span className="row-radio">
+                  <i className="iconfont icon-radio1"></i>
+                  <i className="iconfont icon-radio"></i>
+                  <input type="radio" className="row-inputR" name="size" value="2X2" />
+                </span>
+              </label>
+            </div>
+          </div>
         </div>
 
         <Field label="组件LOGO" name="appLogo" type="text" 
@@ -98,7 +106,7 @@ class FirstStepForm extends Component {
 }
 
 FirstStepForm.propTypes = {
-  handleSubmit : PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = {

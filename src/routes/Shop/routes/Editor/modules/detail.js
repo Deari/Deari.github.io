@@ -35,6 +35,8 @@ const ACTION_HANDLERS = {
   },
 
   [SAVE_DETAIL]: (state, action) => {
+    console.log('---save----')
+    console.log(state)
     return state
   }
 }
