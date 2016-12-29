@@ -3,7 +3,6 @@ import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
 import EditorDragLayer from '../EditorDragLayer'
 import Detail from '../../containers/DetailContainer'
-
 import '../../../../../../styles/iconfont/iconfont.css'
 import './MobileEditor.scss'
 
