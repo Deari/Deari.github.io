@@ -4,11 +4,7 @@ import Product from './Product'
 
 const productSource = {
   beginDrag(props) {
-    const { name, productId, type, defaultLayout, moduleName, moduleType} = props
     return {...props}
-    //return {
-    //  name, productId, type, defaultLayout, moduleName, moduleType
-    //}
   }
 }
 const DragProduct = ({connectDragSource, ...props}) => connectDragSource(<div><Product {...props}/></div>)
