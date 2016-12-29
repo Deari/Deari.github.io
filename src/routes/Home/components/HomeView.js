@@ -45,11 +45,11 @@ export const HomeView = () => (
             </Link>
           </li>
           <li>
-            <Link className="a-bg3">
+            <a className="a-bg3" href="http://apistore.intra.test.ffan.net">
               <p>API市场</p>
               <i className="iconfont icon-business"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
-            </Link>
+            </a>
           </li>
           <li>
             <Link className="a-bg4" to="/hardware">

@@ -11,6 +11,7 @@ const RECEIVE_TAGS = 'RECEIVE_TAGS'
 
 const REQUEST_CATES = 'REQUEST_CATES'
 const RECEIVE_CATES = 'RECEIVE_CATES'
+const RECEIVE_SDKS = 'RECEIVE_SDKS'
 
 const UPDATE_FORM2 = 'UPDATE_FORM2'
 
@@ -33,6 +34,11 @@ export const getTags = (data) => {
 
 export const getCates = (data) => ({
   type: RECEIVE_CATES,
+  data
+})
+
+export const getSdkInfo = (data) => ({
+  type: RECEIVE_SDKS,
   data
 })
 
@@ -113,6 +119,13 @@ const ACTION_HANDLERS = {
     cates: action.data
   }),
 
+  [RECEIVE_SDKS]: (state, action)=>({
+    ...state,
+    sdkTypes: action.data.sdkType,
+    osPlatforms: action.data.os,
+    hardwarePlatforms: action.data.platform
+  }),
+
   [UPDATE_FORM2]: (state, action)=>({
     ...state,
     form2: {
@@ -128,25 +141,36 @@ const initialState = {
     categoryId: 0,
     categoryName: "正在加载..."
   }],
+  sdkTypes: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
+  osPlatforms: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
+  hardwarePlatforms: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
   tags: [{
     tagId: 1,
     tagName: '正在加载...'
   }],
 
   form: {
-    hardwareName: '默认硬件1',
-    hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    hardwareName: '',
+    hardwareLogo: '',
     hardwareFunction: '',
-    majorCategoryId: 0,
-    minorCategoryId: 0,
     category: {
-
+      majorCategoryId: -1,
+      minorCategoryId: -1
     },
     tags: [],
   },
 
   form2: {
-    hardwareMode: '默认数据',
+    hardwareMode: '',
     hardwarePics: [],
     hardwareBrand: '',
     hardwareProducer: '',
@@ -197,7 +221,7 @@ export const fetchCates = () => {
   }
 }
 
-export const getSdkInfo = () => {
+export const fetchSdkInfo = () => {
   return (dispatch) => {
 
     // 硬件SDK分类信息
@@ -206,7 +230,7 @@ export const getSdkInfo = () => {
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
-        // dispatch(getCates(res.data && res.data.list));
+        dispatch(getSdkInfo(res && res.data));
       } else {
         throw Error ('getSdkInfo error');
       }

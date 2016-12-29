@@ -34,7 +34,7 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
   </div>
 )
 
-export const renderSizeRadioBox = ({ input, sizeList }) => <div className="form-row">
+export const renderSizeRadioBox = ({ input, sizeList, }) => <div className="form-row">
   <label>尺寸</label>
   <div className="row-right">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>

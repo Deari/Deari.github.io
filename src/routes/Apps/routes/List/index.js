@@ -60,9 +60,9 @@ class AppsList extends React.Component {
         <div className="sub-container plf bg-white">
           <ul className="sub-content-tab">
             <li><a className={this.state.reviewStatus === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
-            <li><a className={this.state.reviewStatus === 0 ? 'tab-active' : ''} onClick={this.changeList.bind(this,0)}>已审核</a></li>
-            <li><a className={this.state.reviewStatus === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>未审核</a></li>
-            <li><a className={this.state.reviewStatus === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>未提交</a></li>
+            <li><a className={this.state.reviewStatus === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>已审核</a></li>
+            <li><a className={this.state.reviewStatus === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>未审核</a></li>
+            <li><a className={this.state.reviewStatus === 3 ? 'tab-active' : ''} onClick={this.changeList.bind(this,3)}>未提交</a></li>
           </ul>
           <ul className="list-title">
             <li className="w124">LOGO</li>

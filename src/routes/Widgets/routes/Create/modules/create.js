@@ -133,9 +133,9 @@ const initialState = {
     tagName: '正在加载...'
   }],
   sizeList :[
-    { image: 'img1', value: '2x1' },
-    { image: 'img2', value: '1x1' },
-    { image: 'img3', value: '2x2' },
+    { image: 'img1', value: {widgetW:2,widgetH:1} },
+    { image: 'img2', value: {widgetW:1,widgetH:1} },
+    { image: 'img3', value: {widgetW:2,widgetH:2} },
   ],
   form: {
     appName: '默认组件名1',
@@ -146,8 +146,6 @@ const initialState = {
     categoryId: 1,
     platform: 2,
     tags: [1],
-    widgetH: 1,
-    widgetW: 1
   },
   form2: {
     codeDesc: 'sasdasdas',
