@@ -16,7 +16,7 @@ class FirstStepForm extends Component {
     const { imageUrl, imageUpload } = this.props;
 
     return <div className="form-row">
-      <label className="row-name">硬件LOGO</label>
+      <label>LOGO</label>
       <div className="row-right">
         <p>请上传硬件高清图片</p>
         <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>

@@ -193,16 +193,17 @@ $text-color:#020202;
             background: $white-color;
             border: 1px solid $gray6-color ;
             color: $black-color;
-            line-height: 30px;
+            line-height: 29px;
         } 
     }
 } 
 .row-size{
     @include float-left;
-    margin:14px 70px 8px 0;
+    margin:14px 70px 0 0;
     .row-img{
         width: 78px;
         height: 150px;
+        margin-bottom: 8px;
     }
     .img1{
         background: url(../../../../Home/assets/size1.png) no-repeat;
@@ -222,10 +223,35 @@ $text-color:#020202;
     }
     .row-radio{
         display: block;
-        text-align: center;
+        position: relative;
         i{
-            font-size: 18px;
+            font-size: 26px;
             color: black;
+            position: absolute;
+            top: 0;
+            &:first-child{
+                left: 26px;
+            }
+            &:nth-child(2){
+                left: 26px;
+                display: none;
+            }
+            &:nth-child(2).active{
+                display: block;
+            }
         }
+        .row-inputR{
+            position: absolute;
+            top: 0;
+            left: 26px;
+            width: 26px;
+            height: 29px;
+            opacity: 0; 
+            filter: alpha(opacity=0); 
+            cursor: pointer;
+        }
+    }
+    &:last-child{
+        display: none;
     }
 }

@@ -49,8 +49,8 @@ class FirstStepForm extends Component {
         				<span className="row-img img1"></span>
         				<span className="row-radio">
         					<i className="iconfont icon-radio1"></i>
-        					<i className="iconfont icon-radio"></i>
-        					<input type="radio"/>
+        					<i className="iconfont icon-radio active"></i>
+        					<input type="radio" className="row-inputR"/>
         				</span>
         		</div>
         		<div className="row-size">
@@ -58,7 +58,7 @@ class FirstStepForm extends Component {
         				<span className="row-radio">
         					<i className="iconfont icon-radio1"></i>
         					<i className="iconfont icon-radio"></i>
-        					<input type="radio"/>
+        					<input type="radio" className="row-inputR"/>
         				</span>
         		</div>
         		<div className="row-size">
@@ -66,7 +66,7 @@ class FirstStepForm extends Component {
         				<span className="row-radio">
         					<i className="iconfont icon-radio1"></i>
         					<i className="iconfont icon-radio"></i>
-        					<input type="radio"/>
+        					<input type="radio" className="row-inputR"/>
         				</span>
         		</div>
         		<div className="row-size">
@@ -74,7 +74,7 @@ class FirstStepForm extends Component {
         				<span className="row-radio">
         					<i className="iconfont icon-radio1"></i>
         					<i className="iconfont icon-radio"></i>
-        					<input type="radio"/>
+        					<input type="radio" className="row-inputR"/>
         				</span>
         		</div>
         	</div>
