@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './index.scss'
 const App = () => {
   return (
-  	<div className="container">
+  	<div className="m-container">
   		<div className="sidebar">
   			<ul className="nav">
   				<li className="item active">
@@ -34,7 +34,7 @@ const App = () => {
   						<p className="text">本周：<span>1,980</span></p>
   						<p className="text">本月：<span>7,800</span></p>
   					</div>
-  					<img className="chartImg pull-right" src="" alt="chart" />
+  					<img className="chartImg pull-right" src="http://timg.ffan.com/convert/resize/url_T1HmVTBmZ_1RCvBVdK/tfs/chart.png" alt="chart" />
   				</li>
   				<li className="item">
   					<div className="data pull-left">
@@ -46,7 +46,7 @@ const App = () => {
   						<p className="text">本周：<span>1,980</span></p>
   						<p className="text">本月：<span>7,800</span></p>
   					</div>
-  					<img className="chartImg pull-right" src="" alt="chart" />
+  					<img className="chartImg pull-right" src="http://timg.ffan.com/convert/resize/url_T1HmVTBmZ_1RCvBVdK/tfs/chart.png" alt="chart" />
   				</li>
   				<li className="item">
   					<div className="data pull-left">
@@ -58,7 +58,7 @@ const App = () => {
   						<p className="text">本周：<span>1,980</span></p>
   						<p className="text">本月：<span>7,800</span></p>
   					</div>
-  					<img className="chartImg pull-right" src="" alt="chart" />
+  					<img className="chartImg pull-right" src="http://timg.ffan.com/convert/resize/url_T1HmVTBmZ_1RCvBVdK/tfs/chart.png" alt="chart" />
   				</li>
   				<li className="item">
   					<div className="data pull-left">
@@ -70,7 +70,7 @@ const App = () => {
   						<p className="text">本周：<span>1,980</span></p>
   						<p className="text">本月：<span>7,800</span></p>
   					</div>
-  					<img className="chartImg pull-right" src="" alt="chart" />
+  					<img className="chartImg pull-right" src="http://timg.ffan.com/convert/resize/url_T1HmVTBmZ_1RCvBVdK/tfs/chart.png" alt="chart" />
   				</li>
   			</ul>
   			<div className="data-analysis">

@@ -6,50 +6,30 @@ import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
 import Sidebar from '../../../../../components/Sidebar'
-import FirstStepForm from '../components/FirstStepForm'
-import SecondStepForm from '../components/SecondStepForm'
+import FirstStep from '../components/FirstStepForm'
+import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, submitCreateForm, fetchTags, fetchCates,
-  toggleTag, updateForm2 } from '../modules/create'
+import { toggleStep, updateForm2, fetchTags, fetchCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
-  async componentDidMount() {
-    // console.log("props:", this.props);
+  componentDidMount() {
     this.props.fetchTags()
     this.props.fetchCates()
   }
 
-  imageUpload(e) {
-    return console.log("imageUpload");
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
-    const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
+  submitFirst(values) {
 
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
-    }).then(res=>{
-      console.log(`Upload Success: `, res)
-      // do something
-    }).catch(e=>{
-      console.log(`Upload Failed.`)
-      // do something
-    })
-  }
-
-  fileUpload(e) {
-    console.log(e);
-  }
-
-  submitFirstForm(values) {
-
-    console.log(values);
-
+    // console.log(values);
+    // this.props.updateForm2({ appId: 11111});
+    // this.props.toggleStep(2);
+    // return;
+    
     const formData = new FormData();
 
     for(let key in values) {
@@ -57,83 +37,89 @@ class CreateContainer extends Component {
         for(let v of values[key]){
           formData.append('tags[]', v)
         }
+      } else if(key =='size'){
+        for(let k in values[key]){
+          formData.append( k, values[key][k])
+        }
       } else {
         formData.append(key, values[key])
       }
     }
 
-    this.props.submitCreateForm(formData).then(()=>{
-      this.props.toggleStep(2);
-    });
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/widget`)
+
+    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+      if(res.status == 200) {
+        console.info("提交成功: ", res.data)
+        this.props.updateForm2({ appId: res.data.appId});
+        this.props.toggleStep(2);
+      } else {
+        alert("提交失败：", JSON.stringify(res))
+        console.warn("提交失败：", res)
+      }
+    }).catch(e=>{
+      alert("网络错误：", JSON.stringify(e))
+    })
+
   }
 
-  submitSecondForm(values) {
-    console.log(values);
-
-    // Do something with the form values
-    const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${values.appId}/code`
-    )
-
+  submitSecond(values) {
+    console.log("values", values);
+    // return;
     const formData = new FormData();
-
-    for(let key in values) {
-      formData.append(key, values[key]);
+    const { appId, codeDesc, file } = values;
+    const params = Object.assign({}, file, {
+      appId,
+      codeDesc,
+      'fileName': file.originalName,
+      'fileLink': file.url
+    });
+  
+    for(let key in params) {
+      formData.append(key, params[key])
     }
 
-    formData.append('fileName', values['originalName']);
-    formData.append('fileLink', values['url']);
-   
-    // return this.props.toggleStep(3);
+    const url = getDomain(
+      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${appId}/code`
+    )
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
+        console.info('提交成功')
         this.props.toggleStep(3);
       } else {
-        console.warn(res);
+        alert('提交失败：'+JSON.stringify(res));
+        console.warn('提交失败：', res)
       }
+    }).catch(e=>{
+      alert('提交失败：'+JSON.stringify(e));
+      console.warn('网络错误', e);
     })
   }
 
   render() {
-    const { toggleStep, toggleTag, create } = this.props;
-    const { page, tags, cates, form, form2 } = create;
-
     const urls = {
       create: { url: `/widgets/create` },
       list: { url: `/widgets/list` },
       doc: { url: `/widgets/doc` }
     }
+    const { page } =this.props.widgetCreate;
 
     return (
       <div className="container clx">
-        <Sidebar urls={urls} />
+        <Sidebar urls={urls}  type="组件"/>
         <div className="sub-container">
           <Step page={page}/>
           {
-            page === 1 && 
-              <FirstStepForm 
-                onSubmit={::this.submitFirstForm} 
-                imageUpload={::this.imageUpload}
-                toggleTag={toggleTag}
-                tags={tags}
-                cates={cates}
-                initialValues={form}
-              />
+            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && 
-              <SecondStepForm 
-                previousPage={()=>toggleStep(1)} 
-                updateForm={this.props.updateForm2}
-                onSubmit={::this.submitSecondForm} 
-                initialValues={form2}
-              />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
           }
           {
-            page === 3 && 
-            <Complete />
+            page === 3 && <Complete />
           }
+          
         </div>
       </div>
     );
@@ -142,15 +128,15 @@ class CreateContainer extends Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  toggleTag,
-  submitCreateForm,
   fetchTags,
   fetchCates,
   updateForm2
 }
 
-const mapStateToProps = ({ create }) => ({
-  create,
-})
+const mapStateToProps = (state) => {
+  return {
+    widgetCreate: state.widgetCreate
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)

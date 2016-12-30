@@ -3,115 +3,204 @@
 /**************************
  * new-mobile-editor-container
  **************************/
-.sidebar{
-  position: fixed;
-  top: 0;
-  bottom: 0;
+@mixin fixed{
+  position:fixed;
+  top:0;
+  bottom:0;
+}
+$gray26-color:#262c31;
+$gray2e-color:#2e363d;
+$gray1a-color:#1a1e2a;
+$grayb5-color:#b5b8bb;
+$grayb67-color:#677284;
+$grayb75-color:#758b9d;
+$graybf7-color:#f7f8fa;
+$blue97-color:#97d6fe;
+.pull-left{
+  float:left;
+}
+.pull-right{
+  float:right;
+}
+.sidebar-left{
+  @include fixed;
   left: 0;
-  width: $default-width + 120;
-  background: $white-color;
-  .side-title{
-    padding: $default-padding-top - 28 $default-padding-left - 25;
-    font-size: $text-font-size - 4;
-    color: $white-color;
-    background: $blue-color;
-    i{
-      padding-right: $default-padding-right - 35;
-    }
-  }
-  .gui-list{
-    padding-bottom: $default-padding-bottom - 35;
-    li{
-      @include float-left;
-      width: 50%;
-      padding: $default-padding-top - 35;
-      .img{
-        border:1px solid $gray9-color;
-        background: $graye-color;
+  width:200px;
+  background:$gray26-color;
+  .nav{
+    .item{
+      .menu-title{
+        & > i{
+          padding-right:10px;
+          background:$gray2e-color;
+        }
+        display:block;
+        padding:10px 15px;
+        font-size:15px;
+        color:$gray9-color;
+        background:$gray2e-color;
+        border-bottom:1px solid $gray1a-color;
       }
-      img{
-        margin: 0 auto;
-      } 
-    }
-  }
-  .sub-banner-pd{
-    padding: 0 $default-padding-left - 35;
-  }
-  .sub-banner{
-    margin-bottom: $default-margin-bottom - 30;
-    height: $default-height - 40;
-    border:1px solid $gray9-color;
-    background: $graye-color;
-  }
-  .sub-info{
-    padding: $default-padding-top - 25 $default-padding-left - 30;
-    font-size: $text-font-size - 6;
-    color:$gray9-color;
-    .icon-circle{
-      display:inline-block;
-      width:7px;
-      height:7px;
-      margin-right: $default-margin-right - 33;
-      background:$gray6-color;
-      border-radius:50%;
     }
   }
   .btn-more{
+    position:absolute;
+    bottom:0;
     display:block;
-    margin-top: $default-margin-top + 20;
-    padding: $default-padding-top - 30 0;
-    font-size: $text-font-size - 4;
-    text-align:center;
-    color: $gray6-color;
-    border-top:1px solid $graye-color;
-    border-bottom:1px solid $graye-color;
-    .icon-hot-control{
-      padding-right: $default-padding-top - 35;
+    width:100%;
+    padding:10px 15px;
+    font-size:15px;
+    color:$grayb67-color;
+    background:$gray2e-color;
+    border:0;
+    & > i{
+      padding-right:10px;
+      background:$gray2e-color;
+    }
+    .icon-readMore{
+      padding-right:0;
+      overflow:hidden;
+    }
+  }
+  .gui-list{
+    margin-top:20px;
+    padding:0 6px;
+    height: 278px;
+    background:$gray26-color;
+    overflow-y:scroll;
+    .items{
+      display:inline-block;
+      width:70px;
+      margin:0 12px;
+      .img{
+        width:70px;
+        height:70px;
+        background: $blue97-color;
+        border-radius: 4px;
+      }
+      .text{
+        display:-webkit-box;
+        padding:5px 0;
+        height:20px;
+        font-size:12px;
+        color:$grayb75-color;
+        text-align:center;
+        word-break: break-all;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow:hidden;
+      }
+      img{
+        width:70px;
+        height:70px;
+        border-radius:4px;
+      }
     }
   }
 }
-.editor-view{
-  @include float-right;
-  width: $default-width + 630;
-  height: $default-height + 500;
-  background: $white-color;
+.editor-content{
+  width:540px;
+  height:600px;
+  margin:0 auto;
+  overflow:hidden;
   .preview{
     position:relative;
-    width: $default-width + 226;
-    height: $default-height + 490;
+    padding-top:40px;
+    width:249px;
+    height:475px;
     margin:5px auto;
     .bg-phone{
-      width: $default-width + 226;
-      height: $default-height + 490;
+      width:249px;
+      height:475px;
       background-size: 100%;
       margin:5px auto;
-      background-image:url(../../../../../Home/assets/bg_phone.png);
+      background-image:url(../../../../../Home/assets/bg_iphone6.png);
     }
     .shop-info{
       position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-left: -($default-width + 183)/2;
-      margin-top: -($default-height + 353)/2;
-      width: $default-width + 184;
-      height: $default-height + 329;
-      background: #f6f5f5;
-      overflow-y: scroll;
+      top:50%;
+      left:50%;
+      margin-left:-105px;
+      margin-top:-149px;
+      width:212px;
+      height:380px;
+      border:1px solid #d6dde2;
+      //background:#f6f5f5 url(../../../../../Home/assets/phone-module1.jpg);
+      background-size:100%;
+      overflow-y:scroll;
     }
+  }
+  .text{
+    margin-top:60px;
+    font-size:14px;
+    color:#888;
+    text-align:center;
   }
 }
 
-@media (max-width:600px) {
-  .editor-view{
-    width: $default-width + 270;
-    height: $default-height + 860;
-    .preview{
-      .bg-phone{
-        margin:100px auto;
+.sidebar-right{
+  @include fixed;
+  right: 0;
+  width: 200px;
+  background:$graybf7-color;
+  #detail-container{
+    position:relative;
+    padding-top:40px;
+    height:600px;
+    font-size:14px;
+    color:$gray6-color;
+    .icon-wechat{
+      color:#05af10;
+    }
+    .share{
+      width:130px;
+      margin:0 auto;
+      .bg-qr{
+        position:relative;
+        padding:1px 0;
+        background:#eef1f5;
+        .qr{
+          width:115px;
+          height:115px;
+          margin:5px auto;
+          background-image:url(http://timg.ffan.com/convert/resize/url_T1qmATBbVv1RCvBVdK/tfs/userView.png);
+          background-size:100%;
+        }
+        .icon-leftjiao{
+          position:absolute;
+          left:-33px;
+          top:47px;
+          font-size:40px;
+          color:#3fa7ff;
+        }
       }
-      .shop-info{
-        margin-top: -225.5px;
+      .text{
+        padding:10px 15px;
+        text-align:center;
       }
+    }
+    .btn{
+      display:inline-block;
+      width:90px;
+      height:40px;
+      margin:0 5px;
+      padding:0;
+      line-height:36px;
+      border-radius:4px;
+    }
+    .btn-blue{
+      color:#fff;
+      background:#3fa7ff;
+      border:2px solid #3fa7ff;
+    }
+    .btn-white{
+      color:#3fa7ff;
+      background:#fff;
+      border:2px solid #3fa7ff;
+    }
+    .btn-block{
+      position:absolute;
+      bottom:10px;
     }
   }
 }

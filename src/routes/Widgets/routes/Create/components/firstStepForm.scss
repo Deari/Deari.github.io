@@ -150,15 +150,16 @@ input[type="radio"]:checked + span i.icon-radio1{display: none;}
             text-align: center;
             cursor: pointer;
             float: left;
+            background: #efefef;
         }
         .form-file{
-            width: $default-width - 52px;
-            height: $default-height - 71px;
-            position: absolute;
-            left:348px;
-            top: 30px;
-            filter: alpha(opacity=0);
-            opacity: 0;
+            // width: $default-width - 52px;
+            // height: $default-height - 71px;
+            // position: absolute;
+            // left:348px;
+            // top: 30px;
+            // filter: alpha(opacity=0);
+            // opacity: 0;
             cursor: pointer;
         }
         /*第二步应用文件样式end*/
@@ -231,3 +232,5 @@ input[type="radio"]:checked + span i.icon-radio1{display: none;}
 .row-last{
     display: none;
 }
+
+

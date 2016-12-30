@@ -11,6 +11,7 @@ const RECEIVE_TAGS = 'RECEIVE_TAGS'
 
 const REQUEST_CATES = 'REQUEST_CATES'
 const RECEIVE_CATES = 'RECEIVE_CATES'
+const RECEIVE_SDKS = 'RECEIVE_SDKS'
 
 const UPDATE_FORM2 = 'UPDATE_FORM2'
 
@@ -33,6 +34,11 @@ export const getTags = (data) => {
 
 export const getCates = (data) => ({
   type: RECEIVE_CATES,
+  data
+})
+
+export const getSdkInfo = (data) => ({
+  type: RECEIVE_SDKS,
   data
 })
 
@@ -113,6 +119,13 @@ const ACTION_HANDLERS = {
     cates: action.data
   }),
 
+  [RECEIVE_SDKS]: (state, action)=>({
+    ...state,
+    sdkTypes: action.data.sdkType,
+    osPlatforms: action.data.os,
+    hardwarePlatforms: action.data.platform
+  }),
+
   [UPDATE_FORM2]: (state, action)=>({
     ...state,
     form2: {
@@ -124,7 +137,19 @@ const ACTION_HANDLERS = {
 
 const initialState = {
   page: 1,
-  cates: [{ 
+  cates: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
+  sdkTypes: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
+  osPlatforms: [{
+    categoryId: 0,
+    categoryName: "正在加载..."
+  }],
+  hardwarePlatforms: [{
     categoryId: 0,
     categoryName: "正在加载..."
   }],
@@ -132,13 +157,16 @@ const initialState = {
     tagId: 1,
     tagName: '正在加载...'
   }],
-  
+
   form: {
     hardwareName: '',
-    hardwareLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    hardwareLogo: '',
     hardwareFunction: '',
-    majorCategoryId: 0,
-    minorCategoryId: 0,
+    category: {
+      majorCategoryId: -1,
+      minorCategoryId: -1,
+      minorCategories: [],
+    },
     tags: [],
   },
 
@@ -162,30 +190,12 @@ export default function createReducer(state = initialState, action) {
  return handler ? handler(state, action) : state
 }
 
-
-export const submitCreateForm = (formData) => {
-  return (dispatch) => {
-    dispatch(requestSubmitCreate());
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
-    return fetchUtil.postJSON(url, formData, { jsonStringify: false})
-      .then((res)=>{
-        if(res.status == 200) {
-          dispatch(completeSubmitCreate(res.data.app.appId));
-        } else {
-          throw Error('submit error');
-        }
-      }).catch(err=>{
-        console.log(err);
-      })
-  }
-}
-
 export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardwares");
     return fetchUtil.getJSON(url).then(res=>{
-      console.info(res)
+      //console.info(res)
       if(res.status == 200) {
         dispatch(getTags(res.data));
       } else {
@@ -197,11 +207,10 @@ export const fetchTags = () => {
 
 export const fetchCates = () => {
   return (dispatch) => {
-
     // 拉取 select 列表数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{
-      console.info(res)
+      //console.info(res)
       if(res.status == 200) {
         dispatch(getCates(res.data && res.data.list));
       } else {
@@ -210,5 +219,25 @@ export const fetchCates = () => {
     });
   }
 }
+
+export const fetchSdkInfo = () => {
+  return (dispatch) => {
+
+    // 硬件SDK分类信息
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getSdkInfo");
+
+    return fetchUtil.getJSON(url).then(res=>{
+      console.info(res)
+      if(res.status == 200) {
+        dispatch(getSdkInfo(res && res.data));
+      } else {
+        throw Error ('getSdkInfo error');
+      }
+    });
+  }
+}
+
+
+
 
 

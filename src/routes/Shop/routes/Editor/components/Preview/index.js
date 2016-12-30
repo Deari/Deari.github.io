@@ -8,21 +8,21 @@ import Element from '../../containers/ElementContainer'
 export class Preview extends Component {
 
   static propTypes = {
-    canDrop          : PropTypes.bool.isRequired,
-    isOver           : PropTypes.bool.isRequired,
+    canDrop: PropTypes.bool.isRequired,
+    isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
-    setLayout        : PropTypes.func.isRequired,
-    preview          : PropTypes.object.isRequired,
+    setLayout: PropTypes.func.isRequired,
+    preview: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
     gridProps: {
-      className  : "layout",
-      cols       : 2,
-      rowHeight  : 100,
+      className: "layout",
+      cols: 2,
+      rowHeight: 47,
       selectedCls: 'selected',
-      width      : 270,
-      margin     : [ 0, 0 ],
+      width: 212,
+      margin: [ 0, 0 ],
     }
   }
 
@@ -46,7 +46,12 @@ export class Preview extends Component {
     const elements = this.props.preview.elements
     return elements.map(e => {
       const className = e.selected ? 'selected' : ''
+      console.log(e)
       return <div key={e.id}
+                  style={{
+                    backgroundSize: 'cover',
+                    backgroundImage: `url(${e.appPreviewImage})`,
+                  }}
                   className={className}
                   onClick={this.props.selectElement.bind(null, e.id)}
                   data-grid={this.generateLayout(e)}>
@@ -57,14 +62,14 @@ export class Preview extends Component {
 
   render() {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
-   return connectDropTarget(
-          <div className="shop-info">
-            <ReactGridLayout className="layout"
-                             {...gridProps}
-                             onLayoutChange={::this.onLayoutChange}>
-              {this.generateDOM()}
-            </ReactGridLayout>
-          </div>
+    return connectDropTarget(
+      <div className="shop-info">
+        <ReactGridLayout className="layout"
+                         {...gridProps}
+                         onLayoutChange={::this.onLayoutChange}>
+          {this.generateDOM()}
+        </ReactGridLayout>
+      </div>
     )
   }
 

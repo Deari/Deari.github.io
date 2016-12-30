@@ -50,6 +50,8 @@ export const toggleTag = (tagId) => {
 
 
 export const updateForm2 = (data) => {
+    console.log(12211, data);
+  
   return {
     type : UPDATE_FORM2,
     data
@@ -58,20 +60,21 @@ export const updateForm2 = (data) => {
 
 const ACTION_HANDLERS = {
   [TOGGLE_TAG]: (state, action) => {
+    console.log(state);
     const form = state.form;
-    const pos = form.tags.indexOf(action.tagId);
+    const newTags = form.tags.filter(function (v){
+      return v != action.tagId
+    });
 
-    if(pos == -1) {
-      form.tags.push(action.tagId);
-    } else {
-      form.tags.splice(pos, 1);
+    if(newTags.length == form.tags.length) {
+      newTags.push(action.tagId)
     }
 
     return {
       ...state,
       form: {
         ...form,
-        tags: form.tags
+        tags: newTags
       }
     }
   },
@@ -96,7 +99,6 @@ const ACTION_HANDLERS = {
         appId: action.appId
       }
     }
-    return state;
   },
 
   [RECEIVE_TAGS]: (state, action)=>{
@@ -111,39 +113,51 @@ const ACTION_HANDLERS = {
     cates: action.data
   }),
 
-  [UPDATE_FORM2]: (state, action)=>({
-    ...state,
-    form2: {
-      ...state.form2,
-      ...action.data
+  [UPDATE_FORM2]: (state, action)=>{
+    return {
+      ...state,
+      file: action.data
     }
-  })
+  }
 }
 
 const initialState = {
   page: 1,
   cates: [{ 
-    categoryId: 0,
-    categoryName: "正在加载..."
+    categoryId: 1,
+    categoryName: "xx"
+  },{ 
+    categoryId: 2,
+    categoryName: "xsdfsd"
+  },{ 
+    categoryId: 3,
+    categoryName: "sdkfhds"
   }],
+
   tags: [{
-    tagId: 0,
-    tagName: '正在加载...'
+    tagId: 1,
+    tagName: 'test1'
+  },{
+    tagId: 2,
+    tagName: 'test2'
+  },{
+    tagId: 3,
+    tagName: 'test3'
   }],
   
   form: {
     appName: '',
-    appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    appLogo: '',
     appDesc: '',
-    categoryId: 0,
+    categoryId: -1,
     platform: 2,
     tags: [],
   },
 
   form2: {
-    codeDesc: '测试修改',
-    appId: '146',
-  }
+    codeDesc: '',
+    appId: -1,
+  },
 }
 
 export default function createReducer(state = initialState, action) {
@@ -173,6 +187,7 @@ export const fetchTags = () => {
   return (dispatch) => {
     // 拉取标签数据
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
+
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -180,6 +195,8 @@ export const fetchTags = () => {
       } else {
         throw Error ('get tags error');
       }
+    }).catch(e=>{
+      console.log('net error');
     });
   }
 }

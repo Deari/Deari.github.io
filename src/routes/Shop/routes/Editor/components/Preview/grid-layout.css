@@ -5,6 +5,12 @@
 }
 
 .react-grid-item {
+
+  /*Todo: Test add by leiming*/
+  color: #eeeeee;
+  text-align: center;
+
+
   transition: all 200ms ease;
   background: #cccccc;
   border: solid 1px white;

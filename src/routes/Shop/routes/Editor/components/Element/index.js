@@ -8,9 +8,10 @@ export class Element extends Component {
     if (this.props.moduleName === 'clock') {
       return <Clock {...rest} />
     }
+
     return <div
       {...rest}>
-      {appName}
+      {rest.appPreviewImage ? '' :  appName }
       {children}
     </div>
   }

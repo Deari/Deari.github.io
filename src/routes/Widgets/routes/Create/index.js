@@ -11,7 +11,7 @@ module.exports = (store) => ({
       const createReducer = require('./modules/create').default;
 
       injectReducer(store, { key: 'form', reducer: formReducer })
-      injectReducer(store, { key: 'create', reducer: createReducer })
+      injectReducer(store, { key: 'widgetCreate', reducer: createReducer })
 
       cb(null, Create)
     })

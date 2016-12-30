@@ -6,99 +6,132 @@ import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
 import Sidebar from '../../../../../components/Sidebar'
-import FirstStepForm from '../components/FirstStepForm'
-import SecondStepForm from '../components/SecondStepForm'
+import FirstStep from '../components/FirstStepForm'
+import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, submitCreateForm, fetchTags, fetchCates,
-  toggleTag, updateForm2 } from '../modules/create'
+import { toggleStep, fetchTags, fetchCates } from '../modules/create'
+
+let appId;
+let result;
 
 class CreateContainer extends Component {
 
-  async componentDidMount() {
-    // console.log("props:", this.props);
+  state = {
+    firstStepValue: '',
+    hardwareId: ''
+  }
+
+  componentDidMount() {
     this.props.fetchTags()
     this.props.fetchCates()
   }
 
-  imageUpload(e) {
-    // return console.log("imageUpload");
+  submitFirst(values) {
+    
+    const formData = new FormData();
+    const params = {
+      hardwareName : values['hardwareName'],
+      hardwareLogo : values['hardwareLogo'],
+      hardwareFunction : values['hardwareFunction'],
+      majorCategoryId : values.category['majorCategoryId'],
+      minorCategoryId : values.category['minorCategoryId']
+    };
 
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
-    const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
+    for(let key in params) {
+      formData.append(key, params[key]);
+    }
 
-    fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
-    }).then(res=>{
-      console.log(`Upload Success: `, res)
-      // do something
+    for(let key in values.tags) {
+      formData.append("tags[]", values.tags[key]);
+    }
+
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
+    
+    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+      if(res.status == 200) {
+        const hardwareId = res.data.hardwareId;
+        const firstStepValue = { ...values }
+        this.setState({firstStepValue, hardwareId}, () => {
+          this.props.toggleStep(2);
+        })
+
+      } else {
+        res.msg && window.alert(res.msg)
+        console.warn("表单一提交失败：", res)
+      }
     }).catch(e=>{
-      console.log(`Upload Failed.`)
-      // do something
+      console.log('网络错误：', e);
     })
+    
   }
 
-  fileUpload(e) {
-    console.log(e);
-  }
-
-  submitFirstForm(values) {
-
-    console.log(values);
-
-    const formData = new FormData();
-
-    for(let key in values) {
-      if(key == 'tags') {
-        for(let v of values[key]){
-          formData.append('tags[]', v)
-        }
-      } else {
-        formData.append(key, values[key])
-      }
+  submitSecond(values) {
+    const { firstStepValue, hardwareId } = this.state
+    const SecondStepValues = {
+      ...firstStepValue,
+      ...values
     }
 
-    this.props.submitCreateForm(formData).then(()=>{
-      this.props.toggleStep(2);
-    });
-  }
-
-  submitSecondForm(values) {
-    console.log(values);
-
-    // Do something with the form values
-    const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step2`
-    )
-
     const formData = new FormData();
+    const params = {
+      hardwareId : hardwareId,
+      hardwareName : SecondStepValues['hardwareName'],
+      hardwareLogo : SecondStepValues['hardwareLogo'],
+      hardwareFunction : SecondStepValues['hardwareFunction'],
+      majorCategoryId : SecondStepValues.category['majorCategoryId'],
+      minorCategoryId : SecondStepValues.category['minorCategoryId'],
 
-    for(let key in values) {
-      formData.append(key, values[key]);
+      hardwareMode: SecondStepValues['hardwareMode'],
+      hardwareBrand: SecondStepValues['hardwareBrand'],
+      hardwareProducer: SecondStepValues['hardwareProducer'],
+      commType1: SecondStepValues['commType1'] ? 1 : 0,
+      commType2: SecondStepValues['commType2'] ? 1 : 0,
+      hardwareDetail: SecondStepValues['hardwareDetail'],
+      sdkType: SecondStepValues['sdkType'],
+      os: SecondStepValues['os'],
+      hardwarePlatform: SecondStepValues['hardwarePlatform'],
+      hardwareReport: SecondStepValues['hardwareReport'],
+    };
+
+    for(let key in params) {
+      formData.append(key, params[key]);
     }
 
-    formData.append('fileName', values['originalName']);
-    formData.append('fileLink', values['url']);
-   
-    // return this.props.toggleStep(3);
+    for(let key in SecondStepValues.tags) {
+      formData.append("tags[]", SecondStepValues.tags[key]);
+    }
 
-    fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
-      if (res.status == 200) {
-        this.props.toggleStep(3);
+    for(let key in SecondStepValues.hardwarePics) {
+      formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key]);
+    }
+
+    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step2`)
+
+    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+      if(res.status == 200) {
+        
+        const secondStepValue = { ...values }
+        this.setState({secondStepValue}, () => {
+          this.props.toggleStep(3);
+        })
+        
       } else {
-        console.warn(res);
+        res.msg && window.alert(res.msg)
+        console.warn("表单一提交失败：", res)
       }
+    }).catch(e=>{
+      console.log('网络错误：', e);
     })
+
   }
 
   render() {
-    const { toggleStep, toggleTag, create } = this.props;
-    const { page, tags, cates, form, form2 } = create;
+    const { page } =this.props.create;
 
     const urls = {
       create: { url: `/hardware/create` },
@@ -108,32 +141,17 @@ class CreateContainer extends Component {
 
     return (
       <div className="container clx">
-        <Sidebar urls={urls} />
+        <Sidebar urls={urls} type="硬件"/>
         <div className="sub-container">
           <Step page={page}/>
           {
-            page === 1 && 
-              <FirstStepForm 
-                onSubmit={::this.submitFirstForm} 
-                imageUpload={::this.imageUpload}
-                toggleTag={toggleTag}
-                tags={tags}
-                cates={cates}
-                initialValues={form}
-              />
+            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && 
-              <SecondStepForm 
-                previousPage={()=>toggleStep(1)} 
-                updateForm={this.props.updateForm2}
-                onSubmit={::this.submitSecondForm} 
-                initialValues={form2}
-              />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
           }
           {
-            page === 3 && 
-            <Complete />
+            page === 3 && <Complete />
           }
         </div>
       </div>
@@ -141,17 +159,17 @@ class CreateContainer extends Component {
   }
 }
 
+
 const mapDispatchToProps = {
   toggleStep,
-  toggleTag,
-  submitCreateForm,
   fetchTags,
   fetchCates,
-  updateForm2
 }
 
-const mapStateToProps = ({ create }) => ({
-  create,
-})
+const mapStateToProps = (state) => {
+  return {
+    create: state.hardwareCreate
+  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
