@@ -39,7 +39,7 @@ export class EditorDragLayer extends Component {
     return <div style={layerStyles}>
       <div style={getItemStyles(this.props)}>
         <div>
-          <Product {...item}/>
+          <Product {...item} hideName={true}/>
         </div>
       </div>
     </div>
