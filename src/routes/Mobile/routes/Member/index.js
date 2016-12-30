@@ -3,26 +3,7 @@ import './index.scss'
 const App = () => {
   return (
   	<div className="m-container">
-  		<div className="sidebar">
-  			<ul className="nav">
-  				<li className="item active">
-  					<a><i className="iconfont icon-general"></i>概况</a>
-  				</li>
-  				<li className="item">
-  					<a><i className="iconfont icon-vip"></i>会员注册</a>
-  				</li>
-  				<li className="item">
-  					<a><i className="iconfont icon-sidebar1"></i>会员管理</a>
-  				</li>
-  				<li className="item">
-  					<a><i className="iconfont icon-consumption"></i>会员消费</a>
-  				</li>
-  				<li className="item">
-  					<a><i className="iconfont icon-chart"></i>会员分析</a>
-  				</li>
-  			</ul>
-  		</div>
-  		<div className="content pull-right">
+  		<div className="content">
   			<ul className="chart-list">
   				<li className="item">
   					<div className="data pull-left">
