@@ -65,7 +65,7 @@ class Main extends React.Component {
   clickStar(item) {
     let { listData } = this.state
     for (let i=0; i<listData.length; i++) {
-      if (listData[i].appId === item.appId) {
+      if (listData[i].hardwareId === item.hardwareId) {
         if (listData[i].checkedStar) {
           listData[i].checkedStar = false;
           this.setState({listData: listData})

@@ -112,11 +112,9 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
-    const optionsHeader = options.header
     const reqsOptions = {
       method: 'POST',
       // ...jsonHeaders,
-      ...optionsHeader,
       body: !options.jsonStringify ? params : JSON.stringify(params)
     }
 
