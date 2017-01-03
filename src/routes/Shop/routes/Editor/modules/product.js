@@ -35,7 +35,7 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
         "h": 1
       },
       "appLogo": "http://image.coolapk.com/apk_logo/2016/0429/12202_1461928658_0692.png",
-      "moduleName": "clock",
+      "moduleName": "Clock",
       "moduleType": "html5",
     },
   ]

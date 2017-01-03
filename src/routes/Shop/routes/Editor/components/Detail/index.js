@@ -1,7 +1,16 @@
 import React, { Component } from 'react'
+import Business from '../../../../../../components/business'
+
 
 export const Detail = ({ detail, saveDetail, savePage}) => {
   //console.log(props.detail)
+
+  //console.log(detail)
+  if (detail.element && detail.element.moduleType === 'html5') {
+    console.log('---------')
+    console.log(Business)
+  }
+
   return <div id="detail-container">
     <div className="share">
       <div className="bg-qr">
@@ -20,6 +29,12 @@ export const Detail = ({ detail, saveDetail, savePage}) => {
       <button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>
     </div>
   </div>
+}
+
+Detail.defaultProps = {
+  detail: {
+    element: {}
+  }
 }
 
 export default Detail
