@@ -18,12 +18,46 @@ const SimpleSlider = React.createClass({
     };
     return (
       <Slider {...settings}>
-        <div><h3>1</h3></div>
-        <div><h3>2</h3></div>
-        <div><h3>3</h3></div>
-        <div><h3>4</h3></div>
-        <div><h3>5</h3></div>
-        <div><h3>6</h3></div>
+        <div className="banner1">
+          <dl>
+            <dt>应用市场</dt>
+            <dd>为实体门店提供经营所需的各项管理工具</dd>
+          </dl>
+          <p>
+           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览应用</a>
+           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布应用</a>
+          </p>
+        </div>
+        <div className="banner2">
+          <dl>
+            <dt>组件市场</dt>
+            <dd>助力实体门店，创造个性化和场景化的营销方案</dd>
+          </dl>
+          <p>
+           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览组件</a>
+           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布组件</a>
+          </p>
+        </div>
+        <div className="banner3">
+          <dl>
+            <dt>API集市</dt>
+            <dd>为开发者提供最全面 最权威的API服务</dd>
+          </dl>
+          <p>
+           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览API</a>
+           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
+          </p>
+        </div>
+        <div className="banner4">
+          <dl>
+            <dt>硬件市场</dt>
+            <dd>助力实体门店，连接线上线下，打造O2O解决方案</dd>
+          </dl>
+          <p>
+           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览硬件</a>
+           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布硬件</a>
+          </p>
+        </div>
       </Slider>
     );
   }
@@ -31,16 +65,9 @@ const SimpleSlider = React.createClass({
 
 export const HomeView = () => (
   <div className="">
-    <SimpleSlider></SimpleSlider>
     <div className="home-banner">
-      <dl>
-        <dt>API集市</dt>
-        <dd>为开发者提供最全面 最权威的API服务</dd>
-      </dl>
-      <p>
-       <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览API</a>
-       <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
-      </p>
+    <SimpleSlider></SimpleSlider>
+      
     </div>
     <div className="home-reminder">
       <div className="container">
@@ -145,3 +172,4 @@ export const HomeView = () => (
 )
 
 export default HomeView;
+ 
