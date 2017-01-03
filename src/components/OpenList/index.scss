@@ -100,12 +100,20 @@
     }
     select{
       display: inline-block;
-      height: 30px;
+      width: 110px;
+      height: 32px;
+      background: #fff url(../../routes/Home/assets/arrD.png) no-repeat 86px center;
+      background-size: 14px 8px;
+      appearance:none;
+      -moz-appearance:none;
+      -webkit-appearance:none;
     }
   }
 }
 .icon-hot-control{
   font-size: 18px;
+  margin-right: 4px;
+  color: $gray6-color;
 }
 .open-list-price{
   display: block;
@@ -120,9 +128,9 @@
   height: 18px;
   border-radius: 50%;
   overflow: hidden;
-  background: url(../../routes/Home/assets/nav_logo.png) no-repeat;
+  background: url(../../routes/Home/assets/data-logo.png) no-repeat;
   background-size: 100%;
-  vertical-align: middle;
+  vertical-align: sub;
 }
 .open-list-start{
   position: absolute;

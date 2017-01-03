@@ -35,7 +35,7 @@ class List extends React.Component {;
               <div className="info-price w90">免费</div>
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
-              <div className="info-btn w114">
+              <div className="info-btn w112">
                 <Link className={
                   name!=='hardware'&&!item.codeId 
                   || item.reviewStatus==3 
