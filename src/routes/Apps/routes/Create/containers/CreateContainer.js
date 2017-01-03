@@ -14,7 +14,7 @@ import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 import debug from '../../../../utils/debug'
 
-import { toggleStep, updateForm2, getTags, getCates } from '../../../modules/model'
+import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
   
