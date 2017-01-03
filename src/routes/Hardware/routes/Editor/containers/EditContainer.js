@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import { validate, warn } from '../modules/validate'
-import { test } from '../modules/create'
 
 import Sidebar from '../../../../../components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
@@ -14,7 +13,10 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, getTags, getCates } from '../modules/create'
+import { toggleStep, getTags, getCates, getHDInfo } from '../modules/edit'
+
+import debug from '../../../../utils/debug'
+
 
 class CreateContainer extends Component {
 
@@ -24,14 +26,21 @@ class CreateContainer extends Component {
   }
 
   componentDidMount() {
+    const { params } = this.props;
+    const id = parseInt(params.id);
+
     this.props.getTags()
     this.props.getCates()
+    this.props.getHDInfo(id)
   }
 
   submitFirst(values) {
+    console.log(values);
+    // return;
     
     const formData = new FormData();
     const params = {
+      hardwareId: values['hardwareId'],
       hardwareName : values['hardwareName'],
       hardwareLogo : values['hardwareLogo'],
       hardwareFunction : values['hardwareFunction'],
@@ -43,8 +52,8 @@ class CreateContainer extends Component {
       formData.append(key, params[key]);
     }
 
-    for(let key in values.tags) {
-      formData.append("tags[]", values.tags[key]);
+    for(let v of values.tags) {
+      formData.append("hardwareTags[]", v);
     }
 
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
@@ -53,16 +62,16 @@ class CreateContainer extends Component {
       if(res.status == 200) {
         const hardwareId = res.data.hardwareId;
         const firstStepValue = { ...values }
+
         this.setState({firstStepValue, hardwareId}, () => {
           this.props.toggleStep(2);
         })
 
       } else {
-        res.msg && window.alert(res.msg)
-        console.warn("表单一提交失败：", res)
+        debug.warn('表单一提交失败', res)
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误', e)
     })
     
   }
@@ -99,10 +108,6 @@ class CreateContainer extends Component {
       formData.append(key, params[key]);
     }
 
-    for(let key in SecondStepValues.tags) {
-      formData.append("tags[]", SecondStepValues.tags[key]);
-    }
-
     for(let key in SecondStepValues.hardwarePics) {
       formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key]);
     }
@@ -111,12 +116,7 @@ class CreateContainer extends Component {
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        
-        const secondStepValue = { ...values }
-        this.setState({secondStepValue}, () => {
-          this.props.toggleStep(3);
-        })
-        
+        this.props.toggleStep(3);
       } else {
         res.msg && window.alert(res.msg)
         console.warn("表单一提交失败：", res)
@@ -128,7 +128,7 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const { page } = this.props.hardwareCreate;
+    const { page } = this.props.hdEdit;
 
     const urls = {
       create: { url: `/hardware/create` },
@@ -161,9 +161,10 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
+  getHDInfo,
 }
 
-const mapStateToProps = ({ hardwareCreate }) => ({
-  hardwareCreate
+const mapStateToProps = ({ hdEdit }) => ({
+  hdEdit
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)

@@ -32,6 +32,7 @@ const FirstStepForm = props => {
           ))
         }
       </Field>
+
       <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
       <div className="form-btn">
         <div>
