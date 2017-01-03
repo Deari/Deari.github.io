@@ -38,8 +38,8 @@ export const HomeView = () => (
         <dd>为开发者提供最全面 最权威的API服务</dd>
       </dl>
       <p>
-       <a className="btn btn-primary btn-lg" href="http://apistore.intra.test.ffan.net">浏览API</a>
-       <a className="btn btn-lg" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
+       <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览API</a>
+       <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
       </p>
     </div>
     <div className="home-reminder">
@@ -67,21 +67,21 @@ export const HomeView = () => (
           <li>
             <Link className="a-bg2" to="/widgets">
               <p>组件市场</p>
-              <i className="iconfont icon-business"></i>
+              <i className="iconfont icon-component"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </Link>
           </li>
           <li>
             <a className="a-bg3" href="http://apistore.intra.test.ffan.net">
               <p>API市场</p>
-              <i className="iconfont icon-business"></i>
+              <i className="iconfont icon-api"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </a>
           </li>
           <li>
             <Link className="a-bg4" to="/hardware">
               <p>硬件市场</p>
-              <i className="iconfont icon-business"></i>
+              <i className="iconfont icon-hardware"></i>
               <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
             </Link>
           </li>

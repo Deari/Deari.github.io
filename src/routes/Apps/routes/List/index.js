@@ -56,7 +56,7 @@ class AppsList extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type="硬件"/>
+        <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
           <ul className="sub-content-tab">
             <li><a className={this.state.reviewStatus === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
@@ -70,7 +70,7 @@ class AppsList extends React.Component {
             <li className="w90">价格</li>
             <li className="w90">状态</li>
             <li className="w90">已下载</li>
-            <li className="w114">操作</li>
+            <li className="w112">操作</li>
           </ul>
           <List data={this.state.listData} showName="应用"/>
         </div>
