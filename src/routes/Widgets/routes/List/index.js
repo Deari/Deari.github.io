@@ -53,7 +53,6 @@ class widgetsList extends React.Component {
       list: { url: `/widgets/list`, active: true },
       doc: { url: `/widgets/doc` }
     }
-    const type = {}
     return (
       <div className="container clx">
         <Slidebar urls={urls}  type="组件"/>
