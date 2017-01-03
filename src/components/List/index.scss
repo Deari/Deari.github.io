@@ -1,9 +1,13 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 @import "../../styles/_base.scss";
 
+.listContent{
+  border: 1px solid #eee;
+}
 .list-container {
   padding: 10px 0;
   @include clx;
+  @include border-bottom;
   .list-item-center {
     height: 50px;
     line-height: 50px;
