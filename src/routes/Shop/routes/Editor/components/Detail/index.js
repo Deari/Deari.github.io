@@ -2,13 +2,20 @@ import React, { Component } from 'react'
 import Business from '../../../../../../components/business'
 
 
-export const Detail = ({ detail, saveDetail, savePage}) => {
-  //console.log(props.detail)
+export const Detail = props => {
 
-  //console.log(detail)
-  if (detail.element && detail.element.moduleType === 'html5') {
-    console.log('---------')
-    console.log(Business)
+  const { detail, saveDetail, savePage } = props
+
+  const { element } = detail
+
+  if (element.moduleType === 'html5') {
+
+    const { Detail } = Business[ element.moduleName ]
+    if (Detail) {
+      return <div id="detail-container">
+        <Detail {...props}  />
+      </div>
+    }
   }
 
   return <div id="detail-container">
@@ -19,7 +26,7 @@ export const Detail = ({ detail, saveDetail, savePage}) => {
       </div>
       <p className="text">用微信<i className="iconfont icon-wechat"></i>扫描即可查看手机橱窗</p>
     </div>
-    <pre style={{fontSize: 10}}>
+    <pre style={{ fontSize: 10 }}>
         {
           JSON.stringify(detail || {}, null, 2)
         }

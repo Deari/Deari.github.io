@@ -45,7 +45,11 @@ const ACTION_HANDLERS = {
 //  saveDetail,
 //}
 
-export default function detailReducer(state = {}, action) {
+const initState = {
+  element: {}
+}
+
+export default function detailReducer(state = initState, action) {
   const handler = ACTION_HANDLERS[ action.type ]
   return handler ? handler(state, action) : state
 }
