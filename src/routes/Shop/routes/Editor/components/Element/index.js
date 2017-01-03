@@ -3,10 +3,10 @@ import Clock from '../../../../../../components/business/Clock'
 
 export class Element extends Component {
   render() {
-    const { appName, id, children, dispatch, selectElement, ...rest } = this.props
+    const { appName, id, children, dispatch, gridProps, ...rest } = this.props
 
     if (this.props.moduleName === 'clock') {
-      return <Clock {...rest} />
+      return <Clock {...rest} gridProps={gridProps}/>
     }
 
     return <div

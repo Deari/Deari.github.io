@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 
 export const Detail = ({ detail, saveDetail, savePage}) => {
   //console.log(props.detail)
-  console.log('--------------')
-  console.log(savePage)
   return <div id="detail-container">
     <div className="share">
       <div className="bg-qr">
