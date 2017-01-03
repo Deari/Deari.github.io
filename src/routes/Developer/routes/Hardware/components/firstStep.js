@@ -126,7 +126,7 @@ class HardwareFirstPage extends React.Component {
       <form onSubmit={handleSubmit}>
         <Field name="hardwareName" type="text" label="硬件名称" component={renderField} />
         <div>
-        	<label>硬件LOGO</label>
+        	<label>LOGO</label>
         	<div>
         		<p>请上传硬件高清图片</p>
 				    <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
