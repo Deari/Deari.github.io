@@ -1,6 +1,7 @@
 @import "../../../../../layouts/CoreLayout/CoreLayout.scss";
 $border-color:#dddddd;
 $text-color:#020202;
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
