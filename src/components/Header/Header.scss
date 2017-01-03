@@ -29,7 +29,7 @@ $header-height:70px;
   position:fixed;
 }
 .header-wrapper {
-  z-index: $zindex + 1;
+  z-index: 2;
   @include fixed;
   @include position-direction;
   .header-bg {
@@ -57,7 +57,7 @@ $header-height:70px;
         float: left;
         padding-left: 20px;
         border-left: 1px solid #cacaca;
-        font-size: 18px;
+        font-size: 16px;
         & > a {
           color: $gray6-color;
         }
@@ -93,7 +93,7 @@ $header-height:70px;
           height: 77px;
           line-height: 77px;
           padding: 0 10px;
-          font-size: 18px;
+          font-size: 16px;
           color: $black-color;
           &.active {
             color: $blue-color;
