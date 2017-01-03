@@ -49,14 +49,14 @@ class Container extends React.Component {
               <i className="iconfont icon-hot-control"></i>热门控件
               <form>
                 <p>
-                  <select className="form-control">
+                  <select>
                     <option>默认排序</option>
                     <option>默认1排序</option>
                     <option>默认2排序</option>
                   </select>
                 </p>
                 <p>
-                  <select className="form-control">
+                  <select>
                     <option>价格排序</option>
                     <option>价格1排序</option>
                     <option>价格2排序</option>

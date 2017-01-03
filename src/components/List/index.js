@@ -2,21 +2,25 @@ import React from 'react'
 import { Link } from 'react-router'
 import './index.scss'
 import '../../styles/_base.scss'
-
-class List extends React.Component {;
-    state = {
-      name: 'app'
-    };
-
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      name: this.props.showName === '硬件' ? 'hardware' : 'app'
-    })
+function choose(showName) {
+  let name = '';
+  switch (showName) {
+    case '硬件':
+      name = 'hardware'
+      break;
+    case '应用':
+      name = 'app'
+      break;
+    default:
+      name = 'widget'
   }
+  return name
+}
+class List extends React.Component {;
   render() {
     const {data,showName} = this.props
-    const {name} = this.state
-
+    const name = choose(showName)
+    const itemName = name === 'hardware' ? 'hardware' : 'app'
     return (
       <div className="listContent">
         {
@@ -25,12 +29,12 @@ class List extends React.Component {;
             <div key={index} className="list-container">
               <div className="info-img-container w124">
                 <div>
-                  <img src={item[name+'Logo']} />
+                  <img src={item[itemName+'Logo']} />
                 </div>
               </div>
               <div className="info-content w342">
-                <div className="info-name" title={item[name+'Name']}>{showName + '名称 : '}{item[name+'Name']}</div>
-                <div className="info-introduce" title={item[name+'Desc']}>{showName + '介绍 : '}{item[name+'Desc']}</div>
+                <div className="info-name" title={item[itemName+'Name']}>{showName + '名称 : '}{item[itemName+'Name']}</div>
+                <div className="info-introduce" title={item[itemName+'Desc']}>{showName + '介绍 : '}{item[itemName+'Desc']}</div>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
@@ -44,7 +48,7 @@ class List extends React.Component {;
                   || item.hardwareStatus==0 ? 
                   'active':'' 
                 } 
-                  to={'/' + name + 's/edit/' + item[name+'Id']}>
+                  to={'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     name !== 'hardware'&&!item.codeId 
                     || item.reviewStatus == 3 
@@ -58,7 +62,7 @@ class List extends React.Component {;
                   || item.hardwareStatus==2 ? 
                   'active': ''
                 } 
-                to={'/' + name + 's/edit/' + item[name+'Id']} >
+                to={'/' + name + 's/edit/' + item[itemName+'Id']} >
                   <button disabled={
                     item.codeId 
                     || item.hardwareStatus == 0 ? 
@@ -66,7 +70,7 @@ class List extends React.Component {;
                   }>发布新版本</button>
                 </Link>
                 <Link className={name === 'hardware' ? "active" : "" } 
-                to={'/' + name + 's/edit/' + item[name+'id']}>
+                to={'/' + name + 's/edit/' + item[itemName+'id']}>
                   <button disabled={name === 'hardware' ? false : true}>调试硬件</button>
                 </Link>
               </div>

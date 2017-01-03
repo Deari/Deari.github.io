@@ -18,7 +18,7 @@
   text-align: center;
   line-height: $text-line-height - 10;
   border-radius: 2px;
-  .icon-label{
+  .icon-create{
     padding-right: $default-padding-right - 36;
   }
   &:hover{
@@ -33,6 +33,7 @@
     font-size: $text-font-size - 4;
     i{
       padding-right: $default-padding-right - 34;
+      color: $gray6-color;
     }
     a{
       display: block;
@@ -44,6 +45,9 @@
       color: $white-color;
       background: $blue-color;
       border-radius: 2px;
+      i{
+        color: $white-color;
+      }
     }
     .active{
       color: $blue-color;
@@ -51,6 +55,12 @@
       &:hover{
         color: $blue-color;
         background: none;
+        i{
+          color: $blue-color;
+        }
+      }
+      i{
+        color: $blue-color;
       }
     }
   }

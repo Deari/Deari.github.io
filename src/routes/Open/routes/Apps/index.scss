@@ -1,27 +1,8 @@
-@import "../../index";
+@import "../../../../layouts/CoreLayout/CoreLayout";
 
 .sub-container{
   @include sub-container;
 }
-/*
-.open-content-list{
-  @include open-content-list;
-}
-.sub-container-banner{
-  @include sub-container-banner;
-  background: url(../../../Home/assets/sub-container-banner1.jpg) no-repeat;
-  background-size: 100%;
-}
-.open-content-nav{
-  @include open-content-nav;
-}
-.icon-hot-control{
-  font-size: $text-font-size - 2px;
-}
-.open-list-price{
-  @include open-list-price;
-}
-*/
 .user-img{
   width: 18px;
   height: 18px;
