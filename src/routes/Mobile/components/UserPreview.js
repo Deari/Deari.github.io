@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Responsive, WidthProvider, ReactGridLayout } from 'react-grid-layout'
 const ResponsiveReactGridLayout = WidthProvider(Responsive)
 import './grid-layout.scss'
-import Element from '../../Shop/routes/Editor/containers/EditorContainer'
+import Element from '../../Shop/routes/Editor/containers/ElementContainer'
 export default class UserPreview extends Component {
 
   static defaultProps = {
@@ -16,7 +16,7 @@ export default class UserPreview extends Component {
   }
 
   getLayout(layouts, id) {
-    return {...layouts.find(layout => layout.i == id), 'static': true}
+    return { ...layouts.find(layout => layout.i == id), 'static': true }
   }
 
   generateStyle(e) {
@@ -31,13 +31,13 @@ export default class UserPreview extends Component {
   }
 
 
-
   generateDOM() {
     const { layouts, elements } = this.props
     return elements.map(e => <div style={this.generateStyle(e)}
+                                  data-grid={this.getLayout(layouts, e.id)}
                                   key={e.id}>
       <Element {...e} layout={this.getLayout(layouts, e.id)} gridProps={this.props.gridProps}/>
-                                  </div>)
+    </div>)
   }
 
   render() {
