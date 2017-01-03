@@ -118,8 +118,11 @@ $header-height:70px;
       input{
         width: $default-width - 5;
         padding-left: $default-padding-left - 36; 
+        font-family:"Microsoft Yahei","sans-serif";
         font-size: $text-font-size - 6;
+        line-height:22px;
         color: $black-color;
+        vertical-align: middle;
         background: $graye-color;
         border:0;
         outline: none;
