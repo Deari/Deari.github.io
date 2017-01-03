@@ -19,18 +19,18 @@ class FirstStepForm extends Component {
 
   render() {
     const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
+    // return null;
+
     return (
       <form onSubmit={handleSubmit}>
-        <Field label="组件名称" name="appName" type="text"
-          component={renderField}
-          />
+        <Field label="组件名称" name="appName" type="text" component={renderField}/>
 
         <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
         
-        <Field label="LOGO" name="appLogo" type="text"
+        <Field label="组件LOGO" name="appLogo" type="text"
           component={renderImageUpload}/>
 
-        <Field label="缩略图" name="appPreviewImage" type="text"
+        <Field label="组件缩略图" name="appPreviewImage" type="text"
           component={renderImageUpload}/>
 
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
@@ -71,10 +71,10 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state)=> {
   return {
-    initialValues: state.widgetCreate.form,
-    tags: state.widgetCreate.tags,
-    sizeList: state.widgetCreate.sizeList,
-    cates: state.widgetCreate.cates
+    initialValues: state.widgetEdit.form,
+    tags: state.widgetEdit.tags,
+    sizeList: state.widgetEdit.sizeList,
+    cates: state.widgetEdit.cates
   }
 }
 
@@ -82,10 +82,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(reduxForm({
-  form: 'widgetsCreateFirst',
+  form: 'widgetsEditFirst',
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,
-  forceUnregisterOnUnmount: true,
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true
   // validate,
 })(FirstStepForm))
 

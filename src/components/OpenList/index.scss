@@ -35,6 +35,8 @@
       padding: 16px 26px 0px 26px;
       font-size: 18px;
       color: $black-color;
+      @include font-hidden;
+      @include font-nowrap;
   }
   .open-user-name{
     display: block;
@@ -42,14 +44,22 @@
     font-size: 12px;
     color: $gray6-color;
     line-height: 24px;
+    @include font-hidden;
+    @include font-nowrap;
+    .user-img{
+      margin-right: 4px;
+    }
   }
   .open-info-introduce{
     padding: 0 14px;
-    height:  54px;
-    word-break: break-all;
+    height:  58px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $gray6-color;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    @include font-hidden;
   }
 }
 .open-list-show{
