@@ -1,50 +1,45 @@
 import React, { Component, PropTypes } from 'react'
 import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect, renderTags,
-  renderImageUpload }from '../modules/renderField'
+
+import { 
+  renderField, 
+  renderTextArea, 
+  renderSelect, 
+  renderTags,
+  renderImageUpload 
+} from '../../../modules/renderField'
+
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-import { toggleTag } from '../modules/edit'
+import './style.scss'
 
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+const FirstStepForm = props => {
+  const { handleSubmit, tags, cates, initialValues } = props;
 
-import './firstStepForm.scss'
-
-class FirstStepForm extends Component {
-
-  render() {
-    const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
-    return (
-      <form onSubmit={handleSubmit}>
-        <Field label="应用名称" name="appName" type="text" component={renderField}/>
-
-        <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
-       
-        <Field label="应用简介" name="appDesc" component={renderTextArea} />
-
-        <Field label="分类" name="categoryId" component={renderSelect}>
-          <option>请选择分类</option>
-          {
-            cates.map((item) => (
-              <option value={item.categoryId}>
-                {item.categoryName}
-              </option>
-            ))
-          }
-        </Field>
-        
-        <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
-
-        <div className="form-btn">
-          <div>
-          	<button type="submit" className="next">下一步</button>
-          </div>
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field label="应用名称" name="appName" type="text" component={renderField}/>
+      <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
+      <Field label="应用简介" name="appDesc" component={renderTextArea} />
+      <Field label="分类" name="categoryId" component={renderSelect}>
+        <option>请选择分类</option>
+        {
+          cates.map((item) => (
+            <option value={item.categoryId}>
+              {item.categoryName}
+            </option>
+          ))
+        }
+      </Field>
+      <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
+      <div className="form-btn">
+        <div>
+          <button type="submit" className="next">下一步</button>
         </div>
-      </form>
-    )
-  }
+      </div>
+    </form>
+  )
 }
 
 FirstStepForm.propTypes = {
@@ -53,23 +48,20 @@ FirstStepForm.propTypes = {
 
 
 const mapDispatchToProps = {
-  toggleTag,
 }
 
-const mapStateToProps = (state) => {
-  return {
-    initialValues: state.appsEdit.form,
-    tags: state.appsEdit.tags,
-    cates: state.appsEdit.cates
-  }
-}
+const mapStateToProps = ({ appsEdit }) => ({
+  initialValues: appsEdit.form,
+  tags: appsEdit.tags,
+  cates: appsEdit.cates
+})
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(reduxForm({
-  form: 'firstStepForm',
-  fields: ['appName', 'appDesc'],
+  form: 'editAppStep1',
+  fields: [],
   // forceUnregisterOnUnmount: true,
   // validate,
   keepDirtyOnReinitialize: true,

@@ -15,10 +15,7 @@ class List extends React.Component {;
   }
   render() {
     const {data,showName} = this.props
-    console.log(data)
     const {name} = this.state
-
-    console.log(name, "==");
 
     return (
       <div className="listContent">

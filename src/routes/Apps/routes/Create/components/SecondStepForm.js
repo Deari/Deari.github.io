@@ -3,7 +3,6 @@ import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
-import { toggleStep } from '../../../modules/model'
 import { 
   renderField, 
   renderTextArea, 
@@ -12,45 +11,40 @@ import {
 
 import { validate } from '../modules/validate'
 
+const SecondStepForm = props => {
 
-class SecondStepForm extends React.Component {
+  const { handleSubmit, submitting, previous } = props;
+  
+  return (
+    <form onSubmit={handleSubmit}>
+      <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
+      <Field name="file" component={renderFile} label="应用文件" />
 
-  render(){
-
-    const { handleSubmit, submitting, toggleStep, initialValues,
-      previous } = this.props;
-
-    return (
-      <form onSubmit={handleSubmit}>
-        <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-        <Field name="file" component={renderFile} label="应用文件" />
-
-        <div className="form-btn">
-          <div>
-            <button type="button" className="previous" onClick={previous}>上一步</button>
-            <button type="submit" className="next" disabled={submitting}> 提交</button>
-          </div>
+      <div className="form-btn">
+        <div>
+          <button type="button" className="previous" onClick={previous}>上一步</button>
+          <button type="submit" className="next" disabled={submitting}> 提交</button>
         </div>
-      </form>
-    )
-  }
-
+      </div>
+    </form>
+  )
 }
 
 const mapDispatchToProps = {
-  toggleStep,
+
 };
 
-export default connect(
-  state=>({
-    initialValues: state.appsCreate.form2,
-  }),
+const mapStateToProps = ({appsCreate}) => ({
+  initialValues: appsCreate.form2,
+});
 
+export default connect(
+  mapStateToProps,
   mapDispatchToProps
 
 )(reduxForm({
-  form: 'secondStepForm',   
-  fields: ['appName', 'appDesc'],
+  form: 'createAppStep2',
+  fields: [],
   keepDirtyOnReinitialize: true,
   enableReinitialize: true
   // validate,
