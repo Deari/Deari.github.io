@@ -21,7 +21,7 @@ class FirstStepForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
 
-        <Field label="硬件LOGO" name="hardwareLogo" type="text" component={renderImageUpload} />
+        <Field label="LOGO" name="hardwareLogo" type="text" component={renderImageUpload} />
 
         <Field label="硬件介绍" name="hardwareFunction" component={renderTextArea} />
 

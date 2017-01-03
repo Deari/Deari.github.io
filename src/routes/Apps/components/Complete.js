@@ -1,5 +1,6 @@
 import './complete.scss'
-const Complete = ()=>(
+
+const Complete = (props)=>(
   <div className="step-finish">
     <i className="iconfont icon-finish"></i>
     <span>提交成功，等待审核</span>

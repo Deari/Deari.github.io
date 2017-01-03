@@ -2,9 +2,36 @@ import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
 import './HomeView.scss'
+import '../assets/lib/slick.css'
+import '../assets/lib/slick-theme.css'
+
+var Slider = require('react-slick');
+
+const SimpleSlider = React.createClass({
+  render: function () {
+    var settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+    return (
+      <Slider {...settings}>
+        <div><h3>1</h3></div>
+        <div><h3>2</h3></div>
+        <div><h3>3</h3></div>
+        <div><h3>4</h3></div>
+        <div><h3>5</h3></div>
+        <div><h3>6</h3></div>
+      </Slider>
+    );
+  }
+});
 
 export const HomeView = () => (
   <div className="">
+    <SimpleSlider></SimpleSlider>
     <div className="home-banner">
       <dl>
         <dt>API集市</dt>
