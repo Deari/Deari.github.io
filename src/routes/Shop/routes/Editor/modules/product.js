@@ -19,7 +19,6 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 //  ]
 //}
 
-
  const customProduct = [
     {
       "merchantId": 10025585,
