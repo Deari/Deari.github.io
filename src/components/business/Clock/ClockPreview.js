@@ -9,7 +9,7 @@ export default class ClockPreview extends Component {
     fontWeight: '400',
     lineHeight: '47',
     textAlign: 'center',
-    fontFamily: 'BotonProB7cee9443a179eb',
+    fontFamily: 'sans-serif',
     textShadow: '3px 3px 5px #444444',
   }
 
@@ -28,7 +28,7 @@ export default class ClockPreview extends Component {
 
   render() {
     const { w: width, h: height } = this.props.layout
-    const style = { ...this.style, lineHeight: (height * this.props.gridProps.rowHeight) + 'px' }
+    const style = { ...this.style, lineHeight: (height * this.props.gridProps.rowHeight) + 'px', ...this.props.detail }
     this.formatString = (width == 1) ? 'hh:mm:ss' : 'YYYY-MM-DD hh:mm:ss'
     return <div style={style}>{this.state.time}</div>
   }

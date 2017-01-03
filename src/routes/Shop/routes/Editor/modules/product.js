@@ -21,7 +21,7 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
  const customProduct = [
     {
-      "merchantId": 10025585,
+      "merchantId": 1009999,
       "appId": 269,
       "appType": 2,
       "codeId": 209,
@@ -52,8 +52,8 @@ export const fetchProducts = () => {
     return new Promise(resolve => {
       fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
         .then(v => {
-          //const data = v.data
-          const data = customProduct
+          let data = [...customProduct, ...v.data]
+          //const data = customProduct
           dispatch(getProduct({products: data}))
           resolve()
         })

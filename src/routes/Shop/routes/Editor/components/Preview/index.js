@@ -54,6 +54,10 @@ export class Preview extends Component {
   }
 
   generateDOM() {
+    console.log(this.props)
+    if (!this.props.preview) {
+      return null
+    }
     const elements = this.props.preview.elements
 
     return elements.map(e => {
