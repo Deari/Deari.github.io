@@ -128,6 +128,10 @@
           padding-right: $default-padding-right - 24px;
           color: $white-color;
           line-height: $text-line-height - 16px;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          @include font-hidden;
         }
       }
     }
@@ -204,6 +208,10 @@
         color: $gray9-color;
         font-size: $text-font-size - 6px;
         line-height: $text-line-height - 16px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        @include font-hidden;
       }
     }
   }
