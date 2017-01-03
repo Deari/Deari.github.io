@@ -42,20 +42,32 @@ export class Preview extends Component {
     }
   }
 
+  generateStyle(e) {
+    if (e.moduleType !== 'html5') {
+      return {
+        backgroundSize: 'cover',
+        backgroundImage: `url(${e.appPreviewImage})`,
+      }
+    } else {
+      return {}
+    }
+  }
+
   generateDOM() {
+    console.log(this.props)
+    if (!this.props.preview) {
+      return null
+    }
     const elements = this.props.preview.elements
+
     return elements.map(e => {
       const className = e.selected ? 'selected' : ''
-      console.log(e)
       return <div key={e.id}
-                  style={{
-                    backgroundSize: 'cover',
-                    backgroundImage: `url(${e.appPreviewImage})`,
-                  }}
+                  style={this.generateStyle(e)}
                   className={className}
                   onClick={this.props.selectElement.bind(null, e.id)}
                   data-grid={this.generateLayout(e)}>
-        <Element {...e} layout={this.generateLayout(e)}/>
+        <Element {...e} layout={this.generateLayout(e)} gridProps={this.props.gridProps}/>
       </div>
     })
   }
