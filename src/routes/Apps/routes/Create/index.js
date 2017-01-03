@@ -8,7 +8,7 @@ module.exports = (store) => ({
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
       const Create = require('./containers/CreateContainer').default;
-      const createReducer = require('./modules/create').default;
+      const createReducer = require('../../modules/model').default;
 
       injectReducer(store, { key: 'form', reducer: formReducer })
       injectReducer(store, { key: 'appsCreate', reducer: createReducer })

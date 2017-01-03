@@ -3,30 +3,32 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import { validate, warn } from '../modules/validate'
-import { test } from '../modules/create'
+import Complete from '../../../components/Complete'
+import Step from '../../../components/Step'
 
 import Sidebar from '../../../../../components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
-import Complete from '../components/Complete'
-import Step from '../components/Step'
 
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
+import debug from '../../../../utils/debug'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates } from '../modules/create'
+import { toggleStep, updateForm2, getTags, getCates } from '../../../modules/model'
 
 class CreateContainer extends Component {
   
-  componentDidMount() {
-    this.props.fetchTags()
-    this.props.fetchCates()
+  componentWillMount() {
+    this.props.getTags()
+    this.props.getCates()
   }
 
   submitFirst(values) {
 
     // console.log("values", values);
-    // this.props.updateAppId(123456);
+    // this.props.updateForm2({
+    //   appId: 111111
+    // });
     // this.props.toggleStep(2);
     // return;
 
@@ -46,21 +48,21 @@ class CreateContainer extends Component {
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        console.info("提交成功: ", res.data);
-        this.props.updateAppId(res.data.appId);
+        debug.info('提交成功', res.data)
+        this.props.updateForm2({
+          appId: res.data.appId
+        });
         this.props.toggleStep(2);
       } else {
-        console.warn("提交失败：", res)
+        debug.warn('提交失败', res)
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误', e)
     })
   }
 
   submitSecond(values) {
-    if(!values.appId) {
-      alert('缺少appId')
-    }
+    !values.appId && debug.warn('缺少appId');
 
     const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
     const formData = new FormData();
@@ -77,22 +79,24 @@ class CreateContainer extends Component {
       formData.append(key, params[key])
     }
 
-    fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
+    fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
-        console.info('提交成功')
         this.props.toggleStep(3);
       } else {
-        alert('提交失败：'+JSON.stringify(res));
-        console.warn('提交失败：', res)
+        debug.warn('提交失败', JSON.stringify(res))
       }
-    }).catch(e=>{
-      alert('提交失败：'+JSON.stringify(e));
-      console.warn('网络错误', e);
+    }).catch(e => {
+      debug.warn('网络错误', JSON.stringify(e))
     })
   }
 
+  previous() {
+    const appId = this.props.appsCreate.form2.appId;
+    window.location.href = '/apps/edit/' + appId;
+  }
+
   render() {
-    const { page } =this.props.create;
+    const { page } = this.props.appsCreate;
 
     const urls = {
       create: { url: `/apps/create` },
@@ -109,7 +113,8 @@ class CreateContainer extends Component {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond}
+              previous={::this.previous} />
           }
           {
             page === 3 && <Complete />
@@ -122,15 +127,13 @@ class CreateContainer extends Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  fetchTags,
-  fetchCates,
-  updateAppId
+  getTags,
+  getCates,
+  updateForm2
 }
 
-const mapStateToProps = (state) => {
-  return {
-    create: state.appsCreate
-  }
-}
+const mapStateToProps = ({ appsCreate }) => ({
+  appsCreate
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
