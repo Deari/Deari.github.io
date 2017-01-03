@@ -7,6 +7,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
 input[type="radio"]{position:absolute;top:5px;left:23px;width:26px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
 input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
 input[type="radio"]:checked + span i.icon-radio1{display: none;}
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px; 

@@ -75,6 +75,12 @@
       margin-bottom:15px;
       font-size: 20px;
       color: $gray9-color;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      word-break: break-all;
       .text{
         padding-left: 15px;
         color: $black-color;

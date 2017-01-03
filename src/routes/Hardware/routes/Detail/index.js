@@ -46,7 +46,9 @@ class HardwareDetail extends React.Component {
         <Slidebar urls={urls} type='硬件'/>
         <div className="sub-container bg-white">
           <div className="detail-container">
-            <div className="silder pull-left"></div>
+            <div className="silder pull-left">
+              <img src={data.hardwareLogo} alt="LOGO"/>
+            </div>
             <div className="price pull-right">
               <p className="title">硬件名称:<span className="text">{ data.hardwareName }</span></p>
               <p className="title">库存:<span className="text">123456件</span></p>
@@ -59,7 +61,7 @@ class HardwareDetail extends React.Component {
               <a className="active">商品介绍</a>
               <a>规格参数</a>
             </div>
-            <p className="text">{ data.hardwareDetail }</p>
+            <p className="text">{ data.hardwareFunction }</p>
           </div>
           <div className="detail-moreApps">
             <div className="moreApp-list">

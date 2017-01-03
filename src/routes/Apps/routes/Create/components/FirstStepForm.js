@@ -1,16 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-import renderField, { renderTextArea, renderSelect, renderTags,
-  renderImageUpload }from '../modules/renderField'
+
+import { 
+  renderField, 
+  renderTextArea, 
+  renderSelect, 
+  renderTags,
+  renderImageUpload 
+} from '../../../modules/renderField'
+
 import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
-import { toggleTag } from '../modules/create'
+import { toggleTag } from '../../../modules/model'
 
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
-
-import './firstStepForm.scss'
+import './style.scss'
 
 class FirstStepForm extends Component {
 

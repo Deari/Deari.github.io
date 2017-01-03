@@ -1,21 +1,24 @@
 import React from 'react'
 import { connect} from 'react-redux'
-
+import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
-import renderField, { renderTextArea, renderFile } from '../modules/renderField'
+import { toggleStep } from '../../../modules/model'
+import { 
+  renderField, 
+  renderTextArea, 
+  renderFile,
+} from '../../../modules/renderField'
+
 import { validate } from '../modules/validate'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
-
-import { toggleStep } from '../modules/create'
 
 class SecondStepForm extends React.Component {
 
   render(){
 
-    const { handleSubmit, submitting, toggleStep } = this.props
+    const { handleSubmit, submitting, toggleStep, initialValues,
+      previous } = this.props;
 
     return (
       <form onSubmit={handleSubmit}>
@@ -24,7 +27,7 @@ class SecondStepForm extends React.Component {
 
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
+            <button type="button" className="previous" onClick={previous}>上一步</button>
             <button type="submit" className="next" disabled={submitting}> 提交</button>
           </div>
         </div>

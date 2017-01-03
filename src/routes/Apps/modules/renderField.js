@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import fetchUtil from '../../utils/fetchUtil'
+import { getDomain } from '../../utils/domain'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -33,8 +33,6 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
     </div>
   </div>
 )
-
-
 
 export class renderTags extends Component {
   
