@@ -34,23 +34,32 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
   </div>
 )
 
-export const renderSizeRadioBox = ({ input, sizeList, }) => <div className="form-row">
-  <label>尺寸</label>
-  <div className="row-right">
-    <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-    {sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
-      <span className={`${item.image} row-img`}></span>
-      <div className="row-radio">
-        <input type="radio" name="radio" checked={input.value == item.value}/>
-        <span>
-          <i className="iconfont icon-radio1"></i>
-          <i className="iconfont icon-radio"></i>
-        </span>
+export class renderSizeRadioBox extends Component {
+  render(){
+    const {input, sizeList} = this.props
+    const width = input.value.w
+    const height = input.value.h
+    return(   
+      <div className="form-row">
+        <label>尺寸</label>
+        <div className="row-right">
+          <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+          {sizeList.map(item => <div className="row-size" onClick={e => { input.onChange(item.value) } }>
+            <span className={`${item.image} row-img`}></span>
+            <div className="row-radio">
+              <input type="radio" name="radio" checked={item.value.w === width&&item.value.h ===height} />
+              <span>
+                <i className="iconfont icon-radio1"></i>
+                <i className="iconfont icon-radio"></i>
+              </span>
+            </div>
+          </div>)}
+        </div>
       </div>
-    </div>)}
-  </div>
-</div>
+    )
+  }
 
+}
 
 export class renderTags extends Component {
 

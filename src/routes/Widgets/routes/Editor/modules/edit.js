@@ -148,9 +148,9 @@ const initialState = {
     tagName: '正在加载...'
   }],
   sizeList :[
-    { image: 'img1', value: {widgetW:2,widgetH:1} },
-    { image: 'img2', value: {widgetW:1,widgetH:1} },
-    { image: 'img3', value: {widgetW:2,widgetH:2} },
+    { image: 'img1', value: {w:2,h:1} },
+    { image: 'img2', value: {w:1,h:1} },
+    { image: 'img3', value: {w:2,h:2} },
   ],
   form: {
     appName: '',
@@ -212,12 +212,13 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('组件详情：', res)
-        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags } = res.data;
+        
+        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout } = res.data;
+        const size =  JSON.parse(defaultLayout)
         const tagId = tags.map(v=>v.tagId);
-
         dispatch(updateForm({
           appId,
-          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform,
+          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, size,
           tags: tagId
         }));
         
