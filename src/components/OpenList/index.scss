@@ -7,18 +7,17 @@
   @include clx;
   li{
     float: left;
+    margin-right: 17px;
     position: relative;
     margin-bottom: 14px;
-    padding: 0 8px;
-    width: $sub-container-width/3;
+    width: 279px;
+//  width: $sub-container-width/3;
     text-align: center;
-    div{
-      background: $white-color;
-      border-radius: 4px;
-      overflow: hidden;
-      &:hover{
-        box-shadow: 0 0 8px rgba(187,187,187,0.9);
-      }
+    background: $white-color;
+    border-radius: 4px;
+    overflow: hidden;
+    &:hover{
+      box-shadow: 0 0 8px rgba(187,187,187,0.9);
     }
     img{
       margin: 20px 0;
@@ -28,11 +27,14 @@
       overflow: hidden;
     }
   }
+  li:nth-child(3n){
+    margin-right: 0;
+  }
 }
 .open-content-info{
   display: block;
   .open-info-name{
-      padding: 16px 26px 0px 26px;
+      padding: 16px 34px 0px;
       font-size: 18px;
       color: $black-color;
       @include font-hidden;
@@ -40,10 +42,10 @@
   }
   .open-user-name{
     display: block;
+    margin-top: 8px;
     padding: 0 14px;
     font-size: 12px;
     color: $gray6-color;
-    line-height: 24px;
     @include font-hidden;
     @include font-nowrap;
     .user-img{
@@ -53,7 +55,7 @@
   .open-info-introduce{
     padding: 0 14px;
     height:  58px;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 20px;
     color: $gray6-color;
     display: -webkit-box;
@@ -65,7 +67,7 @@
 .open-list-show{
   a{
     display: inline-block;
-    width: $sub-list-width/3;
+    width: 93px;
     text-align: center;
     font-size: 16px;
     color: $gray9-color;
@@ -87,7 +89,8 @@
 }
 .open-content-nav{
   @include clx;
-  font-size: 18px;
+  font-size: 16px;
+  height: 60px;
   line-height: 60px;
   color: $black-color;
   form{
@@ -100,24 +103,30 @@
     }
     select{
       display: inline-block;
+      padding-left: 10px;
       width: 110px;
-      height: 32px;
+      height: 29px;
+      color: $gray9-color;
+      font-size: 14px;
       background: #fff url(../../routes/Home/assets/arrD.png) no-repeat 86px center;
       background-size: 14px 8px;
+      border: 1px solid $gray9-color;
+      border-radius: 5px;
       appearance:none;
       -moz-appearance:none;
       -webkit-appearance:none;
+      outline: none;
     }
   }
 }
 .icon-hot-control{
-  font-size: 18px;
-  margin-right: 4px;
+  font-size: 16px;
+  margin-right: 2px;
   color: $gray6-color;
 }
 .open-list-price{
   display: block;
-  margin-top: 8px;
+  margin: 8px 6px 0 6px;
   font-size: 18px;
   color: $blue-color;
   line-height: 40px;
@@ -143,6 +152,7 @@
   }
 }
 .icon-uncollected{
+  color: #d2d2d2;
   background: $white-color;
   &:hover{
     opacity: 0;
