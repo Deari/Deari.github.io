@@ -27,6 +27,8 @@
     .info-name {
       font-size: $text-font-size - 4px;
       color: $black-color;
+      @include font-nowrap;
+      @include font-hidden;
     }
     .info-introduce{
       font-size: $text-font-size - 6px;
@@ -35,6 +37,7 @@
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      @include font-hidden;
     }
   }
   .info-price,.info-status,.info-download{

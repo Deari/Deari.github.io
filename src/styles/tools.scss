@@ -28,12 +28,6 @@
 .text-gray9-color{ color: $gray9-color;}
 .text-black-color{ color: $black-color;}
 
-.font-nowrap{ white-space:nowrap;}  //不换行
-.font-hidden{
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
 //list width
 .w124,.w342,.w90,.w114{ float: left;}
 .w124{ width: 124px;}

@@ -27,10 +27,10 @@ class FirstStepForm extends Component {
 
         <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
         
-        <Field label="组件LOGO" name="appLogo" type="text"
+        <Field label="LOGO" name="appLogo" type="text"
           component={renderImageUpload}/>
 
-        <Field label="组件缩略图" name="appPreviewImage" type="text"
+        <Field label="缩略图" name="appPreviewImage" type="text"
           component={renderImageUpload}/>
 
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
