@@ -61,9 +61,9 @@ class HardwaresList extends React.Component {
         <div className="sub-container plf bg-white">
           <ul className="sub-content-tab">
             <li><a className={this.state.status === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
-            <li><a className={this.state.status === 0 ? 'tab-active' : ''} onClick={this.changeList.bind(this,0)}>已审核</a></li>
-            <li><a className={this.state.status === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>未审核</a></li>
-            <li><a className={this.state.status === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>未提交</a></li>
+            <li><a className={this.state.status === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>已审核</a></li>
+            <li><a className={this.state.status === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>待审核</a></li>
+            <li><a className={this.state.status === 3 ? 'tab-active' : ''} onClick={this.changeList.bind(this,3)}>待提交</a></li>
           </ul>
           <ul className="list-title">
             <li className="w124">LOGO</li>
@@ -71,7 +71,7 @@ class HardwaresList extends React.Component {
             <li className="w90">价格</li>
             <li className="w90">状态</li>
             <li className="w90">已下载</li>
-            <li className="w114">操作</li>
+            <li className="w112">操作</li>
           </ul>
           <List data={this.state.listData} showName="硬件"/>
         </div>

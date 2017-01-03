@@ -19,10 +19,10 @@ class OpenList extends React.Component {
                   { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
                 </p>
                 <Link className="open-content-info" to={detailLink + item[`${typeName}Id`]}>
-                  <p className="open-info-name font-hidden">{ item[`${typeName}Name`] }</p>
-                  <span className="open-user-name font-hidden font-nowrap"><i className="user-img"></i>极速数据(北京)</span>
+                  <p className="open-info-name">{ item[`${typeName}Name`] }</p>
+                  <span className="open-user-name"><i className="user-img"></i>极速数据(北京)</span>
                   <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
-                  <span className="open-info-introduce font-hidden">{ item[`${typeName}Desc`] }</span>
+                  <span className="open-info-introduce">{ item[`${typeName}Desc`] }</span>
                 </Link>
                 <Link className="open-list-price">免费</Link>
                 <p className="open-list-show">

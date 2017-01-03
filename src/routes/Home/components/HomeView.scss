@@ -23,17 +23,20 @@
       font-size: $text-font-size + 12px;
     }
   }
-  p{
-    a{
-      margin: 10px;
-      color: $white-color;
-      box-shadow: 0 1px 4px rgba(20,137,74,0.5);
-    }
-    a:last-of-type{
-      background: rgba(255,255,255,0.3);
-      &:hover{
-        background: rgba(255,255,255,0.4);
-      }
+  .btn-left,.btn-right{
+    margin: 10px;
+    width: 160px;
+    height: 45px;
+    font-size: 22px;
+    
+    color: $white-color;
+    box-shadow: 0 1px 4px rgba(20,137,74,0.5);
+  }
+  .btn-right{
+    color: #fff;
+    background: rgba(255,255,255,0.3);
+    &:hover{
+      background: rgba(255,255,255,0.4);
     }
   }
 }
@@ -42,12 +45,19 @@
   line-height: $text-line-height;
   color: $gray6-color;
   font-size: $text-font-size - 6px;
+  .container{
+    padding: 0 76px 0 50px;
+  }
   span{
-    padding-left: 24px;
+    font-size: 14px;
+    color: $gray3-color;
     .icon-laba{
-      font-size: $text-font-size;
+      font-size: 18px;
+      color: $gray9-color;
+      vertical-align: middle;
     }
     i:nth-of-type(2){
+      margin-left: 5px;
       width: 24px; height: 14px;
       background: url(../assets/remind_newicon.png) no-repeat;
       background-size: 100% 100%;
@@ -56,6 +66,8 @@
   a{
     @include float-right;
     padding-right: 14px;
+    color: $gray6-color;
+    font-size: 12px;
     background: url(../assets/more_into_gray.png) no-repeat right center;
     background-size: 8px 16px;
   }
@@ -169,7 +181,7 @@
         display: block;
         padding: 34px 20px;
         height: $default-height + 220px;
-        border: 2px solid $graye-color;
+        border: 1px solid $graye-color;
       }
       a:hover{
         border-color: $blue-color;
@@ -213,7 +225,6 @@
       width: $default-width - 50px;
       height: $default-height - 50px;
       border-radius: 50%;
-      border: 1px solid $gray9-color;
       background: #eee url(../assets/temp-img2.jpg) no-repeat;
       background-size: 100%;
     }

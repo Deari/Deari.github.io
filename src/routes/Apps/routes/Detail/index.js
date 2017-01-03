@@ -43,7 +43,7 @@ class AppsDetail extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} />
+        <Slidebar urls={urls} type='应用'/>
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">

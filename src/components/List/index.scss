@@ -1,9 +1,13 @@
 @import "../../layouts/CoreLayout/CoreLayout";
 @import "../../styles/_base.scss";
 
+.listContent{
+  border: 1px solid #eee;
+}
 .list-container {
   padding: 10px 0;
   @include clx;
+  @include border-bottom;
   .list-item-center {
     height: 50px;
     line-height: 50px;
@@ -27,6 +31,8 @@
     .info-name {
       font-size: $text-font-size - 4px;
       color: $black-color;
+      @include font-nowrap;
+      @include font-hidden;
     }
     .info-introduce{
       font-size: $text-font-size - 6px;
@@ -35,6 +41,7 @@
       display: -webkit-box;
       -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
+      @include font-hidden;
     }
   }
   .info-price,.info-status,.info-download{
@@ -46,12 +53,16 @@
   }
   .info-btn{
     text-align: center;
-    line-height: $text-line-height + 46;
     a{
       display: block;
       margin: 6px 0;
+      filter:alpha(opacity=20);  
+      opacity: 0.2;
       button{
-        display: none;
+        width: 80px;
+        @include btn;
+        @include btn-default;
+        @include btn-xs;
         &:hover{
           color: $black-color;
           background-color: $white-color;
@@ -61,12 +72,9 @@
       }
     }
     .active{
-      display: block;
+      filter:alpha(opacity=100);  
+      opacity: 1;
       button{
-        width: 80px;
-        @include btn;
-        @include btn-default;
-        @include btn-xs;
         &:hover{
           cursor: pointer;
         }
