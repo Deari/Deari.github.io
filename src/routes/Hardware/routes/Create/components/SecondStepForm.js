@@ -9,17 +9,15 @@ import { validate } from '../modules/validate'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, fetchSdkInfo } from '../modules/create'
+import { toggleStep, getSdkInfo } from '../modules/create'
 
 class SecondStepForm extends React.Component {
 
   async componentDidMount() {
-    await this.props.fetchSdkInfo()
+    await this.props.getSdkInfo()
   }
 
   render(){
-
-    const sdkDowload = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/getSdkUrl`)
 
     const { handleSubmit, submitting, toggleStep } = this.props
 
@@ -84,7 +82,7 @@ class SecondStepForm extends React.Component {
         <div className="form-btn">
 	          <div>
 	          	<button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
-              <a href={sdkDowload} target="_blank" className="row-btn"><button type="button" >下载SDK</button></a>
+              {/*<a target="_blank" className="row-btn"><button type="button" >下载SDK</button></a>*/}
 	          	<button type="submit" className="next" disabled={submitting}>提交审核</button>
 	          </div>
         </div>
@@ -97,7 +95,7 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  fetchSdkInfo
+  getSdkInfo
 };
 
 export default connect(

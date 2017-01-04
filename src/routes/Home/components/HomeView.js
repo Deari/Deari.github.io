@@ -11,6 +11,7 @@ const SimpleSlider = React.createClass({
   render: function () {
     var settings = {
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
