@@ -204,8 +204,12 @@ export const Promised = (promiseProp, Wrapped) => class extends Component {
         if (typeof v.data.viewData === 'string') {
           v.data.viewData = JSON.parse(v.data.viewData)
         }
+        //console.log("ssssssssssssssss")
+        //console.log(v.data.viewData)
         this.setState({ preview: v.data.viewData })
       } catch (e) {
+        console.log('---UserView data error')
+        console.log(e)
         this.setState({
           preview: defaultView
         })
