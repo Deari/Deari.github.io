@@ -25,10 +25,10 @@ class CreateContainer extends Component {
     hardwareId: ''
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { params } = this.props;
     const id = parseInt(params.id);
-
+    this.props.toggleStep(1);
     this.props.getTags()
     this.props.getCates()
     this.props.getHDInfo(id)

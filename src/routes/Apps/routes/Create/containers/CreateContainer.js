@@ -21,6 +21,7 @@ class CreateContainer extends Component {
   componentWillMount() {
     this.props.getTags()
     this.props.getCates()
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {

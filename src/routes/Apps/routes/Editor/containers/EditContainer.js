@@ -27,6 +27,7 @@ class EditContainer extends Component {
   componentWillMount() {
     const { params } = this.props;
     const appId = parseInt(params.appId);
+    this.props.toggleStep(1)
     this.props.getTags()
     this.props.getCates()
     this.props.getAppInfo(appId);

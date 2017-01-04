@@ -175,8 +175,7 @@ export default function createReducer(state = initialState, action) {
 
 export const fetchTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
-
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=widget");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -214,13 +213,16 @@ export const getAppInfo = (appId) => {
         console.log('组件详情：', res)
         
         const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout } = res.data;
-        const size =  JSON.parse(defaultLayout)
+        const size = defaultLayout? JSON.parse(defaultLayout) : {};
         const tagId = tags.map(v=>v.tagId);
+
         dispatch(updateForm({
           appId,
           appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, size,
           tags: tagId
         }));
+
+        dispatch(updateForm2({ platform }));
         
       } else {
         alert('获取组件详情失败: ', JSON.stringify(res));

@@ -25,7 +25,7 @@ class FirstStepForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
 
-        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>
+        {/*<Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>*/}
         
         <Field label="组件LOGO" name="appLogo" type="text"
           component={renderImageUpload}/>
@@ -82,8 +82,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(reduxForm({
-  form: 'widgetsEditFirst',
+  form: 'widgetsEditStep1',
   fields: ['appName', 'appDesc'],
+  destroyOnUnmount: false,
   keepDirtyOnReinitialize: true,
   enableReinitialize: true
   // validate,
