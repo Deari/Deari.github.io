@@ -42,25 +42,27 @@
       line-height: $text-line-height - 10;
     }
     a:hover{
-      color: $white-color;
-      background: $blue-color;
-      border-radius: 2px;
+      color: $blue-color;
+      border-bottom: 1px solid $blue-color;
+      
       i{
-        color: $white-color;
+        color: $blue-color;
       }
     }
     .active{
-      color: $blue-color;
-      border-bottom: 1px solid $blue-color;
+      color: $white-color;
+      background: $blue-color;
+      border-radius: 2px;
       &:hover{
-        color: $blue-color;
-        background: none;
+        color: $white-color;
+        background: $blue-color;
+        border-radius: 2px;
         i{
-          color: $blue-color;
+          color: $white-color;
         }
       }
       i{
-        color: $blue-color;
+        color: $white-color;
       }
     }
   }
