@@ -2,19 +2,6 @@
 ## 一、注册
 1、首先您需要打开 [开发者平台首页](http://open.sit.ffan.net/apps/list)，点击右上角注册按钮，填写相关信息注册为开发者。
 
-```javascript
-class MarkdownExample extends React.Component {
-  getMarkdownText() {
-    //var rawMarkup = marked(html, {sanitize: true});
-    var rawMarkup = marked(html);
-    return { __html: rawMarkup };
-  }
-  render() {
-    return <div id="github" dangerouslySetInnerHTML={this.getMarkdownText()} />
-  }
-}
-```
-
 ## 二、开发
 ### 1、创建应用
 1、点击 [应用市场](http://open.sit.ffan.net/apps) -> 创建新应用，按要求填写相关应用信息，创建应用
