@@ -21,6 +21,7 @@ class List extends React.Component {;
     const {data,showName} = this.props
     const name = choose(showName)
     const itemName = name === 'hardware' ? 'hardware' : 'app'
+    console.log(data[0])
     return (
       <div className="listContent">
         {
@@ -48,7 +49,7 @@ class List extends React.Component {;
                   || item.hardwareStatus==0 ? 
                   'active':'' 
                 } 
-                  to={'/' + name + 's/edit/' + item[itemName+'Id']}>
+                  to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     name !== 'hardware'&&!item.codeId 
                     || item.reviewStatus == 3 
@@ -62,7 +63,7 @@ class List extends React.Component {;
                   || item.hardwareStatus==2 ? 
                   'active': ''
                 } 
-                to={'/' + name + 's/edit/' + item[itemName+'Id']} >
+                to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     item.codeId 
                     || item.hardwareStatus == 0 ? 
