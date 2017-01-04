@@ -1,24 +1,27 @@
 import React, { Component, PropTypes } from 'react'
-import Clock from '../../../../../../components/business/Clock'
+import Business from '../../../../../../components/business'
 
 export class Element extends Component {
   render() {
-    const { appName, id, children, dispatch, selectElement, ...rest } = this.props
+    const { appName, moduleName, children, moduleType, ...rest } = this.props
 
-    if (this.props.moduleName === 'clock') {
-      return <Clock {...rest} />
+    if (moduleType === 'html5') {
+      const { Preview } = Business[ moduleName ]
+      if (Preview) {
+        return <Preview {...rest}  />
+      }
     }
 
     return <div
       {...rest}>
-      {rest.appPreviewImage ? '' :  appName }
+      {rest.appPreviewImage ? '' : appName }
       {children}
     </div>
   }
 }
 
 Element.defaultProps = {
-  selectElement: ()=> {}
+  selectElement: () => {}
 }
 
 export default Element

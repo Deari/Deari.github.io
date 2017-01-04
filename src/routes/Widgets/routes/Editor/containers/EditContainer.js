@@ -25,6 +25,7 @@ class EditContainer extends Component {
     this.props.getAppCodeInfo(appId);
     this.props.fetchTags()
     this.props.fetchCates()
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {

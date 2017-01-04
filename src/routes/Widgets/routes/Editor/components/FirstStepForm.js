@@ -82,8 +82,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(reduxForm({
-  form: 'widgetsEditFirst',
+  form: 'widgetsEditStep1',
   fields: ['appName', 'appDesc'],
+  destroyOnUnmount: false,
   keepDirtyOnReinitialize: true,
   enableReinitialize: true
   // validate,

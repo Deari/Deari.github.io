@@ -22,7 +22,7 @@ const SecondStepForm = props => {
 
       <div className="form-btn">
         <div>
-          <button type="button" className="previous" onClick={previous}>上一步</button>
+          <button type="button" className="previous" onClick={()=>{toggleStep(1)}}>上一步</button>
           <button type="submit" className="next" disabled={submitting}> 提交</button>
         </div>
       </div>

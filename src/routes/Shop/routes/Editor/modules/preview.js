@@ -13,6 +13,7 @@ function makeActionCreator(type, ...argNames) {
 const ADD_ELEMENT = 'ADD_ELEMENT'
 const SET_LAYOUT = 'SET_LAYOUT'
 const SELECT_ELEMENT = 'SELECT_ELEMENT'
+const SAVE_DETAIL = 'SAVE_DETAIL' // same as src/routes/Shop/routes/Editor/modules/detail.js
 
 export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
 export const setLayout = makeActionCreator(SET_LAYOUT, 'layouts')
@@ -48,6 +49,17 @@ const ACTION_HANDLERS = {
       ...element, selected: element.id === action.id
     }))
   }),
+
+  [SAVE_DETAIL]: (state, action) => {
+    const elements = state.elements.map(e=> {
+      if (e.id === action.id) {
+        return {...e, detail: action.detail}
+      } else {
+        return e
+      }
+    })
+    return {...state, elements: elements}
+  },
 
 }
 

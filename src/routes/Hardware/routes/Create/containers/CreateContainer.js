@@ -23,7 +23,8 @@ class CreateContainer extends Component {
     hardwareId: ''
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    this.props.toggleStep(1);
     this.props.getTags()
     this.props.getCates()
   }
