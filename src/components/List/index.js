@@ -33,8 +33,12 @@ class List extends React.Component {;
                 </div>
               </div>
               <div className="info-content w342">
-                <div className="info-name" title={item[itemName+'Name']}>{showName + '名称 : '}{item[itemName+'Name']}</div>
-                <div className="info-introduce" title={item[itemName+'Desc']}>{showName + '介绍 : '}{item[itemName+'Desc']}</div>
+                <div className="info-name" title={item[itemName+'Name']}>
+                  {showName + '名称 : '}{item[itemName+'Name']}
+                </div>
+                <div className="info-introduce" title={item[itemName+'Desc']}>
+                  {showName + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
+                </div>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
