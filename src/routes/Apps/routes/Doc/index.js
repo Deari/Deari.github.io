@@ -3,11 +3,15 @@ import React from 'react'
 import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
 import './index.scss'
-import Content from './content'
-import md from 'raw!./content/develop.md'
-//var md = require('./content/develop.md')
 
-import marked from 'marked'
+import Content from './content'
+import md from 'raw!./develop.md'
+
+import marked, {Renderer} from 'marked'
+var renderer = new Renderer();
+var toc = []; // your table of contents as a list.
+//https://github.com/ReactTraining/react-router/issues/394
+
 marked.setOptions({
   gfm: true,
   breaks: true,
@@ -18,14 +22,13 @@ marked.setOptions({
 
 class Doc extends React.Component {
   render() {
-    const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list` },
-      doc: { url: `/apps/doc`, active: true }
-    }
+    //const urls = {
+    //  create: { url: `/apps/create` },
+    //  list: { url: `/apps/list` },
+    //  doc: { url: `/apps/doc`, active: true }
+    //}
 
-    const html = marked(md)
-
+    const html = marked(md, {renderer})
     return (
     <div className="container clx">
       <div className='sidebar'>
