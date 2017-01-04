@@ -1,30 +1,41 @@
-import html from './content/develop.md'
 import React from 'react';
-import marked from 'marked';
+import marked, { Renderer } from 'marked';
+import highlightjs from 'highlight.js'
 import './github.scss'
-import highlight from 'highlight.js'
+import html from './content/develop.md'
 
-marked.setOptions({
-  highlight: function (code) {
-    return highlight.highlightAuto(code).value;
-  },
-  gfm: true,
-  breaks: true,
-  //pedantic: false,
-  //sanitize: false,
-  //smartLists: true,
-  //smartypants: false
-});
+//const renderer = new Renderer()
+//renderer.code = (code, language) => {
+//  // Check whether the given language is valid for highlight.js.
+//  const validLang = !!(language && highlightjs.getLanguage(language));
+//  // Highlight only if the language is valid.
+//  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+//  // Render the highlighted code with `hljs` class.
+//  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+//};
 
-class MarkdownExample extends React.Component {
-  getMarkdownText() {
-    //var rawMarkup = marked(html, {sanitize: true});
-    var rawMarkup = marked(html);
-    return { __html: rawMarkup };
+class MarkdownContent extends React.Component {
+
+  constructor(props) {
+    super(props);
+    marked.setOptions({
+      //renderer,
+      highlight: function (code, lang) {
+        if (lang) {
+          return highlightjs.highlight(lang, code, true).value;
+        } else {
+          return highlightjs.highlightAuto(code).value;
+        }
+      },
+      gfm: true,
+      breaks: true,
+    });
   }
+
   render() {
-    return <div id="github" dangerouslySetInnerHTML={this.getMarkdownText()} />
+    const rawMarkup = marked(html || '')
+    return <div id="github" dangerouslySetInnerHTML={{ __html: rawMarkup }}/>
   }
 }
 
-export default MarkdownExample
+export default MarkdownContent
