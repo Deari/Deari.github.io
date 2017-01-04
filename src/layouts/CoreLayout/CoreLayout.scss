@@ -29,9 +29,9 @@ $default-margin-left : 40px;
 $default-margin-right : 40px;
 //宽高
 $default-width : 100px;
-$sub-container-width : $default-width + 774px; //内容区右侧宽度871px
+$sub-container-width : 874px; //内容区右侧宽度874px
 $sub-list-width : $sub-container-width/3 - 16px;
-; //内容区右侧-组件宽度（16为左右padding值）
+ //内容区右侧-组件宽度（16为左右padding值）
 $default-height : 100px;
 //float
 @mixin float-left { float : left; }

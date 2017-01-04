@@ -33,7 +33,7 @@ export default class Login extends Component {
       </div>
     ) : (
       <div className="login-wrapper logined">
-          <img src="http://img1.ffan.com/T1F6xTBvVg1RCvBVdK" />
+          <img src="http://img1.ffan.com/T1_6ATBjAv1RCvBVdK" />
           <span>退出</span>
       </div>
     )

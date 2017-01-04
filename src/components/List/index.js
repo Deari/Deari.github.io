@@ -21,7 +21,6 @@ class List extends React.Component {;
     const {data,showName} = this.props
     const name = choose(showName)
     const itemName = name === 'hardware' ? 'hardware' : 'app'
-    console.log(data[0])
     return (
       <div className="listContent">
         {

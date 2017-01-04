@@ -42,7 +42,9 @@ $cursor-disabled : not-allowed !default;
 }
 
 #clock-detail-container {
-
+  h3{
+    padding:10px 5px;
+  }
   .nav {
     //display       : flex;
     padding-left  : 0;

@@ -13,7 +13,7 @@ export const Detail = props => {
     if (Detail) {
       return <div id="detail-container">
         <Detail {...detail} onChange={saveDetail} />
-        <button className="btn btn-blue" onClick={savePage}><i className="iconfont icon-save"></i>发布</button>
+        <div className="btn-block"><button className="btn btn-blue" onClick={savePage}><i className="iconfont icon-save"></i>发布</button></div>
       </div>
     }
   }
