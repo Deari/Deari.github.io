@@ -100,12 +100,12 @@ $blue97-color:#97d6fe;
 }
 .editor-content{
   width:540px;
-  height:600px;
+  height:510px;
   margin:0 auto;
   overflow:hidden;
   .preview{
     position:relative;
-    padding-top:40px;
+    padding-top:0px;
     width:249px;
     height:475px;
     margin:5px auto;
@@ -122,8 +122,8 @@ $blue97-color:#97d6fe;
       left:50%;
       z-index:10;
       margin-left:-105px;
-      margin-top:-149px;
-      width:214px;
+      margin-top:-194px;
+      width:212px;
       height:380px;
       border:1px solid #d6dde2;
       //background:#f6f5f5 url(../../../../../Home/assets/phone-module1.jpg);
@@ -147,7 +147,7 @@ $blue97-color:#97d6fe;
   #detail-container{
     position:relative;
     padding-top:40px;
-    height:600px;
+    height:510px;
     font-size:14px;
     color:$gray6-color;
     .icon-wechat{
@@ -201,7 +201,7 @@ $blue97-color:#97d6fe;
     }
     .btn-block{
       position:absolute;
-      bottom:30px;
+      bottom:20px;
       width:100%;
     }
   }
