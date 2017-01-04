@@ -120,9 +120,9 @@ class EditContainer extends Component {
     const { page } =this.props.widgetEdit;
 
     const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list` },
-      doc: { url: `/apps/doc` }
+      create: { url: `/widgets/create` },
+      list: { url: `/widgets/list` },
+      doc: { url: `/widgets/doc` }
     }
     
     return (
