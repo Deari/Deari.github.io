@@ -214,7 +214,7 @@ export const getAppInfo = (appId) => {
         console.log('组件详情：', res)
         
         const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout } = res.data;
-        const size =  JSON.parse(defaultLayout)
+        const size = defaultLayout? JSON.parse(defaultLayout) : {};
         const tagId = tags.map(v=>v.tagId);
         dispatch(updateForm({
           appId,
