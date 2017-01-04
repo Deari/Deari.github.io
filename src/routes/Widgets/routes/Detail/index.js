@@ -47,7 +47,7 @@ class WidgetsDetail extends React.Component {
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
-              <img className="widgetImg" src={ data.appLogo } alt="LOGO"/>
+              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
               <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank" download="">下载</a>
             </div>
             <div className="detail-info">

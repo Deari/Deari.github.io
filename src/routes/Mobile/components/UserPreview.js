@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Responsive, WidthProvider, ReactGridLayout } from 'react-grid-layout'
 const ResponsiveReactGridLayout = WidthProvider(Responsive)
 import './grid-layout.scss'
-
+import Element from '../../Shop/routes/Editor/containers/EditorContainer'
 export default class UserPreview extends Component {
 
   static defaultProps = {
@@ -19,18 +19,25 @@ export default class UserPreview extends Component {
     return {...layouts.find(layout => layout.i == id), 'static': true}
   }
 
-  getStyle(e) {
-    return {
-      backgroundSize: 'cover',
-      backgroundImage: `url(${e.appPreviewImage})`,
+  generateStyle(e) {
+    if (e.moduleType !== 'html5') {
+      return {
+        backgroundSize: 'cover',
+        backgroundImage: `url(${e.appPreviewImage})`,
+      }
+    } else {
+      return {}
     }
   }
 
+
+
   generateDOM() {
     const { layouts, elements } = this.props
-    return elements.map(e => <div style={this.getStyle(e)}
-                                  data-grid={this.getLayout(layouts, e.id)}
-                                  key={e.id}>{e.appPreviewImage ? '' :  e.appName}</div>)
+    return elements.map(e => <div style={this.generateStyle(e)}
+                                  key={e.id}>
+      <Element {...e} layout={this.getLayout(layouts, e.id)} gridProps={this.props.gridProps}/>
+                                  </div>)
   }
 
   render() {

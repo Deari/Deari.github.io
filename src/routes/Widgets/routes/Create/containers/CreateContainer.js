@@ -14,13 +14,13 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, updateForm2, fetchTags, fetchCates } from '../modules/create'
+import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
   componentDidMount() {
-    this.props.fetchTags()
-    this.props.fetchCates()
+    this.props.getTags()
+    this.props.getCates()
   }
 
   submitFirst(values) {
@@ -128,15 +128,13 @@ class CreateContainer extends Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  fetchTags,
-  fetchCates,
+  getTags,
+  getCates,
   updateForm2
 }
 
-const mapStateToProps = (state) => {
-  return {
-    widgetCreate: state.widgetCreate
-  }
-}
+const mapStateToProps = ({widgetCreate}) => ({
+  widgetCreate
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)

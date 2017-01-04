@@ -1,6 +1,6 @@
 export const warn = (msg, data) => {
   alert(`${msg}:`+JSON.stringify(data));
-  console.warn(`${msg}:`+JSON.stringify(data))
+  console.warn(`${msg}:`, data)
 }
 
 export const info = (msg, data) => {

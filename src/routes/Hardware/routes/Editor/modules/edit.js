@@ -10,9 +10,9 @@ const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
 const REQUEST_CATES = PREFIX+'REQUEST_CATES'
 const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 
+const UPDATE_FORM1 = PREFIX+'UPDATE_FORM1'
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 const RECEIVE_SDKS = PREFIX+'RECEIVE_SDKS'
-
 
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
@@ -26,6 +26,11 @@ export const receiveCates = (data) => ({
 
 export const receiveSdkInfo = (data) => ({
   type: RECEIVE_SDKS,
+  data
+})
+
+export const updateForm1 = (data) => ({
+  type: UPDATE_FORM1,
   data
 })
 
@@ -71,6 +76,14 @@ const ACTION_HANDLERS = {
     hardwarePlatforms: action.data.platform
   }),
 
+  [UPDATE_FORM1]: (state, action)=>({
+    ...state,
+    form: {
+      ...state.form,
+      ...action.data
+    }
+  }),
+
   [UPDATE_FORM2]: (state, action)=>({
     ...state,
     form2: {
@@ -110,7 +123,6 @@ const initialState = {
     category: {
       majorCategoryId: -1,
       minorCategoryId: -1,
-      minorCategories: [],
     },
     tags: [],
   },
@@ -172,15 +184,46 @@ export const getSdkInfo = () => {
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getSdkInfo");
 
     return fetchUtil.getJSON(url).then(res=>{
-      console.info(res)
-      if(res.status == 200) {
-        dispatch(receiveSdkInfo(res && res.data));
+      if(res && res.status == 200) {
+        dispatch(receiveSdkInfo(res.data));
       } else {
         throw Error ('getSdkInfo error');
       }
     });
   }
 }
+
+export const getHDInfo = (id) => {
+  return (dispatch) => {
+    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/hardware/getHardwareInfo/${id}`);
+    return fetchUtil.getJSON(url).then(res=>{
+      if(res.status == 200) {
+        const hardwareTags = res.data.hardwareTags || [];
+        const tags = hardwareTags.map(v=>v.tagId);
+
+        const temp = {
+          ...res.data,
+          category: {
+            majorCategoryId: res.data.majorCategoryId,
+            minorCategoryId: res.data.minorCategoryId,
+          },
+          tags,
+          hardwarePics: [
+            'http:\/\/img1.ffan.com\/T1C5WTBbWg1RCvBVdK', 
+            'http:\/\/img1.ffan.com\/T1C5WTBbWg1RCvBVdK'
+          ]
+        }
+
+        dispatch(updateForm1(temp));
+        dispatch(updateForm2(temp));
+        
+      } else {
+        throw Error ('getHDInfo error');
+      }
+    });
+  }
+}
+
 
 
 

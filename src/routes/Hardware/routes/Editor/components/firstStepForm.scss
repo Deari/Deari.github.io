@@ -1,16 +1,7 @@
 @import "../../../../../layouts/CoreLayout/CoreLayout.scss";
 $border-color:#dddddd;
 $text-color:#020202;
-.row-radio{position:relative; text-align: center;}
-i.icon-radio{display:none;font-size:30px;color:#cdd4dc;}
-i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
-
-.row-radio {
-  input[type="radio"]{position:absolute;top:5px;left:23px;width:26px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
-  input[type="radio"]:checked + span i.icon-radio{display: inline-block;}
-  input[type="radio"]:checked + span i.icon-radio1{display: none;}
-}
-
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
@@ -20,14 +11,14 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
     &:not(:first-child){
         padding-top: 0;
     }
-    label{
-        width: $default-width - 22px;
-        font-size: $text-font-size - 4px;
-        color: $black-color;
-        padding-left: $default-padding-left - 29px;
-        margin-right: 31px;
-        line-height: $text-line-height - 10px;
-        @include float-left;
+    label{ 
+        width: $default-width - 22px; 
+        font-size: $text-font-size - 4px; 
+        color: $black-color; 
+        padding-left: $default-padding-left - 29px; 
+        margin-right: 31px; 
+        line-height: $text-line-height - 10px; 
+        @include float-left; 
         text-align: right;
         position: relative;
         i{
@@ -38,32 +29,32 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
     }
     .row-right{
         margin: 0;
-        @include float-left;
+        @include float-left; 
         input[type="text"]{
-            width: 574px;
-            height: $default-height - 71px;
-            font-size: $text-font-size - 5px;
-            color: $text-color;
-            border: 1px solid $border-color;
-            padding-left: $default-padding-left - 31px;
+            width: 574px; 
+            height: $default-height - 71px; 
+            font-size: $text-font-size - 5px; 
+            color: $text-color; 
+            border: 1px solid $border-color; 
+            padding: 0 30px 0 $default-padding-left - 31px;
             outline: none;
         }
         input[type="text"]::selection{
             background: #ace4fe;
         }
         textarea{
-            width: 574px;
-            height: $default-height + 40px;
-            border: 1px solid $border-color;
+            width: 574px; 
+            height: $default-height + 40px; 
+            border: 1px solid $border-color; 
             resize: none;
             outline: none;
             padding: $default-padding-left - 30px;
         }
         select{
-             width: 199px;
-             height: $default-height - 72px;
-             font-size: $text-font-size - 7px;
-             padding: 0 $default-padding-left - 32px;
+             width: 199px; 
+             height: $default-height - 72px; 
+             font-size: $text-font-size - 7px;  
+             padding: 0 $default-padding-left - 32px; 
              outline: none;
              appearance:none;
              -moz-appearance:none;
@@ -74,8 +65,8 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
              border-color: $border-color;
         }
         p{
-            font-size: $text-font-size - 7px;
-            color: $gray9-color;
+            font-size: $text-font-size - 7px; 
+            color: $gray9-color; 
             line-height: $text-line-height - 16px;
         }
         span{
@@ -83,28 +74,28 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             position: relative;
             cursor: pointer;
             input[type="button"]{
-                width: $default-width + 30px;
-                height: $default-height - 67px;
-                line-height: $text-line-height - 10px;
-                text-align: center;
-                font-size: $text-font-size - 6px;
-                color: $black-color;
-                display: block;
-                border: 1px solid $border-color;
-                border-radius: 2px;
-                background: $white-color;
-                position: relative;
+                width: $default-width + 30px; 
+                height: $default-height - 67px; 
+                line-height: $text-line-height - 10px; 
+                text-align: center; 
+                font-size: $text-font-size - 6px; 
+                color: $black-color; 
+                display: block; 
+                border: 1px solid $border-color; 
+                border-radius: 2px; 
+                background: $white-color; 
+                position: relative; 
                 margin: $default-margin-top - 20px 0 $default-margin-bottom - 17px;
                 cursor: pointer;
             }
             input[type="file"]{
-                width: $default-width + 30px;
-                height: $default-height - 67px;
-                position: absolute;
-                left: 0;
-                top: 0;
-                opacity: 0;
-                filter: alpha(opacity=0);
+                width: $default-width + 30px; 
+                height: $default-height - 67px; 
+                position: absolute; 
+                left: 0; 
+                top: 0; 
+                opacity: 0; 
+                filter: alpha(opacity=0); 
                 cursor: pointer;
             }
         }
@@ -113,7 +104,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             height: $default-height;
             margin-right:$default-margin-right - 35px;
         }
-
+        
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
@@ -133,13 +124,13 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             }
         }
         /*第二步应用文件样式start*/
-
+        
         .file-name{
             width:$default-width + 100px;
-            height: $default-height - 71px;
-            font-size: $text-font-size - 5px;
-            color: $text-color;
-            border: 1px solid $border-color;
+            height: $default-height - 71px; 
+            font-size: $text-font-size - 5px; 
+            color: $text-color; 
+            border: 1px solid $border-color; 
             padding-left: $default-padding-left - 31px;
             outline: none;
             margin-right: $default-margin-right - 30px;
@@ -147,25 +138,25 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
         }
         .file-btn{
             width: $default-width - 52px;
-            height: $default-height - 71px;
+            height: $default-height - 71px; 
             line-height:$text-line-height - 11px;
             font-size: $text-font-size - 5px;
-            border: 1px solid $border-color;
+            border: 1px solid $border-color; 
             text-align: center;
             cursor: pointer;
             float: left;
             background: #efefef;
         }
-        .form-file{
-            // width: $default-width - 52px;
-            // height: $default-height - 71px;
-            // position: absolute;
-            // left:348px;
-            // top: 30px;
-            // filter: alpha(opacity=0);
-            // opacity: 0;
-            cursor: pointer;
-        }
+        // .form-file{
+        //     width: $default-width - 52px;
+        //     height: $default-height - 71px;
+        //     position: absolute;
+        //     left:400px;
+        //     top: 2px;
+        //     filter: alpha(opacity=0);
+        //     opacity: 0;
+        //     cursor: pointer;
+        // }
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
@@ -205,36 +196,12 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             border: 1px solid $gray6-color ;
             color: $black-color;
             line-height: 29px;
-        }
+        } 
     }
+} 
+.form-btn div .row-btn{
+    margin-right: 10px;
 }
-.row-size{
-    @include float-left;
-    margin:14px 70px 0 0;
-    .row-img{
-        width: 78px;
-        height: 150px;
-        margin-bottom: 8px;
-    }
-    .img1{
-        background: url(../../../../Home/assets/size1.png) no-repeat;
-        background-size: 100%;
-    }
-    .img2{
-        background: url(../../../../Home/assets/size2.png) no-repeat;
-        background-size: 100%;
-    }
-    .img3{
-        background: url(../../../../Home/assets/size3.png) no-repeat;
-        background-size: 100%;
-    }
-    .img4{
-        background: url(../../../../Home/assets/size4.png) no-repeat;
-        background-size: 100%;
-    }
+.row-select{
+    margin-right:10px;
 }
-.row-last{
-    display: none;
-}
-
-
