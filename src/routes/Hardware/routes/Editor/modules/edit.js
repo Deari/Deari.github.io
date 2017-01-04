@@ -207,11 +207,7 @@ export const getHDInfo = (id) => {
             majorCategoryId: res.data.majorCategoryId,
             minorCategoryId: res.data.minorCategoryId,
           },
-          tags,
-          hardwarePics: [
-            'http:\/\/img1.ffan.com\/T1C5WTBbWg1RCvBVdK', 
-            'http:\/\/img1.ffan.com\/T1C5WTBbWg1RCvBVdK'
-          ]
+          tags
         }
 
         dispatch(updateForm1(temp));

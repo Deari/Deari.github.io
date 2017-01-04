@@ -9,12 +9,12 @@ import { validate } from '../modules/validate'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, fetchSdkInfo } from '../modules/create'
+import { toggleStep, getSdkInfo } from '../modules/create'
 
 class SecondStepForm extends React.Component {
 
   async componentDidMount() {
-    await this.props.fetchSdkInfo()
+    await this.props.getSdkInfo()
   }
 
   render(){
@@ -97,7 +97,7 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  fetchSdkInfo
+  getSdkInfo
 };
 
 export default connect(

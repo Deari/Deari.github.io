@@ -16,6 +16,8 @@ import fetchUtil from '../../../../utils/fetchUtil'
 
 import { toggleStep, getTags, getCates } from '../modules/create'
 
+import debug from '../../../../utils/debug'
+
 class CreateContainer extends Component {
 
   state = {
@@ -44,8 +46,8 @@ class CreateContainer extends Component {
       formData.append(key, params[key]);
     }
 
-    for(let key in values.tags) {
-      formData.append("tags[]", values.tags[key]);
+    for(let v of values.tags) {
+      formData.append("hardwareTags[]", v);
     }
 
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
@@ -54,16 +56,16 @@ class CreateContainer extends Component {
       if(res.status == 200) {
         const hardwareId = res.data.hardwareId;
         const firstStepValue = { ...values }
+
         this.setState({firstStepValue, hardwareId}, () => {
           this.props.toggleStep(2);
         })
 
       } else {
-        res.msg && window.alert(res.msg)
-        console.warn("表单一提交失败：", res)
+        debug.warn('表单一提交失败', res)
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误', e)
     })
     
   }
@@ -100,8 +102,8 @@ class CreateContainer extends Component {
       formData.append(key, params[key]);
     }
 
-    for(let key in SecondStepValues.tags) {
-      formData.append("tags[]", SecondStepValues.tags[key]);
+    for(let v of SecondStepValues.tags) {
+      formData.append("hardwareTags[]", v);
     }
 
     for(let key in SecondStepValues.hardwarePics) {
@@ -112,18 +114,12 @@ class CreateContainer extends Component {
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        
-        const secondStepValue = { ...values }
-        this.setState({secondStepValue}, () => {
           this.props.toggleStep(3);
-        })
-        
       } else {
-        res.msg && window.alert(res.msg)
-        console.warn("表单一提交失败：", res)
+        debug.warn('表单二提交失败', res)
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误', e)
     })
 
   }
