@@ -69,7 +69,7 @@ class List extends React.Component {;
                     false : true
                   }>发布新版本</button>
                 </Link>
-                <Link className={name === 'hardware' ? "active" : "" } 
+                <Link className={name === 'hardware' ? "active" : "none" } 
                 to={'/' + name + 's/edit/' + item[itemName+'id']}>
                   <button disabled={name === 'hardware' ? false : true}>调试硬件</button>
                 </Link>

@@ -150,7 +150,7 @@ export default function createReducer(state = initialState, action) {
 export const getTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardwares");
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardware");
     return fetchUtil.getJSON(url).then(res=>{
       //console.info(res)
       if(res.status == 200) {

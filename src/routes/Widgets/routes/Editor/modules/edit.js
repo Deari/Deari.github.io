@@ -175,8 +175,7 @@ export default function createReducer(state = initialState, action) {
 
 export const fetchTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
-
+    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=widget");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {

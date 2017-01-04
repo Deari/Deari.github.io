@@ -45,7 +45,7 @@ class CreateContainer extends Component {
     }
 
     for(let key in values.tags) {
-      formData.append("tags[]", values.tags[key]);
+      formData.append("hardwareTags[]", values.tags[key]);
     }
 
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
