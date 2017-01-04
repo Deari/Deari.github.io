@@ -33,8 +33,12 @@ class List extends React.Component {;
                 </div>
               </div>
               <div className="info-content w342">
-                <div className="info-name" title={item[itemName+'Name']}>{showName + '名称 : '}{item[itemName+'Name']}</div>
-                <div className="info-introduce" title={item[itemName+'Desc']}>{showName + '介绍 : '}{item[itemName+'Desc']}</div>
+                <div className="info-name" title={item[itemName+'Name']}>
+                  {showName + '名称 : '}{item[itemName+'Name']}
+                </div>
+                <div className="info-introduce" title={item[itemName+'Desc']}>
+                  {showName + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
+                </div>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
@@ -48,7 +52,7 @@ class List extends React.Component {;
                   || item.hardwareStatus==0 ? 
                   'active':'' 
                 } 
-                  to={'/' + name + 's/edit/' + item[itemName+'Id']}>
+                  to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     name !== 'hardware'&&!item.codeId 
                     || item.reviewStatus == 3 
@@ -62,14 +66,14 @@ class List extends React.Component {;
                   || item.hardwareStatus==2 ? 
                   'active': ''
                 } 
-                to={'/' + name + 's/edit/' + item[itemName+'Id']} >
+                to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     item.codeId 
-                    || item.hardwareStatus == 0 ? 
+                    || item.hardwareStatus == 2 ? 
                     false : true
                   }>发布新版本</button>
                 </Link>
-                <Link className={name === 'hardware' ? "active" : "" } 
+                <Link className={name === 'hardware' ? "active" : "none" } 
                 to={'/' + name + 's/edit/' + item[itemName+'id']}>
                   <button disabled={name === 'hardware' ? false : true}>调试硬件</button>
                 </Link>

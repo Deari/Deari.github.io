@@ -11,10 +11,11 @@ const SimpleSlider = React.createClass({
   render: function () {
     var settings = {
       dots: true,
+      arrows: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
-      slidesToScroll: 1
+      slidesToScroll: 1,
     };
     return (
       <Slider {...settings}>
@@ -24,8 +25,8 @@ const SimpleSlider = React.createClass({
             <dd>为实体门店提供经营所需的各项管理工具</dd>
           </dl>
           <p>
-           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览应用</a>
-           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布应用</a>
+           <Link className="btn-left btn btn-primary" to="/apps">浏览应用</Link>
+           <Link className="btn-right btn" to="/apps/create">发布应用</Link>
           </p>
         </div>
         <div className="banner2">
@@ -34,8 +35,8 @@ const SimpleSlider = React.createClass({
             <dd>助力实体门店，创造个性化和场景化的营销方案</dd>
           </dl>
           <p>
-           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览组件</a>
-           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布组件</a>
+           <Link className="btn-left btn btn-primary" to="/widgets">浏览组件</Link>
+           <Link className="btn-right btn" to="/widgets/create">发布组件</Link>
           </p>
         </div>
         <div className="banner3">
@@ -54,8 +55,8 @@ const SimpleSlider = React.createClass({
             <dd>助力实体门店，连接线上线下，打造O2O解决方案</dd>
           </dl>
           <p>
-           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览硬件</a>
-           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布硬件</a>
+           <Link className="btn-left btn btn-primary" to="/hardware">浏览硬件</Link>
+           <Link className="btn-right btn" to="/hardware/create">发布硬件</Link>
           </p>
         </div>
       </Slider>

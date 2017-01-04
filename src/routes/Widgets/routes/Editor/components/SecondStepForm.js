@@ -46,7 +46,7 @@ export default connect(
   mapDispatchToProps
 
 )(reduxForm({
-  form: 'secondStepForm',   
+  form: 'widgetsEditStep2',   
   fields: ['appName', 'appDesc'],
   keepDirtyOnReinitialize: true,
   enableReinitialize: true

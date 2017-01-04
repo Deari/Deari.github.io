@@ -110,7 +110,6 @@ export class renderTags extends Component {
 
   render() {
     const { input, tags, label, meta: { touched, error, warning } } = this.props;
-
     return (
       <div className="form-row">
         <label>{label}</label>

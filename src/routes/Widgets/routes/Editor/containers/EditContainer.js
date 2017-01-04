@@ -25,6 +25,7 @@ class EditContainer extends Component {
     this.props.getAppCodeInfo(appId);
     this.props.fetchTags()
     this.props.fetchCates()
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {
@@ -36,16 +37,27 @@ class EditContainer extends Component {
 
     const formData = new FormData();
 
-    for(let key in values) {
-      if(key == 'tags') {
-        for(let v of values[key]){
+    for (let key in values) {
+      if (key == 'tags') {
+        for (let v of values[key]) {
           formData.append('tags[]', v)
         }
+      } else if (key == 'size') {
+        // const sizeObj = {
+        //   widgetW: values.size.w,
+        //   widgetH: values.size.h
+        // }
+        // for (let k in sizeObj) {
+        //   formData.append(k, sizeObj[k])
+        // }
       } else {
         formData.append(key, values[key])
       }
     }
-
+   
+    for (let key in values) {
+    }
+    console.log(values.size)
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${values.appId}`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
@@ -108,9 +120,9 @@ class EditContainer extends Component {
     const { page } =this.props.widgetEdit;
 
     const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list` },
-      doc: { url: `/apps/doc` }
+      create: { url: `/widgets/create` },
+      list: { url: `/widgets/list` },
+      doc: { url: `/widgets/doc` }
     }
     
     return (

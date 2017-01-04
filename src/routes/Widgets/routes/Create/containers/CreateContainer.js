@@ -18,9 +18,10 @@ import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getTags()
     this.props.getCates()
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {
@@ -96,6 +97,10 @@ class CreateContainer extends Component {
       console.warn('网络错误', e);
     })
   }
+  previous() {
+    const appId = this.props.widgetCreate.form2.appId;
+    window.location.href = '/widgets/edit/' + appId;
+  }
 
   render() {
     const urls = {
@@ -114,7 +119,7 @@ class CreateContainer extends Component {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} previous={::this.previous} />
           }
           {
             page === 3 && <Complete />

@@ -78,6 +78,10 @@ export const getAppInfo = (appId) => {
           appId, appName, appLogo, appDesc, categoryId, platform,
           tags: tagId
         }));
+
+        dispatch(updateForm2({
+          platform
+        }));
         
       } else {
         alert('获取应用详情失败: ', JSON.stringify(res));
@@ -97,6 +101,8 @@ export const getAppCodeInfo = (appId) => {
       if(res.status == 200) {
         console.log('app code详情：', res)
         const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
+        console.log(res.data);
+        
         dispatch(updateForm2({
           appId,
           codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
@@ -189,6 +195,7 @@ const initialState = {
   form2: {
     codeDesc: '',
     appId: -1,
+    platform: 2,
   },
 }
 
