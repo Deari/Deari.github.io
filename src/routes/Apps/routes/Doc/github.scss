@@ -136,13 +136,15 @@
     margin-bottom : 0; }
   strong{
     font-size:16px;
-    font-weight:100;
+    font-weight:700;
     color:#fe696d;
   }
   blockquote {
-    border-left : 4px solid #dddddd;
-    padding     : 0 15px;
-    color       : #777777; }
+      border: 2px solid #ddd;
+      padding: 0 15px;
+      color: #fe696d;
+      border-radius: 4px;
+      margin: 0px;}
   blockquote > :first-child {
     margin-top : 0; }
   blockquote > :last-child {

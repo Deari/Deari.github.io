@@ -27,7 +27,9 @@ npm install -g react-native-cli
 
 iOS开发者:
 1、首先，请下载安装IDE。[请点击下载Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
-**注：Xcode最低版本要求为7.0**
+
+>注：Xcode最低版本要求为7.0
+
 2、安装ReactNative运行环境。
 homebrew—— Mac系统的包管理器，用于安装NodeJS和一些其他必需的工具软件。
 ```
