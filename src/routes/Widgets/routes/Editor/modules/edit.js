@@ -216,11 +216,14 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout } = res.data;
         const size =  JSON.parse(defaultLayout)
         const tagId = tags.map(v=>v.tagId);
+
         dispatch(updateForm({
           appId,
           appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, size,
           tags: tagId
         }));
+
+        dispatch(updateForm2({ platform }));
         
       } else {
         alert('获取组件详情失败: ', JSON.stringify(res));

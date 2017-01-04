@@ -94,6 +94,7 @@ const initialState = {
   },
   form2: {
     codeDesc: '',
+    platform: 2,
   }
 }
 

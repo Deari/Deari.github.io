@@ -134,6 +134,7 @@ const getInitialState = () => {
     form2: {
       codeDesc: '',
       appId: -1,
+      platform: 2,
     },
   }
 }
