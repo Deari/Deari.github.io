@@ -4,11 +4,13 @@ import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
 import './index.scss'
 import Content from './content'
-import html from 'raw!./content/develop.md'
+import md from 'raw!./content/develop.md'
 //var md = require('./content/develop.md')
 
 import marked from 'marked'
 marked.setOptions({
+  gfm: true,
+  breaks: true,
   highlight: function (code) {
     return require('highlight.js').highlightAuto(code).value;
   }
@@ -22,8 +24,7 @@ class Doc extends React.Component {
       doc: { url: `/apps/doc`, active: true }
     }
 
-    const aa = marked(html)
-    console.log(aa)
+    const html = marked(md)
 
     return (
     <div className="container clx">
@@ -45,7 +46,7 @@ class Doc extends React.Component {
         </ul>
       </div>
       <div className="sub-container bg-white">
-        <Content html={aa}/>
+        <Content html={html}/>
       </div>
     </div>
     )

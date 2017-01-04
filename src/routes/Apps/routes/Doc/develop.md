@@ -51,41 +51,41 @@ brew install watchman
 ##### A.添加SDK文件
 将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
 
-![Alt text](./14834337846233.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1YcLTB4__1RCvBVdK/tfs/14834337846233.jpeg)
 
 ##### B.添加libReactConfig
 
 将包含libReactConfig.a，一系列头文件和Fonts目录的文件夹FFOAPSDK拖拽到工程中
 
-![Alt text](./addsdk.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1l6bTBvV_1RCvBVdK/tfs/addsdk.jpeg)
 
 ##### C.设置flag
 找到对应target的Build Settings，Linking－>Other Linker Flags 添加flag，`-Objc`和`-all_load`
 
-![Alt text](./projectflag.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1u2ETBj_T1RCvBVdK/tfs/projectflag.jpeg)
 
 
 ##### D.添加ReactNative库
 添加React组件工程文件:
 将node_modules/react-native/React/React.xcodeproj拖到工程中
 
-![Alt text](./14834343700116.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T13OJTBTbT1RCvBVdK/tfs/14834343700116.jpeg)
 
 ##### E.配置库依赖
 点击你的主工程文件，选择Build Phases，然后把刚才所添加进去的.xcodeproj下的Products文件夹中的静态库文件（.a文件），拖到Link Binary With Libraries组内。
 
-![Alt text](./14834348297098.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1D6LTB5__1RCvBVdK/tfs/14834348297098.jpeg)
 
 
 ##### F.添加其它组件依赖
 其它本地组件都在node_modules/react-native/Libraries目录。使用同样的方法添加RCTImage或其他组件
 
-![Alt text](./14834501543939.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1f7hTB4JT1RCvBVdK/tfs/14834501543939.jpeg)
 
 ##### G.添加系统依赖库
 点击你的主工程文件，选择General，在Linked Frameworks and Libraries 添加`libstdc++.tbd`和`libicucore.tbd`
 
-![Alt text](./14834496841174.jpg)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1t0JTBTdT1RCvBVdK/tfs/14834496841174.jpeg)
 
 4、验证环境，请输入如下命令行：
 ```
