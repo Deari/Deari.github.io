@@ -15,16 +15,15 @@ class SecondStepForm extends React.Component {
 
   render(){
 
-    const { handleSubmit, submitting, toggleStep } = this.props
+    const { handleSubmit, submitting, toggleStep, previous } = this.props
 
     return (
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
         <Field name="file" component={renderFile} label="应用文件" />
-
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
+            <button type="button" className="previous" onClick={previous}>上一步</button>
             <button type="submit" className="next" disabled={submitting}> 提交</button>
           </div>
         </div>
@@ -46,7 +45,7 @@ export default connect(
   mapDispatchToProps
 
 )(reduxForm({
-  form: 'secondStepForm',   
+  form: 'widgetsEditStep2',   
   fields: ['appName', 'appDesc'],
   keepDirtyOnReinitialize: true,
   enableReinitialize: true

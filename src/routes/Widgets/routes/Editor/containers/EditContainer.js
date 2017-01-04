@@ -104,6 +104,12 @@ class EditContainer extends Component {
     })
   }
 
+  previous() {
+    const appId = this.props.widgetEdit.form2.appId;
+    window.location.href = '/widgets/edit/' + appId;
+  }
+
+
   render() {
     const { page } =this.props.widgetEdit;
 
@@ -122,7 +128,7 @@ class EditContainer extends Component {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond} />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} previous={::this.previous} />
           }
           {
             page === 3 && <Complete />
