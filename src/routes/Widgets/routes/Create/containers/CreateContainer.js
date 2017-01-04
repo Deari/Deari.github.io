@@ -18,9 +18,10 @@ import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.getTags()
     this.props.getCates()
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {
