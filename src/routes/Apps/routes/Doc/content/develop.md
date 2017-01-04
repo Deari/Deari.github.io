@@ -8,48 +8,45 @@
 2、成功创建应用后，系统会生成AppID和AppSecrect（待补充）
 
 ### 2、环境搭建
-#### Android开发者：
-
+Android开发者：
 1、首先，请下载安装IDE。[请点击下载AndroidStudio](https://developer.android.com/studio/index.html)
-
 2、安装ReactNative运行环境。[参考官方文档](http://facebook.github.io/react-native/docs/getting-started.html)
-
 ```
-// 1、安装brew
+// 1.安装brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-// 2、安装node
+// 2.安装node
 brew install node
-// 3、安装watchman
+// 3.安装watchman
 brew install watchman
-// 4、安装react-native
+// 4.安装react-native
 npm install -g react-native-cli
 ```
 
 3、集成SDK（待补充）[点击下载SDK](http://open.sit.ffan.net/apps/create)
-4、验证环境（待补充）**
+4、验证环境（待补充）
 
-#### **iOS开发者：**
-
-**1、首先，请下载安装IDE。**[请点击下载Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
-注：Xcode最低版本要求为7.0
-
-**2、安装ReactNative运行环境。**
-
+iOS开发者:
+1、首先，请下载安装IDE。[请点击下载Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
+**注：Xcode最低版本要求为7.0**
+2、安装ReactNative运行环境。
 homebrew—— Mac系统的包管理器，用于安装NodeJS和一些其他必需的工具软件。
-
-    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 node——使用homebrew来安装nodejs，node版本需要5以上的，正常安装即可。
-
-    brew install node
+```
+brew install node
+```
 react native cli——使用npm安装react native命令行工具。
-
-    npm install -g react-native-cli
+```
+npm install -g react-native-cli
+```
 watchman——使用homebrew安装watchman，这是一个由Facebook提供的监视文件系统变更的工具。安装此工具可以提高开发时的性能（packager可以快速捕捉文件的变化从而实现实时刷新）。
-
-    brew install watchman
-
-**3、集成SDK：** [点击下载SDK](http://open.sit.ffan.net/apps/create)
-##### A.**添加SDK文件**
+```
+brew install watchman
+```
+3、集成SDK：[点击下载SDK](http://open.sit.ffan.net/apps/create)
+##### A.添加SDK文件
 将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
 
 ![Alt text](./14834337846233.jpg)
@@ -67,47 +64,45 @@ watchman——使用homebrew安装watchman，这是一个由Facebook提供的监
 
 
 ##### D.添加ReactNative库
-##### 添加React组件工程文件
+添加React组件工程文件:
 将node_modules/react-native/React/React.xcodeproj拖到工程中
 
 ![Alt text](./14834343700116.jpg)
 
-##### 配置库依赖
+##### E.配置库依赖
 点击你的主工程文件，选择Build Phases，然后把刚才所添加进去的.xcodeproj下的Products文件夹中的静态库文件（.a文件），拖到Link Binary With Libraries组内。
 
 ![Alt text](./14834348297098.jpg)
 
 
-##### 添加其它组件依赖
+##### F.添加其它组件依赖
 其它本地组件都在node_modules/react-native/Libraries目录。使用同样的方法添加RCTImage或其他组件
 
 ![Alt text](./14834501543939.jpg)
 
-##### 添加系统依赖库
+##### G.添加系统依赖库
 点击你的主工程文件，选择General，在Linked Frameworks and Libraries 添加`libstdc++.tbd`和`libicucore.tbd`
 
 ![Alt text](./14834496841174.jpg)
 
-**4、验证环境，请输入如下命令行：**
-
+4、验证环境，请输入如下命令行：
+```
     react-native init AwesomeProject
     cd AwesomeProject
     react-native run-ios
-
+```
 现在你已经成功运行了项目，我们可以开始尝试动手改一改了：
 		A、使用你喜欢的编辑器打开index.ios.js并随便改上几行。
 		B、在iOS 模拟器中按下⌘-R就可以刷新App并看到你的最新修改！
 
 
-#### **FE开发者：**
+FE开发者:
+1、首先，请下载安装IDE。[JS开发者请点击下载WebStorm](http://www.jetbrains.com/webstorm/)
+2、安装ReactNative运行环境（待补充）
+3、集成代码审查规则文件（待补充）[点击下载代码审查规则文件](http://www.jetbrains.com/webstorm/)
+4、验证环境（待补充）
 
-**1、首先，请下载安装IDE。**[JS开发者请点击下载WebStorm](http://www.jetbrains.com/webstorm/)
-**2、安装ReactNative运行环境（待补充）**
-**3、集成代码审查规则文件（待补充）**[点击下载代码审查规则文件](http://www.jetbrains.com/webstorm/)
-**4、验证环境（待补充）**
-
-### 3、开发应用
-
+开发应用:
 1、创建App（待补充）
 2、创建配置文件（待补充）
 3、编码
@@ -115,7 +110,7 @@ watchman——使用homebrew安装watchman，这是一个由Facebook提供的监
 语法规范：[ES6](http://www.es6js.com)
 4、API文档（待补充）
 
-##三、调试
+## 三、调试
 1、调试环境配置说明（待补充）
 2、调试步骤
 
