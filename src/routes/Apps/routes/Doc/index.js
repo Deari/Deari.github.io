@@ -1,9 +1,19 @@
 import React from 'react'
-import Slidebar from '../../../../components/Sidebar'
+
 import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
 import './index.scss'
 import Content from './content'
+import html from 'raw!./content/develop.md'
+//var md = require('./content/develop.md')
+
+import marked from 'marked'
+marked.setOptions({
+  highlight: function (code) {
+    return require('highlight.js').highlightAuto(code).value;
+  }
+});
+
 class Doc extends React.Component {
   render() {
     const urls = {
@@ -11,6 +21,9 @@ class Doc extends React.Component {
       list: { url: `/apps/list` },
       doc: { url: `/apps/doc`, active: true }
     }
+
+    const aa = marked(html)
+    console.log(aa)
 
     return (
     <div className="container clx">
@@ -32,7 +45,7 @@ class Doc extends React.Component {
         </ul>
       </div>
       <div className="sub-container bg-white">
-        <Content />
+        <Content html={aa}/>
       </div>
     </div>
     )

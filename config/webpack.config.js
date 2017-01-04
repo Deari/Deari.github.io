@@ -125,34 +125,30 @@ if (!__TEST__) {
 // Loaders
 // ------------------------------------
 // JavaScript / JSON / Markdown
-//const marked = require("marked");
-//const highlightjs = require("highlight.js");
 
-webpackConfig.module.loaders = [{
-  test    : /\.(js|jsx)$/,
-  exclude : /node_modules/,
-  loader  : 'babel',
-  query   : project.compiler_babel
+webpackConfig.module.loaders = [ {
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  loader: 'babel',
+  query: project.compiler_babel
 }, {
-  test   : /\.json$/,
-  loader : 'json'
-}, {
-  test   : /\.md$/,
-  loader : 'markdown',
-}, {
-  test   : /\.html$/,
-  loader : 'html',
+  test: /\.json$/,
+  loader: 'json'
 },
+//  {
+//  test: /\.md$/,
+//  loader: 'markdown',
+//}
 ]
 
-webpackConfig.markdownLoader = {
-  gfm: true,
-  breaks: true,
-  sanitize: false,
-  highlight: function (code) {
-    return require("highlight.js").highlightAuto(code).value;
-  }
-}
+//webpackConfig.markdownLoader = {
+//  gfm: true,
+//  breaks: true,
+//  sanitize: false,
+//  highlight: function (code) {
+//    return require("highlight.js").highlightAuto(code).value;
+//  }
+//}
 
 // ------------------------------------
 // Style Loaders
