@@ -182,7 +182,7 @@ $blue97-color:#97d6fe;
     }
     .btn{
       display:inline-block;
-      width:90px;
+      width:95.5%;
       height:40px;
       margin:0 5px;
       padding:0;
@@ -202,6 +202,7 @@ $blue97-color:#97d6fe;
     .btn-block{
       position:absolute;
       bottom:30px;
+      width:100%;
     }
   }
 }
