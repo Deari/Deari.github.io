@@ -131,20 +131,6 @@ FE开发者:
 
 进入工程目录中的js_module目录，运行npm start或者react-native start，开启服务，初始化IReactConfig时候在下列方法中返回true, 并在LocalDebugParams中传入调试的moduleName。
 
-```java
-	@Override
-	public boolean isLocalDebug() {
-	    return true;
-	}
-
-	@Override
-	public ArrayMap<String, String> getLocalDebugParams() {
-	        ArrayMap<String, String> params = new ArrayMap();
-	        params.put(Constants.VIEW_CONFIG_RN_MODULE_NAME, "test");
-	        return params;
-	}
-```
-
 ## 四、打包
 1、[请下载打包工具](http://open.sit.ffan.net/apps/list)
 2、参考打包工具中的应用规范对包进行调整（待补充）

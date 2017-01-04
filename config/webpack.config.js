@@ -125,6 +125,19 @@ if (!__TEST__) {
 // Loaders
 // ------------------------------------
 // JavaScript / JSON
+
+const marked = require("marked");
+const renderer = new marked.Renderer();
+const highlightjs = require("highlight.js");
+renderer.code = (code, language) => {
+  // Check whether the given language is valid for highlight.js.
+  const validLang = !!(language && highlightjs.getLanguage(language));
+  // Highlight only if the language is valid.
+  const highlighted = validLang ? highlightjs.highlight(language, code).value : code;
+  // Render the highlighted code with `hljs` class.
+  return `<pre><code class="hljs ${language}">${highlighted}</code></pre>`;
+};
+
 webpackConfig.module.loaders = [{
   test    : /\.(js|jsx)$/,
   exclude : /node_modules/,
@@ -135,8 +148,13 @@ webpackConfig.module.loaders = [{
   loader : 'json'
 }, {
   test   : /\.md$/,
-  loader : 'html!markdown'
+  loader : 'html!markdown',
 }]
+
+webpackConfig.markdownLoader = {
+  renderer,
+  sanitize: false
+}
 
 
 
