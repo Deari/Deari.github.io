@@ -66,7 +66,7 @@ class List extends React.Component {;
                 to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     item.codeId 
-                    || item.hardwareStatus == 0 ? 
+                    || item.hardwareStatus == 2 ? 
                     false : true
                   }>发布新版本</button>
                 </Link>
