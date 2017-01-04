@@ -2,8 +2,12 @@ import html from './content/develop.md'
 import React from 'react';
 import marked from 'marked';
 import './github.scss'
+import highlight from 'highlight.js'
 
 marked.setOptions({
+  highlight: function (code) {
+    return highlight.highlightAuto(code).value;
+  },
   gfm: true,
   breaks: true,
   //pedantic: false,

@@ -11,14 +11,14 @@
 Android开发者：
 1、首先，请下载安装IDE。[请点击下载AndroidStudio](https://developer.android.com/studio/index.html)
 2、安装ReactNative运行环境。[参考官方文档](http://facebook.github.io/react-native/docs/getting-started.html)
-```
-// 1.安装brew
+```bash
+# 1.安装brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-// 2.安装node
+# 2.安装node
 brew install node
-// 3.安装watchman
+# 3.安装watchman
 brew install watchman
-// 4.安装react-native
+# 4.安装react-native
 npm install -g react-native-cli
 ```
 
