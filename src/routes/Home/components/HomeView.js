@@ -124,9 +124,9 @@ export const HomeView = () => (
         <li>
           <a>
             <h3>服装</h3>
-            <div className="home-casus-img">
-              <i></i>
-              <i></i>
+            <div className="home-casus-img1">
+              <i className="casus-img1"></i>
+              <i className="casus-img2"></i>
             </div>
             <p>帮助商家建议移动支付场景，打造营销平台与商家CRM系统</p>
           </a>
@@ -134,29 +134,29 @@ export const HomeView = () => (
         <li>
           <a>
             <h3>餐饮</h3>
-            <div className="home-casus-img">
-              <i></i>
-              <i></i>
+            <div className="home-casus-img2">
+              <i className="casus-img1"></i>
+              <i className="casus-img2"></i>
             </div>
             <p>有效进行会员管理，提升用户复购率和留存率</p>
           </a>
         </li>
         <li>
           <a>
-            <h3>影 视</h3>
-            <div className="home-casus-img">
-              <i></i>
-              <i></i>
+            <h3>影视</h3>
+            <div className="home-casus-img3">
+              <i className="casus-img1"></i>
+              <i className="casus-img2"></i>
             </div>
             <p>帮助商家建议移动支付场景，打造营销平台与商家CRM系统</p>
           </a>
         </li>
         <li>
           <a>
-            <h3>商 超</h3>
-            <div className="home-casus-img">
-              <i></i>
-              <i></i>
+            <h3>商超</h3>
+            <div className="home-casus-img4">
+              <i className="casus-img1"></i>
+              <i className="casus-img2"></i>
             </div>
             <p>提供移动支付和精准营销方案，为企业降低成本和效率</p>
           </a>
