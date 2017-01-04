@@ -19,7 +19,7 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json'],
     alias: {
-      
+
     }
   },
   module : {}
@@ -133,7 +133,12 @@ webpackConfig.module.loaders = [{
 }, {
   test   : /\.json$/,
   loader : 'json'
+}, {
+  test   : /\.md$/,
+  loader : 'html!markdown'
 }]
+
+
 
 // ------------------------------------
 // Style Loaders

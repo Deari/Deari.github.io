@@ -54,7 +54,6 @@ export class Preview extends Component {
   }
 
   generateDOM() {
-    console.log(this.props)
     if (!this.props.preview) {
       return null
     }
