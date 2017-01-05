@@ -12,7 +12,12 @@
   background-size: 100%;
   background-size: cover;
   dl{
-    padding-top: 130px;
+    position: absolute;
+    top: 130px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+//  padding-top: 130px;
     color: $white-color;
     line-height: 60px;
     text-shadow: 1px 0 2px rgba(72,70,134,0.6);
@@ -23,27 +28,18 @@
       font-size: $text-font-size + 12px;
     }
   }
-  .banner1,.banner2,.banner3,.banner4{
-    height: 450px;
-  }
-  .banner1{
-    background: url(../assets/banner-bg1.jpg) no-repeat;
-  }
-  .banner2{
-    background: url(../assets/banner-bg2.jpg) no-repeat;
-  }
-  .banner3{
-    background: url(../assets/banner-bg3.jpg) no-repeat;
-  }
-  .banner4{
-    background: url(../assets/banner-bg4.jpg) no-repeat;
+  p{
+    position: absolute;
+    top: 275px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
   }
   .btn-left,.btn-right{
-    margin: 10px;
-    width: 160px;
+    margin: 0 10px;
     height: 45px;
+    width: 140px;
     font-size: 22px;
-    
     color: $white-color;
     box-shadow: 0 1px 4px rgba(20,137,74,0.5);
   }
@@ -52,6 +48,17 @@
     background: rgba(255,255,255,0.3);
     &:hover{
       background: rgba(255,255,255,0.4);
+    }
+  }
+  .banner1,.banner2,.banner3,.banner4{
+    height: 450px;
+    position: relative;
+  }
+  .banner-img{
+    position: absolute;
+    z-index: -1;
+    img{
+      width: 100%;
     }
   }
 }
