@@ -2,61 +2,14 @@ import React from 'react'
 
 import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
-import './index.scss'
+import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
 
-
-import Toc from 'components/Toc'
-
-
-import Content from './content'
-import md from 'raw!./develop.md'
-
-import marked, { Renderer } from 'marked'
-const renderer = new Renderer()
-
-let toc
-
-const generateToc = tocList => {
-  return <ul>
-    {tocList.map(toc => toc.level <= 3 && <li style={{'paddingLeft': (toc.level-1) * 20}}>
-      <a href={`#${toc.text}`}>{toc.text}</a>
-    </li>)}
-  </ul>
-}
-
-toc = []
-renderer.heading = function (text, level) {
-  const escapedText = text.toLowerCase().replace(/[\s]+/g, '-')
-
-  toc.push({
-    text, level
-  })
-  return `<h${level}><a name="${escapedText}" class="anchor" href="#${escapedText}">
-<span class="header-link"></span></a>${text}</h${level}>`
-}
-
-marked.setOptions({
-  gfm: true,
-  breaks: true,
-  highlight: function (code) {
-    return require('highlight.js').highlightAuto(code).value
-  }
-})
+// Todo 从服务端获取 md 原文数据
+import mdData from 'raw!./develop.md'
 
 class Doc extends React.Component {
   render() {
-    console.log('--------------')
-    console.log(this.props)
-    //const urls = {
-    //  create: { url: `/apps/create` },
-    //  list: { url: `/apps/list` },
-    //  doc: { url: `/apps/doc`, active: true }
-    //}
-
-    const html = marked(md, { renderer }, (err, result) => {
-      console.log(toc)
-      return result
-    })
+    const markdownData = transerMdToMarkdown(mdData)
     return (
       <div className="container clx">
         <div className='sidebar'>
@@ -66,12 +19,11 @@ class Doc extends React.Component {
             <li><a className="" href=""><i className="iconfont icon-file"></i>开发者文档</a></li>
           </ul>
           <ul className="tag-list">
-            <Toc/>
-            {generateToc(toc)}
+            <Toc tocList={markdownData.tocList} />
           </ul>
         </div>
         <div className="sub-container bg-white">
-          <Content html={html}/>
+          <Markdown html={markdownData.html}/>
         </div>
       </div>
     )
