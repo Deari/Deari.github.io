@@ -19,7 +19,7 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json'],
     alias: {
-      
+
     }
   },
   module : {}
@@ -124,16 +124,31 @@ if (!__TEST__) {
 // ------------------------------------
 // Loaders
 // ------------------------------------
-// JavaScript / JSON
-webpackConfig.module.loaders = [{
-  test    : /\.(js|jsx)$/,
-  exclude : /node_modules/,
-  loader  : 'babel',
-  query   : project.compiler_babel
+// JavaScript / JSON / Markdown
+
+webpackConfig.module.loaders = [ {
+  test: /\.(js|jsx)$/,
+  exclude: /node_modules/,
+  loader: 'babel',
+  query: project.compiler_babel
 }, {
-  test   : /\.json$/,
-  loader : 'json'
-}]
+  test: /\.json$/,
+  loader: 'json'
+},
+//  {
+//  test: /\.md$/,
+//  loader: 'markdown',
+//}
+]
+
+//webpackConfig.markdownLoader = {
+//  gfm: true,
+//  breaks: true,
+//  sanitize: false,
+//  highlight: function (code) {
+//    return require("highlight.js").highlightAuto(code).value;
+//  }
+//}
 
 // ------------------------------------
 // Style Loaders
