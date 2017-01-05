@@ -12,7 +12,7 @@ class Doc extends React.Component {
       <Slidebar />
       <div className="sub-container plf bg-white">
         <dl className="doc-info">
-            <dt>1. 介绍我们的产品定位</dt>
+            <dt>1. 介绍我们的产品定位1</dt>
             <dd>
             本文档将带你一步步创建完成一个BO小程序，并可以在手机上体验该小程序的实际效果。这个小程序的首页将会显示欢迎语以及当前用户的BO头像，点击头像，可以在新开的页面中查看当前小程序的启动日志。
             <span>下载源码</span>

@@ -230,17 +230,15 @@
       }
     }
   }
-  .home-casus-img{
+  .home-casus-img1,.home-casus-img2,.home-casus-img3,.home-casus-img4,{
     i{
       display: block;
     }
-    i:nth-of-type(1){
+    .casus-img1{
       width: 100%;
       height: $default-height + 30px;
-      background: #eee url(../assets/temp-img1.jpg) no-repeat;
-      background-size: 100%;
     }
-    i:nth-of-type(2){
+    .casus-img2{
       position: absolute;
       left: 50%;
       top: 142px;
@@ -248,7 +246,46 @@
       width: $default-width - 50px;
       height: $default-height - 50px;
       border-radius: 50%;
-      background: #eee url(../assets/temp-img2.jpg) no-repeat;
+      border: 1px solid $gray9-color;
+    }
+  }
+  .home-casus-img1{
+    .casus-img1{
+      background: #eee url(../assets/temp-img1-1.jpg) no-repeat;
+      background-size: 100%;
+    }
+    .casus-img2{
+      background: #eee url(../assets/temp-img1-2.jpg) no-repeat;
+      background-size: 100%;
+    }
+  }
+  .home-casus-img2{
+    .casus-img1{
+      background: #eee url(../assets/temp-img2-1.jpg) no-repeat;
+      background-size: 100%;
+    }
+    .casus-img2{
+      background: #eee url(../assets/temp-img2-2.jpg) no-repeat;
+      background-size: 100%;
+    }
+  }
+  .home-casus-img3{
+    .casus-img1{
+      background: #eee url(../assets/temp-img3-1.jpg) no-repeat;
+      background-size: 100%;
+    }
+    .casus-img2{
+      background: #eee url(../assets/temp-img3-2.jpg) no-repeat;
+      background-size: 100%;
+    }
+  }
+  .home-casus-img4{
+    .casus-img1{
+      background: #eee url(../assets/temp-img4-1.jpg) no-repeat;
+      background-size: 100%;
+    }
+    .casus-img2{
+      background: #eee url(../assets/temp-img4-2.jpg) no-repeat;
       background-size: 100%;
     }
   }
