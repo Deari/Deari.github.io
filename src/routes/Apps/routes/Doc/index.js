@@ -4,13 +4,17 @@ import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
 import './index.scss'
 
+
+import Toc from 'components/Toc'
+
+
 import Content from './content'
 import md from 'raw!./develop.md'
 
 import marked, { Renderer } from 'marked'
 const renderer = new Renderer()
 
-const toc = []
+let toc
 
 const generateToc = tocList => {
   return <ul>
@@ -20,8 +24,10 @@ const generateToc = tocList => {
   </ul>
 }
 
+toc = []
 renderer.heading = function (text, level) {
   const escapedText = text.toLowerCase().replace(/[\s]+/g, '-')
+
   toc.push({
     text, level
   })
@@ -60,6 +66,7 @@ class Doc extends React.Component {
             <li><a className="" href=""><i className="iconfont icon-file"></i>开发者文档</a></li>
           </ul>
           <ul className="tag-list">
+            <Toc/>
             {generateToc(toc)}
           </ul>
         </div>
