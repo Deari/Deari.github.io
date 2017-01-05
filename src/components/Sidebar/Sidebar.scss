@@ -4,6 +4,7 @@
   position: fixed;
   top: 77px;
   bottom: 0;
+  z-index:3;
   width: $default-width + 110;
   padding :0 $default-padding-left - 30;
   background: $white-color;

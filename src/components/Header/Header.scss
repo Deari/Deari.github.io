@@ -29,7 +29,7 @@ $header-height:70px;
   position:fixed;
 }
 .header-wrapper {
-  z-index: 2;
+  z-index: 3;
   @include fixed;
   @include position-direction;
   .header-bg {
