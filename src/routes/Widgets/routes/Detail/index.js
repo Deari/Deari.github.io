@@ -33,6 +33,8 @@ class WidgetsDetail extends React.Component {
   }
   render() {
     let { data } = this.state
+    const tags = data.tags || []
+    const len = tags.length
     const urls = {
       create: { url: `/widgets/create` },
       list: { url: `/widgets/list` },
@@ -50,25 +52,29 @@ class WidgetsDetail extends React.Component {
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
-                <dt>应用名称-{ data.appName }</dt>
-                <dd><i className="user-img"></i>极速数据（企业）</dd>
+                <dt>{ data.appName }</dt>
+                <dd><i className="user-img"></i>{ data.developerName }</dd>
               </dl>
               <h3 className="app-title">内容提要</h3>
-              <p className="app-text">提供店内WIFI入口，顾客点击此入口后，只需要输入手机号以及
-              验证码，便可一健上网，同时，商家可将此顾客默认成为本店会员。</p>
+              <p className="app-text">{ data.appDesc }</p>
               <h3 className="app-title">信息</h3>
               <table className="infomation-list">
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag" href="">Wifi</a>
+                    <a className="tag" href="">{ data.categoryName }</a>
                   </td>
                 </tr>
                 <tr>
                   <td>标签</td>
                   <td>
-                    <a className="tag" href="">智能</a> 、
-                    <a className="tag" href="">营销互动</a>
+                  {
+                     tags.map( (item, index) => {
+                       return (
+                         <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
+                       )
+                     } )
+                  }
                   </td>
                 </tr>
               </table>
