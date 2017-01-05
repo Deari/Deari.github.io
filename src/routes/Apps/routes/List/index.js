@@ -72,7 +72,7 @@ class AppsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="应用"/>
+          <List data={this.state.listData} showName="app"/>
         </div>
       </div>
     )
