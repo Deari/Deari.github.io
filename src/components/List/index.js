@@ -2,25 +2,25 @@ import React from 'react'
 import { Link } from 'react-router'
 import './index.scss'
 import '../../styles/_base.scss'
-function choose(showName) {
+const choose = (showName) => {
   let name = '';
   switch (showName) {
-    case '硬件':
-      name = 'hardware'
+    case 'hardware':
+      name = '硬件'
       break;
-    case '应用':
-      name = 'app'
+    case 'app':
+      name = '应用'
       break;
     default:
-      name = 'widget'
+      name = '组件'
   }
   return name
 }
 class List extends React.Component {;
   render() {
-    const {data,showName} = this.props
+    const {data, showName} = this.props
     const name = choose(showName)
-    const itemName = name === 'hardware' ? 'hardware' : 'app'
+    const itemName = showName === 'hardware' ? 'hardware' : 'app'
     return (
       <div className="listContent">
         {
@@ -34,27 +34,27 @@ class List extends React.Component {;
               </div>
               <div className="info-content w342">
                 <div className="info-name" title={item[itemName+'Name']}>
-                  {showName + '名称 : '}{item[itemName+'Name']}
+                  {name + '名称 : '}{item[itemName+'Name']}
                 </div>
                 <div className="info-introduce" title={item[itemName+'Desc']}>
-                  {showName + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
+                  {name + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
                 </div>
-                {/*<Link className="info-link" to={linkUrl}>{'在' + showName + '市场查看详情'}</Link>*/}
+                {/*<Link className="info-link" to={linkUrl}>{'在' + name + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
               <div className="info-status w90">{item.state}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w112">
                 <Link className={
-                  name!=='hardware'&&!item.codeId 
+                  showName!=='hardware'&&!item.codeId 
                   || item.reviewStatus==3 
                   || item.hardwareStatus==3 
                   || item.hardwareStatus==0 ? 
                   'active':'' 
                 } 
-                  to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
+                  to={showName === 'hardware' ?'/' + showName + '/edit/' + item[itemName+'Id']:'/' + showName + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
-                    name !== 'hardware'&&!item.codeId 
+                    showName !== 'hardware'&&!item.codeId 
                     || item.reviewStatus == 3 
                     || item.hardwareStatus == 3
                     || item.hardwareStatus==0 ? 
@@ -66,16 +66,16 @@ class List extends React.Component {;
                   || item.hardwareStatus==2 ? 
                   'active': ''
                 } 
-                to={name === 'hardware' ?'/' + name + '/edit/' + item[itemName+'Id']:'/' + name + 's/edit/' + item[itemName+'Id']}>
+                to={showName === 'hardware' ?'/' + showName + '/edit/' + item[itemName+'Id']:'/' + showName + 's/edit/' + item[itemName+'Id']}>
                   <button disabled={
                     item.codeId 
                     || item.hardwareStatus == 2 ? 
                     false : true
                   }>发布新版本</button>
                 </Link>
-                <Link className={name === 'hardware' ? "active" : "none" } 
-                to={'/' + name + 's/edit/' + item[itemName+'id']}>
-                  <button disabled={name === 'hardware' ? false : true}>调试硬件</button>
+                <Link className={showName === 'hardware' ? "active" : "none" } 
+                to={'/' + showName + 's/edit/' + item[itemName+'id']}>
+                  <button disabled={showName === 'hardware' ? false : true}>调试硬件</button>
                 </Link>
               </div>
             </div>

@@ -43,7 +43,7 @@ class WidgetsDetail extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type='组件'/>
+        <Slidebar urls={urls} type='widget'/>
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">

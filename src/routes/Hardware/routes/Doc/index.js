@@ -15,7 +15,7 @@ class Doc extends React.Component {
 
     return (
     <div className="container clx">
-      <Slidebar urls={urls} type="硬件"/>
+      <Slidebar urls={urls} type="hardware"/>
       <div className="sub-container plf bg-white">
         <dl className="doc-info">
             <dt>1. 介绍我们的产品定位</dt>

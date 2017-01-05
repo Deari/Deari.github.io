@@ -112,7 +112,7 @@ class CreateContainer extends Component {
 
     return (
       <div className="container clx">
-        <Sidebar urls={urls}  type="组件"/>
+        <Sidebar urls={urls}  type="widget"/>
         <div className="sub-container">
           <Step page={page}/>
           {

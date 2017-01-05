@@ -82,7 +82,7 @@ class Main extends React.Component {
     const { listData, tags, activeTag, urls, detailLink } = this.state
     return (
         <div className="container clx">
-          <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} type="组件"/>
+          <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} type="widget"/>
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
