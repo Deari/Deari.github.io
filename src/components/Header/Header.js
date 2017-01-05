@@ -7,7 +7,10 @@ import '../../styles/_base.scss'
 import '../../styles/iconfont/iconfont.css'
 
 const choose = (pathname) => {
-  let searchTxt = '';
+  let searchTxt = ''
+  //const hardwareReg= /^.*[a-zA-Z]$/
+  // const widgetReg= /^*\/widgets$/ 
+  // const appReg= /^*\/apps$/ 
   switch (pathname) {
     case '/hardware':
       searchTxt = '搜索硬件'
@@ -64,7 +67,7 @@ export const Header = ({ location, hideHeader }) => {
                 </Link>
               </div>
             </div>
-            {location.pathname === '/' ? <div className="searchBox"></div>:getTpl(searchTxt)}
+            {location.pathname === '/' ? <div className="searchBox"></div> : getTpl(searchTxt)}
             <Login />
           </div>
         </div>
