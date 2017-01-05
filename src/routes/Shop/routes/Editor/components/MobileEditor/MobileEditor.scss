@@ -129,6 +129,34 @@ $blue97-color:#97d6fe;
       //background:#f6f5f5 url(../../../../../Home/assets/phone-module1.jpg);
       background-size:100%;
       overflow-y:scroll;
+      .mobile-header{
+        margin-top:-3px;
+        .clock{
+          width:210px;
+        }
+        .mobile-headerInfo{
+          font-size:12px;
+          color:#fff;
+          margin-top:-3px;
+          padding:8px;
+          background:#17baff;
+          overflow:hidden;
+          .icon-leftarrow{
+            float:left;
+            overflow:hidden;
+          }
+          .icon-search{
+            float:right;
+            overflow:hidden;
+          }
+          .title{
+            position:absolute;
+            top:21px;
+            width: 201px;
+            text-align:center;
+          }
+        }
+      }
     }
   }
   .text{

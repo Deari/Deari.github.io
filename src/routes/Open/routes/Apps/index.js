@@ -46,7 +46,7 @@ class Container extends React.Component {
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
-              <i className="iconfont icon-hot-control"></i>热门控件
+              <i className="iconfont icon-hot-control"></i>热门应用
               <form>
                 <p>
                   <select>
