@@ -29,7 +29,7 @@ const SimpleSlider = React.createClass({
            <Link className="btn-right btn" to="/apps/create">发布应用</Link>
           </p>
           <div className="banner-img">
-            <img src="http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg" />
+            <img width src="http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg" />
           </div>
         </div>
         <div className="banner2">

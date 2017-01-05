@@ -5,8 +5,10 @@
   width: 120px;
   margin: 1.5rem auto;
 }
+
 .home-banner{
   position: relative;
+  min-width: 1100px;
   height: 450px;
   text-align: center;
   background-size: 100%;
@@ -54,15 +56,18 @@
     height: 450px;
     position: relative;
   }
-  .banner-img{
-    position: absolute;
-    z-index: -1;
-    img{
-      width: 100%;
-    }
+}
+.banner-img{
+  position: absolute;
+  z-index: -1;
+  height: 450px;
+  img{
+    width: 100%;
+    height: 450px;
   }
 }
 .home-reminder{
+  min-width: 1100px;
   height: $default-height - 60px;
   line-height: $text-line-height;
   color: $gray6-color;
@@ -98,6 +103,7 @@
   @include clx;
   padding-top: $default-padding-top;
   padding-bottom: $default-padding-bottom;
+  min-width: 1100px;
   text-align: center;
   background: $white-color;
   h3{
@@ -192,6 +198,7 @@
 .home-casus{
   padding-top: $default-padding-top - 30px;
   padding-bottom: $default-padding-bottom - 20px;
+  min-width: 1100px;
   background: $white-color;
   ul{
     padding-top: $default-padding-top;
@@ -319,6 +326,7 @@
   }
 }
 .footer{
+  min-width: 1100px;
   height: $default-height + 20;
   font-size: $text-font-size - 4;
   color: $white-color;
