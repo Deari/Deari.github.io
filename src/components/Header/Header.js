@@ -6,11 +6,33 @@ import { ShopNav, DevNav, OpenNav } from './Navigation'
 import '../../styles/_base.scss'
 import '../../styles/iconfont/iconfont.css'
 
+const choose = (pathname) => {
+  let searchTxt = '';
+  switch (pathname) {
+    case '/hardware':
+      searchTxt = '搜索硬件'
+      break;
+    case '/widgets':
+      searchTxt = '搜索组件'
+      break;
+    default:
+      searchTxt = '搜索应用'
+  }
+  return searchTxt
+}
+const getTpl = (prop) => {
+  return (
+    <div className="search">
+      <i className="iconfont icon-search"></i>
+      <input type="text" placeholder={prop} />
+    </div>
+  )
+}
 export const Header = ({ location, hideHeader }) => {
   if (hideHeader) {
     return null
   }
-
+  const searchTxt = choose(location.pathname)
   return (
     <div>
       <div className='header-wrapper'>
@@ -25,7 +47,6 @@ export const Header = ({ location, hideHeader }) => {
             </Link>
             <small className="small-title">开发者平台</small>
           </h1>
-
           <div className="pull-right">
             <div className="nav">
               <div className="nav-list">
@@ -43,11 +64,7 @@ export const Header = ({ location, hideHeader }) => {
                 </Link>
               </div>
             </div>
-
-            <div className="search">
-              <i className="iconfont icon-search"></i>
-              <input type="text" placeholder="搜索API"/>
-            </div>
+            {location.pathname === '/' ? <div className="searchBox"></div>:getTpl(searchTxt)}
             <Login />
           </div>
         </div>

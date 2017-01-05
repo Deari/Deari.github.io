@@ -102,8 +102,10 @@ $header-height:70px;
         }
       }
     }
-    
-    
+    .searchBox{
+      display: inline-block;
+      width: 123px;
+    }
     .search {
       display: inline-block;
       margin: 0 28px;
