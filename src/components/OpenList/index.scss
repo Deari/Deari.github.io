@@ -34,6 +34,7 @@
   display: block;
   .open-info-name{
       padding: 16px 34px 0px;
+      height: 40px;
       font-size: 18px;
       color: $black-color;
       @include font-hidden;
@@ -41,7 +42,7 @@
   }
   .open-user-name{
     display: block;
-    margin-top: 8px;
+    margin-top: 4px;
     padding: 0 14px;
     font-size: 12px;
     color: $gray6-color;

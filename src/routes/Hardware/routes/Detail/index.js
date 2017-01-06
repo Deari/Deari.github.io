@@ -57,8 +57,8 @@ class HardwareDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag" href="">{ data.majorCategoryName } - </a>
-                    <a className="tag" href="">{ data.minorCategoryName }</a>
+                    <a className="tag">{ data.majorCategoryName } - </a>
+                    <a className="tag">{ data.minorCategoryName }</a>
                   </td>
                 </tr>
                 <tr>

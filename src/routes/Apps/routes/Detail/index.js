@@ -54,6 +54,7 @@ class AppsDetail extends React.Component {
   }
 
   render() {
+    
     const { data, versions, showAll } = this.state
     const tags = data.tags || []
     const len = tags.length
@@ -105,28 +106,7 @@ class AppsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <div className="table-info">
-            <h3 className="app-title">版本信息</h3>
-            <table className="detail-table">
-              <tr>
-                <td className="title">更新日期</td>
-                <td className="text">{ latestVersion.codeUpdateTime }</td>
-              </tr>
-              <tr>
-                <td className="title">版本</td>
-                <td className="text">{ latestVersion.codeVersion }</td>
-              </tr>
-              <tr>
-                <td className="title">大小</td>
-                <td className="text">{ latestVersion.fileSize }</td>
-              </tr>
-              <tr>
-                <td className="title">版本介绍</td>
-                <td className="text">{ latestVersion.codeDesc }</td>
-              </tr>
-            </table>
-            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} />
-          </div>
+          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
         </div>
       </div>
     )
