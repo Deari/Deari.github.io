@@ -150,11 +150,9 @@
           border-radius: 50%;
         }
         .market-text{
-          display: block;
-          padding-top: $default-padding-top - 20px;
-          padding-left: $default-padding-left - 24px;
-          padding-right: $default-padding-right - 24px;
-          padding: 20px 16px 28px;
+          height: 68px;
+          margin-bottom: 28px;
+          padding: 20px 16px 0;
           color: $white-color;
           line-height: $text-line-height - 16px;
           display: -webkit-box;
