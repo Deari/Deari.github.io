@@ -18,9 +18,7 @@ class Doc extends React.Component {
             <li><a className="" href=""><i className="iconfont icon-application"></i>我的应用</a></li>
             <li><a className="" href=""><i className="iconfont icon-file"></i>开发者文档</a></li>
           </ul>
-          <ul className="tag-list">
-            <Toc tocList={markdownData.tocList} />
-          </ul>
+          <Toc tocList={markdownData.tocList} />
         </div>
         <div className="sub-container bg-white">
           <Markdown html={markdownData.html}/>

@@ -67,7 +67,7 @@ class HardwaresList extends React.Component {
           </ul>
           <ul className="list-title">
             <li className="w124">LOGO</li>
-            <li className="w342">应用名称</li>
+            <li className="w342">硬件名称</li>
             <li className="w90">价格</li>
             <li className="w90">状态</li>
             <li className="w90">已下载</li>

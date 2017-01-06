@@ -23,7 +23,8 @@
   h1, h2, h3, h4, h5, h6 {
     -webkit-font-smoothing : antialiased;
     cursor                 : text;
-    position               : relative; }
+    position               : relative; 
+    font-weight            : 700;}
 
   h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
     //background      : url("../../images/modules/styleguide/para.png") no-repeat 10px center;
@@ -56,21 +57,20 @@
   h2 {
     font-size     : 20px;
     line-height   : 50px;
-    font-weight   : 700;
     margin-bottom : 10px;
     border-bottom : 1px solid #cccccc; }
 
   h3 {
     font-size   : 16px;
-    font-weight : 700;
+    line-height : 34px;
   }
 
   h4 {
-    font-size : 16px; }
+    font-size : 14px; }
 
   h5 {
-    font-size   : 14px;
-    font-weight : bold; }
+    font-size   : 12px;
+  }
 
   h6 {
     color     : #777777;
@@ -104,7 +104,18 @@
 
   h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
     margin-top : 0; }
-
+  ul{
+    margin-bottom:15px;
+    li{
+      list-style:initial;
+      blockquote{
+        margin-top:5px;
+      }
+      h4{
+        margin-top:5px;
+      }
+    }
+  }
   li p.first {
     display : inline-block; }
 
@@ -287,4 +298,21 @@
   pre code, pre tt {
     background-color : transparent;
     border           : none; }
+}
+.document-list{
+  padding: 5px 15px;
+  font-size:16px;
+  li{
+    padding:5px 0;
+    a{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      max-height: 25px;
+      overflow: hidden;
+      &:hover{
+        color: #2692fb;
+      }
+    }
+  }
 }

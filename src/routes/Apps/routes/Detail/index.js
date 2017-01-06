@@ -4,6 +4,7 @@ import fetchUtil from '../../../utils/fetchUtil'
 import { getDomain } from '../../../utils/domain';
 import moment from 'moment'
 import Slidebar from '../../../../components/Sidebar'
+import Versions from './versions'
 import '../../../../styles/_base.scss'
 import './index.scss'
 
@@ -11,9 +12,12 @@ class AppsDetail extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      versions: [],
+      showAll: false
     };
   }
+
   async componentDidMount() {
     let id = this.props.params.id;
     let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/app/${id}`);
@@ -26,15 +30,37 @@ class AppsDetail extends React.Component {
       console.log(e);
     }
   }
+
   formatData(data) {
     data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
     data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
-    this.setState({data: data});
+
+    data.versions.map((v, index) => {
+      v.codeUpdateTime = v.codeUpdateTime && moment(parseInt(v.codeUpdateTime)).format('YYYY-MM-DD H:m:s')
+    })
+
+    const versions = (data.versions && data.versions.slice(1, 2)) || []
+    this.setState({data: data, versions: versions});
   }
+
+  getVersions() {
+    const { data } = this.state
+    const showAll = !this.state.showAll
+    const fistHistory = data.versions.slice(1, 2) || []
+    const histories = data.versions.slice(1) || []
+    showAll 
+      ? this.setState({versions: histories, showAll: showAll}) 
+      : this.setState({versions: fistHistory, showAll: showAll})
+  }
+
   render() {
-    const { data} = this.state
+    
+    const { data, versions, showAll } = this.state
     const tags = data.tags || []
     const len = tags.length
+
+    const latestVersion = (data.versions && data.versions[0]) || {}
+
     const urls = {
       create: { url: `/apps/create` },
       list: { url: `/apps/list` },
@@ -80,67 +106,7 @@ class AppsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <div className="table-info">
-            <h3 className="app-title">版本信息</h3>
-            <table className="detail-table">
-              <tr>
-                <td className="title">更新日期</td>
-                <td className="text">2016年12月21日</td>
-              </tr>
-              <tr>
-                <td className="title">版本</td>
-                <td className="text">0.1.6</td>
-              </tr>
-              <tr>
-                <td className="title">大小</td>
-                <td className="text">10MB</td>
-              </tr>
-              <tr>
-                <td className="title">版本介绍</td>
-                <td className="text">版本介绍信息</td>
-              </tr>
-            </table>
-            <h3 className="app-title">历史版本</h3>
-            <ul className="detail-tableList">
-              <li className="item">
-                <div className="cell">
-                  <p className="title">更新日期</p>
-                  <p className="text">2016年11月15日</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本</p>
-                  <p className="text">0.1.5</p>
-                </div>
-                <div className="cell">
-                  <p className="title">大小</p>
-                  <p className="text">10MB</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本介绍</p>
-                  <p className="text">性能优化</p>
-                </div>
-              </li>
-              <li className="item">
-                <div className="cell">
-                  <p className="title">更新日期</p>
-                  <p className="text">2016年11月15日</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本</p>
-                  <p className="text">0.1.5</p>
-                </div>
-                <div className="cell">
-                  <p className="title">大小</p>
-                  <p className="text">10MB</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本介绍</p>
-                  <p className="text">性能优化</p>
-                </div>
-              </li>
-            </ul>
-            <a className="read-more" href="">...更多版本介绍</a>
-          </div>
+          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
         </div>
       </div>
     )
