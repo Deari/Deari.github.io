@@ -8,34 +8,37 @@ import '../../styles/iconfont/iconfont.css'
 
 const choose = (pathname) => {
   let searchTxt = ''
-  //const hardwareReg= /^.*[a-zA-Z]$/
-  // const widgetReg= /^*\/widgets$/ 
-  // const appReg= /^*\/apps$/ 
-  switch (pathname) {
-    case '/hardware':
-      searchTxt = '搜索硬件'
-      break;
-    case '/widgets':
-      searchTxt = '搜索组件'
-      break;
-    default:
-      searchTxt = '搜索应用'
+  const hardwareReg= /\/hardware/
+  const widgetReg= /\/widgets/ 
+  const appReg= /\/apps/ 
+  if(hardwareReg.test(pathname)){
+    return searchTxt = '搜索硬件'
   }
-  return searchTxt
+  if(widgetReg.test(pathname)){
+    return searchTxt = '搜索组件'
+  }
+  if(appReg.test(pathname)){
+    return searchTxt = '搜索应用'
+  }
 }
-const getTpl = (prop) => {
-  return (
-    <div className="search">
-      <i className="iconfont icon-search"></i>
-      <input type="text" placeholder={prop} />
-    </div>
-  )
+const getTpl = ({searchTxt,pathname}) => {
+  if (pathname === '/') {
+    return <div className="searchBox"></div>
+  } else {
+    return (
+      <div className="search">
+        <i className="iconfont icon-search"></i>
+        <input type="text" placeholder={searchTxt} />
+      </div>
+    )
+  }
 }
 export const Header = ({ location, hideHeader }) => {
   if (hideHeader) {
     return null
   }
-  const searchTxt = choose(location.pathname)
+  const pathname = location.pathname
+  const searchTxt = choose(pathname)
   return (
     <div>
       <div className='header-wrapper'>
@@ -67,7 +70,7 @@ export const Header = ({ location, hideHeader }) => {
                 </Link>
               </div>
             </div>
-            {location.pathname === '/' ? <div className="searchBox"></div> : getTpl(searchTxt)}
+            {getTpl({searchTxt,pathname})}
             <Login />
           </div>
         </div>
