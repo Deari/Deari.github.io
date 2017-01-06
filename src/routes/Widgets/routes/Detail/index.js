@@ -114,24 +114,44 @@ class WidgetsDetail extends React.Component {
               </tr>
             </table>
             <h3 className="app-title">历史版本</h3>
-            <table className="detail-table">
-              <tr>
-                <td className="title">更新日期</td>
-                <td className="text">2016年11月15日</td>
-              </tr>
-              <tr>
-                <td className="title">大小</td>
-                <td className="text">10MB</td>
-              </tr>
-              <tr>
-                <td className="title">版本</td>
-                <td className="text">0.1.5</td>
-              </tr>
-              <tr>
-                <td className="title">版本介绍</td>
-                <td className="text">性能优化</td>
-              </tr>
-            </table>
+            <ul className="detail-tableList">
+              <li className="item">
+                <div className="cell">
+                  <p className="title">更新日期</p>
+                  <p className="text">2016年11月15日</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本</p>
+                  <p className="text">0.1.5</p>
+                </div>
+                <div className="cell">
+                  <p className="title">大小</p>
+                  <p className="text">10MB</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本介绍</p>
+                  <p className="text">性能优化</p>
+                </div>
+              </li>
+              <li className="item">
+                <div className="cell">
+                  <p className="title">更新日期</p>
+                  <p className="text">2016年11月15日</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本</p>
+                  <p className="text">0.1.5</p>
+                </div>
+                <div className="cell">
+                  <p className="title">大小</p>
+                  <p className="text">10MB</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本介绍</p>
+                  <p className="text">性能优化</p>
+                </div>
+              </li>
+            </ul>
             <a className="read-more" href="">...更多版本介绍</a>
           </div>
         </div>
