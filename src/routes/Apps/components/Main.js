@@ -10,9 +10,9 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list` },
-      doc: { url: `/apps/doc` }
+      create: { url: `/apps/create`, name: '创建新应用' },
+      list: { url: `/apps/list`, name: '我的应用' },
+      doc: { url: `/apps/doc`}
     },
     detailLink: '/apps/detail/'
   }

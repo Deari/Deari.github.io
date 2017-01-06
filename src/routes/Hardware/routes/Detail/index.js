@@ -32,8 +32,8 @@ class HardwareDetail extends React.Component {
     const hardwarePics = data.hardwarePics || []
     const len = tags.length
     const urls = {
-      create: { url: `/hardware/create` },
-      list: { url: `/hardware/list` },
+      create: { url: `/hardware/create`, name: '创建新硬件' },
+      list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
     return (
@@ -97,8 +97,10 @@ class HardwareDetail extends React.Component {
               </tr>
               <tr>
                 <td className="title">通讯方式</td>
-                { data.commType1 ? <td className="text">WIFI</td> : '' }
-                { data.commType2 ? <td className="text">蓝牙</td> : '' }
+                <td className="text">
+                { data.commType1 ? <span className="tag">WIFI</span> : '' }
+                { data.commType2 ? <span className="tag">蓝牙</span> : '' }
+                </td>
               </tr>
               <tr>
                 <td className="title">详情功能描述</td>
