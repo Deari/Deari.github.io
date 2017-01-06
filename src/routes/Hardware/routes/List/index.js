@@ -70,7 +70,7 @@ class HardwaresList extends React.Component {
             <li className="w342">硬件名称</li>
             <li className="w90">价格</li>
             <li className="w90">状态</li>
-            <li className="w90">已下载</li>
+            <li className="w90">已激活</li>
             <li className="w112">操作</li>
           </ul>
           <List data={this.state.listData} showName="hardware"/>

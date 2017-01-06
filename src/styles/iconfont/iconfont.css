@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1483606753087'); /* IE9*/
-  src: url('iconfont.eot?t=1483606753087#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1483606753087') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1483606753087') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1483606753087#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1483695739005'); /* IE9*/
+  src: url('iconfont.eot?t=1483695739005#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1483695739005') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1483695739005') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1483695739005#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -29,7 +29,7 @@
 
 .icon-shangjia:before { content: "\e626"; }
 
-.icon-sidebar6:before { content: "\e630"; }
+.icon-sidebar7:before { content: "\e630"; }
 
 .icon-lock:before { content: "\e60b"; }
 
@@ -49,19 +49,19 @@
 
 .icon-team:before { content: "\e605"; }
 
-.icon-sidebar1:before { content: "\e63e"; }
+.icon-sidebar2:before { content: "\e63e"; }
 
 .icon-create:before { content: "\e63f"; }
 
 .icon-sidebar0:before { content: "\e640"; }
 
-.icon-sidebar3:before { content: "\e641"; }
+.icon-sidebar4:before { content: "\e641"; }
 
 .icon-hot-control:before { content: "\e644"; }
 
 .icon-toparrow:before { content: "\e645"; }
 
-.icon-sidebar2:before { content: "\e647"; }
+.icon-sidebar3:before { content: "\e647"; }
 
 .icon-finish:before { content: "\e648"; }
 
@@ -69,15 +69,15 @@
 
 .icon-drop-down:before { content: "\e64a"; }
 
-.icon-sidebar5:before { content: "\e64c"; }
+.icon-sidebar6:before { content: "\e64c"; }
 
 .icon-info:before { content: "\e64d"; }
 
 .icon-star:before { content: "\e64e"; }
 
-.icon-sidebar7:before { content: "\e64f"; }
+.icon-sidebar1:before { content: "\e64f"; }
 
-.icon-sidebar4:before { content: "\e650"; }
+.icon-sidebar5:before { content: "\e650"; }
 
 .icon-file:before { content: "\e651"; }
 
