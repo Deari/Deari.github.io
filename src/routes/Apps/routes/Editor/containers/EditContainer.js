@@ -108,8 +108,8 @@ class EditContainer extends Component {
     const { page } =this.props.appsEdit;
 
     const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list` },
+      create: { url: `/apps/create`, name: '创建新应用' },
+      list: { url: `/apps/list`, name: '我的应用' },
       doc: { url: `/apps/doc` }
     }
     

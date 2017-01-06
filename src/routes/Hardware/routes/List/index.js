@@ -50,8 +50,8 @@ class HardwaresList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/hardware/create` },
-      list: { url: `/hardware/list`, active: true },
+      create: { url: `/hardware/create`, name: '创建新硬件' },
+      list: { url: `/hardware/list`, name: '我的硬件', active: true },
       doc: { url: `/hardware/doc` }
     }
 

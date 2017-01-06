@@ -49,8 +49,8 @@ class AppsList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list`, active: true },
+      create: { url: `/apps/create`, name: '创建新应用' },
+      list: { url: `/apps/list`, name: '我的应用', active: true },
       doc: { url: `/apps/doc` }
     }
 
