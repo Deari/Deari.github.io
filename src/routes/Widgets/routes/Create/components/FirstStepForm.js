@@ -71,8 +71,8 @@ export default connect(
 )(reduxForm({
   form: 'widgetsCreateFirst',
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,
+  //destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  // validate,
+  validate,
 })(FirstStepForm))
 

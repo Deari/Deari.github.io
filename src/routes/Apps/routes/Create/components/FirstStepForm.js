@@ -60,9 +60,9 @@ export default connect(
 )(reduxForm({
   form: 'createAppStep1',
   fields: [],
-  // destroyOnUnmount: false,
-  // forceUnregisterOnUnmount: true,
-  // validate,
+  //destroyOnUnmount: false,
+  forceUnregisterOnUnmount: true,
+  validate,
 })(FirstStepForm))
 
 
