@@ -47,8 +47,8 @@ const SimpleSlider = React.createClass({
         </div>
         <div className="banner3">
           <dl>
-            <dt>API集市</dt>
-            <dd>为开发者提供最全面 最权威的API服务</dd>
+            <dt>API市场</dt>
+            <dd>为开发者提供最全面，最权威的API服务</dd>
           </dl>
           <p>
            <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览API</a>
@@ -95,34 +95,38 @@ export const HomeView = () => (
     <div className="home-market">
       <div className="container">
         <h3>为超过<span>176，4600</span>客户服务</h3>
-        <p>数据由万达提供</p>
+        <p>数据由飞凡提供</p>
         <ul className="clx">
           <li>
             <Link className="a-bg1" to="/apps">
               <p>应用市场</p>
               <i className="iconfont icon-business"></i>
-              <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
+              <span className="market-text">提供实体门店经营所需的各项管理工具</span>
+              <span className="market-more">了解更多</span>
             </Link>
           </li>
           <li>
             <Link className="a-bg2" to="/widgets">
               <p>组件市场</p>
               <i className="iconfont icon-component"></i>
-              <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
+              <span className="market-text">助力实体门店创造个性化和场景化的营销方案</span>
+              <span className="market-more">了解更多</span>
             </Link>
           </li>
           <li>
             <a className="a-bg3" href="http://apistore.intra.test.ffan.net">
               <p>API市场</p>
               <i className="iconfont icon-api"></i>
-              <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
+              <span className="market-text">提供实体服务商/开发者所需的各种服务接口</span>
+              <span className="market-more">了解更多</span>
             </a>
           </li>
           <li>
             <Link className="a-bg4" to="/hardware">
               <p>硬件市场</p>
               <i className="iconfont icon-hardware"></i>
-              <span>为2000万中小门店提供信息化工具，帮助其改善经营效率，共享收益</span>
+              <span className="market-text">助力实体门店连接线上线下打造O2O解决方案</span>
+              <span className="market-more">了解更多</span>
             </Link>
           </li>
         </ul>

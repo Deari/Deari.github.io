@@ -104,8 +104,8 @@ class CreateContainer extends Component {
 
   render() {
     const urls = {
-      create: { url: `/widgets/create` },
-      list: { url: `/widgets/list` },
+      create: { url: `/widgets/create`, name: '创建新组件' },
+      list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
     const { page } =this.props.widgetCreate;
