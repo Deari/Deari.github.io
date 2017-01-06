@@ -16,7 +16,7 @@
     position     : absolute;
     /* Todo header 的高度 变量管理 */
     top          : -80px;
-    visibility: hidden;
+    visibility   : hidden;
     left         : 0;
     bottom       : 0; }
 
@@ -258,6 +258,7 @@
   pre code {
     margin      : 0;
     padding     : 0;
+    color       : #333;
     white-space : pre;
     border      : none;
     background  : transparent; }
