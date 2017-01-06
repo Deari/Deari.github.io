@@ -93,6 +93,9 @@
     }
     .text{
       color:$black-color;
+      .tag{
+        padding-right:10px;
+      }
       .img-block{
         position:relative;
         display: inline-block;
