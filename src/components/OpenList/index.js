@@ -28,7 +28,7 @@ class OpenList extends React.Component {
                 <p className="open-list-show">
                   <a><i className="iconfont icon-team"></i>165</a>
                   <a><i className="iconfont icon-star"></i>251</a>
-                  <a><i className="iconfont icon-toparrow"></i>100%</a>
+                  <a><i className="iconfont icon-heart"></i>100</a>
                 </p>
               </div>
             </li>

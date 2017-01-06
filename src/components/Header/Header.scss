@@ -29,7 +29,7 @@ $header-height:70px;
   position:fixed;
 }
 .header-wrapper {
-  z-index: 2;
+  z-index: 3;
   @include fixed;
   @include position-direction;
   .header-bg {
@@ -102,8 +102,10 @@ $header-height:70px;
         }
       }
     }
-    
-    
+    .searchBox{
+      display: inline-block;
+      width: 123px;
+    }
     .search {
       display: inline-block;
       margin: 0 28px;
