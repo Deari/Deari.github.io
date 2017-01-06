@@ -43,7 +43,7 @@ export const transerMdToMarkdown = (md) => {
 
 export const Toc = ({ tocList }) => {
   return <ul>
-    {tocList.map(toc => toc.level <= 3 && <li style={{ 'paddingLeft': (toc.level - 1) * 20 }}>
+    {tocList.map(toc => toc.level <= 5 && <li style={{ 'paddingLeft': (toc.level - 1) * 20 }}>
       <a href={`#${toc.text}`}>{toc.text}</a>
     </li>)}
   </ul>
