@@ -86,7 +86,7 @@ class Main extends React.Component {
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
-              <i className="iconfont icon-hot-control"></i>热门控件
+              <i className="iconfont icon-hot-control"></i>热门硬件
               <form>
                 <p>
                   <select>

@@ -21,7 +21,7 @@ export class Preview extends Component {
       cols: 2,
       rowHeight: 47,
       selectedCls: 'selected',
-      width: 211,
+      width: 210,
       margin: [ 0, 0 ],
     }
   }
@@ -75,6 +75,14 @@ export class Preview extends Component {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     return connectDropTarget(
       <div className="shop-info">
+        <div className="mobile-header">
+          <img className="clock" src="http://img1.ffan.com/T1hOJTB_WT1RCvBVdK" />
+          <div className="mobile-headerInfo">
+            <i className="iconfont icon-leftarrow"></i>
+            <p className="title">GAP(金地中心店)</p>
+            <i className="iconfont icon-search"></i>
+          </div>
+        </div>
         <ReactGridLayout className="layout"
                          {...gridProps}
                          onLayoutChange={::this.onLayoutChange}>

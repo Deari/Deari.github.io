@@ -4,7 +4,6 @@ import fetchUtil from '../../../utils/fetchUtil'
 import { getDomain } from '../../../utils/domain';
 import moment from 'moment'
 import Slidebar from '../../../../components/Sidebar'
-import OpenList from '../../../../components/OpenList'
 import '../../../../styles/_base.scss'
 import './index.scss'
 
@@ -12,8 +11,7 @@ class WidgetsDetail extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: [],
-      listData: []
+      data: []
     };
   }
   async componentDidMount() {
@@ -34,7 +32,9 @@ class WidgetsDetail extends React.Component {
     this.setState({data: data});
   }
   render() {
-    let { data, listData } = this.state
+    let { data } = this.state
+    const tags = data.tags || []
+    const len = tags.length
     const urls = {
       create: { url: `/widgets/create` },
       list: { url: `/widgets/list` },
@@ -52,24 +52,87 @@ class WidgetsDetail extends React.Component {
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
-                <dt>应用名称-{ data.appName }</dt>
-                <dd><i className="user-img"></i>极速数据（企业）</dd>
+                <dt>{ data.appName }</dt>
+                <dd><i className="user-img"></i>{ data.developerName }</dd>
               </dl>
-              <h3 className="app-title">版本：{ data.lastCodeVersion ? `${data.lastCodeVersion}的细节功能` : `` } <span>（时间：{ data.updateTime }）</span></h3>
+              <h3 className="app-title">内容提要</h3>
               <p className="app-text">{ data.appDesc }</p>
-              <h3 className="app-title">作者：{ data.developerName }</h3>
-              <p className="app-text">(假字)加入专属玩家群102452812、462237553，参与独家激情活动。</p>
+              <h3 className="app-title">信息</h3>
+              <table className="infomation-list">
+                <tr>
+                  <td>类别</td>
+                  <td>
+                    <a className="tag" href="">{ data.categoryName }</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>标签</td>
+                  <td>
+                  {
+                     tags.map( (item, index) => {
+                       return (
+                         <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
+                       )
+                     } )
+                  }
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
-          <div className="detail-moreApps">
-            <div className="moreApp-list">
-              <h3><span className="float-right text-gray9-color">更多>></span>相关的店铺组件</h3>
-              <OpenList listData={ listData } typeName="app" />
-            </div>
-            <div className="moreApp-list">
-              <h3><span className="float-right text-gray9-color">更多>></span>相关的开放硬件</h3>
-              <OpenList listData={ listData } typeName="app" />
-            </div>
+          <div className="table-info">
+            <h3 className="app-title">版本信息</h3>
+            <table className="detail-table">
+              <tr>
+                <td className="title">更新日期</td>
+                <td className="text">2016年12月21日</td>
+              </tr>
+              <tr>
+                <td className="title">版本</td>
+                <td className="text">0.1.6</td>
+              </tr>
+              <tr>
+                <td className="title">大小</td>
+                <td className="text">10MB</td>
+              </tr>
+              <tr>
+                <td className="title">版本介绍</td>
+                <td className="text">版本介绍信息</td>
+              </tr>
+              <tr>
+                <td className="title">组件尺寸</td>
+                <td className="text">2*1</td>
+              </tr>
+              <tr>
+                <td className="title">预览图</td>
+                <td className="text">
+                  <div className="img-block">
+                    <p className="img-text">加载中</p>
+                    <img className="img" src="" />
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <h3 className="app-title">历史版本</h3>
+            <table className="detail-table">
+              <tr>
+                <td className="title">更新日期</td>
+                <td className="text">2016年11月15日</td>
+              </tr>
+              <tr>
+                <td className="title">大小</td>
+                <td className="text">10MB</td>
+              </tr>
+              <tr>
+                <td className="title">版本</td>
+                <td className="text">0.1.5</td>
+              </tr>
+              <tr>
+                <td className="title">版本介绍</td>
+                <td className="text">性能优化</td>
+              </tr>
+            </table>
+            <a className="read-more" href="">...更多版本介绍</a>
           </div>
         </div>
       </div>
