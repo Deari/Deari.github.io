@@ -28,7 +28,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             left: 657px;
         }
     }
-    label.labelH{
+    .labelH{
       height:30px;
     }
     .row-right{
@@ -127,25 +127,28 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 border-color: dodgerblue;
             }
         }
-        .create-btn{
-            display: block;
-            margin: $default-margin-top - 2 auto $default-margin-bottom - 6;
-            width: $default-width + 30;
-            border: 1px solid $blue-color;
-            font-size: $text-font-size - 4;
-            color: $blue-color;
+        .downLoad{
+            width:223px;
+            height: 47px;
+            line-height: 47px;
             text-align: center;
-            line-height: $text-line-height - 10;
-            border-radius: 2px;
-            .icon-create{
-              padding-right: $default-padding-right - 36;
-             }
+            color: #a0a0a0;
+            border: 1px solid #a0a0a0;
+            margin-right:22px;
+            font-size: 16px;
+            border-radius: 4px;
+            margin: 0 10px 0 0;
+            float: left; 
             &:hover{
-              color: $white-color;
-              background: $blue-color;
+                color: $blue-color;
+                border-color: $blue-color;
             }
-          }
-     
+            i{
+                vertical-align: middle;
+                font-size: 26px;
+            }
+        }
+        
         /*第二步应用文件样式start*/
         
         .file-name{
@@ -228,10 +231,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .row-select{
     margin-right:10px;
 }
-.create-btn.downLoad{
-    margin: 0 ;
-    float: left;     
-}
+
 .flR{
   float: right;
 }
