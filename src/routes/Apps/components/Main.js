@@ -1,6 +1,7 @@
 import React from 'react'
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 import Sidebar from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 
@@ -19,36 +20,30 @@ class Main extends React.Component {
 
   async getList(tagId) {
     let id = tagId || 'all';
-    let apiUrl = getDomain(
-      `http://api.intra.`, 
-      `ffan.net/bo/v1/web/market/tag/${id}/apps`
-    );
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/market/tag/${id}/apps`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ listData: res.data.list })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn("获取列表接口返回错误", res)
       }
     } catch (e) {
-      console.log("e ", e);
+      debug.warn("获取列表接口返回错误", e)
     }
   }
 
   async getTags() {
-    let apiUrl = getDomain(
-      `http://api.intra.`,
-      `ffan.net/bo/v1/public/common/tags?type=app`
-    );
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=app`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn("获取标签接口返回错误", res)
       }
     } catch (e) {
-      console.log("e ", e);
+      debug.warn("获取标签接口返回错误", e)
     }
   }
 

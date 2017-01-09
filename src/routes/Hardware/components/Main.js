@@ -1,6 +1,7 @@
 import React from 'react'
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 import Sidebar from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 
@@ -16,55 +17,65 @@ class Main extends React.Component {
     },
     detailLink: '/hardware/detail/'
   }
+
   async getList(tagId) {
     let id = tagId || 'all';
-    let apiUrl = getDomain(
-      `http://api.intra.`, 
-      `ffan.net/bo/v1/web/market/tag/${id}/hardware`
-    ) 
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/market/tag/${id}/hardware`) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ listData: res.data.list })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn("获取列表接口返回错误", res)
       }
     } catch (e) {
-      console.log("e ", e);
+      debug.warn("获取列表接口返回错误", e)
     }
   }
+
   async getTags() {
-    let apiUrl = getDomain(
-      `http://api.intra.`,
-      `ffan.net/bo/v1/public/common/tags?type=hardware`
-    );
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=hardware`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn("获取标签接口返回错误", res)
       }
     } catch (e) {
-      console.log("e ", e);
+      debug.warn("获取标签接口返回错误", e)
     }
   }
+
   async componentDidMount() {
-    await this.getList()
-    await this.getTags()
-    let { tags } = this.state
-    tags.unshift({ tagId: 0, tagName: "全部", className: 'active' })
-    this.setState({ tags: tags })
+   await this.getTags()
+
+    let { tags, activeTag } = this.state
+    const search = location.search
+    tags.unshift({ tagId: 0, tagName: "全部" })
+    activeTag = search && search.split('=')[1]
+
+    tags.map((item, index)=> {
+      item.aHref = (index == 0) ? `/hardware` : `/hardware?tagId=${item.tagId}`
+      item.className = ((item.tagId == activeTag) && "active") || ''
+    })
+
+    this.setState({ tags: tags, activeTag: activeTag }, () => {
+      this.getList(activeTag)
+    })
   }
+
   tagChange(tagId) {
     let { activeTag, tags } = this.state
     if ( activeTag === tagId ) return
     tags.map((item, index)=> {
       item.className = ((item.tagId == tagId) && "active") || ''
     })
-    this.setState({ activeTag: tagId, tags: tags })
-    this.getList(tagId)
+    this.setState({ activeTag: tagId, tags: tags }, () => {
+      this.getList(tagId)
+    })
   }
+
   clickStar(item) {
     let { listData } = this.state
     for (let i=0; i<listData.length; i++) {
@@ -81,11 +92,12 @@ class Main extends React.Component {
       }
     }
   }
+
   render () {
-    const { listData, tags, activeTag, urls, detailLink } = this.state
+    const { listData, tags, urls, detailLink } = this.state
     return (
         <div className="container clx">
-          <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} type="hardware"/>
+          <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} />
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">

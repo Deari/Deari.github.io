@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain';
+import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
 import Versions from './versions'
@@ -26,26 +27,25 @@ class AppsDetail extends React.Component {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
         res.data && this.formatData(res.data);
+      } else {
+        debug.warn("获取详情接口返回错误", res)
       }
     } catch (e) {
-      console.log(e);
+     debug.warn("获取详情接口返回错误", e)
     }
   }
 
   async getTags() {
-    let apiUrl = getDomain(
-      `http://api.intra.`,
-      `ffan.net/bo/v1/public/common/tags?type=apps`
-    );
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=app`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn("获取标签接口返回错误", res)
       }
     } catch (e) {
-      console.log("e ", e);
+      debug.warn("获取标签接口返回错误", e)
     }
   }
 
@@ -98,7 +98,7 @@ class AppsDetail extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type='应用' tags={tags}/>
+        <Slidebar urls={urls} type='应用' tags={tags} />
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
