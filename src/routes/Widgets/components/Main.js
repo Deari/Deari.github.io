@@ -36,7 +36,7 @@ class Main extends React.Component {
   async getTags() {
     let apiUrl = getDomain(
       `http://api.intra.`,
-      `ffan.net/bo/v1/public/common/tags?type=widgets`
+      `ffan.net/bo/v1/public/common/tags?type=widget`
     );
     try {
       let res = await fetchUtil.getJSON(apiUrl)
@@ -53,13 +53,16 @@ class Main extends React.Component {
     await this.getList()
     await this.getTags()
     let { tags } = this.state
-    tags.unshift({ tagId: 0, tagName: "全部" })
+    tags.unshift({ tagId: 0, tagName: "全部", className: 'active' })
     this.setState({ tags: tags })
   }
   tagChange(tagId) {
-    let { activeTag } = this.state
+    let { activeTag, tags } = this.state
     if ( activeTag === tagId ) return
-    this.setState({ activeTag: tagId })
+    tags.map((item, index)=> {
+      item.className = ((item.tagId == tagId) && "active") || ''
+    })
+    this.setState({ activeTag: tagId, tags: tags })
     this.getList(tagId)
   }
   clickStar(item) {

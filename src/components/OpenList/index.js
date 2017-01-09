@@ -26,7 +26,7 @@ class OpenList extends React.Component {
                   <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
                   <span className="open-info-introduce">{ desc }</span>
                 </Link>
-                <Link className="open-list-price">{ price } </Link>
+                <a className="open-list-price">{ price } </a>
                 <p className="open-list-show">
                   <a><i className="iconfont icon-team"></i>165</a>
                   <a><i className="iconfont icon-star"></i>251</a>

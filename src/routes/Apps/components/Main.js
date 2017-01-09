@@ -16,6 +16,7 @@ class Main extends React.Component {
     },
     detailLink: '/apps/detail/'
   }
+
   async getList(tagId) {
     let id = tagId || 'all';
     let apiUrl = getDomain(
@@ -33,10 +34,11 @@ class Main extends React.Component {
       console.log("e ", e);
     }
   }
+
   async getTags() {
     let apiUrl = getDomain(
       `http://api.intra.`,
-      `ffan.net/bo/v1/public/common/tags?type=apps`
+      `ffan.net/bo/v1/public/common/tags?type=app`
     );
     try {
       let res = await fetchUtil.getJSON(apiUrl)
@@ -49,19 +51,36 @@ class Main extends React.Component {
       console.log("e ", e);
     }
   }
+
   async componentDidMount() {
     await this.getTags()
-    await this.getList()
-    let { tags } = this.state
+
+    let { tags, activeTag } = this.state
+    const search = location.search
     tags.unshift({ tagId: 0, tagName: "全部" })
-    this.setState({ tags: tags })
+    activeTag = search && search.split('=')[1]
+
+    tags.map((item, index)=> {
+      item.aHref = (index == 0) ? `/apps` : `/apps?tagId=${item.tagId}`
+      item.className = ((item.tagId == activeTag) && "active") || ''
+    })
+
+    this.setState({ tags: tags, activeTag: activeTag }, () => {
+      this.getList(activeTag)
+    })
   }
+
   tagChange(tagId) {
-    let { activeTag } = this.state
+    let { activeTag, tags, aHref } = this.state
     if ( activeTag === tagId ) return
-    this.setState({ activeTag: tagId })
-    this.getList(tagId)
+    tags.map((item, index)=> {
+      item.className = ((item.tagId == tagId) && "active") || ''
+    })
+    this.setState({ activeTag: tagId, tags: tags }, () => {
+      this.getList(tagId)
+    })
   }
+
   clickStar(item) {
     let { listData } = this.state
     for (let i=0; i<listData.length; i++) {
@@ -78,11 +97,12 @@ class Main extends React.Component {
       }
     }
   }
+
   render () {
-    const { listData, tags, activeTag, urls, detailLink } = this.state
+    const { listData, tags, urls, detailLink } = this.state
     return (
       <div className="container clx">
-        <Sidebar onTagChange={this.tagChange.bind(this)} activeTag={activeTag} tags={tags} urls={urls} />
+        <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} />
         <div className="sub-container">
           <div className="sub-container-banner"></div>
           <h2 className="open-content-nav">
