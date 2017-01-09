@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
+import debug from '../../../../utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -105,16 +106,19 @@ export class renderImageUpload extends Component {
   imageUpload(e) {
     const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
-    formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileName', e.target.files[0])
+    formData.append('width', 400)
+    formData.append('height', this.props.h ? this.props.h : 400)
+    formData.append("fileType", JSON.stringify(['png']))
+    formData.append("fileSize", 1024 * 300)
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
     }).then(res => {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
-        console.log(`Upload Success: `)
       } else {
-        console.log(`Upload Failed.`, res)
+        debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
       console.log(e)
@@ -122,20 +126,19 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning } } = this.props;
-
+    const { input, label, meta: { touched, error, warning }, doc, h} = this.props;
     return (
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <p>请上传应用高清图片</p>
-          <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
+          <p>{doc ? doc : '请上传组件高清图片'}</p>
+          <p>400*{h ? h : 400}像素，仅支持PNG格式，大小不超过300KB</p>
           <span>
-            <input type="button" value="选择文件"/>
+            <input type="button" value="选择文件" />
             <input type="file" accept="image/*" onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
-            <img src={input.value} alt="上传图片" className="img-thumbnail"/>
+            <img src={input.value} alt="上传图片" className="img-thumbnail" />
           </div>
         </div>
       </div>
@@ -165,8 +168,8 @@ export class renderFile extends Component {
         this.props.input.onChange(res.data)
 
       } else {
-        console.warn(res);
-      }
+        debug.warn('文件代码包格式错误', res)
+      }    
 
     }).catch(e => {
       console.warn(e);

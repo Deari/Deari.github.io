@@ -66,7 +66,7 @@ class HardwaresList extends React.Component {
             <li><a className={this.state.status === 0 ? 'tab-active' : ''} onClick={this.changeList.bind(this,0)}>待提交</a></li>
           </ul>
           <ul className="list-title">
-            <li className="w124">LOGO</li>
+            <li className="w124">Logo</li>
             <li className="w342">硬件名称</li>
             <li className="w90">价格</li>
             <li className="w90">状态</li>

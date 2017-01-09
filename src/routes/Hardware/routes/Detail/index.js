@@ -1,36 +1,67 @@
 import React from 'react'
 import { Link } from 'react-router'
-import fetchUtil from '../../../utils/fetchUtil'
-import { getDomain } from '../../../utils/domain';
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 import moment from 'moment'
-import Slidebar from '../../../../components/Sidebar'
-import '../../../../styles/_base.scss'
+import Slidebar from 'components/Sidebar'
+import 'styles/_base.scss'
 import './index.scss'
 
 class HardwareDetail extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      tags:[]
     };
   }
-  async componentDidMount() {
+
+  async getInfo() {
     let id = this.props.params.id;
     let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/hardware/getHardwareInfo/${id}`);
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
         res.data && this.setState({data: res.data});
+      } else {
+        debug.warn("获取详情接口返回错误", res)
       }
     } catch (e) {
-      console.log(e);
+      debug.warn("获取详情接口返回错误", e)
     }
   }
+
+  async getTags() {
+    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=hardware`);
+    try {
+      let res = await fetchUtil.getJSON(apiUrl)
+      if (res.status === 200) {
+        res.data && this.setState({ tags: res.data })
+      } else {
+        debug.warn("获取标签接口返回错误", res)
+      }
+    } catch (e) {
+      debug.warn("获取标签接口返回错误", e)
+    }
+  }
+
+  async componentDidMount() {
+    await this.getInfo()
+    await this.getTags()
+    let { tags } = this.state
+    tags.unshift({ tagId: 0, tagName: "全部" })
+    tags.map((item, index)=> {
+      item.aHref = (index == 0) ? `/hardware` : `/hardware?tagId=${item.tagId}`
+    })
+    this.setState({ tags: tags })
+  }
+
   render() {
-    let { data } = this.state
-    const tags = data.hardwareTags || []
+    let { data, tags } = this.state
+    const infoTags = data.hardwareTags || []
     const hardwarePics = data.hardwarePics || []
-    const len = tags.length
+    const len = infoTags.length
     const urls = {
       create: { url: `/hardware/create`, name: '创建新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
@@ -38,12 +69,12 @@ class HardwareDetail extends React.Component {
     }
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type='hardware'/>
+        <Slidebar urls={urls} type='hardware' tags={tags} />
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
               <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank" download="">下载</a>
+              <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank">下载</a>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
@@ -65,7 +96,7 @@ class HardwareDetail extends React.Component {
                   <td>标签</td>
                   <td>
                   {
-                     tags.map( (item, index) => {
+                     infoTags.map( (item, index) => {
                        return (
                          <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
                        )

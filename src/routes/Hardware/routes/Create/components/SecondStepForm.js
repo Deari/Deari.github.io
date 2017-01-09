@@ -21,13 +21,10 @@ class SecondStepForm extends React.Component {
 
     const { handleSubmit, submitting, toggleStep } = this.props
 
-    const sdkTypes = this.props.sdkTypes || []
-    const osPlatforms = this.props.osPlatforms || []
-    const hardwarePlatforms = this.props.hardwarePlatforms || []
-
     return (
       <form onSubmit={handleSubmit}>
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
+
         <Field label="硬件图片" name="hardwarePics" type="text" component={renderImgsUpload} />
 
         <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
@@ -44,38 +41,6 @@ class SecondStepForm extends React.Component {
 
         <Field name="hardwareDetail" label="功能描述" component={renderTextArea} />
 
-        <Field name="sdkType" label="SDK类型" component={renderSelect}>
-          <option>请选择SDK类型</option>
-          {
-            sdkTypes.map((item) => (
-              <option value={item.key}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
-
-        <Field name="os" label="操作平台" component={renderSelect}>
-          <option>请选择操作平台</option>
-          {
-            osPlatforms.map((item) => (
-              <option value={item.key}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
-
-        <Field name="hardwarePlatform" label="硬件平台" component={renderSelect}>
-          <option>请选择硬件平台</option>
-          {
-            hardwarePlatforms.map((item) => (
-              <option value={item.key}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
         <Field name="hardwareReport" component={renderFile} label="测试报告" />
 
 

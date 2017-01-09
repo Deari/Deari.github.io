@@ -16,6 +16,12 @@ const choose = (showName) => {
   }
   return name
 }
+const editJudge = (showName,item) => {
+ return showName!=='hardware'&&!item.codeId || item.reviewStatus==3 || item.hardwareStatus==3 || item.hardwareStatus==0
+}
+const createJudge = (showName,item) => {
+ return  item.codeId || item.hardwareStatus==2
+}
 class List extends React.Component {;
   render() {
     const {data, showName} = this.props
@@ -42,36 +48,16 @@ class List extends React.Component {;
                 {/*<Link className="info-link" to={linkUrl}>{'在' + name + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
-              <div className="info-status w90">{item.state}</div>
+              <div className="info-status w90">{editJudge(showName, item)?'待提交' : createJudge(showName, item)? '已审核' : '待审核'}</div>
               <div className="info-download w90">100</div>
               <div className="info-btn w112">
-                <Link className={
-                  showName!=='hardware'&&!item.codeId 
-                  || item.reviewStatus==3 
-                  || item.hardwareStatus==3 
-                  || item.hardwareStatus==0 ? 
-                  'active':'' 
-                } 
+                <Link className={editJudge(showName, item) ? 'active' : ''} 
                   to={showName === 'hardware' ?'/' + showName + '/edit/' + item[itemName+'Id']:'/' + showName + 's/edit/' + item[itemName+'Id']}>
-                  <button disabled={
-                    showName !== 'hardware'&&!item.codeId 
-                    || item.reviewStatus == 3 
-                    || item.hardwareStatus == 3
-                    || item.hardwareStatus==0 ? 
-                    false : true
-                  }>编辑</button>
+                    <button disabled={editJudge(showName, item) ? false : true}>编辑</button>
                 </Link>
-                <Link className={
-                  item.codeId 
-                  || item.hardwareStatus==2 ? 
-                  'active': ''
-                } 
-                to={showName === 'hardware' ?'/' + showName + '/edit/' + item[itemName+'Id']:'/' + showName + 's/edit/' + item[itemName+'Id']}>
-                  <button disabled={
-                    item.codeId 
-                    || item.hardwareStatus == 2 ? 
-                    false : true
-                  }>发布新版本</button>
+                <Link className={createJudge(showName, item) ? 'active' : ''} 
+                  to={showName === 'hardware' ?'/' + showName + '/edit/' + item[itemName+'Id']:'/' + showName + 's/edit/' + item[itemName+'Id']}>
+                  <button disabled={createJudge(showName, item) ? false : true}>发布新版本</button>
                 </Link>
                 <Link className={showName === 'hardware' ? "active" : "none" } 
                 to={'/' + showName + 's/edit/' + item[itemName+'id']}>
