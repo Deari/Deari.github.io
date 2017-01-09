@@ -65,10 +65,10 @@ class FirstStepForm extends Component {
           }
         </Field>
         <div className="form-row">
-        <label></label>
-          <div className="from-rigit">
-            <span className="create-btn downLoad"><i className="iconfont icon-create"></i>下载SDK</span> 
-            <span className="create-btn downLoad"><i className="iconfont icon-create"></i>进入调试</span>
+        <label className="labelH"></label>
+          <div className="row-right">
+            <span className="downLoad"><i className="iconfont icon-downloadbtn"></i>下载SDK</span> 
+            <span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span>
           </div>
         </div>
         <div className="form-btn">

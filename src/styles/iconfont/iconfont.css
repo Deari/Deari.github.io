@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1483695739005'); /* IE9*/
-  src: url('iconfont.eot?t=1483695739005#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1483695739005') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1483695739005') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1483695739005#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1483954364341'); /* IE9*/
+  src: url('iconfont.eot?t=1483954364341#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1483954364341') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1483954364341') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1483954364341#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -25,13 +25,19 @@
 
 .icon-add:before { content: "\e616"; }
 
+.icon-sidebar20:before { content: "\e61e"; }
+
 .icon-dingwei:before { content: "\e60d"; }
 
 .icon-shangjia:before { content: "\e626"; }
 
 .icon-sidebar7:before { content: "\e630"; }
 
+.icon-downloadbtn:before { content: "\e673"; }
+
 .icon-lock:before { content: "\e60b"; }
+
+.icon-sidebar12:before { content: "\e627"; }
 
 .icon-leftjiao:before { content: "\e66d"; }
 
@@ -39,7 +45,11 @@
 
 .icon-toolsbar:before { content: "\e602"; }
 
+.icon-sidebar19:before { content: "\e61a"; }
+
 .icon-radio:before { content: "\e607"; }
+
+.icon-sidebar18:before { content: "\e674"; }
 
 .icon-laba:before { content: "\e64b"; }
 
@@ -120,4 +130,24 @@
 .icon-api:before { content: "\e668"; }
 
 .icon-business:before { content: "\e669"; }
+
+.icon-sidebar11:before { content: "\e663"; }
+
+.icon-sidebar9:before { content: "\e664"; }
+
+.icon-sidebar10:before { content: "\e66a"; }
+
+.icon-sidebar8:before { content: "\e66b"; }
+
+.icon-sidebar13:before { content: "\e66c"; }
+
+.icon-sidebar14:before { content: "\e66e"; }
+
+.icon-sidebar15:before { content: "\e670"; }
+
+.icon-sidebar17:before { content: "\e671"; }
+
+.icon-sidebar16:before { content: "\e672"; }
+
+.icon-debug:before { content: "\e619"; }
 
