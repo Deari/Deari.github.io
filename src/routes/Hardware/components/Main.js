@@ -1,8 +1,8 @@
 import React from 'react'
-import fetchUtil from '../../utils/fetchUtil'
-import { getDomain } from '../../utils/domain'
-import Sidebar from '../../../components/Sidebar'
-import OpenList from '../../../components/OpenList'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import Sidebar from 'components/Sidebar'
+import OpenList from 'components/OpenList'
 
 class Main extends React.Component {
   state = {

@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import fetchUtil from '../../../utils/fetchUtil'
-import { getDomain } from '../../../utils/domain';
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain';
 import moment from 'moment'
-import Slidebar from '../../../../components/Sidebar'
+import Slidebar from 'components/Sidebar'
 import Versions from './versions'
-import '../../../../styles/_base.scss'
+import 'styles/_base.scss'
 import './index.scss'
 
 class AppsDetail extends React.Component {
@@ -74,7 +74,7 @@ class AppsDetail extends React.Component {
           <div className="detail-container">
             <div className="detail-download">
               <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank" download="">下载</a>
+              <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
