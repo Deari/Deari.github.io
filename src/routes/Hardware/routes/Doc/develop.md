@@ -227,7 +227,7 @@ Int8_t gizwitsEventProcess (eventInfo\_t \*info,uint8\_t \*data,uint32\_t len)
 
  该函数中完成了用户区上报型数据的获取。用户只需将读到的数据赋值到 用户区当前设备状态结构体即可，赋值完的数据是通过 gizwitsHandle 上报云端的，开发者不需要关注变化上报和定时上报。
 
-# 三、产测工具使用文档
+# 四、产测工具使用文档
 
 ## 1、产测简介
 
