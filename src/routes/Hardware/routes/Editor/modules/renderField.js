@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from '../../../../utils/fetchUtil'
 import { getDomain } from '../../../../utils/domain'
+import debug from '../../../../utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -150,10 +151,8 @@ export class renderImageUpload extends Component {
     }).then(res => {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
-      } else if (res.status == 4000) {
-        window.alert("上传图片不符合规格")
       } else {
-        res.msg
+        debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
       console.log(e)
@@ -261,8 +260,7 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        res.msg && window.alert(res.msg)
-        console.warn(res);
+        debug.warn('文件代码包格式错误', res)
       }
     }).catch(e => {
       console.warn(e);
