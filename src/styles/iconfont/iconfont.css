@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1483948879578'); /* IE9*/
-  src: url('iconfont.eot?t=1483948879578#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1483948879578') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1483948879578') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1483948879578#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1483954208688'); /* IE9*/
+  src: url('iconfont.eot?t=1483954208688#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1483954208688') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1483954208688') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1483954208688#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -25,13 +25,19 @@
 
 .icon-add:before { content: "\e616"; }
 
+.icon-sidebar20:before { content: "\e61e"; }
+
 .icon-dingwei:before { content: "\e60d"; }
 
 .icon-shangjia:before { content: "\e626"; }
 
-.icon-apps-sidebar7:before { content: "\e630"; }
+.icon-sidebar7:before { content: "\e630"; }
+
+.icon-downloadbtn:before { content: "\e673"; }
 
 .icon-lock:before { content: "\e60b"; }
+
+.icon-sidebar12:before { content: "\e627"; }
 
 .icon-leftjiao:before { content: "\e66d"; }
 
@@ -39,7 +45,11 @@
 
 .icon-toolsbar:before { content: "\e602"; }
 
+.icon-sidebar19:before { content: "\e61a"; }
+
 .icon-radio:before { content: "\e607"; }
+
+.icon-sidebar18:before { content: "\e674"; }
 
 .icon-laba:before { content: "\e64b"; }
 
@@ -49,19 +59,19 @@
 
 .icon-team:before { content: "\e605"; }
 
-.icon-apps-sidebar2:before { content: "\e63e"; }
+.icon-sidebar2:before { content: "\e63e"; }
 
 .icon-create:before { content: "\e63f"; }
 
-.icon-apps-sidebar0:before { content: "\e640"; }
+.icon-sidebar0:before { content: "\e640"; }
 
-.icon-apps-sidebar4:before { content: "\e641"; }
+.icon-sidebar4:before { content: "\e641"; }
 
 .icon-hot-control:before { content: "\e644"; }
 
 .icon-toparrow:before { content: "\e645"; }
 
-.icon-apps-sidebar3:before { content: "\e647"; }
+.icon-sidebar3:before { content: "\e647"; }
 
 .icon-finish:before { content: "\e648"; }
 
@@ -69,15 +79,15 @@
 
 .icon-drop-down:before { content: "\e64a"; }
 
-.icon-apps-sidebar6:before { content: "\e64c"; }
+.icon-sidebar6:before { content: "\e64c"; }
 
 .icon-info:before { content: "\e64d"; }
 
 .icon-star:before { content: "\e64e"; }
 
-.icon-apps-sidebar1:before { content: "\e64f"; }
+.icon-sidebar1:before { content: "\e64f"; }
 
-.icon-apps-sidebar5:before { content: "\e650"; }
+.icon-sidebar5:before { content: "\e650"; }
 
 .icon-file:before { content: "\e651"; }
 
@@ -121,25 +131,23 @@
 
 .icon-business:before { content: "\e669"; }
 
-.icon-widgets-sidebar3:before { content: "\e663"; }
+.icon-sidebar11:before { content: "\e663"; }
 
-.icon-widgets-sidebar1:before { content: "\e664"; }
+.icon-sidebar9:before { content: "\e664"; }
 
-.icon-widgets-sidebar2:before { content: "\e66a"; }
+.icon-sidebar10:before { content: "\e66a"; }
 
-.icon-widgets-sidebar4:before { content: "\e66b"; }
+.icon-sidebar8:before { content: "\e66b"; }
 
-.icon-hardware-sidebar1:before { content: "\e66c"; }
+.icon-sidebar13:before { content: "\e66c"; }
 
-.icon-hardware-sidebar2:before { content: "\e66e"; }
+.icon-sidebar14:before { content: "\e66e"; }
 
-.icon-hardware-sidebar3:before { content: "\e670"; }
+.icon-sidebar15:before { content: "\e670"; }
 
-.icon-hardware-sidebar5:before { content: "\e671"; }
+.icon-sidebar17:before { content: "\e671"; }
 
-.icon-hardware-sidebar4:before { content: "\e672"; }
+.icon-sidebar16:before { content: "\e672"; }
 
-.icon-hardware-sidebar0:before { content: "\e618"; }
-
-.icon-widgets-sidebar0:before { content: "\e619"; }
+.icon-debug:before { content: "\e619"; }
 
