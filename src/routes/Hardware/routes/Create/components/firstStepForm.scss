@@ -140,12 +140,13 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             margin: 0 10px 0 0;
             float: left; 
             &:hover{
-                color: $blue-color;
-                border-color: $blue-color;
+                color: #1a8ffe;
+                border-color: #1a8ffe;
             }
             i{
                 vertical-align: middle;
                 font-size: 26px;
+                margin-right:4px;
             }
         }
         
@@ -230,8 +231,4 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 }
 .row-select{
     margin-right:10px;
-}
-
-.flR{
-  float: right;
 }
