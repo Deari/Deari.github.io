@@ -86,7 +86,7 @@ export const HomeView = () => (
       <div className="container">
         <span>
           <i className="iconfont icon-laba"></i>
-          系统公告：蓝海BO开放平台关于处理“二元期权”类信息的公告
+          系统公告：热烈庆祝蓝海开放平台入驻服务商1000家！
           <i></i>
         </span>
         <a>查看更多</a>
