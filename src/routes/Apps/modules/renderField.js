@@ -79,15 +79,20 @@ export class renderImageUpload extends Component {
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
+    formData.append('width', 400)
+    formData.append('height', 400)
+    formData.append("fileType", JSON.stringify(['png']))
+    formData.append("fileSize", 1024 * 300)
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false 
     }).then(res=>{
-      if(res.status == 200) {
+      if (res.status == 200) {
         this.props.input.onChange(res.data.url)
-        console.log(`Upload Success: `)
+      } else if (res.status == 4000) {
+        window.alert("上传图片不符合规格")
       } else {
-        console.log(`Upload Failed.`, res)
+        res.msg
       }
     }).catch(e=>{
       console.log(e)

@@ -148,8 +148,10 @@ export class renderImageUpload extends Component {
     }).then(res => {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
+      } else if (res.status == 4000) {
+        window.alert("上传图片不符合规格")
       } else {
-        res.msg && window.alert("上传图片不符合规格")
+        res.msg
       }
     }).catch(e => {
       console.log(e)
