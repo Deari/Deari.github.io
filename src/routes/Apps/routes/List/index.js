@@ -49,8 +49,8 @@ class AppsList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/apps/create` },
-      list: { url: `/apps/list`, active: true },
+      create: { url: `/apps/create`, name: '创建新应用' },
+      list: { url: `/apps/list`, name: '我的应用', active: true },
       doc: { url: `/apps/doc` }
     }
 
@@ -65,7 +65,7 @@ class AppsList extends React.Component {
             <li><a className={this.state.reviewStatus === 3 ? 'tab-active' : ''} onClick={this.changeList.bind(this,3)}>待提交</a></li>
           </ul>
           <ul className="list-title">
-            <li className="w124">LOGO</li>
+            <li className="w124">Logo</li>
             <li className="w342">应用名称</li>
             <li className="w90">价格</li>
             <li className="w90">状态</li>

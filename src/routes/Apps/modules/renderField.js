@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from '../../utils/fetchUtil'
 import { getDomain } from '../../utils/domain'
+import debug from '../../utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -79,15 +80,18 @@ export class renderImageUpload extends Component {
     const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
+    formData.append('width', 400)
+    formData.append('height', 400)
+    formData.append("fileType", JSON.stringify(['png']))
+    formData.append("fileSize", 1024 * 300)
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false 
     }).then(res=>{
-      if(res.status == 200) {
+      if (res.status == 200) {
         this.props.input.onChange(res.data.url)
-        console.log(`Upload Success: `)
       } else {
-        console.log(`Upload Failed.`, res)
+        debug.warn('上传图片不符合规格', res)
       }
     }).catch(e=>{
       console.log(e)
@@ -131,14 +135,13 @@ export class renderFile extends Component {
       jsonStringify: false
 
     }).then(res=>{
+      
       console.info(res);
 
-      if(res.status === 200){
-        
+      if (res.status === 200) {
         this.props.input.onChange(res.data)
-
-      } else{
-        console.warn(res);
+      } else {
+        debug.warn('文件代码包格式错误', res)
       }
 
     }).catch(e=>{

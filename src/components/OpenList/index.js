@@ -11,6 +11,8 @@ class OpenList extends React.Component {
       {
         listData.length !== 0 ?
         listData.map(( item, index ) => {
+          const desc = item[`${typeName}Function`] || item[`${typeName}Desc`]
+          const price = item.hardwarePrice || '免费'
           return (
             <li>
               <div>
@@ -20,11 +22,11 @@ class OpenList extends React.Component {
                 </p>
                 <Link className="open-content-info" to={detailLink + item[`${typeName}Id`]}>
                   <p className="open-info-name">{ item[`${typeName}Name`] }</p>
-                  <span className="open-user-name"><i className="user-img"></i>极速数据(北京)</span>
+                  <span className="open-user-name"><i className="user-img"></i>{ item.developerName }</span>
                   <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
-                  <span className="open-info-introduce">{ item[`${typeName}Desc`] }</span>
+                  <span className="open-info-introduce">{ desc }</span>
                 </Link>
-                <Link className="open-list-price">免费</Link>
+                <p className="open-list-price">{ price } </p>
                 <p className="open-list-show">
                   <a><i className="iconfont icon-team"></i>165</a>
                   <a><i className="iconfont icon-star"></i>251</a>

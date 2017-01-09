@@ -10,8 +10,8 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `/hardware/create` },
-      list: { url: `/hardware/list` },
+      create: { url: `/hardware/create`, name: '创建新硬件' },
+      list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     },
     detailLink: '/hardware/detail/'

@@ -17,6 +17,9 @@ class FirstStepForm extends Component {
 
   render() {
     const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
+    const sdkTypes = this.props.sdkTypes || []
+    const osPlatforms = this.props.osPlatforms || []
+    const hardwarePlatforms = this.props.hardwarePlatforms || []
     return (
       <form onSubmit={handleSubmit}>
         <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
@@ -29,6 +32,45 @@ class FirstStepForm extends Component {
 
         <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
 
+          <Field name="sdkType" label="SDK类型" component={renderSelect}>
+          <option>请选择SDK类型</option>
+          {
+            sdkTypes.map((item) => (
+              <option value={item.key}>
+                {item.value}
+              </option>
+            ))
+          }
+        </Field>
+
+        <Field name="os" label="操作平台" component={renderSelect}>
+          <option>请选择操作平台</option>
+          {
+            osPlatforms.map((item) => (
+              <option value={item.key}>
+                {item.value}
+              </option>
+            ))
+          }
+        </Field>
+
+        <Field name="hardwarePlatform" label="硬件平台" component={renderSelect}>
+          <option>请选择硬件平台</option>
+          {
+            hardwarePlatforms.map((item) => (
+              <option value={item.key}>
+                {item.value}
+              </option>
+            ))
+          }
+        </Field>
+        <div className="form-row">
+        <label></label>
+          <div className="from-rigit">
+            <span className="create-btn downLoad"><i className="iconfont icon-create"></i>下载SDK</span> 
+            <span className="create-btn downLoad"><i className="iconfont icon-create"></i>进入调试</span>
+          </div>
+        </div>
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">保存并下一步</button>
@@ -61,10 +103,11 @@ export default connect(
 )(reduxForm({
   form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
-  destroyOnUnmount: false,
+  //destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
 })(FirstStepForm))
+
 
 
 

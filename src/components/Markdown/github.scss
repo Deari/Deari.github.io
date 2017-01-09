@@ -49,30 +49,24 @@
     font-size : inherit; }
 
   h1 {
-    margin-bottom : 20px;
-    font-size     : 24px;
-    font-weight   : 700;
-  }
-
-  h2 {
     font-size     : 20px;
     line-height   : 50px;
     margin-bottom : 10px;
     border-bottom : 1px solid #cccccc; }
 
-  h3 {
+  h2 {
     font-size   : 16px;
     line-height : 34px;
   }
 
-  h4 {
+  h3 {
     font-size : 14px; }
 
-  h5 {
+  h4 {
     font-size   : 12px;
   }
 
-  h6 {
+  h5 {
     color     : #777777;
     font-size : 14px; }
   hr {
@@ -300,10 +294,48 @@
     border           : none; }
 }
 .document-list{
-  padding: 5px 15px;
   font-size:16px;
   li{
-    padding:5px 0;
+   padding:5px 0;
+  }
+  .level-1{
+    padding:7px 17px;
+    border-bottom:1px solid #fff;
+   .icon{
+      display:inline-block;
+      margin-right:10px;
+      width:6px;
+      height:6px;
+      background:#a0a0a0;
+      border-radius:50%;
+      vertical-align: middle;
+    }
+   &:hover{
+    border-bottom:1px solid #2692fb;
+    .icon{
+      background:#2692fb;
+    }
+   }
+  }
+  .level-2{
+    padding:7px 27px;
+    border-bottom:1px solid #fff;
+   .icon{
+      display:inline-block;
+      margin-right:8px;
+      width:8px;
+      height:1px;
+      background:#a0a0a0;
+      vertical-align: middle;
+    }
+   &:hover{
+    border-bottom:1px solid #2692fb;
+    .icon{
+      background:#2692fb;
+    }
+   }
+  }
+  li{
     a{
       display: -webkit-box;
       -webkit-line-clamp: 1;

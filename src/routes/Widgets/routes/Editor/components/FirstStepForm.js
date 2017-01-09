@@ -19,19 +19,17 @@ class FirstStepForm extends Component {
 
   render() {
     const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
-    // return null;
-
+    const imgDoc = '预览图用于商家在装修自己店面时，在操作区域展示的图片';
+    const height = 200;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
 
         {/*<Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>*/}
         
-        <Field label="组件LOGO" name="appLogo" type="text"
-          component={renderImageUpload}/>
+        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
 
-        <Field label="组件缩略图" name="appPreviewImage" type="text"
-          component={renderImageUpload}/>
+        <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
 
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
 
