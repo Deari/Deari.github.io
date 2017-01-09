@@ -3,6 +3,7 @@ $border-color:#dddddd;
 $text-color:#020202;
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
+
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
     @include clx;
@@ -26,6 +27,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             top: 1px;
             left: 657px;
         }
+    }
+    label.labelH{
+      height:30px;
     }
     .row-right{
         margin: 0;
@@ -123,6 +127,25 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 border-color: dodgerblue;
             }
         }
+        .create-btn{
+            display: block;
+            margin: $default-margin-top - 2 auto $default-margin-bottom - 6;
+            width: $default-width + 30;
+            border: 1px solid $blue-color;
+            font-size: $text-font-size - 4;
+            color: $blue-color;
+            text-align: center;
+            line-height: $text-line-height - 10;
+            border-radius: 2px;
+            .icon-create{
+              padding-right: $default-padding-right - 36;
+             }
+            &:hover{
+              color: $white-color;
+              background: $blue-color;
+            }
+          }
+     
         /*第二步应用文件样式start*/
         
         .file-name{
@@ -204,4 +227,11 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 }
 .row-select{
     margin-right:10px;
+}
+.create-btn.downLoad{
+    margin: 0 ;
+    float: left;     
+}
+.flR{
+  float: right;
 }
