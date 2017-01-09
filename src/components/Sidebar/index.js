@@ -1,12 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router'
-import '../../styles/_base.scss'
-import '../../styles/iconfont/iconfont.css'
+import 'styles/_base.scss'
+import 'styles/iconfont/iconfont.css'
 import './Sidebar.scss'
 
 class Sidebar extends React.Component {
   render() {
-    const { activeTag, onTagChange } = this.props
+    const { onTagChange } = this.props
     const tags = this.props.tags || []
     const urls = this.props.urls || { create: {}, list: {}, doc: {} }
     return (
@@ -21,10 +21,12 @@ class Sidebar extends React.Component {
         
         <ul className="tag-list">
           { tags.map( ( item, index ) => {
-            return <li key={ item.tagId } onClick={()=> { onTagChange && onTagChange(item.tagId)}}>
-              <a className={ ( ( activeTag == item.tagId ) && 'active' ) || '' }>
+            return <li key={ item.tagId }>
+              <Link className={ item.className } 
+                    to={ item.aHref } 
+                    onClick={()=> { onTagChange && onTagChange(item.tagId) }}>
                 <i className={ `iconfont icon-sidebar${ item.tagId }` }></i>{ item.tagName }
-              </a>
+              </Link>
             </li>
           } ) }
         </ul>
