@@ -41,10 +41,10 @@ export const Detail = props => {
     }
   } else {
     // 普通组件
-    return <div>
+    return <div className="widgets-btn-container">
       <div className="btn-block">
-        <button className="btn btn-blue" onClick={deleteElement}>删除</button>
-        <button className="btn btn-blue" onClick={cancelElement}>取消</button>
+        <button className="btn btn-red" onClick={deleteElement}>删除组件</button>
+        <button className="btn btn-green" onClick={cancelElement}>取消</button>
       </div>
       {/*<pre>*/}
         {/*{JSON.stringify(element, null, 2)}*/}
