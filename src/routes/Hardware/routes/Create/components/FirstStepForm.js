@@ -29,6 +29,18 @@ class FirstStepForm extends Component {
 
         <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
 
+        <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
+
+        <Field name="hardwareProducer" type="text" label="生产厂家" component={renderField} />
+
+        <div className="form-row file-position">
+          <label>通讯方式</label>
+          <div className="row-right">
+            <label><Field name="commType1" component="input" type="checkbox" /> WIFI</label>
+            <label><Field name="commType2" component="input" type="checkbox" /> 蓝牙</label>
+          </div>
+        </div>
+
         <Field name="sdkType" label="SDK类型" component={renderSelect}>
         <option>请选择SDK类型</option>
           {
@@ -61,13 +73,15 @@ class FirstStepForm extends Component {
             ))
           }
         </Field>
+
         <div className="form-row">
-        <label className="labelH"></label>
+          <label className="labelH"></label>
           <div className="row-right">
             <span className="downLoad"><i className="iconfont icon-downloadbtn"></i>下载SDK</span> 
             <span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span>
           </div>
         </div>
+
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">保存并下一步</button>
