@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 import AnalysisContainer from './Analysis'
+import './Report.scss'
 
 const CustomizedLabel = React.createClass({
   render () {
@@ -11,9 +12,11 @@ const CustomizedLabel = React.createClass({
 
 const ChartContainer = ({ data }) => {
   return <div>
-    <h3>客流量分布图</h3>
+  <h3 className="numTitle">客流量总计(人)：1,500</h3>
+  <div className="chart bg-white">
+    <h3 className="title">客流量分布图</h3>
     <div className="chart-container">
-      <AreaChart width={600} height={300} data={data}
+      <AreaChart width={735} height={300} data={data}
           margin={{top: 5, right: 30, left: 20, bottom: 5}}>
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -34,11 +37,12 @@ const ChartContainer = ({ data }) => {
       </AreaChart>
     </div>
   </div>
+</div>
 }
 
 const NavBar = (props) => {
-  return <ul>
-    <li>今天</li>
+  return <ul className="tab">
+    <li className="active">今天</li>
     <li>近三天</li>
     <li>1周</li>
     <li>1个月</li>
@@ -50,7 +54,7 @@ const NavBar = (props) => {
 export class ProbeReport extends Component {
   render() {
     const {data} = this.props;
-    return <div>
+    return <div className="report-container">
       <NavBar />
       <ChartContainer data={data} />
       <AnalysisContainer />

@@ -1,0 +1,103 @@
+@import "../../../../layouts/CoreLayout/CoreLayout";
+
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.border {
+  border: 1px solid red;
+}
+.bg-white{
+  background:#fff;
+}
+
+.report-container{
+  width:755px;
+  margin:0 auto;
+  padding-top:10px;
+  .tab{
+    border:2px solid #2692fb;
+    border-radius:4px;
+    overflow:hidden;
+    li{
+      float:left;
+      width:125px;
+      padding:8px 0;
+      font-size:14px;
+      color:#2692fb;
+      text-align:center;
+      border-right:2px solid #2692fb;
+      cursor:pointer;
+      overflow:hidden;
+      &:last-child{
+        border-right:0;
+      }
+    }
+    & > .active{
+      color:#fff;
+      background:#2692fb;
+    }
+  }
+  .numTitle{
+    margin-top:25px;
+    padding:0 10px;
+    font-size:12px;
+    color:#000;
+  }
+  .chart{
+    margin-top:10px;
+    .title{
+      padding:12px 15px;
+      font-size:14px;
+      color:#000;
+    }
+  }
+  .analysis-container{
+    margin-top:20px;
+    overflow:hidden;
+    .analysis-panel{
+      float:left;
+      width:210px;
+      margin:0 20px;
+      overflow:hidden;
+    }
+    .ana-head{
+      color:#000;
+      .title{
+        margin-top:12px;
+        font-size:14px;
+      }
+      .desc{
+        margin-top:8px;
+        font-size:12px;
+      }
+    }
+    .ana-body{
+      margin:10px auto 5px;
+      border:1px solid #ebebeb;
+      border-radius:4px;
+      .ana-item{
+        border-bottom:1px solid #ebebeb;
+        &:last-child{
+          border-bottom:0;
+        }
+        .time,.amount{
+          display:inline-block;
+          width:115px;
+          padding:10px;
+        }
+        .time{
+          text-align:center;
+          background:#ebebeb;
+        }
+        .amount{
+          width:92px;
+          padding:10px 15px;
+          text-align:right;
+        }
+      }
+    }
+  }
+}
