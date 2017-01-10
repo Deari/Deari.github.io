@@ -98,7 +98,7 @@ class AppsDetail extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type='应用' tags={tags} />
+        <Slidebar urls={urls} tags={tags} />
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">

@@ -14,7 +14,7 @@ import Step from '../components/Step'
 import { getDomain } from '../../../../utils/domain'
 import fetchUtil from '../../../../utils/fetchUtil'
 
-import { toggleStep, getTags, getCates } from '../modules/create'
+import { toggleStep, getTags, getCates, getSdkInfo } from '../modules/create'
 
 import debug from '../../../../utils/debug'
 
@@ -29,10 +29,10 @@ class CreateContainer extends Component {
     this.props.toggleStep(1);
     this.props.getTags()
     this.props.getCates()
+    this.props.getSdkInfo()
   }
-
   submitFirst(values) {
-    
+    console.log(values)
     const formData = new FormData();
     const params = {
       hardwareName : values['hardwareName'],
@@ -140,7 +140,7 @@ class CreateContainer extends Component {
         <div className="sub-container">
           <Step page={page}/>
           {
-            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1 && <FirstStep onSubmit={::this.submitFirst}/>
           }
           {
             page === 2 && <SecondStep onSubmit={::this.submitSecond} />
@@ -159,6 +159,7 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
+  getSdkInfo
 }
 
 const mapStateToProps = ({ hardwareCreate }) => ({
