@@ -58,7 +58,7 @@ class CreateContainer extends Component {
     }
 
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
-    
+
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         const hardwareId = res.data.hardwareId;
@@ -74,7 +74,7 @@ class CreateContainer extends Component {
     }).catch(e=>{
       debug.warn('网络错误', e)
     })
-    
+
   }
 
   submitSecond(values) {
@@ -169,6 +169,10 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = ({ hardwareCreate }) => ({
-  hardwareCreate
+  hardwareCreate,
+  downLoadSDK: function (value) {
+    console.log("++++++++++++++++")
+    console.log(value)
+  }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
