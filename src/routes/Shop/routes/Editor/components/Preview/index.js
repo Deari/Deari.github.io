@@ -18,7 +18,7 @@ export class Preview extends Component {
   static defaultProps = {
     gridProps: {
       className: "layout",
-      cols: 2,
+      cols: 4,
       rowHeight: 47,
       selectedCls: 'selected',
       width: 210,
