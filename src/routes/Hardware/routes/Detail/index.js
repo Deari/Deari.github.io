@@ -74,7 +74,7 @@ class HardwareDetail extends React.Component {
           <div className="detail-container">
             <div className="detail-download">
               <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank">下载</a>
+              <a className="btn btn-primary btn-download">购买</a>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">

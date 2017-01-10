@@ -1,5 +1,5 @@
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
 const PREFIX = 'HD_CREATE';
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';

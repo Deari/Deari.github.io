@@ -4,18 +4,18 @@ import { Field, reduxForm } from 'redux-form'
 
 import { validate, warn } from '../modules/validate'
 
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
 
 import { toggleStep, getTags, getCates, getSdkInfo, getHDInfo } from '../modules/edit'
 
-import debug from '../../../../utils/debug'
+import debug from 'routes/utils/debug'
 
 
 class CreateContainer extends Component {

@@ -8,8 +8,8 @@ import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 
 import { toggleTag } from '../modules/create'
 
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
 
 import './firstStepForm.scss'
 
