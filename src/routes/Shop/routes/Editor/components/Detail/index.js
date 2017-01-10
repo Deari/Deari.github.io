@@ -43,7 +43,7 @@ export const Detail = props => {
     // 普通组件
     return <div className="widgets-btn-container">
       <div className="btn-block">
-        <button className="btn btn-red" onClick={deleteElement}>删除组件</button>
+        <button className="btn btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
         <button className="btn btn-green" onClick={cancelElement}>取消</button>
       </div>
       {/*<pre>*/}

@@ -47,7 +47,7 @@ const ACTION_HANDLERS = {
     ...state, ...action.layouts
   }),
 
-  [CANCEL_ELEMENT]: (state, action) => {
+  [CANCEL_ELEMENT]: state => {
     return {
       ...state, elements: state.elements.map(element => ({
         ...element, selected: false,
@@ -55,8 +55,11 @@ const ACTION_HANDLERS = {
     }
   },
 
-  [SELECT_ELEMENT]
-  : (state, action) => ({
+  [DELETE_ELEMENT]: (state, action) => ({
+    ...state, elements: state.elements.filter(element => element.id !== action.id)
+  }),
+
+  [SELECT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => ({
       ...element, selected: element.id === action.id
     }))
