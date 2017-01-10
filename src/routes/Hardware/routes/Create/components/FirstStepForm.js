@@ -10,6 +10,7 @@ import { toggleTag } from '../modules/create'
 
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 
 import './firstStepForm.scss'
 
@@ -100,14 +101,70 @@ const mapDispatchToProps = {
   toggleTag,
 }
 
+const isValid = (formValues) => {
+  const postParams = {}
+  const arrPostParams = []
+
+  postParams.hardwareName = formValues.hardwareName.trim() ? formValues.hardwareName : null
+  postParams.hardwareMode = formValues.hardwareMode.trim() ? formValues.hardwareMode: null
+  postParams.hardwareProducer = formValues.hardwareProducer.trim() ? formValues.hardwareProducer : null
+  postParams.sdkType = parseInt(formValues.sdkType)
+  postParams.os = parseInt(formValues.os)
+  postParams.hardwarePlatform = parseInt(formValues.hardwarePlatform)
+
+  postParams.majorCategoryId = formValues.category && parseInt(formValues.category.majorCategoryId)
+  postParams.minorCategoryId = formValues.category && parseInt(formValues.category.minorCategoryId)
+
+  postParams.commType1 = formValues.commType1 ? 1 : 0 
+  postParams.commType2 = formValues.commType2 ? 1 : 0 
+
+  for (let key in postParams) {
+    arrPostParams.push(postParams[key])
+  }
+
+  const allHasValue = arrPostParams.every((item, index) => {
+    return (item && item != -1) || item == 0
+  })
+
+  const formData = new FormData();
+  for(let key in postParams) {
+    formData.append(key, postParams[key]);
+  }
+
+  return {
+    allHasValue: allHasValue,
+    postParams: formData
+  }
+  
+}
+
+const getDownLoadSDKUrl = async (postParams) => {
+  const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/hardware/getSdkUrl")
+  try {
+    let res = await fetchUtil.postJSON(url, postParams, { jsonStringify: false})
+    if (res && res.status == 200) {
+      return res.data && res.data.sdkUrl
+    } else {
+      debug.warn('获取下载SDK接口报错', res)
+    }
+  } catch (e) {
+    debug.warn('网络错误', e)
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
-    downLoadSDK: ()=> {
+    downLoadSDK: async () => {
       // 这个写法可能不太严谨和规范
       const formValues = state.form.firstStepForm.values
-      console.log("===============")
-      console.log(formValues)
-      document.location.href = 'http://dldir1.qq.com/qqfile/qq/QQ8.8/19876/QQ8.8.exe'
+      const result = isValid(formValues)
+
+      if (result && result.allHasValue) {
+        const dowloadUrl = result.postParams && await getDownLoadSDKUrl(result.postParams)
+        document.location.href = dowloadUrl && dowloadUrl
+      } else {
+        window.alert("参数不全")
+      }
     },
     initialValues: state.hardwareCreate.form,
     tags: state.hardwareCreate.tags,
@@ -128,7 +185,3 @@ export default connect(
   forceUnregisterOnUnmount: true,
   validate,
 })(FirstStepForm))
-
-
-
-
