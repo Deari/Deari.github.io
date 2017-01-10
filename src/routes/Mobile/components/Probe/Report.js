@@ -10,6 +10,24 @@ const CustomizedLabel = React.createClass({
   }
 });
 
+const CustomTooltip = React.createClass({
+  render() {
+    const { active } = this.props;
+
+    if (active) {
+      const { payload, label } = this.props;
+
+      return (
+        <div className="custom-tooltip">
+          <p className="label">{`${payload[0].value}人`}</p>
+        </div>
+      );
+    }
+
+    return null;
+  }
+});
+
 const ChartContainer = ({ allNum, data }) => {
   return <div>
   <h3 className="numTitle">客流量总计(人)：{ allNum }</h3>
@@ -27,8 +45,8 @@ const ChartContainer = ({ allNum, data }) => {
       <XAxis dataKey="time"/>
       <YAxis/>
       <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip/>
-      <Area label={<CustomizedLabel />} type="linear" dataKey="num" 
+      <Tooltip content={<CustomTooltip />} />
+      <Area label={<CustomizedLabel />} name="流量" unit="人" type="linear" dataKey="num" 
         stroke="#2692fb" fillOpacity={1} fill="url(#colorNum)" />
       </AreaChart>
     </div>
