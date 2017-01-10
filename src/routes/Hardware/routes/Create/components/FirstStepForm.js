@@ -4,7 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import renderField, { renderTextArea, renderSelect, renderTags,
   renderImageUpload, renderCorDropdown }from '../modules/renderField'
 
-import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
+import { validate, repeatCheck }  from '../modules/validate'
 
 import { toggleTag } from '../modules/create'
 
@@ -16,7 +16,7 @@ import './firstStepForm.scss'
 class FirstStepForm extends Component {
 
   render() {
-    const { handleSubmit, toggleTag, tags, cates, initialValues , sdkTypes, osPlatforms, hardwarePlatforms} = this.props;
+    const { handleSubmit, downLoadSDK, tags, cates, initialValues , sdkTypes, osPlatforms, hardwarePlatforms} = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
@@ -77,7 +77,7 @@ class FirstStepForm extends Component {
         <div className="form-row">
           <label className="labelH"></label>
           <div className="row-right">
-            <span className="downLoad"><i className="iconfont icon-downloadbtn"></i>下载SDK</span> 
+            <span className="downLoad" onClick={downLoadSDK}><i className="iconfont icon-downloadbtn"></i>下载SDK</span>
             <span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span>
           </div>
         </div>
@@ -102,6 +102,13 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
+    downLoadSDK: ()=> {
+      // 这个写法可能不太严谨和规范
+      const formValues = state.form.firstStepForm.values
+      console.log("===============")
+      console.log(formValues)
+      document.location.href = 'http://dldir1.qq.com/qqfile/qq/QQ8.8/19876/QQ8.8.exe'
+    },
     initialValues: state.hardwareCreate.form,
     tags: state.hardwareCreate.tags,
     cates: state.hardwareCreate.cates,
@@ -118,6 +125,7 @@ export default connect(
   form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
   //destroyOnUnmount: false,
+  //asyncValidate,
   forceUnregisterOnUnmount: true,
   validate,
 })(FirstStepForm))
