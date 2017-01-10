@@ -117,7 +117,7 @@ class WidgetsDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag">{ data.categoryName }</a>
+                    <span className="tag">{ data.categoryName }</span>
                   </td>
                 </tr>
                 <tr>
@@ -126,7 +126,7 @@ class WidgetsDetail extends React.Component {
                   {
                      infoTags.map( (item, index) => {
                        return (
-                         <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
+                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
                        )
                      } )
                   }
