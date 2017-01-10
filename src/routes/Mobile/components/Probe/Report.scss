@@ -12,6 +12,23 @@
 .bg-white{
   background:#fff;
 }
+.custom-tooltip {
+  background: rgba(0,0,0, .6);
+  color: #fff;
+  padding: 5px 10px;
+  font-size: 12px;
+  position: relative;
+  
+}
+.custom-tooltip::after {
+  display: inline-block;
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  background: #f00;
+}
 
 .report-container{
   width:755px;
