@@ -13,7 +13,7 @@ class Doc extends React.Component {
     return (
       <div className="container clx">
         <div className='sidebar'>
-          <a className="create-btn" href="/apps/create"><i className="iconfont icon-create"></i>创建新应用</a>
+          <a className="create-btn" href="/apps/create"><i className="iconfont icon-create"></i>发布新应用</a>
           <ul className="help-menu">
             <li><a href="/apps/list"><i className="iconfont icon-application"></i>我的应用</a></li>
             <li><a href="/apps/doc"><i className="iconfont icon-file"></i>开发者文档</a></li>
