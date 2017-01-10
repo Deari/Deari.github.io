@@ -242,6 +242,13 @@ export const getAppCodeInfo = (appId) => {
       if(res.status == 200) {
         console.log('组件 code详情：', res)
         const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
+        if(codeDesc==="undefined"){
+          dispatch(updateForm2({
+            appId,
+            fileName, fileLink, rnFrameworkVersion, moduleName, setting
+          }));
+          return
+        }
         dispatch(updateForm2({
           appId,
           codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
