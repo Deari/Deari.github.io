@@ -16,7 +16,7 @@ import './firstStepForm.scss'
 class FirstStepForm extends Component {
 
   render() {
-    const { handleSubmit, toggleTag, tags, cates, sdkTypes, osPlatforms, hardwarePlatforms } = this.props;
+    const { handleSubmit, toggleTag, tags, cates, sdkTypes, osPlatforms, hardwarePlatforms, downLoadSDK } = this.props;
 
     return (
       <form onSubmit={handleSubmit}>
@@ -75,6 +75,14 @@ class FirstStepForm extends Component {
           }
         </Field>
 
+        <div className="form-row">
+          <label className="labelH"></label>
+          <div className="row-right">
+            <span className="downLoad" onClick={downLoadSDK}><i className="iconfont icon-downloadbtn"></i>下载SDK</span>
+            <span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span>
+          </div>
+        </div>
+
         <div className="form-btn">
           <div>
           	<button type="submit" className="next">保存并下一步</button>
@@ -93,7 +101,70 @@ const mapDispatchToProps = {
   toggleTag,
 }
 
+const isValid = (formValues) => {
+  const postParams = {}
+  const arrPostParams = []
+
+  postParams.hardwareName = formValues.hardwareName.trim() ? formValues.hardwareName : null
+  postParams.hardwareMode = formValues.hardwareMode.trim() ? formValues.hardwareMode: null
+  postParams.hardwareProducer = formValues.hardwareProducer.trim() ? formValues.hardwareProducer : null
+  postParams.sdkType = parseInt(formValues.sdkType)
+  postParams.os = parseInt(formValues.os)
+  postParams.hardwarePlatform = parseInt(formValues.hardwarePlatform)
+
+  postParams.majorCategoryId = formValues.category && parseInt(formValues.category.majorCategoryId)
+  postParams.minorCategoryId = formValues.category && parseInt(formValues.category.minorCategoryId)
+
+  postParams.commType1 = formValues.commType1 ? 1 : 0 
+  postParams.commType2 = formValues.commType2 ? 1 : 0 
+
+  for (let key in postParams) {
+    arrPostParams.push(postParams[key])
+  }
+
+  const allHasValue = arrPostParams.every((item, index) => {
+    return (item && item != -1) || item == 0
+  })
+
+  const formData = new FormData();
+  for(let key in postParams) {
+    formData.append(key, postParams[key]);
+  }
+
+  return {
+    allHasValue: allHasValue,
+    postParams: formData
+  }
+  
+}
+
+const getDownLoadSDKUrl = async (postParams) => {
+  const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/hardware/getSdkUrl")
+  try {
+    let res = await fetchUtil.postJSON(url, postParams, { jsonStringify: false})
+    if (res && res.status == 200) {
+      return res.data && res.data.sdkUrl
+    } else {
+      debug.warn('获取下载SDK接口报错', res)
+    }
+  } catch (e) {
+    debug.warn('网络错误', e)
+  }
+}
+
 const mapStateToProps = ({ hdEdit}) => ({
+  downLoadSDK:  async () => {
+    // 这个写法可能不太严谨和规范
+    const formValues = hdEdit.form
+    const result = isValid(formValues)
+
+    if (result && result.allHasValue) {
+      const dowloadUrl = result.postParams && await getDownLoadSDKUrl(result.postParams)
+      document.location.href = dowloadUrl && dowloadUrl
+    } else {
+      window.alert("参数不全")
+    }
+  },
   initialValues: hdEdit.form,
   tags: hdEdit.tags,
   cates: hdEdit.cates,
