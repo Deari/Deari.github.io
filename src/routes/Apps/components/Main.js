@@ -60,7 +60,9 @@ class Main extends React.Component {
       item.className = ((item.tagId == activeTag) && "active") || ''
     })
 
-    this.setState({ tags: tags}, () => { this.getList(activeTag) })
+    this.setState({ tags: tags, activeTag: activeTag}, () => { 
+      this.getList(activeTag) 
+    })
   }
 
   checkValid() {
