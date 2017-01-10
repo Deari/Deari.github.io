@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import { Link } from 'react-router'
 import { connect} from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import renderField, { renderTextArea, renderSelect, renderTags,
@@ -79,7 +80,7 @@ class FirstStepForm extends Component {
           <label className="labelH"></label>
           <div className="row-right">
             <span className="downLoad" onClick={downLoadSDK}><i className="iconfont icon-downloadbtn"></i>下载SDK</span>
-            <span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span>
+            <Link to="/hardware/doc"><span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span></Link>
           </div>
         </div>
 

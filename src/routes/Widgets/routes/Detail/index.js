@@ -26,7 +26,7 @@ class WidgetsDetail extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
-        res.data && this.setState({data: res.data});
+        res.data && this.formatData(res.data);
       } else {
         debug.warn("获取详情接口返回错误", res)
       }
