@@ -29,7 +29,7 @@ export default class ClockPreview extends Component {
   render() {
     const { w: width, h: height } = this.props.layout
     const style = { ...this.style, lineHeight: (height * this.props.gridProps.rowHeight) + 'px', ...this.props.detail }
-    this.formatString = (width == 1) ? 'hh:mm:ss' : 'YYYY-MM-DD hh:mm:ss'
+    this.formatString = (width < 4) ? 'hh:mm:ss' : 'YYYY-MM-DD hh:mm:ss'
     return <div style={style}>{this.state.time}</div>
   }
 }

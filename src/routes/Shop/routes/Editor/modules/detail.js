@@ -10,7 +10,10 @@ function makeActionCreator(type, ...argNames) {
   }
 }
 
-const SELECT_ELEMENT = 'SELECT_ELEMENT'
+const SELECT_ELEMENT = 'SELECT_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
+
+const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
+const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
 
 const SAVE_DETAIL = 'SAVE_DETAIL' // To : src/routes/Shop/routes/Editor/modules/preview.js
 
@@ -34,17 +37,26 @@ export const savePage = pageId => (dispatch, getState) => new Promise((resolve, 
   })
 })
 
+
+export const cancelElement = () => dispatch => dispatch({
+  type: CANCEL_ELEMENT,
+})
+
+export const deleteElement = id => dispatch => dispatch({
+  type: DELETE_ELEMENT,
+  id,
+})
+
 const ACTION_HANDLERS = {
-
-  [SELECT_ELEMENT]: (state, action) => {
-    return { ...state, element: action.selectedElement }
-  },
-
+  [CANCEL_ELEMENT]: state => ({ ...state, element: {} }),
+  [DELETE_ELEMENT]: state => ({ ...state, element: {} }),
+  [SELECT_ELEMENT]: (state, action) => ({ ...state, element: action.selectedElement }),
 }
 
-//export const actions = {
-//  saveDetail,
-//}
+export const actions = {
+  cancelElement,
+  saveDetail,
+}
 
 const initState = {
   element: {}

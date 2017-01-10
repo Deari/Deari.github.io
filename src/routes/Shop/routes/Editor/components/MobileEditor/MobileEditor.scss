@@ -172,6 +172,37 @@ $blue97-color:#97d6fe;
   right: 0;
   width: 200px;
   background:$graybf7-color;
+  .widgets-btn-container{
+    position:relative;
+    padding-top:40px;
+    height:510px;
+    font-size:14px;
+    color:$gray6-color;
+    .btn{
+      display:inline-block;
+      width:95.5%;
+      height:40px;
+      margin:20px 5px 0;
+      padding:0;
+      line-height:36px;
+      border-radius:4px;
+    }
+    .btn-red{
+      color:#fff;
+      background:#fb4747;
+      border:2px solid #fb4747;
+    }
+    .btn-green{
+      color:#54a4ff;
+      background:#fff;
+      border:2px solid #54a4ff;
+    }
+    .btn-block{
+      position:absolute;
+      bottom:20px;
+      width:100%;
+    }
+  }
   #detail-container{
     position:relative;
     padding-top:40px;
