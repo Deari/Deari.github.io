@@ -13,10 +13,6 @@ import { toggleStep, getSdkInfo } from '../modules/create'
 
 class SecondStepForm extends React.Component {
 
-  async componentDidMount() {
-    await this.props.getSdkInfo()
-  }
-
   render(){
 
     const { handleSubmit, submitting, toggleStep } = this.props
@@ -59,16 +55,12 @@ class SecondStepForm extends React.Component {
 
 
 const mapDispatchToProps = {
-  toggleStep,
-  getSdkInfo
+  toggleStep
 };
 
 export default connect(
   state=>({
     initialValues: state.hardwareCreate.form2,
-    sdkTypes: state.hardwareCreate.sdkTypes,
-    osPlatforms: state.hardwareCreate.osPlatforms,
-    hardwarePlatforms: state.hardwareCreate.hardwarePlatforms
   }),
 
   mapDispatchToProps

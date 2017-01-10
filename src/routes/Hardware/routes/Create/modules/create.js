@@ -113,6 +113,9 @@ const initialState = {
       minorCategories: [],
     },
     tags: [],
+    sdkType: 0,
+    os: 0,
+    hardwarePlatform: 0,
   },
 
   form2: {
@@ -123,9 +126,6 @@ const initialState = {
     commType1: 0,
     commType2: 0,
     hardwareDetail: '',
-    sdkType: 0,
-    os: 0,
-    hardwarePlatform: 0,
     hardwareReport: ''
   }
 }

@@ -16,10 +16,7 @@ import './firstStepForm.scss'
 class FirstStepForm extends Component {
 
   render() {
-    const { handleSubmit, toggleTag, tags, cates, initialValues } = this.props;
-    const sdkTypes = this.props.sdkTypes || []
-    const osPlatforms = this.props.osPlatforms || []
-    const hardwarePlatforms = this.props.hardwarePlatforms || []
+    const { handleSubmit, toggleTag, tags, cates, initialValues , sdkTypes, osPlatforms, hardwarePlatforms} = this.props;
     return (
       <form onSubmit={handleSubmit}>
         <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
@@ -32,8 +29,8 @@ class FirstStepForm extends Component {
 
         <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
 
-          <Field name="sdkType" label="SDK类型" component={renderSelect}>
-          <option>请选择SDK类型</option>
+        <Field name="sdkType" label="SDK类型" component={renderSelect}>
+        <option>请选择SDK类型</option>
           {
             sdkTypes.map((item) => (
               <option value={item.key}>
@@ -93,7 +90,10 @@ const mapStateToProps = (state) => {
   return {
     initialValues: state.hardwareCreate.form,
     tags: state.hardwareCreate.tags,
-    cates: state.hardwareCreate.cates
+    cates: state.hardwareCreate.cates,
+    sdkTypes: state.hardwareCreate.sdkTypes,
+    osPlatforms: state.hardwareCreate.osPlatforms,
+    hardwarePlatforms: state.hardwareCreate.hardwarePlatforms
   }
 }
 
