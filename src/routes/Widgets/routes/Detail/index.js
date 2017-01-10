@@ -16,6 +16,8 @@ class WidgetsDetail extends React.Component {
       data: [],
       tags:[],
       versions: [],
+      appPreviewImage: '',
+      defaultLayout: '',
       showAll: false
     };
   }
@@ -26,7 +28,7 @@ class WidgetsDetail extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
-        res.data && this.setState({data: res.data});
+        res.data && this.formatData(res.data);
       } else {
         debug.warn("获取详情接口返回错误", res)
       }
@@ -69,7 +71,10 @@ class WidgetsDetail extends React.Component {
     })
 
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, versions: versions});
+    const appPreviewImage = data.appPreviewImage
+    const defaultLayout = data.defaultLayout
+    
+    this.setState({data: data, versions: versions, appPreviewImage: appPreviewImage, defaultLayout: defaultLayout});
   }
 
   getVersions() {
@@ -84,14 +89,16 @@ class WidgetsDetail extends React.Component {
 
   render() {
 
-    const { data, tags, versions, showAll } = this.state
+    const { data, tags, versions, appPreviewImage, showAll, defaultLayout } = this.state
     const infoTags = data.tags || []
     const len = infoTags.length
 
     const latestVersion = (data.versions && data.versions[0]) || {}
 
+    const size = `${defaultLayout.w} * ${defaultLayout.h}`
+
     const urls = {
-      create: { url: `/widgets/create`, name: '创建新组件' },
+      create: { url: `/widgets/create`, name: '发布新组件' },
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
@@ -103,7 +110,7 @@ class WidgetsDetail extends React.Component {
           <div className="detail-container">
             <div className="detail-download">
               <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
+              <p className="btn btn-primary btn-download">使用</p>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
@@ -117,7 +124,7 @@ class WidgetsDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag">{ data.categoryName }</a>
+                    <span className="tag">{ data.categoryName }</span>
                   </td>
                 </tr>
                 <tr>
@@ -126,7 +133,7 @@ class WidgetsDetail extends React.Component {
                   {
                      infoTags.map( (item, index) => {
                        return (
-                         <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
+                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
                        )
                      } )
                   }
@@ -135,7 +142,8 @@ class WidgetsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
+          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} 
+                    showAll={showAll} appPreviewImage={appPreviewImage} size={size} />
         </div>
       </div>
     )

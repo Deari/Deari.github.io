@@ -169,10 +169,6 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = ({ hardwareCreate }) => ({
-  hardwareCreate,
-  downLoadSDK: function (value) {
-    console.log("++++++++++++++++")
-    console.log(value)
-  }
+  hardwareCreate
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)

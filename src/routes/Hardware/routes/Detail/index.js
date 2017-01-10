@@ -63,7 +63,7 @@ class HardwareDetail extends React.Component {
     const hardwarePics = data.hardwarePics || []
     const len = infoTags.length
     const urls = {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
@@ -73,7 +73,7 @@ class HardwareDetail extends React.Component {
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
-              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
+              <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
               <a className="btn btn-primary btn-download">购买</a>
             </div>
             <div className="detail-info">
@@ -88,8 +88,8 @@ class HardwareDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag">{ data.majorCategoryName } - </a>
-                    <a className="tag">{ data.minorCategoryName }</a>
+                    <span className="tag">{ data.majorCategoryName } - </span>
+                    <span className="tag">{ data.minorCategoryName }</span>
                   </td>
                 </tr>
                 <tr>
