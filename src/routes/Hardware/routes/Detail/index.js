@@ -73,7 +73,7 @@ class HardwareDetail extends React.Component {
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
-              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
+              <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
               <a className="btn btn-primary btn-download">购买</a>
             </div>
             <div className="detail-info">
