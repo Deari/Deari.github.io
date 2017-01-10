@@ -252,8 +252,8 @@ export class renderFile extends Component {
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
-    formData.append('fileType', JSON.stringify(['png', 'jpg', 'jpeg', 'gif', 
-      'doc', 'docx', 'xls', 'xlsx', 'zip']))
+    formData.append('fileType', 'all')
+    formData.append('businessType', 'hardware')
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false

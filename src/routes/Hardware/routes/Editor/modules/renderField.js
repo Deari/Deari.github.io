@@ -201,6 +201,7 @@ export class renderImgsUpload extends Component {
     const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileSize', 1024 * 1024)
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
@@ -252,6 +253,8 @@ export class renderFile extends Component {
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileType', 'all')
+    formData.append('businessType', 'hardware')
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false

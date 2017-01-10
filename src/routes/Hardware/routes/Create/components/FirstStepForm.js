@@ -19,15 +19,15 @@ class FirstStepForm extends Component {
     const { handleSubmit, toggleTag, tags, cates, initialValues , sdkTypes, osPlatforms, hardwarePlatforms} = this.props;
     return (
       <form onSubmit={handleSubmit}>
-        <Field label="硬件名称" name="hardwareName" type="text" component={renderField} />
+        <Field name="hardwareName" type="text" label="硬件名称" component={renderField} />
 
-        <Field label="LOGO" name="hardwareLogo" type="text" component={renderImageUpload} />
+        <Field name="hardwareLogo" type="text" label="LOGO" component={renderImageUpload} />
 
-        <Field label="硬件介绍" name="hardwareFunction" component={renderTextArea} />
+        <Field name="hardwareFunction" label="硬件介绍" component={renderTextArea} />
 
-        <Field label="分类" name="category" component={renderCorDropdown} cates={cates} />
+        <Field name="category" label="分类" component={renderCorDropdown} cates={cates} />
 
-        <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
+        <Field name="tags" label="产品标签" component={renderTags} tags={tags} />
 
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
 
@@ -117,7 +117,7 @@ export default connect(
 )(reduxForm({
   form: 'firstStepForm',
   fields: ['appName', 'appDesc'],
-  //destroyOnUnmount: false,
+  destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
   validate,
 })(FirstStepForm))
