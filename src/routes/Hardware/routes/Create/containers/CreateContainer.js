@@ -39,13 +39,19 @@ class CreateContainer extends Component {
       hardwareLogo : values['hardwareLogo'],
       hardwareFunction : values['hardwareFunction'],
       majorCategoryId : values.category['majorCategoryId'],
-      minorCategoryId : values.category['minorCategoryId']
+      minorCategoryId : values.category['minorCategoryId'],
+      hardwareMode : values['hardwareMode'],
+      hardwareProducer : values['hardwareProducer'],
+      commType1: values['commType1'] ? 1 : 0,
+      commType2: values['commType2'] ? 1 : 0,
+      sdkType: values['sdkType'],
+      os: values['os'],
+      hardwarePlatform: values['hardwarePlatform'],
     };
 
     for(let key in params) {
       formData.append(key, params[key]);
     }
-
 
     for(let v of values.tags) {
       formData.append("hardwareTags[]", v);
@@ -86,16 +92,16 @@ class CreateContainer extends Component {
       hardwareFunction : SecondStepValues['hardwareFunction'],
       majorCategoryId : SecondStepValues.category['majorCategoryId'],
       minorCategoryId : SecondStepValues.category['minorCategoryId'],
-
       hardwareMode: SecondStepValues['hardwareMode'],
-      hardwareBrand: SecondStepValues['hardwareBrand'],
       hardwareProducer: SecondStepValues['hardwareProducer'],
       commType1: SecondStepValues['commType1'] ? 1 : 0,
       commType2: SecondStepValues['commType2'] ? 1 : 0,
-      hardwareDetail: SecondStepValues['hardwareDetail'],
       sdkType: SecondStepValues['sdkType'],
       os: SecondStepValues['os'],
       hardwarePlatform: SecondStepValues['hardwarePlatform'],
+
+      hardwareBrand: SecondStepValues['hardwareBrand'],
+      hardwareDetail: SecondStepValues['hardwareDetail'],
       hardwareReport: SecondStepValues['hardwareReport'],
     };
 

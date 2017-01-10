@@ -113,18 +113,18 @@ const initialState = {
       minorCategories: [],
     },
     tags: [],
+    hardwareMode: '',
+    hardwareProducer: '',
+    commType1: 0,
+    commType2: 0,
     sdkType: 0,
     os: 0,
     hardwarePlatform: 0,
   },
 
   form2: {
-    hardwareMode: '',
     hardwarePics: [],
     hardwareBrand: '',
-    hardwareProducer: '',
-    commType1: 0,
-    commType2: 0,
     hardwareDetail: '',
     hardwareReport: ''
   }

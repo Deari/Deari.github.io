@@ -125,19 +125,19 @@ const initialState = {
       minorCategoryId: -1,
     },
     tags: [],
-  },
-
-  form2: {
     hardwareMode: '',
-    hardwarePics: [],
-    hardwareBrand: '',
     hardwareProducer: '',
     commType1: 0,
     commType2: 0,
-    hardwareDetail: '',
     sdkType: 0,
     os: 0,
     hardwarePlatform: 0,
+  },
+
+  form2: {
+    hardwarePics: [],
+    hardwareBrand: '',
+    hardwareDetail: '',
     hardwareReport: ''
   }
 }

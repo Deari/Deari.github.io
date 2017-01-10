@@ -18,27 +18,15 @@ class SecondStepForm extends React.Component {
     const { handleSubmit, submitting, toggleStep } = this.props
 
     return (
-      <form onSubmit={handleSubmit}>
-        <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
+      <form onSubmit={handleSubmit}>      
 
         <Field label="硬件图片" name="hardwarePics" type="text" component={renderImgsUpload} />
 
         <Field name="hardwareBrand" type="text" label="硬件品牌" component={renderField} />
 
-        <Field name="hardwareProducer" type="text" label="生产厂家" component={renderField} />
-
-        <div className="form-row file-position">
-          <label>通讯方式</label>
-          <div className="row-right">
-            <label><Field name="commType1" component="input" type="checkbox" /> WIFI</label>
-            <label><Field name="commType2" component="input" type="checkbox" /> 蓝牙</label>
-          </div>
-        </div>
-
         <Field name="hardwareDetail" label="功能描述" component={renderTextArea} />
 
         <Field name="hardwareReport" component={renderFile} label="测试报告" />
-
 
         <div className="form-btn">
 	          <div>
