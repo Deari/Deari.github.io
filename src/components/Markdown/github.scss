@@ -60,7 +60,9 @@
   }
 
   h3 {
-    font-size : 14px; }
+    font-size : 14px; 
+    margin:10px 0;
+  }
 
   h4 {
     font-size   : 12px;
@@ -185,7 +187,9 @@
     margin-bottom : 0; }
 
   img {
-    max-width : 100%; }
+    max-width : 100%; 
+    margin:10px 0;
+  }
 
   span.frame {
     display  : block;
@@ -294,7 +298,13 @@
     border           : none; }
 }
 .document-list{
-  font-size:16px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  top: 200px;
+  width: 210px;
+  font-size: 16px;
+  overflow-y: auto;
   li{
    padding:5px 0;
   }

@@ -134,7 +134,7 @@ class HardwareDetail extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td className="title">详情功能描述</td>
+                <td className="title">详细功能描述</td>
                 <td className="text">{ data.hardwareDetail }</td>
               </tr>
               <tr>
