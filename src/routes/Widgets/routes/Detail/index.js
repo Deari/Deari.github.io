@@ -16,6 +16,8 @@ class WidgetsDetail extends React.Component {
       data: [],
       tags:[],
       versions: [],
+      appPreviewImage: '',
+      defaultLayout: '',
       showAll: false
     };
   }
@@ -69,7 +71,10 @@ class WidgetsDetail extends React.Component {
     })
 
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, versions: versions});
+    const appPreviewImage = data.appPreviewImage
+    const defaultLayout = data.defaultLayout
+    
+    this.setState({data: data, versions: versions, appPreviewImage: appPreviewImage, defaultLayout: defaultLayout});
   }
 
   getVersions() {
@@ -84,11 +89,13 @@ class WidgetsDetail extends React.Component {
 
   render() {
 
-    const { data, tags, versions, showAll } = this.state
+    const { data, tags, versions, appPreviewImage, showAll, defaultLayout } = this.state
     const infoTags = data.tags || []
     const len = infoTags.length
 
     const latestVersion = (data.versions && data.versions[0]) || {}
+
+    const size = `${defaultLayout.w} * ${defaultLayout.h}`
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -135,7 +142,8 @@ class WidgetsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
+          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} 
+                    showAll={showAll} appPreviewImage={appPreviewImage} size={size} />
         </div>
       </div>
     )
