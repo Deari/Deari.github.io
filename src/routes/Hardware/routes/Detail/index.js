@@ -134,7 +134,7 @@ class HardwareDetail extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td className="title">详情功能描述</td>
+                <td className="title">详细功能描述</td>
                 <td className="text">{ data.hardwareDetail }</td>
               </tr>
               <tr>
@@ -142,7 +142,7 @@ class HardwareDetail extends React.Component {
                 <td className="text">{ data.sdkTypeName }</td>
               </tr>
               <tr>
-                <td className="title">操作系统</td>
+                <td className="title">操作平台</td>
                 <td className="text">{ data.osName }</td>
               </tr>
               <tr>
