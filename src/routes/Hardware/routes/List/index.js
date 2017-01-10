@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from '../../../../components/List'
-import fetchUtil from '../../../utils/fetchUtil'
-import Slidebar from '../../../../components/Sidebar'
+import List from 'components/List'
+import fetchUtil from 'routes/utils/fetchUtil'
+import Slidebar from 'components/Sidebar'
 import './index.scss'
-import '../../../../styles/_base.scss'
-import { getDomain } from '../../../utils/domain';
+import 'styles/_base.scss'
+import { getDomain } from 'routes/utils/domain';
 
 class HardwaresList extends React.Component {
   state = {
