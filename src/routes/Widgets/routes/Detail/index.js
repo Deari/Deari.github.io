@@ -91,7 +91,7 @@ class WidgetsDetail extends React.Component {
     const latestVersion = (data.versions && data.versions[0]) || {}
 
     const urls = {
-      create: { url: `/widgets/create`, name: '创建新组件' },
+      create: { url: `/widgets/create`, name: '发布新组件' },
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
@@ -103,7 +103,7 @@ class WidgetsDetail extends React.Component {
           <div className="detail-container">
             <div className="detail-download">
               <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
+              <p className="btn btn-primary btn-download">使用</p>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
