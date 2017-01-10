@@ -88,8 +88,8 @@ class HardwareDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag">{ data.majorCategoryName } - </a>
-                    <a className="tag">{ data.minorCategoryName }</a>
+                    <span className="tag">{ data.majorCategoryName } - </span>
+                    <span className="tag">{ data.minorCategoryName }</span>
                   </td>
                 </tr>
                 <tr>
