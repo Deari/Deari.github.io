@@ -1,15 +1,28 @@
-import React, {Component, PropTypes} from 'react'
+import React, { Component, PropTypes } from 'react'
 import Modal from 'components/Modal'
 
-export const Test = props => (
-  <div>
-    <Modal type={"confirm"} active={locationTips}
-           cancelBtnText={'返回修改'}>
-      <p>您参与的是
-        如非本城市用户请返回定位自己所在城市，否则中奖后将无法门店自提。</p>
-    </Modal>
-  </div>
-)
+export class Test extends Component {
+
+  state = {
+    modalActive: true
+  }
+
+  onClose() {
+    this.setState({
+      modalActive: false
+    })
+  }
+
+  render() {
+    return <div>
+      <Modal type={"alert"} active={this.state.modalActive}
+             onClose={::this.onClose}
+             cancelBtnText={'确定'}>
+        <p className="center">发布成功</p>
+      </Modal>
+    </div>
+  }
+}
 
 export default store => ({
   path: 'demo',

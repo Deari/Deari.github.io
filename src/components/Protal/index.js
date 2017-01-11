@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 // https://github.com/facebook/react/blob/master/src/renderers/dom/client/ReactMount.js#L390-L401
-import renderSubtreeIntoContainer from 'react/lib/renderSubtreeIntoContainer'
-import {unmountComponentAtNode, findDOMNode} from 'react-dom';
+import {unmountComponentAtNode, findDOMNode, unstable_renderSubtreeIntoContainer as renderSubtreeIntoContainer} from 'react-dom'
 
 function getContainer() {
   return document.body;

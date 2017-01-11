@@ -1,20 +1,16 @@
 import React, {Component, PropTypes} from 'react';
-import Mask from '../Mask';
-import s from './Modal.css';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import DelayRenderer from '../Protal/DelayRenderer';
+import './Modal.scss';
 import classnames from 'classnames';
-import * as funcUtils from '../utils/functionUtil'
 
 const Alert = ({active, children, ...props}) => {
 
-  return <div className={classnames(s.modal, s.alert, { [s.active]: active })}>
-    <div className={s.modalInner}>
-      <div className={s.modalText}>
+  return <div className={classnames('modal', 'alert', { ['active']: active })}>
+    <div className={'modalInner'}>
+      <div className={'modalText'}>
         {children}
       </div>
-      <div className={s.modalButtons}>
-        <span className={s.btn} onClick={e=>{
+      <div className={'modalButtons'}>
+        <span className={'btn'} onClick={e=>{
           props.onClose();
           props.onConfirm();
         }}>确定</span>
@@ -35,4 +31,4 @@ Alert.defaultProps = {
   onConfirm: () => {},
 }
 
-export default withStyles(s)(Alert);
+export default Alert;

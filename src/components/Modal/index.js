@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react';
 import Mask from '../Mask';
-import './Modal.css';
+import './Modal.scss';
 import DelayRenderer from '../Protal/DelayRenderer';
 import Alert from './alert';
 import Confirm from './confirm';

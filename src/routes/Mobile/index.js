@@ -20,7 +20,6 @@ export default store => ({
     })
   },
 
-
   getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [

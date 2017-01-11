@@ -22,13 +22,13 @@ class Mask extends Component {
 
   render() {
     const {active, className, children, onOverlayClick} = this.props;
-    const _className = classnames(s.overlay, {
-      [s.active]: active,
+    const _className = classnames('overlay', {
+      'active': active,
     }, className);
 
     return <Protal>
       <div className={_className} >
-        <div className={s.backdrop}
+        <div className={'backdrop'}
              onClick={e=> {
                e.preventDefault();
                onOverlayClick();
