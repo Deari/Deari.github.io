@@ -11,17 +11,15 @@ class App extends Component {
   state = DATA
 
   componentWillMount() {
-    return;
-    const url = '';
-
+    const url = 'http://xapi.intra.sit.ffan.net/mem/v1/mem?action=memStatistics&clientType=2';
     fetchUtil.getJSON(url).then(res=> {
       if(res.status == 200) {
         this.setState(res.data);
       } else {
-        throw Error(res)
+        Debug.warn('获取数据失败', res);
       }
     }).catch(e=>{
-      Debug.warn(e);
+      Debug.warn('获取数据失败', e);
       this.setState(DATA)
     })
   }
