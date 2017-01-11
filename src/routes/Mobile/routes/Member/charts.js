@@ -1,7 +1,7 @@
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 export const IncreaseChart = ({ data }) => {
-  return <AreaChart width={210} height={120} data={data} stackOffset={'expand'}
+  return <AreaChart width={230} height={120} data={data} stackOffset={'expand'}
     margin={{top: 10, right: 30, left: -20, bottom: 0}}>
     <defs>
       <linearGradient id="colorNum" x1="0" y1="0" x2="0" y2="1">
