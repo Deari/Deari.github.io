@@ -30,6 +30,7 @@
     .detail-tittle{
       font-size: 24px;
       color: $black-color;
+      word-wrap: break-word;
       dd{
         margin-top: 12px;
         font-size: 12px;
@@ -43,6 +44,7 @@
       margin-top:10px;
       font-size:14px;
       color:$black-color;
+      word-wrap: break-word;
     }
     .infomation-list{
       margin-top:4px;
@@ -87,12 +89,14 @@
       vertical-align:top;
     }
     .title{
-      width:112px;
+      width:125px;
       padding-right:20px;
       color:$gray9-color;
     }
     .text{
       color:$black-color;
+      word-break:break-all;
+      width:752px;
       .tag{
         padding-right:10px;
       }

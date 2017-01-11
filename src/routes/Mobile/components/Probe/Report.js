@@ -34,20 +34,19 @@ const ChartContainer = ({ allNum, data }) => {
   <div className="chart bg-white">
     <h3 className="title">客流量分布图</h3>
     <div className="chart-container">
-      <AreaChart width={735} height={300} data={data}
-          margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+      <AreaChart width={735} height={300} data={data} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
         <defs>
           <linearGradient id="colorNum" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#2692fb" stopOpacity={0.8}/>
             <stop offset="95%" stopColor="#2692fb" stopOpacity={0.1}/>
           </linearGradient>
         </defs>
-      <XAxis dataKey="time"/>
-      <YAxis/>
-      <CartesianGrid strokeDasharray="3 3"/>
-      <Tooltip content={<CustomTooltip />} />
-      <Area label={<CustomizedLabel />} name="流量" unit="人" type="linear" dataKey="num" 
-        stroke="#2692fb" fillOpacity={1} fill="url(#colorNum)" />
+        <XAxis dataKey="time"/>
+        <YAxis/>
+        <CartesianGrid strokeDasharray="3 3"/>
+        <Tooltip content={<CustomTooltip />} />
+        <Area label={<CustomizedLabel />} name="流量" unit="人" type="linear" dataKey="num" 
+          stroke="#2692fb" fillOpacity={1} fill="url(#colorNum)" />
       </AreaChart>
     </div>
   </div>
