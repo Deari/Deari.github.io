@@ -24,7 +24,7 @@ const createJudge = (showName,item) => {
 }
 class List extends React.Component {;
   render() {
-    const {data, showName} = this.props
+    const {data, showName, detailLink} = this.props
     const name = choose(showName)
     const itemName = showName === 'hardware' ? 'hardware' : 'app'
     return (
@@ -33,18 +33,19 @@ class List extends React.Component {;
           data.length == 0 ? <div className="list-none">没有更多数据了~</div> :
           data.map( (item, index) => (
             <div key={index} className="list-container">
+            
               <div className="info-img-container w124">
-                <div>
+                <Link className="info-img" to={detailLink+item[itemName+'Id']}>
                   <img src={item[itemName+'Logo']} />
-                </div>
+                </Link>
               </div>
               <div className="info-content w342">
-                <div className="info-name" title={item[itemName+'Name']}>
+                <Link className="info-name" title={item[itemName+'Name']} to={detailLink+item[itemName+'Id']}>
                   {name + '名称 : '}{item[itemName+'Name']}
-                </div>
-                <div className="info-introduce" title={item[itemName+'Desc']}>
+                </Link>
+                <Link className="info-introduce" title={item[itemName+'Desc']} to={detailLink+item[itemName+'Id']}>
                   {name + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
-                </div>
+                </Link>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + name + '市场查看详情'}</Link>*/}
               </div>
               <div className="info-price w90">免费</div>
@@ -64,6 +65,7 @@ class List extends React.Component {;
                   <button disabled={showName === 'hardware' ? false : true}>调试硬件</button>
                 </Link>
               </div>
+
             </div>
           ) )
         }

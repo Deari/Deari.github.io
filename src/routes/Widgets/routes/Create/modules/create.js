@@ -78,9 +78,10 @@ const initialState = {
     tagName: '正在加载...'
   }],
   sizeList :[
-    { image: 'img1', value: {widgetW:2,widgetH:1} },
+    { image: 'img1', value: {widgetW:4,widgetH:2} },
     { image: 'img2', value: {widgetW:1,widgetH:1} },
-    { image: 'img3', value: {widgetW:2,widgetH:2} },
+    { image: 'img3', value: {widgetW:4,widgetH:4} },
+    { image: 'img4', value: {widgetW:4,widgetH:1} },
   ],
   form: {
     appName: '',

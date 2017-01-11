@@ -98,11 +98,12 @@ export class renderImageUpload extends Component {
     const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
-    formData.append('width', 400)
-    formData.append('height', this.props.h ? this.props.h : 400)
-    formData.append("fileType", JSON.stringify(['png']))
-    formData.append("fileSize", 1024 * 300)
-
+    if (!this.props.h) {
+      formData.append('width', 400)
+      formData.append('height', 400)
+      formData.append("fileType", JSON.stringify(['png']))
+      formData.append("fileSize", 1024 * 300)
+    }
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
     }).then(res => {

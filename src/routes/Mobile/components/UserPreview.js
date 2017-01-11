@@ -43,7 +43,7 @@ export default class UserPreview extends Component {
   render() {
     return (
       <ResponsiveReactGridLayout {...this.props.gridProps}
-                                 cols={{ xxs: 2, xs: 2, md: 2, sm: 2, lg: 2 }}
+                                 cols={{ xxs: 4, xs: 4, md: 4, sm: 4, lg: 4 }}
       >
         {this.generateDOM()}
       </ResponsiveReactGridLayout>
