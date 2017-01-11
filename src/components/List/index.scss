@@ -37,6 +37,7 @@
       @include font-hidden;
     }
     .info-introduce{
+      display: block;
       font-size: $text-font-size - 6px;
       color: $gray9-color;
       max-height: 70px;
