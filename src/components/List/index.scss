@@ -14,7 +14,8 @@
   }
   .info-img-container {
     padding-left: $default-padding-left - 30;
-    div{
+    .info-img{
+      display: block;
       width: 100px;
       height: 100px;
       img {
@@ -29,6 +30,7 @@
     padding-left: $default-padding-left - 34;
     line-height: $text-line-height - 16px;
     .info-name {
+      display: block;
       font-size: $text-font-size - 4px;
       color: $black-color;
       @include font-nowrap;

@@ -71,7 +71,7 @@ class widgetsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="widget" />
+          <List data={this.state.listData} showName="widget" detailLink='/widgets/detail/'/>
         </div>
       </div>
     )
