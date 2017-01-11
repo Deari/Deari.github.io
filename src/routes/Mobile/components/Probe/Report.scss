@@ -58,6 +58,11 @@
     }
   }
   .numTitle{
+    display:inline-block;
+    width:755px;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
     margin-top:25px;
     padding:0 10px;
     font-size:12px;
@@ -83,10 +88,20 @@
     .ana-head{
       color:#000;
       .title{
+        display:inline-block;
+        width:210px;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
         margin-top:12px;
         font-size:14px;
       }
       .desc{
+        display:inline-block;
+        width:210px;
+        text-overflow:ellipsis;
+        white-space:nowrap;
+        overflow:hidden;
         margin-top:8px;
         font-size:12px;
       }
@@ -97,6 +112,7 @@
       border-radius:4px;
       .ana-item{
         border-bottom:1px solid #ebebeb;
+        height:38px;
         &:last-child{
           border-bottom:0;
         }
@@ -104,6 +120,9 @@
           display:inline-block;
           width:115px;
           padding:10px;
+          text-overflow:ellipsis;
+          white-space:nowrap;
+          overflow:hidden;
         }
         .time{
           text-align:center;
