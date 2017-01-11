@@ -41,7 +41,7 @@ $branch_line_background:#bbbfca;
         }
         .branch.active{
           span:first-child{
-           background: -webkit-linear-gradient(#57acff,$blue-color);
+           background: -webkit-linear-gradient(#57acff,#2692fb);
           }
           span:last-child{
             color: $blue-color;

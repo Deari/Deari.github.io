@@ -42,6 +42,10 @@ const addTextKey = (source, key) => {
   )
 }
 
+const getSumOfTimeArray = (arr=[], start, end) => {
+  return arr.slice(start, end).reduce((prev, cur)=> prev+cur.num, 0)
+}
+
 
 export const Promised = (promiseProp, Wrapped) => class extends React.Component {
   state = {
@@ -62,7 +66,7 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
         this.setState(DATA)
       }
     }).catch(e=>{
-      // Debug.warn('获取数据异常', e);
+      Debug.warn('获取数据异常', e);
       this.setState(DATA)
     })
   }
@@ -71,7 +75,7 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     const data = this.state.timeArray;
     return [{
       time: '0',
-      num: data.slice(0, 8).reduce((num, cur)=> num+cur.num, 0)
+      num: getSumOfTimeArray(data, 0, 8)
     }].concat(data.slice(8, 19))
   }
 
@@ -80,7 +84,9 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
 
     const listData = {
       am: {
-        list: timeArray.slice(7, 11),
+        list: [
+          {num: getSumOfTimeArray(timeArray, 0, 8)}
+        ].concat(timeArray.slice(7, 11)),
         total: amNum,
       },
       pm: {
@@ -88,18 +94,12 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
         total: pmNum,
       },
       night: {
-        list: timeArray.slice(16, 20),
+        list: timeArray.slice(16, 20).concat([ 
+          {num: getSumOfTimeArray(timeArray, 0, 8)}
+        ]),
         total: nightNum,
       }
     }
-
-    listData.am.list.unshift({
-      num: timeArray.slice(0, 8).reduce((num, cur)=> num+cur.num, 0)
-    })
-
-    listData.night.list.push({
-      num: timeArray.slice(20).reduce((num, cur)=> num+cur.num, 0)
-    })
 
     for(let key in listData) {
       listData[key].list = addTextKey(listData[key].list, key)

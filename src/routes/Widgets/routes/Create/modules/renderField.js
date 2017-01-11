@@ -124,7 +124,7 @@ export class renderImageUpload extends Component {
         <label>{label}</label>
         <div className="row-right">
           <p>{ doc ? doc :'请上传组件高清图片' }</p>
-          <p>400*{h?h:400}像素，仅支持PNG格式，大小不超过300KB</p>
+          <p>{h ? '' : '400*400像素，仅支持PNG格式，'}大小不超过300KB</p>
           <span>
             <input type="button" value="选择文件"/>
             <input type="file" accept="image/*" onChange={::this.imageUpload}/>
