@@ -6,6 +6,7 @@ import fetchUtil from '../../utils/fetchUtil'
 import Debug from '../../utils/debug'
 
 import DATA from '../components/Probe/data'
+import BARDATA from '../components/Probe/barData'
 
 const promised = {
 }
@@ -52,9 +53,11 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     amNum: 0, 
     pmNum: 0, 
     nightNum: 0, 
-    timeArray: []
+    timeArray: [],
+    personArray:[] 
   }
   componentWillMount() {
+    
     const apiUrl = 'http://api.sit.ffan.com/bo/store/v1/storePersonSum?storeId=111&startTime=111&endTime=111';
     
     fetchUtil.getJSON(apiUrl).then(res=>{
@@ -69,6 +72,10 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
       Debug.warn('获取数据异常', e);
       this.setState(DATA)
     })
+
+    const personArray =  BARDATA.data.timeArray
+       
+    this.setState({personArray:personArray})
   }
 
   getChartData = () => {
@@ -108,13 +115,15 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
   }
 
   render () {
-    const { allNum, amNum, pmNum, nightNum } = this.state;
-
+    const { allNum, amNum, pmNum, nightNum ,personArray} = this.state;
+  
     const data = {
       allNum, amNum, pmNum, nightNum,
       listData: this.getListData(),
-      chartData: this.getChartData()
+      chartData: this.getChartData(),
+      personArray: personArray,
     }
+ 
     return <Wrapped {...data} />
   }
 }
