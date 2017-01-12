@@ -95,11 +95,11 @@ export const HomeView = () => (
     <div className="home-market">
       <div className="container">
         <h3>为超过<span>1,764,600</span>客户服务</h3>
-        <p>数据由飞凡提供</p>
+        <p className="market-info">数据由飞凡提供</p>
         <ul className="clx">
           <li>
             <Link className="a-bg1" to="/apps">
-              <p>应用市场</p>
+              <p className="market-tittle">应用市场</p>
               <i className="iconfont icon-business"></i>
               <span className="market-text">提供实体门店经营所需的各项管理工具</span>
               <span className="market-more">了解更多</span>
@@ -107,7 +107,7 @@ export const HomeView = () => (
           </li>
           <li>
             <Link className="a-bg2" to="/widgets">
-              <p>组件市场</p>
+              <p className="market-tittle">组件市场</p>
               <i className="iconfont icon-component"></i>
               <span className="market-text">助力实体门店创造个性化和场景化的营销方案</span>
               <span className="market-more">了解更多</span>
@@ -115,7 +115,7 @@ export const HomeView = () => (
           </li>
           <li>
             <a className="a-bg3" href="http://apistore.intra.test.ffan.net">
-              <p>API市场</p>
+              <p className="market-tittle">API市场</p>
               <i className="iconfont icon-api"></i>
               <span className="market-text">提供实体服务商/开发者所需的各种服务接口</span>
               <span className="market-more">了解更多</span>
@@ -123,7 +123,7 @@ export const HomeView = () => (
           </li>
           <li>
             <Link className="a-bg4" to="/hardware">
-              <p>硬件市场</p>
+              <p className="market-tittle">硬件市场</p>
               <i className="iconfont icon-hardware"></i>
               <span className="market-text">助力实体门店连接线上线下打造O2O解决方案</span>
               <span className="market-more">了解更多</span>
