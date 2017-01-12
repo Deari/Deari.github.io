@@ -1,12 +1,14 @@
 import React, {Component} from 'react'
-import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import {AreaChart, BarChart, Brush, ReferenceLine, 
+  Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+} from 'recharts';
 import AnalysisContainer from './Analysis'
 import './Report.scss'
 
 const CustomizedLabel = React.createClass({
   render () {
     const {x, y, stroke, payload} = this.props;
-   	return <text x={x} y={y} dy={-6} fill={stroke} fontSize={10} textAnchor="middle">{payload.num}</text>
+   	return <text x={x} y={y} dy={-5} fill={stroke} fontSize={10} textAnchor="middle">{payload.num}</text>
   }
 });
 
@@ -28,7 +30,7 @@ const CustomTooltip = React.createClass({
   }
 });
 
-const ChartContainer = ({ allNum, data }) => {
+const AreaChartContainer = ({ allNum, data }) => {
   return <div>
   <h3 className="numTitle">客流量总计(人)：{ allNum }</h3>
   <div className="chart bg-white">
@@ -53,13 +55,38 @@ const ChartContainer = ({ allNum, data }) => {
 </div>
 }
 
+const BarChartContainer = ({ data }) => {
+  return <div>
+    <div className="chart bg-white">
+      <h3 className="title">客流日期分布图（人）</h3>
+      <div className="chart-container">
+        <BarChart width={735} height={300} data={data}>
+          <defs>
+            <linearGradient id="colorNum" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#2692fb" stopOpacity={0.8}/>
+              <stop offset="95%" stopColor="#2692fb" stopOpacity={0.1}/>
+            </linearGradient>
+          </defs>
+          <XAxis dataKey="time" />
+          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" />
+          { /* <Brush dataKey='num' height={30} stroke="#2692fb"/> */}
+          
+          <Bar label={<CustomizedLabel />} dataKey="num" stroke="#2692fb" fillOpacity={1} fill="url(#colorNum)" 
+            maxBarSize={40}/>
+        </BarChart>
+      </div>
+    </div>
+  </div>
+}
+
+
 const NavBar = (props) => {
   return <ul className="tab">
     <li className="active">今天</li>
     <li>近三天</li>
     <li>1周</li>
     <li>1个月</li>
-    <li>3个月</li>
     <li>自定义</li>
   </ul>
 }
@@ -68,11 +95,31 @@ export class ProbeReport extends Component {
 
   render() {
     const { allNum, chartData, listData, } = this.props;
+    const barData = [
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+      { time: '0101', num: 123 },
+    ];
 
     return <div className="report-container">
       <NavBar />
-      <ChartContainer allNum={allNum} data={chartData} />
+      <AreaChartContainer allNum={allNum} data={chartData} />
       <AnalysisContainer {...listData} />
+      <BarChartContainer data={barData} />
     </div>
   }
 }
