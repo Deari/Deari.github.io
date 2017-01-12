@@ -5,7 +5,7 @@ import { getDomain } from 'routes/utils/domain';
 import debug from 'routes/utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import Versions from './versions'
+import Versions from 'components/Versions'
 import 'styles/_base.scss'
 import './index.scss'
 
@@ -16,8 +16,6 @@ class WidgetsDetail extends React.Component {
       data: [],
       tags:[],
       versions: [],
-      appPreviewImage: '',
-      defaultLayout: '',
       showAll: false
     };
   }
@@ -63,18 +61,16 @@ class WidgetsDetail extends React.Component {
   }
 
   formatData(data) {
-    data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
-    data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format("YYYY-MM-DD H:m:s")
+    data.createTime = data.createTime && moment(data.createTime * 1000).format("YYYY-MM-DD H:m:s")
     
     data.versions.map((v, index) => {
-      v.codeUpdateTime = v.codeUpdateTime && moment(parseInt(v.codeUpdateTime)).format('YYYY-MM-DD H:m:s')
+      v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
     })
 
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    const appPreviewImage = data.appPreviewImage
-    const defaultLayout = data.defaultLayout
     
-    this.setState({data: data, versions: versions, appPreviewImage: appPreviewImage, defaultLayout: defaultLayout});
+    this.setState({data: data, versions: versions});
   }
 
   getVersions() {
@@ -89,13 +85,16 @@ class WidgetsDetail extends React.Component {
 
   render() {
 
-    const { data, tags, versions, appPreviewImage, showAll, defaultLayout } = this.state
+    const { data, tags, versions, showAll } = this.state
     const infoTags = data.tags || []
     const len = infoTags.length
 
     const latestVersion = (data.versions && data.versions[0]) || {}
 
+    const defaultLayout = data.defaultLayout || {}
     const size = `${defaultLayout.w} * ${defaultLayout.h}`
+
+    const showSize = false
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -131,19 +130,48 @@ class WidgetsDetail extends React.Component {
                   <td>标签</td>
                   <td>
                   {
-                     infoTags.map( (item, index) => {
-                       return (
-                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                       )
-                     } )
+                     infoTags.map( (item, index) => (
+                        <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
+                      ) )
                   }
                   </td>
                 </tr>
               </table>
             </div>
           </div>
-          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} 
-                    showAll={showAll} appPreviewImage={appPreviewImage} size={size} />
+          
+          <div className="table-info">
+            <h3 className="app-title">版本信息</h3>
+            <ul className="detail-tableList">
+              <li className="item">
+                <div className="cell">
+                  <p className="title">更新日期</p>
+                  <p className="text">{ latestVersion.codeUpdateTime }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本</p>
+                  <p className="text">{ latestVersion.codeVersion }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本介绍</p>
+                  <p className="text">{ latestVersion.codeDesc }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">组件尺寸</p>
+                  <p className="text">{ size }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">预览图</p>
+                  <p className="text">
+                    <div className="img-block">
+                      {data.appPreviewImage ? <img className="img" src={ data.appPreviewImage } /> : <p className="img-text">加载中</p>}
+                    </div>
+                  </p>
+                </div>
+              </li>
+            </ul>
+            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} showSize={showSize} />
+          </div>
         </div>
       </div>
     )

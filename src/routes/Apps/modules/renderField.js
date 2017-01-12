@@ -91,10 +91,10 @@ export class renderImageUpload extends Component {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        debug.warn('上传图片不符合规格', res)
+        debug.warn('上传图片不符合规格')
       }
     }).catch(e=>{
-      console.log(e)
+      debug.warn('网络错误')
     })
   }
 
@@ -109,7 +109,7 @@ export class renderImageUpload extends Component {
           <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
           <span>
             <input type="button" value="选择文件" />
-            <input type="file" accept="image/*" onChange={::this.imageUpload} />
+            <input type="file" accept=".png" onChange={::this.imageUpload} />
           </span>
           <div className="img-container">
             <img src={input.value} alt="上传图片" className="img-thumbnail" />
@@ -141,11 +141,11 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
-        debug.warn('文件代码包格式错误', res)
+        debug.warn('文件代码包格式错误')
       }
 
     }).catch(e=>{
-      console.warn(e);
+      debug.warn('网络错误')
     })
   }
 
