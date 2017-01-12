@@ -5,18 +5,18 @@ import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
 
-import { toggleStep, getTags, getCates } from '../modules/create'
+import { toggleStep, getTags, getCates, getSdkInfo } from '../modules/create'
 
-import debug from '../../../../utils/debug'
+import debug from 'routes/utils/debug'
 
 class CreateContainer extends Component {
 
@@ -29,30 +29,36 @@ class CreateContainer extends Component {
     this.props.toggleStep(1);
     this.props.getTags()
     this.props.getCates()
+    this.props.getSdkInfo()
   }
-
   submitFirst(values) {
-    
+    console.log(values)
     const formData = new FormData();
     const params = {
       hardwareName : values['hardwareName'],
       hardwareLogo : values['hardwareLogo'],
       hardwareFunction : values['hardwareFunction'],
       majorCategoryId : values.category['majorCategoryId'],
-      minorCategoryId : values.category['minorCategoryId']
+      minorCategoryId : values.category['minorCategoryId'],
+      hardwareMode : values['hardwareMode'],
+      hardwareProducer : values['hardwareProducer'],
+      commType1: values['commType1'] ? 1 : 0,
+      commType2: values['commType2'] ? 1 : 0,
+      sdkType: values['sdkType'],
+      os: values['os'],
+      hardwarePlatform: values['hardwarePlatform'],
     };
 
     for(let key in params) {
       formData.append(key, params[key]);
     }
 
-
     for(let v of values.tags) {
       formData.append("hardwareTags[]", v);
     }
 
     const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
-    
+
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         const hardwareId = res.data.hardwareId;
@@ -68,7 +74,7 @@ class CreateContainer extends Component {
     }).catch(e=>{
       debug.warn('网络错误', e)
     })
-    
+
   }
 
   submitSecond(values) {
@@ -86,16 +92,16 @@ class CreateContainer extends Component {
       hardwareFunction : SecondStepValues['hardwareFunction'],
       majorCategoryId : SecondStepValues.category['majorCategoryId'],
       minorCategoryId : SecondStepValues.category['minorCategoryId'],
-
       hardwareMode: SecondStepValues['hardwareMode'],
-      hardwareBrand: SecondStepValues['hardwareBrand'],
       hardwareProducer: SecondStepValues['hardwareProducer'],
       commType1: SecondStepValues['commType1'] ? 1 : 0,
       commType2: SecondStepValues['commType2'] ? 1 : 0,
-      hardwareDetail: SecondStepValues['hardwareDetail'],
       sdkType: SecondStepValues['sdkType'],
       os: SecondStepValues['os'],
       hardwarePlatform: SecondStepValues['hardwarePlatform'],
+
+      hardwareBrand: SecondStepValues['hardwareBrand'],
+      hardwareDetail: SecondStepValues['hardwareDetail'],
       hardwareReport: SecondStepValues['hardwareReport'],
     };
 
@@ -129,7 +135,7 @@ class CreateContainer extends Component {
     const { page } = this.props.hardwareCreate;
 
     const urls = {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
@@ -140,7 +146,7 @@ class CreateContainer extends Component {
         <div className="sub-container">
           <Step page={page}/>
           {
-            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1 && <FirstStep onSubmit={::this.submitFirst}/>
           }
           {
             page === 2 && <SecondStep onSubmit={::this.submitSecond} />
@@ -159,6 +165,7 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
+  getSdkInfo
 }
 
 const mapStateToProps = ({ hardwareCreate }) => ({

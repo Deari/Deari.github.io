@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
-import debug from '../../../../utils/debug'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -155,7 +155,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
-      console.log(e)
+      debug.warn('接口错误', e)
     })
   }
 
@@ -185,7 +185,6 @@ export class renderImageUpload extends Component {
 export class renderImgsUpload extends Component {
   constructor (props) {
     super(props);
-    console.log(props.input.value, "===")
     this.state = {
       imgs: props.input.value || []
     }
@@ -201,6 +200,7 @@ export class renderImgsUpload extends Component {
     const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileSize', 1024 * 1024)
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
@@ -210,10 +210,10 @@ export class renderImgsUpload extends Component {
         input.onChange(input.value)
         this.setState({ imgs: input.value })
       } else {
-        res.msg && window.alert(res.msg)
+        debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
-      console.log(e)
+      debug.warn('接口报错', e)
     })
   }
 
@@ -252,6 +252,8 @@ export class renderFile extends Component {
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileType', 'all')
+    formData.append('businessType', 'hardware')
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false

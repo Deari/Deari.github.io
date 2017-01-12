@@ -4,18 +4,18 @@ import { Field, reduxForm } from 'redux-form'
 
 import { validate, warn } from '../modules/validate'
 
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
 
-import { toggleStep, getTags, getCates, getHDInfo } from '../modules/edit'
+import { toggleStep, getTags, getCates, getSdkInfo, getHDInfo } from '../modules/edit'
 
-import debug from '../../../../utils/debug'
+import debug from 'routes/utils/debug'
 
 
 class CreateContainer extends Component {
@@ -31,13 +31,12 @@ class CreateContainer extends Component {
     this.props.toggleStep(1);
     this.props.getTags()
     this.props.getCates()
+    this.props.getSdkInfo()
     this.props.getHDInfo(id)
   }
 
   submitFirst(values) {
-    console.log(values);
-    // return;
-    
+    console.log(values);    
     const formData = new FormData();
     const params = {
       hardwareId: values['hardwareId'],
@@ -45,7 +44,14 @@ class CreateContainer extends Component {
       hardwareLogo : values['hardwareLogo'],
       hardwareFunction : values['hardwareFunction'],
       majorCategoryId : values.category['majorCategoryId'],
-      minorCategoryId : values.category['minorCategoryId']
+      minorCategoryId : values.category['minorCategoryId'],
+      hardwareMode : values['hardwareMode'],
+      hardwareProducer : values['hardwareProducer'],
+      commType1: values['commType1'] ? 1 : 0,
+      commType2: values['commType2'] ? 1 : 0,
+      sdkType: values['sdkType'],
+      os: values['os'],
+      hardwarePlatform: values['hardwarePlatform'],
     };
 
     for(let key in params) {
@@ -91,16 +97,16 @@ class CreateContainer extends Component {
       hardwareFunction : SecondStepValues['hardwareFunction'],
       majorCategoryId : SecondStepValues.category['majorCategoryId'],
       minorCategoryId : SecondStepValues.category['minorCategoryId'],
-
       hardwareMode: SecondStepValues['hardwareMode'],
-      hardwareBrand: SecondStepValues['hardwareBrand'],
       hardwareProducer: SecondStepValues['hardwareProducer'],
       commType1: SecondStepValues['commType1'] ? 1 : 0,
       commType2: SecondStepValues['commType2'] ? 1 : 0,
-      hardwareDetail: SecondStepValues['hardwareDetail'],
       sdkType: SecondStepValues['sdkType'],
       os: SecondStepValues['os'],
       hardwarePlatform: SecondStepValues['hardwarePlatform'],
+
+      hardwareBrand: SecondStepValues['hardwareBrand'],
+      hardwareDetail: SecondStepValues['hardwareDetail'],
       hardwareReport: SecondStepValues['hardwareReport'],
     };
 
@@ -131,7 +137,7 @@ class CreateContainer extends Component {
     const { page } = this.props.hdEdit;
 
     const urls = {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
@@ -161,7 +167,8 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
-  getHDInfo,
+  getSdkInfo,
+  getHDInfo
 }
 
 const mapStateToProps = ({ hdEdit }) => ({

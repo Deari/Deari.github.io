@@ -49,7 +49,7 @@ class widgetsList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/widgets/create`, name: '创建新组件' },
+      create: { url: `/widgets/create`, name: '发布新组件' },
       list: { url: `/widgets/list`, name: '我的组件', active: true },
       doc: { url: `/widgets/doc` }
     }
@@ -71,7 +71,7 @@ class widgetsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="widget" />
+          <List data={this.state.listData} showName="widget" detailLink='/widgets/detail/'/>
         </div>
       </div>
     )

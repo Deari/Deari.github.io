@@ -11,7 +11,7 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     },
@@ -51,10 +51,10 @@ class Main extends React.Component {
    await this.getTags()
 
     let { tags, activeTag } = this.state
-    const search = location.search
-    tags.unshift({ tagId: 0, tagName: "全部" })
-    activeTag = search && search.split('=')[1]
 
+    activeTag = this.checkValid()
+
+    tags.unshift({ tagId: 0, tagName: "全部" })
     tags.map((item, index)=> {
       item.aHref = (index == 0) ? `/hardware` : `/hardware?tagId=${item.tagId}`
       item.className = ((item.tagId == activeTag) && "active") || ''
@@ -63,6 +63,20 @@ class Main extends React.Component {
     this.setState({ tags: tags, activeTag: activeTag }, () => {
       this.getList(activeTag)
     })
+  }
+
+  checkValid() {
+    let { activeTag } = this.state
+    const search = location.search
+    const name = search && search.split('=')[0].slice(1)
+    const tagId = search && search.split('=')[1] * 1
+
+    if (name == 'tagId' && typeof(tagId) === 'number' && Number.isInteger(tagId) && tagId >= 13 && tagId < 21) {
+      activeTag = tagId
+    } else {
+      activeTag = 0
+    }
+    return activeTag
   }
 
   tagChange(tagId) {

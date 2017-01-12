@@ -3,6 +3,7 @@ $border-color:#dddddd;
 $text-color:#020202;
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
+
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
     @include clx;
@@ -26,6 +27,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             top: 1px;
             left: 657px;
         }
+    }
+    .labelH{
+      height:30px;
     }
     .row-right{
         margin: 0;
@@ -62,7 +66,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
              background: url(../../../../Home/assets/arrD.png) no-repeat 178px center;
              background-size: 12px 6px;
              cursor: pointer;
-             border-color: $border-color;
+             border:1px solid $border-color;
         }
         p{
             font-size: $text-font-size - 7px; 
@@ -123,6 +127,29 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 border-color: dodgerblue;
             }
         }
+        .downLoad{
+            width:223px;
+            height: 47px;
+            line-height: 47px;
+            text-align: center;
+            color: #a0a0a0;
+            border: 1px solid #a0a0a0;
+            margin-right:22px;
+            font-size: 16px;
+            border-radius: 4px;
+            margin: 0 10px 0 0;
+            float: left; 
+            &:hover{
+                color: #1a8ffe;
+                border-color: #1a8ffe;
+            }
+            i{
+                vertical-align: middle;
+                font-size: 26px;
+                margin-right:4px;
+            }
+        }
+        
         /*第二步应用文件样式start*/
         
         .file-name{
@@ -204,4 +231,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 }
 .row-select{
     margin-right:10px;
+}
+.floatL{
+  float:left;
 }

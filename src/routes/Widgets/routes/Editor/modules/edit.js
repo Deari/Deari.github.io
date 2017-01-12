@@ -211,9 +211,7 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('组件详情：', res)
-        
-        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout } = res.data;
-        const size = defaultLayout? JSON.parse(defaultLayout) : {};
+        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout:size } = res.data;
         const tagId = tags.map(v=>v.tagId);
 
         dispatch(updateForm({
@@ -237,11 +235,18 @@ export const getAppInfo = (appId) => {
 
 export const getAppCodeInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`http://api.intra.`, `ffan.net//bo/v1/web/developer/app/${appId}`);
+    const url = getDomain(`http://api.intra.`, `ffan.net//bo/v1/web/developer/app/${appId}/codes`);
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('组件 code详情：', res)
         const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
+        if(codeDesc==="undefined"){
+          dispatch(updateForm2({
+            appId,
+            fileName, fileLink, rnFrameworkVersion, moduleName, setting
+          }));
+          return
+        }
         dispatch(updateForm2({
           appId,
           codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting

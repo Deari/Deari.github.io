@@ -5,9 +5,7 @@ import DragProduct from './DragProduct'
 export class ProductContainer extends Component {
 
   componentDidMount() {
-    setTimeout(function () {
-      this.props.fetchProducts()
-    }.bind(this), 1000)
+    setTimeout(this.props.fetchProducts, 1000)
   }
 
   render() {

@@ -1,5 +1,5 @@
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
 const PREFIX = 'HD_CREATE';
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
@@ -113,19 +113,19 @@ const initialState = {
       minorCategories: [],
     },
     tags: [],
-  },
-
-  form2: {
     hardwareMode: '',
-    hardwarePics: [],
-    hardwareBrand: '',
     hardwareProducer: '',
     commType1: 0,
     commType2: 0,
-    hardwareDetail: '',
     sdkType: 0,
     os: 0,
     hardwarePlatform: 0,
+  },
+
+  form2: {
+    hardwarePics: [],
+    hardwareBrand: '',
+    hardwareDetail: '',
     hardwareReport: ''
   }
 }
