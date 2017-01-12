@@ -61,11 +61,11 @@ class WidgetsDetail extends React.Component {
   }
 
   formatData(data) {
-    data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
-    data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format("YYYY-MM-DD H:m:s")
+    data.createTime = data.createTime && moment(data.createTime * 1000).format("YYYY-MM-DD H:m:s")
     
     data.versions.map((v, index) => {
-      v.codeUpdateTime = v.codeUpdateTime && moment(parseInt(v.codeUpdateTime)).format('YYYY-MM-DD H:m:s')
+      v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
     })
 
     const versions = (data.versions && data.versions.slice(1, 2)) || []
@@ -93,6 +93,8 @@ class WidgetsDetail extends React.Component {
 
     const defaultLayout = data.defaultLayout || {}
     const size = `${defaultLayout.w} * ${defaultLayout.h}`
+
+    const showSize = false
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -151,10 +153,6 @@ class WidgetsDetail extends React.Component {
                   <p className="text">{ latestVersion.codeVersion }</p>
                 </div>
                 <div className="cell">
-                  <p className="title">大小</p>
-                  <p className="text">{ latestVersion.bundleSize }</p>
-                </div>
-                <div className="cell">
                   <p className="title">版本介绍</p>
                   <p className="text">{ latestVersion.codeDesc }</p>
                 </div>
@@ -172,7 +170,7 @@ class WidgetsDetail extends React.Component {
                 </div>
               </li>
             </ul>
-            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} />
+            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} showSize={showSize} />
           </div>
         </div>
       </div>

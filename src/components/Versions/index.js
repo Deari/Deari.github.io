@@ -3,7 +3,7 @@ import React from 'react'
 class Versions extends React.Component {
   render() {
 
-    const { onChange, showAll } = this.props
+    const { onChange, showAll, showSize } = this.props
     const data = this.props.data || []
     const len = data && data.length
 
@@ -22,10 +22,12 @@ class Versions extends React.Component {
                 <p className="title">版本</p>
                 <p className="text">{ item.codeVersion }</p>
               </div>
-              <div className="cell">
-                <p className="title">大小</p>
-                <p className="text">{ item.bundleSize }</p>
-              </div>
+              { showSize &&
+                <div className="cell">
+                  <p className="title">大小</p>
+                  <p className="text">{ item.bundleSize }</p>
+                </div>
+              }
               <div className="cell">
                 <p className="title">版本介绍</p>
                 <p className="text">{ item.codeDesc }</p>

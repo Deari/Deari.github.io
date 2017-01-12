@@ -17,7 +17,7 @@ class HardwareDetail extends React.Component {
     };
   }
 
-  async getInfo() {
+  async getInfo(e) {
     let id = this.props.params.id;
     let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/hardware/getHardwareInfo/${id}`);
     try {
@@ -25,30 +25,34 @@ class HardwareDetail extends React.Component {
       if (res && res.status === 200) {
         res.data && this.formatData(res.data)
       } else {
-        debug.warn("获取详情接口返回错误", res)
+        debug.warn("获取详情接口返回错误")
+        e.preventDefault()
       }
     } catch (e) {
-      debug.warn("获取详情接口返回错误", e)
+      debug.warn("获取详情接口返回错误")
+      e.preventDefault()
     }
   }
 
-  async getTags() {
+  async getTags(e) {
     let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=hardware`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        debug.warn("获取标签接口返回错误", res)
+        debug.warn("获取标签接口返回错误")
+        e.preventDefault()
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误", e)
+      debug.warn("获取标签接口返回错误")
+      e.preventDefault()
     }
   }
 
   formatData(data) {
-    data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
-    data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format("YYYY-MM-DD H:m:s")
+    data.createTime = data.createTime && moment(data.createTime * 1000).format("YYYY-MM-DD H:m:s")
 
     this.setState({data: data});
   }
