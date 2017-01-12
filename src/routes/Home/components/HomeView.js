@@ -94,7 +94,7 @@ export const HomeView = () => (
     </div>
     <div className="home-market">
       <div className="container">
-        <h3>为超过<span>176，4600</span>客户服务</h3>
+        <h3>为超过<span>1,764,600</span>客户服务</h3>
         <p>数据由飞凡提供</p>
         <ul className="clx">
           <li>
