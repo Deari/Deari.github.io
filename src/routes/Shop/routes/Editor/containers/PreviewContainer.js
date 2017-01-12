@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { compose, bindActionCreators } from 'redux'
 import { DropTarget } from 'react-dnd'
-import { addElement, setLayout, selectElement } from '../modules/preview'
+import { addElement, setLayout, selectElement, fetchPreview } from '../modules/preview'
 
 import Preview from '../components/Preview'
 
@@ -17,6 +17,9 @@ const mapDispatchToProps = dispatch => ({
   },
   selectElement(id) {
     dispatch(selectElement(id))
+  },
+  fetchPreview() {
+    dispatch(fetchPreview())
   },
   dispatch,
 })

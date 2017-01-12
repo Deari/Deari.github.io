@@ -102,7 +102,13 @@ export const getAppCodeInfo = (appId) => {
         console.log('app code详情：', res)
         const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
         console.log(res.data);
-        
+        if(codeDesc==="undefined"){
+          dispatch(updateForm2({
+            appId,
+            fileName, fileLink, rnFrameworkVersion, moduleName, setting
+          }));
+          return
+        }
         dispatch(updateForm2({
           appId,
           codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting

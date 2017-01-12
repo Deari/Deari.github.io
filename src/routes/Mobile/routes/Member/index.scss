@@ -49,10 +49,8 @@
   padding:0;
 }
 .m-container{
-  width:915px;
-  margin:0 auto;
   .content{
-    width:690px;
+    width:674px;
     margin:0 auto;
     .chart-list{
       padding-top:5px;
@@ -60,7 +58,7 @@
       .item{
         display:inline-block;
         margin:5px;
-        padding:15px;
+        padding:10px;
         width:326px;
         background: $white-color;
         border-radius:2px;
@@ -68,7 +66,7 @@
         .chartImg{
           width:210px;
           height:110px;
-          border:1px solid $graye-color;
+          // border:1px solid $graye-color;
         }
       }
       .data{
@@ -87,6 +85,10 @@
           margin-top:5px;
           font-size:12px;
           color:$gray6-color;
+          width:68px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
           & > span{
             padding-left:5px;
           }
@@ -95,7 +97,7 @@
     }
   }
   .data-analysis{
-    margin:10px 24px 15px 5px;
+    margin:5px 4px 0px 5px;
     padding-bottom:5px;
     background: $white-color;
     border-radius:2px;
@@ -113,6 +115,10 @@
       display:inline-block;
       padding-left:10px;
       font-size:14px;
+      width:400px;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+      overflow:hidden;
       color:$black-color;
       & > span{
         color:$gray6-color;

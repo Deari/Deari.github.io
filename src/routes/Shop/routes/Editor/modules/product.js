@@ -1,4 +1,4 @@
-import fetchUtil from '../../../../utils/fetchUtil'
+import fetchUtil from 'routes/utils/fetchUtil'
 
 const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
@@ -19,47 +19,42 @@ const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 //  ]
 //}
 
- const customProduct = [
-    {
-      "merchantId": 1009999,
-      "appId": 269,
-      "appType": 2,
-      "codeId": 209,
-      "isUsed": 0,
-      "appName": "Clock",
-      "appDesc": "ClockDesc",
-      "appThumb": "",
-      "appPreviewImage": "http://img1.ffan.com/T1S6VTBjA_1RCvBVdK",
-      "defaultLayout": {
-        "w": 2,
-        "h": 1
-      },
-      "appLogo": "http://image.coolapk.com/apk_logo/2016/0429/12202_1461928658_0692.png",
-      "moduleName": "Clock",
-      "moduleType": "html5",
+const customProduct = [
+  {
+    "merchantId": 1009999,
+    "appId": 269,
+    "appType": 2,
+    "codeId": 209,
+    "isUsed": 0,
+    "appName": "Clock",
+    "appDesc": "ClockDesc",
+    "appThumb": "",
+    "appPreviewImage": "http://img1.ffan.com/T1S6VTBjA_1RCvBVdK",
+    "defaultLayout": {
+      "w": 2,
+      "h": 1
     },
-  ]
+    "appLogo": "http://image.coolapk.com/apk_logo/2016/0429/12202_1461928658_0692.png",
+    "moduleName": "Clock",
+    "moduleType": "html5",
+  },
+]
 
-export const getProduct = (data) => {
-  return {
-    type: REQUEST_PRODUCTS,
-    data
-  }
-}
+export const getProduct = (data) => ({
+  type: REQUEST_PRODUCTS,
+  data,
+})
 
 export const fetchProducts = () => {
-  return (dispatch, getState) => {
-    return new Promise(resolve => {
-      fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
-        .then(v => {
-          let data = [...customProduct, ...v.data]
-          //const data = customProduct
-          dispatch(getProduct({products: data}))
-          resolve()
-        })
-
-    })
-  }
+  return (dispatch, getState) => new Promise(resolve => {
+    fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
+      .then(v => {
+        let data = [ ...customProduct, ...v.data ]
+        //const data = customProduct
+        dispatch(getProduct({ products: data }))
+        resolve()
+      })
+  })
 }
 
 export const actions = {

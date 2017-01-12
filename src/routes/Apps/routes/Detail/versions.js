@@ -24,7 +24,7 @@ class Versions extends React.Component {
             </div>
             <div className="cell">
               <p className="title">大小</p>
-              <p className="text">{ latestVersion.fileSize }</p>
+              <p className="text">{ latestVersion.bundleSize }</p>
             </div>
             <div className="cell">
               <p className="title">版本介绍</p>
@@ -48,7 +48,7 @@ class Versions extends React.Component {
               </div>
               <div className="cell">
                 <p className="title">大小</p>
-                <p className="text">{ item.fileSize }</p>
+                <p className="text">{ item.bundleSize }</p>
               </div>
               <div className="cell">
                 <p className="title">版本介绍</p>

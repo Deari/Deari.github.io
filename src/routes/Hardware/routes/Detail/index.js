@@ -63,18 +63,18 @@ class HardwareDetail extends React.Component {
     const hardwarePics = data.hardwarePics || []
     const len = infoTags.length
     const urls = {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
     return (
       <div className="container clx">
-        <Slidebar urls={urls} type='hardware' tags={tags} />
+        <Slidebar urls={urls} tags={tags} />
         <div className="sub-container bg-white">
           <div className="detail-container">
             <div className="detail-download">
-              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ data.fileLink } target="_blank">下载</a>
+              <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
+              <a className="btn btn-primary btn-download">购买</a>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
@@ -88,8 +88,8 @@ class HardwareDetail extends React.Component {
                 <tr>
                   <td>类别</td>
                   <td>
-                    <a className="tag">{ data.majorCategoryName } - </a>
-                    <a className="tag">{ data.minorCategoryName }</a>
+                    <span className="tag">{ data.majorCategoryName } - </span>
+                    <span className="tag">{ data.minorCategoryName }</span>
                   </td>
                 </tr>
                 <tr>
@@ -134,7 +134,7 @@ class HardwareDetail extends React.Component {
                 </td>
               </tr>
               <tr>
-                <td className="title">详情功能描述</td>
+                <td className="title">详细功能描述</td>
                 <td className="text">{ data.hardwareDetail }</td>
               </tr>
               <tr>
@@ -142,7 +142,7 @@ class HardwareDetail extends React.Component {
                 <td className="text">{ data.sdkTypeName }</td>
               </tr>
               <tr>
-                <td className="title">操作系统</td>
+                <td className="title">操作平台</td>
                 <td className="text">{ data.osName }</td>
               </tr>
               <tr>

@@ -17,7 +17,7 @@ const LeftSideBar = props => (
       <li className="item"><span className="menu-title"><i className="iconfont icon-sidebar6"></i>营销互动类</span></li>
       <li className="item"><span className="menu-title"><i className="iconfont icon-goods"></i>商品类</span></li>
     </ul>
-    <a className="btn-more"><i className="iconfont icon-puzzle"></i>查看更多组件<i className="iconfont icon-readMore pull-right"></i></a>
+   <a className="btn-more"><i className="iconfont icon-puzzle"></i>查看更多组件<i className="iconfont icon-readMore pull-right"></i></a>
   </div>
 )
 
@@ -31,7 +31,7 @@ export class Editor extends Component {
           <div className="bg-phone"></div>
           <Preview/>
         </div>
-        <p className="text">市面最主流机型，iphone首屏位置</p>
+        {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}
       </div>
       <div className="sidebar-right">
         <Detail/>

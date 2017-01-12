@@ -7,18 +7,23 @@ import Element from '../../containers/ElementContainer'
 
 export class Preview extends Component {
 
+  componentDidMount() {
+    setTimeout(this.props.fetchPreview, 1000)
+  }
+
   static propTypes = {
     canDrop: PropTypes.bool.isRequired,
     isOver: PropTypes.bool.isRequired,
     connectDropTarget: PropTypes.func.isRequired,
     setLayout: PropTypes.func.isRequired,
     preview: PropTypes.object.isRequired,
+    fetchPreview: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
     gridProps: {
       className: "layout",
-      cols: 2,
+      cols: 4,
       rowHeight: 47,
       selectedCls: 'selected',
       width: 210,

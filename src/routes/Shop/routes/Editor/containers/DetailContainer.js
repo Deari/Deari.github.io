@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import Detail from '../components/Detail'
-import { saveDetail, savePage } from '../modules/detail'
+import { saveDetail, savePage, deleteElement, cancelElement } from '../modules/detail'
 
 const mapStateToProps = state => ({
   detail: state.detail
@@ -9,6 +9,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   saveDetail,
   savePage,
+  deleteElement,
+  cancelElement,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

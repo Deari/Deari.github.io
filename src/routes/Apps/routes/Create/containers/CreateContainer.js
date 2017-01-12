@@ -100,7 +100,7 @@ class CreateContainer extends Component {
     const { page } = this.props.appsCreate;
 
     const urls = {
-      create: { url: `/apps/create`, name: '创建新应用' },
+      create: { url: `/apps/create`, name: '发布新应用' },
       list: { url: `/apps/list`, name: '我的应用' },
       doc: { url: `/apps/doc` }
     }

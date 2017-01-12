@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from '../../../../components/List'
-import fetchUtil from '../../../utils/fetchUtil'
-import Slidebar from '../../../../components/Sidebar'
+import List from 'components/List'
+import fetchUtil from 'routes/utils/fetchUtil'
+import Slidebar from 'components/Sidebar'
 import './index.scss'
-import '../../../../styles/_base.scss'
-import { getDomain } from '../../../utils/domain';
+import 'styles/_base.scss'
+import { getDomain } from 'routes/utils/domain';
 
 class HardwaresList extends React.Component {
   state = {
@@ -50,7 +50,7 @@ class HardwaresList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/hardware/create`, name: '创建新硬件' },
+      create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件', active: true },
       doc: { url: `/hardware/doc` }
     }
@@ -73,7 +73,7 @@ class HardwaresList extends React.Component {
             <li className="w90">已激活</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="hardware"/>
+          <List data={this.state.listData} showName="hardware" detailLink='/hardware/detail/'/>
         </div>
       </div>
     )

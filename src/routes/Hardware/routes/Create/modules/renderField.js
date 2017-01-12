@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
-import debug from '../../../../utils/debug'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import debug from 'routes/utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -153,7 +153,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
-      console.log(e)
+      debug.warn('接口错误', e)
     })
   }
 
@@ -213,7 +213,7 @@ export class renderImgsUpload extends Component {
         debug.warn('上传图片不符合规格', res)
       }
     }).catch(e => {
-      console.log(e)
+      debug.warn('接口报错', e)
     })
   }
 
@@ -252,6 +252,8 @@ export class renderFile extends Component {
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
+    formData.append('fileType', 'all')
+    formData.append('businessType', 'hardware')
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false

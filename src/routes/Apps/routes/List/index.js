@@ -49,7 +49,7 @@ class AppsList extends React.Component {
 
   render() {
     const urls = {
-      create: { url: `/apps/create`, name: '创建新应用' },
+      create: { url: `/apps/create`, name: '发布新应用' },
       list: { url: `/apps/list`, name: '我的应用', active: true },
       doc: { url: `/apps/doc` }
     }
@@ -72,7 +72,7 @@ class AppsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="app"/>
+          <List data={this.state.listData} showName="app" detailLink='/apps/detail/'/>
         </div>
       </div>
     )
