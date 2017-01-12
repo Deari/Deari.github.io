@@ -12,7 +12,7 @@ $ git clone git@10.77.144.192:web-fe/colosseum.git
 
 ```bash
 $ yarn install    # Install project dependencies
-$ npm start       # Compile and launch
+$ yarn start      # Compile and launch (same as `npm start`)
 ```
 
 While developing, you will probably rely mostly on `npm start`; however, there are additional scripts at your disposal:

@@ -80,7 +80,7 @@ class FirstStepForm extends Component {
           <label className="labelH"></label>
           <div className="row-right">
             <span className="downLoad" onClick={downLoadSDK}><i className="iconfont icon-downloadbtn"></i>下载SDK</span>
-            <Link to="/hardware/doc"><span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span></Link>
+            <Link to="/hardware/doc" className="floatL"><span className="downLoad"><i className="iconfont icon-debug"></i>进入调试</span></Link>
           </div>
         </div>
 

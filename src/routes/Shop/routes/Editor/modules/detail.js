@@ -17,6 +17,8 @@ const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/mo
 
 const SAVE_DETAIL = 'SAVE_DETAIL' // To : src/routes/Shop/routes/Editor/modules/preview.js
 
+
+
 export const saveDetail = (element, detail) => dispatch => dispatch({
   type: SAVE_DETAIL,
   id: element.id,
@@ -26,14 +28,13 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
 
 export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
   const state = getState()
-  console.log(state)
   fetchUtil.postForm('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish',
     {
       viewData: state.preview,
     },
   ).then(v => {
-    //console.log(v.data)
-    resolve()
+    console.log(v.data)
+    resolve(v)
   })
 })
 

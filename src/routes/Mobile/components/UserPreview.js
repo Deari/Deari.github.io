@@ -30,7 +30,6 @@ export default class UserPreview extends Component {
     }
   }
 
-
   generateDOM() {
     const { layouts, elements } = this.props
     return elements.map(e => <div style={this.generateStyle(e)}

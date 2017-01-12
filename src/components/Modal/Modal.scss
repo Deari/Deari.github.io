@@ -1,0 +1,51 @@
+/*@import '../oneVariables.css';*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index       : 500;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.modalInner {
+  display: block;
+  width: 540px;
+  background    : white;
+  border-radius: 8px;
+  transition    : all .35s ease-in-out;
+}
+.modal.active {
+  display: block;
+  display: flex;
+}
+.modalText{
+  width: 100%;
+  padding: 20px;
+  font-size: 30px;
+  line-height: 1.5;
+
+  .center  {
+    text-align: center;
+  }
+}
+
+
+
+.modalButtons {
+  display: flex;
+}
+.modalButtons .btn {
+  flex: 1;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  font-size: 30px;
+  color: #0894ec;
+  border-top: 1px solid #cccccc;/*no*/
+}
+
+.modalButtons .btn:nth-child(2n){
+  border-left: 1px solid #cccccc;/*no*/
+}
