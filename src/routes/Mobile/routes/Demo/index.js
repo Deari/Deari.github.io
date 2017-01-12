@@ -15,9 +15,9 @@ export class Test extends Component {
 
   render() {
     return <div>
-      <Modal type={"alert"} active={this.state.modalActive}
+      <Modal type={"confirm"} active={this.state.modalActive}
              onClose={::this.onClose}
-             cancelBtnText={'确定'}>
+             cancelBtnText={'取消'}>
         <p className="center">发布成功</p>
       </Modal>
     </div>
