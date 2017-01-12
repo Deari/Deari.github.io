@@ -23,7 +23,7 @@ class HardwareDetail extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
-        res.data && this.setState({data: res.data});
+        res.data && this.formatData(res.data)
       } else {
         debug.warn("获取详情接口返回错误", res)
       }
@@ -44,6 +44,13 @@ class HardwareDetail extends React.Component {
     } catch (e) {
       debug.warn("获取标签接口返回错误", e)
     }
+  }
+
+  formatData(data) {
+    data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+
+    this.setState({data: data});
   }
 
   async componentDidMount() {

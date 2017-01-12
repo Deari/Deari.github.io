@@ -5,7 +5,7 @@ import { getDomain } from 'routes/utils/domain'
 import debug from 'routes/utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import Versions from './versions'
+import Versions from 'components/Versions'
 import 'styles/_base.scss'
 import './index.scss'
 
@@ -135,7 +135,31 @@ class AppsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
+          
+          <div className="table-info">
+            <h3 className="app-title">版本信息</h3>
+            <ul className="detail-tableList">
+              <li className="item">
+                <div className="cell">
+                  <p className="title">更新日期</p>
+                  <p className="text">{ latestVersion.codeUpdateTime }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本</p>
+                  <p className="text">{ latestVersion.codeVersion }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">大小</p>
+                  <p className="text">{ latestVersion.bundleSize }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本介绍</p>
+                  <p className="text">{ latestVersion.codeDesc }</p>
+                </div>
+              </li>
+            </ul>
+            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} />
+          </div>
         </div>
       </div>
     )
