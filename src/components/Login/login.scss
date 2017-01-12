@@ -3,6 +3,9 @@
   display: inline-block;
   vertical-align: middle;
 }
+.login-wrapper{
+  width:131px;
+}
 
 .loginIn {
   span {
@@ -23,7 +26,7 @@
     &:last-child {
       color: $white-color;
       background: $blue-color;
-      margin-left: $default-margin-left - 30;
+      margin-left: 11px;
     }
   }
 }

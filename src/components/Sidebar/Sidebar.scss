@@ -12,15 +12,15 @@
 .create-btn{
   display: block;
   margin: $default-margin-top - 2 auto $default-margin-bottom - 6;
-  width: $default-width + 30;
+  width: 150px;
   border: 1px solid $blue-color;
-  font-size: $text-font-size - 4;
+  font-size: 15px;
   color: $blue-color;
   text-align: center;
-  line-height: $text-line-height - 10;
+  line-height: 28px;
   border-radius: 2px;
   .icon-create{
-    padding-right: $default-padding-right - 36;
+    padding-right: 2px;
   }
   &:hover{
     color: $white-color;
@@ -29,18 +29,19 @@
 }
 .help-menu,.tag-list{
   li{
-    height: $default-height - 58;
-    line-height: $text-line-height + 22;
-    font-size: $text-font-size - 4;
+
+    height: 36px;
+    font-size: 15px;
     i{
+      font-size: 15px;
       padding-right: $default-padding-right - 34;
       color: $gray6-color;
     }
     a{
       display: block;
       padding-left: $default-padding-left - 30;
-      height: $default-height - 70;
-      line-height: $text-line-height - 10;
+      height: 34px;
+      line-height: 34px;
     }
     a:hover{
       color: $blue-color;
@@ -69,16 +70,17 @@
   }
 }
 .help-menu{
+  border-top: 1px solid $graye-color;
   li{
-    border-top: 1px solid $graye-color;
+    height: 42px;
+    padding:5px 0;
     border-bottom: 1px solid $graye-color;
     a{
-      margin-top: $default-margin-top - 35;
+      height: 32px;
+      line-height: 32px;
     }
   }
-  li:last-of-type{
-    border-top: none;
-  }
+  
 }
 .tag-list{
   margin-top: $default-margin-top - 10;

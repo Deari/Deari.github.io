@@ -26,7 +26,7 @@ export default class Login extends Component {
   } 
 
   render (){
-    return this.state.isLogin ? (
+    return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
           <span onClick={this.registerHandle}>注册</span> 
           <span onClick={this.loginHandle}>登录</span>
