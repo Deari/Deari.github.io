@@ -98,7 +98,7 @@ class HardwareDetail extends React.Component {
                   {
                      infoTags.map( (item, index) => {
                        return (
-                         <a className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</a>
+                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
                        )
                      } )
                   }
