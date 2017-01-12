@@ -11,8 +11,7 @@
   border: 1px solid red;
 }
 
-
-
+$header-grayd7-color:#d7d7d7;
 //header new style begin
 $border-bule-color:#2692FB;
 $zindex:0;
@@ -39,7 +38,7 @@ $header-height:70px;
     background: $white-color;
     border-top: 2px solid $blue-color;
     height: 77px;
-    border-bottom: 1px solid $graya-color;
+    border-bottom: 1px solid $header-grayd7-color;
   }
   .g-header {
     overflow: hidden;
@@ -50,14 +49,14 @@ $header-height:70px;
       align-items: center;
       .logo {
         float: left;
-        margin-right: 20px;
+        margin-right: 6px;
       }
 
       .small-title{
         float: left;
-        padding-left: 20px;
-        border-left: 1px solid #cacaca;
+        padding-top: 10px;
         font-size: 16px;
+        color: $gray6-color;
         & > a {
           color: $gray6-color;
         }
@@ -71,10 +70,12 @@ $header-height:70px;
       .text {
         color: $blue-color;
         font-size: 26px;
+        padding-right:6px;
+        border-right: 1px solid #cacaca;
       }
 
       .icon {
-        margin-right: $default-margin-right - 34;
+        margin-right: 8px;
         width: $default-width - 57;
         height: $default-height - 56;
         background: url("../../routes/Home/assets/nav_logo.png") no-repeat;
@@ -89,11 +90,11 @@ $header-height:70px;
       .nav-list {
         & > a {
           display: inline-block;
-          margin-left: 15px;
+          margin-left: 25px;
           height: 77px;
           line-height: 77px;
           padding: 0 10px;
-          font-size: 16px;
+          font-size: 15px;
           color: $black-color;
           &.active {
             color: $blue-color;
@@ -104,21 +105,21 @@ $header-height:70px;
     }
     .searchBox{
       display: inline-block;
-      width: 123px;
+      width: 165px;
     }
     .search {
       display: inline-block;
-      margin: 0 28px;
+      margin: 0 23px;
       padding: 2px 4px;
       background: $graye-color;
       border-radius: 14px;
       .icon-search{
-        font-size: 20px;
+        font-size: 24px;
         color: #8a8a8a;
         vertical-align: middle;
       }
       input{
-        width: $default-width - 5;
+        width: 89px;
         padding-left: $default-padding-left - 36; 
         font-family:"Microsoft Yahei","sans-serif";
         font-size: $text-font-size - 6;

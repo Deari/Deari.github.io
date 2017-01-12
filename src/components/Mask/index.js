@@ -22,7 +22,7 @@ class Mask extends Component {
 
   render() {
     const {active, className, children, onOverlayClick} = this.props;
-    const _className = classnames('overlay', {
+    const _className = classnames('overlay overlay-container', {
       'active': active,
     }, className);
 
