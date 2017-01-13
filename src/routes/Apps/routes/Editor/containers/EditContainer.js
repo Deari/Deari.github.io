@@ -8,11 +8,11 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
-import debug from '../../../../utils/debug'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 import { 
   toggleStep, 
@@ -57,10 +57,10 @@ class EditContainer extends Component {
       if(res.status == 200) {
         this.props.toggleStep(2);
       } else {
-        debug.warn('提交失败', res);
+        debug.warn('请完善表单信息');
       }
     }).catch(e=>{
-        debug.warn('提交失败', e);
+        debug.warn('网络错误');
     })
   }
 
@@ -92,10 +92,10 @@ class EditContainer extends Component {
       if (res.status == 200) {
         this.props.toggleStep(3);
       } else {
-        debug.warn('提交失败：', res);
+        debug.warn('请完善表单信息');
       }
     }).catch(e=>{
-      debug.warn('提交失败', res);
+      debug.warn('网络错误');
     })
   }
 

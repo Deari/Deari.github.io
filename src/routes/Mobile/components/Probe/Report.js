@@ -94,28 +94,7 @@ const NavBar = (props) => {
 export class ProbeReport extends Component {
 
   render() {
-    const { allNum, chartData, listData, personArray:barData} = this.props;
-    //console.log(barData)
-    // const barData = [
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    //   { time: '0101', num: 123 },
-    // ];
-
+    const { allNum, chartData, listData, dayArray:barData} = this.props;
     return <div className="report-container">
       <NavBar />
       <AreaChartContainer allNum={allNum} data={chartData} />

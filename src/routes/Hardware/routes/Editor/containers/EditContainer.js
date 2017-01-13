@@ -12,10 +12,10 @@ import Step from '../components/Step'
 
 import { getDomain } from 'routes/utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 import { toggleStep, getTags, getCates, getSdkInfo, getHDInfo } from '../modules/edit'
 
-import debug from 'routes/utils/debug'
 
 
 class CreateContainer extends Component {
@@ -74,10 +74,10 @@ class CreateContainer extends Component {
         })
 
       } else {
-        debug.warn('表单一提交失败', res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      debug.warn('网络错误', e)
+      debug.warn('网络错误')
     })
     
   }
@@ -124,11 +124,10 @@ class CreateContainer extends Component {
       if(res.status == 200) {
         this.props.toggleStep(3);
       } else {
-        res.msg && window.alert(res.msg)
-        console.warn("表单一提交失败：", res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误')
     })
 
   }

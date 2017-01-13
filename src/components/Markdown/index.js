@@ -21,7 +21,7 @@ export const transerMdToMarkdown = (md) => {
   const tocList = []
 
   renderer.heading = function (text, level) {
-    const escapedText = text.toLowerCase().replace(/[\s]+/g, '-')
+    const escapedText = text.replace(/[\s]+/g, '-')
     tocList.push({
       text, level
     })

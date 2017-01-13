@@ -21,10 +21,10 @@ class OpenList extends React.Component {
                   { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
                 </p>
                 <Link className="open-content-info" to={detailLink + item[`${typeName}Id`]}>
-                  <p className="open-info-name">{ item[`${typeName}Name`] }</p>
-                  <span className="open-user-name"><i className="user-img"></i>{ item.developerName }</span>
+                  <p className="open-info-name" title={ item[`${typeName}Name`] }>{ item[`${typeName}Name`] }</p>
+                  <span className="open-user-name" title={ item.developerName }><i className="user-img"></i>{ item.developerName }</span>
                   <img className="" src={ item[`${typeName}Logo`] } alt="LOGO"/>
-                  <span className="open-info-introduce">{ desc }</span>
+                  <span className="open-info-introduce" title={ desc }>{ desc }</span>
                 </Link>
                 <p className="open-list-price">{ price } </p>
                 <p className="open-list-show">

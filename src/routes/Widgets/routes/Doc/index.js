@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router'
 import '../../../../components/Header/Header'
 import '../../../../styles/_base.scss'
 import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
@@ -13,10 +13,10 @@ class Doc extends React.Component {
     return (
       <div className="container clx">
         <div className='sidebar'>
-          <a className="create-btn" href="/widgets/create"><i className="iconfont icon-create"></i>发布新组件</a>
+          <Link className="create-btn" to="/widgets/create"><i className="iconfont icon-create"></i>发布新组件</Link>
           <ul className="help-menu">
-            <li><a href="/widgets/list"><i className="iconfont icon-application"></i>我的组件</a></li>
-            <li><a href="/widgets/doc"><i className="iconfont icon-file"></i>开发者文档</a></li>
+            <li><Link to="/widgets/list"><i className="iconfont icon-application"></i>我的组件</Link></li>
+            <li><Link to="/widgets/doc" className="active"><i className="iconfont icon-file"></i>开发者文档</Link></li>
           </ul>
           <Toc tocList={markdownData.tocList} />
         </div>
