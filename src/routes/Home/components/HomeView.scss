@@ -198,8 +198,7 @@
   }
 }
 .home-casus{
-  padding-top: 48px;
-  padding-bottom: 20px;
+  padding: 48px 0 40px;
   min-width: 1100px;
   background: $white-color;
   a{
@@ -209,7 +208,6 @@
     padding-top: 30px;
     text-align: center;
     li{
-      padding-bottom: 40px;
       @include float-left;
       position: relative;
       width: 230px;
@@ -218,7 +216,7 @@
         display: block;
         padding: 34px 20px;
         height: $default-height + 220px;
-        border: 1px solid $graye-color;
+        border: 1px solid #bbbbbb;
       }
       a:hover{
         border-color: $blue-color;
@@ -273,41 +271,41 @@
   .home-casus-img1{
     .casus-img1{
       background: #eee url(../assets/temp-img1-1.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
     .casus-img2{
       background: #eee url(../assets/temp-img1-2.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
   }
   .home-casus-img2{
     .casus-img1{
       background: #eee url(../assets/temp-img2-1.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
     .casus-img2{
       background: #eee url(../assets/temp-img2-2.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
   }
   .home-casus-img3{
     .casus-img1{
       background: #eee url(../assets/temp-img3-1.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
     .casus-img2{
       background: #eee url(../assets/temp-img3-2.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
   }
   .home-casus-img4{
     .casus-img1{
       background: #eee url(../assets/temp-img4-1.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
     .casus-img2{
       background: #eee url(../assets/temp-img4-2.jpg) no-repeat;
-      background-size: 100%;
+      background-size: 100% 100%;
     }
   }
 }
@@ -328,7 +326,7 @@
     top: 16px;
     width: 100%;
     height: 1px;
-    background: $grayf-color;
+    background: $gray9-color;
     z-index: -1;
   }
 }
@@ -339,4 +337,8 @@
   color: $white-color;
   line-height: $text-line-height + 20;
   background: #333639;
+  p{
+    color: #f6f6f6;
+    font-size: 14px;
+  }
 }
