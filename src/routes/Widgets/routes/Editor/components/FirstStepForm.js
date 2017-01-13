@@ -41,7 +41,7 @@ class FirstStepForm extends Component {
           }
         </Field>
 
-        <Field label="产品标签" name="tags"
+        <Field label="标签" name="tags"
           component={renderTags} tags={tags}
         />
 
