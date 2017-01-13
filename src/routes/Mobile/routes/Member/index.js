@@ -28,7 +28,10 @@ class App extends Component {
 
   render () {
     const { increase, active, charge, all, analysis: { access, order, payment } } = this.state;
-
+    const orderScale = (((order.new+order.old)/(access.new+access.old))*100).toFixed(0)
+    const payScale = (((payment.new+payment.old)/(access.new+access.old))*100).toFixed(0)
+    console.log(orderScale)
+    console.log(payScale)
     return (
       <div className="m-container">
         <div className="content">
