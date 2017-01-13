@@ -115,22 +115,115 @@
       color:$black-color;
       border-bottom:1px solid $graye-color;
     }
-    .analysis{
-      padding:5px 45px;
-    }
-    .text{
-      display:inline-block;
-      padding-left:10px;
-      font-size:14px;
-      width:400px;
-      text-overflow:ellipsis;
-      white-space:nowrap;
-      overflow:hidden;
-      color:$black-color;
-      & > span{
-        color:$gray6-color;
-      }
-    }
   }
 }
+.data-analysis{
+  
+  overflow: hidden;
+}
+.analysis-left{
+  margin: 8px 0 0 11px;
+  position: relative;
+  float: left;
+  width: 460px;
+}
+.analysis-link1,.analysis-link2{
+  width: 15px;
+  height: 43px;
+  background: url(../../../Home/assets/analysis-link.png) no-repeat;
+  background-size: 100% 100%;
+}
+.analysis-link1{
+  position: absolute;
+  left: 460px;
+  top: 20px;
+}
+.analysis-link2{
+  position: absolute;
+  left: 460px;
+  top: 73px;
+}
+.analysis-right{
+  float: right;
+  margin: 8px 11px 0 0;
+  width: 127px;
+}
+.analysis1-content{
+  overflow: hidden;
+  margin-bottom: 7px;
+  height: 40px;
+  line-height: 40px;
+  background: #f5f6f7;
+}
+.analysis-btn1,.analysis-btn2,.analysis-btn3{
+  display: block;
+  float: left;
+  width: 122px;
+  height: 40px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 4px;
+  background: #feba28;
+  .iconfont{
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+}
+.analysis-btn1{
+  background: #feba28;
+}
+.analysis-btn2{
+  background: #f96665;
+}
+.analysis-btn3{
+  background: #2692fb;
+}
+.analysis-text{
+  float: left;
+  padding-left: 20px;
+  font-size: 14px;
+  color: #000;
+  span{
+    padding-left: 13px;
+    color: #666;
+  }
+}
+.analysis2-content1,.analysis2-content2{
+  height: 62px;
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+}
+.analysis2-content1{
+  margin-bottom: 10px;
+  background: -webkit-linear-gradient(#feba28,#f96665);
+}
+.analysis2-content2{
+  background: -webkit-linear-gradient(#f06261,#2692fb);
 
+}
+.analysis2-box{
+  float: right;
+  width: 123px;
+  height: 62px;
+  border-radius: 0 4px 4px 0;
+  background: #f5f6f7;
+  span{
+    display: inline-block;
+  }
+}
+.analysis2-text1{
+  margin: 14px 10px 0 8px;
+  width: 52px;
+  color: #000;
+  line-height: 18px;
+  font-size: 13px;
+}
+.analysis2-text2{
+  color: #2692fb;
+  font-size: 30px;
+  i{
+    font-size: 12px;
+    font-style: normal;
+  }
+}
