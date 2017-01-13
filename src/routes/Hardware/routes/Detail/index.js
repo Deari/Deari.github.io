@@ -61,7 +61,7 @@ class HardwareDetail extends React.Component {
     await this.getInfo()
     await this.getTags()
     let { tags } = this.state
-    tags.unshift({ tagId: 0, tagName: "全部" })
+    tags.unshift({ tagId: 0, tagName: "全部标签" })
     tags.map((item, index)=> {
       item.aHref = (index == 0) ? `/hardware` : `/hardware?tagId=${item.tagId}`
     })
