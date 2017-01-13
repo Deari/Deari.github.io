@@ -2,7 +2,7 @@
 $i-color:#46db60;
 .step-finish{
     width: $sub-container-width; 
-    font-size: $text-font-size - 7px;
+    font-size: 18px;
     color: $black-color;
     text-align: center;
     padding: 0 93px 0 80px;
@@ -12,26 +12,26 @@ $i-color:#46db60;
         line-height: $default-height + 140px;
     }
     i{
-        font-size: $text-font-size + 52px;
+        font-size:74px;
         color: $i-color;
         vertical-align: middle;
-        margin-right: $default-margin-right - 20px;
+        margin-right: 22px;
     }
      .form-btn{
         width:100%;
-        height: $default-height + 29px;
+        height: 110px;
         border-top: 1px solid #ededed;
         text-align: center;
         button{
             width: $default-width + 32px;
             height: $default-width - 65px;
-            background: #1a8ffe;
+            background: #2692fb;
             border-radius: 2px;
             border: 0;
             font-size: $text-font-size - 7px;
             color: $white-color;
             line-height: $text-line-height - 5px;
-            margin-top: $default-margin-top - 10px;
+            margin-top: 31px;
             margin-right: $default-margin-right - 30px;
             display: inline-block;
             cursor: pointer;

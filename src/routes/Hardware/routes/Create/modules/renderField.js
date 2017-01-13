@@ -150,10 +150,10 @@ export class renderImageUpload extends Component {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        debug.warn('上传图片不符合规格', res)
+        debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口错误', e)
+      debug.warn('接口错误')
     })
   }
 
@@ -210,10 +210,10 @@ export class renderImgsUpload extends Component {
         input.onChange(input.value)
         this.setState({ imgs: input.value })
       } else {
-        debug.warn('上传图片不符合规格', res)
+        debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口报错', e)
+      debug.warn('接口报错')
     })
   }
 
@@ -262,7 +262,7 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        debug.warn('文件代码包格式错误', res)
+        debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
       console.warn(e);
@@ -274,7 +274,7 @@ export class renderFile extends Component {
 
     return (
 
-      <div className="form-row file-position">
+      <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
           <input type="file" className="form-file" onChange={::this.fileUpload}/>

@@ -27,10 +27,10 @@ class Main extends React.Component {
       if (res.status === 200) {
         res.data && this.setState({ listData: res.data.list })
       } else {
-        debug.warn("获取列表接口返回错误", res)
+        debug.warn("获取列表接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取列表接口返回错误", e)
+      debug.warn("获取列表接口返回错误")
     }
   }
 
@@ -41,10 +41,10 @@ class Main extends React.Component {
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        debug.warn("获取标签接口返回错误", res)
+        debug.warn("获取标签接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误", e)
+      debug.warn("获取标签接口返回错误")
     }
   }
 
@@ -55,7 +55,7 @@ class Main extends React.Component {
 
     activeTag = this.checkValid()
 
-    tags.unshift({ tagId: 0, tagName: "全部" })
+    tags.unshift({ tagId: 0, tagName: "全部标签" })
     tags.map((item, index)=> {
       item.aHref = (index == 0) ? `/apps` : `/apps?tagId=${item.tagId}`
       item.className = ((item.tagId == activeTag) && "active") || ''

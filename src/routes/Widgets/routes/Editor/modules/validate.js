@@ -1,16 +1,18 @@
+import "./validate.scss"
+
 export const validate = values => {
   const errors = {}
   if (!values.appName) {
-    errors.appName = '请输入APP名字'
+    errors.appName = <i className="message">请输入APP名字</i>
   }
   if (!values.appDesc) {
-    errors.appDesc = '请输入APP简介'
+    errors.appDesc = <i className="message">请输入APP简介</i>
   } 
   if (!values.categoryId) {
-    errors.categoryId = '请选择'
+    errors.categoryId = <i className="message">请选择</i>
   }
   if(!values.codeDesc){
-    errors.codeDesc = '请输入版本介绍'
+    errors.codeDesc = <i className="message">请输入版本介绍</i>
   }
   return errors
 }
