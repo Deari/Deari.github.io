@@ -6,10 +6,11 @@ import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, getAppInfo,
   getAppCodeInfo } from '../modules/edit'
@@ -66,10 +67,10 @@ class EditContainer extends Component {
         // this.props.updateAppId(res.data.appId);
         this.props.toggleStep(2);
       } else {
-        console.warn("提交失败：", res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      console.log('网络错误：', e);
+      debug.warn('网络错误')
     })
   }
 
@@ -107,12 +108,10 @@ class EditContainer extends Component {
         console.log('提交成功: ');
         this.props.toggleStep(3);
       } else {
-        alert('提交失败：'+JSON.stringify(res));
-        console.warn('提交失败：', res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      alert('提交失败：'+JSON.stringify(e));
-      console.warn('网络错误', e);
+      debug.warn('网络错误')
     })
   }
 

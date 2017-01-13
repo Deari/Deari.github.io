@@ -5,7 +5,7 @@ import { getDomain } from 'routes/utils/domain'
 import debug from 'routes/utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import Versions from './versions'
+import Versions from 'components/Versions'
 import 'styles/_base.scss'
 import './index.scss'
 
@@ -61,11 +61,13 @@ class AppsDetail extends React.Component {
   }
 
   formatData(data) {
-    data.updateTime = data.updateTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
-    data.createTime = data.createTime && moment(parseInt(data.updateTime)).format('YYYY-MM-DD H:m:s')
+    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format("YYYY-MM-DD H:m:s")
+    data.createTime = data.createTime && moment(data.createTime * 1000).format("YYYY-MM-DD H:m:s")
 
     data.versions.map((v, index) => {
-      v.codeUpdateTime = v.codeUpdateTime && moment(parseInt(v.codeUpdateTime)).format('YYYY-MM-DD H:m:s')
+      v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
+      const size = (v.bundleSize && (v.bundleSize/1024/1024).toFixed(2)) || 0
+      v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
 
     const versions = (data.versions && data.versions.slice(1, 2)) || []
@@ -89,6 +91,8 @@ class AppsDetail extends React.Component {
     const len = infoTags.length
 
     const latestVersion = (data.versions && data.versions[0]) || {}
+
+    const showSize = true
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -135,7 +139,31 @@ class AppsDetail extends React.Component {
               </table>
             </div>
           </div>
-          <Versions data={versions} latestVersion={latestVersion} onChange={this.getVersions.bind(this)} showAll={showAll} />
+          
+          <div className="table-info">
+            <h3 className="app-title">版本信息</h3>
+            <ul className="detail-tableList">
+              <li className="item">
+                <div className="cell">
+                  <p className="title">更新日期</p>
+                  <p className="text">{ latestVersion.codeUpdateTime }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本</p>
+                  <p className="text">{ latestVersion.codeVersion }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">大小</p>
+                  <p className="text">{ latestVersion.bundleSize }</p>
+                </div>
+                <div className="cell">
+                  <p className="title">版本介绍</p>
+                  <p className="text">{ latestVersion.codeDesc }</p>
+                </div>
+              </li>
+            </ul>
+            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} showSize={showSize} />
+          </div>
         </div>
       </div>
     )

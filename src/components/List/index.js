@@ -41,10 +41,10 @@ class List extends React.Component {;
               </div>
               <div className="info-content w342">
                 <Link className="info-name" title={item[itemName+'Name']} to={detailLink+item[itemName+'Id']}>
-                  {name + '名称 : '}{item[itemName+'Name']}
+                  {item[itemName+'Name']}
                 </Link>
                 <Link className="info-introduce" title={item[itemName+'Desc']} to={detailLink+item[itemName+'Id']}>
-                  {name + '介绍 : '}{item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
+                  {item[itemName+'Desc']?item[itemName+'Desc']:item[itemName+'Function']}
                 </Link>
                 {/*<Link className="info-link" to={linkUrl}>{'在' + name + '市场查看详情'}</Link>*/}
               </div>

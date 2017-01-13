@@ -5,14 +5,15 @@ import { Field, reduxForm } from 'redux-form'
 import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
-import Sidebar from '../../../../../components/Sidebar'
+import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 
@@ -55,11 +56,10 @@ class CreateContainer extends Component {
         this.props.updateForm2({ appId: res.data.appId});
         this.props.toggleStep(2);
       } else {
-        alert("提交失败：", JSON.stringify(res))
-        console.warn("提交失败：", res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      alert("网络错误：", JSON.stringify(e))
+      debug.warn('网络错误')
     })
 
   }
@@ -89,12 +89,10 @@ class CreateContainer extends Component {
         console.info('提交成功')
         this.props.toggleStep(3);
       } else {
-        alert('提交失败：'+JSON.stringify(res));
-        console.warn('提交失败：', res)
+        debug.warn('请完善表单信息')
       }
     }).catch(e=>{
-      alert('提交失败：'+JSON.stringify(e));
-      console.warn('网络错误', e);
+      debug.warn('网络错误')
     })
   }
   previous() {
