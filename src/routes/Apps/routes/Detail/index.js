@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
@@ -22,7 +22,7 @@ class AppsDetail extends React.Component {
 
   async getInfo() {
     let id = this.props.params.id;
-    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/app/${id}`);
+    let apiUrl = getDomain(`web/app/${id}`);
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
@@ -36,7 +36,7 @@ class AppsDetail extends React.Component {
   }
 
   async getTags() {
-    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=app`);
+    let apiUrl = getDomain(`public/common/tags?type=app`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
