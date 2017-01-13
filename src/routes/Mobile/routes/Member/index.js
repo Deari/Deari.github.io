@@ -28,7 +28,8 @@ class App extends Component {
 
   render () {
     const { increase, active, charge, all, analysis: { access, order, payment } } = this.state;
-
+    const orderScale = (((order.new+order.old)/(access.new+access.old))*100).toFixed(0)
+    const payScale = (((payment.new+payment.old)/(order.new+order.old))*100).toFixed(0)
     return (
       <div className="m-container">
         <div className="content">
@@ -92,17 +93,35 @@ class App extends Component {
           </ul>
           <div className="data-analysis">
             <h3 className="title">交易转换率分析</h3>
-            <div className="analysis">
-              <p className="btn-lg-w"><span className="btn btn-lg btn-orange"><i className="iconfont icon-access"></i>访问</span></p>
-              <p className="text">访问人数 会员：{access.new+access.old}人<span>（新会员：{access.new}人，老会员：{access.old}人）</span></p>
+            <div className="analysis-left">
+              <div className="analysis1-content">
+                <span className="analysis-btn1"><i className="iconfont icon-access"></i>访问人数</span>
+                <p className="analysis-text">会员:{access.new+access.old}人<span>（新会员:{access.new}人，老会员:{access.old}人）</span></p>
+              </div>
+              <div className="analysis1-content">
+                <span className="analysis-btn2"><i className="iconfont icon-shoppingcar"></i>下单人数</span>
+                <p className="analysis-text">会员:{order.new+order.old}人<span>（新会员:{order.new}人，老会员:{order.old}人）</span></p>
+              </div>
+              <div className="analysis1-content">
+                <span className="analysis-btn3"><i className="iconfont icon-pay"></i>付款人数</span>
+                <p className="analysis-text">会员:{payment.new+payment.old}人<span>（新会员:{payment.new}人，老会员:{payment.old}人）</span></p>
+              </div>
+              <div className="analysis-link1"></div>
+              <div className="analysis-link2"></div>
             </div>
-            <div className="analysis">
-              <p className="btn-lg-w"><span className="btn btn-md btn-red"><i className="iconfont icon-shoppingcar"></i>下单</span></p>
-              <p className="text">下单人数 会员：{order.new+order.old}人<span>（新会员：{order.new}人，老会员：{order.old}人）</span></p>
-            </div>
-            <div className="analysis">
-              <p className="btn-lg-w"><span className="btn btn-sm btn-blue"><i className="iconfont icon-pay"></i>付款</span></p>
-              <p className="text">付款人数 会员：{payment.new+payment.old}人<span>（新会员：{payment.new}人，老会员：{payment.old}人）</span></p>
+            <div className="analysis-right">
+              <div className="analysis2-content1">
+                <div className="analysis2-box">
+                  <span className="analysis2-text1">浏览下单转换率</span>
+                  <span className="analysis2-text2">{orderScale}<i>%</i></span>
+                </div>
+              </div>
+              <div className="analysis2-content2">
+                <div className="analysis2-box">
+                  <span className="analysis2-text1">下单支付转换率</span>
+                  <span className="analysis2-text2">{payScale}<i>%</i></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

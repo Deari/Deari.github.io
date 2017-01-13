@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import './index.scss'
 
 export class Download extends Component {
 

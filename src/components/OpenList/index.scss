@@ -19,11 +19,13 @@
       box-shadow: 0 0 8px rgba(187,187,187,0.9);
     }
     img{
+      display: inline-block;
       margin: 20px 0;
       width: 96px;
       height: 96px;
       border-radius: 6px;
       overflow: hidden;
+      background: #eee;
     }
   }
   li:nth-child(3n){
@@ -50,6 +52,7 @@
     @include font-nowrap;
     .user-img{
       margin-right: 4px;
+      vertical-align: text-top;
     }
   }
   .open-info-introduce{
@@ -76,6 +79,7 @@
     background: #dde1e7;
     @include border-right;
     border-color: $white-color;
+    cursor: default;
     }
   a:last-of-type{
     border: none;
