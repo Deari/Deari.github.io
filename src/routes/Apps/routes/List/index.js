@@ -1,53 +1,103 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from '../../../../components/List'
-import fetchUtil from '../../../utils/fetchUtil'
-import Slidebar from '../../../../components/Sidebar'
+import List from 'components/newList'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'routes/utils/domain';
+import { debug } from 'routes/utils/debug';
+import Slidebar from 'components/Sidebar'
+import Nav from 'components/Nav'
 import './index.scss'
-import '../../../../styles/_base.scss'
-import { getDomain } from '../../../utils/domain';
+import 'styles/_base.scss'
 
 class AppsList extends React.Component {
   state = {
     listData: [],
-    reviewStatus: -2  //-1 0 1 2
+    navData: [
+      {name: "全部", value: 0, active: true},
+      {name: "已审核", value: 2},
+      {name: "待审核", value: 1},
+      {name: "待提交", value: 3}
+    ]
   }
   
-  async getList(isFirst) {
-    const apiUrl = getDomain(
-      "http://api.intra.",
-      "ffan.net/bo/v1/web/developer/apps"
-    )
+  async getList() {
+    const apiUrl = getDomain("http://api.intra.","ffan.net/bo/v1/web/developer/apps")
+    const reviewStatus = this.getReviewStatus()
     try {
-      let res = isFirst ? await fetchUtil.getJSON(apiUrl) : await fetchUtil.getJSON(apiUrl, { reviewStatus: this.state.reviewStatus });
-      if(res.status === 200){
+      let res = await fetchUtil.getJSON(apiUrl, { reviewStatus: reviewStatus });
+      if(res.status == 200){
         return res.data && res.data.list
       } else {
-        console.log("res ", res);
-        return []
+        debug.warn("获取列表接口错误")
+        return false
       }
     } catch (e) {
-      console.log(e)
+      debug.warn("网络错误")
     }
   }
 
-  componentDidMount() {
-    this.changeList(-1)
+  getReviewStatus() {
+    const { navData } = this.state
+    let reviewStatus = 0
+    navData.map((item, index) => {
+      if (item && item.active) reviewStatus = item.value 
+    })
+    return reviewStatus
   }
 
+  getStatus(reviewStatus) {
+    const status = parseInt(reviewStatus)
+    switch(status) {
+      case 1:
+        return "待审核"
+        break
+      case 2:
+        return "已审核"
+        break
+      case 3:
+        return "待提交"
+        break
+      default:
+        return ''
+    }
+  }
 
-  changeList(value) {
-    if (value === this.state.reviewStatus) return;
-    this.setState({ reviewStatus: value }, async () => {
-      let resp = value >= 0 ? await this.getList() : await this.getList(true);
-      this.setState({ listData: resp })
-      if (!resp.length) {
-        console.log("noData")
+  formatListData(listData) {
+    let newData = []
+    listData.map((item, index) => {
+      if (item) {
+        let obj = {}
+        obj.id = item.appId && item.appId || ''
+        obj.logo = item.appLogo && item.appLogo || ''
+        obj.name = item.appName && item.appName || ''
+        obj.desc = item.appDesc && item.appDesc || ''
+        obj.price = '免费'
+        obj.status = item.reviewStatus && this.getStatus(item.reviewStatus) || ''
+        obj.download = 100
+
+        newData.push(obj)
       }
-    });
+    })
+    console.log("newData ", newData)
+    return newData
+  }
+
+  async componentDidMount() {
+    const listData = await this.getList()
+    const newData = listData && this.formatListData(listData)
+    newData && this.setState({listData: newData})
+  }
+
+  async changeNav(obj) {
+    const listData = await this.getList()
+    const newData = listData && this.formatListData(listData)
+    newData && this.setState({...obj, listData: newData})
   }
 
   render() {
+
+    const { navData, listData } = this.state
+
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
       list: { url: `/apps/list`, name: '我的应用', active: true },
@@ -58,12 +108,7 @@ class AppsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
-          <ul className="sub-content-tab">
-            <li><a className={this.state.reviewStatus === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
-            <li><a className={this.state.reviewStatus === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>已审核</a></li>
-            <li><a className={this.state.reviewStatus === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>待审核</a></li>
-            <li><a className={this.state.reviewStatus === 3 ? 'tab-active' : ''} onClick={this.changeList.bind(this,3)}>待提交</a></li>
-          </ul>
+          <Nav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w342">应用名称</li>
@@ -72,7 +117,7 @@ class AppsList extends React.Component {
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="app" detailLink='/apps/detail/'/>
+          <List listData={listData} />
         </div>
       </div>
     )
