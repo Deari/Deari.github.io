@@ -1,5 +1,5 @@
 import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import { getDomain } from 'utils/domain'
 const PREFIX = 'CREATE_WIDGET_';
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
@@ -107,7 +107,7 @@ export default function createReducer(state = initialState, action) {
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/widget/tags");
+    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/public/widget/tags");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveTags(res.data));
@@ -120,7 +120,7 @@ export const getTags = () => {
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/public/app/categories");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveCates(res.data && res.data.list));

@@ -55,3 +55,8 @@ export function getDomain(url) {
   return domain + url.replace(domainReg, "")
 }
 
+export function getHardwareDomain(url) {
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://api.ffan.com/' : 'http://api.sit.ffan.com/'
+  return domain + url
+}

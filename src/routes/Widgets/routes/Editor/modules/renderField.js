@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from '../../../../utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -104,14 +104,15 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
-    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
+    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/web/photo/upload")
     const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
-    formData.append('width', 400)
-    formData.append('height', this.props.h ? this.props.h : 400)
-    formData.append("fileType", JSON.stringify(['png']))
-    formData.append("fileSize", 1024 * 300)
-
+    formData.append('fileName', e.target.files[ 0 ])
+    if (!this.props.h) {
+      formData.append('width', 400)
+      formData.append('height', 400)
+      formData.append("fileType", JSON.stringify(['png']))
+      formData.append("fileSize", 1024 * 300)
+    }
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
     }).then(res => {
@@ -126,19 +127,19 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning }, doc, h} = this.props;
+    const { input, label, meta: { touched, error, warning } , doc , h} = this.props;
     return (
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <p>{doc ? doc : '请上传组件高清图片'}</p>
-          <p>400*{h ? h : 400}像素，仅支持PNG格式，大小不超过300KB</p>
+          <p>{ doc ? doc :'请上传组件高清图片' }</p>
+          <p>{h ? '' : '400*400像素，仅支持PNG格式，'}大小不超过300KB</p>
           <span>
-            <input type="button" value="选择文件" />
+            <input type="button" value="选择文件"/>
             <input type="file" accept="image/*" onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
-            <img src={input.value} alt="上传图片" className="img-thumbnail" />
+            <img src={input.value} alt="上传图片" className="img-thumbnail"/>
           </div>
         </div>
       </div>
@@ -150,7 +151,7 @@ export class renderImageUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
-    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/file/upload")
+    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/web/file/upload")
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])

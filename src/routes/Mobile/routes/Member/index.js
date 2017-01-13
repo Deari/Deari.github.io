@@ -1,17 +1,19 @@
 import React, { Component } from 'react'
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
-import {IncreaseChart} from './charts'
-import fetchUtil from '../../../utils/fetchUtil'
-import Debug from '../../../utils/debug'
-import DATA from './data'
-import './index.scss'
+import {IncreaseChart} from './charts';
+import fetchUtil from '../../../utils/fetchUtil';
+import { getHardwareDomain } from 'utils/domain';
+import Debug from '../../../utils/debug';
+import DATA from './data';
+import './index.scss';
 
 class App extends Component {
   state = DATA
 
   componentWillMount() {
-    const url = 'http://xapi.intra.sit.ffan.net/mem/v1/mem?action=memStatistics&clientType=2';
+    
+    const url = getHardwareDomain('mem/v1/mem?action=memStatistics&clientType=2');
     fetchUtil.getJSON(url).then(res=> {
       if(res.status == 200) {
         this.setState(res.data);

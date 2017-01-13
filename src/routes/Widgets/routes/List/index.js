@@ -5,7 +5,7 @@ import fetchUtil from '../../../utils/fetchUtil'
 import Slidebar from '../../../../components/Sidebar'
 import './index.scss'
 import '../../../../styles/_base.scss'
-import { getDomain } from '../../../utils/domain';
+import { getDomain } from 'utils/domain';
 
 class widgetsList extends React.Component {
   state = {
@@ -14,10 +14,7 @@ class widgetsList extends React.Component {
   }
   
   async getList(isFirst) {
-    const apiUrl = getDomain(
-      "http://api.intra.",
-      "ffan.net/bo/v1/web/developer/widgets"
-    )
+    const apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/developer/widgets`)
     try {
       let res = isFirst ? await fetchUtil.getJSON(apiUrl) : await fetchUtil.getJSON(apiUrl, { reviewStatus: this.state.reviewStatus });
       if(res.status === 200){

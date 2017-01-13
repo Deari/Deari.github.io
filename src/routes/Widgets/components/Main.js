@@ -1,6 +1,6 @@
 import React from 'react'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 import Sidebar from 'components/Sidebar'
 import OpenList from 'components/OpenList'
@@ -20,7 +20,7 @@ class Main extends React.Component {
 
   async getList(tagId) {
     let id = tagId || 'all';
-    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/market/tag/${id}/widgets`) 
+    let apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/market/tag/${id}/widgets`) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
@@ -34,7 +34,7 @@ class Main extends React.Component {
   }
 
   async getTags() {
-    let apiUrl = getDomain(`http://api.intra.`, `ffan.net/bo/v1/public/common/tags?type=widget`);
+    let apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/public/common/tags?type=widget`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
