@@ -3,7 +3,6 @@ $border-color:#dddddd;
 $text-color:#020202;
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .form-row{
-
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;
     @include clx;
@@ -53,6 +52,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             resize: none;
             outline: none;
             padding: $default-padding-left - 30px;
+            line-height: 24px;
+            font-size: 16px;
+            color: #000;
         }
         select{
              width: 199px; 
@@ -78,7 +80,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             position: relative;
             cursor: pointer;
             input[type="button"]{
-                width: $default-width + 30px; 
+                width: 199px; 
                 height: $default-height - 67px; 
                 line-height: $text-line-height - 10px; 
                 text-align: center; 
@@ -93,7 +95,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 cursor: pointer;
             }
             input[type="file"]{
-                width: $default-width + 30px; 
+                width: 199px; 
                 height: $default-height - 67px; 
                 position: absolute; 
                 left: 0; 
@@ -112,7 +114,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
-            line-height: $text-line-height - 11px;
+            line-height: 25px;
             font-size: $text-font-size - 7px;
             color: $graya-color;
             text-align: center;
@@ -174,34 +176,30 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             float: left;
             background: #efefef;
         }
-
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
         width: 574px;
     }
 }
-.form-row.file-position{
-    position: relative;
-}
 .form-btn{
     width: $sub-container-width;
     background: $white-color;
     padding: 0 93px 0 80px;
-    height: $default-height + 29px;
+    height: 110px;
     text-align: center;
     div{
         border-top: 1px solid #ededed;
         button{
             width: $default-width + 32px;
             height: $default-width - 65px;
-            background: #1a8ffe;
+            background: #2692fb;
             border-radius: 2px;
             border: 0;
             font-size: $text-font-size - 7px;
             color: $white-color;
             line-height: $text-line-height - 5px;
-            margin-top: $default-margin-top - 10px;
+            margin-top: 31px;
             margin-right: $default-margin-right - 30px;
             display: inline-block;
             cursor: pointer;
