@@ -31,16 +31,25 @@ export function getDomainEnv(url) {
 // http://api.intra.sit.ffan.net/bo/v1/web/market/category/all/apps
 // http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps
 
+
+//getDomain("http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps")
+//"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
+
+//getDomain("http://api.sit.ffan.com/app/v1/bo/v1/web/market/category/all/apps")
+//"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
+
+//getDomain("http://api.intra.sit.ffan.net/bo/v1/web/market/category/all/apps")
+//"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
+
+//getDomain("http://api.intra.ffan.net/bo/v1/web/market/category/all/apps")
+//"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
+
 /**
- * getDomain("http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps")
- * - "http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
- * getDomain("http://api.intra.sit.ffan.net/bo/v1/web/market/category/all/apps")
- * - "http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
  * @param url
  * @returns {string}
  */
 export function getDomain(url) {
-  const domainReg = new RegExp("^http:\/\/api\.intra\.sit\.ffan\.net\/bo\/v1\/|^http:\/\/api\.ffan\.com\/app\/v1\/bo\/v1\/")
+  const domainReg = new RegExp("^http:\/\/api\.intra\.(sit\.|test\.)?ffan\.net\/bo\/v1\/|^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/")
   const env = getDomainEnv()
   const domain =  (env === 'pub') ? 'http://api.ffan.com/app/v1/bo/v1/' : 'http://api.intra.sit.ffan.net/bo/v1/'
   return domain + url.replace(domainReg, "")
