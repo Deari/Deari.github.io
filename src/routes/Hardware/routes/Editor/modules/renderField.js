@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
@@ -138,7 +138,7 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
-    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
+    const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
     formData.append('width', 400)
@@ -152,10 +152,10 @@ export class renderImageUpload extends Component {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        debug.warn('上传图片不符合规格', res)
+        debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口错误', e)
+      debug.warn('接口错误')
     })
   }
 
@@ -197,7 +197,7 @@ export class renderImgsUpload extends Component {
       return
     }
     
-    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/photo/upload")
+    const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
     formData.append('fileSize', 1024 * 1024)
@@ -210,10 +210,10 @@ export class renderImgsUpload extends Component {
         input.onChange(input.value)
         this.setState({ imgs: input.value })
       } else {
-        debug.warn('上传图片不符合规格', res)
+        debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口报错', e)
+      debug.warn('接口报错')
     })
   }
 
@@ -248,7 +248,7 @@ export class renderImgsUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
-    const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/file/upload")
+    const url = getDomain("web/file/upload")
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
@@ -262,7 +262,7 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
       } else {
-        debug.warn('文件代码包格式错误', res)
+        debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
       console.warn(e);
@@ -274,7 +274,7 @@ export class renderFile extends Component {
 
     return (
 
-      <div className="form-row file-position">
+      <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
           <input type="file" className="form-file" onChange={::this.fileUpload}/>

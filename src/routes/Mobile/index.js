@@ -29,7 +29,6 @@ export default store => ({
         require('./routes/UserPreivew').default(store),
         require('./routes/ProbeReport').default(store),
         require('./routes/Demo').default(store),
-        require('./routes/Download').default(store),
       ])
     })
   },

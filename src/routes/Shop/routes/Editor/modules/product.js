@@ -1,5 +1,5 @@
 import fetchUtil from 'routes/utils/fetchUtil'
-
+import { getDomain } from 'utils/domain';
 const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
 //const initialState = {
@@ -46,11 +46,12 @@ export const getProduct = (data) => ({
 })
 
 export const fetchProducts = () => {
+  const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
   return (dispatch, getState) => new Promise(resolve => {
-    fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
+    fetchUtil.getJSON(apiUrl)
       .then(v => {
-        let data = [ ...customProduct, ...v.data ]
-        //const data = customProduct
+        let data = [ ...v.data ]
+        //let data = [ ...customProduct, ...v.data ]
         dispatch(getProduct({ products: data }))
         resolve()
       })

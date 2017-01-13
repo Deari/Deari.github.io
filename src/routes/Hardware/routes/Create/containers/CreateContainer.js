@@ -11,7 +11,7 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 
 import { toggleStep, getTags, getCates, getSdkInfo } from '../modules/create'
@@ -57,7 +57,7 @@ class CreateContainer extends Component {
       formData.append("hardwareTags[]", v);
     }
 
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step1`)
+    const url = getDomain(`web/hardware/addHardware/step1`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
@@ -117,7 +117,7 @@ class CreateContainer extends Component {
       formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key]);
     }
 
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/hardware/addHardware/step2`)
+    const url = getDomain(`web/hardware/addHardware/step2`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
