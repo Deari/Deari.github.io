@@ -19,11 +19,14 @@
 }
 
 .sidebar-left {
-  @include fixed;
+  position: fixed;
+  top: 0;
+  bottom: 0;
   left: 0;
   width: 200px;
   background: #262c31;
   font-size: 12px;
+  overflow-y: scroll;
   .nav {
     .item {
       .menu-title {
@@ -45,33 +48,24 @@
     }
   }
   .btn-more {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
+    display: block;
+    overflow: hidden;
+    // position: absolute;
+    // bottom: 0;
+    // left: 0;
+    // right: 0;
+    padding: 10px 7px;
     text-align: center;
     color: #677284;
     background: #2e363d;
 
     .text {
-      display: inline-block;
-      height: 20px;
-      line-height: 20px;
-      margin-right: 5px;
-      vertical-align: middle;
+      float: left;
+      margin: 2px 5px;
     }
 
     &>i {
-      position: absolute;
-      top: 10px;
-      &:first-child {
-        left: 10px;
-      }
-      &:last-child {
-        right: 10px;
-
-      }
+      float: left;
     }
   }
   .gui-list {
