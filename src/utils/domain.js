@@ -58,3 +58,10 @@ export function getDomain(url) {
   const domain =  (env === 'pub') ? 'http://api.ffan.com/app/v1/bo/v1/' : 'http://api.intra.sit.ffan.net/bo/v1/'
   return domain + url.replace(domainReg, "")
 }
+
+export function getHardwareDomain(url) {
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://api.ffan.com/' : 'http://api.sit.ffan.com/'
+  return domain + url
+}
+

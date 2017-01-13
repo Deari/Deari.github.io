@@ -10,7 +10,7 @@ import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
 import { toggleTag } from '../modules/edit'
 
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 
 import './firstStepForm.scss'
 
@@ -29,7 +29,7 @@ class FirstStepForm extends Component {
 
         <Field name="category" label="分类" component={renderCorDropdown} cates={cates} />
 
-        <Field name="tags" label="产品标签" component={renderTags} tags={tags} />
+        <Field name="tags" label="标签" component={renderTags} tags={tags} />
 
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
 
@@ -140,7 +140,7 @@ const isValid = (formValues) => {
 }
 
 const getDownLoadSDKUrl = async (postParams) => {
-  const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/hardware/getSdkUrl")
+  const url = getDomain("web/hardware/getSdkUrl")
   try {
     let res = await fetchUtil.postJSON(url, postParams, { jsonStringify: false})
     if (res && res.status == 200) {
