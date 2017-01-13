@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from '../../../../utils/fetchUtil'
+import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
-import debug from '../../../../utils/debug'
+import debug from 'routes/utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
   <div className="form-row">
@@ -95,7 +95,7 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
-    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/web/photo/upload")
+    const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
     if (!this.props.h) {
@@ -142,7 +142,7 @@ export class renderImageUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
-    const url = getDomain("http://api.intra.sit.ffan.net/bo/v1/web/file/upload")
+    const url = getDomain("web/file/upload")
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])

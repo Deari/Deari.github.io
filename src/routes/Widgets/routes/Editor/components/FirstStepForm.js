@@ -10,9 +10,6 @@ import renderField, {
 
 import { validate, asyncValidate, repeatCheck } from '../modules/validate'
 
-//import fetchUtil from '../../../../utils/fetchUtil'
-//import { getDomain } from '../../../../utils/domain'
-
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {

@@ -10,7 +10,7 @@ import { validate, repeatCheck }  from '../modules/validate'
 import { toggleTag } from '../modules/create'
 
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
 import './firstStepForm.scss'
@@ -140,7 +140,7 @@ const isValid = (formValues) => {
 }
 
 const getDownLoadSDKUrl = async (postParams) => {
-  const url = getDomain("http://api.intra.", "ffan.net/bo/v1/web/hardware/getSdkUrl")
+  const url = getDomain("web/hardware/getSdkUrl")
   try {
     let res = await fetchUtil.postJSON(url, postParams, { jsonStringify: false})
     if (res && res.status == 200) {

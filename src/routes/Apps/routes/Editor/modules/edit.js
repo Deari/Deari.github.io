@@ -1,6 +1,6 @@
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
-import debug from '../../../../utils/debug'
+import { getDomain } from 'utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 const PREFIX = 'EDIT_APP_';
 
@@ -41,7 +41,7 @@ export const updateForm2 = (data) => ({
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
+    const url = getDomain("public/app/tags");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveTags(res.data));
@@ -54,7 +54,7 @@ export const getTags = () => {
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("public/app/categories");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveCates(res.data && res.data.list));
@@ -67,7 +67,7 @@ export const getCates = () => {
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/app/${appId}`);
+    const url = getDomain(`web/app/${appId}`);
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('应用详情：', res)
@@ -96,7 +96,7 @@ export const getAppInfo = (appId) => {
 
 export const getAppCodeInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`http://api.intra.`, `ffan.net//bo/v1/web/developer/app/${appId}`);
+    const url = getDomain(`web/developer/app/${appId}`);
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('app code详情：', res)

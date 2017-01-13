@@ -22,7 +22,7 @@ class WidgetsDetail extends React.Component {
 
   async getInfo() {
     let id = this.props.params.id;
-    let apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/app/${id}`);
+    let apiUrl = getDomain(`web/app/${id}`);
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
@@ -36,7 +36,7 @@ class WidgetsDetail extends React.Component {
   }
 
   async getTags() {
-    let apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/public/common/tags?type=widget`);
+    let apiUrl = getDomain(`public/common/tags?type=widget`);
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
