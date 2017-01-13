@@ -44,6 +44,10 @@ export function getDomainEnv(url) {
 //getDomain("http://api.intra.ffan.net/bo/v1/web/market/category/all/apps")
 //"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
 
+//getDomain("web/market/category/all/apps")
+//"http://api.ffan.com/app/v1/bo/v1/web/market/category/all/apps"
+
+
 /**
  * @param url
  * @returns {string}
@@ -60,3 +64,4 @@ export function getHardwareDomain(url) {
   const domain =  (env === 'pub') ? 'http://api.ffan.com/' : 'http://api.sit.ffan.com/'
   return domain + url
 }
+

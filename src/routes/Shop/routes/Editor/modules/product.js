@@ -50,8 +50,8 @@ export const fetchProducts = () => {
   return (dispatch, getState) => new Promise(resolve => {
     fetchUtil.getJSON(apiUrl)
       .then(v => {
-        let data = [ ...customProduct, ...v.data ]
-        //const data = customProduct
+        let data = [ ...v.data ]
+        //let data = [ ...customProduct, ...v.data ]
         dispatch(getProduct({ products: data }))
         resolve()
       })

@@ -84,7 +84,7 @@ export class Preview extends Component {
           <img className="clock" src="http://img1.ffan.com/T1hOJTB_WT1RCvBVdK" />
           <div className="mobile-headerInfo">
             <i className="iconfont icon-leftarrow"></i>
-            <p className="title">GAP(金地中心店)</p>
+            <h3 className="title">GAP(金地中心店)</h3>
             <i className="iconfont icon-search"></i>
           </div>
         </div>

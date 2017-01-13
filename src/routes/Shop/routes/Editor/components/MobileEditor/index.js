@@ -29,8 +29,11 @@ export class Editor extends Component {
       <LeftSideBar/>
       <div className="editor-content">
         <div className="preview">
-          <div className="bg-phone"></div>
-          <Preview/>
+          <div className="bg-phone">
+            <div className="scroll-wrap">
+              <Preview/>
+            </div>
+          </div>
         </div>
         {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}
       </div>
