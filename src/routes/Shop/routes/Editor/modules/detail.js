@@ -34,12 +34,10 @@ const getPublishStatus = async deployId => {
 
 const repeatPublishStatus = async deployId => {
   let result = await getPublishStatus(deployId)
-  console.log(result)
   if (result !== 2) {
     await sleep(1000)
     await repeatPublishStatus(deployId)
   } else {
-    console.log("444444444444444444444")
     return result
   }
 }
@@ -54,7 +52,7 @@ export const savePage = pageId => (dispatch, getState) => new Promise(async(reso
     dispatch(startPublishPage())
     const { deployId } = v.data
     repeatPublishStatus(deployId).then(v => {
-      console.log('vvvvvvvvvvvvvvvv')
+      dispatch(endPublishPage())
       resolve(v)
     }).catch(e => {
       console.log("eeeeeeeeeeeeeeee")
