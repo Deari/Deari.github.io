@@ -23,7 +23,11 @@ export class Detail extends Component {
   render() {
 
     const { detail, saveDetail, savePage, deleteElement, cancelElement } = this.props
-    const { element } = detail
+    const { element, pagePublish } = detail
+
+    const style = {
+      background: pagePublish == 'start' ? 'grey' : ''
+    }
 
     if (!element.id) {
       return <div id="detail-container">
@@ -36,7 +40,7 @@ export class Detail extends Component {
         </div>
         <div className="btn-block">
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
-          <button className="btn btn-blue" onClick={savePage}><i className="iconfont icon-save"></i>发布</button>
+          <button className="btn btn-blue" onClick={savePage} style={style}><i className="iconfont icon-save"></i>发布</button>
         </div>
       </div>
     }
