@@ -1,5 +1,5 @@
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 const PREFIX = 'HD_CREATE';
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
@@ -138,7 +138,7 @@ export default function createReducer(state = initialState, action) {
 export const getTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=hardware");
+    const url = getDomain("public/common/tags?type=hardware");
     return fetchUtil.getJSON(url).then(res=>{
       //console.info(res)
       if(res.status == 200) {
@@ -153,7 +153,7 @@ export const getTags = () => {
 export const getCates = () => {
   return (dispatch) => {
     // 拉取 select 列表数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getCategory");
+    const url = getDomain("web/hardware/getCategory");
     return fetchUtil.getJSON(url).then(res=>{
       //console.info(res)
       if(res.status == 200) {
@@ -169,7 +169,7 @@ export const getSdkInfo = () => {
   return (dispatch) => {
 
     // 硬件SDK分类信息
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/getSdkInfo");
+    const url = getDomain("web/hardware/getSdkInfo");
 
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)

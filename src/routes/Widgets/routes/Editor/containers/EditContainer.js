@@ -59,7 +59,7 @@ class EditContainer extends Component {
     for (let key in values) {
     }
     console.log(values.size)
-    const url = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/developer/widget/${values.appId}`)
+    const url = getDomain(`web/developer/widget/${values.appId}`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
@@ -81,7 +81,7 @@ class EditContainer extends Component {
       alert('缺少appId')
     }
 
-    const url = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/developer/widget/${values.appId}/code`)
+    const url = getDomain(`web/developer/widget/${values.appId}/code`)
     const formData = new FormData();
 
     const file = values.file;

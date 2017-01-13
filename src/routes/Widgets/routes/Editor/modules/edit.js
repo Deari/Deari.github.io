@@ -1,5 +1,5 @@
-import fetchUtil from '../../../../utils/fetchUtil'
-import { getDomain } from '../../../../utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'utils/domain'
 
 const TOGGLE_STEP = 'TOGGLE_STEP';
 const TOGGLE_TAG = 'TOGGLE_TAG';
@@ -175,7 +175,7 @@ export default function createReducer(state = initialState, action) {
 
 export const fetchTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/common/tags?type=widget");
+    const url = getDomain("public/common/tags?type=widget");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -193,7 +193,7 @@ export const fetchCates = () => {
   return (dispatch) => {
 
     // 拉取 select 列表数据
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("public/app/categories");
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
@@ -207,7 +207,7 @@ export const fetchCates = () => {
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/app/${appId}`);
+    const url = getDomain(`web/app/${appId}`);
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('组件详情：', res)
@@ -235,7 +235,7 @@ export const getAppInfo = (appId) => {
 
 export const getAppCodeInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`http://api.intra.`, `ffan.net//bo/v1/web/developer/app/${appId}/codes`);
+    const url = getDomain(`web/developer/app/${appId}/codes`);
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('组件 code详情：', res)

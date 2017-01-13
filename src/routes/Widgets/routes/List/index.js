@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from '../../../../components/List'
-import fetchUtil from '../../../utils/fetchUtil'
-import Slidebar from '../../../../components/Sidebar'
-import './index.scss'
-import '../../../../styles/_base.scss'
+import List from 'components/List'
+import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain';
+import Slidebar from 'components/Sidebar'
+import './index.scss'
+import 'styles/_base.scss'
 
 class widgetsList extends React.Component {
   state = {
@@ -14,7 +14,7 @@ class widgetsList extends React.Component {
   }
   
   async getList(isFirst) {
-    const apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/developer/widgets`)
+    const apiUrl = getDomain("web/developer/widgets")
     try {
       let res = isFirst ? await fetchUtil.getJSON(apiUrl) : await fetchUtil.getJSON(apiUrl, { reviewStatus: this.state.reviewStatus });
       if(res.status === 200){
