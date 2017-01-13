@@ -146,10 +146,10 @@ const getDownLoadSDKUrl = async (postParams) => {
     if (res && res.status == 200) {
       return res.data && res.data.sdkUrl
     } else {
-      debug.warn('获取下载SDK接口报错', res)
+      debug.warn('获取下载SDK接口报错')
     }
   } catch (e) {
-    debug.warn('网络错误', e)
+    debug.warn('网络错误')
   }
 }
 

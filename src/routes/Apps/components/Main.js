@@ -27,10 +27,10 @@ class Main extends React.Component {
       if (res.status === 200) {
         res.data && this.setState({ listData: res.data.list })
       } else {
-        debug.warn("获取列表接口返回错误", res)
+        debug.warn("获取列表接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取列表接口返回错误", e)
+      debug.warn("获取列表接口返回错误")
     }
   }
 
@@ -41,10 +41,10 @@ class Main extends React.Component {
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        debug.warn("获取标签接口返回错误", res)
+        debug.warn("获取标签接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误", e)
+      debug.warn("获取标签接口返回错误")
     }
   }
 

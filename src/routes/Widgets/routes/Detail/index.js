@@ -28,10 +28,10 @@ class WidgetsDetail extends React.Component {
       if (res && res.status === 200) {
         res.data && this.formatData(res.data);
       } else {
-        debug.warn("获取详情接口返回错误", res)
+        debug.warn("获取详情接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取详情接口返回错误", e)
+      debug.warn("获取详情接口返回错误")
     }
   }
 
@@ -42,10 +42,10 @@ class WidgetsDetail extends React.Component {
       if (res.status === 200) {
         res.data && this.setState({ tags: res.data })
       } else {
-        debug.warn("获取标签接口返回错误", res)
+        debug.warn("获取标签接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误", e)
+      debug.warn("获取标签接口返回错误")
     }
   }
 
