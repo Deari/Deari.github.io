@@ -49,8 +49,8 @@ export const fetchProducts = () => {
   return (dispatch, getState) => new Promise(resolve => {
     fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
       .then(v => {
-        let data = [ ...customProduct, ...v.data ]
-        //const data = customProduct
+        let data = [ ...v.data ]
+        //let data = [ ...customProduct, ...v.data ]
         dispatch(getProduct({ products: data }))
         resolve()
       })
