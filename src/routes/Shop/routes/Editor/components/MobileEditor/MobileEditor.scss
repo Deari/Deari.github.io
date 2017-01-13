@@ -23,12 +23,13 @@
   left: 0;
   width: 200px;
   background: #262c31;
+  font-size: 12px;
   .nav {
     .item {
       .menu-title {
-        &>i {
-          padding-right: 5px;
+        > i {
           background: #2e363d;
+          margin-right: 5px;
         }
         display: inline-block;
         width: 100%;
@@ -36,8 +37,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
-        padding:10px 7px;
-        font-size: 15px;
+        padding: 10px 7px;
         color:$gray9-color;
         background:#2e363d;
         border-bottom:1px solid #1a1e2a;
@@ -47,20 +47,31 @@
   .btn-more {
     position: absolute;
     bottom: 0;
-    display: block;
-    width: 100%;
-    padding: 10px 15px;
-    font-size: 15px;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    text-align: center;
     color: #677284;
     background: #2e363d;
-    border: 0;
-    &>i {
-      padding-right: 10px;
-      background: #2e363d;
+
+    .text {
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      margin-right: 5px;
+      vertical-align: middle;
     }
-    .icon-readMore {
-      padding-right: 0;
-      overflow: hidden;
+
+    &>i {
+      position: absolute;
+      top: 10px;
+      &:first-child {
+        left: 10px;
+      }
+      &:last-child {
+        right: 10px;
+
+      }
     }
   }
   .gui-list {
