@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
+import './index.scss'
 
 export class Download extends Component {
 
   render() {
-    return <div>下载页</div>
+    return <div className="download-box"></div>
   }
 }
 
