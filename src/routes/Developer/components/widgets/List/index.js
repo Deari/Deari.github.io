@@ -12,7 +12,7 @@ class widgetsList extends React.Component {
     listData: [],
     reviewStatus: -2  //0 1 2 3
   }
-  
+
   async getList(isFirst) {
     const apiUrl = getDomain(
       "http://api.intra.",
