@@ -1,5 +1,5 @@
 import React from 'react'
-import Version from '../../../../../components/Version'
+import Version from '../../../../../components/Versions'
 import fetchUtil from '../../../../utils/fetchUtil'
 import BasicInfo from './BasicInfo'
 
