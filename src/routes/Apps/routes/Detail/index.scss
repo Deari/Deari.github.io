@@ -30,12 +30,24 @@
     .detail-tittle{
       font-size: 24px;
       color: $black-color;
+      word-break:break-all;
+      dt{
+        font-size: 24px;
+        color: #000000;
+        line-height: 28px;
+      }
       dd{
         margin-top: 8px;
         font-size: 12px;
         color: $gray6-color;
+        overflow: hidden;
         i{
-          margin-right: $default-margin-right - 35; 
+          margin-right: $default-margin-right - 35;
+          float: left;
+        }
+        span{
+            width:596px;
+            float: left;
         }
       }
     }
@@ -44,17 +56,24 @@
       font-size:14px;
       line-height:23px;
       color:$black-color;
-      word-wrap:break-word;
+      word-break:break-all;
     }
     .infomation-list{
       margin-top:4px;
-      font-size:15px;
+      font-size:14px;
       color:$gray9-color;
       td{
         padding:3px 0;
+        &:first-child{
+          width:30px;
+          float: left;
+        }
         &:last-child{
           padding-left:20px;
           color:$black-color;
+          word-break:break-all;
+          float: left;
+          width:586px;
         }
       }
       .tag{
@@ -76,7 +95,7 @@
 }
 .app-title{
   margin-top:30px;
-  font-size:19px;
+  font-size:18px;
   color: $black-color;
 }
 .table-info{
@@ -85,16 +104,22 @@
   font-size:15px;
   .detail-table{
     margin-top:10px;
+    font-size:14px;
+    line-height:23px;
+    color:$black-color;
     .title,.text{
       padding: 5px 0;
       vertical-align:top;
     }
     .title{
+      width:125px;
       padding-right:20px;
       color:$gray9-color;
     }
     .text{
       color:$black-color;
+      word-break:break-all;
+      width:752px;
       .img-block{
         position:relative;
         width:240px;
@@ -113,6 +138,7 @@
         .img{
           position: absolute;
           top:0;
+          left: 0;
           z-index:2;
           width:240px;
           height:100px;
@@ -124,6 +150,9 @@
   }  
   .detail-tableList{
     margin-top:10px;
+    font-size:14px;
+    line-height:23px;
+    color:$black-color;
     .item{
       margin-bottom:20px;
     }
@@ -141,7 +170,7 @@
       .text{
         float:right;
         width:712px;
-        word-wrap:break-word;
+        word-break:break-all;
       }
       &:after{
         display:block;

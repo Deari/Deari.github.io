@@ -38,7 +38,7 @@ class FirstStepForm extends Component {
             ))
           }
         </Field>
-        <Field label="产品标签" name="tags" component={renderTags} tags={tags} />
+        <Field label="标签" name="tags" component={renderTags} tags={tags} />
         <div className="form-btn">
           <div>
             <button type="submit" className="next">下一步</button>

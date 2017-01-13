@@ -79,7 +79,7 @@ class HardwareDetail extends React.Component {
             <div className="detail-info">
               <dl className="detail-tittle">
                 <dt>{ data.hardwareName }</dt>
-                <dd><i className="user-img"></i>{ data.hardwareProducer }</dd>
+                <dd><i className="user-img"></i><span>{ data.hardwareProducer }</span></dd>
               </dl>
               <h3 className="app-title">内容提要</h3>
               <p className="app-text">{ data.hardwareFunction }</p>

@@ -2,8 +2,8 @@
 $border-color:#dddddd;
 $text-color:#020202;
 .row-radio{position:relative; text-align: center;}
-i.icon-radio{display:none;font-size:30px;color:#cdd4dc;}
-i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
+i.icon-radio{display:none;font-size:32px;color:#cdd4dc;}
+i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
 
 .row-radio {
   input[type="radio"]{position:absolute;top:5px;left:23px;width:26px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
@@ -58,6 +58,9 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             resize: none;
             outline: none;
             padding: $default-padding-left - 30px;
+            line-height: 24px;
+            font-size: 16px;
+            color: #000;
         }
         select{
              width: 199px;
@@ -83,7 +86,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             position: relative;
             cursor: pointer;
             input[type="button"]{
-                width: $default-width + 30px;
+                width: 199px;
                 height: $default-height - 67px;
                 line-height: $text-line-height - 10px;
                 text-align: center;
@@ -98,7 +101,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
                 cursor: pointer;
             }
             input[type="file"]{
-                width: $default-width + 30px;
+                width: 199px;
                 height: $default-height - 67px;
                 position: absolute;
                 left: 0;
@@ -117,7 +120,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
-            line-height: $text-line-height - 11px;
+            line-height: 25px;
             font-size: $text-font-size - 7px;
             color: $graya-color;
             text-align: center;
@@ -127,9 +130,9 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             margin: 0 $default-margin-right - 20px $default-margin-bottom - 20px 0;
             cursor: pointer;
             &.active,&:hover{
-                background-color: dodgerblue;
+                background-color: #7dbefd;
                 color: $white-color;
-                border-color: dodgerblue;
+                border-color: #7dbefd;
             }
         }
         /*第二步应用文件样式start*/
@@ -156,24 +159,12 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             float: left;
             background: #efefef;
         }
-        .form-file{
-            // width: $default-width - 52px;
-            // height: $default-height - 71px;
-            // position: absolute;
-            // left:348px;
-            // top: 30px;
-            // filter: alpha(opacity=0);
-            // opacity: 0;
-            cursor: pointer;
-        }
+
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
         width: 574px;
     }
-}
-.form-row.file-position{
-    position: relative;
 }
 .form-btn{
     width: $sub-container-width;
@@ -192,7 +183,7 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
             font-size: $text-font-size - 7px;
             color: $white-color;
             line-height: $text-line-height - 5px;
-            margin-top: $default-margin-top - 10px;
+            margin-top: 31px;
             margin-right: $default-margin-right - 30px;
             display: inline-block;
             cursor: pointer;
@@ -210,7 +201,10 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
 }
 .row-size{
     @include float-left;
-    margin:14px 70px 0 0;
+    margin:15px 79px 0 0;
+    &:last-child{
+        margin-right: 0;
+    }
     .row-img{
         width: 78px;
         height: 150px;
@@ -232,9 +226,6 @@ i.icon-radio1{display:inline-block;font-size:30px;color:#cdd4dc;}
         background: url(../../../../Home/assets/size4.png) no-repeat;
         background-size: 100%;
     }
-}
-.row-last{
-    display: none;
 }
 
 

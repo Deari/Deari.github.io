@@ -29,7 +29,7 @@ class FirstStepForm extends Component {
 
         <Field name="category" label="分类" component={renderCorDropdown} cates={cates} />
 
-        <Field name="tags" label="产品标签" component={renderTags} tags={tags} />
+        <Field name="tags" label="标签" component={renderTags} tags={tags} />
 
         <Field name="hardwareMode" type="text" label="硬件型号" component={renderField} />
 
