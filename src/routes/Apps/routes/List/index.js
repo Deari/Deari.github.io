@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import List from 'components/newList'
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain';
-import { debug } from 'routes/utils/debug';
+import debug from 'routes/utils/debug';
 import Slidebar from 'components/Sidebar'
 import Nav from 'components/Nav'
 import './index.scss'
@@ -45,21 +45,30 @@ class AppsList extends React.Component {
     return reviewStatus
   }
 
-  getStatus(reviewStatus) {
-    const status = parseInt(reviewStatus)
-    switch(status) {
+  getStatus(item) {
+    let state = this.formatState(item)
+
+    switch(state) {
       case 1:
-        return "待审核"
+        return { status: "待审核", showEdit: false, showNew: false }
         break
       case 2:
-        return "已审核"
+        return { status: "已审核", showEdit: false, showNew: true }
         break
       case 3:
-        return "待提交"
+        return { status: "待提交", showEdit: true, showNew: false }
         break
       default:
         return ''
     }
+  }
+
+  formatState(item) {
+    const status = item.reviewStatus && parseInt(item.reviewStatus)
+    const codeId = item.codeId && item.codeId || ''
+    let state = 3
+    if (codeId && status) state = status
+    return state
   }
 
   formatListData(listData) {
@@ -67,18 +76,29 @@ class AppsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
+
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
-        obj.status = item.reviewStatus && this.getStatus(item.reviewStatus) || ''
+        obj.status = this.getStatus(item).status
         obj.download = 100
+        obj.detailUrl = `/apps/detail/${obj.id}`
+
+        const editUrl = `/apps/edit/${obj.id}`
+
+        const showBtn = this.getStatus(item)
+
+        obj.btnData = [
+          {name: "编辑", url: editUrl, active: showBtn.showEdit},
+          {name: "发布新版本", url: editUrl, active: showBtn.showNew}
+        ]
 
         newData.push(obj)
       }
     })
-    console.log("newData ", newData)
+    
     return newData
   }
 
@@ -88,10 +108,12 @@ class AppsList extends React.Component {
     newData && this.setState({listData: newData})
   }
 
-  async changeNav(obj) {
-    const listData = await this.getList()
-    const newData = listData && this.formatListData(listData)
-    newData && this.setState({...obj, listData: newData})
+  changeNav(obj) {
+    this.setState({...obj}, async () => {
+      const listData = await this.getList()
+      const newData = listData && this.formatListData(listData)
+      newData && this.setState({listData: newData})
+    })
   }
 
   render() {

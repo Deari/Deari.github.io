@@ -16,31 +16,23 @@ class List extends React.Component {
         listData.map( (item, index) => (
           <div key={index} className="list-container">
             <div className="info-img-container w124">
-              <Link className="info-img" to={item.id}>
-                <img src={item.logo} />
-              </Link>
+              <Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>
             </div>
             <div className="info-content w342">
-              <Link className="info-name" title={item.name} to={item.id}>
-                {item.name}
-              </Link>
-              <Link className="info-introduce" title={item.desc} to={item.id}>
-                {item.desc}
-              </Link>
+              <Link className="info-name" title={item.name} to={item.detailUrl}> {item.name} </Link>
+              <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
             </div>
-            <div className="info-price w90">免费</div>
+            <div className="info-price w90">{item.price}</div>
             <div className="info-status w90">{item.status}</div>
-            <div className="info-download w90">100</div>
+            <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
-              <Link>
-                <button disabled={true}>编辑</button>
-              </Link>
-              <Link>
-                <button disabled={true}>发布新版本</button>
-              </Link>
-              <Link>
-                <button disabled={true}>调试硬件</button>
-              </Link>
+             {
+              item.btnData.map( (btn, btnIndex) => (
+                <Link key={btnIndex} className={(btn.active && 'active') || ''} to={btn.url}> 
+                  <button disabled={btn.active ? false : true}>{btn.name}</button> 
+                </Link>
+              ) )
+             } 
             </div>
           </div>
         ) )
