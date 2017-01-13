@@ -3,6 +3,7 @@ import React from 'react'
 import ProbeReport from '../components/Probe/Report'
 
 import fetchUtil from '../../utils/fetchUtil'
+import { getDomain } from '../../utils/domain';
 import Debug from '../../utils/debug'
 
 import DATA from '../components/Probe/data'
@@ -47,6 +48,9 @@ const getSumOfTimeArray = (arr=[], start, end) => {
   return arr.slice(start, end).reduce((prev, cur)=> prev+cur.num, 0)
 }
 
+const getData = async (url) => {
+  return await fetchUtil.getJSON(url)
+}
 
 export const Promised = (promiseProp, Wrapped) => class extends React.Component {
   state = {
@@ -54,28 +58,39 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     pmNum: 0, 
     nightNum: 0, 
     timeArray: [],
-    personArray:[] 
+    dayArray:[] 
   }
-  componentWillMount() {
-    
-    const apiUrl = 'http://api.sit.ffan.com/bo/store/v1/storePersonSum?storeId=111&startTime=111&endTime=111';
-    
-    fetchUtil.getJSON(apiUrl).then(res=>{
-      if(res.status == 200) {
-        console.info(res.data);
-        this.setState(res.data);
-      } else {
+ async componentWillMount() {
+    const timeApiUrl = getDomain('http://api.','ffan.com/bo/store/v1/storePerSummary/hour?storeId=111&startTime=111&endTime=111')
+    const dayApiUrl = getDomain('http://api.','ffan.com/bo/store/v1/storePerSummary/day?storeId=111&startTime=111&endTime=111')
+    try{
+       const timeRes = await getData(timeApiUrl)
+       if(timeRes.status == 200) {
+        console.info(timeRes.data);
+        this.setState(timeRes.data);
+       } else {
         Debug.warn('获取数据异常', res);
         this.setState(DATA)
-      }
-    }).catch(e=>{
+       }
+    }catch(e){
       Debug.warn('获取数据异常', e);
       this.setState(DATA)
-    })
+    }
+   
+    try {
+      const dayRes = await getData(dayApiUrl)
+      if (dayRes.status == 200) {
+        console.info(dayRes.data);
+        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+      } else {
+        Debug.warn('获取数据异常', res);
+        this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+      }
+    } catch (e) {
+      Debug.warn('获取数据异常', e);
+       this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    }
 
-    const personArray =  BARDATA.data.timeArray
-       
-    this.setState({personArray:personArray})
   }
 
   getChartData = () => {
@@ -115,13 +130,13 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
   }
 
   render () {
-    const { allNum, amNum, pmNum, nightNum ,personArray} = this.state;
+    const { allNum, amNum, pmNum, nightNum ,dayArray} = this.state;
   
     const data = {
       allNum, amNum, pmNum, nightNum,
       listData: this.getListData(),
       chartData: this.getChartData(),
-      personArray: personArray,
+      dayArray: dayArray,
     }
  
     return <Wrapped {...data} />
