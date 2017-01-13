@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
+import { getDomain } from 'utils/domain';
 import fetchUtil from 'routes/utils/fetchUtil'
 import Slidebar from 'components/Sidebar'
 import './index.scss'
 import 'styles/_base.scss'
-import { getDomain } from 'routes/utils/domain';
 
 class HardwaresList extends React.Component {
   state = {
@@ -16,8 +16,8 @@ class HardwaresList extends React.Component {
   async getList(isFirst) {
 
     let apiUrl = isFirst? 
-    getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/myHardware") :
-    getDomain("http://api.intra.","ffan.net/bo/v1/web/hardware/myHardware/"+this.state.status)
+    getDomain("web/hardware/myHardware") :
+    getDomain("web/hardware/myHardware/"+this.state.status)
 
     try {
       const res = await fetchUtil.getJSON(apiUrl);

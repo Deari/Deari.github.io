@@ -3,7 +3,7 @@ import React from 'react'
 import ProbeReport from '../components/Probe/Report'
 
 import fetchUtil from '../../utils/fetchUtil'
-import { getDomain } from '../../utils/domain';
+import { getHardwareDomain } from 'utils/domain';
 import Debug from '../../utils/debug'
 
 import DATA from '../components/Probe/data'
@@ -53,6 +53,7 @@ const getData = async (url) => {
 }
 
 export const Promised = (promiseProp, Wrapped) => class extends React.Component {
+
   state = {
     amNum: 0, 
     pmNum: 0, 
@@ -60,11 +61,13 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     timeArray: [],
     dayArray:[] 
   }
+
  async componentWillMount() {
-    const timeApiUrl = getDomain('http://api.','ffan.com/bo/store/v1/storePerSummary/hour?storeId=111&startTime=111&endTime=111')
-    const dayApiUrl = getDomain('http://api.','ffan.com/bo/store/v1/storePerSummary/day?storeId=111&startTime=111&endTime=111')
+
+    const timeApiUrl = getHardwareDomain('bo/store/v1/storePerSummary/hour?storeId=111&startTime=111&endTime=111')
+    const dayApiUrl = getHardwareDomain('bo/store/v1/storePerSummary/day?storeId=111&startTime=111&endTime=111')
     try{
-       const timeRes = await getData(timeApiUrl)
+       const timeRes = await fetchUtil.getJSON(timeApiUrl)
        if(timeRes.status == 200) {
         console.info(timeRes.data);
         this.setState(timeRes.data);
@@ -78,7 +81,7 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     }
    
     try {
-      const dayRes = await getData(dayApiUrl)
+      const dayRes = await fetchUtil.getJSON(dayApiUrl)
       if (dayRes.status == 200) {
         console.info(dayRes.data);
         this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
@@ -88,7 +91,7 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
       }
     } catch (e) {
       Debug.warn('获取数据异常', e);
-       this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+      this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
     }
 
   }

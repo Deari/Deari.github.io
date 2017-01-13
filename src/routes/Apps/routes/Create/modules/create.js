@@ -1,6 +1,6 @@
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
-import debug from '../../../../utils/debug'
+import { getDomain } from 'utils/domain'
+import fetchUtil from 'routes/utils/fetchUtil'
+import debug from 'routes/utils/debug'
 
 const PREFIX = 'CREATE_APP_';
 
@@ -36,7 +36,7 @@ export const updateForm2 = (data) => ({
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/tags");
+    const url = getDomain("public/app/tags");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveTags(res.data));
@@ -49,7 +49,7 @@ export const getTags = () => {
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("http://api.intra.","ffan.net/bo/v1/public/app/categories");
+    const url = getDomain("public/app/categories");
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         dispatch(receiveCates(res.data && res.data.list));

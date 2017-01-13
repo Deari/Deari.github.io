@@ -6,9 +6,6 @@ import { Field, reduxForm } from 'redux-form'
 import renderField, { renderTextArea, renderFile } from '../modules/renderField'
 import { validate } from '../modules/validate'
 
-import { getDomain } from '../../../../utils/domain'
-import fetchUtil from '../../../../utils/fetchUtil'
-
 import { toggleStep } from '../modules/create'
 
 class SecondStepForm extends React.Component {

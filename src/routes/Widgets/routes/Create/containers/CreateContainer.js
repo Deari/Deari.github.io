@@ -11,7 +11,7 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../components/Complete'
 import Step from '../components/Step'
 
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -48,8 +48,7 @@ class CreateContainer extends Component {
       }
     }
 
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/widget`)
-
+    const url = getDomain(`web/developer/widget`)
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         console.info("提交成功: ", res.data)
@@ -80,10 +79,7 @@ class CreateContainer extends Component {
       formData.append(key, params[key])
     }
 
-    const url = getDomain(
-      `http://api.intra.`,`ffan.net/bo/v1/web/developer/widget/${appId}/code`
-    )
-
+    const url = getDomain(`web/developer/widget/${appId}/code`)
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
         console.info('提交成功')

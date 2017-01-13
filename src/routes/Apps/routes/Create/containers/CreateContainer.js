@@ -10,7 +10,7 @@ import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 
-import { getDomain } from 'routes/utils/domain'
+import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -45,7 +45,7 @@ class CreateContainer extends Component {
       }
     }
 
-    const url = getDomain(`http://api.intra.`,`ffan.net/bo/v1/web/developer/app`)
+    const url = getDomain(`web/developer/app`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
@@ -65,7 +65,7 @@ class CreateContainer extends Component {
   submitSecond(values) {
     !values.appId && debug.warn('缺少appId');
 
-    const url = getDomain(`http://api.intra.`, `ffan.net/bo/v1/web/developer/app/${values.appId}/code`)
+    const url = getDomain(`web/developer/app/${values.appId}/code`)
     const formData = new FormData();
 
     const file = values.file;

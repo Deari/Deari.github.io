@@ -19,6 +19,7 @@
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
+    "deploy:prod:pub": "better-npm-run deploy:prod:pub",
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "betterScripts": {
@@ -53,6 +54,14 @@
       "env": {
         "NODE_ENV": "production",
         "DEBUG": "app:*"
+      }
+    },
+    "deploy:prod:pub": {
+      "command": "npm run deploy",
+      "env": {
+        "NODE_ENV": "production",
+        "DEBUG": "app:*",
+        "URI": "pub"
       }
     },
     "start": {
