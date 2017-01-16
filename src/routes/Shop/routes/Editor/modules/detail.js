@@ -1,4 +1,5 @@
-import fetchUtil from '../../../../utils/fetchUtil'
+import fetchUtil from '../../../../utils/fetchUtil';
+import { getDomain } from 'utils/domain';
 
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
@@ -25,14 +26,10 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
   detail,
 })
 
-
 export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
   const state = getState()
-  fetchUtil.postForm('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish',
-    {
-      viewData: state.preview,
-    },
-  ).then(v => {
+  const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
+  fetchUtil.postForm(apiUrl, { viewData: state.preview, }).then(v => {
     console.log(v.data)
     resolve(v)
   })
