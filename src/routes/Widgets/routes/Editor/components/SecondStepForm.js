@@ -17,7 +17,7 @@ class SecondStepForm extends React.Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
-        <Field name="file" component={renderFile} label="应用文件" />
+        <Field name="file" component={renderFile} label="组件文件" />
 
         <div className="form-btn">
           <div>

@@ -254,7 +254,7 @@
           width: 115px;
           height: 115px;
           margin: 5px auto;
-          background-image: url(http://timg.ffan.com/convert/resize/url_T1qmATBbVv1RCvBVdK/tfs/userView.png);
+          background-image: url(http://timg.ffan.com/convert/resize/url_T1QUWTBKY_1RCvBVdK/tfs/userPreivew.png);
           background-size: 100%;
         }
         .icon-leftjiao {
@@ -283,6 +283,11 @@
       color: #fff;
       background: #3fa7ff;
       border: 2px solid #3fa7ff;
+    }
+    .btn-blue.disabled {
+      background: gray;
+      border-color: #eeeeee;
+      outline: none;
     }
     .btn-white {
       color: #3fa7ff;
