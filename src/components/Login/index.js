@@ -24,23 +24,15 @@ export default class Login extends Component {
     console.log("====1111111111=====")
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackurl = `open.sit.ffan.net/apps`
+    let callbackurl = location.href
     LoginSDK.getStatus((status, data) => {
       console.log("getStatus ", status, data)
       if (status) {
         // 已登录
         console.log("已登录 data ", data)
-        this.setState({isLogin: true})
+        this.setState({isLogin: true, userInfo: data})
       } else {
-        // data = {
-        //   face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
-        //   mix_face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
-        //   nick: "SeaDM",
-        //   psrc: 0,
-        //   puid: "0",
-        //   uid: "M4OG7Bof9u8."
-        // }
-        // this.setState({isLogin: true, userInfo: data})
+        
       }
     }, url, loginUrl, callbackurl)
   }
