@@ -17,8 +17,8 @@ const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/mo
 const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
 
 const SAVE_DETAIL = 'SAVE_DETAIL' // To : src/routes/Shop/routes/Editor/modules/preview.js
-
-
+const PAGE_PUBLISH_START = 'PAGE_PUBLISH_START'
+const PAGE_PUBLISH_END = 'PAGE_PUBLISH_END'
 
 export const saveDetail = (element, detail) => dispatch => dispatch({
   type: SAVE_DETAIL,
@@ -26,15 +26,45 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
   detail,
 })
 
-export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
+const getPublishStatus = async deployId => {
+  const apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/merchant/deployPage/${deployId}/status`)
+  const result = await fetchUtil.getJSON(apiUrl)
+  return result.data.status
+}
+
+const repeatPublishStatus = async deployId => {
+  let result = await getPublishStatus(deployId)
+  if (result !== 2) {
+    await sleep(1000)
+    await repeatPublishStatus(deployId)
+  } else {
+    return result
+  }
+}
+
+export const savePage = pageId => (dispatch, getState) => new Promise(async(resolve, reject) => {
   const state = getState()
-  const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
-  fetchUtil.postForm(apiUrl, { viewData: state.preview, }).then(v => {
-    console.log(v.data)
-    resolve(v)
+  const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
+  fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
+    dispatch(startPublishPage())
+    const { deployId } = v.data
+    repeatPublishStatus(deployId).then(v => {
+      dispatch(endPublishPage())
+      resolve(v)
+    }).catch(e => {
+      console.log(e)
+    })
   })
 })
 
+export const startPublishPage = () => ({
+  type: PAGE_PUBLISH_START,
+})
+
+export const endPublishPage = () => ({
+  type: PAGE_PUBLISH_END,
+})
 
 export const cancelElement = () => dispatch => dispatch({
   type: CANCEL_ELEMENT,
@@ -49,6 +79,8 @@ const ACTION_HANDLERS = {
   [CANCEL_ELEMENT]: state => ({ ...state, element: {} }),
   [DELETE_ELEMENT]: state => ({ ...state, element: {} }),
   [SELECT_ELEMENT]: (state, action) => ({ ...state, element: action.selectedElement }),
+  [PAGE_PUBLISH_START]: state => ({ ...state, pagePublish: 'start' }),
+  [PAGE_PUBLISH_END]: state => ({ ...state, pagePublish: 'end' }),
 }
 
 export const actions = {
@@ -57,7 +89,8 @@ export const actions = {
 }
 
 const initState = {
-  element: {}
+  element: {},
+  pagePublish: 'end'
 }
 
 export default function detailReducer(state = initState, action) {
