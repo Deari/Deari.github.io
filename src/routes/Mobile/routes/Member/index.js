@@ -7,12 +7,15 @@ import { getHardwareDomain } from 'utils/domain';
 import Debug from '../../../utils/debug';
 import DATA from './data';
 import './index.scss';
-
+function timeLog(txt){
+  var date = new Date()
+  alert(txt+date)
+}
 class App extends Component {
   state = DATA
 
   componentWillMount() {
-    
+    timeLog('拉取数据')
     const url = getHardwareDomain('mem/v1/mem?action=memStatistics&clientType=2');
     fetchUtil.getJSON(url).then(res=> {
       if(res.status == 200) {
@@ -27,6 +30,7 @@ class App extends Component {
   }
 
   render () {
+    timeLog("首屏渲染")
     const { increase, active, charge, all, analysis: { access, order, payment } } = this.state;
     const orderScale = (((order.new+order.old)/(access.new+access.old))*100).toFixed(0)
     const payScale = (((payment.new+payment.old)/(order.new+order.old))*100).toFixed(0)
