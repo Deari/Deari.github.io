@@ -32,17 +32,17 @@ export default class Login extends Component {
         console.log("已登录 data ", data)
         this.setState({isLogin: true})
       } else {
-        data = {
-          face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
-          mix_face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
-          nick: "SeaDM",
-          psrc: 0,
-          puid: "0",
-          uid: "M4OG7Bof9u8."
-        }
-        this.setState({isLogin: true, userInfo: data})
+        // data = {
+        //   face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
+        //   mix_face: "https://cloud.githubusercontent.com/assets/23731186/20859074/50d1502a-b98f-11e6-8073-a4862f5c9c15.png",
+        //   nick: "SeaDM",
+        //   psrc: 0,
+        //   puid: "0",
+        //   uid: "M4OG7Bof9u8."
+        // }
+        // this.setState({isLogin: true, userInfo: data})
       }
-    }, url)
+    }, url, loginUrl, callbackurl)
   }
 
   clickQuit() {
