@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/newList'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'utils/domain';
-import debug from 'routes/utils/debug';
+import { getDomain } from 'utils/domain'
+import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
 import Nav from 'components/Nav'
 import './index.scss'
