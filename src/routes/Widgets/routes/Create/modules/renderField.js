@@ -147,24 +147,17 @@ export class renderFile extends Component {
 
     formData.append('fileName', e.target.files[ 0 ])
 
-    console.log(e.target.files[ 0 ].name);
-
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
 
     }).then(res => {
-      console.info(res);
-
       if (res.status === 200) {
-
         this.props.input.onChange(res.data)
-
       } else {
         debug.warn('文件代码包格式错误')
-      }    
-      
+      }        
     }).catch(e => {
-      console.warn(e);
+      debug.warn('网络错误')
     })
   }
 

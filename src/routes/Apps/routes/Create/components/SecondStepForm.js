@@ -9,7 +9,7 @@ import {
   renderFile,
 } from '../../../modules/renderField'
 
-import { validate } from '../modules/validate'
+import { validate } from '../../../modules/validate'
 
 const SecondStepForm = props => {
 
@@ -46,6 +46,6 @@ export default connect(
   form: 'createAppStep2',
   fields: [],
   keepDirtyOnReinitialize: true,
-  enableReinitialize: true
-  // validate,
+  enableReinitialize: true,
+  validate
 })(SecondStepForm))

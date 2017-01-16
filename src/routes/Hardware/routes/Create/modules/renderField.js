@@ -257,7 +257,6 @@ export class renderFile extends Component {
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
-
     }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
@@ -265,7 +264,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
-      console.warn(e);
+      debug.warn('网络错误')
     })
   }
 
@@ -273,7 +272,6 @@ export class renderFile extends Component {
     const { input, tags, label, meta: { touched, error, warning } } = this.props;
 
     return (
-
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">

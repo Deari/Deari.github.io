@@ -2,17 +2,27 @@ import "./validate.scss"
 
 export const validate = values => {
   const errors = {}
+  console.log("validate values ", values)
   if (!values.appName) {
     errors.appName = <i className="message">请输入APP名字</i>
+  }
+  if (!values.appLogo) {
+    errors.appLogo = <i className="message">请选择应用图片</i>
   }
   if (!values.appDesc) {
     errors.appDesc = <i className="message">请输入APP简介</i>
   } 
-  if (!values.categoryId) {
-    errors.categoryId = <i className="message">请选择</i>
+  if (parseInt(values.categoryId) == -1) {
+    errors.categoryId = <i className="message">请选择分类</i>
   }
-  if(!values.codeDesc){
-    errors.codeDesc = <i className="message">请输入版本介绍</i>
+  if (values.tags && values.tags.length == 0) {
+    errors.tags = <i className="message">请选择标签</i>
+  }
+  if (!values.codeDesc) {
+    errors.codeDesc = <i className="message">请输入文字介绍</i>
+  }
+  if(!values.file){
+    errors.file = <i className="message">请选择.zip类型的文件</i>
   }
   return errors
 }

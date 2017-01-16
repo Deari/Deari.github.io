@@ -3,34 +3,34 @@ import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
-export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderField = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
       <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderTextArea = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderTextArea = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={label}></textarea>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
+export const renderSelect = ({ input, label, meta: { touched, dirty, error, warning }, children }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <select {...input}>
         {children}
       </select>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
@@ -48,7 +48,7 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props;
 
     return (
       <div className="form-row">
@@ -68,6 +68,7 @@ export class renderTags extends Component {
             ))
           }
         </ul>
+        {(dirty || touched) && ((error && <span>{error}</span>))}
       </div>
     )
   }
@@ -99,7 +100,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning }} = this.props;
+    const { input, label, meta: { touched, dirty, error, warning }} = this.props;
     
     return (
       <div className="form-row">
@@ -114,6 +115,7 @@ export class renderImageUpload extends Component {
           <div className="img-container">
             <img src={input.value} alt="上传图片" className="img-thumbnail" />
           </div>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -126,38 +128,30 @@ export class renderFile extends Component {
   fileUpload(e) {
     const url = getDomain("web/file/upload")
     const formData = new FormData()
-
     formData.append('fileName', e.target.files[0])
-    
-    console.log(e.target.files[0].name);
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
-
     }).then(res=>{
-      
-      console.info(res);
-
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
         debug.warn('文件代码包格式错误')
       }
-
     }).catch(e=>{
       debug.warn('网络错误')
     })
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props;
     
     return (
-
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <input type="file" className="form-file" onChange={::this.fileUpload} />
+          <input type="file" accept=".zip" className="form-file" onChange={::this.fileUpload} />
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )

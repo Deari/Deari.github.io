@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import { validate, warn } from '../modules/validate'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
@@ -26,13 +25,6 @@ class CreateContainer extends Component {
 
   submitFirst(values) {
 
-    // console.log("values", values);
-    // this.props.updateForm2({
-    //   appId: 111111
-    // });
-    // this.props.toggleStep(2);
-    // return;
-
     const formData = new FormData();
 
     for(let key in values) {
@@ -49,7 +41,6 @@ class CreateContainer extends Component {
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        debug.info('提交成功', res.data)
         this.props.updateForm2({
           appId: res.data.appId
         });
