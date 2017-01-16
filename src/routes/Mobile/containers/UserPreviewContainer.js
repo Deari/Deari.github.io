@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import UserPreview from '../components/UserPreview'
 import fetchUtil from '../../utils/fetchUtil'
-import { getHardwareDomain } from 'utils/domain';
-const apiUrl = getHardwareDomain('bo/v1/web/merchant/page/3')
+import {getDomain}  from 'utils/domain';
+
+const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/page/3')
 const promised = {
   promise: fetchUtil.getJSON(apiUrl)
 }
