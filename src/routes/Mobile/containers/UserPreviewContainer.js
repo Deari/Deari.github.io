@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import UserPreview from '../components/UserPreview'
 import fetchUtil from '../../utils/fetchUtil'
-
+import { getHardwareDomain } from 'utils/domain';
+const apiUrl = getHardwareDomain('bo/v1/web/merchant/page/3')
 const promised = {
-  promise: fetchUtil.getJSON('http://api.intra.sit.ffan.net/bo/v1/web/merchant/page/3')
+  promise: fetchUtil.getJSON(apiUrl)
 }
 
 const defaultView = {

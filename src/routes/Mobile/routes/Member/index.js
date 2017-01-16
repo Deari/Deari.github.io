@@ -7,7 +7,6 @@ import { getHardwareDomain } from 'utils/domain';
 import Debug from '../../../utils/debug';
 import DATA from './data';
 import './index.scss';
-
 class App extends Component {
   state = DATA
 
