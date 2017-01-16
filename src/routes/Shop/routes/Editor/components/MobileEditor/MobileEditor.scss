@@ -127,9 +127,20 @@
       top: 45px;
       bottom: 50px;
       left: 18px;
-      width: 280px;
+      width: 270px;
       // border: 1px solid red;
-      overflow: scroll;
+      overflow-y: scroll;
+      &::-webkit-scrollbar {
+        width: 12px;background: #ddd;
+        border-radius: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #fff;
+        border-radius: 6px;
+      }
+      &::-webkit-scrollbar-corner {
+
+      }
     }
     .shop-info {
       width: 212px;
@@ -184,7 +195,11 @@
 }
 
 .sidebar-right {
-  @include fixed;
+  // display: none;
+  
+  position: fixed;
+  top: 0;
+  bottom: 0;
   right: 0;
   width: 200px;
   background: #f7f8fa;
