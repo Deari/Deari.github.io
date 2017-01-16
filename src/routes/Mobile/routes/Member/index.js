@@ -28,7 +28,8 @@ class App extends Component {
 
   render () {
     const { increase, active, charge, all, analysis: { access, order, payment } } = this.state;
-
+    const orderScale = (((order.new+order.old)/(access.new+access.old))*100).toFixed(0)
+    const payScale = (((payment.new+payment.old)/(order.new+order.old))*100).toFixed(0)
     return (
       <div className="m-container">
         <div className="content">
@@ -112,13 +113,13 @@ class App extends Component {
               <div className="analysis2-content1">
                 <div className="analysis2-box">
                   <span className="analysis2-text1">浏览下单转换率</span>
-                  <span className="analysis2-text2">12<i>%</i></span>
+                  <span className="analysis2-text2">{orderScale}<i>%</i></span>
                 </div>
               </div>
               <div className="analysis2-content2">
                 <div className="analysis2-box">
-                  <span className="analysis2-text1">浏览下单转换率</span>
-                  <span className="analysis2-text2">12<i>%</i></span>
+                  <span className="analysis2-text1">下单支付转换率</span>
+                  <span className="analysis2-text2">{payScale}<i>%</i></span>
                 </div>
               </div>
             </div>

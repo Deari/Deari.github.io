@@ -269,6 +269,11 @@
       background: #3fa7ff;
       border: 2px solid #3fa7ff;
     }
+    .btn-blue.disabled {
+      background: gray;
+      border-color: #eeeeee;
+      outline: none;
+    }
     .btn-white {
       color: #3fa7ff;
       background: #fff;

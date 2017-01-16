@@ -3,27 +3,17 @@ import Business from '../../../../../../components/business'
 
 
 export class Detail extends Component {
-
-  state = {
-    modelActive: false
-  }
-
-  setModel = ({ modelActive = false }) => {
-    this.setState({ modelActive })
-  }
-
   savePageHandler = () => {
-    const result = this.props.savePage().then(v=> {
-      console.log(v)
-    })
-    console.log('-------------')
-    console.log(result)
+    const { savePage, detail: { pagePublish } } = this.props
+    if (pagePublish !== 'start') {
+      savePage()
+    }
   }
 
   render() {
 
-    const { detail, saveDetail, savePage, deleteElement, cancelElement } = this.props
-    const { element } = detail
+    const { detail, saveDetail, deleteElement, cancelElement } = this.props
+    const { element, pagePublish } = detail
 
     if (!element.id) {
       return <div id="detail-container">
@@ -36,7 +26,10 @@ export class Detail extends Component {
         </div>
         <div className="btn-block">
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
-          <button className="btn btn-blue" onClick={savePage}><i className="iconfont icon-save"></i>发布</button>
+          <button className={ `btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
+                  onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
+            {pagePublish === 'start' ? '发布中...' : '发布'}
+          </button>
         </div>
       </div>
     }
@@ -48,11 +41,6 @@ export class Detail extends Component {
         // 自定义组件
         return <div id="detail-container">
           <Detail {...detail} onChange={saveDetail}/>
-          <div className="btn-block">
-            <button className="btn btn-blue" onClick={this.savePageHandler}>
-              <i className="iconfont icon-save"></i>发布
-            </button>
-          </div>
         </div>
       } else {
         // H5 中非自定义组件？
