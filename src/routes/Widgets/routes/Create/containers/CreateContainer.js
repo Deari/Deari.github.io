@@ -71,8 +71,8 @@ class CreateContainer extends Component {
     const params = Object.assign({}, file, {
       appId,
       codeDesc,
-      'fileName': file.originalName,
-      'fileLink': file.url
+      'fileName': file && file.originalName,
+      'fileLink': file && file.url
     });
   
     for(let key in params) {
