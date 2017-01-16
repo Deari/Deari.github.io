@@ -10,7 +10,7 @@ export class ProductContainer extends Component {
 
   render() {
     const { products = [] } = this.props.product
-    return <div className="gui-containe">
+    return <div className="gui-container">
       <div className="gui-title">通用大模块</div>
       <ul className="gui-list">
         {products
