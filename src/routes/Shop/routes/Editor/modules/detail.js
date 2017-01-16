@@ -55,7 +55,6 @@ export const savePage = pageId => (dispatch, getState) => new Promise(async(reso
       dispatch(endPublishPage())
       resolve(v)
     }).catch(e => {
-      console.log("eeeeeeeeeeeeeeee")
       console.log(e)
     })
   })
