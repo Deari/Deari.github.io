@@ -10,11 +10,24 @@ export class ProductContainer extends Component {
 
   render() {
     const { products = [] } = this.props.product
-    return <ul className="gui-list">
-      {products.map((p, i) => <li className="items" key={i}>
-        <DragProduct {...p}/>
-      </li>)}
-    </ul>
+    return <div className="gui-containe">
+      <div className="gui-title">通用大模块</div>
+      <ul className="gui-list">
+        {products
+          .filter(e=> e.defaultLayout.w !== 1)
+          .map((p, i) => <li className="items" key={i}>
+          <DragProduct {...p}/>
+        </li>)}
+      </ul>
+      <div className="gui-title">功能小模块</div>
+      <ul className="gui-list">
+        {products
+          .filter(e=> e.defaultLayout.w === 1)
+          .map((p, i) => <li className="items" key={i}>
+          <DragProduct {...p}/>
+        </li>)}
+      </ul>
+      </div>
   }
 }
 
