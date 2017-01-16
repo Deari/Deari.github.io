@@ -11,7 +11,6 @@ class App extends Component {
   state = DATA
 
   componentWillMount() {
-    
     const url = getHardwareDomain('mem/v1/mem?action=memStatistics&clientType=2');
     fetchUtil.getJSON(url).then(res=> {
       if(res.status == 200) {
