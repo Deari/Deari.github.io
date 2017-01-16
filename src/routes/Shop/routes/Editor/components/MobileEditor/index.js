@@ -34,6 +34,7 @@ export class Editor extends Component {
           <div className="bg-phone">
             <div className="scroll-wrap">
               <Preview/>
+              <span className="slide-text">滑动区域</span>
             </div>
           </div>
         </div>
