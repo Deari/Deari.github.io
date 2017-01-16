@@ -4,6 +4,8 @@
  * new-mobile-editor-container
  **************************/
 
+$title-color : #4c627e;
+
 @mixin fixed {
   position: fixed;
   top: 0;
@@ -27,7 +29,7 @@
   background: #262c31;
   font-size: 12px;
   overflow-y: scroll;
-  
+
   .nav {
     .item {
       .menu-title {
@@ -69,11 +71,23 @@
       float: left;
     }
   }
-  .gui-list {
-    padding-top: 20px;
+
+  .gui-container{
     height: 278px;
     background: #262c31;
     overflow-y: scroll;
+  }
+
+  .gui-title {
+    color: $title-color;
+    margin: 5px 0 5px 15px;
+    font-size: 11px;
+    padding-left: 5px;
+    border-left : $title-color 3px solid;
+  }
+
+  .gui-list {
+    @include clx;
 
     &::-webkit-scrollbar {
       width: 10px;
@@ -208,7 +222,7 @@
 
 .sidebar-right {
   // display: none;
-  
+
   position: fixed;
   top: 0;
   bottom: 0;
