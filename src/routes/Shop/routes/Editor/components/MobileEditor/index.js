@@ -43,7 +43,7 @@ export class Editor extends Component {
             <div className="scroll-wrap">
               <Preview/>
             </div>
-            <span className="slide-text">滑动展示更多</span>
+            <span className="slide-text">滑动此区域以展示更多</span>
           </div>
         </div>
         {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}
