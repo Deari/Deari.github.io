@@ -1,7 +1,9 @@
+@import "~styles/layout";
+
 .react-grid-layout {
   position: relative;
   transition: height 200ms ease;
-  width:240px;
+  width:100%;
 }
 
 .react-grid-item {
