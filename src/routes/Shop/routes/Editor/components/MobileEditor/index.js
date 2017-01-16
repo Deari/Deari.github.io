@@ -32,10 +32,18 @@ export class Editor extends Component {
       <div className="editor-content">
         <div className="preview">
           <div className="bg-phone">
+            <div className="mobile-header">
+              <img className="clock" src="http://img1.ffan.com/T1hOJTB_WT1RCvBVdK" />
+              <div className="mobile-headerInfo">
+                <i className="iconfont icon-leftarrow"></i>
+                <h3 className="title">GAP(金地中心店)</h3>
+                <i className="iconfont icon-search"></i>
+              </div>
+            </div>
             <div className="scroll-wrap">
               <Preview/>
-              <span className="slide-text">滑动区域</span>
             </div>
+            <span className="slide-text">滑动此区域以展示更多</span>
           </div>
         </div>
         {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}

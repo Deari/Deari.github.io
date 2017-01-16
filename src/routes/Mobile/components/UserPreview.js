@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Responsive, WidthProvider, ReactGridLayout } from 'react-grid-layout'
 const ResponsiveReactGridLayout = WidthProvider(Responsive)
-import './UserPreview.scss'
 import Element from '../../Shop/routes/Editor/containers/ElementContainer'
 export default class UserPreview extends Component {
 
