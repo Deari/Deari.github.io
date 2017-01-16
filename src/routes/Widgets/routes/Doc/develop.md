@@ -1,12 +1,12 @@
 # 一、注册
 
-1、首先您需要打开 [开发者平台首页](http://open.sit.ffan.net)，点击右上角注册按钮，填写相关信息注册为开发者。
+1、首先您需要打开 [开发者平台首页](http://open.ffan.net)，点击右上角注册按钮，填写相关信息注册为开发者。
 
 # 二、开发
 
 ## 1、创建应用
 
-1\.点击 [应用市场](http://open.sit.ffan.net/apps) -> 创建新应用，按要求填写相关应用信息，创建应用
+1\.点击 [应用市场](http://open.ffan.net/apps) -> 创建新应用，按要求填写相关应用信息，创建应用
 2\.成功创建应用后，系统会生成AppID和AppSecrect（待补充）
 
 ## 2、环境搭建
@@ -24,7 +24,7 @@ brew install watchman
 npm install -g react-native-cli
 ```
 
-- 集成SDK（待补充）[点击下载SDK](http://open.sit.ffan.net/apps/create)
+- 集成SDK（待补充）[点击下载SDK](http://open.ffan.net/apps/create)
 - 验证环境（待补充）
 
 2\.iOS开发者:
@@ -43,7 +43,7 @@ npm install -g react-native-cli
 brew install watchman
 ```
 
-- 集成SDK：[点击下载SDK](http://open.sit.ffan.net/apps/create)
+- 集成SDK：[点击下载SDK](http://open.ffan.net/apps/create)
 ### 1\.添加SDK文件
 将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
 ![Alt text](http://timg.ffan.com/convert/resize/url_T1YcLTB4__1RCvBVdK/tfs/14834337846233.jpeg)
@@ -103,12 +103,12 @@ brew install watchman
 进入工程目录中的js_module目录，运行npm start或者react-native start，开启服务，初始化IReactConfig时候在下列方法中返回true, 并在LocalDebugParams中传入调试的moduleName。
 
 # 四、打包
-1、[请下载打包工具](http://open.sit.ffan.net/apps/list)
+1、[请下载打包工具](http://open.ffan.net/apps/list)
 2、参考打包工具中的应用规范对包进行调整（待补充）
 3、参考打包工具中的使用文档进行打包（待补充）
 
 # 五、发布
-1、[登录开发者平台首页](http://open.sit.ffan.net)，点击 应用市场->我的应用->发布新版本，并上传应用文件，如：应用名.fap
+1、[登录开发者平台首页](http://open.ffan.net)，点击 应用市场->我的应用->发布新版本，并上传应用文件，如：应用名.fap
 2、填写版本号，版本号采用标准三段式，如：1.0.0
 3、填写版本简介，字数请限制在120字内
 4、提交审核（审核规则待补充）

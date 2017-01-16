@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import ReactGridLayout from 'react-grid-layout'
 
-import './Preview.scss'
-
 import Element from '../../containers/ElementContainer'
 
 export class Preview extends Component {
@@ -22,7 +20,7 @@ export class Preview extends Component {
 
   static defaultProps = {
     gridProps: {
-      className: "layout",
+      className: "grid-layout",
       cols: 4,
       rowHeight: 47,
       selectedCls: 'selected',

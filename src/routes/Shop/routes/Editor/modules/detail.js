@@ -1,4 +1,5 @@
-import fetchUtil from '../../../../utils/fetchUtil'
+import fetchUtil from '../../../../utils/fetchUtil';
+import { getDomain } from 'utils/domain';
 
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
@@ -26,9 +27,9 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
 })
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
-
 const getPublishStatus = async deployId => {
-  const result = await fetchUtil.getJSON(`http://api.intra.sit.ffan.net/bo/v1/web/merchant/deployPage/${deployId}/status`)
+  const apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/merchant/deployPage/${deployId}/status`)
+  const result = await fetchUtil.getJSON(apiUrl)
   return result.data.status
 }
 
@@ -44,18 +45,14 @@ const repeatPublishStatus = async deployId => {
 
 export const savePage = pageId => (dispatch, getState) => new Promise(async(resolve, reject) => {
   const state = getState()
-  fetchUtil.postForm('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish',
-    {
-      viewData: state.preview,
-    },
-  ).then(v => {
+  const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
+  fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
     dispatch(startPublishPage())
     const { deployId } = v.data
     repeatPublishStatus(deployId).then(v => {
       dispatch(endPublishPage())
       resolve(v)
     }).catch(e => {
-      console.log("eeeeeeeeeeeeeeee")
       console.log(e)
     })
   })
