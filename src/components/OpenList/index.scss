@@ -40,6 +40,9 @@
     color: $gray6-color;
     @include font-hidden;
     @include font-nowrap;
+    .user-img {
+      display: inline-block;
+    }
   }
   .open-list-img{
     display: inline-block;
