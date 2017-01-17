@@ -3,7 +3,7 @@ import "./validate.scss"
 export const validate = values => {
   const errors = {}
   if (!values.appName) {
-    errors.appName = <i className="message">请输入应用名字</i>
+    errors.appName = <i className="message">请输入应用名称</i>
   }
   if (!values.appLogo) {
     errors.appLogo = <i className="message">请选择应用图片</i>
