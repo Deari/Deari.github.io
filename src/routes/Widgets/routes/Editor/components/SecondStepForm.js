@@ -44,7 +44,7 @@ export default connect(
 
 )(reduxForm({
   form: 'widgetsEditStep2',   
-  fields: ['appName', 'appDesc'],
+  fields: [],
   keepDirtyOnReinitialize: true,
   enableReinitialize: true,
   validate

@@ -3,8 +3,14 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
   
-import renderField, { renderTextArea, renderFile, renderImageUpload, renderImgsUpload } from '../modules/renderField'
-import { validate } from '../modules/validate'
+import { 
+  renderField,
+  renderTextArea, 
+  renderFile, 
+  renderImageUpload, 
+  renderImgsUpload 
+} from '../../../modules/renderField'
+import { validate } from '../../../modules/validate'
 
 import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
@@ -42,7 +48,7 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep
-};
+}
 
 const mapStateToProps = ({ hdEdit }) => ({
   initialValues: hdEdit.form2
@@ -53,11 +59,11 @@ export default connect(
 
 )(reduxForm({
   form: 'hdEditStep2',   
-  fields: ['appName', 'appDesc'],
-  forceUnregisterOnUnmount: true,
-  validate,
+  fields: [],
+  // forceUnregisterOnUnmount: true,
   keepDirtyOnReinitialize: true,
-  enableReinitialize: true
+  enableReinitialize: true,
+  validate
 })(SecondStepForm))
 
 

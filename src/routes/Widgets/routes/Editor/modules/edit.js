@@ -261,3 +261,8 @@ export const getAppCodeInfo = (appId) => {
   }
 }
 
+export const updateFirstForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm(values))
+  }
+}
