@@ -47,27 +47,27 @@
 
 .rangeslider-vertical {
     margin: 20px auto;
-    height: 150px;
-    max-width: 10px;
-    border-radius: 5px;
+    height: 180px;
+    max-width: 20px;
+    border-radius: 10px;
     background: none
 }
 
 .rangeslider-vertical .rangeslider__fill {
     width: 100%;
-    border-radius: 0 0 7px 7px;
+    border-radius: 0 0 12px 12px;
     // background: #3fa7ff;
     box-shadow: none;
     bottom: 0
 }
 
 .rangeslider-vertical .rangeslider__handle {
-    width: 14px;
-    height: 30px;
-    border-radius: 7px;
+    width: 24px;
+    height: 40px;
+    border-radius: 12px;
     left: -2px;
 }
 
 .rangeslider-vertical .rangeslider__handle:active {
-    box-shadow: none
+    // box-shadow: none
 }
