@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1484623748910'); /* IE9*/
-  src: url('iconfont.eot?t=1484623748910#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1484623748910') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1484623748910') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1484623748910#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1484624244250'); /* IE9*/
+  src: url('iconfont.eot?t=1484624244250#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1484624244250') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1484624244250') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1484624244250#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -149,7 +149,5 @@
 
 .icon-info:before { content: "\e61c"; }
 
-.icon-sidebar8:before { content: "\e61d"; }
-
-.icon-sidebar8-copy:before { content: "\e675"; }
+.icon-sidebar8:before { content: "\e675"; }
 
