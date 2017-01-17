@@ -131,14 +131,14 @@ $title-color : #4c627e;
 }
 
 .editor-content {
-  // position: absolute;
+  position: absolute;
   z-index: 5;
   left: 200px;
   right: 200px;
   height:475px;
   top:50%;
-  // margin-top:-238px;
-  // bottom: 0;
+  margin-top:-238px;
+  bottom: 0;
   overflow: hidden;
   .preview {
     position: relative;
@@ -253,7 +253,7 @@ $title-color : #4c627e;
 }
 
 .sidebar-right {
-  display: none;
+  // display: none;
 
   position: fixed;
   top: 0;
