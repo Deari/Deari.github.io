@@ -58,12 +58,12 @@ export class Editor extends Component {
         <div className="preview">
           <div className="bg-phone">
             <div className="mobile-header">
-              <img className="clock" src="http://img1.ffan.com/T1hOJTB_WT1RCvBVdK" />
-              <div className="mobile-headerInfo">
-                <i className="iconfont icon-leftarrow"></i>
-                <h3 className="title">GAP(金地中心店)</h3>
-                <i className="iconfont icon-search"></i>
-              </div>
+              <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png" />
+              {/*<div className="mobile-headerInfo">*/}
+                 {/*<i className="iconfont icon-leftarrow"></i>*/}
+                 {/*<h3 className="title">GAP(金地中心店)</h3>*/}
+                 {/*<i className="iconfont icon-search"></i>*/}
+               {/*</div>*/}
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
               <Preview/>

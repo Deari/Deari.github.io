@@ -1,8 +1,8 @@
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
-const PREFIX = 'HD_CREATE';
+const PREFIX = 'HD_CREATE'
 
-const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
+const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -10,6 +10,7 @@ const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
 const REQUEST_CATES = PREFIX+'REQUEST_CATES'
 const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 
+const UPDATE_FORM1 = PREFIX+'UPDATE_FORM1'
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 const RECEIVE_SDKS = PREFIX+'RECEIVE_SDKS'
 
@@ -26,6 +27,11 @@ export const receiveCates = (data) => ({
 
 export const receiveSdkInfo = (data) => ({
   type: RECEIVE_SDKS,
+  data
+})
+
+export const updateForm1 = (data) => ({
+  type: UPDATE_FORM1,
   data
 })
 
@@ -69,6 +75,14 @@ const ACTION_HANDLERS = {
     sdkTypes: action.data.sdkType,
     osPlatforms: action.data.os,
     hardwarePlatforms: action.data.platform
+  }),
+
+  [UPDATE_FORM1]: (state, action)=>({
+    ...state,
+    form: {
+      ...state.form,
+      ...action.data
+    }
   }),
 
   [UPDATE_FORM2]: (state, action)=>({
@@ -117,9 +131,9 @@ const initialState = {
     hardwareProducer: '',
     commType1: 0,
     commType2: 0,
-    sdkType: 0,
-    os: 0,
-    hardwarePlatform: 0,
+    sdkType: -1,
+    os: -1,
+    hardwarePlatform: -1,
   },
 
   form2: {
@@ -138,30 +152,30 @@ export default function createReducer(state = initialState, action) {
 export const getTags = () => {
   return (dispatch) => {
     // 拉取标签数据
-    const url = getDomain("public/common/tags?type=hardware");
+    const url = getDomain("public/common/tags?type=hardware")
     return fetchUtil.getJSON(url).then(res=>{
       //console.info(res)
       if(res.status == 200) {
-        dispatch(receiveTags(res.data));
+        dispatch(receiveTags(res.data))
       } else {
-        throw Error ('get tags error');
+        throw Error ('get tags error')
       }
-    });
+    })
   }
 }
 
 export const getCates = () => {
   return (dispatch) => {
     // 拉取 select 列表数据
-    const url = getDomain("web/hardware/getCategory");
+    const url = getDomain("web/hardware/getCategory")
     return fetchUtil.getJSON(url).then(res=>{
       //console.info(res)
       if(res.status == 200) {
-        dispatch(receiveCates(res.data && res.data.list));
+        dispatch(receiveCates(res.data && res.data.list))
       } else {
-        throw Error ('get Categories error');
+        throw Error ('get Categories error')
       }
-    });
+    })
   }
 }
 
@@ -169,18 +183,25 @@ export const getSdkInfo = () => {
   return (dispatch) => {
 
     // 硬件SDK分类信息
-    const url = getDomain("web/hardware/getSdkInfo");
+    const url = getDomain("web/hardware/getSdkInfo")
 
     return fetchUtil.getJSON(url).then(res=>{
       console.info(res)
       if(res.status == 200) {
-        dispatch(receiveSdkInfo(res && res.data));
+        dispatch(receiveSdkInfo(res && res.data))
       } else {
-        throw Error ('getSdkInfo error');
+        throw Error ('getSdkInfo error')
       }
-    });
+    })
   }
 }
+
+export const updateFirstForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm1(values))
+  }
+}
+
 
 
 

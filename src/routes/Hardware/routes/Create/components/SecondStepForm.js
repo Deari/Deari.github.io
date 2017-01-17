@@ -3,8 +3,14 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
   
-import renderField, { renderTextArea, renderFile, renderImageUpload, renderImgsUpload } from '../modules/renderField'
-import { validate } from '../modules/validate'
+import { 
+  renderField,
+  renderTextArea, 
+  renderFile, 
+  renderImgsUpload 
+} from '../../../modules/renderField'
+
+import { validate } from '../../../modules/validate'
 
 import { toggleStep } from '../modules/create'
 
@@ -36,11 +42,9 @@ class SecondStepForm extends React.Component {
   }
 }
 
-
-
 const mapDispatchToProps = {
   toggleStep
-};
+}
 
 export default connect(
   state=>({
@@ -51,10 +55,12 @@ export default connect(
 
 )(reduxForm({
   form: 'secondStepForm',   
-  fields: ['appName', 'appDesc'],
+  fields: [],
   destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  validate,
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true,
+  validate
 })(SecondStepForm))
 
 

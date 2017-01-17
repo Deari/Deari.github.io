@@ -35,7 +35,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     }
     .row-right{
         margin: 0;
-        @include float-left; 
+        @include float-left;
         input[type="text"]{
             width: 574px; 
             height: $default-height - 71px; 
@@ -108,6 +108,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 cursor: pointer;
             }
         }
+        &>span{
+            cursor: default!important;
+        }
         img{
             width: $default-width;
             height: $default-height;
@@ -165,6 +168,10 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     }
     .row-right.max-width{
         width: 574px;
+        overflow: hidden;
+        div:last-of-type{
+            margin-right: 0;
+        }
     }
 }
 .form-btn{
@@ -203,9 +210,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .row-size{
     @include float-left;
     margin:15px 79px 0 0;
-    &:last-child{
-        margin-right: 0;
-    }
     .row-img{
         width: 78px;
         height: 150px;
@@ -228,6 +232,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         background-size: 100%;
     }
 }
-
-
+.clearF{
+    @include clx;
+}
 

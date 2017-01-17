@@ -1,5 +1,5 @@
 import React from 'react'
-
+import md5 from 'md5'
 import ProbeReport from '../components/Probe/Report'
 
 import fetchUtil from '../../utils/fetchUtil'
@@ -9,10 +9,10 @@ import Debug from '../../utils/debug'
 import DATA from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
 
-const promised = {
+const getTimeStr = (date)=>{
+  const timeStr = date.getFullYear()+'/'+Math.floor((date.getMonth()+3)/3)+'/'+date.getDate()
+  return timeStr
 }
-
-
 const keyMap = {
   am: [
     '00:00~08:00',
@@ -48,11 +48,8 @@ const getSumOfTimeArray = (arr=[], start, end) => {
   return arr.slice(start, end).reduce((prev, cur)=> prev+cur.num, 0)
 }
 
-const getData = async (url) => {
-  return await fetchUtil.getJSON(url)
-}
 
-export const Promised = (promiseProp, Wrapped) => class extends React.Component {
+export const Promised = (Wrapped) => class extends React.Component {
 
   state = {
     amNum: 0, 
@@ -61,11 +58,19 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     timeArray: [],
     dayArray:[] 
   }
-
+  
  async componentWillMount() {
+    const date = new Date ()
+    const startTime = (new Date (getTimeStr(date)).getTime())/1000
+    const endTime = ((date.getTime())/1000).toFixed()
+    
+    const signParam = "app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=" + endTime
+    const sign = md5(signParam)
+    const timeParams = `startTime=${startTime}&endTime=${endTime}`
+    const hourParams = `storeId=10021141&${timeParams}&app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
 
-    const timeApiUrl = getHardwareDomain('bo/store/v1/storePerSummary/hour?storeId=111&startTime=111&endTime=111')
-    const dayApiUrl = getHardwareDomain('bo/store/v1/storePerSummary/day?storeId=111&startTime=111&endTime=111')
+    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/hour?${hourParams}`)
+    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/day?${hourParams}`)
     try{
        const timeRes = await fetchUtil.getJSON(timeApiUrl)
        if(timeRes.status == 200) {
@@ -83,7 +88,7 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
     try {
       const dayRes = await fetchUtil.getJSON(dayApiUrl)
       if (dayRes.status == 200) {
-        console.info(dayRes.data);
+        //console.info(dayRes.data);
         this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
       } else {
         Debug.warn('获取数据异常', res);
@@ -111,15 +116,15 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
       am: {
         list: [
           {num: getSumOfTimeArray(timeArray, 0, 8)}
-        ].concat(timeArray.slice(7, 11)),
+        ].concat(timeArray.slice(8, 12)),
         total: amNum,
       },
       pm: {
-        list: timeArray.slice(11, 16),
+        list: timeArray.slice(12, 17),
         total: pmNum,
       },
       night: {
-        list: timeArray.slice(16, 20).concat([ 
+        list: timeArray.slice(17, 21).concat([ 
           {num: getSumOfTimeArray(timeArray, 0, 8)}
         ]),
         total: nightNum,
@@ -134,16 +139,16 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
 
   render () {
     const { allNum, amNum, pmNum, nightNum ,dayArray} = this.state;
-  
+    
     const data = {
       allNum, amNum, pmNum, nightNum,
       listData: this.getListData(),
       chartData: this.getChartData(),
       dayArray: dayArray,
     }
- 
+    
     return <Wrapped {...data} />
   }
 }
 
-export default Promised(promised, ProbeReport)
+export default Promised(ProbeReport)

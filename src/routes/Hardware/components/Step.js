@@ -2,7 +2,7 @@ import './step.scss'
 
 const Step = (props)=>(
   <div className="step">
-  	<h2>编辑硬件</h2>
+  	<h2>发布新硬件</h2>
   	<div className='branchBox'>
 	    <div className={props.page == 1? 'branch active':'branch'}>
 	    	<span>1</span>
@@ -21,4 +21,4 @@ const Step = (props)=>(
   	</div>
   </div>
 )
-export default Step;
+export default Step

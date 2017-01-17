@@ -2,19 +2,18 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import { validate, warn } from '../modules/validate'
 import { test } from '../modules/create'
 
 import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
-import Complete from '../components/Complete'
-import Step from '../components/Step'
+import Complete from '../../../components/Complete'
+import Step from '../../../components/Step'
 
 import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 
-import { toggleStep, getTags, getCates, getSdkInfo } from '../modules/create'
+import { toggleStep, getTags, getCates, getSdkInfo, updateFirstForm } from '../modules/create'
 
 import debug from 'routes/utils/debug'
 
@@ -26,14 +25,14 @@ class CreateContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.toggleStep(1);
+    this.props.toggleStep(1)
     this.props.getTags()
     this.props.getCates()
     this.props.getSdkInfo()
   }
   submitFirst(values) {
     console.log(values)
-    const formData = new FormData();
+    const formData = new FormData()
     const params = {
       hardwareName : values['hardwareName'],
       hardwareLogo : values['hardwareLogo'],
@@ -47,34 +46,36 @@ class CreateContainer extends Component {
       sdkType: values['sdkType'],
       os: values['os'],
       hardwarePlatform: values['hardwarePlatform'],
-    };
+    }
 
     for(let key in params) {
-      formData.append(key, params[key]);
+      formData.append(key, params[key])
     }
 
     for(let v of values.tags) {
-      formData.append("hardwareTags[]", v);
+      formData.append("hardwareTags[]", v)
     }
 
     const url = getDomain(`web/hardware/addHardware/step1`)
 
-    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-      if(res.status == 200) {
-        const hardwareId = res.data.hardwareId;
-        const firstStepValue = { ...values }
+    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(
+      res => {
+        if(res.status == 200) {
+          const hardwareId = res.data.hardwareId
+          const firstStepValue = { ...values }
 
-        this.setState({firstStepValue, hardwareId}, () => {
-          this.props.toggleStep(2);
-        })
+          this.setState({firstStepValue, hardwareId}, () => {
+            this.props.updateFirstForm(values)
+            this.props.toggleStep(2)
+          })
 
-      } else {
-        debug.warn('请完善表单信息')
-      }
-    }).catch(e=>{
-      debug.warn('网络错误')
-    })
-
+        } else {
+          debug.warn('请完善表单信息')
+        }
+      }).catch(e => {
+        debug.warn('网络错误')
+        console.log("e ", e)
+      })
   }
 
   submitSecond(values) {
@@ -84,7 +85,7 @@ class CreateContainer extends Component {
       ...values
     }
 
-    const formData = new FormData();
+    const formData = new FormData()
     const params = {
       hardwareId : hardwareId,
       hardwareName : SecondStepValues['hardwareName'],
@@ -103,25 +104,25 @@ class CreateContainer extends Component {
       hardwareBrand: SecondStepValues['hardwareBrand'],
       hardwareDetail: SecondStepValues['hardwareDetail'],
       hardwareReport: SecondStepValues['hardwareReport'],
-    };
+    }
 
     for(let key in params) {
-      formData.append(key, params[key]);
+      formData.append(key, params[key])
     }
 
     for(let v of SecondStepValues.tags) {
-      formData.append("hardwareTags[]", v);
+      formData.append("hardwareTags[]", v)
     }
 
     for(let key in SecondStepValues.hardwarePics) {
-      formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key]);
+      formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key])
     }
 
     const url = getDomain(`web/hardware/addHardware/step2`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-          this.props.toggleStep(3);
+          this.props.toggleStep(3)
       } else {
         debug.warn('请完善表单信息')
       }
@@ -132,7 +133,7 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const { page } = this.props.hardwareCreate;
+    const { page } = this.props.hardwareCreate
 
     const urls = {
       create: { url: `/hardware/create`, name: '发布新硬件' },
@@ -156,7 +157,7 @@ class CreateContainer extends Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -165,7 +166,8 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
-  getSdkInfo
+  getSdkInfo,
+  updateFirstForm
 }
 
 const mapStateToProps = ({ hardwareCreate }) => ({
