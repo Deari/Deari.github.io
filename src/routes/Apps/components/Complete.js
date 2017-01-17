@@ -12,4 +12,4 @@ const Complete = (props)=>(
   </div>
 )
 
-export default Complete;
+export default Complete

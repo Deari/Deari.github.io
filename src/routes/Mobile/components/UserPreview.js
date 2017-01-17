@@ -7,7 +7,7 @@ export default class UserPreview extends Component {
   static defaultProps = {
     gridProps: {
       className: "user-layout",
-      rowHeight: 80,
+      rowHeight: 120,
       selectedCls: 'selected',
       width: 667,
       margin: [ 0, 0 ],

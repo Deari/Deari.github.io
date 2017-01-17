@@ -20,8 +20,8 @@ class Main extends React.Component {
 
   async getList(tagId) {
 
-    let id = tagId || 'all';
-    let apiUrl = getDomain(`web/market/tag/${id}/apps`);
+    let id = tagId || 'all'
+    let apiUrl = getDomain(`web/market/tag/${id}/apps`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
@@ -35,7 +35,7 @@ class Main extends React.Component {
   }
 
   async getTags() {
-    let apiUrl = getDomain(`public/common/tags?type=app`);
+    let apiUrl = getDomain(`public/common/tags?type=app`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
@@ -96,11 +96,11 @@ class Main extends React.Component {
     for (let i=0; i<listData.length; i++) {
       if (listData[i].appId === item.appId) {
         if (listData[i].checkedStar) {
-          listData[i].checkedStar = false;
+          listData[i].checkedStar = false
           this.setState({listData: listData})
-          return;
+          return
         } else {
-          listData[i].checkedStar = true;
+          listData[i].checkedStar = true
           this.setState({listData: listData})
           return
         }
@@ -141,4 +141,4 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default Main

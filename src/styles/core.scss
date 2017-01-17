@@ -1,37 +1,39 @@
 @import '~normalize.css/normalize';
 
-html, body {
-  margin: 0;padding: 0;
-  height: 100%;
+*,*:before,*:after {
   box-sizing: border-box;
-  font-family: "Microsoft Yahei","sans-serif";
+}
+
+html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite,
+code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ul , li, ol,
+fieldset, form, label, legend,a,table {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial,sans-serif;
   background: #f1f1f3;
 }
-html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite, 
-code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ul , li, ol, 
-fieldset, form, label, legend,a,table {
-  margin: 0;padding: 0;
-  text-decoration:none; list-style:none;
+
+ul {
+  list-style:none;
 }
-*,*:before,*:after {
-  box-sizing: inherit;
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
 }
-h1, h2, h3, h4, h5, h6{
-    font-weight: normal;
-}
-i{ 
-  display: inline-block;
-}
-a{
+
+a {
   color: #000;
-  cursor: pointer;
+  text-decoration:none;
 }
-a:active{
-  color: inherit; 
+
+a:active {
+  color: #2692fb;
 }
-hr{
+
+hr {
   border: 1px solid #eeeeee;
-}
-select, input{
-  font-family: "Microsoft Yahei","sans-serif";
 }

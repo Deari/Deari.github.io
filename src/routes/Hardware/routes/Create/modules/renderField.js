@@ -112,21 +112,23 @@ export class renderTags extends Component {
     return (
       <div className="form-row">
         <label>{label}</label>
-        <ul className="row-right max-width">
-          {
-            tags.map((item) => (
-              <li
-                className={
-                  ((tagId) => {
-                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
-                  })(item.tagId)
-                }
-                key={item.tagId}
-                onClick={() => this.handleClick(item.tagId)}
-              >{item.tagName}</li>
-            ))
-          }
-        </ul>
+        <div className="row-right max-width">
+	        <ul>
+	          {
+	            tags.map((item) => (
+	              <li
+	                className={
+	                  ((tagId) => {
+	                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
+	                  })(item.tagId)
+	                }
+	                key={item.tagId}
+	                onClick={() => this.handleClick(item.tagId)}
+	              >{item.tagName}</li>
+	            ))
+	          }
+	        </ul>
+	      </div>
       </div>
     )
   }
@@ -257,7 +259,6 @@ export class renderFile extends Component {
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
-
     }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
@@ -265,7 +266,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
-      console.warn(e);
+      debug.warn('网络错误')
     })
   }
 
@@ -273,7 +274,6 @@ export class renderFile extends Component {
     const { input, tags, label, meta: { touched, error, warning } } = this.props;
 
     return (
-
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">

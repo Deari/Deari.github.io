@@ -10,18 +10,19 @@ import {
   renderImageUpload 
 } from '../../../modules/renderField'
 
-import { validate, asyncValidate, repeatCheck }  from '../modules/validate'
+import { validate, asyncValidate, repeatCheck }  from '../../../modules/validate'
+
 import './style.scss'
 
 const FirstStepForm = props => {
-  const { handleSubmit, tags, cates } = props;
+  const { handleSubmit, tags, cates } = props
   return (
     <form onSubmit={handleSubmit}>
       <Field label="应用名称" name="appName" type="text" component={renderField}/>
       <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
       <Field label="应用简介" name="appDesc" component={renderTextArea} />
       <Field label="分类" name="categoryId" component={renderSelect}>
-        <option>请选择分类</option>
+        <option value={-1}>请选择分类</option>
         {
           cates.map((item) => (
             <option value={item.categoryId}>
@@ -62,7 +63,7 @@ export default connect(
   fields: [],
   //destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  validate,
+  validate
 })(FirstStepForm))
 
 

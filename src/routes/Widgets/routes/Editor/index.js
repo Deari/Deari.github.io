@@ -1,5 +1,5 @@
 import React from 'react'
-import { injectReducer } from '../../../../store/reducers'
+import { injectReducer } from 'store/reducers'
 import { reducer as formReducer } from 'redux-form'
 
 module.exports = (store) => ({

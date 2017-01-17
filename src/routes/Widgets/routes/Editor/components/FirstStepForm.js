@@ -2,13 +2,16 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
-import renderField, {
-  renderTextArea, renderSelect, renderTags,
+import {
+  renderField,
+  renderTextArea, 
+  renderSelect, 
+  renderTags,
   renderImageUpload,
   renderSizeRadioBox
-} from '../modules/renderField'
+} from '../../../modules/renderField'
 
-import { validate, asyncValidate, repeatCheck } from '../modules/validate'
+import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
 
 import './firstStepForm.scss'
 
@@ -21,17 +24,12 @@ class FirstStepForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
-
         {/*<Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>*/}
-        
         <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
-
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
-
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
-
         <Field label="分类" name="categoryId" component={renderSelect}>
-          <option>请选择分类</option>
+          <option value={-1}>请选择分类</option>
           {
             cates.map((item) => (
               <option value={item.categoryId}>
@@ -78,10 +76,10 @@ export default connect(
   mapDispatchToProps
 )(reduxForm({
   form: 'widgetsEditStep1',
-  fields: ['appName', 'appDesc'],
+  fields: [],
   destroyOnUnmount: false,
   keepDirtyOnReinitialize: true,
-  enableReinitialize: true
-  // validate,
+  enableReinitialize: true,
+  validate
 })(FirstStepForm))
 

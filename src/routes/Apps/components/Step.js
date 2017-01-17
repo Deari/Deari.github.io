@@ -21,4 +21,4 @@ const Step = (props)=>(
   	</div>
   </div>
 )
-export default Step;
+export default Step
