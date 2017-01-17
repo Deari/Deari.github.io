@@ -38,21 +38,19 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
 export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>尺寸</label>
   <div className="row-right max-width">
-    <div>
-      <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-      {
-        sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
-          <span className={`${item.image} row-img`}></span>
-          <div className="row-radio">
-            <input type="radio" name="radio" checked={input.value == item.value}/>
-            <span>
-              <i className="iconfont icon-radio1"></i>
-              <i className="iconfont icon-radio"></i>
-            </span>
-          </div>
+    <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+    {
+      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
+        <span className={`${item.image} row-img`}></span>
+        <div className="row-radio">
+          <input type="radio" name="radio" checked={input.value == item.value}/>
+          <span>
+            <i className="iconfont icon-radio1"></i>
+            <i className="iconfont icon-radio"></i>
+          </span>
         </div>
-      )}
-    </div>
+      </div>
+    )}
     {(dirty || touched) && ((error && <span>{error}</span>))}
   </div>
 </div>
