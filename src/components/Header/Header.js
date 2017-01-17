@@ -3,6 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 import Login from '../Login'
 import { ShopNav, DevNav, OpenNav } from './Navigation'
+import { getApiUrl } from 'utils/domain'
 import '../../styles/_base.scss'
 import '../../styles/iconfont/iconfont.css'
 
@@ -39,6 +40,7 @@ export const Header = ({ location, hideHeader }) => {
   }
   const pathname = location.pathname
   const searchTxt = choose(pathname)
+  const apiViewUrl = getApiUrl(`#!/`)
   return (
     <div>
       <div className='header-wrapper'>
@@ -62,7 +64,7 @@ export const Header = ({ location, hideHeader }) => {
                 <Link to='/widgets' activeClassName='active'>
                   组件市场
                 </Link>
-                <a href='http://apistore.intra.test.ffan.net' activeClassName='active'>
+                <a href={apiViewUrl} activeClassName='active'>
                   API市场
                 </a>
                 <Link to='/hardware' activeClassName='active'>
