@@ -44,7 +44,7 @@ const AreaChartContainer = ({ allNum, data }) => {
           </linearGradient>
         </defs>
         <XAxis dataKey="time"/>
-        <YAxis/>
+        <YAxis padding={{ top: 8 }}/>
         <CartesianGrid strokeDasharray="3 3"/>
         <Tooltip content={<CustomTooltip />} />
         <Area label={<CustomizedLabel />} name="流量" unit="人" type="linear" dataKey="num" 
@@ -60,9 +60,9 @@ const BarChartContainer = ({ data }) => {
     <div className="chart bg-white">
       <h3 className="title">客流日期分布图（人）</h3>
       <div className="chart-container">
-        <BarChart width={735} height={300} data={data}>
+        <BarChart width={735} height={310} data={data}>
           <defs>
-            <linearGradient id="colorNum" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorNum" viewBox="0,-10,735,300" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#2692fb" stopOpacity={0.8}/>
               <stop offset="95%" stopColor="#2692fb" stopOpacity={0.1}/>
             </linearGradient>
