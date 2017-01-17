@@ -152,7 +152,7 @@ $title-color : #4c627e;
     }
     .scroll-wrap {
       position: relative;
-      z-index: 1;
+      z-index: 10;
       // position: absolute;
       // z-index: 2;
       // top: 90px;
@@ -173,7 +173,7 @@ $title-color : #4c627e;
     }
     .slide-text {
       position: absolute;
-      z-index: 1;
+      z-index: 5;
       top: 50%;
       right: -40px;
       -webkit-writing-mode: vertical-rl;
@@ -181,7 +181,13 @@ $title-color : #4c627e;
       letter-spacing: 5px;
       color: #555;
       text-shadow: 1px 1px 1px #999;
-      transform: translateY(-50%);
+      transform: translate3d(0,-50%,0);
+      display: inline-block;
+      width: 20px;
+      // height: 210px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 12px;
     }
     .mobile-header {
       .clock {
