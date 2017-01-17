@@ -6,24 +6,6 @@
 .plf{
   padding: 24px 12px;
 }
-.sub-content-tab{
-  @include clx;
-  @include border-bottom;
-  li{
-    float: left;
-    margin: 0 16px;
-    font-size: $text-font-size - 4;
-    color: $gray3-color;
-    line-height: $text-line-height + 4;
-    a{
-      display: block;
-      padding: 0 14px;
-    }
-  }
-  .tab-active{
-    border-bottom: 2px solid $blue-color;
-  }
-}
 .list-title {
   margin-top: $default-margin-top - 10;
   height: $default-height - 50;
