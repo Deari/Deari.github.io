@@ -125,6 +125,12 @@ export const getAppCodeInfo = (appId) => {
   }
 }
 
+export const updateFirstForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm1(values))
+  }
+}
+
 const ACTION_HANDLERS = {
   
   [TOGGLE_STEP]: (state, action) => {

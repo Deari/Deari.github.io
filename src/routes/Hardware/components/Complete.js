@@ -11,4 +11,4 @@ const Complete = ()=>(
   </div>
 )
 
-export default Complete;
+export default Complete
