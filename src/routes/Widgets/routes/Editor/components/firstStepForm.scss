@@ -169,6 +169,10 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
     }
     .row-right.max-width{
         width: 574px;
+        overflow: hidden;
+        div:last-of-type{
+            margin-right: 0;
+        }
     }
 }
 .form-btn{
@@ -207,9 +211,6 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
 .row-size{
     @include float-left;
     margin:15px 79px 0 0;
-    &:last-child{
-        margin-right: 0;
-    }
     .row-img{
         width: 78px;
         height: 150px;
@@ -231,6 +232,9 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
         background: url(../../../../Home/assets/size4.png) no-repeat;
         background-size: 100%;
     }
+}
+.clearF{
+    @include clx;
 }
 
 

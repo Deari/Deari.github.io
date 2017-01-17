@@ -51,7 +51,8 @@ export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, er
         </div>
       </div>
     )}
-    {(dirty || touched) && ((error && <span>{error}</span>))}
+    <span className="clearF"></span>
+    {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
   </div>
 </div>
 
