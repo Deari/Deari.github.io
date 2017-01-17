@@ -28,7 +28,7 @@ export class Detail extends Component {
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
           <button className={ `btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
                   onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
-            {pagePublish === 'start' ? '发布中...' : '发布'}
+            {pagePublish === 'start' ? '发布中...' : '保存并发布'}
           </button>
         </div>
       </div>
@@ -54,7 +54,7 @@ export class Detail extends Component {
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
           <button className={ `long-btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
                   onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
-            {pagePublish === 'start' ? '发布中...' : '发布'}
+            {pagePublish === 'start' ? '发布中...' : '保存并发布'}
           </button>
         </div>
       </div>
