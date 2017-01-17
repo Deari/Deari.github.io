@@ -2,8 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
-import renderField, {
-  renderTextArea, renderSelect, renderTags,
+import {
+  renderField,
+  renderTextArea, 
+  renderSelect, 
+  renderTags,
   renderImageUpload,
   renderSizeRadioBox
 } from '../../../modules/renderField'
@@ -26,7 +29,7 @@ class FirstStepForm extends Component {
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
         <Field label="组件简介" name="appDesc" component={renderTextArea} />
         <Field label="分类" name="categoryId" component={renderSelect}>
-          <option>请选择分类</option>
+          <option value={-1}>请选择分类</option>
           {
             cates.map((item) => (
               <option value={item.categoryId}>

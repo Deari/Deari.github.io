@@ -12,13 +12,12 @@ import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates, getAppInfo,
-  getAppCodeInfo } from '../modules/edit'
+import { toggleStep, updateAppId, fetchTags, fetchCates, 
+        getAppInfo, getAppCodeInfo } from '../modules/edit'
 
 class EditContainer extends Component {
   
   componentWillMount() {
-    console.log(this.props);
     const { params } = this.props;
     const appId = parseInt(params.appId);
 
@@ -31,7 +30,6 @@ class EditContainer extends Component {
 
   submitFirst(values) {
 
-    console.log("values", values);
     // this.props.updateAppId(123456);
     // this.props.toggleStep(2);
     // return;
@@ -58,12 +56,10 @@ class EditContainer extends Component {
    
     for (let key in values) {
     }
-    console.log(values.size)
     const url = getDomain(`web/developer/widget/${values.appId}`)
     
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
-        console.info("提交成功: ", res.data);
         // this.props.updateAppId(res.data.appId);
         this.props.toggleStep(2);
       } else {
@@ -75,7 +71,6 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-    console.log("values", values);
 
     if(!values.appId) {
       alert('缺少appId')
@@ -92,8 +87,8 @@ class EditContainer extends Component {
 
     if(file) {
       Object.assign(params, file, {
-        'fileName': file.originalName,
-        'fileLink': file.url
+        'fileName': file && file.originalName,
+        'fileLink': file && file.url
       })
     }
 
@@ -105,7 +100,6 @@ class EditContainer extends Component {
 
     fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
       if (res.status == 200) {
-        console.log('提交成功: ');
         this.props.toggleStep(3);
       } else {
         debug.warn('请完善表单信息')

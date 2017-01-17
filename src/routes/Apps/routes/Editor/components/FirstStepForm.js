@@ -15,7 +15,7 @@ import { validate, asyncValidate, repeatCheck }  from '../../../modules/validate
 import './style.scss'
 
 const FirstStepForm = props => {
-  const { handleSubmit, tags, cates, initialValues } = props;
+  const { handleSubmit, tags, cates, initialValues } = props
 
   return (
     <form onSubmit={handleSubmit}>

@@ -2,7 +2,6 @@ import "./validate.scss"
 
 export const validate = values => {
   const errors = {}
-  console.log("validate values ", values)
   if (!values.appName) {
     errors.appName = <i className="message">请输入组件名称</i>
   }
@@ -10,7 +9,7 @@ export const validate = values => {
     errors.size = <i className="message">请选择尺寸</i>
   }
   if (!values.appPreviewImage) {
-    errors.appPreviewImage = <i className="message">请选择浏览图</i>
+    errors.appPreviewImage = <i className="message">请选择预览图</i>
   } 
   if (!values.appLogo) {
     errors.appLogo = <i className="message">请选择组件图片</i>
@@ -23,6 +22,12 @@ export const validate = values => {
   }
   if (values.tags && values.tags.length == 0) {
     errors.tags = <i className="message">请选择标签</i>
+  }
+  if (!values.codeDesc) {
+    errors.codeDesc = <i className="message">请输入文字介绍</i>
+  }
+  if (!values.file) {
+    errors.file = <i className="message">请选择组件文件</i>
   }
   return errors
 }

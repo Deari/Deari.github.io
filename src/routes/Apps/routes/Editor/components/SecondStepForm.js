@@ -33,11 +33,11 @@ const SecondStepForm = props => {
 
 const mapDispatchToProps = {
   toggleStep,
-};
+}
 
 const mapStateToProps = ({appsEdit}) => ({
   initialValues: appsEdit.form2,
-});
+})
 
 export default connect(
   mapStateToProps,

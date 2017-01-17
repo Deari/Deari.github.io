@@ -1,8 +1,10 @@
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
-const PREFIX = 'CREATE_WIDGET_';
+import debug from 'routes/utils/debug'
 
-const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
+const PREFIX = 'CREATE_WIDGET_'
+
+const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
 
@@ -89,7 +91,7 @@ const initialState = {
     appPreviewImage: '',
     appLogo: '',
     appDesc: '',
-    categoryId: 1,
+    categoryId: -1,
     platform: 2,
     tags: [],
   },
@@ -107,27 +109,31 @@ export default function createReducer(state = initialState, action) {
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("public/widget/tags");
+    const url = getDomain("public/widget/tags")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveTags(res.data));
+        dispatch(receiveTags(res.data))
       } else {
-        throw Error ('getTags error');
+        debug.warn("获取标签接口错误")
       }
-    });
+    }).catch(e => {
+      debug.warn("网络错误")
+    })
   }
 }
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("public/app/categories");
+    const url = getDomain("public/app/categories")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveCates(res.data && res.data.list));
+        dispatch(receiveCates(res.data && res.data.list))
       } else {
-        throw Error ('getCates error');
+        debug.warn("获取分类接口错误")
       }
-    });
+    }).catch(e => {
+      debug.warn("网络错误")
+    })
   }
 }
 

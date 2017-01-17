@@ -61,8 +61,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-    console.log("values", values);
-    // return;
     const formData = new FormData();
     const { appId, codeDesc, file } = values;
     const params = Object.assign({}, file, {

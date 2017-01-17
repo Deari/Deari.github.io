@@ -2,7 +2,6 @@ import "./validate.scss"
 
 export const validate = values => {
   const errors = {}
-  console.log("validate values ", values)
   if (!values.appName) {
     errors.appName = <i className="message">请输入应用名字</i>
   }

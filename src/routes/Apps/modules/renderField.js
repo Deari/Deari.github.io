@@ -38,17 +38,17 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
 export class renderTags extends Component {
   
   handleClick (tagId) {
-    const { input } = this.props;
-    const newTags = input.value.filter(v=>v != tagId);
+    const { input } = this.props
+    const newTags = input.value.filter(v=>v != tagId)
     if(newTags.length ==input.value.length) {
       newTags.push(tagId)
     }
 
-    input.onChange(newTags);
+    input.onChange(newTags)
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
 
     return (
       <div className="form-row">
@@ -102,7 +102,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning }} = this.props;
+    const { input, label, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
@@ -146,7 +146,7 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
@@ -161,4 +161,4 @@ export class renderFile extends Component {
   
 }
 
-export default renderField;
+export default renderField

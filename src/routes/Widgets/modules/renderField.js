@@ -37,20 +37,22 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
 
 export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>尺寸</label>
-  <div className="row-right">
-    <p>请选择组件在手机屏幕中所占比例的尺寸</p>
-    {
-      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
-        <span className={`${item.image} row-img`}></span>
-        <div className="row-radio">
-          <input type="radio" name="radio" checked={input.value == item.value}/>
-          <span>
-            <i className="iconfont icon-radio1"></i>
-            <i className="iconfont icon-radio"></i>
-          </span>
+  <div className="row-right max-width">
+    <div>
+      <p>请选择组件在手机屏幕中所占比例的尺寸</p>
+      {
+        sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
+          <span className={`${item.image} row-img`}></span>
+          <div className="row-radio">
+            <input type="radio" name="radio" checked={input.value == item.value}/>
+            <span>
+              <i className="iconfont icon-radio1"></i>
+              <i className="iconfont icon-radio"></i>
+            </span>
+          </div>
         </div>
-      </div>
-    )}
+      )}
+    </div>
     {(dirty || touched) && ((error && <span>{error}</span>))}
   </div>
 </div>
@@ -59,17 +61,17 @@ export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, er
 export class renderTags extends Component {
 
   handleClick(tagId) {
-    const { input } = this.props;
-    const newTags = input.value.filter(v => v != tagId);
+    const { input } = this.props
+    const newTags = input.value.filter(v => v != tagId)
     if (newTags.length == input.value.length) {
       newTags.push(tagId)
     }
 
-    input.onChange(newTags);
+    input.onChange(newTags)
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
@@ -119,12 +121,12 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      console.log(e)
+      debug.warn('网络错误')
     })
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning } , doc , h} = this.props;
+    const { input, label, meta: { touched, dirty, error, warning } , doc , h} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -133,7 +135,7 @@ export class renderImageUpload extends Component {
           <p>{h ? '' : '400*400像素，仅支持PNG格式，'}大小不超过300KB</p>
           <span>
             <input type="button" value="选择文件"/>
-            <input type="file" accept="image/*" onChange={::this.imageUpload}/>
+            <input type="file" accept={h ? "image/*" : ".png"} onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
             <img src={input.value} alt="上传图片" className="img-thumbnail"/>
@@ -169,13 +171,13 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <input type="file" className="form-file" onChange={::this.fileUpload}/>
+          <input type="file" accept=".zip" className="form-file" onChange={::this.fileUpload}/>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
@@ -184,4 +186,4 @@ export class renderFile extends Component {
 
 }
 
-export default renderField;
+export default renderField
