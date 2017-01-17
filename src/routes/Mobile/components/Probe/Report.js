@@ -68,7 +68,7 @@ const BarChartContainer = ({ data }) => {
             </linearGradient>
           </defs>
           <XAxis dataKey="time" />
-          <YAxis />
+          <YAxis padding={{ top: 8 }}/>
           <CartesianGrid strokeDasharray="3 3" />
           { /* <Brush dataKey='num' height={30} stroke="#2692fb"/> */}
           
