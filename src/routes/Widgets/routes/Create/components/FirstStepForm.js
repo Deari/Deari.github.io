@@ -6,9 +6,9 @@ import renderField, {
   renderTextArea, renderSelect, renderTags,
   renderImageUpload,
   renderSizeRadioBox
-} from '../modules/renderField'
+} from '../../../modules/renderField'
 
-import { validate, asyncValidate, repeatCheck } from '../modules/validate'
+import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
 
 import './firstStepForm.scss'
 
@@ -69,9 +69,9 @@ export default connect(
   mapDispatchToProps
 )(reduxForm({
   form: 'widgetsCreateFirst',
-  fields: ['appName', 'appDesc'],
+  fields: [],
   //destroyOnUnmount: false,
   forceUnregisterOnUnmount: true,
-  validate,
+  validate
 })(FirstStepForm))
 

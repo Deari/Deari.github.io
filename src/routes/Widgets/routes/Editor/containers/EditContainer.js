@@ -4,8 +4,8 @@ import { Field, reduxForm } from 'redux-form'
 
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
-import Complete from '../components/Complete'
-import Step from '../components/Step'
+import Complete from '../../../components/Complete'
+import Step from '../../../components/Step'
 import Sidebar from 'components/Sidebar'
 
 import { getDomain } from 'utils/domain'

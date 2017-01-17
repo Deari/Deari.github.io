@@ -85,9 +85,9 @@ const initialState = {
   ],
   form: {
     appName: '',
-    appThumb: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
-    appPreviewImage: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
-    appLogo: 'https://ss0.bdstatic.com/k4oZeXSm1A5BphGlnYG/xingzuo/big/24/juxie.png',
+    appThumb: '',
+    appPreviewImage: '',
+    appLogo: '',
     appDesc: '',
     categoryId: 1,
     platform: 2,

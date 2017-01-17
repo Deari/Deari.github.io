@@ -6,9 +6,9 @@ import renderField, {
   renderTextArea, renderSelect, renderTags,
   renderImageUpload,
   renderSizeRadioBox
-} from '../modules/renderField'
+} from '../../../modules/renderField'
 
-import { validate, asyncValidate, repeatCheck } from '../modules/validate'
+import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
 
 import './firstStepForm.scss'
 

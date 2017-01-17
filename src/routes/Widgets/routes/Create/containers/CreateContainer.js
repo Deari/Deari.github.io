@@ -2,14 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
-import { validate, warn } from '../modules/validate'
-import { test } from '../modules/create'
-
 import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
-import Complete from '../components/Complete'
-import Step from '../components/Step'
+import Complete from '../../../components/Complete'
+import Step from '../../../components/Step'
 
 import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'

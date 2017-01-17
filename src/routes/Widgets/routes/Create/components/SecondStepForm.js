@@ -3,8 +3,8 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import renderField, { renderTextArea, renderFile } from '../modules/renderField'
-import { validate } from '../modules/validate'
+import renderField, { renderTextArea, renderFile } from '../../../modules/renderField'
+import { validate } from '../../../modules/validate'
 
 import { toggleStep } from '../modules/create'
 
