@@ -85,19 +85,20 @@ export const Promised = (Wrapped) => class extends React.Component {
       this.setState(DATA)
     }
    
-    try {
-      const dayRes = await fetchUtil.getJSON(dayApiUrl)
-      if (dayRes.status == 200) {
-        //console.info(dayRes.data);
-        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
-      } else {
-        Debug.warn('获取数据异常', res);
-        this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-      }
-    } catch (e) {
-      Debug.warn('获取数据异常', e);
-      this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-    }
+    // try {
+    //   const dayRes = await fetchUtil.getJSON(dayApiUrl)
+    //   if (dayRes.status == 200) {
+    //     //console.info(dayRes.data);
+    //     this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+    //   } else {
+    //     Debug.warn('获取数据异常', res);
+    //     this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    //   }
+    // } catch (e) {
+    //   Debug.warn('获取数据异常', e);
+    //   this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    // }
+    this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
 
   }
 
@@ -109,40 +110,11 @@ export const Promised = (Wrapped) => class extends React.Component {
     }].concat(data.slice(8, 19))
   }
 
-  getListData = () => {
-    const { amNum, pmNum, nightNum, timeArray } = this.state;
-
-    const listData = {
-      am: {
-        list: [
-          {num: getSumOfTimeArray(timeArray, 0, 8)}
-        ].concat(timeArray.slice(8, 12)),
-        total: amNum,
-      },
-      pm: {
-        list: timeArray.slice(12, 17),
-        total: pmNum,
-      },
-      night: {
-        list: timeArray.slice(17, 21).concat([ 
-          {num: getSumOfTimeArray(timeArray, 0, 8)}
-        ]),
-        total: nightNum,
-      }
-    }
-
-    for(let key in listData) {
-      listData[key].list = addTextKey(listData[key].list, key)
-    }
-    return listData;
-  }
-
   render () {
     const { allNum, amNum, pmNum, nightNum ,dayArray} = this.state;
     
     const data = {
       allNum, amNum, pmNum, nightNum,
-      listData: this.getListData(),
       chartData: this.getChartData(),
       dayArray: dayArray,
     }
