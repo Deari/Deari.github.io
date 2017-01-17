@@ -107,7 +107,10 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             height: $default-height;
             margin-right:$default-margin-right - 35px;
         }
-        
+        ul{
+            overflow: hidden;
+            margin-top: -20px;
+        }
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
@@ -118,7 +121,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             border: 1px solid $border-color;
             border-radius: 2px;
             float: left;
-            margin: 0 $default-margin-right - 20px $default-margin-bottom - 20px 0;
+            margin: 20px 20px 0 0;
             cursor: pointer;
             &.active,&:hover{
                 background-color: #7dbefd;

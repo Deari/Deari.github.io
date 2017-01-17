@@ -53,22 +53,24 @@ export class renderTags extends Component {
     return (
       <div className="form-row">
         <label>{label}</label>
-        <ul className="row-right max-width">
-          {
-            tags.map((item) => (
-              <li 
-                className={
-                  ((tagId)=>{
-                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
-                  })(item.tagId)
-                }
-                key={item.tagId}
-                onClick={()=>this.handleClick(item.tagId)}
-              >{item.tagName}</li>
-            ))
-          }
-        </ul>
+        <div className="row-right max-width">
+        	<ul>
+	          {
+	            tags.map((item) => (
+	              <li 
+	                className={
+	                  ((tagId)=>{
+	                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
+	                  })(item.tagId)
+	                }
+	                key={item.tagId}
+	                onClick={()=>this.handleClick(item.tagId)}
+	              >{item.tagName}</li>
+	            ))
+	          }
+	        </ul>
         {(dirty || touched) && ((error && <span>{error}</span>))}
+        </div>
       </div>
     )
   }
