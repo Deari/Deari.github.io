@@ -111,6 +111,9 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
                 cursor: pointer;
             }
         }
+        &>span{
+            cursor: default!important;
+        }
         img{
             width: $default-width;
             height: $default-height;
