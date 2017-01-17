@@ -134,7 +134,9 @@ $title-color : #4c627e;
   z-index: 5;
   left: 200px;
   right: 200px;
-  top: 0;
+  height:475px;
+  top:50%;
+  margin-top:-238px;
   // bottom: 0;
   overflow: hidden;
   .preview {
