@@ -98,7 +98,7 @@ $title-color : #4c627e;
 
   .gui-list {
     @include clx;
-    
+
     .items {
       float: left;
       width: 70px;
@@ -220,7 +220,7 @@ $title-color : #4c627e;
     .shop-info {
       width: 212px;
       min-height: 100%;
-      
+
     }
   }
   .text {
@@ -259,25 +259,8 @@ $title-color : #4c627e;
     height: 510px;
     font-size: 14px;
     color: $gray6-color;
-    .btn {
-      display: inline-block;
-      width: 95.5%;
-      height: 40px;
-      margin: 20px 5px 0;
-      padding: 0;
-      line-height: 36px;
-      border-radius: 4px;
-    }
-    .btn-red {
-      color: #fff;
-      background: #fb4747;
-      border: 2px solid #fb4747;
-    }
-    .btn-green {
-      color: #54a4ff;
-      background: #fff;
-      border: 2px solid #54a4ff;
-    }
+
+
     .btn-block {
       position: absolute;
       bottom: 20px;
@@ -329,25 +312,67 @@ $title-color : #4c627e;
       line-height: 36px;
       border-radius: 4px;
     }
-    .btn-blue {
-      color: #fff;
-      background: #3fa7ff;
-      border: 2px solid #3fa7ff;
-    }
-    .btn-blue.disabled {
-      background: gray;
-      border-color: #eeeeee;
-      outline: none;
-    }
+
     .btn-white {
       color: #3fa7ff;
       background: #fff;
       border: 2px solid #3fa7ff;
     }
-    .btn-block {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-    }
+
   }
+}
+
+/**********************
+ * button
+ **********************/
+
+.btn-block {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+
+  @mixin btn {
+    display: inline-block;
+    height: 40px;
+    margin: 10px 5px 0;
+    padding: 0;
+    line-height: 36px;
+    border-radius: 4px;
+  }
+
+  .short-btn {
+    @include btn;
+    width: 45%;
+  }
+
+  .long-btn {
+    @include btn;
+    width: 95%;
+  }
+
+  .btn-red {
+    color: #fff;
+    background: #fb4747;
+    border: 2px solid #fb4747;
+  }
+
+  .btn-green {
+    color: #54a4ff;
+    background: #fff;
+    border: 2px solid #54a4ff;
+  }
+
+  .btn-blue {
+    color: #fff;
+    background: #3fa7ff;
+    border: 2px solid #3fa7ff;
+  }
+
+  // todo:  btn-disabled !important
+  .btn-blue.disabled {
+    background: gray;
+    border-color: #eeeeee;
+    outline: none;
+  }
+
 }
