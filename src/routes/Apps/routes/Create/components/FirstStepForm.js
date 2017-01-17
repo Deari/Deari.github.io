@@ -15,7 +15,7 @@ import { validate, asyncValidate, repeatCheck }  from '../../../modules/validate
 import './style.scss'
 
 const FirstStepForm = props => {
-  const { handleSubmit, tags, cates } = props;
+  const { handleSubmit, tags, cates } = props
   return (
     <form onSubmit={handleSubmit}>
       <Field label="应用名称" name="appName" type="text" component={renderField}/>

@@ -2,9 +2,9 @@ import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-const PREFIX = 'EDIT_APP_';
+const PREFIX = 'EDIT_APP_'
 
-const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
+const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -41,87 +41,87 @@ export const updateForm2 = (data) => ({
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("public/app/tags");
+    const url = getDomain("public/app/tags")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveTags(res.data));
+        dispatch(receiveTags(res.data))
       } else {
-        throw Error ('getTags error');
+        throw Error ('getTags error')
       }
-    });
+    })
   }
 }
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("public/app/categories");
+    const url = getDomain("public/app/categories")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveCates(res.data && res.data.list));
+        dispatch(receiveCates(res.data && res.data.list))
       } else {
-        throw Error ('getCates error');
+        throw Error ('getCates error')
       }
-    });
+    })
   }
 }
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`web/app/${appId}`);
+    const url = getDomain(`web/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('应用详情：', res)
-        const { appName, appLogo, appDesc, categoryId, platform, tags } = res.data;
-        const tagId = tags.map(v=>v.tagId);
+        const { appName, appLogo, appDesc, categoryId, platform, tags } = res.data
+        const tagId = tags.map(v=>v.tagId)
 
         dispatch(updateForm1({
           appId, appName, appLogo, appDesc, categoryId, platform,
           tags: tagId
-        }));
+        }))
 
         dispatch(updateForm2({
           platform
-        }));
+        }))
         
       } else {
-        alert('获取应用详情失败: ', JSON.stringify(res));
-        console.warn('获取应用详情失败: ', res);
+        alert('获取应用详情失败: ', JSON.stringify(res))
+        console.warn('获取应用详情失败: ', res)
       }
     }).catch(e=>{
-      alert('获取应用详情失败: ', JSON.stringify(e));
-      console.warn('获取应用详情失败: ', e);
-    });
+      alert('获取应用详情失败: ', JSON.stringify(e))
+      console.warn('获取应用详情失败: ', e)
+    })
   }
 }
 
 export const getAppCodeInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`web/developer/app/${appId}`);
+    const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('app code详情：', res)
-        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data;
-        console.log(res.data);
+        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data
+        console.log(res.data)
         if(codeDesc==="undefined"){
           dispatch(updateForm2({
             appId,
             fileName, fileLink, rnFrameworkVersion, moduleName, setting
-          }));
+          }))
           return
         }
         dispatch(updateForm2({
           appId,
           codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
-        }));
+        }))
       } else {
-        alert('app code详情失败: ', JSON.stringify(res));
-        console.warn('app code详情失败: ', res);
+        alert('app code详情失败: ', JSON.stringify(res))
+        console.warn('app code详情失败: ', res)
         
       }
     }).catch(e=>{
-      alert('app code失败: ', JSON.stringify(e));
-      console.warn('app code详情失败: ', e);
-    });
+      alert('app code失败: ', JSON.stringify(e))
+      console.warn('app code详情失败: ', e)
+    })
   }
 }
 

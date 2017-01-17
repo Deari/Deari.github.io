@@ -3,8 +3,8 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import renderField, { renderTextArea, renderFile } from '../modules/renderField'
-import { validate } from '../modules/validate'
+import { renderTextArea, renderFile } from '../../../modules/renderField'
+import { validate } from '../../../modules/validate'
 
 import { toggleStep } from '../modules/edit'
 
@@ -46,6 +46,6 @@ export default connect(
   form: 'widgetsEditStep2',   
   fields: ['appName', 'appDesc'],
   keepDirtyOnReinitialize: true,
-  enableReinitialize: true
-  // validate,
+  enableReinitialize: true,
+  validate
 })(SecondStepForm))
