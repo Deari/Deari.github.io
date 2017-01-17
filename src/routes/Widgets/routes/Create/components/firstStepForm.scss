@@ -113,7 +113,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             height: $default-height;
             margin-right:$default-margin-right - 35px;
         }
-        
+        ul{
+            overflow: hidden;
+        }
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
@@ -131,6 +133,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 color: $white-color;
                 border-color: #7dbefd;
             }
+        }
+        .label-message{
+            margin-top: -20px;
         }
         /*第二步应用文件样式start*/
         

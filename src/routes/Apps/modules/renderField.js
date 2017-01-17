@@ -69,7 +69,7 @@ export class renderTags extends Component {
 	            ))
 	          }
 	        </ul>
-          {(dirty || touched) && ((error && <span>{error}</span>))}
+          {(dirty || touched) && ((error && <span className="label-message">{error}</span>))}
         </div>
       </div>
     )
