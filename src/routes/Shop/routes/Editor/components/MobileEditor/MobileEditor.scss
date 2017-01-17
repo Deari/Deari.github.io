@@ -1,4 +1,5 @@
 @import "../../../../../../layouts/CoreLayout/CoreLayout";
+@import "./slider.scss";
 
 /**************************
  * new-mobile-editor-container
@@ -78,13 +79,13 @@ $title-color : #4c627e;
     overflow-x: hidden;
     overflow-y: scroll;
     &::-webkit-scrollbar {
-      width: 10px;
+      width: 4px;
       background: #444;
-      border-radius: 5px;
+      border-radius: 2px;
     }
     &::-webkit-scrollbar-thumb {
       background: #3fa7ff;
-      border-radius: 5px;
+      border-radius: 2px;
     }
   }
 
@@ -130,13 +131,13 @@ $title-color : #4c627e;
 }
 
 .editor-content {
-  position: absolute;
+  // position: absolute;
   z-index: 5;
   left: 200px;
   right: 200px;
   height:475px;
   top:50%;
-  margin-top:-238px;
+  // margin-top:-238px;
   // bottom: 0;
   overflow: hidden;
   .preview {
@@ -160,18 +161,26 @@ $title-color : #4c627e;
       // top: 90px;
       // bottom: 50px;
       // left: 18px;
-      width: 300px;
+      // width: 300px;
       height: 330px;
-      overflow-y: scroll;
+      overflow-x: hidden;
       &::-webkit-scrollbar {
-        width: 10px;
+        width: 4px;
         background: #ddd;
-        border-radius: 5px;
+        border-radius: 2px;
       }
       &::-webkit-scrollbar-thumb {
         background: #3fa7ff;
-        border-radius: 5px;
+        border-radius: 2px;
       }
+    }
+    .slider-wrap {
+      // display: none;
+      position: absolute;
+      width: 40px;
+      right: -80px;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
     }
     .slide-text {
       position: absolute;
@@ -220,7 +229,6 @@ $title-color : #4c627e;
     .shop-info {
       width: 212px;
       min-height: 100%;
-      
     }
   }
   .text {
@@ -245,7 +253,7 @@ $title-color : #4c627e;
 }
 
 .sidebar-right {
-  // display: none;
+  display: none;
 
   position: fixed;
   top: 0;

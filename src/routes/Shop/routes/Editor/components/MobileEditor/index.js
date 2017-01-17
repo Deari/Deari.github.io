@@ -1,10 +1,14 @@
-import React, { Component, PropTypes } from 'react'
+import React, { Component, PropTypes, ReactDOM } from 'react'
+import { findDOMNode } from 'react-dom'
+
 import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
 import EditorDragLayer from '../EditorDragLayer'
 import Detail from '../../containers/DetailContainer'
 import '../../../../../../styles/iconfont/iconfont.css'
 import './MobileEditor.scss'
+
+import Slider from 'react-rangeslider';
 
 const LeftSideBar = props => (
   <div className='sidebar-left'>
@@ -25,8 +29,29 @@ const LeftSideBar = props => (
 )
 
 export class Editor extends Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      value: 100 /** Start value **/
+    };
+  }
+
+  handleChange = (value) => {
+    const scrollDom = findDOMNode(this.refs.scrollWrap)
+
+    const dis = (scrollDom.scrollHeight - scrollDom.offsetHeight) * (100-value)/100;
+    
+    scrollDom.scrollTop = dis
+    // console.log( findDOMNode(this.refs.scrollWrap) );
+    
+    this.setState({
+      value: value
+    });
+  }
 
   render() {
+    const {value} = this.state;
+
     return <div className="clx">
       <LeftSideBar/>
       <div className="editor-content">
@@ -40,8 +65,12 @@ export class Editor extends Component {
                 <i className="iconfont icon-search"></i>
               </div>
             </div>
-            <div className="scroll-wrap">
+            <div className="scroll-wrap" ref="scrollWrap">
               <Preview/>
+            </div>
+            <div className="slider-wrap">
+              <Slider value={value} orientation="vertical" onChange={this.handleChange} />
+              { /* <div>Value: {value}</div> */ }
             </div>
             <span className="slide-text">滑动此区域以展示更多</span>
           </div>
