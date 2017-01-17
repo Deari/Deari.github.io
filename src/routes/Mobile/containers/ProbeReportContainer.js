@@ -9,9 +9,6 @@ import Debug from '../../utils/debug'
 import DATA from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
 
-const promised = {
-}
-
 
 const keyMap = {
   am: [
@@ -48,9 +45,6 @@ const getSumOfTimeArray = (arr=[], start, end) => {
   return arr.slice(start, end).reduce((prev, cur)=> prev+cur.num, 0)
 }
 
-const getData = async (url) => {
-  return await fetchUtil.getJSON(url)
-}
 
 export const Promised = (promiseProp, Wrapped) => class extends React.Component {
 
@@ -146,4 +140,4 @@ export const Promised = (promiseProp, Wrapped) => class extends React.Component 
   }
 }
 
-export default Promised(promised, ProbeReport)
+export default Promised(ProbeReport)
