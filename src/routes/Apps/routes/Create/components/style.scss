@@ -109,7 +109,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         }
         ul{
             overflow: hidden;
-            margin-top: -20px;
         }
         li{
             width: $default-width - 26px;
@@ -121,13 +120,16 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             border: 1px solid $border-color;
             border-radius: 2px;
             float: left;
-            margin: 20px 20px 0 0;
+            margin: 0 20px 20px 0;
             cursor: pointer;
             &.active,&:hover{
                 background-color: #7dbefd;
                 color: $white-color;
                 border-color: #7dbefd;
             }
+        }
+        .label-message{
+            margin-top: -20px;
         }
         /*第二步应用文件样式start*/
         
