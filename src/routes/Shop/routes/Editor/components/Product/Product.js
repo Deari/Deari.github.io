@@ -2,13 +2,16 @@ import React, { Component, PropTypes } from 'react'
 
 const Product = (props) => {
   const { appName, defaultLayout, appLogo, hideName } = props
-  return <div className="component">
-    <img className={'product-img'}
-          height={50}
-          src={appLogo || 'http://placeholder.qiniudn.com/100x100/#808080/fff' }
-          alt={appName}/>
-    {hideName ? '' : <span className="text">{appName}-{defaultLayout.w}x{defaultLayout.h}</span>}
-  </div>
+  return ( 
+    <div className="component">
+      <img className={'product-img'}
+            height={50}
+            src={appLogo || 'http://placeholder.qiniudn.com/100x100/#808080/fff' }
+            alt={appName}/>
+      {hideName ? '' : <span className="text">{appName}-{defaultLayout.w}x{defaultLayout.h}</span>}
+      { <span className="text">{defaultLayout.w}x{defaultLayout.h}</span> }
+    </div>
+  )
 }
 
 Product.propTypes = {
