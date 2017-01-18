@@ -47,7 +47,7 @@ const LeftSideBar = props => (
     </ul>
     <a className="btn-more" href="wandaffoap://jump/componentMarket">
       <i className="iconfont icon-puzzle"></i>
-      <span className="text">查看更多组件</span>
+      <span className="text">获取更多组件</span>
       <i className="iconfont icon-readMore"></i>
     </a>
   </div>
