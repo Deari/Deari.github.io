@@ -88,10 +88,10 @@ export class Editor extends Component {
     if( !scrollDom ) { return }  
     
     console.log('hello', scrollDom.scrollHeight ,scrollDom.clientHeight)
-    
-    if(scrollDom && scrollDom.scrollHeight - scrollDom.clientHeight) {
+    if(scrollDom) {
+      const show = scrollDom.scrollHeight > scrollDom.clientHeight 
       this.setState({
-        show: true
+        show
       })
     }
   }
