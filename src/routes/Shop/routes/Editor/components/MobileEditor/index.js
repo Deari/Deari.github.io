@@ -26,18 +26,21 @@ const LeftSideBar = props => (
         <div className="menu-title">
           <i className="iconfont icon-text"></i>
           <span>图文类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
       <li className="item">
         <div className="menu-title">
-          <i className="iconfont icon-sidebar6"></i>
+          <i className="iconfont icon-gift"></i>
           <span>营销互动类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
       <li className="item">
         <div className="menu-title">
           <i className="iconfont icon-goods"></i>
           <span>商品类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
     </ul>
