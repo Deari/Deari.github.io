@@ -79,7 +79,8 @@ $scroll-width: 14px;
   .items {
     float: left;
     width: 70px;
-    margin: 10px 0 10px 10px;
+    height: 90px;
+    margin: 10px 0 0px 10px;
     text-align: center;
   }
   .component {
@@ -94,13 +95,16 @@ $scroll-width: 14px;
     .text {
       display: inline-block;
       width: 100%;
-      margin-top: 5px;
+      margin-top: 2px;
       font-size: 12px;
       color: #758b9d;
       word-break: break-all;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      &:last-child {
+        transform: scale(.9);
+      }
     }
   }
 }
