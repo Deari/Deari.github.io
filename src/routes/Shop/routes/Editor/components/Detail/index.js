@@ -68,7 +68,8 @@ export class Detail extends Component {
              onCancel={::this.onClose}
              modalCls="preview-modal"
              hideButtons="true">
-        <p className="center">发布中，请稍候</p>
+        <p className="center">发布中，请稍候 </p>
+        <div className="center ball-beat"><div></div><div></div><div></div></div>
       </Modal>
 
       {::this.getWidgetContainer()}
