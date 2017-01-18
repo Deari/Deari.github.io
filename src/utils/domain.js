@@ -75,7 +75,7 @@ export function getLoginDomain(url) {
 export function getApiDomain(url) {
   const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
+  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
 
