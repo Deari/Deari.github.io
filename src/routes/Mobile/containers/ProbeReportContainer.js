@@ -60,17 +60,20 @@ export const Promised = (Wrapped) => class extends React.Component {
   }
   
  async componentWillMount() {
+
     const date = new Date ()
     const startTime = (new Date (getTimeStr(date)).getTime())/1000
     const endTime = ((date.getTime())/1000).toFixed()
-    
+    const startDay = endTime - (7*24*3600)
     const signParam = "app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=" + endTime
     const sign = md5(signParam)
     const timeParams = `startTime=${startTime}&endTime=${endTime}`
-    const hourParams = `storeId=10021141&${timeParams}&app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
 
+    const hourParams = `storeId=10021141&${timeParams}&app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
+    const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
     const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/hour?${hourParams}`)
-    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/day?${hourParams}`)
+    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/day?${dayParams}`)
+
     try{
        const timeRes = await fetchUtil.getJSON(timeApiUrl)
        if(timeRes.status == 200) {
@@ -85,20 +88,20 @@ export const Promised = (Wrapped) => class extends React.Component {
       this.setState(DATA)
     }
    
-    // try {
-    //   const dayRes = await fetchUtil.getJSON(dayApiUrl)
-    //   if (dayRes.status == 200) {
-    //     //console.info(dayRes.data);
-    //     this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
-    //   } else {
-    //     Debug.warn('获取数据异常', res);
-    //     this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-    //   }
-    // } catch (e) {
-    //   Debug.warn('获取数据异常', e);
-    //   this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-    // }
-    this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    try {
+      const dayRes = await fetchUtil.getJSON(dayApiUrl)
+      if (dayRes.status == 200) {
+        console.info(dayRes.data);
+        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+      } else {
+        Debug.warn('获取数据异常', res);
+        this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+      }
+    } catch (e) {
+      Debug.warn('获取数据异常', e);
+      this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    }
+    //this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
 
   }
 
@@ -107,7 +110,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     return [{
       time: '0',
       num: getSumOfTimeArray(data, 0, 8)
-    }].concat(data.slice(8, 19))
+    }].concat(data.slice(8, 24))
   }
 
   render () {

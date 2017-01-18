@@ -1,9 +1,22 @@
 import React, {Component} from 'react'
-import {AreaChart, BarChart, Brush, ReferenceLine, 
-  Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend
+import {AreaChart, BarChart, Brush, ReferenceLine, Area,
+   Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,Cell
 } from 'recharts';
 import AnalysisContainer from './Analysis'
 import './Report.scss'
+
+const getTimeStr = (date)=>{
+  let mouth =  Math.floor((date.getMonth()+3)/3)
+  let day = date.getDate()
+  if (mouth < 10) {
+    mouth = '0' + mouth
+  }
+  if (day < 10) {
+    day = '0' + day
+  }
+  const timeStr = date.getFullYear()+'-'+mouth+'-'+day
+  return timeStr
+}
 
 const CustomizedLabel = React.createClass({
   render () {
@@ -30,18 +43,6 @@ const CustomTooltip = React.createClass({
   }
 });
 
-const getTimeStr = (date)=>{
-  let mouth =  Math.floor((date.getMonth()+3)/3)
-  let day = date.getDate()
-  if (mouth < 10) {
-    mouth = '0' + mouth
-  }
-  if (day < 10) {
-    day = '0' + day
-  }
-  const timeStr = date.getFullYear()+'-'+mouth+'-'+day
-  return timeStr
-}
 
 const AreaChartContainer = (props) => {
   const {chartData, allNum, ...others} = props
@@ -71,7 +72,6 @@ const AreaChartContainer = (props) => {
 }
 
 const BarChartContainer = ({ data }) => {
-  let isOk = true;
   const date = new Date()
   const timeStr = getTimeStr(date)
   return <div>
@@ -80,7 +80,7 @@ const BarChartContainer = ({ data }) => {
       <div className="chart-container">
         <BarChart width={735} height={310} data={data}>
           <defs>
-            <linearGradient id="colorNum" viewBox="0,-10,735,300" x1="0" y1="0" x2="0" y2="1">
+            <linearGradient id="colorNum" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#2692fb" stopOpacity={0.8}/>
               <stop offset="95%" stopColor="#2692fb" stopOpacity={0.1}/>
             </linearGradient>
@@ -89,13 +89,19 @@ const BarChartContainer = ({ data }) => {
           <YAxis padding={{ top: 20}}/>
           <CartesianGrid strokeDasharray="3 3" />
           { /* <Brush dataKey='num' height={30} stroke="#2692fb"/> */}
-          <Bar label={<CustomizedLabel />} dataKey="num" stroke="#2692fb" fillOpacity={1} fill="url(#colorNum)" 
-            maxBarSize={40}/> 
+          <Bar dataKey='num'  maxBarSize={40} stroke="#2692fb" label={<CustomizedLabel/>} fill='url(#colorNum)'>
+            {
+              data.map((value, key) => (
+                <Cell fillOpacity={value.time === timeStr  ? 1 : 0.2 } key={`cell-${key}`}/>
+              ))
+            }
+         </Bar>
         </BarChart>
       </div>
     </div>
   </div>
 }
+
 
 
 const NavBar = (props) => {
