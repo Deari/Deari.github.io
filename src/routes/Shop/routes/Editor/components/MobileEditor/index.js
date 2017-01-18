@@ -6,6 +6,7 @@ import Preview from '../../containers/PreviewContainer'
 import EditorDragLayer from '../EditorDragLayer'
 import Detail from '../../containers/DetailContainer'
 import '../../../../../../styles/iconfont/iconfont.css'
+import '../../../../../../styles/mobile/mbase.scss'
 import './MobileEditor.scss'
 
 import Slider from 'react-rangeslider';
@@ -59,11 +60,6 @@ export class Editor extends Component {
           <div className="bg-phone">
             <div className="mobile-header">
               <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png" />
-              {/*<div className="mobile-headerInfo">*/}
-                 {/*<i className="iconfont icon-leftarrow"></i>*/}
-                 {/*<h3 className="title">GAP(金地中心店)</h3>*/}
-                 {/*<i className="iconfont icon-search"></i>*/}
-               {/*</div>*/}
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
               <Preview/>
@@ -75,7 +71,6 @@ export class Editor extends Component {
             { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>
         </div>
-        {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}
       </div>
       <div className="sidebar-right">
         <Detail/>
