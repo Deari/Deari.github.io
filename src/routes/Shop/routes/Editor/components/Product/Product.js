@@ -8,7 +8,7 @@ const Product = (props) => {
             height={50}
             src={appLogo || 'http://placeholder.qiniudn.com/100x100/#808080/fff' }
             alt={appName}/>
-      {hideName ? '' : <span className="text">{appName}-{defaultLayout.w}x{defaultLayout.h}</span>}
+      {hideName ? '' : <span className="text">{appName}</span>}
       { <span className="text">{defaultLayout.w}x{defaultLayout.h}</span> }
     </div>
   )
