@@ -6,7 +6,7 @@ import fetchUtil from '../../utils/fetchUtil'
 import { getHardwareDomain } from 'utils/domain';
 import Debug from '../../utils/debug'
 
-import DATA from '../components/Probe/data'
+import { obj18, obj19, obj20 } from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
 
 // const getTimeStr = (date)=>{
@@ -61,7 +61,18 @@ export const Promised = (Wrapped) => class extends React.Component {
  async componentWillMount() {
 
     const hour = new Date ().getHours()
+    const day = new Date ().getDate()
+    const barTimeArr = BARDATA.data.timeArray.slice(day-6,day+1)
+    let DATA = {}
+    if(day===18){
+      DATA=obj18
+    }else if(day===19){
+      DATA=obj19
+    }else{
+      DATA=obj20
+    }
     DATA.timeArray = DATA.timeArray.slice(0, hour+1)
+    console.log(barTimeArr)
     // const startTime = (new Date (getTimeStr(date)).getTime())/1000
     // const endTime = ((date.getTime())/1000).toFixed()
     // const startDay = endTime - (6*24*3600)
@@ -88,6 +99,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     //   this.setState(DATA)
     // }
     this.setState(DATA)
+     
     // try {
     //   const dayRes = await fetchUtil.getJSON(dayApiUrl)
     //   if (dayRes.status == 200) {
@@ -101,7 +113,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     //   Debug.warn('获取数据异常', e);
     //   this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
     // }
-     this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+     this.setState({dayArray:barTimeArr})
   }
 
   getChartData = () => {
