@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import ReactGridLayout from 'react-grid-layout'
 
 import Element from '../../containers/ElementContainer'
-
+import './Preview.scss'
 export class Preview extends Component {
 
   componentDidMount() {
@@ -20,16 +20,17 @@ export class Preview extends Component {
 
   static defaultProps = {
     gridProps: {
-      className: "grid-layout",
+      className: "preview-layout",
       cols: 4,
-      rowHeight: 47,
+      rowHeight: 52.5,
       selectedCls: 'selected',
-      width: 210,
+      width: 208,
       margin: [ 0, 0 ],
     }
   }
 
   onLayoutChange(layouts) {
+    this.props.onLayoutChange();
     this.props.setLayout(layouts.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
     })))
@@ -78,14 +79,7 @@ export class Preview extends Component {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     return connectDropTarget(
       <div className="shop-info">
-        <div className="mobile-header">
-          <img className="clock" src="http://img1.ffan.com/T1hOJTB_WT1RCvBVdK" />
-          <div className="mobile-headerInfo">
-            <i className="iconfont icon-leftarrow"></i>
-            <h3 className="title">GAP(金地中心店)</h3>
-            <i className="iconfont icon-search"></i>
-          </div>
-        </div>
+
         <ReactGridLayout className="layout"
                          {...gridProps}
                          onLayoutChange={::this.onLayoutChange}>

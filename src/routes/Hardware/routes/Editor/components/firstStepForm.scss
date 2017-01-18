@@ -1,4 +1,4 @@
-@import "../../../../../layouts/CoreLayout/CoreLayout.scss";
+@import "~layouts/CoreLayout/CoreLayout.scss";
 $border-color:#dddddd;
 $text-color:#020202;
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
@@ -105,12 +105,23 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 cursor: pointer;
             }
         }
+        &>span{
+            cursor: default!important;
+        }
+        .right-upload{
+            input[type="button"]{
+                margin:0 10px 0 0;
+                display: inline-block;
+            }
+        }
         img{
             width: $default-width;
             height: $default-height;
             margin-right:$default-margin-right - 35px;
         }
-        
+        ul{
+            overflow: hidden;
+        }
         li{
             width: $default-width - 26px;
             height: $default-height - 71px;
@@ -128,6 +139,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 color: $white-color;
                 border-color: dodgerblue;
             }
+        }
+        .label-message{
+            margin-top: -20px;
         }
         .downLoad{
             width:223px;

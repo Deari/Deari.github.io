@@ -1,6 +1,7 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
+import { getApiUrl } from 'utils/domain'
 import './HomeView.scss'
 import '../assets/lib/slick.css'
 import '../assets/lib/slick-theme.css'
@@ -17,6 +18,10 @@ const SimpleSlider = React.createClass({
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+
+    const apiViewUrl = getApiUrl(`#!/`)
+    const apiAddUrl = getApiUrl(`#!/add`)
+
     return (
       <Slider {...settings}>
         <div className="banner1">
@@ -51,8 +56,8 @@ const SimpleSlider = React.createClass({
             <dd>为开发者提供最全面，最权威的API服务</dd>
           </dl>
           <p>
-           <a className="btn-left btn btn-primary" href="http://apistore.intra.test.ffan.net">浏览API</a>
-           <a className="btn-right btn" href="http://apistore.intra.test.ffan.net/#!/add">发布API</a>
+           <a className="btn-left btn btn-primary" href={apiViewUrl}>浏览API</a>
+           <a className="btn-right btn" href={apiAddUrl}>发布API</a>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/978419104ea4e5700f1f83012acecd4d78c3a635.jpg" />
@@ -114,7 +119,7 @@ export const HomeView = () => (
             </Link>
           </li>
           <li>
-            <a className="a-bg3" href="http://apistore.intra.test.ffan.net">
+            <a className="a-bg3" href={getApiUrl(`#!/`)}>
               <p className="market-tittle">API市场</p>
               <i className="iconfont icon-api"></i>
               <span className="market-text">提供实体服务商/开发者所需的各种服务接口</span>

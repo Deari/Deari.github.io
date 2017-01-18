@@ -1,32 +1,38 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react';
 import './Modal.scss';
 import classnames from 'classnames';
 
-const Alert = ({active, children, ...props}) => {
+const Alert = ({ active, hideButtons, modalCls, children, ...props }) => {
 
   return <div className={classnames('modal', 'alert', { ['active']: active })}>
-    <div className={'modalInner'}>
+    <div className={classnames('modalInner', { [`${modalCls}`]: modalCls })}>
       <div className={'modalText'}>
         {children}
       </div>
+      {!hideButtons &&
       <div className={'modalButtons'}>
-        <span className={'btn'} onClick={e=>{
+        <span className={'btn'} onClick={e => {
           props.onClose();
           props.onConfirm();
         }}>确定</span>
       </div>
+      }
     </div>
   </div>;
 }
 
 Alert.propTypes = {
+  hideButtons: PropTypes.bool,
   active: PropTypes.bool,
+  modalCls: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   onConfirm: PropTypes.func,
 }
 
 Alert.defaultProps = {
+  hideButtons: false,
   active: false,
+  modalCls: '',
   onClose: () => {},
   onConfirm: () => {},
 }

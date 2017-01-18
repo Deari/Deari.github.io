@@ -39,6 +39,7 @@
       dd{
         margin-top: 8px;
         font-size: 12px;
+        line-height:18px;
         color: $gray6-color;
         overflow: hidden;
         i{
@@ -46,8 +47,9 @@
           float: left;
         }
         span{
-            width:596px;
+            width:594px;
             float: left;
+            padding-top: 2px;
         }
       }
     }
@@ -187,5 +189,6 @@
     bottom:50px;
     font-size:14px;
     color: $blue-color;
+    cursor: pointer;
   }
 }

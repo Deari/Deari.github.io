@@ -13,19 +13,10 @@
     width: 279px;
     text-align: center;
     background: $white-color;
-    border-radius: 4px;
+    border-radius: 3px;
     overflow: hidden;
     &:hover{
       box-shadow: 0 0 8px rgba(187,187,187,0.9);
-    }
-    img{
-      display: inline-block;
-      margin: 20px 0;
-      width: 96px;
-      height: 96px;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #eee;
     }
   }
   li:nth-child(3n){
@@ -35,8 +26,8 @@
 .open-content-info{
   display: block;
   .open-info-name{
-      padding: 16px 34px 0px;
-      height: 40px;
+      padding: 13px 34px 0px;
+      height: 38px;
       font-size: 18px;
       color: $black-color;
       @include font-hidden;
@@ -44,16 +35,23 @@
   }
   .open-user-name{
     display: block;
-    margin-top: 4px;
     padding: 0 14px;
     font-size: 12px;
     color: $gray6-color;
     @include font-hidden;
     @include font-nowrap;
-    .user-img{
-      margin-right: 4px;
-      vertical-align: text-top;
+    .user-img {
+      display: inline-block;
     }
+  }
+  .open-list-img{
+    display: inline-block;
+    margin: 18px 0 14px;
+    width: 96px;
+    height: 96px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #eee;
   }
   .open-info-introduce{
     padding: 0 14px;
@@ -73,7 +71,7 @@
     display: inline-block;
     width: 93px;
     text-align: center;
-    font-size: 16px;
+    font-size: 13px;
     color: $gray9-color;
     line-height: 38px;
     background: #dde1e7;
@@ -139,18 +137,19 @@
   @include border-top;
 }
 .user-img{
-  width: 18px;
-  height: 18px;
+  margin-right: 5px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   overflow: hidden;
   background: url(../../routes/Home/assets/data-logo.png) no-repeat;
-  background-size: 100%;
-  vertical-align: sub;
+  background-size: 100% 100%;
+  vertical-align: middle;
 }
 .open-list-start{
   position: absolute;
-  top: 6px;
-  right: 36px;
+  top: 4px;
+  right: 28px;
   i{
     position: absolute;
     font-size: 22px;

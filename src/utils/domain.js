@@ -78,3 +78,9 @@ export function getApiDomain(url) {
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
+
+export function getApiUrl(url) {
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
+  return domain + url
+}

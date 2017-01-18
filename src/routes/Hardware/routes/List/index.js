@@ -1,54 +1,119 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from 'components/List'
-import { getDomain } from 'utils/domain';
+import List from 'components/newList'
 import fetchUtil from 'routes/utils/fetchUtil'
+import { getDomain } from 'utils/domain'
+import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
+import Nav from 'components/Nav'
 import './index.scss'
 import 'styles/_base.scss'
 
 class HardwaresList extends React.Component {
   state = {
     listData: [],
-    status : -2  //-1 0 1 2 
+    navData: [
+      {name: "全部", value: -1, active: true},
+      {name: "已审核", value: 2},
+      {name: "待审核", value: 1},
+      {name: "待提交", value: 0}
+    ]
   }
-  
-  async getList(isFirst) {
 
-    let apiUrl = isFirst? 
-    getDomain("web/hardware/myHardware") :
-    getDomain("web/hardware/myHardware/"+this.state.status)
-
+  async getList() {
+    let apiUrl = getDomain("web/hardware/myHardware")
+    const reviewStatus = this.getReviewStatus()
+    if (reviewStatus > -1) apiUrl = getDomain(`web/hardware/myHardware/${reviewStatus}`)
     try {
-      const res = await fetchUtil.getJSON(apiUrl);
-      if(res.status === 200){
+      let res = await fetchUtil.getJSON(apiUrl);
+      if(res.status == 200){
         return res.data && res.data.list
       } else {
-        console.log("res ", res);
-        return []
+        debug.warn("获取列表接口错误")
+        return false
       }
     } catch (e) {
-      console.log(e)
+      debug.warn("网络错误")
     }
   }
 
-  componentDidMount() {
-    this.changeList(-1)
+  getReviewStatus() {
+    const { navData } = this.state
+    let reviewStatus = 0
+    navData.map((item, index) => {
+      if (item && item.active) reviewStatus = item.value 
+    })
+    return reviewStatus
   }
 
+  getStatus(item) {
+    let state = parseInt(item.hardwareStatus)
 
-  changeList(value) {
-    if (value === this.state.status) return;
-    this.setState({ status : value }, async () => {
-      let resp = value >= 0 ? await this.getList() : await this.getList(true);
-      this.setState({ listData: resp })
-      if (!resp.length) {
-        console.log("noData")
+    switch(state) {
+      case 1:
+        return { status: "待审核", showEdit: false, showDebug: true }
+        break
+      case 2:
+        return { status: "已审核", showEdit: false, showDebug: true }
+        break
+      case 0:
+        return { status: "待提交", showEdit: true, showDebug: true }
+        break
+      default:
+        return ''
+    }
+  }
+
+  formatListData(listData) {
+    let newData = []
+    listData.map((item, index) => {
+      if (item) {
+        let obj = {}
+
+        obj.id = item.hardwareId && item.hardwareId || ''
+        obj.logo = item.hardwareLogo && item.hardwareLogo || ''
+        obj.name = item.hardwareName && item.hardwareName || ''
+        obj.desc = item.hardwareFunction && item.hardwareFunction || ''
+        obj.price = item.hardwarePrice && item.hardwarePrice || '免费'
+        obj.status = this.getStatus(item).status
+        obj.download = item.hardwareDownnum && item.hardwareDownnum || 100
+        obj.detailUrl = `/hardware/detail/${obj.id}`
+
+        const editUrl = `/hardware/edit/${obj.id}`
+        const debugUrl = `/hardware/doc`
+
+        const showBtn = this.getStatus(item)
+
+        obj.btnData = [
+          {name: "编辑", url: editUrl, active: showBtn.showEdit},
+          {name: "调试硬件", url: debugUrl, active: showBtn.showDebug}
+        ]
+
+        newData.push(obj)
       }
-    });
+    })
+    
+    return newData
+  }
+
+  async componentDidMount() {
+    const listData = await this.getList()
+    const newData = listData && this.formatListData(listData)
+    newData && this.setState({listData: newData})
+  }
+
+  changeNav(obj) {
+    this.setState({...obj}, async () => {
+      const listData = await this.getList()
+      const newData = listData && this.formatListData(listData)
+      newData && this.setState({listData: newData})
+    })
   }
 
   render() {
+
+    const { navData, listData } = this.state
+
     const urls = {
       create: { url: `/hardware/create`, name: '发布新硬件' },
       list: { url: `/hardware/list`, name: '我的硬件', active: true },
@@ -59,12 +124,7 @@ class HardwaresList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls} type="hardware"/>
         <div className="sub-container plf bg-white">
-          <ul className="sub-content-tab">
-            <li><a className={this.state.status === -1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,-1)}>全部</a></li>
-            <li><a className={this.state.status === 2 ? 'tab-active' : ''} onClick={this.changeList.bind(this,2)}>已审核</a></li>
-            <li><a className={this.state.status === 1 ? 'tab-active' : ''} onClick={this.changeList.bind(this,1)}>待审核</a></li>
-            <li><a className={this.state.status === 0 ? 'tab-active' : ''} onClick={this.changeList.bind(this,0)}>待提交</a></li>
-          </ul>
+          <Nav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w342">硬件名称</li>
@@ -73,7 +133,7 @@ class HardwaresList extends React.Component {
             <li className="w90">已激活</li>
             <li className="w112">操作</li>
           </ul>
-          <List data={this.state.listData} showName="hardware" detailLink='/hardware/detail/'/>
+          <List listData={listData} />
         </div>
       </div>
     )

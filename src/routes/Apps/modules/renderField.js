@@ -3,34 +3,34 @@ import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
-export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderField = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
       <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderTextArea = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderTextArea = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={label}></textarea>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
+export const renderSelect = ({ input, label, meta: { touched, dirty, error, warning }, children }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <select {...input}>
         {children}
       </select>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
@@ -38,36 +38,39 @@ export const renderSelect = ({ input, label, meta: { touched, error, warning }, 
 export class renderTags extends Component {
   
   handleClick (tagId) {
-    const { input } = this.props;
-    const newTags = input.value.filter(v=>v != tagId);
+    const { input } = this.props
+    const newTags = input.value.filter(v=>v != tagId)
     if(newTags.length ==input.value.length) {
       newTags.push(tagId)
     }
 
-    input.onChange(newTags);
+    input.onChange(newTags)
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
 
     return (
       <div className="form-row">
         <label>{label}</label>
-        <ul className="row-right max-width">
-          {
-            tags.map((item) => (
-              <li 
-                className={
-                  ((tagId)=>{
-                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
-                  })(item.tagId)
-                }
-                key={item.tagId}
-                onClick={()=>this.handleClick(item.tagId)}
-              >{item.tagName}</li>
-            ))
-          }
-        </ul>
+        <div className="row-right max-width">
+        	<ul>
+	          {
+	            tags.map((item) => (
+	              <li 
+	                className={
+	                  ((tagId)=>{
+	                    return input.value.indexOf(tagId) > -1 ? 'active' : ''
+	                  })(item.tagId)
+	                }
+	                key={item.tagId}
+	                onClick={()=>this.handleClick(item.tagId)}
+	              >{item.tagName}</li>
+	            ))
+	          }
+	        </ul>
+          {(dirty || touched) && ((error && <span className="label-message">{error}</span>))}
+        </div>
       </div>
     )
   }
@@ -77,6 +80,8 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
+    if (!e.target.files[0]) return;
+    
     const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
@@ -99,7 +104,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning }} = this.props;
+    const { input, label, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
@@ -114,6 +119,7 @@ export class renderImageUpload extends Component {
           <div className="img-container">
             <img src={input.value} alt="上传图片" className="img-thumbnail" />
           </div>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -124,40 +130,38 @@ export class renderImageUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
+    if (!e.target.files[0]) return;
+
     const url = getDomain("web/file/upload")
     const formData = new FormData()
-
     formData.append('fileName', e.target.files[0])
-    
-    console.log(e.target.files[0].name);
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false
-
     }).then(res=>{
-      
-      console.info(res);
-
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
         debug.warn('文件代码包格式错误')
       }
-
     }).catch(e=>{
       debug.warn('网络错误')
     })
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning }} = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     
     return (
-
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <input type="file" className="form-file" onChange={::this.fileUpload} />
+          <span className="right-upload">
+            <input type="button" value="选择文件" />
+            <input type="file" accept=".zip" onChange={::this.fileUpload} />
+            {input.value.originalName}
+          </span>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -165,4 +169,4 @@ export class renderFile extends Component {
   
 }
 
-export default renderField;
+export default renderField

@@ -3,17 +3,13 @@ import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
-import { 
-  renderField, 
-  renderTextArea, 
-  renderFile,
-} from '../../../modules/renderField'
+import { renderTextArea, renderFile } from '../../../modules/renderField'
 
-import { validate } from '../modules/validate'
+import { validate } from '../../../modules/validate'
 
 const SecondStepForm = props => {
 
-  const { handleSubmit, submitting, previous } = props;
+  const { handleSubmit, submitting, previous } = props
   
   return (
     <form onSubmit={handleSubmit}>
@@ -32,11 +28,11 @@ const SecondStepForm = props => {
 
 const mapDispatchToProps = {
 
-};
+}
 
 const mapStateToProps = ({appsCreate}) => ({
   initialValues: appsCreate.form2,
-});
+})
 
 export default connect(
   mapStateToProps,
@@ -46,6 +42,6 @@ export default connect(
   form: 'createAppStep2',
   fields: [],
   keepDirtyOnReinitialize: true,
-  enableReinitialize: true
-  // validate,
+  enableReinitialize: true,
+  validate
 })(SecondStepForm))

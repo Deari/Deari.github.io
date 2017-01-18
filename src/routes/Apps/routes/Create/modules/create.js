@@ -2,9 +2,9 @@ import { getDomain } from 'utils/domain'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-const PREFIX = 'CREATE_APP_';
+const PREFIX = 'CREATE_APP_'
 
-const TOGGLE_STEP = PREFIX+'TOGGLE_STEP';
+const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -36,27 +36,27 @@ export const updateForm2 = (data) => ({
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain("public/app/tags");
+    const url = getDomain("public/app/tags")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveTags(res.data));
+        dispatch(receiveTags(res.data))
       } else {
-        throw Error ('getTags error');
+        throw Error ('getTags error')
       }
-    });
+    })
   }
 }
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain("public/app/categories");
+    const url = getDomain("public/app/categories")
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        dispatch(receiveCates(res.data && res.data.list));
+        dispatch(receiveCates(res.data && res.data.list))
       } else {
-        throw Error ('getCates error');
+        throw Error ('getCates error')
       }
-    });
+    })
   }
 }
 
@@ -141,7 +141,7 @@ const getInitialState = () => {
 
 export default function appsReducer(state, action) {
  if(!state) {
-   state = getInitialState();
+   state = getInitialState()
  }
  const handler = ACTION_HANDLERS[ action.type ]
  return handler ? handler(state, action) : state
