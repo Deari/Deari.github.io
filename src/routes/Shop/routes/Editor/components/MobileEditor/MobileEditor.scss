@@ -53,9 +53,11 @@
     .slider-wrap {
       position: absolute;
       width: 40px;
+      height: 300px;
       right: -80px;
       top: 50%;
-      transform: translate3d(0, -50%, 0);
+      margin-top: -150px;
+      // transform: translate3d(0, -50%, 0);
     }
     .slide-text {
       position: absolute;
@@ -67,7 +69,7 @@
       letter-spacing: 5px;
       color: #555;
       text-shadow: 1px 1px 1px #999;
-      transform: translate3d(0,-50%,0);
+      margin-top: -150px;
       display: inline-block;
       width: 20px;
       text-overflow: ellipsis;
@@ -125,60 +127,8 @@
     left: 100px;
   }
 }
-
-
-
-/**********************
- * button
- **********************/
-
 .btn-block {
   position: absolute;
   bottom: 20px;
   width: 100%;
-
-  @mixin btn {
-    display: inline-block;
-    height: 40px;
-    margin: 10px 5px 0;
-    padding: 0;
-    line-height: 36px;
-    border-radius: 4px;
-  }
-
-  .short-btn {
-    @include btn;
-    width: 45%;
-  }
-
-  .long-btn {
-    @include btn;
-    width: 95%;
-  }
-
-  .btn-red {
-    color: #fff;
-    background: #fb4747;
-    border: 2px solid #fb4747;
-  }
-
-  .btn-green {
-    color: #54a4ff;
-    background: #fff;
-    border: 2px solid #54a4ff;
-  }
-
-  .btn-blue {
-    color: #fff;
-    background: #3fa7ff;
-    border: 2px solid #3fa7ff;
-  }
-
-  // todo:  btn-disabled !important
-  .btn-blue.disabled {
-    background: gray;
-    border-color: #eeeeee;
-    outline: none;
-  }
-
 }

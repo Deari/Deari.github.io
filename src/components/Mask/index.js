@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 // https://github.com/facebook/react/blob/master/src/renderers/dom/client/ReactMount.js#L390-L401
 import { unmountComponentAtNode, findDOMNode } from 'react-dom';
 import Protal from '../Protal';
-import './Mask.css';
+import './Mask.scss';
 import classnames from 'classnames';
 
 
