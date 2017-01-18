@@ -30,6 +30,7 @@ export class Preview extends Component {
   }
 
   onLayoutChange(layouts) {
+    this.props.onLayoutChange();
     this.props.setLayout(layouts.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
     })))

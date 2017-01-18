@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Business from '../../../../../../components/business'
-
+import Modal from 'components/Modal'
+import './Detail.scss'
 
 export class Detail extends Component {
 
@@ -41,10 +42,36 @@ export class Detail extends Component {
     </div>
   }
 
+  state = {
+    modalActive: true
+  }
+
+  onClose() {
+    this.setState({
+      modalActive: false
+    })
+  }
+
+  onOpen() {
+    this.setState({
+      modalActive: true
+    })
+  }
+
   render() {
     const { detail } = this.props
     const { pagePublish } = detail
     return <div id="detail-container">
+      <Modal type={"alert"}
+             active={pagePublish === 'start'}
+             onClose={::this.onClose}
+             onCancel={::this.onClose}
+             modalCls="preview-modal"
+             hideButtons="true">
+        <p className="center">发布中，请稍候 </p>
+        <div className="center ball-beat"><div></div><div></div><div></div></div>
+      </Modal>
+
       {::this.getWidgetContainer()}
       <div className="btn-block">
         <button className={ `m-btn m-btn-blue m-btn-block ${pagePublish === 'start' ? 'disabled' : ''}` }
