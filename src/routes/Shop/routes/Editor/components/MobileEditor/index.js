@@ -57,22 +57,47 @@ export class Editor extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      show: false,
       value: 100 /** Start value **/
     };
   }
 
   handleChange = (value) => {
+    // if(!this.isMounted()) { return }
     const scrollDom = findDOMNode(this.refs.scrollWrap)
+    if( !scrollDom ) { return }  
     const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100-value)/100;
-    if(dis >= 0) {
+    
+    if(dis > 0 || scrollDom.scrollTop != dis) {
       scrollDom.scrollTop = dis;
       this.setState({
         value: value
       });
+    } else if(scrollDom.scrollHeight - scrollDom.clientHeight <= 0) {
+      scrollDom.scrollTop = 0;
+      this.setState({
+        value: 100
+      });
     }
   }
+
+  onLayoutChange = () => {
+    // if(!this.isMounted()) { return }
+    
+    const scrollDom = findDOMNode(this.refs.scrollWrap)
+    if( !scrollDom ) { return }  
+    
+    console.log('hello', scrollDom.scrollHeight ,scrollDom.clientHeight)
+    
+    if(scrollDom && scrollDom.scrollHeight - scrollDom.clientHeight) {
+      this.setState({
+        show: true
+      })
+    }
+  }
+
   render() {
-    const {value} = this.state;
+    const {value, show} = this.state;
 
     return <div className="clx">
       <LeftSideBar/>
@@ -83,10 +108,10 @@ export class Editor extends Component {
               <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png" />
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
-              <Preview/>
+              <Preview onLayoutChange={this.onLayoutChange}/>
             </div>
             <div className="slider-wrap">
-              <Slider value={value} orientation="vertical" onChange={this.handleChange} />
+              { show ? <Slider value={value} orientation="vertical" onChange={this.handleChange} />  : ''}
             </div>
             { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>
