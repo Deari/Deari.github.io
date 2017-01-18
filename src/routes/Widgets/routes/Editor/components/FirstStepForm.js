@@ -77,7 +77,6 @@ export default connect(
 )(reduxForm({
   form: 'widgetsEditStep1',
   fields: [],
-  destroyOnUnmount: false,
   keepDirtyOnReinitialize: true,
   enableReinitialize: true,
   validate

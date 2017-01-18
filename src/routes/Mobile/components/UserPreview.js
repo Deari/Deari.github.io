@@ -4,12 +4,15 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive)
 import Element from '../../Shop/routes/Editor/containers/ElementContainer'
 export default class UserPreview extends Component {
 
+  state = {
+    rowHeight: 70,
+    width: 667,
+  }
+
   static defaultProps = {
     gridProps: {
       className: "user-layout",
-      rowHeight: 120,
       selectedCls: 'selected',
-      width: 667,
       margin: [ 0, 0 ],
     }
   }
@@ -29,18 +32,28 @@ export default class UserPreview extends Component {
     }
   }
 
+  onWidthChange(containerWidth, margin, cols, containerPadding) {
+    console.log(containerWidth)
+    this.setState({
+      rowHeight: Math.floor(containerWidth / cols),
+      width: containerWidth,
+    })
+  }
+
   generateDOM() {
     const { layouts, elements } = this.props
     return elements.map(e => <div style={this.generateStyle(e)}
                                   data-grid={this.getLayout(layouts, e.id)}
                                   key={e.id}>
-      <Element {...e} layout={this.getLayout(layouts, e.id)} gridProps={this.props.gridProps}/>
+      <Element {...e} layout={this.getLayout(layouts, e.id)} gridProps={{...this.props.gridProps, ...this.state}}/>
     </div>)
   }
 
   render() {
     return (
       <ResponsiveReactGridLayout {...this.props.gridProps}
+                                 {...this.state}
+                                 onWidthChange={::this.onWidthChange}
                                  cols={{ xxs: 4, xs: 4, md: 4, sm: 4, lg: 4 }}
       >
         {this.generateDOM()}

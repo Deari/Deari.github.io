@@ -28,7 +28,7 @@ export class Detail extends Component {
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
           <button className={ `btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
                   onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
-            {pagePublish === 'start' ? '发布中...' : '发布'}
+            {pagePublish === 'start' ? '发布中...' : '保存并发布'}
           </button>
         </div>
       </div>
@@ -49,12 +49,14 @@ export class Detail extends Component {
       // 普通组件
       return <div className="widgets-btn-container">
         <div className="btn-block">
-          <button className="btn btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
-          <button className="btn btn-green" onClick={cancelElement}>取消</button>
+          <button className="short-btn btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
+          <button className="short-btn btn-green" onClick={cancelElement}>取消</button>
+          {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
+          <button className={ `long-btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
+                  onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
+            {pagePublish === 'start' ? '发布中...' : '保存并发布'}
+          </button>
         </div>
-        {/*<pre>*/}
-        {/*{JSON.stringify(element, null, 2)}*/}
-        {/*</pre>*/}
       </div>
     }
 

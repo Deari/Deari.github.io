@@ -13,7 +13,7 @@ import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, getAppCodeInfo } from '../modules/edit'
+        getAppInfo, getAppCodeInfo, updateFirstForm } from '../modules/edit'
 
 class EditContainer extends Component {
   
@@ -61,6 +61,7 @@ class EditContainer extends Component {
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
         // this.props.updateAppId(res.data.appId);
+        this.props.updateFirstForm(values)
         this.props.toggleStep(2);
       } else {
         debug.warn('请完善表单信息')
@@ -144,7 +145,8 @@ const mapDispatchToProps = {
   fetchCates,
   // updateAppId,
   getAppInfo,
-  getAppCodeInfo
+  getAppCodeInfo,
+  updateFirstForm
 }
 
 const mapStateToProps = ({widgetEdit}) => ({

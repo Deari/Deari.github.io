@@ -22,7 +22,7 @@ export class Preview extends Component {
     gridProps: {
       className: "preview-layout",
       cols: 4,
-      rowHeight: 47,
+      rowHeight: 52.5,
       selectedCls: 'selected',
       width: 210,
       margin: [ 0, 0 ],
@@ -78,7 +78,7 @@ export class Preview extends Component {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     return connectDropTarget(
       <div className="shop-info">
-        
+
         <ReactGridLayout className="layout"
                          {...gridProps}
                          onLayoutChange={::this.onLayoutChange}>

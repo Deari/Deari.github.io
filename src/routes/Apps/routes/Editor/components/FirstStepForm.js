@@ -63,7 +63,7 @@ export default connect(
 )(reduxForm({
   form: 'editAppStep1',
   fields: [],
-  destroyOnUnmount: false,
+  // destroyOnUnmount: false,
   // forceUnregisterOnUnmount: true,
   keepDirtyOnReinitialize: true,
   enableReinitialize: true,
