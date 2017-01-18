@@ -14,18 +14,42 @@ import Slider from 'react-rangeslider';
 const LeftSideBar = props => (
   <div className='sidebar-left'>
     <ul className="nav">
-      <li className="item">
-        <span className="menu-title"><i className="iconfont icon-uncollected"></i>常用</span>
-        <Product />
+      <li className="item active">
+        <div className="menu-title">
+          <i className="iconfont icon-uncollected"></i>
+          <span>常用</span>
+        </div>
+        <div className="menu-cont">
+          <Product />
+        </div>
       </li>
-      <li className="item"><span className="menu-title"><i className="iconfont icon-text"></i>图文类</span></li>
-      <li className="item"><span className="menu-title"><i className="iconfont icon-sidebar6"></i>营销互动类</span></li>
-      <li className="item"><span className="menu-title"><i className="iconfont icon-goods"></i>商品类</span></li>
+      <li className="item">
+        <div className="menu-title">
+          <i className="iconfont icon-text"></i>
+          <span>图文类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
+        </div>
+      </li>
+      <li className="item">
+        <div className="menu-title">
+          <i className="iconfont icon-gift"></i>
+          <span>营销互动类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
+        </div>
+      </li>
+      <li className="item">
+        <div className="menu-title">
+          <i className="iconfont icon-goods"></i>
+          <span>商品类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
+        </div>
+      </li>
     </ul>
-   <a className="btn-more" href="wandaffoap://jump/componentMarket">
-     <i className="iconfont icon-puzzle"></i>
-     <span className="text">更多</span>
-     <i className="iconfont icon-readMore"></i></a>
+    <a className="btn-more" href="wandaffoap://jump/componentMarket">
+      <i className="iconfont icon-puzzle"></i>
+      <span className="text">查看更多组件</span>
+      <i className="iconfont icon-readMore"></i>
+    </a>
   </div>
 )
 
@@ -39,15 +63,24 @@ export class Editor extends Component {
 
   handleChange = (value) => {
     const scrollDom = findDOMNode(this.refs.scrollWrap)
+    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100-value)/100;
+    if(dis >= 0) {
+      scrollDom.scrollTop = dis;
+      this.setState({
+        value: value
+      });
+    }
+  }
 
-    const dis = (scrollDom.scrollHeight - scrollDom.offsetHeight) * (100-value)/100;
+  handleResize = (e) => {
+    console.log(111, e.target);
+  }
+
+  componentDidMount() {
     
-    scrollDom.scrollTop = dis
-    // console.log( findDOMNode(this.refs.scrollWrap) );
-    
-    this.setState({
-      value: value
-    });
+  }
+
+  componentWillUnmount() {
   }
 
   render() {
@@ -66,7 +99,6 @@ export class Editor extends Component {
             </div>
             <div className="slider-wrap">
               <Slider value={value} orientation="vertical" onChange={this.handleChange} />
-              { /* <div>Value: {value}</div> */ }
             </div>
             { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>

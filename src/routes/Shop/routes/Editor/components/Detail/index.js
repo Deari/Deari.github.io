@@ -22,7 +22,7 @@ export class Detail extends Component {
             <i className="iconfont icon-leftjiao"></i>
             <div className="qr"></div>
           </div>
-          <p className="text">用微信<i className="iconfont icon-wechat"></i>扫描即可查看手机橱窗</p>
+          <p className="text">用蓝海APP扫描即可查看手机橱窗</p>
         </div>
         <div className="btn-block">
           {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}

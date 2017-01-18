@@ -200,13 +200,14 @@ export class renderImgsUpload extends Component {
 
   imageUpload(e) {
     const { input } = this.props
+    const { imgs } = this.state
 
     if (input.value.length >= 4) {
       window.alert("最多上传四张")
       return
     }
 
-    const newArr = input.vaule && Array.isArray(input.value) ? input.vaule.map(v=>v) : [];
+    let newArr = imgs
     const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
