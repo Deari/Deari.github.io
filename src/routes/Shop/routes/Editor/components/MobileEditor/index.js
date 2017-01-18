@@ -65,15 +65,17 @@ export class Editor extends Component {
   handleChange = (value) => {
     // if(!this.isMounted()) { return }
     const scrollDom = findDOMNode(this.refs.scrollWrap)
-    if( !scrollDom ) { return }  
-    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100-value)/100;
-    
-    if(dis > 0 || scrollDom.scrollTop != dis) {
+    if (!scrollDom) {
+      return
+    }
+    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100 - value) / 100;
+
+    if (dis > 0 || scrollDom.scrollTop != dis) {
       scrollDom.scrollTop = dis;
       this.setState({
         value: value
       });
-    } else if(scrollDom.scrollHeight - scrollDom.clientHeight <= 0) {
+    } else if (scrollDom.scrollHeight - scrollDom.clientHeight <= 0) {
       scrollDom.scrollTop = 0;
       this.setState({
         value: 100
@@ -82,22 +84,22 @@ export class Editor extends Component {
   }
 
   onLayoutChange = () => {
-    // if(!this.isMounted()) { return }
-    
     const scrollDom = findDOMNode(this.refs.scrollWrap)
-    if( !scrollDom ) { return }  
-    
-    console.log('hello', scrollDom.scrollHeight ,scrollDom.clientHeight)
-    if(scrollDom) {
-      const show = scrollDom.scrollHeight > scrollDom.clientHeight 
-      this.setState({
-        show
-      })
+    if (!scrollDom) {
+      return
     }
+    setTimeout(() => {
+      if (scrollDom) {
+        const show = scrollDom.scrollHeight > scrollDom.clientHeight
+        this.setState({
+          show
+        })
+      }
+    }, 500)
   }
 
   render() {
-    const {value, show} = this.state;
+    const { value, show } = this.state;
 
     return <div className="clx">
       <LeftSideBar/>
@@ -105,13 +107,13 @@ export class Editor extends Component {
         <div className="preview">
           <div className="bg-phone">
             <div className="mobile-header">
-              <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png" />
+              <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png"/>
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
               <Preview onLayoutChange={this.onLayoutChange}/>
             </div>
             <div className="slider-wrap">
-              { show ? <Slider value={value} orientation="vertical" onChange={this.handleChange} />  : ''}
+              { show ? <Slider value={value} orientation="vertical" onChange={this.handleChange}/> : ''}
             </div>
             { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>
