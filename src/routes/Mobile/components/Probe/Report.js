@@ -49,7 +49,7 @@ const AreaChartContainer = (props) => {
   return <div>
   <h3 className="numTitle">客流量总计(人)：{ allNum }</h3>
   <div className="chart bg-white">
-    <h3 className="title">客流量分布图</h3>
+    <h3 className="title">客流量小时分布图（人）</h3>
     <div className="chart-container">
       <AreaChart width={735} height={300} data={chartData} margin={{top: 5, right: 30, left: 20, bottom: 5}}>
         <defs>
@@ -76,7 +76,7 @@ const BarChartContainer = ({ data }) => {
   const timeStr = getTimeStr(date)
   return <div>
     <div className="chart bg-white">
-      <h3 className="title">客流日期分布图（人）</h3>
+      <h3 className="title">客流量日期分布图（人）</h3>
       <div className="chart-container">
         <BarChart width={735} height={310} data={data}>
           <defs>

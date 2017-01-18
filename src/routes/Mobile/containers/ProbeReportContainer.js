@@ -64,11 +64,10 @@ export const Promised = (Wrapped) => class extends React.Component {
     const date = new Date ()
     const startTime = (new Date (getTimeStr(date)).getTime())/1000
     const endTime = ((date.getTime())/1000).toFixed()
-    const startDay = endTime - (7*24*3600)
-    const signParam = "app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=" + endTime
+    const startDay = endTime - (6*24*3600)
+    const signParam = `app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=${endTime}`
     const sign = md5(signParam)
     const signParams =`app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
-    const timeParams = `startTime=${startTime}&endTime=${endTime}`
 
     const hourParams = `storeId=10021141&startTime=${startTime}&endTime=${endTime}&${signParams}`
     const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&${signParams}`
