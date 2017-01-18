@@ -156,7 +156,7 @@ export class renderFile extends Component {
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <span>
+          <span className="right-upload">
             <input type="button" value="选择文件" />
             <input type="file" accept=".zip" onChange={::this.fileUpload} />
             {input.value.originalName}

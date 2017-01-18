@@ -114,6 +114,12 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
         &>span{
             cursor: default!important;
         }
+        .right-upload{
+            input[type="button"]{
+                margin:0 10px 0 0;
+                display: inline-block;
+            }
+        }
         img{
             width: $default-width;
             height: $default-height;
