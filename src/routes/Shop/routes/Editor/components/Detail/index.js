@@ -10,6 +10,34 @@ export class Detail extends Component {
     }
   }
 
+  getWidgetContainer() {
+    const { detail, saveDetail, deleteElement, cancelElement } = this.props
+    const { element, pagePublish } = detail
+
+    if (!element.id) {
+      return <div className="share">
+        <div className="bg-qr">
+          <i className="iconfont icon-leftjiao"></i>
+          <div className="qr"></div>
+        </div>
+        <p className="text">用蓝海APP扫描即可查看手机橱窗</p>
+      </div>
+    }
+
+    if (element.moduleType === 'html5') {
+      const { Detail } = Business[ element.moduleName ]
+      if (Detail) {
+        // 自定义组件
+        return <Detail {...detail} onChange={saveDetail}/>
+      } else {
+        // H5 中非自定义组件？
+      }
+    }
+
+
+
+  }
+
   render() {
 
     const { detail, saveDetail, deleteElement, cancelElement } = this.props
@@ -25,7 +53,6 @@ export class Detail extends Component {
           <p className="text">用蓝海APP扫描即可查看手机橱窗</p>
         </div>
         <div className="btn-block">
-          {/*<button className="btn btn-white" onClick=""><i className="iconfont icon-update"></i>发布</button>*/}
           <button className={ `btn btn-blue ${pagePublish === 'start' ? 'disabled' : ''}` }
                   onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
             {pagePublish === 'start' ? '发布中...' : '保存并发布'}
