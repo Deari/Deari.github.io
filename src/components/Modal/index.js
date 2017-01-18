@@ -42,7 +42,6 @@ class Modal extends Component {
 
   render() {
     const {active, children, type, ...props} = this.props;
-
     return <Mask {...props} active={active}>
       {this.getModalContent(type)}
     </Mask>;

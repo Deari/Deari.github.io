@@ -20,7 +20,7 @@ export class Test extends Component {
   }
 
   render() {
-    return <div>
+    return <div style={{background: 'red'}}>
     <button onClick={::this.onOpen}>tanchuang</button>
       <Modal type={"confirm"} active={this.state.modalActive}
              onClose={::this.onClose}
