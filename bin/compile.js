@@ -94,6 +94,9 @@ async function gitDeploy(){
     await repo.push(remote.name, 'master', {
       force: 1
     });
+    // await repo.push(remote.name, process.env.URI === 'pub' ? 'master' : 'sit', {
+    //   force: 1
+    // });
     // Check if the site was successfully deployed
     // const response = await fetch(remote.website);
     // console.log(`${remote.website} -> ${response.statusCode}`);

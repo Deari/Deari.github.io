@@ -174,10 +174,7 @@
         word-break:break-all;
         .img-block{
           position:relative;
-          width:240px;
-          height:100px;
-          border:1px solid #eff3f3;
-          border-radius:5px;
+          height:160px;
           .img-text{
             position:absolute;
             top:50%;
@@ -192,10 +189,9 @@
             top:0;
             left: 0;
             z-index:2;
-            width:240px;
-            height:100px;
+            height:160px;
             border-radius:5px;
-            border:0;
+            border:1px solid #eff3f3;
           } 
         }
       }
@@ -214,5 +210,6 @@
     bottom:50px;
     font-size:14px;
     color: $blue-color;
+    cursor: pointer;
   }
 }

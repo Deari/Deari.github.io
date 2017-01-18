@@ -19,7 +19,8 @@ import {
   getTags, 
   getCates, 
   getAppInfo,
-  getAppCodeInfo 
+  getAppCodeInfo,
+  updateFirstForm
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -55,6 +56,7 @@ class EditContainer extends Component {
     const url = getDomain(`web/developer/app/${values.appId}`)
     fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
       if(res.status == 200) {
+        this.props.updateFirstForm(values)
         this.props.toggleStep(2)
       } else {
         debug.warn('请完善表单信息')
@@ -139,7 +141,8 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   getAppInfo,
-  getAppCodeInfo
+  getAppCodeInfo,
+  updateFirstForm
 }
 
 const mapStateToProps = ({appsEdit}) => ({

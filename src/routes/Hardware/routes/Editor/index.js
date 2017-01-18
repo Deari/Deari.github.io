@@ -7,8 +7,8 @@ module.exports = (store) => ({
   
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const Edit = require('./containers/EditContainer').default;
-      const editReducer = require('./modules/edit').default;
+      const Edit = require('./containers/EditContainer').default
+      const editReducer = require('./modules/edit').default
 
       injectReducer(store, { key: 'form', reducer: formReducer })
       injectReducer(store, { key: 'hdEdit', reducer: editReducer })

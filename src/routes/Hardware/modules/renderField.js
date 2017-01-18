@@ -3,34 +3,34 @@ import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
-export const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderField = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
       <input {...input} placeholder={label} type={type}/>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderTextArea = ({ input, label, type, meta: { touched, error, warning } }) => (
+export const renderTextArea = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={label}></textarea>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
 
-export const renderSelect = ({ input, label, meta: { touched, error, warning }, children }) => (
+export const renderSelect = ({ input, label, meta: { touched, dirty, error, warning }, children }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <select {...input}>
         {children}
       </select>
-      {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+      {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>
 )
@@ -76,6 +76,8 @@ export class renderCorDropdown extends Component {
   render() {
     const props = this.props
     const { minorCategories, majorCategoryId, minorCategoryId } = props.input.value
+    const { meta: { touched, dirty, error, warning } } = this.props
+
     return <div className="form-row">
       <label>{props.label}</label>
       <div className="row-right">
@@ -89,6 +91,7 @@ export class renderCorDropdown extends Component {
           {minorCategories.map(cate => <option key={cate.categoryId}
                                                value={cate.categoryId}>{cate.categoryName}</option>)}
         </select>
+        {(dirty || touched) && ((error && <span>{error}</span>))}
       </div>
     </div>
   }
@@ -97,17 +100,17 @@ export class renderCorDropdown extends Component {
 export class renderTags extends Component {
 
   handleClick(tagId) {
-    const { input } = this.props;
-    const newTags = input.value.filter(v => v != tagId);
+    const { input } = this.props
+    const newTags = input.value.filter(v => v != tagId)
     if (newTags.length == input.value.length) {
       newTags.push(tagId)
     }
 
-    input.onChange(newTags);
+    input.onChange(newTags)
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning } } = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
@@ -128,6 +131,7 @@ export class renderTags extends Component {
 	            ))
 	          }
 	        </ul>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
 	      </div>
       </div>
     )
@@ -160,7 +164,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning } } = this.props;
+    const { input, label, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
@@ -175,6 +179,7 @@ export class renderImageUpload extends Component {
           <div className="img-container">
             <img src={input.value} alt="上传图片" className="img-thumbnail"/>
           </div>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -195,10 +200,14 @@ export class renderImgsUpload extends Component {
 
   imageUpload(e) {
     const { input } = this.props
+    const { imgs } = this.state
+
     if (input.value.length >= 4) {
       window.alert("最多上传四张")
       return
     }
+
+    let newArr = imgs
     const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
@@ -208,19 +217,20 @@ export class renderImgsUpload extends Component {
       jsonStringify: false
     }).then(res => {
       if (res.status == 200) {
-        input.value.push(res.data.url)
-        input.onChange(input.value)
-        this.setState({ imgs: input.value })
+        newArr.push(res.data.url)
+        this.setState({ imgs: newArr }, () => {
+          input.onChange(newArr);
+        })
       } else {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口报错')
+      debug.warn('上传图片不符合规格', e)
     })
   }
 
   render() {
-    const { input, label, meta: { touched, error, warning } } = this.props;
+    const { input, label, meta: { touched, dirty, error, warning } } = this.props
     const { imgs } = this.state
 
     return (
@@ -240,6 +250,7 @@ export class renderImgsUpload extends Component {
               })
             }
           </div>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -266,18 +277,19 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
-      debug.warn('网络错误')
+      debug.warn('文件代码包格式错误')
     })
   }
 
   render() {
-    const { input, tags, label, meta: { touched, error, warning } } = this.props;
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
           <input type="file" className="form-file" onChange={::this.fileUpload}/>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
@@ -285,4 +297,4 @@ export class renderFile extends Component {
 
 }
 
-export default renderField;
+export default renderField
