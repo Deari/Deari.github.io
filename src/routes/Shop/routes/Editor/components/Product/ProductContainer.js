@@ -11,7 +11,7 @@ export class ProductContainer extends Component {
   render() {
     const { products = [] } = this.props.product
     return <div className="gui-container">
-      <div className="gui-title">通用大模块</div>
+      <h3 className="gui-title">通用大模块</h3>
       <ul className="gui-list">
         {products
           .filter(e=> e.defaultLayout.w !== 1)
@@ -19,7 +19,7 @@ export class ProductContainer extends Component {
           <DragProduct {...p}/>
         </li>)}
       </ul>
-      <div className="gui-title">功能小模块</div>
+      <h3 className="gui-title">功能小模块</h3>
       <ul className="gui-list">
         {products
           .filter(e=> e.defaultLayout.w === 1)
