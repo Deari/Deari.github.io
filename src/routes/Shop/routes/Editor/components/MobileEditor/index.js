@@ -71,18 +71,6 @@ export class Editor extends Component {
       });
     }
   }
-
-  handleResize = (e) => {
-    console.log(111, e.target);
-  }
-
-  componentDidMount() {
-    
-  }
-
-  componentWillUnmount() {
-  }
-
   render() {
     const {value} = this.state;
 
