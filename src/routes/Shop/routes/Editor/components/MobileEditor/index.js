@@ -13,12 +13,14 @@ import Slider from 'react-rangeslider';
 const LeftSideBar = props => (
   <div className='sidebar-left'>
     <ul className="nav">
-      <li className="item">
+      <li className="item active">
         <div className="menu-title">
           <i className="iconfont icon-uncollected"></i>
           <span>常用</span>
         </div>
-        <Product />
+        <div className="menu-cont">
+          <Product />
+        </div>
       </li>
       <li className="item">
         <div className="menu-title">

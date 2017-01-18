@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import DragProduct from './DragProduct'
-
+import './Product.scss';
 
 export class ProductContainer extends Component {
 

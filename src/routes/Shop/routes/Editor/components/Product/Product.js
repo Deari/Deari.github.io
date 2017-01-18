@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import './Product.scss'
 
 const Product = (props) => {
   const { appName, defaultLayout, appLogo, hideName } = props
