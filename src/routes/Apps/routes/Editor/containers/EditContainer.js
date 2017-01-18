@@ -119,7 +119,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} />
         <div className="sub-container">
-          <Step page={page} title={'编辑应用'}/>
+          <Step page={page} title={'编辑应用'} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

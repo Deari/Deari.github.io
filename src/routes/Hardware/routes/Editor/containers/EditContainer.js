@@ -144,7 +144,7 @@ class CreateContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} type="hardware"/>
         <div className="sub-container">
-          <Step page={page}/>
+          <Step page={page} title={'编辑硬件'} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

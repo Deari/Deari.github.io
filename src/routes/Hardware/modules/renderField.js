@@ -142,6 +142,8 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
+    if (!e.target.files[0]) return;
+
     const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
@@ -199,6 +201,8 @@ export class renderImgsUpload extends Component {
   }
 
   imageUpload(e) {
+    if (!e.target.files[0]) return;
+
     const { input } = this.props
     const { imgs } = this.state
 
@@ -261,6 +265,8 @@ export class renderImgsUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
+    if (!e.target.files[0]) return;
+    
     const url = getDomain("web/file/upload")
     const formData = new FormData()
 
