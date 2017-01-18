@@ -264,6 +264,10 @@ export class renderImgsUpload extends Component {
 
 export class renderFile extends Component {
 
+  state = {
+    originalName: ''
+  }
+
   fileUpload(e) {
     if (!e.target.files[0]) return;
     
@@ -279,6 +283,7 @@ export class renderFile extends Component {
     }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data.url)
+        this.setState({originalName: res.data.originalName})
       } else {
         debug.warn('文件代码包格式错误')
       }
@@ -289,12 +294,17 @@ export class renderFile extends Component {
 
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+    const { originalName } = this.state
 
     return (
       <div className="form-row">
         <label>{label}</label>
         <div className="row-right">
-          <input type="file" className="form-file" onChange={::this.fileUpload}/>
+          <span>
+            <input type="button" value="选择文件" />
+            <input type="file" onChange={::this.fileUpload} />
+            {originalName}
+          </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
