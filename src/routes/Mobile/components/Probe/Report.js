@@ -92,7 +92,7 @@ const BarChartContainer = ({ data }) => {
           <Bar dataKey='num'  maxBarSize={40} stroke="#2692fb" label={<CustomizedLabel/>} fill='url(#colorNum)'>
             {
               data.map((value, key) => (
-                <Cell fillOpacity={value.time === timeStr  ? 1 : 0.2 } key={`cell-${key}`}/>
+                <Cell fillOpacity={value.time === timeStr  ? 1 : 0.2 }strokeOpacity={value.time === timeStr  ? 1 : 0.5 } key={`cell-${key}`}/>
               ))
             }
          </Bar>
@@ -109,8 +109,6 @@ const NavBar = (props) => {
     <li className="active">今天</li>
     <li>近三天</li>
     <li>1周</li>
-    <li>1个月</li>
-    <li>自定义</li>
   </ul>
 }
 
