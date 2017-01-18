@@ -1,6 +1,7 @@
 @import "~styles/layout";
 
 .react-grid-layout {
+  padding: 1px;
   position: relative;
   transition: height 200ms ease;
   width:100%;
@@ -14,7 +15,10 @@
 }
 
 .selected.react-grid-item {
-  border: dashed 2px cornflowerblue;
+  z-index: 10;
+  box-shadow: 0 0  2px 2px dodgerblue;
+  //outline: 5px solid darkcyan;
+  border: solid 2px darkturquoise;
 }
 
 .react-grid-item.cssTransforms {
