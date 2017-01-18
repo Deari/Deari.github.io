@@ -80,6 +80,8 @@ export class renderTags extends Component {
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
+    if (!e.target.files[0]) return;
+    
     const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
@@ -128,6 +130,8 @@ export class renderImageUpload extends Component {
 export class renderFile extends Component {
 
   fileUpload(e) {
+    if (!e.target.files[0]) return;
+
     const url = getDomain("web/file/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
