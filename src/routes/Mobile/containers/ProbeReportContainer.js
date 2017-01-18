@@ -72,7 +72,6 @@ export const Promised = (Wrapped) => class extends React.Component {
       DATA=obj20
     }
     DATA.timeArray = DATA.timeArray.slice(0, hour+1)
-    console.log(barTimeArr)
     // const startTime = (new Date (getTimeStr(date)).getTime())/1000
     // const endTime = ((date.getTime())/1000).toFixed()
     // const startDay = endTime - (6*24*3600)
