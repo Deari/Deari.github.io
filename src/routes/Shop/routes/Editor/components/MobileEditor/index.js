@@ -6,6 +6,7 @@ import Preview from '../../containers/PreviewContainer'
 import EditorDragLayer from '../EditorDragLayer'
 import Detail from '../../containers/DetailContainer'
 import '../../../../../../styles/iconfont/iconfont.css'
+import '../../../../../../styles/mobile/mbase.scss'
 import './MobileEditor.scss'
 
 import Slider from 'react-rangeslider';
@@ -26,18 +27,21 @@ const LeftSideBar = props => (
         <div className="menu-title">
           <i className="iconfont icon-text"></i>
           <span>图文类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
       <li className="item">
         <div className="menu-title">
-          <i className="iconfont icon-sidebar6"></i>
+          <i className="iconfont icon-gift"></i>
           <span>营销互动类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
       <li className="item">
         <div className="menu-title">
           <i className="iconfont icon-goods"></i>
           <span>商品类</span>
+          <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
       </li>
     </ul>
@@ -99,7 +103,6 @@ export class Editor extends Component {
             { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>
         </div>
-        {/*<p className="text">市面最主流机型，iphone首屏位置</p>*/}
       </div>
       <div className="sidebar-right">
         <Detail/>

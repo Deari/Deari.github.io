@@ -18,18 +18,23 @@
         display: none;
       }
       .menu-title {
-        display: flex;
         align-items: center;
         overflow: hidden;
         padding: 8px;         
         color: #fff;
-
+        overflow: hidden;
+        .fr-icon{
+            float: right;
+            padding-right: 14px;
+            color: #20262b;
+        }
         .iconfont {
           background: #2e363d;
           margin-right: 0px;
           width: 20px;
           font-size: 16px;
           display: inline-block;
+          vertical-align: middle;
         }
         
         word-wrap: break-word;
@@ -45,7 +50,7 @@
     left: 0;
     right: 0;
     padding: 10px 7px;
-    color: #677284;
+    color: #748094;
     background: #2e363d;
     .text {
       padding-left: 25px;
@@ -59,6 +64,7 @@
     }
     .icon-readMore {
       right: 10px;
+      color: #f3f3f4;
     }
   }
 }
