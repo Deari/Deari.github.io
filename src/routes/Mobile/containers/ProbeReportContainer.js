@@ -63,6 +63,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     const hour = new Date ().getHours()
     const day = new Date ().getDate()
     const barTimeArr = BARDATA.data.timeArray.slice(day-6,day+1)
+
     let DATA = {}
     if(day===18){
       DATA=obj18
@@ -72,6 +73,23 @@ export const Promised = (Wrapped) => class extends React.Component {
       DATA=obj20
     }
     DATA.timeArray = DATA.timeArray.slice(0, hour+1)
+    for(let i = 1;i<DATA.timeArray.length;i++){
+      if ( hour < 12 && hour>=0) {
+        DATA.amNum += i<=hour&&DATA.timeArray[i].num 
+        DATA.pmNum += 0
+        DATA.nightNum += 0
+      } else if (hour < 18 && hour >= 12) {
+        DATA.amNum += i<12&&DATA.timeArray[i].num 
+        DATA.pmNum += i<=hour&&i>=12&&DATA.timeArray[i].num 
+        DATA.nightNum += 0
+      }else {
+        DATA.amNum += i<12&&DATA.timeArray[i].num 
+        DATA.pmNum += i<18&&i>=12&&DATA.timeArray[i].num 
+        DATA.nightNum += i>=18&&i<=hour&&DATA.timeArray[i].num 
+      }
+    }  
+     DATA.allNum =  DATA.amNum + DATA.pmNum + DATA.nightNum
+     barTimeArr[6].num =DATA.allNum 
     // const startTime = (new Date (getTimeStr(date)).getTime())/1000
     // const endTime = ((date.getTime())/1000).toFixed()
     // const startDay = endTime - (6*24*3600)
@@ -98,7 +116,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     //   this.setState(DATA)
     // }
     this.setState(DATA)
-     
+
     // try {
     //   const dayRes = await fetchUtil.getJSON(dayApiUrl)
     //   if (dayRes.status == 200) {

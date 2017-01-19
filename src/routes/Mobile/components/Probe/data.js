@@ -1,8 +1,8 @@
 export const obj18 = {
-  "allNum": 16054,
-  "amNum": 1412,
-  "pmNum": 6360,
-  "nightNum": 8273,
+  "allNum": 0,
+  "amNum": 0,
+  "pmNum": 0,
+  "nightNum": 0,
   "timeArray": [
     { time: '00:00', num: 212, }, 
     { time: '01:00', num: 134, },
@@ -32,10 +32,10 @@ export const obj18 = {
   ],
 }
 export const obj19 = {
-  "allNum": 16219,
-  "amNum": 2673,
-  "pmNum": 4850,
-  "nightNum": 8696,
+  "allNum": 0,
+  "amNum": 0,
+  "pmNum": 0,
+  "nightNum": 0,
   "timeArray": [
     { time: '00:00', num: 425, }, 
     { time: '01:00', num: 43, },
@@ -65,10 +65,10 @@ export const obj19 = {
   ],
 }
 export const obj20 = {
-  "allNum": 23028,
-  "amNum": 2997,
-  "pmNum": 5062,
-  "nightNum": 14969,
+  "allNum": 0,
+  "amNum": 0,
+  "pmNum": 0,
+  "nightNum": 0,
   "timeArray": [
     { time: '00:00', num: 234, }, 
     { time: '01:00', num: 147, },
