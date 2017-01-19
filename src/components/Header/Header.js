@@ -5,7 +5,6 @@ import Login from '../Login'
 import { ShopNav, DevNav, OpenNav } from './Navigation'
 import { getApiUrl } from 'utils/domain'
 import '../../styles/_base.scss'
-import '../../styles/iconfont/iconfont.css'
 
 const choose = (pathname) => {
   let searchTxt = ''

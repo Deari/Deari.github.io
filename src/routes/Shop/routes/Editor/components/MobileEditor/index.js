@@ -5,7 +5,6 @@ import Product from '../../containers/ProductContainer'
 import Preview from '../../containers/PreviewContainer'
 import EditorDragLayer from '../EditorDragLayer'
 import Detail from '../../containers/DetailContainer'
-import '../../../../../../styles/iconfont/iconfont.css'
 import '../../../../../../styles/mobile/mbase.scss'
 import './MobileEditor.scss'
 
@@ -47,7 +46,7 @@ const LeftSideBar = props => (
     </ul>
     <a className="btn-more" href="wandaffoap://jump/componentMarket">
       <i className="iconfont icon-puzzle"></i>
-      <span className="text">查看更多组件</span>
+      <span className="text">获取更多组件</span>
       <i className="iconfont icon-readMore"></i>
     </a>
   </div>
