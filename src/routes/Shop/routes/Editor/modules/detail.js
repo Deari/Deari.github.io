@@ -37,10 +37,8 @@ const repeatPublishStatus = async deployId => {
   let result = await getPublishStatus(deployId)
   if (result === 1) {
     await sleep(1000)
-    await repeatPublishStatus(deployId)
+    return await repeatPublishStatus(deployId)
   } else {
-    console.log(result)
-    // TODO : 如何返回?? 改成promise 函数
     return await result
   }
 }
@@ -49,13 +47,9 @@ export const savePage = pageId => (dispatch, getState) => new Promise((resolve, 
   const state = getState()
   const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
   fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
-
     dispatch(startPublishPage())
-
     const { deployId } = v.data
-    const result = repeatPublishStatus(deployId).then(pubResult => {
-      //console.log(11111111111)
-      //console.log(pubResult)
+    repeatPublishStatus(deployId).then(pubResult => {
       dispatch(endPublishPage(pubResult))
       resolve(v)
     }).catch(e => {
@@ -88,10 +82,7 @@ const ACTION_HANDLERS = {
   [DELETE_ELEMENT]: state => ({ ...state, element: {} }),
   [SELECT_ELEMENT]: (state, action) => ({ ...state, element: action.selectedElement }),
   [PAGE_PUBLISH_START]: state => ({ ...state, pagePublish: 'start' }),
-  [PAGE_PUBLISH_END]: (state, action) => {
-    console.log(action)
-    return { ...state, pagePublish: action.deployStatus === 2 ? 'end' : 'failure' }
-  },
+  [PAGE_PUBLISH_END]: (state, action) => ({ ...state, pagePublish: action.deployStatus === 2 ? 'end' : 'failure' }),
 }
 
 export const actions = {
