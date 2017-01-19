@@ -22,7 +22,7 @@ export class Detail extends Component {
           <i className="iconfont icon-leftjiao"></i>
           <div className="qr"></div>
         </div>
-        <p className="text">用蓝海APP扫描即可查看手机橱窗</p>
+        <p className="text" style={{'text-align': 'center'}}>用蓝海APP扫描<br/>即可预览店铺装修效果</p>
       </div>
     }
 
@@ -58,6 +58,12 @@ export class Detail extends Component {
     })
   }
 
+  onToggle() {
+    this.setState({
+      modalActive: !this.state.modalActive
+    })
+  }
+
   render() {
     const { detail } = this.props
     const { pagePublish } = detail
@@ -67,7 +73,7 @@ export class Detail extends Component {
              onClose={::this.onClose}
              onCancel={::this.onClose}
              modalCls="preview-modal"
-             hideButtons="true">
+             hideButtons={true}>
         <p className="center">发布中，请稍候 </p>
         <div className="center ball-beat"><div></div><div></div><div></div></div>
       </Modal>

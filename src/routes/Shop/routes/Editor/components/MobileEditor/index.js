@@ -107,7 +107,7 @@ export class Editor extends Component {
         <div className="preview">
           <div className="bg-phone">
             <div className="mobile-header">
-              <img className="clock" src="http://p1.bpimg.com/1949/b03fdb9b6fa122d0.png"/>
+              <img className="clock" src="http://timg.ffan.com/convert/resize/url_T1AOhTB7Wg1RCvBVdK/tfs/b03fdb9b6fa122d0.png"/>
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
               <Preview onLayoutChange={this.onLayoutChange}/>

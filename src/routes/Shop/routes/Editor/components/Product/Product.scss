@@ -1,3 +1,5 @@
+$scroll-width: 14px;
+
 .gui-wrap {
   position: relative;
   .slider-wrap {
@@ -24,8 +26,8 @@
   }
   .rangeslider-vertical {
     height: 100%;
-    width: 12px;
-    border-radius: 10px;
+    width: $scroll-width;
+    border-radius: $scroll-width;
     background: #1a1e21;
   }
   .rangeslider-vertical .rangeslider__fill {
@@ -35,7 +37,7 @@
     bottom: 0
   }
   .rangeslider-vertical .rangeslider__handle {
-    width: 12px;
+    width: $scroll-width;
     height: 80px;
     border-radius: 6px;
     left: 0px;

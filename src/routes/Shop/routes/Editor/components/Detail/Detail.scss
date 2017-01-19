@@ -1,50 +1,53 @@
-.preview-modal {
-  border: 10px solid hsla(0, 0%, 100%, .5);
-  background-clip: padding-box;
+.modal.preview-modal {
+  border          : rgba(255, 255, 255, .4) 10px solid;
+  background      : white;
+  background-clip : padding-box;
+  border-radius   : 10px;
+  transition      : all 0.5s ease-in-out;
 }
 
-.ball-beat>div:nth-child(2n-1) {
-  -webkit-animation-delay: -.35s!important;
-  animation-delay: -.35s!important;
+.ball-beat > div:nth-child(2n-1) {
+  -webkit-animation-delay : -.35s !important;
+  animation-delay         : -.35s !important;
 }
 
-.ball-beat>div {
-  width: 15px;
-  height: 15px;
-  margin: 2px;
-  display: inline-block;
-  -webkit-animation: ball-beat .7s 0s infinite linear;
-  animation: ball-beat .7s 0s infinite linear;
+.ball-beat > div {
+  width             : 15px;
+  height            : 15px;
+  margin            : 2px;
+  display           : inline-block;
+  -webkit-animation : ball-beat .7s 0s infinite linear;
+  animation         : ball-beat .7s 0s infinite linear;
 }
 
-.ball-beat>div,
-.ball-scale-multiple>div {
-  background-color: #333;
-  border-radius: 100%;
+.ball-beat > div,
+.ball-scale-multiple > div {
+  background-color : #333;
+  border-radius    : 100%;
 }
 
 @-webkit-keyframes ball-beat {
   50% {
-    opacity: .2;
-    -webkit-transform: scale(.75);
-    transform: scale(.75)
+    opacity           : .2;
+    -webkit-transform : scale(.75);
+    transform         : scale(.75)
   }
   100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1)
+    opacity           : 1;
+    -webkit-transform : scale(1);
+    transform         : scale(1)
   }
 }
 
 @keyframes ball-beat {
   50% {
-    opacity: .2;
-    -webkit-transform: scale(.75);
-    transform: scale(.75)
+    opacity           : .2;
+    -webkit-transform : scale(.75);
+    transform         : scale(.75)
   }
   100% {
-    opacity: 1;
-    -webkit-transform: scale(1);
-    transform: scale(1)
+    opacity           : 1;
+    -webkit-transform : scale(1);
+    transform         : scale(1)
   }
 }
