@@ -35,27 +35,33 @@ const getPublishStatus = async deployId => {
 
 const repeatPublishStatus = async deployId => {
   let result = await getPublishStatus(deployId)
-  console.log(result)
-  if (result !== 2) {
+  if (result === 1) {
     await sleep(1000)
     await repeatPublishStatus(deployId)
   } else {
-    return result
+    console.log(result)
+    // TODO : 如何返回?? 改成promise 函数
+    return await result
   }
 }
 
-export const savePage = pageId => (dispatch, getState) => new Promise(async(resolve, reject) => {
+export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
   const state = getState()
   const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
   fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
+
     dispatch(startPublishPage())
+
     const { deployId } = v.data
-    repeatPublishStatus(deployId).then(v => {
-      dispatch(endPublishPage())
+    const result = repeatPublishStatus(deployId).then(pubResult => {
+      //console.log(11111111111)
+      //console.log(pubResult)
+      dispatch(endPublishPage(pubResult))
       resolve(v)
     }).catch(e => {
       console.log(e)
     })
+
   })
 })
 
@@ -63,8 +69,9 @@ export const startPublishPage = () => ({
   type: PAGE_PUBLISH_START,
 })
 
-export const endPublishPage = () => ({
+export const endPublishPage = (deployStatus) => ({
   type: PAGE_PUBLISH_END,
+  deployStatus,
 })
 
 export const cancelElement = () => dispatch => dispatch({
@@ -81,7 +88,10 @@ const ACTION_HANDLERS = {
   [DELETE_ELEMENT]: state => ({ ...state, element: {} }),
   [SELECT_ELEMENT]: (state, action) => ({ ...state, element: action.selectedElement }),
   [PAGE_PUBLISH_START]: state => ({ ...state, pagePublish: 'start' }),
-  [PAGE_PUBLISH_END]: state => ({ ...state, pagePublish: 'end' }),
+  [PAGE_PUBLISH_END]: (state, action) => {
+    console.log(action)
+    return { ...state, pagePublish: action.deployStatus === 2 ? 'end' : 'failure' }
+  },
 }
 
 export const actions = {
