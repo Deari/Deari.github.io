@@ -43,7 +43,7 @@ export const transerMdToMarkdown = (md) => {
 
 export const Toc = ({ tocList }) => {
   return <ul className="document-list">
-    {tocList.map(toc => toc.level <= 2 && <li className={"level-"+toc.level}>
+    {tocList.map(toc => toc.level <= 2 && <li className={"level-"+toc.level} title={toc.text}>
       <a href={`#${toc.text}`}><i className="icon"></i>{toc.text}</a>
     </li>)}
   </ul>
