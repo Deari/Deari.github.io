@@ -74,7 +74,7 @@ export default class Login extends Component {
       </div>
     ) : (
       <div className="login-wrapper logined">
-          <a href={centerUrl}><img src={userInfo.mix_face} title={userInfo.nick} /></a>
+          <a href={centerUrl}><img src={userInfo.face} title={userInfo.nick} /></a>
           <span onClick={this.clickQuit.bind(this)}>退出</span>
       </div>
     )
