@@ -39,7 +39,7 @@ export default class Login extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
 
     LoginSDK.getStatus((status, data) => {
-      if (status) this.setState({isLogin: true}) 
+      if (status) this.setState({isLogin: true, userInfo: data}) 
     }, url)
   }
 
@@ -63,7 +63,7 @@ export default class Login extends Component {
 
     const { userInfo } = this.state
 
-    const register = getApiUrl(`#/register`)
+    const register = getApiDomain(`#/register?callbackurl=${location.href}`)
 
     return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
