@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react'
+import LoginSDK from 'utils/loginSDK'
+import { getLoginDomain, getApiDomain, getApiUrl } from 'utils/domain'
 import './login.scss'
 
 export default class Login extends Component {
@@ -13,28 +15,65 @@ export default class Login extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isLogin : props.authenticated
+      isLogin : props.authenticated,
+      userInfo : {}
     }
   }
 
-  registerHandle = ()=>{
-    alert('show register modal');
+  login() {
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackurl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        // 已登录
+        this.setState({isLogin: true, userInfo: data})
+      } else {
+        // 未登录
+      }
+    }, url, loginUrl, callbackurl)
+  }
+
+  componentDidMount() {
+    let url = getLoginDomain(`passport/session-check.json`)
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) this.setState({isLogin: true, userInfo: data}) 
+    }, url)
+  }
+
+  clickQuit() {
+    let quitUrl = getLoginDomain(`passport/session-remove.json`)
+    LoginSDK.quit((status) => {
+      if (status) {
+        // 退出成功
+        this.setState({isLogin: false})
+      } else {
+        // 退出失败
+      }
+    }, quitUrl)
   }
 
   loginHandle = ()=>{
-    alert('show login modal');
+    this.login()
   } 
 
   render (){
+
+    const { userInfo } = this.state
+
+    const register = getApiDomain(`#/register?callbackurl=${location.href}`)
+
     return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
-          <span onClick={this.registerHandle}>注册</span> 
-          <span onClick={this.loginHandle}>登录</span>
+        <a href={register}><span>注册</span></a> 
+        <a><span onClick={this.loginHandle}>登录</span></a>
       </div>
     ) : (
       <div className="login-wrapper logined">
-          <img src="http://img1.ffan.com/T1_6ATBjAv1RCvBVdK" />
-          <span>退出</span>
+          <img src={userInfo.mix_face} title={userInfo.nick} />
+          <span onClick={this.clickQuit.bind(this)}>退出</span>
       </div>
     )
   }

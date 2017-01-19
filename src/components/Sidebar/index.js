@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import 'styles/_base.scss'
-import 'styles/iconfont/iconfont.css'
 import './Sidebar.scss'
 
 class Sidebar extends React.Component {

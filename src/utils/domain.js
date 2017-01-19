@@ -64,10 +64,24 @@ export function getHardwareDomain(url) {
   const domain =  (env === 'pub') ? 'http://api.ffan.com/' : 'http://api.sit.ffan.com/'
   return domain + url
 }
+// 获取登录相关的接口地址
+export function getLoginDomain(url) {
+  const domainReg = new RegExp("^http:\/\/passport\.intra\.(sit\.|test\.)?ffan\.net\/")
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://passport.ffan.net/' : 'http://passport.intra.sit.ffan.net/'
+  return domain + url.replace(domainReg, "")
+}
 
-
+export function getApiDomain(url) {
+  const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
+  return domain + url.replace(domainReg, "")
+}
+// 跳转到 apistore 的链接
 export function getApiUrl(url) {
+  const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
   const env = getDomainEnv()
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
-  return domain + url
+  return domain + url.replace(domainReg, "")
 }

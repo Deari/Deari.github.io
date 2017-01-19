@@ -1,3 +1,5 @@
+$scroll-width: 14px;
+
 .gui-wrap {
   position: relative;
   .slider-wrap {
@@ -24,8 +26,8 @@
   }
   .rangeslider-vertical {
     height: 100%;
-    width: 12px;
-    border-radius: 10px;
+    width: $scroll-width;
+    border-radius: $scroll-width;
     background: #1a1e21;
   }
   .rangeslider-vertical .rangeslider__fill {
@@ -35,7 +37,7 @@
     bottom: 0
   }
   .rangeslider-vertical .rangeslider__handle {
-    width: 12px;
+    width: $scroll-width;
     height: 80px;
     border-radius: 6px;
     left: 0px;
@@ -77,7 +79,8 @@
   .items {
     float: left;
     width: 70px;
-    margin: 10px 0 10px 10px;
+    height: 90px;
+    margin: 10px 0 0px 10px;
     text-align: center;
   }
   .component {
@@ -92,13 +95,16 @@
     .text {
       display: inline-block;
       width: 100%;
-      margin-top: 5px;
+      margin-top: 2px;
       font-size: 12px;
       color: #758b9d;
       word-break: break-all;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      &:last-child {
+        transform: scale(.9);
+      }
     }
   }
 }
