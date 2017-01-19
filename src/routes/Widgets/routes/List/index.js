@@ -1,11 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router'
-import List from 'components/newList'
+import List from 'components/List'
 import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
-import Nav from 'components/Nav'
+import ListNav from 'components/ListNav'
 import './index.scss'
 import 'styles/_base.scss'
 
@@ -130,7 +130,7 @@ class widgetsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls}  type="widget"/>
         <div className="sub-container plf bg-white">
-          <Nav navData={navData} onChange={this.changeNav.bind(this)} />
+          <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w342">组件名称</li>
