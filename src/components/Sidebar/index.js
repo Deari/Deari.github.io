@@ -7,7 +7,7 @@ import './Sidebar.scss'
 
 class Sidebar extends React.Component {
 
-  clickCreate(href) {
+  clickBtn(href) {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
     let callbackUrl = `${location.host}${href}`
@@ -24,13 +24,13 @@ class Sidebar extends React.Component {
     return (
       <div className='sidebar'>
 
-        <a className="create-btn" onClick={this.clickCreate.bind(this, urls.create.url)}>
+        <a className="create-btn" onClick={this.clickBtn.bind(this, urls.create.url)}>
           <i className="iconfont icon-create"></i>{urls.create.name ? urls.create.name : '创建'}
         </a>
 
         <ul className="help-menu">
           <li>
-            <a className={(urls.list.active && 'active') || ''} onClick={this.clickCreate.bind(this, urls.list.url)}>
+            <a className={(urls.list.active && 'active') || ''} onClick={this.clickBtn.bind(this, urls.list.url)}>
               <i className="iconfont icon-application"></i>{urls.list.name ? urls.list.name : '我的列表'}
             </a>
           </li>

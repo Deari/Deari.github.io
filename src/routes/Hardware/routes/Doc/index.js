@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { getApiUrl, getApiDomain, getLoginDomain } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import 'components/Header/Header'
 import 'styles/_base.scss'
 import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
@@ -8,14 +10,25 @@ import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
 import mdData from 'raw!./develop.md'
 
 class Doc extends React.Component {
+
+  clickBtn(type) {
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackUrl = `${location.host}/hardware/${type}`
+    
+    LoginSDK.getStatus((status, data) => {
+      if (status) window.location.href = `/hardware/${type}`
+    }, url, loginUrl, callbackUrl)
+  }
+
   render() {
     const markdownData = transerMdToMarkdown(mdData)
     return (
       <div className="container clx">
         <div className='sidebar'>
-          <Link className="create-btn" to="/hardware/create"><i className="iconfont icon-create"></i>发布新硬件</Link>
+          <a className="create-btn" onClick={this.clickBtn.bind(this, 'create')}><i className="iconfont icon-create"></i>发布新硬件</a>
           <ul className="help-menu">
-            <li><Link to="/hardware/list"><i className="iconfont icon-application"></i>我的硬件</Link></li>
+            <li><a onClick={this.clickBtn.bind(this, 'list')}><i className="iconfont icon-application"></i>我的硬件</a></li>
             <li><Link to="/hardware/doc" className="active"><i className="iconfont icon-file"></i>开发者文档</Link></li>
           </ul>
           <Toc tocList={markdownData.tocList} />
