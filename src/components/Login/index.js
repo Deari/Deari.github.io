@@ -23,7 +23,7 @@ export default class Login extends Component {
   login() {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackurl = location.href
+    let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
       if (status) {
@@ -32,7 +32,7 @@ export default class Login extends Component {
       } else {
         // 未登录
       }
-    }, url, loginUrl, callbackurl)
+    }, url, loginUrl, callbackUrl)
   }
 
   componentDidMount() {

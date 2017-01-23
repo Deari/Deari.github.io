@@ -25,6 +25,7 @@
   &:hover{
     color: $white-color;
     background: $blue-color;
+    cursor: pointer;
   }
 }
 .help-menu,.tag-list{
@@ -46,7 +47,7 @@
     a:hover{
       color: $blue-color;
       border-bottom: 1px solid $blue-color;
-      
+      cursor: pointer;
       i{
         color: $blue-color;
       }

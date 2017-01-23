@@ -13,11 +13,11 @@ export const renderField = ({ input, label, type, meta: { touched, dirty, error,
   </div>
 )
 
-export const renderTextArea = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
+export const renderTextArea = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
-      <textarea {...input} placeholder={label}></textarea>
+      <textarea {...input} placeholder={placeholder || label}></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>

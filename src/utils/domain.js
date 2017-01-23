@@ -68,14 +68,14 @@ export function getHardwareDomain(url) {
 export function getLoginDomain(url) {
   const domainReg = new RegExp("^http:\/\/passport\.intra\.(sit\.|test\.)?ffan\.net\/")
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://passport.ffan.net/' : 'http://passport.intra.sit.ffan.net/'
+  const domain =  (env === 'pub') ? 'http://passport.ffan.net/' : 'http://passport.intra.test.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
 
 export function getApiDomain(url) {
   const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
+  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
 // 跳转到 apistore 的链接

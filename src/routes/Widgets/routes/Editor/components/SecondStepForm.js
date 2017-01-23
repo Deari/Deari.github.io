@@ -16,7 +16,7 @@ class SecondStepForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit}>
-        <Field name="codeDesc" component={renderTextArea} label="文字介绍" />
+        <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。" component={renderTextArea} label="版本介绍" />
         <Field name="file" component={renderFile} label="组件文件" />
 
         <div className="form-btn">
