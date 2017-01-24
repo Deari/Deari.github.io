@@ -6,13 +6,13 @@ import fetchUtil from '../../utils/fetchUtil'
 import { getHardwareDomain } from 'utils/domain';
 import Debug from '../../utils/debug'
 
-import { obj18, obj19, obj20 } from '../components/Probe/data'
+import DATA from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
 
-// const getTimeStr = (date)=>{
-//   const timeStr = date.getFullYear()+'/'+Math.floor((date.getMonth()+3)/3)+'/'+date.getDate()
-//   return timeStr
-// }
+const getTimeStr = (date)=>{
+  const timeStr = date.getFullYear()+'/'+Math.floor((date.getMonth()+3)/3)+'/'+date.getDate()
+  return timeStr
+}
 const keyMap = {
   am: [
     '00:00~08:00',
@@ -60,77 +60,49 @@ export const Promised = (Wrapped) => class extends React.Component {
   
  async componentWillMount() {
 
-    const hour = new Date ().getHours()
-    const day = new Date ().getDate()
-    const barTimeArr = BARDATA.data.timeArray.slice(day-6,day+1)
+    // const hour = new Date ().getHours()
+    // const day = new Date ().getDate()
+    // const barTimeArr = BARDATA.data.timeArray.slice(day-6,day+1)
+    const date = new Date ();
+    const startTime = (new Date (getTimeStr(date)).getTime())/1000
+    const endTime = ((date.getTime())/1000).toFixed()
+    const startDay = endTime - (6*24*3600)
+    const signParam = `app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=${endTime}`
+    const sign = md5(signParam)
+    const signParams =`app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
 
-    let DATA = {}
-    if(day===18){
-      DATA=obj18
-    }else if(day===19){
-      DATA=obj19
-    }else{
-      DATA=obj20
+    const hourParams = `storeId=10021141&startTime=${startTime}&endTime=${endTime}&${signParams}`
+    const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&${signParams}`
+    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/hour?${hourParams}`)
+    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/day?${dayParams}`)
+
+    try{
+       const timeRes = await fetchUtil.getJSON(timeApiUrl)
+       if(timeRes.status == 200) {
+        console.info(timeRes.data);
+        this.setState(timeRes.data);
+       } else {
+        Debug.warn('获取数据异常', res);
+        this.setState(DATA)
+       }
+    }catch(e){
+      Debug.warn('获取数据异常', e);
+      this.setState(DATA)
     }
-    DATA.timeArray = DATA.timeArray.slice(0, hour+1)
-    for(let i = 1;i<DATA.timeArray.length;i++){
-      if ( hour < 12 && hour>=0) {
-        DATA.amNum += i<=hour&&DATA.timeArray[i].num 
-        DATA.pmNum += 0
-        DATA.nightNum += 0
-      } else if (hour < 18 && hour >= 12) {
-        DATA.amNum += i<12&&DATA.timeArray[i].num 
-        DATA.pmNum += i<=hour&&i>=12&&DATA.timeArray[i].num 
-        DATA.nightNum += 0
-      }else {
-        DATA.amNum += i<12&&DATA.timeArray[i].num 
-        DATA.pmNum += i<18&&i>=12&&DATA.timeArray[i].num 
-        DATA.nightNum += i>=18&&i<=hour&&DATA.timeArray[i].num 
+
+    try {
+      const dayRes = await fetchUtil.getJSON(dayApiUrl)
+      if (dayRes.status == 200) {
+        console.info(dayRes.data);
+        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+      } else {
+        Debug.warn('获取数据异常', res);
+        this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
       }
-    }  
-     DATA.allNum =  DATA.amNum + DATA.pmNum + DATA.nightNum
-     barTimeArr[6].num =DATA.allNum 
-    // const startTime = (new Date (getTimeStr(date)).getTime())/1000
-    // const endTime = ((date.getTime())/1000).toFixed()
-    // const startDay = endTime - (6*24*3600)
-    // const signParam = `app_key=d93823b9e5d089a338a6c0b860e61a7b&app_secret=bfe96bf06c1e9ea185202da3f413f126&method=GET&ts=${endTime}`
-    // const sign = md5(signParam)
-    // const signParams =`app_key=d93823b9e5d089a338a6c0b860e61a7b&method=GET&ts=${endTime}&sign=${sign}`
-
-    // const hourParams = `storeId=10021141&startTime=${startTime}&endTime=${endTime}&${signParams}`
-    // const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&${signParams}`
-    // const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/hour?${hourParams}`)
-    // const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/day?${dayParams}`)
-
-    // try{
-    //    const timeRes = await fetchUtil.getJSON(timeApiUrl)
-    //    if(timeRes.status == 200) {
-    //     console.info(timeRes.data);
-    //     this.setState(timeRes.data);
-    //    } else {
-    //     Debug.warn('获取数据异常', res);
-    //     this.setState(DATA)
-    //    }
-    // }catch(e){
-    //   Debug.warn('获取数据异常', e);
-    //   this.setState(DATA)
-    // }
-    this.setState(DATA)
-
-    // try {
-    //   const dayRes = await fetchUtil.getJSON(dayApiUrl)
-    //   if (dayRes.status == 200) {
-    //     console.info(dayRes.data);
-    //     this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
-    //   } else {
-    //     Debug.warn('获取数据异常', res);
-    //     this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-    //   }
-    // } catch (e) {
-    //   Debug.warn('获取数据异常', e);
-    //   this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
-    // }
-     this.setState({dayArray:barTimeArr})
+    } catch (e) {
+      Debug.warn('获取数据异常', e);
+      this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
+    }
   }
 
   getChartData = () => {
