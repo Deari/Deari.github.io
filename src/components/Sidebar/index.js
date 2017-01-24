@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
   clickBtn(href) {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackUrl = `${location.host}${href}`
+    let callbackUrl = `${location.origin}${href}`
     
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = href

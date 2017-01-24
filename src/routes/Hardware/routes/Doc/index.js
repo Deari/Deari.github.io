@@ -14,7 +14,7 @@ class Doc extends React.Component {
   clickBtn(type) {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackUrl = `${location.host}/hardware/${type}`
+    let callbackUrl = `${location.origin}/hardware/${type}`
     
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/hardware/${type}`

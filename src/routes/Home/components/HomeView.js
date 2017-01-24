@@ -14,7 +14,7 @@ const SimpleSlider = React.createClass({
   clickCreate: (type) => {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackUrl = `${location.host}/${type}/create`
+    let callbackUrl = `${location.origin}/${type}/create`
     
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/${type}/create`
