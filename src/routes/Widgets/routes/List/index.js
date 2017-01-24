@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
 import ListNav from 'components/ListNav'
@@ -102,10 +103,20 @@ class widgetsList extends React.Component {
     return newData
   }
 
-  async componentDidMount() {
-    const listData = await this.getList()
-    const newData = listData && this.formatListData(listData)
-    newData && this.setState({listData: newData})
+  componentDidMount() {
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus( async (status, data) => {
+      if (status) {
+        const listData = await this.getList()
+        const newData = listData && this.formatListData(listData)
+        newData && this.setState({listData: newData})
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   changeNav(obj) {

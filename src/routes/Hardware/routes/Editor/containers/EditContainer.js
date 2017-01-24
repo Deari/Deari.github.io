@@ -8,7 +8,8 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -24,13 +25,23 @@ class CreateContainer extends Component {
   }
 
   componentWillMount() {
-    const { params } = this.props
-    const id = parseInt(params.id)
-    this.props.toggleStep(1)
-    this.props.getTags()
-    this.props.getCates()
-    this.props.getSdkInfo()
-    this.props.getHDInfo(id)
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        const { params } = this.props
+        const id = parseInt(params.id)
+        this.props.toggleStep(1)
+        this.props.getTags()
+        this.props.getCates()
+        this.props.getSdkInfo()
+        this.props.getHDInfo(id)
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   submitFirst(values) {

@@ -9,7 +9,8 @@ import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -18,9 +19,19 @@ import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 class CreateContainer extends Component {
   
   componentWillMount() {
-    this.props.getTags()
-    this.props.getCates()
-    this.props.toggleStep(1)
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        this.props.getTags()
+        this.props.getCates()
+        this.props.toggleStep(1)
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   submitFirst(values) {

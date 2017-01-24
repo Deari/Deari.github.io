@@ -10,7 +10,8 @@ import Step from '../../../components/Step'
 
 import Sidebar from 'components/Sidebar'
 
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -26,13 +27,23 @@ import {
 class EditContainer extends Component {
   
   componentWillMount() {
-    const { params } = this.props
-    const appId = parseInt(params.appId)
-    this.props.toggleStep(1)
-    this.props.getTags()
-    this.props.getCates()
-    this.props.getAppInfo(appId)
-    this.props.getAppCodeInfo(appId)
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login/`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        const { params } = this.props
+        const appId = parseInt(params.appId)
+        this.props.toggleStep(1)
+        this.props.getTags()
+        this.props.getCates()
+        this.props.getAppInfo(appId)
+        this.props.getAppCodeInfo(appId)
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   submitFirst(values) {
