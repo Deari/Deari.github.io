@@ -1,7 +1,7 @@
 import React from 'react'
 import BasicNav from './nav'
 
-class Nav extends React.Component {
+class ListNav extends React.Component {
   
   changeNav(value) {
     const { onChange } = this.props
@@ -22,4 +22,4 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav
+export default ListNav

@@ -23,7 +23,7 @@ export default class Login extends Component {
   login() {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login/`)
-    let callbackurl = location.href
+    let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
       if (status) {
@@ -32,7 +32,7 @@ export default class Login extends Component {
       } else {
         // 未登录
       }
-    }, url, loginUrl, callbackurl)
+    }, url, loginUrl, callbackUrl)
   }
 
   componentDidMount() {
@@ -65,6 +65,8 @@ export default class Login extends Component {
 
     const register = getApiDomain(`#/register?callbackurl=${location.href}`)
 
+    const centerUrl = getApiDomain(`#/center/1`)
+
     return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
         <a href={register}><span>注册</span></a> 
@@ -72,7 +74,7 @@ export default class Login extends Component {
       </div>
     ) : (
       <div className="login-wrapper logined">
-          <img src={userInfo.mix_face} title={userInfo.nick} />
+          <a href={centerUrl}><img src={userInfo.face} title={userInfo.nick} /></a>
           <span onClick={this.clickQuit.bind(this)}>退出</span>
       </div>
     )

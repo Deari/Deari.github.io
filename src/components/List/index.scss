@@ -1,5 +1,51 @@
-@import "../../layouts/CoreLayout/CoreLayout";
-@import "../../styles/_base.scss";
+@import "~layouts/CoreLayout/CoreLayout";
+@import "~styles/_base.scss";
+
+.sub-container{
+  @include sub-container;
+}
+.plf{
+  padding: 24px 12px;
+}
+.sub-content-tab{
+  @include clx;
+  @include border-bottom;
+  li{
+    float: left;
+    margin: 0 16px;
+    font-size: $text-font-size - 4;
+    color: $gray3-color;
+    line-height: $text-line-height + 4;
+    a{
+      display: block;
+      cursor: pointer;
+      padding: 0 14px;
+    }
+  }
+  .tab-active{
+    color: $blue-color;
+    border-bottom: 2px solid $blue-color;
+  }
+}
+.list-title {
+  margin-top: $default-margin-top - 10;
+  height: $default-height - 50;
+  color: $gray6-color;
+  line-height: $text-line-height + 10;
+  background: $graye-color;
+  @include border-top;
+  li{
+    @include float-left;
+    text-align: center;
+    border-right: 1px solid $white-color;
+  }
+  li:last-of-type{
+    border: none;
+  }
+}
+.no-padding-left {
+  padding-left: 0px;
+}
 
 .listContent{
   border: 1px solid #eee;

@@ -21,7 +21,7 @@ const FirstStepForm = props => {
     <form onSubmit={handleSubmit}>
       <Field label="应用名称" name="appName" type="text" component={renderField}/>
       <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
-      <Field label="应用简介" name="appDesc" component={renderTextArea} />
+      <Field label="应用简介" name="appDesc" placeholder="请输入应用简介。此内容将显示在应用列表页中。" component={renderTextArea} />
       <Field label="分类" name="categoryId" component={renderSelect}>
         <option value={-1}>请选择分类</option>
         {
