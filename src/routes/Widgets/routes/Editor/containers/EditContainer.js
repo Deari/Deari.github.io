@@ -45,80 +45,103 @@ class EditContainer extends Component {
     // this.props.toggleStep(2);
     // return;
 
-    const formData = new FormData();
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) {
 
-    for (let key in values) {
-      if (key == 'tags') {
-        for (let v of values[key]) {
-          formData.append('tags[]', v)
+        debug.warn("请先登录")
+        return
+
+      } else {
+
+        const formData = new FormData();
+
+        for (let key in values) {
+          if (key == 'tags') {
+            for (let v of values[key]) {
+              formData.append('tags[]', v)
+            }
+          } else if (key == 'size') {
+            // const sizeObj = {
+            //   widgetW: values.size.w,
+            //   widgetH: values.size.h
+            // }
+            // for (let k in sizeObj) {
+            //   formData.append(k, sizeObj[k])
+            // }
+          } else {
+            formData.append(key, values[key])
+          }
         }
-      } else if (key == 'size') {
-        // const sizeObj = {
-        //   widgetW: values.size.w,
-        //   widgetH: values.size.h
-        // }
-        // for (let k in sizeObj) {
-        //   formData.append(k, sizeObj[k])
-        // }
-      } else {
-        formData.append(key, values[key])
+      
+        for (let key in values) {
+        }
+        const url = getDomain(`web/developer/widget/${values.appId}`)
+        
+        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+          if(res.status == 200) {
+            // this.props.updateAppId(res.data.appId);
+            this.props.updateFirstForm(values)
+            this.props.toggleStep(2);
+          } else {
+            debug.warn('请完善表单信息')
+          }
+        }).catch(e=>{
+          debug.warn('网络错误')
+        })
+        
       }
-    }
-   
-    for (let key in values) {
-    }
-    const url = getDomain(`web/developer/widget/${values.appId}`)
-    
-    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-      if(res.status == 200) {
-        // this.props.updateAppId(res.data.appId);
-        this.props.updateFirstForm(values)
-        this.props.toggleStep(2);
-      } else {
-        debug.warn('请完善表单信息')
-      }
-    }).catch(e=>{
-      debug.warn('网络错误')
-    })
+    }, sessionUrl)
   }
 
   submitSecond(values) {
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) {
 
-    if(!values.appId) {
-      alert('缺少appId')
-    }
-
-    const url = getDomain(`web/developer/widget/${values.appId}/code`)
-    const formData = new FormData();
-
-    const file = values.file;
-
-    let params = {
-      ...values
-    };
-
-    if(file) {
-      Object.assign(params, file, {
-        'fileName': file && file.originalName,
-        'fileLink': file && file.url
-      })
-    }
-
-    delete params.file;
-
-    for (let key in params) {
-      formData.append(key, params[key])
-    }
-
-    fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
-      if (res.status == 200) {
-        this.props.toggleStep(3);
+        debug.warn("请先登录")
+        return
+        
       } else {
-        debug.warn('请完善表单信息')
+
+        if(!values.appId) {
+          alert('缺少appId')
+        }
+
+        const url = getDomain(`web/developer/widget/${values.appId}/code`)
+        const formData = new FormData();
+
+        const file = values.file;
+
+        let params = {
+          ...values
+        };
+
+        if(file) {
+          Object.assign(params, file, {
+            'fileName': file && file.originalName,
+            'fileLink': file && file.url
+          })
+        }
+
+        delete params.file;
+
+        for (let key in params) {
+          formData.append(key, params[key])
+        }
+
+        fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
+          if (res.status == 200) {
+            this.props.toggleStep(3);
+          } else {
+            debug.warn('请完善表单信息')
+          }
+        }).catch(e=>{
+          debug.warn('网络错误')
+        })
+        
       }
-    }).catch(e=>{
-      debug.warn('网络错误')
-    })
+    }, sessionUrl)
   }
 
   render() {
