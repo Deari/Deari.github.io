@@ -10,7 +10,7 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 
@@ -26,8 +26,9 @@ class CreateContainer extends Component {
   }
 
   componentWillMount() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {

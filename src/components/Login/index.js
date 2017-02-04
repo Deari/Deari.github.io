@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import LoginSDK from 'utils/loginSDK'
-import { getLoginDomain, getApiDomain, getApiUrl } from 'utils/domain'
+import { getLoginDomain, getApiDomain, getApiUrl, getSourceVal } from 'utils/domain'
 import './login.scss'
 
 export default class Login extends Component {
@@ -21,8 +21,9 @@ export default class Login extends Component {
   }
 
   login() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
@@ -63,7 +64,9 @@ export default class Login extends Component {
 
     const { userInfo } = this.state
 
-    const register = getApiDomain(`#/register?callbackurl=${location.href}`)
+    const sourceVal = getSourceVal()
+
+    const register = getApiDomain(`#/register?source=${sourceVal}&callbackurl=${location.href}`)
 
     const centerUrl = getApiDomain(`#/center/1`)
 

@@ -9,7 +9,7 @@ import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 
-import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
@@ -19,8 +19,9 @@ import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 class CreateContainer extends Component {
   
   componentWillMount() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
@@ -34,15 +35,24 @@ class CreateContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-        debug.warn("请先登录")
-        return
-        
-      } else {
+  async submitFirst(values) {
+
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
 
         const formData = new FormData()
 
@@ -67,13 +77,14 @@ class CreateContainer extends Component {
           } else {
             debug.warn('请完善表单信息')
           }
-        }).catch(e=>{
-          console.log("e", e)
+        }).catch(e => {  
           debug.warn('网络错误')
         })
 
+      } else {
+        debug.warn('请先登录')
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
     
 
   }
