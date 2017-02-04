@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { getApiUrl, getApiDomain, getLoginDomain } from 'utils/domain'
+import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import 'components/Header/Header'
 import 'styles/_base.scss'
@@ -12,9 +12,10 @@ import mdData from 'raw!./develop.md'
 class Doc extends React.Component {
 
   clickBtn(type) {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
-    let callbackUrl = `${location.host}/hardware/${type}`
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/hardware/${type}`
     
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/hardware/${type}`

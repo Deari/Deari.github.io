@@ -10,7 +10,8 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 
 import { toggleStep, getTags, getCates, getSdkInfo, updateFirstForm } from '../modules/create'
@@ -25,110 +26,147 @@ class CreateContainer extends Component {
   }
 
   componentWillMount() {
-    this.props.toggleStep(1)
-    this.props.getTags()
-    this.props.getCates()
-    this.props.getSdkInfo()
+    let sourceVal = getSourceVal()
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        this.props.toggleStep(1)
+        this.props.getTags()
+        this.props.getCates()
+        this.props.getSdkInfo()
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
+
   submitFirst(values) {
-    console.log(values)
-    const formData = new FormData()
-    const params = {
-      hardwareName : values['hardwareName'],
-      hardwareLogo : values['hardwareLogo'],
-      hardwareFunction : values['hardwareFunction'],
-      majorCategoryId : values.category['majorCategoryId'],
-      minorCategoryId : values.category['minorCategoryId'],
-      hardwareMode : values['hardwareMode'],
-      hardwareProducer : values['hardwareProducer'],
-      commType1: values['commType1'] ? 1 : 0,
-      commType2: values['commType2'] ? 1 : 0,
-      sdkType: values['sdkType'],
-      os: values['os'],
-      hardwarePlatform: values['hardwarePlatform'],
-    }
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) {
 
-    for(let key in params) {
-      formData.append(key, params[key])
-    }
+        debug.warn("请先登录")
+        return
 
-    for(let v of values.tags) {
-      formData.append("hardwareTags[]", v)
-    }
+      } else {
 
-    const url = getDomain(`web/hardware/addHardware/step1`)
-
-    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(
-      res => {
-        if(res.status == 200) {
-          const hardwareId = res.data.hardwareId
-          const firstStepValue = { ...values }
-
-          this.setState({firstStepValue, hardwareId}, () => {
-            this.props.updateFirstForm(values)
-            this.props.toggleStep(2)
-          })
-
-        } else {
-          debug.warn('请完善表单信息')
+        const formData = new FormData()
+        const params = {
+          hardwareName : values['hardwareName'],
+          hardwareLogo : values['hardwareLogo'],
+          hardwareFunction : values['hardwareFunction'],
+          majorCategoryId : values.category['majorCategoryId'],
+          minorCategoryId : values.category['minorCategoryId'],
+          hardwareMode : values['hardwareMode'],
+          hardwareProducer : values['hardwareProducer'],
+          commType1: values['commType1'] ? 1 : 0,
+          commType2: values['commType2'] ? 1 : 0,
+          sdkType: values['sdkType'],
+          os: values['os'],
+          hardwarePlatform: values['hardwarePlatform'],
         }
-      }).catch(e => {
-        debug.warn('网络错误')
-        console.log("e ", e)
-      })
+
+        for(let key in params) {
+          formData.append(key, params[key])
+        }
+
+        for(let v of values.tags) {
+          formData.append("hardwareTags[]", v)
+        }
+
+        const url = getDomain(`web/hardware/addHardware/step1`)
+
+        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(
+          res => {
+            if(res.status == 200) {
+              const hardwareId = res.data.hardwareId
+              const firstStepValue = { ...values }
+
+              this.setState({firstStepValue, hardwareId}, () => {
+                this.props.updateFirstForm(values)
+                this.props.toggleStep(2)
+              })
+
+            } else {
+              debug.warn('请完善表单信息')
+            }
+          }).catch(e => {
+            debug.warn('网络错误')
+            console.log("e ", e)
+          })
+          
+        }
+      }, sessionUrl)
+
   }
 
   submitSecond(values) {
-    const { firstStepValue, hardwareId } = this.state
-    const SecondStepValues = {
-      ...firstStepValue,
-      ...values
-    }
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) {
 
-    const formData = new FormData()
-    const params = {
-      hardwareId : hardwareId,
-      hardwareName : SecondStepValues['hardwareName'],
-      hardwareLogo : SecondStepValues['hardwareLogo'],
-      hardwareFunction : SecondStepValues['hardwareFunction'],
-      majorCategoryId : SecondStepValues.category['majorCategoryId'],
-      minorCategoryId : SecondStepValues.category['minorCategoryId'],
-      hardwareMode: SecondStepValues['hardwareMode'],
-      hardwareProducer: SecondStepValues['hardwareProducer'],
-      commType1: SecondStepValues['commType1'] ? 1 : 0,
-      commType2: SecondStepValues['commType2'] ? 1 : 0,
-      sdkType: SecondStepValues['sdkType'],
-      os: SecondStepValues['os'],
-      hardwarePlatform: SecondStepValues['hardwarePlatform'],
+        debug.warn("请先登录")
+        return
 
-      hardwareBrand: SecondStepValues['hardwareBrand'],
-      hardwareDetail: SecondStepValues['hardwareDetail'],
-      hardwareReport: SecondStepValues['hardwareReport'],
-    }
-
-    for(let key in params) {
-      formData.append(key, params[key])
-    }
-
-    for(let v of SecondStepValues.tags) {
-      formData.append("hardwareTags[]", v)
-    }
-
-    for(let key in SecondStepValues.hardwarePics) {
-      formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key])
-    }
-
-    const url = getDomain(`web/hardware/addHardware/step2`)
-
-    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-      if(res.status == 200) {
-          this.props.toggleStep(3)
       } else {
-        debug.warn('请完善表单信息')
+
+        const { firstStepValue, hardwareId } = this.state
+        const SecondStepValues = {
+          ...firstStepValue,
+          ...values
+        }
+
+        const formData = new FormData()
+        const params = {
+          hardwareId : hardwareId,
+          hardwareName : SecondStepValues['hardwareName'],
+          hardwareLogo : SecondStepValues['hardwareLogo'],
+          hardwareFunction : SecondStepValues['hardwareFunction'],
+          majorCategoryId : SecondStepValues.category['majorCategoryId'],
+          minorCategoryId : SecondStepValues.category['minorCategoryId'],
+          hardwareMode: SecondStepValues['hardwareMode'],
+          hardwareProducer: SecondStepValues['hardwareProducer'],
+          commType1: SecondStepValues['commType1'] ? 1 : 0,
+          commType2: SecondStepValues['commType2'] ? 1 : 0,
+          sdkType: SecondStepValues['sdkType'],
+          os: SecondStepValues['os'],
+          hardwarePlatform: SecondStepValues['hardwarePlatform'],
+
+          hardwareBrand: SecondStepValues['hardwareBrand'],
+          hardwareDetail: SecondStepValues['hardwareDetail'],
+          hardwareReport: SecondStepValues['hardwareReport'],
+        }
+
+        for(let key in params) {
+          formData.append(key, params[key])
+        }
+
+        for(let v of SecondStepValues.tags) {
+          formData.append("hardwareTags[]", v)
+        }
+
+        for(let key in SecondStepValues.hardwarePics) {
+          formData.append("hardwarePics[]", SecondStepValues.hardwarePics[key])
+        }
+
+        const url = getDomain(`web/hardware/addHardware/step2`)
+
+        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+          if(res.status == 200) {
+              this.props.toggleStep(3)
+          } else {
+            debug.warn('请完善表单信息')
+          }
+        }).catch(e=>{
+          debug.warn('网络错误')
+        })
+        
       }
-    }).catch(e=>{
-      debug.warn('网络错误')
-    })
+    }, sessionUrl)
+
 
   }
 

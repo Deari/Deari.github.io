@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
 import ListNav from 'components/ListNav'
@@ -19,7 +20,7 @@ class AppsList extends React.Component {
       {name: "待提交", value: 3}
     ]
   }
-  
+
   async getList() {
     const apiUrl = getDomain("web/developer/apps")
     const reviewStatus = this.getReviewStatus()
@@ -102,10 +103,21 @@ class AppsList extends React.Component {
     return newData
   }
 
-  async componentDidMount() {
-    const listData = await this.getList()
-    const newData = listData && this.formatListData(listData)
-    newData && this.setState({listData: newData})
+  componentDidMount() {
+    let sourceVal = getSourceVal()
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus( async (status, data) => {
+      if (status) {
+        const listData = await this.getList()
+        const newData = listData && this.formatListData(listData)
+        newData && this.setState({listData: newData})
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   changeNav(obj) {

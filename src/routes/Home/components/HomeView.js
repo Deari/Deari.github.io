@@ -1,7 +1,7 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
-import { getApiUrl, getApiDomain, getLoginDomain } from 'utils/domain'
+import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import './HomeView.scss'
 import '../assets/lib/slick.css'
@@ -12,9 +12,10 @@ var Slider = require('react-slick');
 const SimpleSlider = React.createClass({
 
   clickCreate: (type) => {
+    let sourceVal = getSourceVal(type)
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
-    let callbackUrl = `${location.host}/${type}/create`
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/${type}/create`
     
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/${type}/create`

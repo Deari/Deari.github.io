@@ -9,7 +9,8 @@ import Sidebar from 'components/Sidebar'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 
-import { getDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
@@ -18,68 +19,116 @@ import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
 class CreateContainer extends Component {
   
   componentWillMount() {
-    this.props.getTags()
-    this.props.getCates()
-    this.props.toggleStep(1)
+    let sourceVal = getSourceVal()
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        this.props.getTags()
+        this.props.getCates()
+        this.props.toggleStep(1)
+      } else {
+        debug.warn("登录失败")
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
+  isLogin() {
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-    const formData = new FormData()
+  async submitFirst(values) {
 
-    for(let key in values) {
-      if(key == 'tags') {
-        for(let v of values[key]){
-          formData.append('tags[]', v)
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+
+        const formData = new FormData()
+
+        for(let key in values) {
+          if(key == 'tags') {
+            for(let v of values[key]){
+              formData.append('tags[]', v)
+            }
+          } else {
+            formData.append(key, values[key])
+          }
         }
-      } else {
-        formData.append(key, values[key])
-      }
-    }
 
-    const url = getDomain(`web/developer/app`)
-    
-    fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-      if(res.status == 200) {
-        this.props.updateForm2({
-          appId: res.data.appId
+        const url = getDomain(`web/developer/app`)
+        
+        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
+          if(res.status == 200) {
+            this.props.updateForm2({
+              appId: res.data.appId
+            })
+            this.props.toggleStep(2)
+          } else {
+            debug.warn('请完善表单信息')
+          }
+        }).catch(e => {  
+          debug.warn('网络错误')
         })
-        this.props.toggleStep(2)
+
       } else {
-        debug.warn('请完善表单信息')
+        debug.warn('请先登录')
       }
-    }).catch(e=>{
-      debug.warn('网络错误')
-    })
+    }, sessionUrl, loginUrl, callbackUrl)
+    
+
   }
 
   submitSecond(values) {
-    !values.appId && debug.warn('缺少appId')
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    LoginSDK.getStatus((status, data) => {
+      if (!status) {
 
-    const url = getDomain(`web/developer/app/${values.appId}/code`)
-    const formData = new FormData()
+        debug.warn("请先登录")
+        return
 
-    const file = values.file
-    const params = Object.assign({}, file, {
-      'appId': values.appId,
-      'codeDesc': values.codeDesc,
-      'fileName': file.originalName,
-      'fileLink': file.url
-    })
-
-    for (let key in params) {
-      formData.append(key, params[key])
-    }
-
-    fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
-      if (res.status == 200) {
-        this.props.toggleStep(3)
       } else {
-        debug.warn('请完善表单信息')
+
+        !values.appId && debug.warn('缺少appId')
+
+        const url = getDomain(`web/developer/app/${values.appId}/code`)
+        const formData = new FormData()
+
+        const file = values.file
+        const params = Object.assign({}, file, {
+          'appId': values.appId,
+          'codeDesc': values.codeDesc,
+          'fileName': file.originalName,
+          'fileLink': file.url
+        })
+
+        for (let key in params) {
+          formData.append(key, params[key])
+        }
+
+        fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+          if (res.status == 200) {
+            this.props.toggleStep(3)
+          } else {
+            debug.warn('请完善表单信息')
+          }
+        }).catch(e => {
+          debug.warn('网络错误')
+        })
+        
       }
-    }).catch(e => {
-      debug.warn('网络错误')
-    })
+    }, sessionUrl)
+    
   }
 
   previous() {
