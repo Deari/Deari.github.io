@@ -40,20 +40,24 @@ class EditContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
-
-    // this.props.updateAppId(123456);
-    // this.props.toggleStep(2);
-    // return;
-
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-        debug.warn("请先登录")
-        return
+  submitFirst(values) {
 
-      } else {
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
 
         const formData = new FormData();
 
@@ -90,20 +94,24 @@ class EditContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) {
 
-        debug.warn("请先登录")
-        return
-        
-      } else {
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
 
         if(!values.appId) {
           alert('缺少appId')
@@ -141,8 +149,10 @@ class EditContainer extends Component {
           debug.warn('网络错误')
         })
         
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   render() {

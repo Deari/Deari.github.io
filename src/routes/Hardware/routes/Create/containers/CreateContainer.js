@@ -43,17 +43,27 @@ class CreateContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-        debug.warn("请先登录")
-        return
+  submitFirst(values) {
 
-      } else {
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/hardware/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
 
         const formData = new FormData()
+
         const params = {
           hardwareName : values['hardwareName'],
           hardwareLogo : values['hardwareLogo'],
@@ -97,21 +107,24 @@ class CreateContainer extends Component {
             debug.warn('网络错误')
             console.log("e ", e)
           })
-          
-        }
-      }, sessionUrl)
 
+      } else {
+        debug.warn("请先登录")
+      }
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
+
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/hardware/list`
+
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
-
-        debug.warn("请先登录")
-        return
-
-      } else {
+      if (status) {
 
         const { firstStepValue, hardwareId } = this.state
         const SecondStepValues = {
@@ -163,9 +176,11 @@ class CreateContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
 
 
   }
