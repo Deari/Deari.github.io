@@ -84,5 +84,13 @@
   
 }
 .tag-list{
-  margin-top: $default-margin-top - 10;
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  top: 186px;
+  width: 200px;
+  margin-top: 30px;
+  font-size: 16px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
