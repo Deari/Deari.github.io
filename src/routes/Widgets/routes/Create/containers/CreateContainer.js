@@ -34,22 +34,25 @@ class CreateContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
-
-    // console.log(values);
-    // this.props.updateForm2({ appId: 11111});
-    // this.props.toggleStep(2);
-    // return;
-
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-        debug.warn("请先登录")
-        return
+  submitFirst(values) {
 
-      } else {
+    this.isLogin()
 
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        
         const formData = new FormData();
 
         for(let key in values) {
@@ -78,22 +81,25 @@ class CreateContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-    
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) {
 
-        debug.warn("请先登录")
-        return
-        
-      } else {
-        
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+
         const formData = new FormData();
         const { appId, codeDesc, file } = values;
         const params = Object.assign({}, file, {
@@ -119,9 +125,12 @@ class CreateContainer extends Component {
           debug.warn('网络错误')
         })
         
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
   }
+  
   previous() {
     const appId = this.props.widgetCreate.form2.appId;
     window.location.href = '/widgets/edit/' + appId;

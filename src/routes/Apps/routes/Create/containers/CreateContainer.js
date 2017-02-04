@@ -42,14 +42,14 @@ class CreateContainer extends Component {
     }, sessionUrl)
   }
 
-  async submitFirst(values) {
+  submitFirst(values) {
 
     this.isLogin()
 
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
-    let callbackUrl = location.href
+    let callbackUrl = `${location.origin}/apps/list`
 
     LoginSDK.getStatus((status, data) => {
       if (status) {
@@ -85,19 +85,19 @@ class CreateContainer extends Component {
         debug.warn('请先登录')
       }
     }, sessionUrl, loginUrl, callbackUrl)
-    
-
   }
 
   submitSecond(values) {
+
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/apps/list`
+
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
-
-        debug.warn("请先登录")
-        return
-
-      } else {
+      if (status) {
 
         !values.appId && debug.warn('缺少appId')
 
@@ -125,10 +125,11 @@ class CreateContainer extends Component {
         }).catch(e => {
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-    
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   previous() {

@@ -45,22 +45,25 @@ class CreateContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
   
-  login() {
-    let url = getLoginDomain(`passport/session-check.json`)
-
+  isLogin() {
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      return status
-    }, url)
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
   }
 
   submitFirst(values) {
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) {
-        debug.warn("请先登录")
-        return
-      } else {
 
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/hardware/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        
         const formData = new FormData()
         const params = {
           hardwareId: values['hardwareId'],
@@ -104,21 +107,24 @@ class CreateContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-    
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
+
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/hardware/list`
+
     LoginSDK.getStatus((status, data) => {
       if (!status) {
-
-        debug.warn("请先登录")
-        return
-
-      } else {
 
         const { firstStepValue, hardwareId } = this.state
         const SecondStepValues = {
@@ -167,9 +173,10 @@ class CreateContainer extends Component {
           debug.warn('网络错误')
         })
         
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   render() {
