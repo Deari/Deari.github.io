@@ -26,8 +26,11 @@ export const validate = values => {
   if (!values.codeDesc) {
     errors.codeDesc = <i className="message">请输入文字介绍</i>
   }
-  if (!values.file) {
-    errors.file = <i className="message">请选择组件文件</i>
+  if(!values.file && values.isH5App === 0){
+     errors.file = <i className="message">请选择组件文件</i>
+  }
+  if(!values.fileLink && values.isH5App === 1){
+     errors.fileLink = <i className="message">请输入H5链接</i>
   }
   return errors
 }

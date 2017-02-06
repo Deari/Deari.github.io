@@ -160,10 +160,12 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
+    isH5App: 0
   },
   form2: {
     codeDesc: '',
-    platform: 2
+    platform: 2,
+    isH5App: 0
   }
 }
 
@@ -211,16 +213,16 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, defaultLayout:size } = res.data
+        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size } = res.data
         const tagId = tags.map(v=>v.tagId)
 
         dispatch(updateForm({
           appId,
-          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, size,
+          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, isH5App, size,
           tags: tagId
         }))
 
-        dispatch(updateForm2({ platform }))
+        dispatch(updateForm2({ platform, isH5App }))
         
       } else {
         debug.warn("获取组件详情失败")
@@ -238,7 +240,8 @@ export const getAppCodeInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}/codes`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data
+        const data = res.data && (res.data.versions ? res.data.versions[0] : {}) || {}
+        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = data
         if(codeDesc==="undefined"){
           dispatch(updateForm2({
             appId,

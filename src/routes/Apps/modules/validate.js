@@ -23,8 +23,8 @@ export const validate = values => {
   if(!values.file && values.isH5App === 0){
      errors.file = <i className="message">请选择.zip类型的文件</i>
   }
-  if(!values.file && values.isH5App === 1){
-     errors.file = <i className="message">请输入H5链接</i>
+  if(!values.fileLink && values.isH5App === 1){
+     errors.fileLink = <i className="message">请输入H5链接</i>
   }
   return errors
 }

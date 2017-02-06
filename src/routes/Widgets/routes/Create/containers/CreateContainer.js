@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import Sidebar from 'components/Sidebar'
+import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
@@ -13,7 +14,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
@@ -27,7 +28,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(0)
       } else {
         debug.warn("登录失败")
       }
@@ -39,6 +40,11 @@ class CreateContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (!status) debug.warn('请先登录')
     }, sessionUrl)
+  }
+
+  submitChoice(values) {
+    this.props.updateIsH5App({isH5App: values})
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {
@@ -100,14 +106,31 @@ class CreateContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
+        !values.appId && debug.warn('缺少appId')
+
         const formData = new FormData();
-        const { appId, codeDesc, file } = values;
-        const params = Object.assign({}, file, {
-          appId,
-          codeDesc,
-          'fileName': file && file.originalName,
-          'fileLink': file && file.url
-        });
+        const { appId, codeDesc } = values;
+        let params = {}
+
+        if (values.isH5App === 0) {
+          const file = values.file
+          params = Object.assign({}, file, {
+            appId,
+            codeDesc,
+            'fileName': file && file.originalName,
+            'fileLink': file && file.url
+          })
+        } else {
+          params = {
+            appId,
+            codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'platform': 2,
+            'fileLink': values.fileLink
+          }
+        }
       
         for(let key in params) {
           formData.append(key, params[key])
@@ -116,7 +139,6 @@ class CreateContainer extends Component {
         const url = getDomain(`web/developer/widget/${appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
-            console.info('提交成功')
             this.props.toggleStep(3);
           } else {
             debug.warn('请完善表单信息')
@@ -148,7 +170,10 @@ class CreateContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls}  type="widget"/>
         <div className="sub-container">
-          <Step page={page}/>
+          {
+            page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
+          }
+          { page > 0 && <Step page={page}/> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -169,7 +194,8 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
-  updateForm2
+  updateForm2,
+  updateIsH5App
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

@@ -113,9 +113,7 @@ class EditContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
-        if(!values.appId) {
-          alert('缺少appId')
-        }
+        !values.appId && debug.warn('缺少appId')
 
         const url = getDomain(`web/developer/widget/${values.appId}/code`)
         const formData = new FormData();
@@ -126,15 +124,23 @@ class EditContainer extends Component {
           ...values
         };
 
-        if(file) {
+        if(file && values.isH5App === 0) {
           Object.assign(params, file, {
-            'fileName': file && file.originalName,
-            'fileLink': file && file.url
+            'fileName': file.originalName,
+            'fileLink': file.url
+          })
+          delete params.file
+        } else {
+          Object.assign(params, {
+            'appId': values.appId,
+            'codeDesc': values.codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'fileLink': values.fileLink
           })
         }
-
-        delete params.file;
-
+        
         for (let key in params) {
           formData.append(key, params[key])
         }

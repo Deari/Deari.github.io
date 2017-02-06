@@ -34,7 +34,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = ({appsCreate}) => ({
   initialValues: appsCreate.form2,
-  isH5App: appsCreate.form2.isH5App
 })
 
 export default connect(
