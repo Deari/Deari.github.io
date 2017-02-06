@@ -14,6 +14,8 @@ const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 
+const UPDATE_ISH5APP = PREFIX+'UPDATE_ISH5APP'
+
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
   data
@@ -31,6 +33,11 @@ export const toggleStep = (page) => ({
 
 export const updateForm2 = (data) => ({
   type : UPDATE_FORM2,
+  data
+})
+
+export const updateIsH5App = (data) => ({
+  type : UPDATE_ISH5APP,
   data
 })
 
@@ -86,6 +93,20 @@ const ACTION_HANDLERS = {
     }
   },
 
+  [UPDATE_ISH5APP]: (state, action) => {
+    return {
+      ...state,
+      form: {
+        ...state.form,
+        ...action.data
+      },
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
+    }
+  },
+
   [RECEIVE_TAGS]: (state, action) => ({
     ...state,
     tags: action.data
@@ -99,7 +120,7 @@ const ACTION_HANDLERS = {
 
 const getInitialState = () => {
   return {
-    page: 1,
+    page: 0,
     cates: [{
       categoryId: 1,
       categoryName: "xx"
@@ -129,12 +150,14 @@ const getInitialState = () => {
       categoryId: -1,
       platform: 2,
       tags: [],
+      isH5App: 0
     },
 
     form2: {
       codeDesc: '',
       appId: -1,
       platform: 2,
+      isH5App: 0
     },
   }
 }

@@ -3,11 +3,11 @@ import fetchUtil from 'routes/utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'routes/utils/debug'
 
-export const renderField = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
+export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
-      <input {...input} placeholder={label} type={type}/>
+      <input {...input} placeholder={placeholder || label} type={type}/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
   </div>

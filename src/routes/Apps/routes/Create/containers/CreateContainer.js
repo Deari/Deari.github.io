@@ -6,6 +6,7 @@ import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
 import Sidebar from 'components/Sidebar'
+import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 
@@ -14,7 +15,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
   
@@ -28,7 +29,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(0)
       } else {
         debug.warn("登录失败")
       }
@@ -40,6 +41,12 @@ class CreateContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (!status) debug.warn('请先登录')
     }, sessionUrl)
+  }
+
+  submitChoice(values) {
+    console.log("submitChoice ", values)
+    this.props.updateIsH5App({isH5App: values})
+    this.props.toggleStep(1)
   }
 
   submitFirst(values) {
@@ -103,14 +110,26 @@ class CreateContainer extends Component {
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         const formData = new FormData()
-
-        const file = values.file
-        const params = Object.assign({}, file, {
-          'appId': values.appId,
-          'codeDesc': values.codeDesc,
-          'fileName': file.originalName,
-          'fileLink': file.url
-        })
+        let params = {}
+        if (values.isH5App === 0) {
+          const file = values.file
+          params = Object.assign({}, file, {
+            'appId': values.appId,
+            'codeDesc': values.codeDesc,
+            'fileName': file.originalName,
+            'fileLink': file.url
+          })
+        } else {
+          params = {
+            'appId': values.appId,
+            'codeDesc': values.codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'platform': 2,
+            'fileLink': values.fileLink
+          }
+        }
 
         for (let key in params) {
           formData.append(key, params[key])
@@ -150,13 +169,15 @@ class CreateContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} />
         <div className="sub-container">
-          <Step page={page}/>
+          {
+            page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
+          }
+          { page > 0 && <Step page={page}/> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond}
-              previous={::this.previous} />
+            page === 2 && <SecondStep onSubmit={::this.submitSecond} previous={::this.previous} />
           }
           {
             page === 3 && <Complete />
@@ -171,7 +192,8 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
-  updateForm2
+  updateForm2,
+  updateIsH5App
 }
 
 const mapStateToProps = ({ appsCreate }) => ({

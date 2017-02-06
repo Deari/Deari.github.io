@@ -115,13 +115,22 @@ class EditContainer extends Component {
         let params = {
           ...values
         }
-        if(file) {
+        if(file && values.isH5App === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url
           })
+          delete params.file
+        } else {
+          Object.assign(params, {
+            'appId': values.appId,
+            'codeDesc': values.codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'fileLink': values.fileLink
+          })
         }
-        delete params.file
 
         const formData = new FormData()
         for (let key in params) {
