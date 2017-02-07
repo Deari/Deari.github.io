@@ -4,6 +4,7 @@ import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/dom
 import LoginSDK from 'utils/loginSDK'
 import 'components/Header/Header'
 import 'styles/_base.scss'
+import './index.scss'
 import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
 
 // Todo 从服务端获取 md 原文数据

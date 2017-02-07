@@ -124,10 +124,6 @@ class CreateContainer extends Component {
           params = {
             appId,
             codeDesc,
-            'fileName': "测试H5",
-            'moduleName': "测试H5",
-            'rnFrameworkVersion': 1,
-            'platform': 2,
             'fileLink': values.fileLink
           }
         }
