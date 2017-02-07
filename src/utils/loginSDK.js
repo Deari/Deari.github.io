@@ -30,7 +30,7 @@ export default {
       // 若读不到cookie，则认为用户未登录
       if (callback != undefined) {
         if (callbackurl != undefined && loginurl != undefined) {
-          window.location.href = loginurl + '?callbackurl=' + callbackurl
+            window.location.href = loginurl + '&callbackurl=' + callbackurl
         } else {
           callback(false,null)
         }
@@ -57,7 +57,7 @@ export default {
               } else {
                 if (callback != undefined) {
                   if (url != undefined && loginurl != undefined) {
-                    window.location.href = loginurl + '?callbackurl=' + callbackurl
+                      window.location.href = loginurl + '&callbackurl=' + callbackurl
                   } else {
                     callback(false,null)
                   }
@@ -75,7 +75,7 @@ export default {
         // 若读不到mix信息，则认为用户未登录
         if (callback != undefined) {
           if (url != undefined && loginurl != undefined) {
-            window.location.href = loginurl + '?callbackurl=' + callbackurl
+              window.location.href = loginurl + '&callbackurl=' + callbackurl
           } else {
             callback(false,null)
           }

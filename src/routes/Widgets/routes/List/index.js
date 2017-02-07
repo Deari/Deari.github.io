@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
 import fetchUtil from 'routes/utils/fetchUtil'
-import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import debug from 'routes/utils/debug'
 import Slidebar from 'components/Sidebar'
@@ -104,8 +104,9 @@ class widgetsList extends React.Component {
   }
 
   componentDidMount() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus( async (status, data) => {

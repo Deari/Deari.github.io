@@ -85,3 +85,13 @@ export function getApiUrl(url) {
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
+// 判断从哪个路由跳转的
+export function getSourceVal(name) {
+  const pathName = name || location.pathname
+
+  if (pathName.search(/apps/) != -1) return 1
+  if (pathName.search(/widgets/) != -1) return 2
+  if (pathName.search(/hardware/) != -1) return 4
+  
+  return 5
+}

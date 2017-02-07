@@ -13,36 +13,36 @@ const getTimeStr = (date)=>{
   const timeStr = date.getFullYear()+'/'+Math.floor((date.getMonth()+3)/3)+'/'+date.getDate()
   return timeStr
 }
-const keyMap = {
-  am: [
-    '00:00~08:00',
-    '08:00~09:00',
-    '09:00~10:00',
-    '10:00~11:00',
-    '11:00~12:00'
-  ],
-  pm: [
-    '12:00~13:00',
-    '13:00~14:00',
-    '14:00~15:00',
-    '15:00~16:00',
-    '16:00~17:00'
-  ],
-  night: [
-    '17:00~18:00',
-    '18:00~19:00',
-    '19:00~20:00',
-    '20:00~21:00',
-    '21:00~24:00'
-  ]
-}
+// const keyMap = {
+//   am: [
+//     '00:00~08:00',
+//     '08:00~09:00',
+//     '09:00~10:00',
+//     '10:00~11:00',
+//     '11:00~12:00'
+//   ],
+//   pm: [
+//     '12:00~13:00',
+//     '13:00~14:00',
+//     '14:00~15:00',
+//     '15:00~16:00',
+//     '16:00~17:00'
+//   ],
+//   night: [
+//     '17:00~18:00',
+//     '18:00~19:00',
+//     '19:00~20:00',
+//     '20:00~21:00',
+//     '21:00~24:00'
+//   ]
+// }
 
-const addTextKey = (source, key) => {
-  return source.map((v, i) => Object.assign({}, v, {
-      timeText: keyMap[key] && keyMap[key][i]
-    })
-  )
-}
+// const addTextKey = (source, key) => {
+//   return source.map((v, i) => Object.assign({}, v, {
+//       timeText: keyMap[key] && keyMap[key][i]
+//     })
+//   )
+// }
 
 const getSumOfTimeArray = (arr=[], start, end) => {
   return arr.slice(start, end).reduce((prev, cur)=> prev+cur.num, 0)

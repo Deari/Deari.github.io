@@ -13,6 +13,8 @@ const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 
+const UPDATE_ISH5APP = PREFIX+'UPDATE_ISH5APP'
+
 export const receiveTags = (data) => {
   return {
     type: RECEIVE_TAGS,
@@ -38,6 +40,11 @@ export const updateForm2 = (data) => {
     data
   }
 }
+
+export const updateIsH5App = (data) => ({
+  type : UPDATE_ISH5APP,
+  data
+})
 
 const ACTION_HANDLERS = {
 
@@ -66,11 +73,26 @@ const ACTION_HANDLERS = {
       ...state.form2,
       ...action.data
     }
-  })
+  }),
+
+  [UPDATE_ISH5APP]: (state, action) => {
+    return {
+      ...state,
+      form: {
+        ...state.form,
+        ...action.data
+      },
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
+    }
+  }
+  
 }
 
 const initialState = {
-  page: 1,
+  page: 0,
   cates: [{
     categoryId: 0,
     categoryName: "正在加载..."
@@ -94,10 +116,12 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
+    isH5App: 0
   },
   form2: {
     codeDesc: '',
     platform: 2,
+    isH5App: 0
   }
 }
 

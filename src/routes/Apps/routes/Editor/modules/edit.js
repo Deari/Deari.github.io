@@ -71,16 +71,16 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         console.log('应用详情：', res)
-        const { appName, appLogo, appDesc, categoryId, platform, tags } = res.data
+        const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App } = res.data
         const tagId = tags.map(v=>v.tagId)
 
         dispatch(updateForm1({
-          appId, appName, appLogo, appDesc, categoryId, platform,
+          appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
         }))
 
         dispatch(updateForm2({
-          platform
+          platform, isH5App
         }))
         
       } else {
@@ -202,12 +202,14 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
+    isH5App: 0
   },
 
   form2: {
     codeDesc: '',
     appId: -1,
     platform: 2,
+    isH5App: 0
   },
 }
 

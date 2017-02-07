@@ -14,11 +14,13 @@ import { validate } from '../../../modules/validate'
 
 const SecondStepForm = props => {
   const { handleSubmit, submitting, toggleStep, previous, initialValues } = props
+  const isH5App = initialValues.isH5App
   
   return (
     <form onSubmit={handleSubmit}>
       <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" component={renderTextArea} label="版本介绍" />
-      <Field name="file" component={renderFile} label="应用文件" />
+      {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
+      {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入H5链接" component={renderField} label="H5链接" />}
 
       <div className="form-btn">
         <div>

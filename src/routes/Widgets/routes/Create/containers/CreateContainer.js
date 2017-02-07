@@ -3,52 +3,62 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 
 import Sidebar from 'components/Sidebar'
+import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
 
-import { toggleStep, updateForm2, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
   componentWillMount() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(0)
       } else {
         debug.warn("登录失败")
       }
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
-
-    // console.log(values);
-    // this.props.updateForm2({ appId: 11111});
-    // this.props.toggleStep(2);
-    // return;
-
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
 
-        debug.warn("请先登录")
-        return
+  submitChoice(values) {
+    this.props.updateIsH5App({isH5App: values})
+    this.props.toggleStep(1)
+  }
 
-      } else {
+  submitFirst(values) {
 
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+        
         const formData = new FormData();
 
         for(let key in values) {
@@ -77,30 +87,50 @@ class CreateContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-        
+
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-    
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) {
 
-        debug.warn("请先登录")
-        return
-        
-      } else {
-        
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/widgets/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+
+        !values.appId && debug.warn('缺少appId')
+
         const formData = new FormData();
-        const { appId, codeDesc, file } = values;
-        const params = Object.assign({}, file, {
-          appId,
-          codeDesc,
-          'fileName': file && file.originalName,
-          'fileLink': file && file.url
-        });
+        const { appId, codeDesc } = values;
+        let params = {}
+
+        if (values.isH5App === 0) {
+          const file = values.file
+          params = Object.assign({}, file, {
+            appId,
+            codeDesc,
+            'fileName': file && file.originalName,
+            'fileLink': file && file.url
+          })
+        } else {
+          params = {
+            appId,
+            codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'platform': 2,
+            'fileLink': values.fileLink
+          }
+        }
       
         for(let key in params) {
           formData.append(key, params[key])
@@ -109,7 +139,6 @@ class CreateContainer extends Component {
         const url = getDomain(`web/developer/widget/${appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
-            console.info('提交成功')
             this.props.toggleStep(3);
           } else {
             debug.warn('请完善表单信息')
@@ -118,9 +147,12 @@ class CreateContainer extends Component {
           debug.warn('网络错误')
         })
         
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
+    }, sessionUrl, loginUrl, callbackUrl)
   }
+  
   previous() {
     const appId = this.props.widgetCreate.form2.appId;
     window.location.href = '/widgets/edit/' + appId;
@@ -138,7 +170,10 @@ class CreateContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls}  type="widget"/>
         <div className="sub-container">
-          <Step page={page}/>
+          {
+            page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
+          }
+          { page > 0 && <Step page={page}/> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -159,7 +194,8 @@ const mapDispatchToProps = {
   toggleStep,
   getTags,
   getCates,
-  updateForm2
+  updateForm2,
+  updateIsH5App
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

@@ -10,7 +10,7 @@ import Step from '../../../components/Step'
 
 import Sidebar from 'components/Sidebar'
 
-import { getDomain, getLoginDomain, getApiDomain } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'routes/utils/fetchUtil'
 import debug from 'routes/utils/debug'
@@ -27,8 +27,9 @@ import {
 class EditContainer extends Component {
   
   componentWillMount() {
+    let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login/`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
@@ -46,20 +47,27 @@ class EditContainer extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
-  submitFirst(values) {
-
-    // console.log("values", values)
-    // this.props.updateAppId(123456)
-    // this.props.toggleStep(2)
-    // return
-
+  isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
-        debug.warn("请先登录")
-        return
-      } else {
+      if (!status) debug.warn('请先登录')
+    }, sessionUrl)
+  }
+
+  submitFirst(values) {
+
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
+    let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/apps/list`
+
+    LoginSDK.getStatus((status, data) => {
+      if (status) {
+
         const formData = new FormData()
+
         for(let key in values) {
           if(key == 'tags') {
             for(let v of values[key]){
@@ -71,6 +79,7 @@ class EditContainer extends Component {
         }
 
         const url = getDomain(`web/developer/app/${values.appId}`)
+
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
             this.props.updateFirstForm(values)
@@ -81,37 +90,47 @@ class EditContainer extends Component {
         }).catch(e=>{
             debug.warn('网络错误')
         })
-      }
-    }, sessionUrl)
 
+      } else {
+        debug.warn("请先登录")
+      }
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   submitSecond(values) {
 
+    this.isLogin()
+
+    let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = `${location.origin}/apps/list`
+
     LoginSDK.getStatus((status, data) => {
-      if (!status) {
+      if (status) {
 
-        debug.warn("请先登录")
-        return
-        
-      } else {
-
-        if(!values.appId) {
-          alert('缺少appId')
-        }
+        !values.appId && debug.warn('缺少appId')
 
         const file = values.file
         let params = {
           ...values
         }
-        if(file) {
+        if(file && values.isH5App === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url
           })
+          delete params.file
+        } else {
+          Object.assign(params, {
+            'appId': values.appId,
+            'codeDesc': values.codeDesc,
+            'fileName': "测试H5",
+            'moduleName': "测试H5",
+            'rnFrameworkVersion': 1,
+            'fileLink': values.fileLink
+          })
         }
-        delete params.file
 
         const formData = new FormData()
         for (let key in params) {
@@ -128,10 +147,11 @@ class EditContainer extends Component {
         }).catch(e=>{
           debug.warn('网络错误')
         })
-
+        
+      } else {
+        debug.warn("请先登录")
       }
-    }, sessionUrl)
-    
+    }, sessionUrl, loginUrl, callbackUrl)
   }
 
   previous() {
