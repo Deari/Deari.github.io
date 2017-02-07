@@ -1,6 +1,6 @@
 import { getDomain } from 'utils/domain'
-import fetchUtil from 'routes/utils/fetchUtil'
-import debug from 'routes/utils/debug'
+import fetchUtil from 'utils/fetchUtil'
+import debug from 'utils/debug'
 
 const PREFIX = 'EDIT_APP_'
 

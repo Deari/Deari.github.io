@@ -16,7 +16,7 @@ import { validate, asyncValidate, repeatCheck }  from '../../../modules/validate
 
 import { toggleTag } from '../modules/edit'
 
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 
 import './firstStepForm.scss'

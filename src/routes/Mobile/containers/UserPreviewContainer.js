@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserPreview from '../components/UserPreview'
-import fetchUtil from '../../utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import {getDomain}  from 'utils/domain';
 import UserViewData from './data'
 

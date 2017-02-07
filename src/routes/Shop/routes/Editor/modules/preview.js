@@ -1,4 +1,4 @@
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getRandomString } from '../../../../../components/utils'
 import { getDomain } from 'utils/domain';
 function makeActionCreator(type, ...argNames) {

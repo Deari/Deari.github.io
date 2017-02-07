@@ -1,7 +1,7 @@
 import React from 'react'
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
-import debug from 'routes/utils/debug'
+import debug from 'utils/debug'
 import Sidebar from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 

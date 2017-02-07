@@ -13,7 +13,7 @@ import {
 import { validate } from '../../../modules/validate'
 
 import { getDomain } from 'utils/domain'
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 
 import { toggleStep } from '../modules/edit'
 

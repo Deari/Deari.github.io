@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import {AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
 
 import {IncreaseChart} from './charts';
-import fetchUtil from '../../../utils/fetchUtil';
+import fetchUtil from 'utils/fetchUtil';
 import { getHardwareDomain } from 'utils/domain';
-import Debug from '../../../utils/debug';
+import Debug from 'utils/debug';
 import DATA from './data';
 import './index.scss';
 class App extends Component {
@@ -126,7 +126,7 @@ class App extends Component {
       </div>
     )
   }
-  
+
 }
 
 export default store => ({

@@ -12,8 +12,8 @@ import Sidebar from 'components/Sidebar'
 
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
-import fetchUtil from 'routes/utils/fetchUtil'
-import debug from 'routes/utils/debug'
+import fetchUtil from 'utils/fetchUtil'
+import debug from 'utils/debug'
 
 import { 
   toggleStep, 
@@ -125,9 +125,6 @@ class EditContainer extends Component {
           Object.assign(params, {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
-            'fileName': "测试H5",
-            'moduleName': "测试H5",
-            'rnFrameworkVersion': 1,
             'fileLink': values.fileLink
           })
         }
