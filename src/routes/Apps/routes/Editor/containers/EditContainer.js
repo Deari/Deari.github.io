@@ -125,9 +125,6 @@ class EditContainer extends Component {
           Object.assign(params, {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
-            'fileName': "测试H5",
-            'moduleName': "测试H5",
-            'rnFrameworkVersion': 1,
             'fileLink': values.fileLink
           })
         }

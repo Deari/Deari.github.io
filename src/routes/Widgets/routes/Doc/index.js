@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router'
 import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
-import '../../../../components/Header/Header'
-import '../../../../styles/_base.scss'
+import 'components/Header/Header'
+import 'styles/_base.scss'
 import {Markdown, transerMdToMarkdown, Toc} from 'components/Markdown'
 
 // Todo 从服务端获取 md 原文数据
