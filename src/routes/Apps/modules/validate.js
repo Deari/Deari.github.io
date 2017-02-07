@@ -18,13 +18,18 @@ export const validate = values => {
     errors.tags = <i className="message">请选择标签</i>
   }
   if (!values.codeDesc) {
-    errors.codeDesc = <i className="message">请输入文字介绍</i>
+    errors.codeDesc = <i className="message">请输入版本介绍</i>
   }
   if(!values.file && values.isH5App === 0){
      errors.file = <i className="message">请选择.zip类型的文件</i>
   }
-  if(!values.fileLink && values.isH5App === 1){
-     errors.fileLink = <i className="message">请输入H5链接</i>
+  if(values.isH5App === 1){
+    let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
+     if (!values.fileLink) {
+       errors.fileLink = <i className="message">请输入网址</i>
+     } else if (!regExp.test(values.fileLink)) {
+       errors.fileLink = <i className="message">请输入正确的网址，以（http:// 或 https://）开头</i>
+     }
   }
   return errors
 }

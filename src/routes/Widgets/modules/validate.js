@@ -29,8 +29,13 @@ export const validate = values => {
   if(!values.file && values.isH5App === 0){
      errors.file = <i className="message">请选择组件文件</i>
   }
-  if(!values.fileLink && values.isH5App === 1){
-     errors.fileLink = <i className="message">请输入H5链接</i>
+  if(values.isH5App === 1){
+    let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
+     if (!values.fileLink) {
+       errors.fileLink = <i className="message">请输入网址</i>
+     } else if (!regExp.test(values.fileLink)) {
+       errors.fileLink = <i className="message">请输入正确的网址，以（http:// 或 https://）开头</i>
+     }
   }
   return errors
 }
