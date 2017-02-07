@@ -338,7 +338,7 @@ ffanSDK.ready(function(sdk){
 // 校验失败的error函数
 ffanSDK.error(function(res){
     //config信息验证失败会执行error函数，如签名过期导致验证失败，
-    //具体错误信息可以在返回的参数res查看，格式为 {status: '错误码', message: '具体错误信息'}
+    //具体错误信息可以在返回的参数res查看
 });
 ```
 
