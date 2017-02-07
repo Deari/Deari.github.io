@@ -439,6 +439,7 @@ ffanSDK.error(function(res){
 ```
     sdk.setRightNavBarItem({"title":"分享"})
 ```
+
 ## 5、H5授权接口说明
 
 ### 1\. accessToken说明
