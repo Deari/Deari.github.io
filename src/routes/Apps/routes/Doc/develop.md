@@ -25,9 +25,9 @@ npm install -g react-native-cli
 ```
 
 - 集成SDK（待补充）[点击下载SDK](http://open.ffan.net/apps/create)
-1\.打开android studio选择打开已有android工程 
+1\.打开android studio选择打开已有android工程
 ![Alt text](http://p1.bqimg.com/1949/c0537c381afed1e9.jpg)
-2\.选择已下载SDK目录，点击打开，等待gradle编译通过 
+2\.选择已下载SDK目录，点击打开，等待gradle编译通过
 
 - 验证环境（待补充）
 
@@ -52,7 +52,7 @@ brew install watchman
 brew install flow
 ```
 
-- Atom&Nuclide:Facebook提供的基于atom的集成开发环境，可用于编写、运行和 调试React Native应用 
+- Atom&Nuclide:Facebook提供的基于atom的集成开发环境，可用于编写、运行和 调试React Native应用
 1\.[请点击下载Atom](https://atom.io/)
 2\.[请点击下载Nuclide](https://github.com/facebook/nuclide)
 3\.其他IDE参考： DECO，sublime2，webStorm
@@ -61,7 +61,7 @@ brew install flow
 将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
 ![Alt text](http://timg.ffan.com/convert/resize/url_T1YcLTB4__1RCvBVdK/tfs/14834337846233.jpeg)
 ### 2\.添加libReactConfig
-将包含libReactConfig.a，一系列头文件和Fonts目录的文件夹FFOAPSDK拖拽到工程中 
+将包含libReactConfig.a，一系列头文件和Fonts目录的文件夹FFOAPSDK拖拽到工程中
 ![Alt text](http://timg.ffan.com/convert/resize/url_T1l6bTBvV_1RCvBVdK/tfs/addsdk.jpeg)
 ### 3\.设置flag
 找到对应target的Build Settings，Linking－>Other Linker Flags 添加flag，`-Objc`和`-all_load`
@@ -103,12 +103,12 @@ brew install flow
 1\.iOS开发者：
 
 ### 1\.创建App
-- 首先打开FFOAPDemo工程，进入到FFOAP文件夹下面，可以看到FFOAP下面，有两个目标文件夹，applications和widgets，如下图所示 
+- 首先打开FFOAPDemo工程，进入到FFOAP文件夹下面，可以看到FFOAP下面，有两个目标文件夹，applications和widgets，如下图所示
 ![Alt text](http://p1.bqimg.com/1949/072f9ae612034516.png)
 
 - 如果想开发普通App，则进入到applications目录下，参照ReactNative语法规范开发JS文件。
 
-- 如果想开发组件，则进入到widgets目录下，参照ReactNative语法规范开发JS文件。 
+- 如果想开发组件，则进入到widgets目录下，参照ReactNative语法规范开发JS文件。
 
 - 如上步骤所述，创建完成相关JS文件，之后即可创建配置文件。
 
@@ -129,15 +129,15 @@ brew install flow
 ```
 - 字段说明如下表所示
 
-| 字段      |     描述 |  
-| :-------- | :--------| 
-| index    |   app入口文件路径(相对路径)，如"test/index.js" |  
-| name   |   app名称，目前没有使用 |  
-| moduleName    |   入口module Name |  
-| platform    |   平台类型，int值，ios：1， android：2 |  
-| rnFrameworkVersion    |   ffoap框架版本号 |  
-| version    |   app版本号 |  
-| icon    |   app图标，目前没有使用 |  
+| 字段      |     描述 |
+| :-------- | :--------|
+| index    |   app入口文件路径(相对路径)，如"test/index.js" |
+| name   |   app名称，目前没有使用 |
+| moduleName    |   入口module Name |
+| platform    |   平台类型，int值，ios：1， android：2 |
+| rnFrameworkVersion    |   ffoap框架版本号 |
+| version    |   app版本号 |
+| icon    |   app图标，目前没有使用 |
 
 ### 3\.创建配置文件
 
@@ -153,13 +153,13 @@ brew install flow
 ```
 - 进入到FFOAPRootViewController,修改dataSource的get方法，向里面填充FFOAPCellModel，其内容说明如下
 
-| 字段      |     描述 |  
-| :-------- | :--------| 
-| displayName    |   在当前页面展示的名字 |  
-| moduleName   |   打开指定App入口文件的模块名 |  
-| appid    |   注册应用时候返回的appid，如果为模板型app，则为模板id |  
-| isLocal    |   是否是本地调试 |  
-| localPath    |   本地调试时候文件的相对路径 |  
+| 字段      |     描述 |
+| :-------- | :--------|
+| displayName    |   在当前页面展示的名字 |
+| moduleName   |   打开指定App入口文件的模块名 |
+| appid    |   注册应用时候返回的appid，如果为模板型app，则为模板id |
+| isLocal    |   是否是本地调试 |
+| localPath    |   本地调试时候文件的相对路径 |
 
 
 
@@ -295,69 +295,78 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 1\.概述
 
-- ffanSDK是飞凡网内部向网页开发者提供的网页开发工具包。
+- FFAN-SDK是BO开放平台向网页开发者提供的网页开发工具包
 
-- 通过使用ffanSDK，网页开发者可借助js-bridge调用手机等设备的功能。
+- 通过使用FFAN-SDK，网页开发者可方便的调用位置、获取设备信息等功能
 
-- 此文档面向网页开发者介绍ffanSDK如何使用及相关注意事项
+- 此文档面向网页开发者介绍FFAN-SDK如何使用及相关注意事项
 
-2\.ffanSDK使用步骤
+2\.FFANSDK使用步骤
 
 ### 步骤一：引入JS文件
 
-在需要调用JS接口的页面引入JS文件：
+在需要调用JS接口的页面引入JS文件，（支持https）：
 http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
 
 ### 步骤二：通过config接口注入权限验证配置
 
-> 所有需要使用ffanSDK的页面必须先注入配置信息，到后台去进行验证，否则无法调用
+> 所有需要使用FFAN-SDK的页面必须先注入配置信息，否则将无法调用
 
-```
+```javascript
 // 检验必传参数config
 ffanSDK.config({
-    appKey：第三方应用appKey
-    ts：签名时使用的时间戳
-    nonceStr：用来生成签名的随机串
-    signature：生成的签名
-    url : 当前页面的url 请使用urlEncode对url进行处理
+    appKey：'',  //第三方应用appKey
+    ts：'',      //签名时使用的时间戳
+    nonceStr：'' //用来生成签名的随机串
+    signature：''//生成的签名
+    url : ''     //当前页面的url 请使用urlEncode对url进行处理
 });
 ```
 
 ### 步骤三：通过ready接口处理成功验证
 
-```
+```javascript
 // 验证通过ready函数
 ffanSDK.ready(function(sdk){
-  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，
-  // config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，
-  // 则须把相关接口放在ready函数中调用来确保正确执行。
+  // config信息验证通过后会执行ready方法
 });
 ```
 
 ### 步骤四：通过error接口处理失败验证
 
-```
+```javascript
 // 校验失败的error函数
 ffanSDK.error(function(res){
-    // config信息验证失败会执行error函数，如签名过期导致验证失败，
-    //具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，
-    //对于SPA可以在这里更新签名。
+    //config信息验证失败会执行error函数，如签名过期导致验证失败，
+    //具体错误信息可以在返回的参数res查看，格式为 {status: '错误码', message: '具体错误信息'}
 });
 ```
 
-3\. 接口调用说明 
+3\. 接口调用说明
 
-  > 所有接口想要调用必须在config验证通过的ready函数中，所有方法都在sdk对象下
-                                                                                                                                                                                                                                                              
+  > 所有接口通过ready中返回的参数sdk来调用，参数是一个对象，目前提供以下方法：
+
+        1. openWebPage（加载新H5页面接口）
+        2. openLocalRNPage（打开RN页面）
+        3. getDevInfo（获取设备信息）
+        4. getLocation（获取位置信息）
+        5. setTitle (设置标题)
+        6. setRightNavBarItem (设置右导航图标显隐)
+
   - 加载新H5页面接口
 
     功能描述：通过H5打开一个新的WebView去加载新的H5页面
     方法名称：sdk.openWebPage
-    参数定义：参数为一个JSON对象，key值为url
+    参数定义：参数为一个JSON对象
     调用方法实例:
 
-```
-   sdk.openWebPage({"url":"www.baidu.com"})
+```javascript
+  sdk.openWebPage({"url":"www.baidu.com"})
+  .then(function(data) {
+        //success
+    }).catch(function(err){
+        // fail
+    })
 ```
 
 - 加载本地React Native页面接口
@@ -368,7 +377,12 @@ ffanSDK.error(function(res){
   调用方法实例:
 
 ```
-  sdk.openLocalRNPage({"moduleName":"test","path":"FFOAP/applications/applists.ios"})
+ sdk.openLocalRNPage({"moduleName":"test","path":"FFOAP/applications/applists.ios"})
+ .then(function(data) {
+    //success
+  }).catch(function(err){
+    //fail
+  })
 ```
 
 - 获取设备信息接口
@@ -376,9 +390,13 @@ ffanSDK.error(function(res){
   功能描述：H5页面通过JSBridge获取设备信息
   方法名称：sdk.getDevInfo
   参数定义：空
-  返回值：返回值为一个JSON对象，其返回值如有需要，可扩展，示例如下：
+  调用方法实例：
 
 ```
+sdk.getDevInfo()
+.then(function(data) {
+    //success
+    //data格式为
     {
       data:{
           name:xxx //设备名称
@@ -388,11 +406,10 @@ ffanSDK.error(function(res){
       status:200
       message:'OK'
     }
-```
-   调用方法实例：
 
-```
-   sdk.getDevInfo()
+}).catch(function(err){
+    //fail
+})
 ```
 
 - 获取位置信息接口
@@ -401,21 +418,22 @@ ffanSDK.error(function(res){
    方法名称：sdk.getLocation
    参数定义：空
    返回值：返回值为一个JSON对象，其返回值为当前位置的坐标，示例如下：
-
-```
-    {
-      data:{
-            lot:xxx
-            lat:xxx
-      }
-      status:200
-      message:'OK'
-    }
-```
-   调用方法实例：
-
 ```
     sdk.getLocation()
+    .then(function(data){
+      //success
+      //data格式为
+      {
+        data:{
+          lot:xxx 
+          lat:xxx 
+        }
+        status:200
+        message:'OK'
+      }
+    }).catch(function(err){
+      //fail
+    })
 ```
 
 - 设置标题接口
@@ -427,6 +445,11 @@ ffanSDK.error(function(res){
 
 ```
     sdk.setTitle({"title":"飞凡demo"})
+    .then(function(data) {
+      //success
+    }).catch(function(err){
+      //fail
+    })
 ```
 
 - 设置右导航图标显隐接口
@@ -438,6 +461,11 @@ ffanSDK.error(function(res){
 
 ```
     sdk.setRightNavBarItem({"title":"分享"})
+    .then(function(data) {
+      //success
+    }).catch(function(err){
+      //fail
+    })
 ```
 
 # 三、调试
