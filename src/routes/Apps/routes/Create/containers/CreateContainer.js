@@ -12,8 +12,8 @@ import Step from '../../../components/Step'
 
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
-import fetchUtil from 'routes/utils/fetchUtil'
-import debug from 'routes/utils/debug'
+import fetchUtil from 'utils/fetchUtil'
+import debug from 'utils/debug'
 
 import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
 

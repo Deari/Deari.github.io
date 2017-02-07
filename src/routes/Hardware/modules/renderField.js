@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
-import debug from 'routes/utils/debug'
+import debug from 'utils/debug'
 
 export const renderField = ({ input, label, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">

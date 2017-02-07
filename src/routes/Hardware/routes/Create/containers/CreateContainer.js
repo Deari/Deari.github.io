@@ -12,11 +12,11 @@ import Step from '../../../components/Step'
 
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 
 import { toggleStep, getTags, getCates, getSdkInfo, updateFirstForm } from '../modules/create'
 
-import debug from 'routes/utils/debug'
+import debug from 'utils/debug'
 
 class CreateContainer extends Component {
 

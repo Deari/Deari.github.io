@@ -2,9 +2,9 @@ import React from 'react'
 import md5 from 'md5'
 import ProbeReport from '../components/Probe/Report'
 
-import fetchUtil from '../../utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getHardwareDomain } from 'utils/domain';
-import Debug from '../../utils/debug'
+import Debug from 'utils/debug'
 
 import DATA from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
@@ -51,13 +51,13 @@ const getSumOfTimeArray = (arr=[], start, end) => {
 export const Promised = (Wrapped) => class extends React.Component {
 
   state = {
-    amNum: 0, 
-    pmNum: 0, 
-    nightNum: 0, 
+    amNum: 0,
+    pmNum: 0,
+    nightNum: 0,
     timeArray: [],
-    dayArray:[] 
+    dayArray:[]
   }
-  
+
  async componentWillMount() {
 
     // const hour = new Date ().getHours()
@@ -115,13 +115,13 @@ export const Promised = (Wrapped) => class extends React.Component {
 
   render () {
     const { allNum, amNum, pmNum, nightNum ,dayArray} = this.state;
-    
+
     const data = {
       allNum, amNum, pmNum, nightNum,
       chartData: this.getChartData(),
       dayArray: dayArray,
     }
-    
+
     return <Wrapped {...data} />
   }
 }

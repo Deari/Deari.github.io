@@ -1,4 +1,4 @@
-import fetchUtil from '../../../../utils/fetchUtil';
+import fetchUtil from 'utils/fetchUtil';
 import { getDomain } from 'utils/domain';
 
 function makeActionCreator(type, ...argNames) {

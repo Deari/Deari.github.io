@@ -10,8 +10,8 @@ import Sidebar from 'components/Sidebar'
 
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
-import fetchUtil from 'routes/utils/fetchUtil'
-import debug from 'routes/utils/debug'
+import fetchUtil from 'utils/fetchUtil'
+import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
         getAppInfo, getAppCodeInfo, updateFirstForm } from '../modules/edit'

@@ -1,4 +1,4 @@
-import fetchUtil from 'routes/utils/fetchUtil'
+import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain';
 const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
