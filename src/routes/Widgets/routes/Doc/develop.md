@@ -291,6 +291,130 @@ RCT_EXPORT_METHOD(setObject:(id)obj forKey:(NSString *)key)
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)callback)
 ```
 
+## 4、ffanSDK使用说明文档
+
+1\.概述
+
+- ffanSDK是飞凡网内部向网页开发者提供的网页开发工具包。
+
+- 通过使用ffanSDK，网页开发者可借助js-bridge调用手机等设备的功能。
+
+- 此文档面向网页开发者介绍ffanSDK如何使用及相关注意事项
+
+2\.JSSDK使用步骤
+
+### 步骤一：引入JS文件
+
+在需要调用JS接口的页面引入JS文件：
+http://nres.ffan.com/newh5/201726/b1c1d86b0c41348cff15fabbe022da79257c4217.js
+
+### 步骤二：通过config接口注入权限验证配置
+
+<font color=red>所有需要使用JS-SDK的页面必须先注入配置信息，到后台去进行验证，否则无法调用</font>
+
+```
+// 检验必传参数config
+ffanSDK.config({
+    appKey：第三方应用appKey
+    ts：签名时使用的时间戳
+    nonceStr：用来生成签名的随机串
+    signature：生成的签名
+    url : 当前页面的url 请使用urlEncode对url进行处理
+});
+```
+
+### 步骤三：通过ready接口处理成功验证
+
+```
+// 验证通过ready函数
+ffanSDK.ready(function(sdk){
+    //1.打开H5页面
+    //功能描述：通过H5打开一个新的WebView去加载新的H5页面
+    //方法名称：sdk.openWebPage
+    //参数定义：参数为一个JSON对象，key值为url
+    //调用方法实例:
+    sdk.openWebPage({"url":"www.baidu.com"})
+    //2.打开RN页面
+    //功能描述：通过H5打开一个新的WebView去打开一个本地React Native页面
+    //方法名称：sdk.openLocalRNPage
+    //参数定义：参数为一个JSON对象，key值为moduleName，path，
+    //其中moduleName为要打开的RN模块名称，path为FFOAP内RN入口文件的相对路径
+    //调用方法实例:
+    sdk.openLocalRNPage({"moduleName":"test","path":"FFOAP/applications/applists.ios"})
+    //3.获取设备信息
+    //功能描述：H5页面通过JSBridge获取设备信息
+    //方法名称：sdk.getDevInfo
+    //参数定义：空
+    //返回值：返回值为一个JSON对象，其返回值如有需要，可扩展，示例如下：
+ 
+    {
+ 
+    data:{
+ 
+        name:xxx //设备名称
+ 
+        model:xxx //设备类型
+ 
+        systemVersion:xxx //系统版本
+ 
+    }
+ 
+    status:200
+ 
+    message:'OK'
+ 
+    }
+    //调用方法实例:sdk.getDevInfo()
+  
+    //4.获取位置信息
+    //功能描述：H5页面通过JSBridge获取位置信息
+    //方法名称：sdk.getLocation
+    //参数定义：空
+    //返回值：返回值为一个JSON对象，其返回值为当前位置的坐标，示例如下：
+ 
+    {
+ 
+        data:{
+ 
+            lot:xxx
+ 
+            lat:xxx
+ 
+        }
+ 
+        status:200
+ 
+        message:'OK'
+ 
+    }
+    //调用方法实例:sdk.getLocation()
+ 
+    //5.设置标题
+    //功能描述：H5页面通过JSBridge设置标题
+    //方法名称：sdk.setTitle
+    //参数定义：title
+    //调用方法实例:sdk.setTitle({"title":"飞凡demo"})
+    //6.设置右导航图标显隐
+    //功能描述：H5页面通过JSBridge设置navigationBar右边导航图标显示/隐藏(目前只限一个)
+    //方法名称：sdk.setRightNavBarItem
+    //参数定义：参数为一个JSON对象，其中title为该Item的文字，如果title内容为空则不显示
+    //调用方法实例:sdk.setRightNavBarItem({"title":"分享"})
+});
+```
+
+### 步骤四：通过error接口处理失败验证
+
+```
+// 校验失败的error函数
+ffanSDK.error(function(res){
+ 
+    // config信息验证失败会执行error函数，如签名过期导致验证失败，
+    //具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，
+    //对于SPA可以在这里更新签名。
+ 
+});
+```
+
 # 三、调试
 
 ## 1、Android开发者

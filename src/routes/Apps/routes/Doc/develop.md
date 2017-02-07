@@ -290,6 +290,7 @@ RCT_EXPORT_METHOD(setObject:(id)obj forKey:(NSString *)key)
 //读json对象
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)callback)
 ```
+
 ## 4、ffanSDK使用说明文档
 
 1\.概述
@@ -304,14 +305,15 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 ### 步骤一：引入JS文件
 
-- 在需要调用JS接口的页面引入JS文件：http://nres.ffan.com/newh5/201726/b1c1d86b0c41348cff15fabbe022da79257c4217.js
+在需要调用JS接口的页面引入JS文件：
+http://nres.ffan.com/newh5/201726/b1c1d86b0c41348cff15fabbe022da79257c4217.js
 
 ### 步骤二：通过config接口注入权限验证配置
 
-- 所有需要使用JS-SDK的页面必须先注入配置信息，到后台去进行验证，否则无法调用
+<font color=red>所有需要使用JS-SDK的页面必须先注入配置信息，到后台去进行验证，否则无法调用</font>
 
 ```
-//检验必传参数config
+// 检验必传参数config
 ffanSDK.config({
     appKey：第三方应用appKey
     ts：签名时使用的时间戳
@@ -320,10 +322,11 @@ ffanSDK.config({
     url : 当前页面的url 请使用urlEncode对url进行处理
 });
 ```
+
 ### 步骤三：通过ready接口处理成功验证
 
 ```
-//验证通过ready函数
+// 验证通过ready函数
 ffanSDK.ready(function(sdk){
     //1.打开H5页面
     //功能描述：通过H5打开一个新的WebView去加载新的H5页面
@@ -397,13 +400,12 @@ ffanSDK.ready(function(sdk){
     //参数定义：参数为一个JSON对象，其中title为该Item的文字，如果title内容为空则不显示
     //调用方法实例:sdk.setRightNavBarItem({"title":"分享"})
 });
-
 ```
 
 ### 步骤四：通过error接口处理失败验证
 
 ```
-//校验失败的error函数
+// 校验失败的error函数
 ffanSDK.error(function(res){
  
     // config信息验证失败会执行error函数，如签名过期导致验证失败，
