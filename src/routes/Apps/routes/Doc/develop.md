@@ -334,6 +334,8 @@ ffanSDK.ready(function(sdk){
     //参数定义：参数为一个JSON对象，key值为url
     //调用方法实例:
     sdk.openWebPage({"url":"www.baidu.com"})
+
+
     //2.打开RN页面
     //功能描述：通过H5打开一个新的WebView去打开一个本地React Native页面
     //方法名称：sdk.openLocalRNPage
@@ -341,64 +343,57 @@ ffanSDK.ready(function(sdk){
     //其中moduleName为要打开的RN模块名称，path为FFOAP内RN入口文件的相对路径
     //调用方法实例:
     sdk.openLocalRNPage({"moduleName":"test","path":"FFOAP/applications/applists.ios"})
+
+
     //3.获取设备信息
     //功能描述：H5页面通过JSBridge获取设备信息
     //方法名称：sdk.getDevInfo
     //参数定义：空
     //返回值：返回值为一个JSON对象，其返回值如有需要，可扩展，示例如下：
- 
     {
- 
-    data:{
- 
-        name:xxx //设备名称
- 
-        model:xxx //设备类型
- 
-        systemVersion:xxx //系统版本
- 
+      data:{
+          name:xxx //设备名称
+          model:xxx //设备类型
+          systemVersion:xxx //系统版本
+      }
+      status:200
+      message:'OK'
     }
- 
-    status:200
- 
-    message:'OK'
- 
-    }
-    //调用方法实例:sdk.getDevInfo()
+    //调用方法实例:
+    sdk.getDevInfo()
   
+
     //4.获取位置信息
     //功能描述：H5页面通过JSBridge获取位置信息
     //方法名称：sdk.getLocation
     //参数定义：空
     //返回值：返回值为一个JSON对象，其返回值为当前位置的坐标，示例如下：
- 
     {
- 
         data:{
- 
             lot:xxx
- 
             lat:xxx
- 
         }
- 
         status:200
- 
         message:'OK'
- 
     }
-    //调用方法实例:sdk.getLocation()
+    //调用方法实例:
+    sdk.getLocation()
  
+
     //5.设置标题
     //功能描述：H5页面通过JSBridge设置标题
     //方法名称：sdk.setTitle
     //参数定义：title
-    //调用方法实例:sdk.setTitle({"title":"飞凡demo"})
+    //调用方法实例:
+    sdk.setTitle({"title":"飞凡demo"})
+
+
     //6.设置右导航图标显隐
     //功能描述：H5页面通过JSBridge设置navigationBar右边导航图标显示/隐藏(目前只限一个)
     //方法名称：sdk.setRightNavBarItem
     //参数定义：参数为一个JSON对象，其中title为该Item的文字，如果title内容为空则不显示
-    //调用方法实例:sdk.setRightNavBarItem({"title":"分享"})
+    //调用方法实例:
+    sdk.setRightNavBarItem({"title":"分享"})
 });
 ```
 
