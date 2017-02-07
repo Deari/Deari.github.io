@@ -11,8 +11,6 @@ module.exports = (store) => ({
     require.ensure([], (require) => {
 
       const { location } = nextState
-
-
       const Editor = isMobile(location)
         ? require('./containers/MobileEditorContainer').default
         : require('./containers/EditorContainer').default
