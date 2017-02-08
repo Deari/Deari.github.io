@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
+import { getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import 'components/Header/Header'
 import 'styles/_base.scss'
