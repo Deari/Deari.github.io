@@ -4,6 +4,7 @@ import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import Sidebar from 'components/Sidebar'
 import OpenList from 'components/OpenList'
+import { scrollToTop } from 'components/ScrollToTop'
 
 class Main extends React.Component {
   state = {
@@ -81,6 +82,9 @@ class Main extends React.Component {
   }
 
   tagChange(tagId) {
+
+    scrollToTop()
+
     let { activeTag, tags, aHref } = this.state
     if ( activeTag === tagId ) return
     tags.map((item, index)=> {

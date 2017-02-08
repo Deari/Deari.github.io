@@ -78,13 +78,7 @@ export function getApiDomain(url) {
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
-// 跳转到 apistore 的链接
-export function getApiUrl(url) {
-  const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
-  const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.test.ffan.net/'
-  return domain + url.replace(domainReg, "")
-}
+
 // 判断从哪个路由跳转的
 export function getSourceVal(name) {
   const pathName = name || location.pathname

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import LoginSDK from 'utils/loginSDK'
-import { getLoginDomain, getApiDomain, getApiUrl, getSourceVal } from 'utils/domain'
+import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import './login.scss'
 
 export default class Login extends Component {

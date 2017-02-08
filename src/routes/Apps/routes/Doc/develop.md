@@ -293,15 +293,15 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 ## 4、JSSDK使用文档
 
-1\.概述
+**概述:**
 
-- FFAN-SDK是BO开放平台向网页开发者提供的网页开发工具包
+- JS-SDK是飞凡网内部向网页开发者提供的网页开发工具包
 
-- 通过使用FFAN-SDK，网页开发者可方便的调用位置、获取设备信息等功能
+- 通过使用JS-SDK，网页开发者可借助`js-bridge`调用手机等设备的功能
 
-- 此文档面向网页开发者介绍FFAN-SDK如何使用及相关注意事项
+- 此文档面向网页开发者介绍JS-SDK如何使用及相关注意事项
 
-2\.FFANSDK使用步骤
+**JSSDK使用步骤:**
 
 ### 步骤一：引入JS文件
 
@@ -310,16 +310,16 @@ http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
 
 ### 步骤二：通过config接口注入权限验证配置
 
-> 所有需要使用FFAN-SDK的页面必须先注入配置信息，否则将无法调用
+<p><font color=red>所有需要使用JS-SDK的页面必须先注入配置信息，到后台去进行验证，否则无法调用</font></p>
 
 ```javascript
 // 检验必传参数config
 ffanSDK.config({
-    appKey：'',  //第三方应用appKey
-    ts：'',      //签名时使用的时间戳
-    nonceStr：'' //用来生成签名的随机串
-    signature：''//生成的签名
-    url : ''     //当前页面的url 请使用urlEncode对url进行处理
+  appKey: '',   // 第三方应用appKey
+  ts: '',       // 签名时使用的时间戳
+  nonceStr: '', // 用来生成签名的随机串
+  signature: '',// 生成的签名
+  url: ''       // 当前页面的url 请使用urlEncode对url进行处理
 });
 ```
 
@@ -327,7 +327,7 @@ ffanSDK.config({
 
 ```javascript
 // 验证通过ready函数
-ffanSDK.ready(function(sdk){
+ffanSDK.ready(function(sdk) {
   // config信息验证通过后会执行ready方法
 });
 ```
@@ -336,145 +336,138 @@ ffanSDK.ready(function(sdk){
 
 ```javascript
 // 校验失败的error函数
-ffanSDK.error(function(res){
-    //config信息验证失败会执行error函数，如签名过期导致验证失败，
-    //具体错误信息可以在返回的参数res查看
+ffanSDK.error(function(res) {
+  // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 });
 ```
 
-3\. 接口调用说明
+**接口调用说明:**
 
-  > 所有接口通过ready中返回的参数sdk来调用，参数是一个对象，目前提供以下方法：
+<p><font color=red>所有接口通过ready中返回的参数sdk来调用，参数是一个对象，目前提供以下方法:</font></p>
 
-        1. openWebPage（加载新H5页面接口）
-        2. openLocalRNPage（打开RN页面）
-        3. getDevInfo（获取设备信息）
-        4. getLocation（获取位置信息）
-        5. setTitle (设置标题)
-        6. setRightNavBarItem (设置右导航图标显隐)
+**openWebPage** 
 
-  - 加载新H5页面接口
+- 功能描述：通过H5打开一个新的WebView去加载新的H5页面
 
-    功能描述：通过H5打开一个新的WebView去加载新的H5页面
-    方法名称：sdk.openWebPage
-    参数定义：参数为一个JSON对象
-    调用方法实例:
+- 方法名称：sdk.openWebPage
+
+- 参数定义：参数为一个JSON对象
+
+  * **url** 新的H5页面地址
 
 ```javascript
-  sdk.openWebPage({"url":"www.baidu.com"})
-  .then(function(data) {
-        //success
-    }).catch(function(err){
-        // fail
-    })
+sdk.openWebPage({"url":"www.baidu.com"})
+```
+**openLocalRNPage** 
+
+- 功能描述：通过H5打开一个新的WebView去打开一个本地React Native页面
+
+- 方法名称：sdk.openLocalRNPage
+
+- 参数定义：参数为一个JSON对象
+
+  * **moduleName** 要打开的RN模块名称
+  
+  * **path** FFOAP内RN入口文件的相对路径
+
+```javascript
+sdk.openLocalRNPage({"moduleName":"test", "path":"FFOAP/applications/applists.ios"})
 ```
 
-- 加载本地React Native页面接口
+**getDevInfo** 获取设备信息
 
-  功能描述：通过H5打开一个新的WebView去打开一个本地React Native页面
-  方法名称：sdk.openLocalRNPage
-  参数定义：参数为一个JSON对象，key值为moduleName，path，其中moduleName为要打开的RN模块名称，path为FFOAP内RN入口文件的相对路径
-  调用方法实例:
+- 功能描述：H5页面通过JSBridge获取设备信息
 
-```
- sdk.openLocalRNPage({"moduleName":"test","path":"FFOAP/applications/applists.ios"})
- .then(function(data) {
-    //success
-  }).catch(function(err){
-    //fail
-  })
-```
+- 方法名称：sdk.getDevInfo
 
-- 获取设备信息接口
+- 参数定义：空
 
-  功能描述：H5页面通过JSBridge获取设备信息
-  方法名称：sdk.getDevInfo
-  参数定义：空
-  调用方法实例：
-
-```
+```javascript
 sdk.getDevInfo()
-.then(function(data) {
-    //success
-    //data格式为
+  .then(function(data) {
+    // success
+    // data格式为
     {
       data:{
-          name:xxx //设备名称
-          model:xxx //设备类型
-          systemVersion:xxx //系统版本
+          name:xxx // 设备名称
+          model:xxx // 设备类型
+          systemVersion:xxx // 系统版本
       }
       status:200
       message:'OK'
     }
-
-}).catch(function(err){
-    //fail
-})
+  }).catch(function(err) {
+    // fail
+  })
 ```
 
-- 获取位置信息接口
+**getLocation** 获取位置信息
 
-   功能描述：H5页面通过JSBridge获取位置信息
-   方法名称：sdk.getLocation
-   参数定义：空
-   返回值：返回值为一个JSON对象，其返回值为当前位置的坐标，示例如下：
-```
-    sdk.getLocation()
-    .then(function(data){
-      //success
-      //data格式为
-      {
-        data:{
-          lot:xxx 
-          lat:xxx 
-        }
-        status:200
-        message:'OK'
+- 功能描述：H5页面通过JSBridge获取位置信息
+
+- 方法名称：sdk.getLocation
+
+- 参数定义：空
+
+- 返回值：返回值为一个JSON对象，其返回值为当前位置的坐标
+
+```javascript
+sdk.getLocation()
+  .then(function(data) {
+    // success
+    // data格式为
+    {
+      data:{
+        lot:xxx 
+        lat:xxx 
       }
-    }).catch(function(err){
-      //fail
-    })
+      status:200
+      message:'OK'
+    }
+  }).catch(function(err) {
+    // fail
+  })
 ```
 
-- 设置标题接口
+**setTitle** 设置标题
 
-   功能描述：H5页面通过JSBridge设置标题
-   方法名称：sdk.setTitle
-   参数定义：title
-   调用方法实例：
+- 功能描述：H5页面通过JSBridge设置标题
 
-```
-    sdk.setTitle({"title":"飞凡demo"})
-    .then(function(data) {
-      //success
-    }).catch(function(err){
-      //fail
-    })
+- 方法名称：sdk.setTitle
+
+- 参数定义：参数为一个JSON对象
+
+  * **title** 标题的名称
+
+```javascript
+sdk.setTitle({"title":"飞凡demo"})
 ```
 
-- 设置右导航图标显隐接口
+**setRightNavBarItem** 设置右导航图标显隐
 
-   功能描述：H5页面通过JSBridge设置navigationBar右边导航图标显示/隐藏(目前只限一个)
-   方法名称：sdk.setRightNavBarItem
-   参数定义：参数为一个JSON对象，其中title为该Item的文字，如果title内容为空则不显示
-   调用方法实例：
+- 功能描述：H5页面通过JSBridge设置navigationBar右边导航图标显示/隐藏(目前只限一个)
 
-```
-    sdk.setRightNavBarItem({"title":"分享"})
-    .then(function(data) {
-      //success
-    }).catch(function(err){
-      //fail
-    })
+- 方法名称：sdk.setRightNavBarItem
+
+- 参数定义：参数为一个JSON对象
+
+  * **title** 为该Item的文字，如果title内容为空则不显示
+
+```javascript
+sdk.setRightNavBarItem({"title":"分享"})
 ```
 
 ## 5、H5授权接口说明
 
-### 1\. accessToken说明
+### 5.1、 **accessToken说明**
 
-1. accessToken是开放平台的全局唯一票据，第三方应用调用各接口时都需使用accessToken。开发者需要进行妥善保存。accessToken的存储至少要保留512个字符空间。accessToken的有效期目前为7200秒，需定时刷新，重复获取将导致上次获取的accessToken失效
+- accessToken是开放平台的全局唯一票据，第三方应用调用各接口时都需使用accessToken。开发者需要进行妥善保存
 
-2. 开放平台的API调用所需的accessToken的使用及生成方式说明
+- accessToken的存储至少要保留512个字符空间
+
+- accessToken的有效期目前为7200秒，需定时刷新，重复获取将导致上次获取的accessToken失效
+
+**开放平台的API调用所需的accessToken的使用及生成方式说明**
 
   - 为了保密appSecrect，第三方需要一个accessToken获取和刷新的中控服务器。而其他业务逻辑服务器所使用的accessToken均来自于该中控服务器，不应该各自去刷新，否则会造成accessToken覆盖而影响业务。
 
@@ -482,7 +475,7 @@ sdk.getDevInfo()
 
   - accessToken的有效时间可能会在未来有调整，所以中控服务器不仅需要内部定时主动刷新，还需要提供被动刷新accessToken的接口，这样便于业务服务器在API调用获知accessToken已超时的情况下，可以触发accessToken的刷新流程。
 
-3. 获取资源接口调用凭证【accessToken】接口说明
+**获取资源接口调用凭证【accessToken】接口说明**
 
   - 请求样例
 
@@ -490,173 +483,188 @@ sdk.getDevInfo()
     curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f5256" http://api.test.ffan.com/oauth/v1/token
     ```
 
-  - 接口调用频率
-
-    2000次 / 天（00:00:00 - 23:59:59）
+  - 接口调用频率: 2000次 / 天（00:00:00 - 23:59:59）
 
   - 参数说明
 
-    appKey：第三方应用appKey
-    appSecret：第三方应用的的密钥
+    * **appKey**：第三方应用appKey
+
+    * **appSecret**：第三方应用的的密钥
 
   - 返回值说明
 
     ```
     // 成功:
     {
-    "status": 200  // int型，200表示成功,
-    "message": "ok"  // string型， 对status的说明,
-    "data":{
-            "accessToken":"86f7e437faa5a7fce15d1ddcb9eaeaea377667b8"  // string型 ，资源接口调用凭证
-            "expiresIn":7200  // int型 accessToken的过期时间 单位秒
-            }
+      "status": 200  // int型，200表示成功,
+      "message": "ok"  // string型， 对status的说明,
+      "data":{
+        "accessToken":"86f7e437faa5a7fce15d1ddcb9eaeaea377667b8"  // string型 ，资源接口调用凭证
+        "expiresIn":7200  // int型 accessToken的过期时间 单位秒
+      }
     }
+    ```
 
+    ```
     // 失败:
     {
-    "status": 4000  // int型，4000表示客户端错误，5000表示服务端内部错误 , 
-    "message": "param error"  // string型，对status的文字描述
+      "status": 4000  // int型，4000表示客户端错误，5000表示服务端内部错误 , 
+      "message": "param error"  // string型，对status的文字描述
     }
     ```
 
-    错误码对照表：
-    <font color=red>4001</font> appKey参数错误
-    <font color=red>4002</font> appSecret参数错误
-    <font color=red>5001</font> 服务器存储错误
-
-### 2\. accessToken的签名说明
-
-1. 签名算法
-
-  - 参与签名的字段：accessToken（资源调用凭证）、appKey（第三方应用的appKey）、nonceStr（随机字符串）、ts（当前时间戳）、url（调用JS接口页面的完整URL，不包含#及其后面部分）
-
-  - 对所有待签名参数按照字段名的ASCII 码从小到大排序（字典序）后，使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串str1
-
-  - 这里需要注意的是所有参数名均为小写字符。对str1作sha1加密，字段名和字段值都采用原始值，不进行URL 转义。
-
-  **注意：出于安全考虑，开发者必须在服务器端实现签名的逻辑**
-
-2. 签名算法示例
-
-  - 待签名字段
-
-    ```
-    accessToken=1f7f568afa4204326fede5cc17472b8a535ca39f
-    appKey=3b997a1c75a61c26fd0576f814f51df6
-    nonceStr=abcdeaasdfasdf
-    ts=1486351078
-    url=http://m.ffan.com?a=b&c=d
-    ```
-
-  - 对所有待签名参数按照字段名的ASCII 码从小到大排序（字典序）后，使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串string1
-
-    ```
-    accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
-    ```
-
-  - 对string1进行sha1签名，得到signature
-
-    ```
-    928dfbcabb55bc663a925306f11e2ab17c4a6d65  
-    ```
-
-3. 验证accessToken的签名是否正确接口说明
-
-  - 请求样例
-
-    ```
-    curl -X GET http://api.test.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
-    ```
-
-  - 接口调用频率
-
-    200000次 / 天（00:00:00 - 23:59:59）
-
-  - 参数说明
-
-    appKey：第三方应用appKey
-    ts：签名时使用的时间戳
-    nonceStr：用来生成签名的随机串
-    signature：生成的签名
-    url : 调用JS接口页面的完整URL，不包含#及其后面部分， <font color=red>请使用urlEncode对url进行处理</font>
-
-  - 返回值说明
-
-    ```
-    // 成功：
-    {
-        "status": 200  // int型 表示签名验证成功,
-        "message": "ok"
-    }
-    ```
-
-    ```
-    // 失败：
-    {
-        "status": 4000  // int型 表示签名验证失败 4000表示客户端参数错误 5000表示服务端内部错误
-        "message": "param error"  // string型，具体的错误信息
-    }
-    ```
-
-    错误码对照表：
-
-    <font color=red>4001</font> appKey参数错误
-    <font color=red>4005</font> nonceStr参数错误
-    <font color=red>4006</font> url参数错误
-    <font color=red>4007</font> ts参数错误
-    <font color=red>4004</font> accessToken参数错误
-    <font color=red>4010</font> 签名参数错误或者签名无效
+  - 错误码对照表
   
-4. 生成accessToken的签名接口说明
 
-**注意：此接口仅仅是为了方便开发者调试签名，实际业务中请第三方应用在自己的服务端实现签名逻辑**
+  | 错误码 | 错误说明 |
+  | :---: | :-----: |
+  | 4001 | appKey参数错误 |
+  | 4002 | appSecret参数错误 |
+  | 5001 | 服务器存储错误 |
 
-  - 请求样例
+### 5.2、 **accessToken的签名说明**
 
-    ```
-    curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&appKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.test.ffan.com/oauth/v1/token/sign
-    ```
+**签名算法**
 
-  - 接口调用频率
+- 参与签名的字段：**accessToken**（资源调用凭证）、**appKey**（第三方应用的appKey）、**nonceStr**（随机字符串）、**ts**（当前时间戳）、**url**（调用JS接口页面的完整URL，不包含#及其后面部分）
 
-    200次 / 天（00:00:00 - 23:59:59）
+- 对所有待签名参数按照字段名的ASCII 码从小到大排序（字典序）后，使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串str1
 
-  - 参数说明
+- 这里需要注意的是所有参数名均为小写字符。对str1作sha1加密，字段名和字段值都采用原始值，不进行URL 转义。
 
-    accessToken：资源接口的调用凭证
-    appKey：第三方应用appKey
-    ts：签名时使用的时间戳
-    nonceStr：用来生成签名的随机串
-    url : 调用JS接口页面的完整URL，不包含#及其后面部分， <font color=red>请使用urlEncode对url进行处理</font>    
+  <p><font color=red>注意：出于安全考虑，开发者必须在服务器端实现签名的逻辑</font></p>
 
-  - 返回值说明
+- 签名算法示例
 
-    ```
-    // 成功：
-    {
+  1\. 待签名字段
+
+  ```
+  accessToken=1f7f568afa4204326fede5cc17472b8a535ca39f
+  appKey=3b997a1c75a61c26fd0576f814f51df6
+  nonceStr=abcdeaasdfasdf
+  ts=1486351078
+  url=http://m.ffan.com?a=b&c=d
+  ```
+
+  2\. 对所有待签名参数按照字段名的ASCII 码从小到大排序（字典序）后，使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串string1
+
+  ```
+  accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
+  ```
+
+  3\. 对string1进行sha1签名，得到signature
+
+  ```
+  928dfbcabb55bc663a925306f11e2ab17c4a6d65  
+  ```
+
+**验证accessToken的签名是否正确接口说明**
+
+- 请求样例
+
+  ```
+  curl -X GET http://api.test.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
+  ```
+
+- 接口调用频率: 200000次 / 天（00:00:00 - 23:59:59）
+
+- 参数说明
+
+  * **appKey**：第三方应用appKey
+
+  * **ts**：签名时使用的时间戳
+
+  * **nonceStr**：用来生成签名的随机串
+
+  * **signature**：生成的签名
+
+  * **url** : 调用JS接口页面的完整URL，不包含#及其后面部分， <font color=red>请使用urlEncode对url进行处理</font>
+
+- 返回值说明
+
+  ```
+  // 成功：
+  {
+    "status": 200  // int型 表示签名验证成功,
+    "message": "ok"
+  }
+  ```
+
+  ```
+  // 失败：
+  {
+    "status": 4000  // int型 表示签名验证失败 4000表示客户端参数错误 5000表示服务端内部错误
+    "message": "param error"  // string型，具体的错误信息
+  }
+  ```
+
+- 错误码对照表：
+  
+
+  | 错误码 | 错误说明 |
+  | :---: | :-----: |
+  | 4001 | appKey参数错误 |
+  | 4004 | accessToken参数错误 |
+  | 4005 | nonceStr参数错误 |
+  | 4006 | url参数错误 |
+  | 4007 | ts参数错误 |
+  | 4010 | 签名参数错误或者签名无效 |
+  
+**生成accessToken的签名接口说明**
+
+<p><font color=red>注意：此接口仅仅是为了方便开发者调试签名，实际业务中请第三方应用在自己的服务端实现签名逻辑</font></p>
+
+- 请求样例
+
+  ```
+  curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&appKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.test.ffan.com/oauth/v1/token/sign
+  ```
+
+- 接口调用频率: 200次 / 天（00:00:00 - 23:59:59）
+
+- 参数说明
+
+  * **accessToken**：资源接口的调用凭证
+  
+  * **appKey**：第三方应用appKey
+  
+  * **ts**：签名时使用的时间戳
+  
+  * **nonceStr**：用来生成签名的随机串
+  
+  * **url** : 调用JS接口页面的完整URL，不包含#及其后面部分， <font color=red>请使用urlEncode对url进行处理</font>    
+
+- 返回值说明
+
+  ```
+  // 成功：
+  {
     "data": {
-        "signature": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b7"  // string型，签名
+      "signature": "86f7e437faa5a7fce15d1ddcb9eaeaea377667b7"  // string型，签名
     },
     "message": "ok",
     "status": 200  // int型 200表示成功
-    }
-    ```
+  }
+  ```
 
-    ```
-    // 失败：
-    {
+  ```
+  // 失败：
+  {
     "message": "param error"  // string型， 具体的错误信息,
     "status": 4000  // int型，4000表示客户端错误，5000表示服务端内部错误
-    }
-    ```
+  }
+  ```
 
-    错误码对照表：
+- 错误码对照表：
 
-    <font color=red>4004</font> accessToken参数错误
-    <font color=red>4001</font> appKey参数错误
-    <font color=red>4005</font> nonceStr参数错误
-    <font color=red>4006</font> url参数错误
-    <font color=red>4007</font> ts参数错误
+
+  | 错误码 | 错误说明 |
+  | :---: | :-----: |
+  | 4001 | appKey参数错误 |
+  | 4004 | accessToken参数错误 |
+  | 4005 | nonceStr参数错误 |
+  | 4006 | url参数错误 |
+  | 4007 | ts参数错误 |
 
 # 三、调试
 
