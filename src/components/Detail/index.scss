@@ -102,7 +102,7 @@
 }
 .table-info{
   position:relative;
-  padding:0 40px 50px;
+  padding:0 40px;
   font-size:15px;
   .detail-table{
     margin-top:10px;
@@ -186,7 +186,7 @@
   .read-more{
     position:absolute;
     right:40px;
-    bottom:50px;
+    bottom:0px;
     font-size:14px;
     color: $blue-color;
     cursor: pointer;
