@@ -19,9 +19,13 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    const { onTagChange } = this.props
-    const tags = this.props.tags || []
+
+    const { bottomComponent } = this.props
+
+    const renderBottomComponent = bottomComponent && bottomComponent(this.props)
+
     const urls = this.props.urls || { create: {}, list: {}, doc: {} }
+
     return (
       <div className='sidebar'>
 
@@ -37,21 +41,26 @@ class Sidebar extends React.Component {
           </li>
           <li><Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}><i className="iconfont icon-file"></i>开发者文档</Link></li>
         </ul>
-        
-        <ul className="tag-list">
-          { tags.map( ( item, index ) => {
-            return <li key={ item.tagId }>
-              <Link className={ item.className } 
-                    to={ item.aHref } 
-                    onClick={()=> { onTagChange && onTagChange(item.tagId) }}>
-                <i className={ `iconfont icon-sidebar${ item.tagId }` }></i>{ item.tagName }
-              </Link>
-            </li>
-          } ) }
-        </ul>
+
+        {renderBottomComponent}
+
       </div>
     )
   }
 }
+
+export const RenderTags = (props) => (
+  <ul className="tag-list">
+    { props.tags && props.tags.map( ( item, index ) => {
+      return <li key={ item.tagId }>
+        <Link className={ item.className } 
+              to={ item.aHref } 
+              onClick={()=> { props.onTagChange && props.onTagChange(item.tagId) }}>
+          <i className={ `iconfont icon-sidebar${ item.tagId }` }></i>{ item.tagName }
+        </Link>
+      </li>
+    } ) }
+  </ul>
+)
 
 export default Sidebar

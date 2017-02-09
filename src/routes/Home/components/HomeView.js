@@ -1,7 +1,7 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
-import { getApiUrl, getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
+import { getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import './HomeView.scss'
 import '../assets/lib/slick.css'
@@ -32,8 +32,8 @@ const SimpleSlider = React.createClass({
       slidesToScroll: 1,
     };
 
-    const apiViewUrl = getApiUrl(`#!/`)
-    const apiAddUrl = getApiUrl(`#!/add`)
+    const apiViewUrl = getApiDomain(`#/`)
+    const apiAddUrl = getApiDomain(`#/add`)
 
     return (
       <Slider {...settings}>
@@ -132,7 +132,7 @@ export const HomeView = () => (
             </Link>
           </li>
           <li>
-            <a className="a-bg3" href={getApiUrl(`#!/`)}>
+            <a className="a-bg3" href={getApiDomain(`#/`)}>
               <p className="market-tittle">API市场</p>
               <i className="iconfont icon-api"></i>
               <span className="market-text">提供实体服务商/开发者所需的各种服务接口</span>
