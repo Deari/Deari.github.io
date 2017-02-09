@@ -489,7 +489,7 @@ sdk.getLocation()
 sdk.setTitle({"title":"飞凡demo"})
 ```
 
-**setRightNavBarItem** 设置右导航图标显隐
+**setRightNavBarItem** 设置右导航图标（分享）的显隐
 
 - 功能描述: `H5` 页面通过 `JSBridge` 设置 `navigationBar` 右边导航图标显示/隐藏(目前只限一个)
 
@@ -497,7 +497,7 @@ sdk.setTitle({"title":"飞凡demo"})
 
 - 参数定义: 参数为一个 `JSON` 对象
 
-  * **title** 为该 `Item` 的文字, 如果 `title` 内容为空则不显示
+  * **title** 为分享图标的文案, 如果 `title` 内容为空则不显示右导航图标
 
 ```javascript
 sdk.setRightNavBarItem({"title":"分享"})

@@ -2,7 +2,7 @@ import React from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
-import Sidebar from 'components/Sidebar'
+import Sidebar, {RenderTags} from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 import { scrollToTop } from 'components/ScrollToTop'
 
@@ -116,7 +116,7 @@ class Main extends React.Component {
     const { listData, tags, urls, detailLink } = this.state
     return (
       <div className="container clx">
-        <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} />
+        <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} bottomComponent={RenderTags} />
         <div className="sub-container">
           <div className="sub-container-banner"></div>
           <h2 className="open-content-nav">
