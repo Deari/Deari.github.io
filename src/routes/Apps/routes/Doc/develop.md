@@ -306,7 +306,7 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 ### 步骤一：引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.1.min.js
 
 ### 步骤二：通过config接口注入权限验证配置
 
@@ -315,11 +315,11 @@ http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
 ```javascript
 // 检验必传参数config
 ffanSDK.config({
-    appKey：'',  //第三方应用appKey
-    ts：'',      //签名时使用的时间戳
-    nonceStr：'' //用来生成签名的随机串
-    signature：''//生成的签名
-    url : ''     //当前页面的url 请使用urlEncode对url进行处理
+    appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用appKey
+    ts："1486628893",  //签名时使用的时间戳
+    nonceStr："XX4L3FX6vgorRFf3lklnP8Cp",  //用来生成签名的随机串
+    signature："c3f94fa5ea84885eda0ab7c2cf350fa428cd2b3a",  //生成的签名
+    url : "http%3A%2F%2Flocal.xa.com",  //当前页面的url 请使用urlEncode对url进行处理
 });
 ```
 
@@ -399,12 +399,12 @@ sdk.getDevInfo()
     //data格式为
     {
       data:{
-          name:xxx //设备名称
-          model:xxx //设备类型
-          systemVersion:xxx //系统版本
+          name:'iOS_Wifi', //设备名称
+          model:'营销', //设备类型
+          systemVersion:'1.0.0', //系统版本
       }
-      status:200
-      message:'OK'
+      status:200,
+      msg:'success',
     }
 
 }).catch(function(err){
@@ -425,11 +425,11 @@ sdk.getDevInfo()
       //data格式为
       {
         data:{
-          lot:xxx 
-          lat:xxx 
+          lot:'116.46', //经度
+          lat:'39.92', //维度
         }
-        status:200
-        message:'OK'
+        status:200,
+        message:'success',
       }
     }).catch(function(err){
       //fail
