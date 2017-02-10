@@ -5,7 +5,8 @@ import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import { Versions } from 'components/Versions'
+import { Header } from 'components/Detail/header'
+import { Versions } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
 class AppsDetail extends React.Component {
@@ -89,6 +90,7 @@ class AppsDetail extends React.Component {
     const infoTags = data.tags || []
     const latestVersion = (data.versions && data.versions[0]) || {}
     const showSize = true
+    const DHeader = Header
     const DFooter = Versions
 
     const urls = {
@@ -101,9 +103,9 @@ class AppsDetail extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
 
-        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags}
-                versions={versions} showAll={showAll} showSize={showSize} 
-                onChange={this.getVersions.bind(this)} DFooter={DFooter} />
+        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
+                showAll={showAll} showSize={showSize} onChange={this.getVersions.bind(this)} 
+                DFooter={DFooter} DHeader={DHeader} />
       </div>
     )
   }

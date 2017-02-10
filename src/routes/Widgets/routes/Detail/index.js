@@ -5,7 +5,7 @@ import { getDomain } from 'utils/domain';
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import { Versions } from 'components/Versions'
+import { Versions } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
 class WidgetsDetail extends React.Component {
