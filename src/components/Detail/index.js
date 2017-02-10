@@ -21,13 +21,16 @@ class AppsDetail extends React.Component {
 
 export const BasicInfo = (props) => {
 
-  const { data, latestVersion, infoTags } = props
+  const { data, latestVersion, infoTags, showSize } = props
   const len = infoTags.length
 
   return <div className="detail-container">
     <div className="detail-download">
       <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-      <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
+      { showSize 
+        ? <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
+        : <p className="btn btn-primary btn-download">使用</p>
+      }
     </div>
     <div className="detail-info">
       <dl className="detail-tittle">
@@ -48,11 +51,11 @@ export const BasicInfo = (props) => {
           <td>标签</td>
           <td>
           {
-              infoTags.map( (item, index) => {
-                return (
-                  <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                )
-              } )
+            infoTags.map( (item, index) => {
+              return (
+                <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
+              )
+            } )
           }
           </td>
         </tr>
@@ -63,7 +66,9 @@ export const BasicInfo = (props) => {
 
 export const LatestVersion = (props) => {
 
-  const { latestVersion } = props
+  const { latestVersion, showSize, data } = props
+  const defaultLayout = data.defaultLayout || {}
+  const size = `${defaultLayout.w} * ${defaultLayout.h}`
 
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
@@ -77,14 +82,32 @@ export const LatestVersion = (props) => {
           <p className="title">版本</p>
           <p className="text">{ latestVersion.codeVersion }</p>
         </div>
-        <div className="cell">
-          <p className="title">大小</p>
-          <p className="text">{ latestVersion.bundleSize }</p>
-        </div>
+        { showSize &&
+          <div className="cell">
+            <p className="title">大小</p>
+            <p className="text">{ latestVersion.bundleSize }</p>
+          </div>
+        }
         <div className="cell">
           <p className="title">版本介绍</p>
           <p className="text">{ latestVersion.codeDesc }</p>
         </div>
+        { !showSize &&
+          <div className="cell">
+            <p className="title">组件尺寸</p>
+            <p className="text">{ size }</p>
+          </div>
+        }
+        { !showSize &&
+          <div className="cell">
+            <p className="title">预览图</p>
+            <p className="text">
+              <div className="img-block">
+                {data.appPreviewImage ? <img className="img" src={ data.appPreviewImage } /> : <p className="img-text">加载中</p>}
+              </div>
+            </p>
+          </div>
+        }
       </li>
     </ul>
   </div>

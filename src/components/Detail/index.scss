@@ -173,6 +173,28 @@
         float:right;
         width:712px;
         word-break:break-all;
+        .img-block{
+          position:relative;
+          height:160px;
+          .img-text{
+            position:absolute;
+            top:50%;
+            margin-top:-9px;
+            width:100%;
+            font-size:15px;
+            color:#eff3f3;
+            text-align:center;
+          }
+          .img{
+            position: absolute;
+            top:0;
+            left: 0;
+            z-index:2;
+            height:160px;
+            border-radius:5px;
+            border:1px solid #eff3f3;
+          } 
+        }
       }
       &:after{
         display:block;

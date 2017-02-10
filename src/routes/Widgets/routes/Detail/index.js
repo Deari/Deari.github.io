@@ -5,9 +5,8 @@ import { getDomain } from 'utils/domain';
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import Versions from 'components/Versions'
-import 'styles/_base.scss'
-import './index.scss'
+import { Versions } from 'components/Versions'
+import Detail from 'components/Detail'
 
 class WidgetsDetail extends React.Component {
   constructor() {
@@ -87,14 +86,9 @@ class WidgetsDetail extends React.Component {
 
     const { data, tags, versions, showAll } = this.state
     const infoTags = data.tags || []
-    const len = infoTags.length
-
     const latestVersion = (data.versions && data.versions[0]) || {}
-
-    const defaultLayout = data.defaultLayout || {}
-    const size = `${defaultLayout.w} * ${defaultLayout.h}`
-
     const showSize = false
+    const DFooter = Versions
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -105,74 +99,10 @@ class WidgetsDetail extends React.Component {
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
-        <div className="sub-container bg-white">
-          <div className="detail-container">
-            <div className="detail-download">
-              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <p className="btn btn-primary btn-download">使用</p>
-            </div>
-            <div className="detail-info">
-              <dl className="detail-tittle">
-                <dt>{ data.appName }</dt>
-                <dd><i className="user-img"></i><span>{ data.developerName }</span></dd>
-              </dl>
-              <h3 className="app-title">内容提要</h3>
-              <p className="app-text">{ data.appDesc }</p>
-              <h3 className="app-title">信息</h3>
-              <table className="infomation-list">
-                <tr>
-                  <td>类别</td>
-                  <td>
-                    <span className="tag">{ data.categoryName }</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>标签</td>
-                  <td>
-                  {
-                     infoTags.map( (item, index) => (
-                        <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                      ) )
-                  }
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          
-          <div className="table-info">
-            <h3 className="app-title">版本信息</h3>
-            <ul className="detail-tableList">
-              <li className="item">
-                <div className="cell">
-                  <p className="title">更新日期</p>
-                  <p className="text">{ latestVersion.codeUpdateTime }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本</p>
-                  <p className="text">{ latestVersion.codeVersion }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本介绍</p>
-                  <p className="text">{ latestVersion.codeDesc }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">组件尺寸</p>
-                  <p className="text">{ size }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">预览图</p>
-                  <p className="text">
-                    <div className="img-block">
-                      {data.appPreviewImage ? <img className="img" src={ data.appPreviewImage } /> : <p className="img-text">加载中</p>}
-                    </div>
-                  </p>
-                </div>
-              </li>
-            </ul>
-            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} showSize={showSize} />
-          </div>
-        </div>
+
+        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags}
+                versions={versions} showAll={showAll} showSize={showSize} 
+                onChange={this.getVersions.bind(this)} DFooter={DFooter} />
       </div>
     )
   }
