@@ -210,10 +210,13 @@ export const fetchCates = () => {
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`web/app/${appId}`)
+    const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size } = res.data
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size,
+                fileName, fileLink, moduleName, setting } = res.data
+        const { codeDesc } = res.data && res.data.versions && res.data.versions[0] || ''
+        const rnFrameworkVersion = res.data.rnFrameworkVersion || 0
         const tagId = tags.map(v=>v.tagId)
 
         dispatch(updateForm({
@@ -222,44 +225,16 @@ export const getAppInfo = (appId) => {
           tags: tagId
         }))
 
-        dispatch(updateForm2({ platform, isH5App }))
+        dispatch(updateForm2({ 
+          appId,
+          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting 
+        }))
         
       } else {
         debug.warn("获取组件详情失败")
-        console.log('获取组件详情失败: ', res)
       }
     }).catch(e => {
-      debug.warn("网络错误")
-      console.log('网络错误: ', e)
-    })
-  }
-}
-
-export const getAppCodeInfo = (appId) => {
-  return (dispatch) => {
-    const url = getDomain(`web/developer/app/${appId}/codes`)
-    return fetchUtil.getJSON(url).then(res=>{
-      if(res.status == 200) {
-        const data = res.data && (res.data.versions ? res.data.versions[0] : {}) || {}
-        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = data
-        if(codeDesc==="undefined"){
-          dispatch(updateForm2({
-            appId,
-            fileName, fileLink, rnFrameworkVersion, moduleName, setting
-          }))
-          return
-        }
-        dispatch(updateForm2({
-          appId,
-          codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
-        }))
-      } else {
-        debug.warn("组件 code详情失败")
-        console.log('组件 code详情失败: ', res)
-      }
-    }).catch(e => {
-      debug.warn("网络错误")
-      console.log('网络错误: ', e)
+      debug.warn("获取组件详情失败")
     })
   }
 }
