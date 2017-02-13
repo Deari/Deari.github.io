@@ -40,52 +40,54 @@ export const Versions = (props) => {
 
 export const Unapprove = (props) => {
   const { editUrl } = props
-  const reasons = ["审核未通过原因11111", "审核未通过原因22222"]
   return <div>
     <p>审核未通过原因:</p>
-    <ul>
-    { 
-      reasons && reasons.map((item, index) => (
-        <li>{`${index + 1}. ${item}`}</li>
-      ))
-    }
-    </ul>
+    <p></p>
     <Link to={editUrl}><button type="button">编辑</button></Link>
+  </div>
+}
+
+export const AdminUnshelved = (props) => {
+  return <div>
+    <p>下架原因:</p>
+    <p></p>
+    <button type="button">联系管理员</button>
   </div>
 }
 
 export class SaleRange extends React.Component {
 
   state = {
-    reviewStatus: 1
+    unshelved: 1
   }
 
   componentDidMount() {
-    const reviewStatus = this.props.reviewStatus || 1
-    this.setState({reviewStatus: reviewStatus})
+    const { data } = this.props || {}
+    const unshelved = data.devUnshelved
+    this.setState({unshelved: unshelved})
   }
 
   changeRange(e) {
-    this.setState({reviewStatus: e.target.value})
+    this.setState({unshelved: e.target.value})
   }
 
   save(e) {
     e.preventDefault()
-    const { reviewStatus } = this.state
+    const { unshelved } = this.state
     const { onChangeRange } = this.props
-    onChangeRange(reviewStatus)
+    onChangeRange(unshelved)
   }
 
   render() {
 
-    const { reviewStatus } = this.state
+    const { unshelved } = this.state
 
     return <div>
       <p>销售范围</p>
       <form onSubmit={this.save.bind(this)}>
-        <input type="radio" name="aaa" value={1} checked={reviewStatus == 1} 
+        <input type="radio" name="aaa" value={1} checked={unshelved == 1} 
                onChange={this.changeRange.bind(this)} /> 在所有地区供应
-        <input type="radio" name="aaa" value={0} checked={reviewStatus == 0} 
+        <input type="radio" name="aaa" value={0} checked={unshelved == 0} 
                onChange={this.changeRange.bind(this)} /> 下架
         <button type="submit">保存</button>
       </form>

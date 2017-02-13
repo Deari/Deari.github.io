@@ -6,7 +6,7 @@ import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
 import { Header } from 'components/Detail/header'
-import { Versions, SaleRange, Unapprove } from 'components/Detail/footer'
+import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
 class AppsDetail extends React.Component {
@@ -16,6 +16,7 @@ class AppsDetail extends React.Component {
       data: [],
       tags: [],
       versions: [],
+      activeCodeVersion: '',
       showAll: false
     };
   }
@@ -69,9 +70,9 @@ class AppsDetail extends React.Component {
       const size = (v.bundleSize && (v.bundleSize/1024/1024).toFixed(2)) || 0
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
-
+    const activeVersion = (data.versions && data.versions[0] && data.versions[0].codeVersion) || ''
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, versions: versions});
+    this.setState({data: data, activeCodeVersion: activeVersion, versions: versions});
   }
 
   getVersions() {
@@ -88,14 +89,25 @@ class AppsDetail extends React.Component {
     console.log("reviewStatus ", reviewStatus)
   }
 
+  changeVersions(codeVersion) {
+    console.log("codeVersion ", codeVersion)
+    codeVersion && this.setState({activeCodeVersion: codeVersion})
+  }
+
+  getDFooter() {
+    const { data } = this.state
+    if (data.adminUnshelved) return AdminUnshelved
+    if (data.devUnshelved) return SaleRange
+  }
+
   render() {
     
-    const { data, tags, versions, showAll } = this.state
+    const { data, tags, versions, showAll, activeCodeVersion } = this.state
     const infoTags = data.tags || []
     const latestVersion = (data.versions && data.versions[0]) || {}
     const showSize = true
     const DHeader = Header
-    const DFooter = Unapprove
+    const DFooter = ''
 
     const id = this.props.params.id
     const editUrl = `/apps/edit/${id}`
@@ -114,6 +126,7 @@ class AppsDetail extends React.Component {
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
                 onChange={this.getVersions.bind(this)} onChangeRange={this.changeRange.bind(this)} 
+                activeCodeVersion={activeCodeVersion} onChangeVersion={this.changeVersions.bind(this)} 
                 DFooter={DFooter} DHeader={DHeader} />
       </div>
     )
