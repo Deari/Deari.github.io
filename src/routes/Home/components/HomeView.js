@@ -16,7 +16,7 @@ const SimpleSlider = React.createClass({
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/${type}/create`
-    
+
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/${type}/create`
     }, url, loginUrl, callbackUrl)
@@ -98,7 +98,7 @@ export const HomeView = () => (
   <div className="">
     <div className="home-banner">
     <SimpleSlider></SimpleSlider>
-      
+
     </div>
     <div className="home-reminder">
       <div className="container">
@@ -200,11 +200,10 @@ export const HomeView = () => (
     </div>
     <div className="footer">
       <div className="container">
-        <p>万达科技有限公司官网 2010-2018 Wanda 版权所有 京ICP备 1000000000号</p>
+        <p>© 2015-2017 open.ffan.net 版权所有 <br/>　BO开放平台 <a target="_blank" href="http://www.beianbeian.com/search/ffan.net">沪ICP备15013245号</a> 上海新飞凡电子商务有限公司</p>
       </div>
     </div>
   </div>
 )
 
 export default HomeView;
- 

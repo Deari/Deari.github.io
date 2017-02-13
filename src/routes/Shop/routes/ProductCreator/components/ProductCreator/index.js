@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
+import './ProductCreator.scss'
 
 export class ProductCreator extends Component {
   render() {
-    return <div>
-      ProductCreator
+    return <div id="product-creator">
+      <div className="">
+
+      </div>
+      <div>
+        ProductCreator
+      </div>
     </div>
   }
 }
