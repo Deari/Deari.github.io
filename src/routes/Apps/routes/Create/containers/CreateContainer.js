@@ -116,13 +116,17 @@ class CreateContainer extends Component {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
             'fileName': file.originalName,
-            'fileLink': file.url
+            'fileLink': file.url,
+            'autoPublish': 0,
+            'codeVersion': '0.0.1'
           })
         } else {
           params = {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink
+            'fileLink': values.fileLink,
+            'autoPublish': 0,
+            'codeVersion': '0.0.1'
           }
         }
 

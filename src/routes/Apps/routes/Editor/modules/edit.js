@@ -67,11 +67,14 @@ export const getCates = () => {
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`web/app/${appId}`)
+    const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        console.log('应用详情：', res)
-        const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App } = res.data
+
+        const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
+                fileName, fileLink, moduleName, setting } = res.data
+        const { codeDesc } = res.data && res.data.versions && res.data.versions[0] || ''
+        const rnFrameworkVersion = res.data.rnFrameworkVersion || 0
         const tagId = tags.map(v=>v.tagId)
 
         dispatch(updateForm1({
@@ -80,47 +83,15 @@ export const getAppInfo = (appId) => {
         }))
 
         dispatch(updateForm2({
-          platform, isH5App
-        }))
-        
-      } else {
-        alert('获取应用详情失败: ', JSON.stringify(res))
-        console.warn('获取应用详情失败: ', res)
-      }
-    }).catch(e=>{
-      alert('获取应用详情失败: ', JSON.stringify(e))
-      console.warn('获取应用详情失败: ', e)
-    })
-  }
-}
-
-export const getAppCodeInfo = (appId) => {
-  return (dispatch) => {
-    const url = getDomain(`web/developer/app/${appId}`)
-    return fetchUtil.getJSON(url).then(res=>{
-      if(res.status == 200) {
-        console.log('app code详情：', res)
-        const { codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting } = res.data
-        console.log(res.data)
-        if(codeDesc==="undefined"){
-          dispatch(updateForm2({
-            appId,
-            fileName, fileLink, rnFrameworkVersion, moduleName, setting
-          }))
-          return
-        }
-        dispatch(updateForm2({
           appId,
-          codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
+          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
         }))
+
       } else {
-        alert('app code详情失败: ', JSON.stringify(res))
-        console.warn('app code详情失败: ', res)
-        
+        debug.warn('获取应用详情失败')
       }
     }).catch(e=>{
-      alert('app code失败: ', JSON.stringify(e))
-      console.warn('app code详情失败: ', e)
+      debug.warn('获取应用详情失败')
     })
   }
 }

@@ -20,7 +20,6 @@ import {
   getTags, 
   getCates, 
   getAppInfo,
-  getAppCodeInfo,
   updateFirstForm
 } from '../modules/edit'
 
@@ -40,7 +39,6 @@ class EditContainer extends Component {
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)
-        this.props.getAppCodeInfo(appId)
       } else {
         debug.warn("登录失败")
       }
@@ -118,14 +116,18 @@ class EditContainer extends Component {
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
-            'fileLink': file.url
+            'fileLink': file.url,
+            'autoPublish': 0,
+            'codeVersion': '0.0.1'
           })
           delete params.file
         } else {
           Object.assign(params, {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink
+            'fileLink': values.fileLink,
+            'autoPublish': 1,
+            'codeVersion': '0.0.1'
           })
         }
 
@@ -191,7 +193,6 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   getAppInfo,
-  getAppCodeInfo,
   updateFirstForm
 }
 
