@@ -22,7 +22,7 @@ class AppsDetail extends React.Component {
 
   async getInfo() {
     let id = this.props.params.id;
-    let apiUrl = getDomain(`web/app/${id}`);
+    let apiUrl = getDomain(`web/developer/app/${id}`);
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
