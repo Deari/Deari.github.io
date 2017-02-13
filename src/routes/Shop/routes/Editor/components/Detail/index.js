@@ -37,15 +37,16 @@ export class Detail extends Component {
     }
 
     return <div>
-      <div className="editor-container">
-      { 
-        !disableEdit && editorConfig && Object.keys(editorConfig).map(key => <div key={key} className="item">
-          <label htmlFor="" className="label">{key}</label>
-          <input type="text" className="input" value={editorConfig[key]} onChange={(e)=>editElement(element.id, key, e.target.value)}/>
-        </div>
-        )
+      {!disableEdit && editorConfig ? <div className="editor-container">
+        { 
+          Object.keys(editorConfig).map(key => <div key={key} className="item">
+            <label htmlFor="" className="label">{key}</label>
+            <input type="text" className="input" value={editorConfig[key]} onChange={(e)=>editElement(element.id, key, e.target.value)}/>
+          </div>
+          )
+        }
+        </div> : null
       }
-      </div>
       <div className="widgets-btn-container">
         <button className="m-btn m-btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
         <button className="m-btn m-btn-border-green" onClick={cancelElement}>取消</button>
