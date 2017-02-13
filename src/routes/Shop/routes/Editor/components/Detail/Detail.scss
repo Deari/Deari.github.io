@@ -1,3 +1,24 @@
+.editor-container {
+  padding: 10px;
+  .item {
+    margin-bottom: 8px;
+  }
+  .label, input {
+    display: block;
+  }
+  .label {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  input {
+    padding: 6px 8px;
+    margin-top: 5px;
+    font-size: 16px;
+    width: 180px;
+    border: 1px solid #dedede;
+  }
+}
 .modal.preview-modal {
   border          : rgba(255, 255, 255, .4) 10px solid;
   background      : white;
