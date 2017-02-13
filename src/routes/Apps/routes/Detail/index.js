@@ -6,7 +6,7 @@ import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
 import { Header } from 'components/Detail/header'
-import { Versions } from 'components/Detail/footer'
+import { Versions, SaleRange, Unapprove } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
 class AppsDetail extends React.Component {
@@ -84,6 +84,10 @@ class AppsDetail extends React.Component {
       : this.setState({versions: fistHistory, showAll: showAll})
   }
 
+  changeRange(reviewStatus) {
+    console.log("reviewStatus ", reviewStatus)
+  }
+
   render() {
     
     const { data, tags, versions, showAll } = this.state
@@ -91,7 +95,11 @@ class AppsDetail extends React.Component {
     const latestVersion = (data.versions && data.versions[0]) || {}
     const showSize = true
     const DHeader = Header
-    const DFooter = Versions
+    const DFooter = Unapprove
+
+    const id = this.props.params.id
+    const editUrl = `/apps/edit/${id}`
+    const createUrl = `/apps/create`
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -104,7 +112,8 @@ class AppsDetail extends React.Component {
         <Slidebar urls={urls} tags={tags} />
 
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
-                showAll={showAll} showSize={showSize} onChange={this.getVersions.bind(this)} 
+                showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
+                onChange={this.getVersions.bind(this)} onChangeRange={this.changeRange.bind(this)} 
                 DFooter={DFooter} DHeader={DHeader} />
       </div>
     )

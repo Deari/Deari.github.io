@@ -4,18 +4,17 @@ import './index.scss'
 class AppsDetail extends React.Component {
   render() {
 
-    const { DHeader, DFooter } = this.props  
+    const { DHeader, DFooter, onChangeRange } = this.props  
     const basicInfo = BasicInfo(this.props)
     const latestVersion = LatestVersion(this.props)
     const detailHeader = DHeader && DHeader(this.props)
-    const detailFooter = DFooter && DFooter(this.props)
 
     return (
       <div className="sub-container bg-white">
-        {detailHeader}
-        {basicInfo}
-        {latestVersion}
-        {detailFooter}
+        { detailHeader }
+        { basicInfo }
+        { latestVersion }
+        { latestVersion.reviewStatus ? <DFooter onChangeRange={onChangeRange} /> : DFooter && DFooter(this.props) }
       </div>
     )
   }
