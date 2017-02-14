@@ -2,7 +2,7 @@ import React from 'react'
 import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
-
+import AssociationModule from './Association'
 import { renderField, versionTextArea, renderFile ,renderSelect, renderPublishRadioBox } from '../../../modules/renderField'
 
 import { validate } from '../../../modules/validate'
@@ -33,7 +33,7 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-     
+       <AssociationModule/>
 
       <div className="form-btn">
         <div>
