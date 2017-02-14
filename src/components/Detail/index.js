@@ -1,20 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router'
+import { Header } from 'components/Detail/header'
+import { Versions, Unapprove, AdminUnshelved, SaleRange } from './footer'
 import './index.scss'
 
 class AppsDetail extends React.Component {
   render() {
 
-    const { DHeader, DFooter, onChangeRange } = this.props  
-    const basicInfo = BasicInfo(this.props)
-    const latestVersion = LatestVersion(this.props)
-    const detailHeader = DHeader && DHeader(this.props)
+    const { data, activeCodeStatus, editUrl, onChangeRange, onClickPublish } = this.props
+    const len = data && data.versions && data.versions.length  
 
     return (
       <div className="sub-container bg-white">
-        { detailHeader }
-        { basicInfo }
-        { latestVersion }
-        { latestVersion.reviewStatus ? <DFooter onChangeRange={onChangeRange} /> : DFooter && DFooter(this.props) }
+        { data && data.mine && len > 0 && Header(this.props) }
+        { BasicInfo(this.props) }
+        { LatestVersion(this.props) }
+
+        { activeCodeStatus === 0 && Versions(this.props) }
+        { activeCodeStatus === 1 && <Link to={editUrl}><button type="button">编辑</button></Link> }
+        { activeCodeStatus === 3 && <button type="button" onClick={()=>{onClickPublish()}}>确认发布</button> }
+        { activeCodeStatus === 4 && Unapprove(this.props) }
+        { activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} published={activeCodeStatus} /> }
+        { activeCodeStatus === 6 && AdminUnshelved(this.props) }
+        { activeCodeStatus === 7 && <SaleRange onChangeRange={onChangeRange} published={activeCodeStatus} /> }
+        
       </div>
     )
   }

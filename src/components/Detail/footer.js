@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 
 export const Versions = (props) => {
-  const { onChange, showAll, showSize } = props
+  const { onChangeShowAll, showAll, showSize } = props
   const versions = props.versions || []
   const len = versions && versions.length
 
@@ -34,12 +34,12 @@ export const Versions = (props) => {
       ))
     }
     </ul>
-    {(len > 0) && <a className="read-more" onClick={() => {onChange()}}>{showAll ? '收起' : '...更多版本介绍'}</a>}
+    {(len > 0) && <a className="read-more" onClick={() => {onChangeShowAll()}}>{showAll ? '收起' : '...更多版本介绍'}</a>}
   </div>
 }
 
 export const Unapprove = (props) => {
-  const { editUrl } = props
+  const { editUrl, data } = props
   return <div>
     <p>审核未通过原因:</p>
     <p></p>
@@ -48,9 +48,10 @@ export const Unapprove = (props) => {
 }
 
 export const AdminUnshelved = (props) => {
+  const { adminUnshelvedReason } = props.data && props.data || ''
   return <div>
     <p>下架原因:</p>
-    <p></p>
+    <p>{adminUnshelvedReason}</p>
     <button type="button">联系管理员</button>
   </div>
 }
@@ -62,8 +63,13 @@ export class SaleRange extends React.Component {
   }
 
   componentDidMount() {
-    const { data } = this.props || {}
-    const unshelved = data.devUnshelved
+    const { published } = this.props || ''
+    let unshelved = ''
+    if (published && published === 5) {
+      unshelved = 1
+    } else if (published && published === 7) {
+      unshelved = 0
+    }
     this.setState({unshelved: unshelved})
   }
 

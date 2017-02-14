@@ -5,7 +5,7 @@ import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import { Header } from 'components/Detail/header'
+import { getCodeStatus } from 'components/Detail/header'
 import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
@@ -17,6 +17,7 @@ class AppsDetail extends React.Component {
       tags: [],
       versions: [],
       activeCodeVersion: '',
+      activeCodeStatus: 0,
       showAll: false
     };
   }
@@ -70,12 +71,22 @@ class AppsDetail extends React.Component {
       const size = (v.bundleSize && (v.bundleSize/1024/1024).toFixed(2)) || 0
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
-    const activeVersion = (data.versions && data.versions[0] && data.versions[0].codeVersion) || ''
+    const activeCodeVersion = (data.versions && data.versions[0] && data.versions[0].codeVersion) || ''
+    const activeCodeStatus = this.getCurrentVersionStatus(data)
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, activeCodeVersion: activeVersion, versions: versions});
+    this.setState({data: data, activeCodeVersion: activeCodeVersion, activeCodeStatus: activeCodeStatus, versions: versions});
   }
 
-  getVersions() {
+  getCurrentVersionStatus(data) {
+    if (!data || !data.mine) return 0
+    if (data.versions && data.versions[0]) {
+      const codeStatus = getCodeStatus(data, data.versions[0]).codeStatus
+      console.log("codeStatus ", codeStatus)
+      return codeStatus
+    }
+  }
+
+  changeShowAll() {
     const { data } = this.state
     const showAll = !this.state.showAll
     const fistHistory = data.versions.slice(1, 2) || []
@@ -89,25 +100,39 @@ class AppsDetail extends React.Component {
     console.log("reviewStatus ", reviewStatus)
   }
 
-  changeVersions(codeVersion) {
-    console.log("codeVersion ", codeVersion)
-    codeVersion && this.setState({activeCodeVersion: codeVersion})
+  changeVersionBtn(code) {
+    console.log("code ", code)
+    code && this.setState({
+      activeCodeVersion: code.codeVersion,
+      activeCodeStatus: code.codeStatus
+    })
   }
 
-  getDFooter() {
+  clickPublish() {
     const { data } = this.state
-    if (data.adminUnshelved) return AdminUnshelved
-    if (data.devUnshelved) return SaleRange
+    const appId = data && data.appId
+    console.log("clickPublish ", appId)
+    const formData = new FormData()
+    formData.append(onLine, 1)
+
+    let apiUrl = getDomain(`/web/developer/app/${appId}/publish`);
+    fetchUtil.postJSON(apiUrl, formData, {jsonStringify: false}).then(res => {
+      if (res.status === 200) {
+        debug.warn("发布成功")
+      } else {
+        debug.warn("发布失败")
+      }
+    }).catch(e=>{
+      debug.warn('网络错误')
+    })
   }
 
   render() {
     
-    const { data, tags, versions, showAll, activeCodeVersion } = this.state
+    const { data, tags, versions, showAll, activeCodeVersion, activeCodeStatus } = this.state
     const infoTags = data.tags || []
     const latestVersion = (data.versions && data.versions[0]) || {}
     const showSize = true
-    const DHeader = Header
-    const DFooter = ''
 
     const id = this.props.params.id
     const editUrl = `/apps/edit/${id}`
@@ -125,9 +150,9 @@ class AppsDetail extends React.Component {
 
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
-                onChange={this.getVersions.bind(this)} onChangeRange={this.changeRange.bind(this)} 
-                activeCodeVersion={activeCodeVersion} onChangeVersion={this.changeVersions.bind(this)} 
-                DFooter={DFooter} DHeader={DHeader} />
+                onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
+                activeCodeVersion={activeCodeVersion} onChangeVersion={this.changeVersionBtn.bind(this)} 
+                activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} />
       </div>
     )
   }

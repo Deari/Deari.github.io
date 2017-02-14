@@ -4,6 +4,7 @@ export const Header = (props) => {
   const { data, createUrl, onChangeVersion, activeCodeVersion } = props
   const latestVersions = data && data.versions && data.versions[0] || {}
   const preVersions = data && data.versions && data.versions[1] || {}
+  const len = data && data.versions && data.versions.length
 
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
@@ -11,17 +12,17 @@ export const Header = (props) => {
   const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == activeCodeVersion) && latestCodeStatus.codeStatus == 5) ||
         ((preCodeStatus && preCodeStatus.codeVersion == activeCodeVersion) && preCodeStatus.codeStatus == 5) ? true : false
 
-  return <div>
+  return data && data.mine && len > 0 && <div>
     <ul>
       { (!preCodeStatus || (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5)) ? '' :
         <li className={preCodeStatus.codeVersion == activeCodeVersion && 'active'} 
-            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus.codeVersion)}}>
+            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus)}}>
           <div>{preCodeStatus.codeVersion}</div>
           <div>{preCodeStatus.codeStatusName}</div>
         </li>
       }
       <li className={latestCodeStatus.codeVersion == activeCodeVersion && 'active'}
-          onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus.codeVersion)}}>
+          onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus)}}>
         <a>
           <div>{latestCodeStatus.codeVersion}</div>
           <div>{latestCodeStatus.codeStatusName}</div>
@@ -56,7 +57,7 @@ export const getCodeStatus = (data, version) => {
     return versionInfo
   } else if (version.reviewStatus === 0) {
     versionInfo.codeStatus = 1
-    versionInfo.codeStatusName = "等待提交"
+    versionInfo.codeStatusName = "准备提交"
     return versionInfo
   } else if (version.reviewStatus === 1) {
     versionInfo.codeStatus = 2
@@ -64,11 +65,11 @@ export const getCodeStatus = (data, version) => {
     return versionInfo
   } else if (version.reviewStatus === 2) {
     versionInfo.codeStatus = 3
-    versionInfo.codeStatusName = "审核不通过"
+    versionInfo.codeStatusName = "等待开发者发布"
     return versionInfo
   } else if (version.reviewStatus === 3) {
     versionInfo.codeStatus = 4
-    versionInfo.codeStatusName = "等待开发者发布"
+    versionInfo.codeStatusName = "审核不通过"
     return versionInfo
   }
   return versionInfo
