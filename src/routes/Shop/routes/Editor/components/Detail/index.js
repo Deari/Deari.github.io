@@ -15,7 +15,8 @@ export class Detail extends Component {
   getWidgetContainer() {
     const { detail, saveDetail, deleteElement, cancelElement, editElement } = this.props
     const { element } = detail || {};
-    const { disableEdit, editorConfig } = element;
+    const { editorConfig } = element;
+
     if (!element.id) {
       return <div className="share">
         <div className="bg-qr">
@@ -36,14 +37,18 @@ export class Detail extends Component {
       }
     }
 
+    const allowEditItemList = ['input'];
+
     return <div>
-      {!disableEdit && editorConfig ? <div className="editor-container">
-        { 
-          Object.keys(editorConfig).map(key => <div key={key} className="item">
-            <label htmlFor="" className="label">{key}</label>
-            <input type="text" className="input" value={editorConfig[key]} onChange={(e)=>editElement(element.id, key, e.target.value)}/>
-          </div>
-          )
+      {Array.isArray(editorConfig) && editorConfig.length > 0 ?
+        <div className="editor-container">
+        {
+          editorConfig.map(({ label, type, enableEdit, value }) => enableEdit && 
+          allowEditItemList.findIndex(item=>item === type) > -1 ? 
+          <div key={label} className="item">
+            <label htmlFor="" className="label">{label}</label>
+            <input type="text" className="input" value={value} onChange={(e)=>editElement(element.id, label, e.target.value)}/>
+          </div> : null)
         }
         </div> : null
       }

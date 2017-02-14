@@ -80,10 +80,10 @@ export const deleteElement = id => dispatch => dispatch({
   id,
 })
 
-export const editElement = (id, key, value) => dispatch => dispatch({
+export const editElement = (id, label, value) => dispatch => dispatch({
   type: EDIT_ELEMENT,
   id,
-  key,
+  label,
   value
 })
 
@@ -94,10 +94,15 @@ const ACTION_HANDLERS = {
     return {
       ...state, element: {
         ...state.element,
-        editorConfig: {
-          ...state.element.editorConfig,
-          [action.key]: action.value
-        }
+        editorConfig: state.element.editorConfig.map(config=>{
+          if(config.label === action.label) {
+            return {
+              ...config,
+              value: action.value
+            }
+          }
+          return config;
+        })
       }
     };
   },

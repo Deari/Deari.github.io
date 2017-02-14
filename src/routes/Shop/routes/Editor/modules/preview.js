@@ -83,13 +83,18 @@ const ACTION_HANDLERS = {
 
   [EDIT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => {
-      if(element.id === action.id) {
+      if(element.id === action.id && Array.isArray(element.editorConfig)) {
         return {
           ...element,
-          editorConfig: {
-            ...element.editorConfig,
-            [action.key]: action.value
-          }
+          editorConfig: element.editorConfig.map(item=>{
+            if(item.label === action.label) {
+              return {
+                ...item,
+                value: action.value
+              }
+            }
+            return item;
+          })
         }
       }
       return element;
