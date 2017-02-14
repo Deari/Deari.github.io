@@ -94,8 +94,9 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-
-    this.isLogin()
+    console.log(values)
+    return
+    //this.isLogin()
 
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
@@ -117,16 +118,16 @@ class CreateContainer extends Component {
             'codeDesc': values.codeDesc,
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': 0,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.publish,
+            'codeVersion': values.versionNum
           })
         } else {
           params = {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': 0,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.publish,
+            'codeVersion': values.versionNum
           }
         }
 
