@@ -13,8 +13,9 @@ export class Detail extends Component {
   }
 
   getWidgetContainer() {
-    const { detail, saveDetail, deleteElement, cancelElement } = this.props
-    const { element } = detail
+    const { detail, saveDetail, deleteElement, cancelElement, editElement } = this.props
+    const { element } = detail || {};
+    const { setting } = element;
 
     if (!element.id) {
       return <div className="share">
@@ -36,10 +37,27 @@ export class Detail extends Component {
       }
     }
 
-    return <div className="widgets-btn-container">
-      <button className="m-btn m-btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
-      <button className="m-btn m-btn-border-green" onClick={cancelElement}>取消</button>
+    const allowEditItemList = ['input'];
+
+    return <div>
+      {Array.isArray(setting) && setting.length > 0 ?
+        <div className="editor-container">
+        {
+          setting.map(({ label, type, enableEdit, value }) => enableEdit && 
+          allowEditItemList.findIndex(item=>item === type) > -1 ? 
+          <div key={label} className="item">
+            <label htmlFor="" className="label">{label}</label>
+            <input type="text" className="input" value={value} onChange={(e)=>editElement(element.id, label, e.target.value)}/>
+          </div> : null)
+        }
+        </div> : null
+      }
+      <div className="widgets-btn-container">
+        <button className="m-btn m-btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
+        <button className="m-btn m-btn-border-green" onClick={cancelElement}>取消</button>
+      </div>
     </div>
+    
   }
 
   state = {
@@ -67,6 +85,7 @@ export class Detail extends Component {
   render() {
     const { detail } = this.props
     const { pagePublish } = detail
+
     return <div id="detail-container">
       <Modal type={"alert"}
              active={pagePublish === 'start'}

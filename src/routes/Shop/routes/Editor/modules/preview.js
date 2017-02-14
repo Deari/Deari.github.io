@@ -18,6 +18,7 @@ const SELECT_ELEMENT = 'SELECT_ELEMENT' // same as src/routes/Shop/routes/Editor
 const SAVE_DETAIL = 'SAVE_DETAIL' // same as src/routes/Shop/routes/Editor/modules/detail.js
 const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
 const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
+const EDIT_ELEMENT = 'EDIT_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
 const REQUEST_PREVIEW = 'REQUEST_PREVIEW'
 
 export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
@@ -78,6 +79,26 @@ const ACTION_HANDLERS = {
 
   [DELETE_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.filter(element => element.id !== action.id)
+  }),
+
+  [EDIT_ELEMENT]: (state, action) => ({
+    ...state, elements: state.elements.map(element => {
+      if(element.id === action.id && Array.isArray(element.setting)) {
+        return {
+          ...element,
+          setting: element.setting.map(item=>{
+            if(item.label === action.label) {
+              return {
+                ...item,
+                value: action.value
+              }
+            }
+            return item;
+          })
+        }
+      }
+      return element;
+    })
   }),
 
   [SELECT_ELEMENT]: (state, action) => ({

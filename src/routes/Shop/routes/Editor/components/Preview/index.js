@@ -62,7 +62,6 @@ export class Preview extends Component {
       return null
     }
     const elements = this.props.preview.elements
-
     return elements.map(e => {
       const className = e.selected ? 'selected' : ''
       return <div key={e.id}
