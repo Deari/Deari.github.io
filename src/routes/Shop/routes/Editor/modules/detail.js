@@ -94,14 +94,14 @@ const ACTION_HANDLERS = {
     return {
       ...state, element: {
         ...state.element,
-        editorConfig: state.element.editorConfig.map(config=>{
-          if(config.label === action.label) {
+        setting: state.element.setting.map(item=>{
+          if(item.label === action.label) {
             return {
-              ...config,
+              ...item,
               value: action.value
             }
           }
-          return config;
+          return item;
         })
       }
     };
