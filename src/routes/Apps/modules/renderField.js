@@ -27,7 +27,7 @@ export const versionTextArea = ({ input, label, placeholder, type, meta: { touch
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
-      <p>（icon）描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
+      <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
       <textarea {...input} placeholder={placeholder || label}></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
@@ -188,7 +188,13 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
     </p>
     {
       publishList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
-          <input type="radio" name="radio" checked={input.value == item.value}/>
+          <div className="row-radio">
+	          <input type="radio" name="radio" checked={input.value == item.value}/>
+	          <span>
+	            <i className="iconfont icon-radio1 icon-radio1V"></i>
+	            <i className="iconfont icon-radio icon-radioV"></i>
+	          </span>
+	        </div>
           <span>{item.txt}</span>
       </div>
     )}

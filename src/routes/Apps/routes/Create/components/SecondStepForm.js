@@ -17,8 +17,19 @@ const SecondStepForm = props => {
     
       <div>
         <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" component={versionTextArea} label="版本介绍" />
-        <Field name="showUpdateMsg" id="isShow" component="input" type="checkbox" />
-        <label htmlFor="isShow">发布此版本后，将更新内容显示给商家<span>4000</span></label>
+        <div className="form-row form-rowM">
+        	<label className="labelH"></label>
+        	<div className="row-right">
+        		<div className="row-radio">
+		          <Field name="showUpdateMsg" id="isShow" component="input" type="checkbox" />
+		          <span>
+		            <i className="iconfont icon-radio1"></i>
+		            <i className="iconfont icon-radio"></i>
+		          </span>
+		        </div>
+        		<p htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家<span>4000</span></p>
+        	</div>
+        </div>
       </div>
       <Field label="版本号" name="codeVersion" component={renderSelect}>
         <option value={-1}>请选择分类</option>
