@@ -16,6 +16,7 @@ class AppsDetail extends React.Component {
       data: [],
       tags: [],
       versions: [],
+      currentCode: '',
       activeCodeVersion: '',
       activeCodeStatus: 0,
       showAll: false
@@ -71,17 +72,19 @@ class AppsDetail extends React.Component {
       const size = (v.bundleSize && (v.bundleSize/1024/1024).toFixed(2)) || 0
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
-    const activeCodeVersion = (data.versions && data.versions[0] && data.versions[0].codeVersion) || ''
-    const activeCodeStatus = this.getCurrentVersionStatus(data)
+
+    const { currentCode } = this.state
+    const activeCode = data.versions[0]
+    const activeCodeStatus = this.getLatestVersionStatus(data, activeCode)
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, activeCodeVersion: activeCodeVersion, activeCodeStatus: activeCodeStatus, versions: versions});
+    
+    this.setState({data: data, activeCodeStatus: activeCodeStatus, currentCode: activeCode, versions: versions});
   }
 
-  getCurrentVersionStatus(data) {
-    if (!data || !data.mine) return 0
-    if (data.versions && data.versions[0]) {
-      const codeStatus = getCodeStatus(data, data.versions[0]).codeStatus
-      console.log("codeStatus ", codeStatus)
+  getLatestVersionStatus(data, currentCode) {
+    if (!data || data.mine == 0) return 0
+    if (currentCode) {
+      const codeStatus = getCodeStatus(data, currentCode).codeStatus
       return codeStatus
     }
   }
@@ -96,14 +99,29 @@ class AppsDetail extends React.Component {
       : this.setState({versions: fistHistory, showAll: showAll})
   }
 
-  changeRange(reviewStatus) {
-    console.log("reviewStatus ", reviewStatus)
+  changeRange(operation) {
+    const { activeCodeStatus } = this.state
+    if ((activeCodeStatus === 5 && operation == 'shelve') ||
+       (activeCodeStatus === 7 && operation == 'unshelve')) return
+    let id = this.props.params.id;
+    let apiUrl = getDomain(`web/developer/shelveApp/${id}?operation=${operation}`);
+    fetchUtil.getJSON(apiUrl).then((res) => {
+      if (res && res.status === 200) {
+        debug.warn("操作成功")
+        this.getInfo()
+      } else {
+        debug.warn("操作失败")
+      }
+    }).catch(e => {
+      debug.warn("网络错误")
+    })
   }
 
-  changeVersionBtn(code) {
-    console.log("code ", code)
+  changeVersionBtn(code, version) {
+    const { currentCode } = this.state
+    if (code.codeVersion == currentCode.codeVersion) return
     code && this.setState({
-      activeCodeVersion: code.codeVersion,
+      currentCode: version,
       activeCodeStatus: code.codeStatus
     })
   }
@@ -111,27 +129,27 @@ class AppsDetail extends React.Component {
   clickPublish() {
     const { data } = this.state
     const appId = data && data.appId
-    console.log("clickPublish ", appId)
     const formData = new FormData()
-    formData.append(onLine, 1)
+    formData.append("onLine", 1)
 
-    let apiUrl = getDomain(`/web/developer/app/${appId}/publish`);
+    let apiUrl = getDomain(`web/developer/app/${appId}/publish`);
     fetchUtil.postJSON(apiUrl, formData, {jsonStringify: false}).then(res => {
       if (res.status === 200) {
         debug.warn("发布成功")
+        this.getInfo()
       } else {
         debug.warn("发布失败")
       }
-    }).catch(e=>{
+    }).catch(e => {
       debug.warn('网络错误')
     })
   }
 
   render() {
     
-    const { data, tags, versions, showAll, activeCodeVersion, activeCodeStatus } = this.state
+    const { data, tags, versions, showAll, currentCode, activeCodeStatus } = this.state
     const infoTags = data.tags || []
-    const latestVersion = (data.versions && data.versions[0]) || {}
+    const latestVersion = currentCode || {}
     const showSize = true
 
     const id = this.props.params.id
@@ -151,7 +169,7 @@ class AppsDetail extends React.Component {
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
                 onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
-                activeCodeVersion={activeCodeVersion} onChangeVersion={this.changeVersionBtn.bind(this)} 
+                onChangeVersion={this.changeVersionBtn.bind(this)} 
                 activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} />
       </div>
     )

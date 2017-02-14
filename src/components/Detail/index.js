@@ -12,7 +12,7 @@ class AppsDetail extends React.Component {
 
     return (
       <div className="sub-container bg-white">
-        { data && data.mine && len > 0 && Header(this.props) }
+        { data && data.mine == 1 && len > 0 && Header(this.props) }
         { BasicInfo(this.props) }
         { LatestVersion(this.props) }
 
@@ -20,9 +20,9 @@ class AppsDetail extends React.Component {
         { activeCodeStatus === 1 && <Link to={editUrl}><button type="button">编辑</button></Link> }
         { activeCodeStatus === 3 && <button type="button" onClick={()=>{onClickPublish()}}>确认发布</button> }
         { activeCodeStatus === 4 && Unapprove(this.props) }
-        { activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} published={activeCodeStatus} /> }
+        { activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
         { activeCodeStatus === 6 && AdminUnshelved(this.props) }
-        { activeCodeStatus === 7 && <SaleRange onChangeRange={onChangeRange} published={activeCodeStatus} /> }
+        { activeCodeStatus === 7 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
         
       </div>
     )
@@ -37,7 +37,7 @@ export const BasicInfo = (props) => {
   return <div className="detail-container">
     <div className="detail-download">
       <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-      { showSize 
+      { data.mine == 1 ? '' : showSize 
         ? <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
         : <p className="btn btn-primary btn-download">使用</p>
       }
