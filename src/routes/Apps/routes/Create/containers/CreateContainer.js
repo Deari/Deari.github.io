@@ -76,8 +76,18 @@ class CreateContainer extends Component {
         
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
+            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+            const versionFormData = new FormData();
+            versionFormData.append("prepareVersion", "1");
             this.props.updateForm2({
               appId: res.data.appId
+            })
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+               if(versionRes.status == 200) {
+                 this.props.updateForm2({
+                   codeId:versionRes.data.codeId
+                 })
+               }
             })
             this.props.toggleStep(2)
           } else {
@@ -94,9 +104,8 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-    console.log(values)
-    return
-    //this.isLogin()
+
+    this.isLogin()
 
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
@@ -113,21 +122,24 @@ class CreateContainer extends Component {
         let params = {}
         if (values.isH5App === 0) {
           const file = values.file
-          params = Object.assign({}, file, {
+          params = Object.assign({}, file, {    
             'appId': values.appId,
             'codeDesc': values.codeDesc,
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': values.publish,
-            'codeVersion': values.versionNum
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
         } else {
           params = {
             'appId': values.appId,
+            'codeId':values.codeId,
             'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': values.publish,
-            'codeVersion': values.versionNum
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           }
         }
 

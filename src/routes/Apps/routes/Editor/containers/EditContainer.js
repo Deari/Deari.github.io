@@ -20,7 +20,8 @@ import {
   getTags, 
   getCates, 
   getAppInfo,
-  updateFirstForm
+  updateFirstForm,
+  updateSecondForm
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -80,8 +81,19 @@ class EditContainer extends Component {
 
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
+            
+            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+            const versionFormData = new FormData()
+            versionFormData.append("prepareVersion", "1")
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+               if(versionRes.status == 200) {
+                 this.props.updateSecondForm({
+                   codeId:versionRes.data.codeId
+                 })
+               }
+            })
             this.props.updateFirstForm(values)
-            this.props.toggleStep(2)
+            this.props.toggleStep(2)            
           } else {
             debug.warn('请完善表单信息')
           }
@@ -96,7 +108,7 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-
+  
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -117,17 +129,20 @@ class EditContainer extends Component {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': 0,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
           delete params.file
         } else {
           Object.assign(params, {
             'appId': values.appId,
+            'codeId':values.codeId,
             'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': 1,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
         }
 
@@ -193,7 +208,8 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   getAppInfo,
-  updateFirstForm
+  updateFirstForm,
+  updateSecondForm,
 }
 
 const mapStateToProps = ({appsEdit}) => ({
