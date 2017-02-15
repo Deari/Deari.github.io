@@ -3,6 +3,7 @@ import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
+//import AssociationModule from '../../../components/Association'
 import { toggleStep } from '../modules/edit'
 import { 
     renderField,
