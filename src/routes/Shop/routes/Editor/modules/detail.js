@@ -15,6 +15,7 @@ const SELECT_ELEMENT = 'SELECT_ELEMENT' // To : src/routes/Shop/routes/Editor/mo
 
 const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
 const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
+const EDIT_ELEMENT = 'EDIT_ELEMENT'
 
 const SAVE_DETAIL = 'SAVE_DETAIL' // To : src/routes/Shop/routes/Editor/modules/preview.js
 const PAGE_PUBLISH_START = 'PAGE_PUBLISH_START'
@@ -47,6 +48,8 @@ export const savePage = pageId => (dispatch, getState) => new Promise((resolve, 
   const state = getState()
   const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
   fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
+    console.log(state.preview, "postData");
+
     dispatch(startPublishPage())
     const { deployId } = v.data
     repeatPublishStatus(deployId).then(pubResult => {
@@ -77,10 +80,35 @@ export const deleteElement = id => dispatch => dispatch({
   id,
 })
 
+export const editElement = (id, label, value) => dispatch => dispatch({
+  type: EDIT_ELEMENT,
+  id,
+  label,
+  value
+})
+
 const ACTION_HANDLERS = {
   [CANCEL_ELEMENT]: state => ({ ...state, element: {} }),
   [DELETE_ELEMENT]: state => ({ ...state, element: {} }),
-  [SELECT_ELEMENT]: (state, action) => ({ ...state, element: action.selectedElement }),
+  [EDIT_ELEMENT]: (state, action) => {
+    return {
+      ...state, element: {
+        ...state.element,
+        setting: state.element.setting.map(item=>{
+          if(item.label === action.label) {
+            return {
+              ...item,
+              value: action.value
+            }
+          }
+          return item;
+        })
+      }
+    };
+  },
+  [SELECT_ELEMENT]: (state, action) => {
+    return ({ ...state, element: action.selectedElement })
+  },
   [PAGE_PUBLISH_START]: state => ({ ...state, pagePublish: 'start' }),
   [PAGE_PUBLISH_END]: (state, action) => ({ ...state, pagePublish: action.deployStatus === 2 ? 'end' : 'failure' }),
 }

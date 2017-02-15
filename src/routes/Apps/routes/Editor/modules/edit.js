@@ -72,11 +72,31 @@ export const getAppInfo = (appId) => {
       if(res.status == 200) {
 
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
-                fileName, fileLink, moduleName, setting } = res.data
-        const { codeDesc } = res.data && res.data.versions && res.data.versions[0] || ''
-        const rnFrameworkVersion = res.data.rnFrameworkVersion || 0
+                fileName, fileLink, moduleName, setting} = res.data
+        //console.log(res.data)
+        const { codeDesc, codeVersion} = res.data && res.data.versions && res.data.versions[0] || ''
+        const autoPublish  = res.data && res.data.autoPublish || 1
+        const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
+        const rnFrameworkVersion = res.data && res.data.rnFrameworkVersion || 0
         const tagId = tags.map(v=>v.tagId)
-
+        
+        const versionsarray1 = [
+          parseInt(codeVersion.split(".")[0]), 
+          parseInt(codeVersion.split(".")[1])+1,
+          parseInt(codeVersion.split(".")[2])-1
+        ]
+        const versionsarray2 = [
+          parseInt(codeVersion.split(".")[0])+1, 
+          parseInt(codeVersion.split(".")[1]), 
+          parseInt(codeVersion.split(".")[2])-1
+        ]
+        
+        const versionsList = [
+          {'value':codeVersion},
+          {'value':versionsarray1.join('.')},
+          {'value':versionsarray2.join('.')}
+        ]
+        console.log(versionsList)
         dispatch(updateForm1({
           appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
@@ -84,8 +104,9 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({
           appId,
-          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting
-        }))
+          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          versionsList,
+        })) 
 
       } else {
         debug.warn('获取应用详情失败')
@@ -101,7 +122,11 @@ export const updateFirstForm = (values) => {
     dispatch(updateForm1(values))
   }
 }
-
+export const updateSecondForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm2(values))
+  }
+}
 const ACTION_HANDLERS = {
   
   [TOGGLE_STEP]: (state, action) => {
@@ -177,10 +202,22 @@ const initialState = {
   },
 
   form2: {
-    codeDesc: '',
-    appId: -1,
-    platform: 2,
-    isH5App: 0
+      publishList: [
+        { txt: '自动发布此版本', value: 1 },
+        { txt: '手动发布此版本', value: 0 },
+      ],
+      versionsList:[
+        {value:"0.0.1"},
+        {value:"0.1.0"},
+        {value:"1.0.0"}
+      ],
+      showUpdateMsg:0,
+      codeDesc: '',
+      appId: -1,
+      codeId:-1,
+      platform: 2,
+      isH5App: 0,
+      autoPublish:1,
   },
 }
 
