@@ -5,7 +5,8 @@ import { getDomain } from 'utils/domain';
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import { Versions } from 'components/Detail/footer'
+import { getCodeStatus } from 'components/Detail/header'
+import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
 import Detail from 'components/Detail'
 
 class WidgetsDetail extends React.Component {
@@ -15,6 +16,9 @@ class WidgetsDetail extends React.Component {
       data: [],
       tags:[],
       versions: [],
+      currentCode: '',
+      activeCodeVersion: '',
+      activeCodeStatus: 0,
       showAll: false
     };
   }
@@ -67,12 +71,23 @@ class WidgetsDetail extends React.Component {
       v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
     })
 
+    const { currentCode } = this.state
+    const activeCode = data.versions[0]
+    const activeCodeStatus = this.getLatestVersionStatus(data, activeCode)
     const versions = (data.versions && data.versions.slice(1, 2)) || []
     
-    this.setState({data: data, versions: versions});
+    this.setState({data: data, activeCodeStatus: activeCodeStatus, currentCode: activeCode, versions: versions});
   }
 
-  getVersions() {
+  getLatestVersionStatus(data, currentCode) {
+    if (!data || data.mine == 0) return 0
+    if (currentCode) {
+      const codeStatus = getCodeStatus(data, currentCode).codeStatus
+      return codeStatus
+    }
+  }
+
+  changeShowAll() {
     const { data } = this.state
     const showAll = !this.state.showAll
     const fistHistory = data.versions.slice(1, 2) || []
@@ -82,13 +97,62 @@ class WidgetsDetail extends React.Component {
       : this.setState({versions: fistHistory, showAll: showAll})
   }
 
+  changeRange(operation) {
+    const { activeCodeStatus } = this.state
+    if ((activeCodeStatus === 5 && operation == 'shelve') ||
+       (activeCodeStatus === 7 && operation == 'unshelve')) return
+    let id = this.props.params.id;
+    let apiUrl = getDomain(`web/developer/shelveApp/${id}?operation=${operation}`);
+    fetchUtil.getJSON(apiUrl).then((res) => {
+      if (res && res.status === 200) {
+        debug.warn("操作成功")
+        this.getInfo()
+      } else {
+        debug.warn("操作失败")
+      }
+    }).catch(e => {
+      debug.warn("网络错误")
+    })
+  }
+
+  changeVersionBtn(code, version) {
+    const { currentCode } = this.state
+    if (code.codeVersion == currentCode.codeVersion) return
+    code && this.setState({
+      currentCode: version,
+      activeCodeStatus: code.codeStatus
+    })
+  }
+
+  clickPublish() {
+    const { data } = this.state
+    const appId = data && data.appId
+    const formData = new FormData()
+    formData.append("onLine", 1)
+
+    let apiUrl = getDomain(`web/developer/app/${appId}/publish`);
+    fetchUtil.postJSON(apiUrl, formData, {jsonStringify: false}).then(res => {
+      if (res.status === 200) {
+        debug.warn("发布成功")
+        this.getInfo()
+      } else {
+        debug.warn("发布失败")
+      }
+    }).catch(e => {
+      debug.warn('网络错误')
+    })
+  }
+
   render() {
 
-    const { data, tags, versions, showAll } = this.state
+    const { data, tags, versions, showAll, currentCode, activeCodeStatus  } = this.state
     const infoTags = data.tags || []
-    const latestVersion = (data.versions && data.versions[0]) || {}
+    const latestVersion = currentCode || {}
     const showSize = false
-    const DFooter = Versions
+
+    const id = this.props.params.id
+    const editUrl = `/widgets/edit/${id}`
+    const createUrl = `/widgets/create`
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -99,10 +163,12 @@ class WidgetsDetail extends React.Component {
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
-
-        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags}
-                versions={versions} showAll={showAll} showSize={showSize} 
-                onChange={this.getVersions.bind(this)} DFooter={DFooter} />
+                
+        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
+                showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
+                onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
+                onChangeVersion={this.changeVersionBtn.bind(this)} 
+                activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} />
       </div>
     )
   }

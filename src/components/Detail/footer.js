@@ -59,41 +59,41 @@ export const AdminUnshelved = (props) => {
 export class SaleRange extends React.Component {
 
   state = {
-    unshelved: 1
+    operation: ''
   }
 
   componentDidMount() {
-    const { published } = this.props || ''
-    let unshelved = ''
-    if (published && published === 5) {
-      unshelved = 1
-    } else if (published && published === 7) {
-      unshelved = 0
+    const { activeCodeStatus } = this.props || ''
+    let operation = ''
+    if (activeCodeStatus && activeCodeStatus === 5) {
+      operation = 'shelve'
+    } else if (activeCodeStatus && activeCodeStatus === 7) {
+      operation = 'unshelve'
     }
-    this.setState({unshelved: unshelved})
+    this.setState({operation: operation})
   }
 
   changeRange(e) {
-    this.setState({unshelved: e.target.value})
+    this.setState({operation: e.target.value})
   }
 
   save(e) {
     e.preventDefault()
-    const { unshelved } = this.state
+    const { operation } = this.state
     const { onChangeRange } = this.props
-    onChangeRange(unshelved)
+    onChangeRange(operation)
   }
 
   render() {
 
-    const { unshelved } = this.state
+    const { operation } = this.state
 
     return <div>
       <p>销售范围</p>
       <form onSubmit={this.save.bind(this)}>
-        <input type="radio" name="aaa" value={1} checked={unshelved == 1} 
+        <input type="radio" name="aaa" value={'shelve'} checked={operation == 'shelve'} 
                onChange={this.changeRange.bind(this)} /> 在所有地区供应
-        <input type="radio" name="aaa" value={0} checked={unshelved == 0} 
+        <input type="radio" name="aaa" value={'unshelve'} checked={operation == 'unshelve'} 
                onChange={this.changeRange.bind(this)} /> 下架
         <button className="btn btn-primary" type="submit">保存</button>
       </form>

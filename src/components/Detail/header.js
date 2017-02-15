@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 
 export const Header = (props) => {
-  const { data, createUrl, onChangeVersion, activeCodeVersion } = props
+  const { data, createUrl, onChangeVersion, latestVersion } = props
   const latestVersions = data && data.versions && data.versions[0] || {}
   const preVersions = data && data.versions && data.versions[1] || {}
   const len = data && data.versions && data.versions.length
@@ -9,20 +9,24 @@ export const Header = (props) => {
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
 
-  const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == activeCodeVersion) && latestCodeStatus.codeStatus == 5) ||
-        ((preCodeStatus && preCodeStatus.codeVersion == activeCodeVersion) && preCodeStatus.codeStatus == 5) ? true : false
+  const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == latestVersion.codeVersion) && latestCodeStatus.codeStatus == 5) ||
+                     ((preCodeStatus && preCodeStatus.codeVersion == latestVersion.codeVersion) && preCodeStatus.codeStatus == 5) 
 
-  return data && data.mine && len > 0 && <div className="tab-nav">
+  const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
+                      (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
+                      (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
+
+  return data && data.mine === 1 && len > 0 && <div className="tab-nav">
     <ul className="tab-list">
-      { (!preCodeStatus || (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5)) ? '' :
-        <li className={preCodeStatus.codeVersion == activeCodeVersion && 'active'} 
-            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus)}}>
+      { (!preCodeStatus || hidePreCode) ? '' :
+        <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
+            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
           <div>{preCodeStatus.codeVersion}</div>
           <div>{preCodeStatus.codeStatusName}</div>
         </li>
       }
-      <li className={latestCodeStatus.codeVersion == activeCodeVersion && 'active'}
-          onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus)}}>
+      <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active'}
+          onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus, latestVersions)}}>
         <a>
           <div>{latestCodeStatus.codeVersion}</div>
           <div>{latestCodeStatus.codeStatusName}</div>
