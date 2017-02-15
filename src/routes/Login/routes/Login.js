@@ -49,7 +49,11 @@ export class Login extends Component {
           debug.warn("登录成功")
           this.serCookie(365)
           const searchArr = location.search.split("=")
-          window.location.href = (searchArr && searchArr[1]) ? searchArr[1] : location.origin
+          if (searchArr && searchArr[1]) {
+            window.location.href = searchArr[2] ? `${searchArr[1]}=${searchArr[2]}` : searchArr[1]
+          } else {
+            window.location.href = location.origin
+          }
           return false
         } else {
           (i == userInfo.length - 1) && debug.warn("密码错误")

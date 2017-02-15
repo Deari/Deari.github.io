@@ -122,7 +122,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -169,7 +169,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }        
     }).catch(e => {
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
