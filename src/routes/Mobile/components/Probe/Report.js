@@ -6,7 +6,7 @@ import AnalysisContainer from './Analysis'
 import './Report.scss'
 
 const getTimeStr = (date)=>{
-  let mouth =  Math.floor((date.getMonth()+3)/3)
+  let mouth = date.getMonth()+1
   let day = date.getDate()
   if (mouth < 10) {
     mouth = '0' + mouth

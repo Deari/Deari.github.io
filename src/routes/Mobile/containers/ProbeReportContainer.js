@@ -81,7 +81,8 @@ export const Promised = (Wrapped) => class extends React.Component {
        const timeRes = await fetchUtil.getJSON(timeApiUrl)
        if(timeRes.status == 200) {
         console.info(timeRes.data);
-        this.setState(timeRes.data);
+        this.setState(DATA)
+        //this.setState(timeRes.data);
        } else {
         Debug.warn('获取数据异常', res);
         this.setState(DATA)
@@ -95,7 +96,8 @@ export const Promised = (Wrapped) => class extends React.Component {
       const dayRes = await fetchUtil.getJSON(dayApiUrl)
       if (dayRes.status == 200) {
         console.info(dayRes.data);
-        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+        //this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+         this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
       } else {
         Debug.warn('获取数据异常', res);
         this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
