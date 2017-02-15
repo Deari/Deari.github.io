@@ -43,7 +43,7 @@ export const Unapprove = (props) => {
   return <div>
     <p>审核未通过原因:</p>
     <p></p>
-    <Link to={editUrl}><button type="button">编辑</button></Link>
+    <Link to={editUrl}><button className="btn btn-primary" type="button">编辑</button></Link>
   </div>
 }
 
@@ -52,7 +52,7 @@ export const AdminUnshelved = (props) => {
   return <div>
     <p>下架原因:</p>
     <p>{adminUnshelvedReason}</p>
-    <button type="button">联系管理员</button>
+    <button className="btn btn-primary" type="button">联系管理员</button>
   </div>
 }
 
@@ -95,7 +95,7 @@ export class SaleRange extends React.Component {
                onChange={this.changeRange.bind(this)} /> 在所有地区供应
         <input type="radio" name="aaa" value={0} checked={unshelved == 0} 
                onChange={this.changeRange.bind(this)} /> 下架
-        <button type="submit">保存</button>
+        <button className="btn btn-primary" type="submit">保存</button>
       </form>
     </div>
   }

@@ -17,7 +17,7 @@ class AppsDetail extends React.Component {
       tags: [],
       versions: [],
       activeCodeVersion: '',
-      activeCodeStatus: 0,
+      activeCodeStatus: 5,
       showAll: false
     };
   }
@@ -72,9 +72,10 @@ class AppsDetail extends React.Component {
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
     const activeCodeVersion = (data.versions && data.versions[0] && data.versions[0].codeVersion) || ''
-    const activeCodeStatus = this.getCurrentVersionStatus(data)
+    // const activeCodeStatus = this.getCurrentVersionStatus(data)
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, activeCodeVersion: activeCodeVersion, activeCodeStatus: activeCodeStatus, versions: versions});
+    //this.setState({data: data, activeCodeVersion: activeCodeVersion, activeCodeStatus: activeCodeStatus, versions: versions});
+    this.setState({data: data, activeCodeVersion: activeCodeVersion, versions: versions});
   }
 
   getCurrentVersionStatus(data) {

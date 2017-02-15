@@ -12,8 +12,8 @@ export const Header = (props) => {
   const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == activeCodeVersion) && latestCodeStatus.codeStatus == 5) ||
         ((preCodeStatus && preCodeStatus.codeVersion == activeCodeVersion) && preCodeStatus.codeStatus == 5) ? true : false
 
-  return data && data.mine && len > 0 && <div>
-    <ul>
+  return data && data.mine && len > 0 && <div className="tab-nav">
+    <ul className="tab-list">
       { (!preCodeStatus || (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5)) ? '' :
         <li className={preCodeStatus.codeVersion == activeCodeVersion && 'active'} 
             onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus)}}>
@@ -29,8 +29,7 @@ export const Header = (props) => {
         </a>
       </li>
     </ul>
-    { showCreate && <Link to={createUrl}><button>发布新版本</button></Link> }
-    <hr/>
+    { showCreate && <Link to={createUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>
 }
 
