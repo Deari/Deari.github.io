@@ -234,7 +234,7 @@
         cursor:pointer;
         a{
           display:block;
-          color: #000;
+          color: $black-color;
         }
     }
     .active{
@@ -250,4 +250,24 @@
     top:20px;
     right:15px;
   }
+}
+.radio-from{
+  margin:20px 0;
+  .redio-item{
+    display:block;
+    padding-bottom:15px;
+    font-size:14px;
+    color:$black-color;
+    cursor:pointer;
+  }
+}
+.text-field{
+  min-height:60px;
+  margin:20px 0;
+  padding:10px;
+  border-radius:6px;
+  border:2px solid #eee;
+}
+.btn.fieldBtn{
+  margin-bottom:20px;
 }

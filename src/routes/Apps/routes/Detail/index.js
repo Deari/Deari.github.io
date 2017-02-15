@@ -18,7 +18,7 @@ class AppsDetail extends React.Component {
       versions: [],
       currentCode: '',
       activeCodeVersion: '',
-      activeCodeStatus: 5,
+      activeCodeStatus: 0,
       showAll: false
     };
   }
