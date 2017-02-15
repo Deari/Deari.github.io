@@ -73,8 +73,8 @@ export const Promised = (Wrapped) => class extends React.Component {
 
     const hourParams = `storeId=10021141&startTime=${startTime}&endTime=${endTime}&${signParams}`
     const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&${signParams}`
-    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/hour?${hourParams}`)
-    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/day?${dayParams}`)
+    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/hour?${hourParams}`)
+    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/day?${dayParams}`)
 
     try{
        const timeRes = await fetchUtil.getJSON(timeApiUrl)
