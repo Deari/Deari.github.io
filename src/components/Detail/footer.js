@@ -40,19 +40,19 @@ export const Versions = (props) => {
 
 export const Unapprove = (props) => {
   const { editUrl, data } = props
-  return <div>
-    <p>审核未通过原因:</p>
-    <p></p>
-    <Link to={editUrl}><button type="button">编辑</button></Link>
+  return <div className="table-info">
+    <h3 className="app-title">审核未通过原因:</h3>
+    <p className="text-field"></p>
+    <Link to={editUrl}><button className="btn btn-primary fieldBtn" type="button">编辑</button></Link>
   </div>
 }
 
 export const AdminUnshelved = (props) => {
   const { adminUnshelvedReason } = props.data && props.data || ''
-  return <div>
-    <p>下架原因:</p>
-    <p>{adminUnshelvedReason}</p>
-    <button type="button">联系管理员</button>
+  return <div className="table-info">
+    <h3 class="app-title">下架原因:</h3>
+    <p className="text-field">{adminUnshelvedReason}</p>
+    <button className="btn btn-primary fieldBtn" type="button">联系管理员</button>
   </div>
 }
 
@@ -88,14 +88,18 @@ export class SaleRange extends React.Component {
 
     const { operation } = this.state
 
-    return <div>
-      <p>销售范围</p>
-      <form onSubmit={this.save.bind(this)}>
+    return <div className="table-info">
+      <h3 class="app-title">销售范围</h3>
+      <form className="radio-from" onSubmit={this.save.bind(this)}>
+        <label className="redio-item">
         <input type="radio" name="aaa" value={'shelve'} checked={operation == 'shelve'} 
                onChange={this.changeRange.bind(this)} /> 在所有地区供应
+        </label>
+        <label className="redio-item">
         <input type="radio" name="aaa" value={'unshelve'} checked={operation == 'unshelve'} 
                onChange={this.changeRange.bind(this)} /> 下架
-        <button type="submit">保存</button>
+        </label>
+        <button className="btn btn-primary" type="submit">保存</button>
       </form>
     </div>
   }

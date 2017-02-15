@@ -73,6 +73,7 @@ class AppsDetail extends React.Component {
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
 
+
     const { currentCode } = this.state
     const activeCode = data.versions[0]
     const activeCodeStatus = this.getLatestVersionStatus(data, activeCode)

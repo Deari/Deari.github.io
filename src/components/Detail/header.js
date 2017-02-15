@@ -16,8 +16,8 @@ export const Header = (props) => {
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
 
-  return data && data.mine === 1 && len > 0 && <div>
-    <ul>
+  return data && data.mine === 1 && len > 0 && <div className="tab-nav">
+    <ul className="tab-list">
       { (!preCodeStatus || hidePreCode) ? '' :
         <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
             onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
@@ -33,8 +33,7 @@ export const Header = (props) => {
         </a>
       </li>
     </ul>
-    { showCreate && <Link to={createUrl}><button>发布新版本</button></Link> }
-    <hr/>
+    { showCreate && <Link to={createUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>
 }
 
