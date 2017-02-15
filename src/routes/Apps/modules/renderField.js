@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
+import classnames from 'classnames'
 
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
@@ -86,6 +87,8 @@ export class renderTags extends Component {
   }
   
 }
+
+
 
 export class renderImageUpload extends Component {
 

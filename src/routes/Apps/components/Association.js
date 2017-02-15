@@ -1,21 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-const defaultMoule = (props) => (
-  <div>
-    <span>（icon）选择</span>
-  </div>
-)
-const changedMoule = (props) => (
-  <div>
-    <img src=""/>
-  </div>
-)
+import classnames from 'classnames';
+import './association.scss'
+import { toggleStep, updateSecondForm } from '../routes/Editor/modules/edit'
+
 class AssociationModule extends Component {
   state={
     appActive:0,
     weigetActive:0,
     hardwareActive:0,
+    active:'',
   }
   onchange(e){
     if(e.target.name === "app"){
@@ -39,18 +34,28 @@ class AssociationModule extends Component {
     }
     
   }
+  appModalOpen(){
+     
+  }
   render(){
-    const { appActive, weigetActive , hardwareActive} = this.state
+    const changedMoule = (props) => (
+      <div>
+        <img src=""/>
+      </div>  
+    )
+    const { appActive, weigetActive , hardwareActive,active} = this.state
     return (
-    <div>
+    <div className="association">
       <div className="form-row">
         <label htmlFor="app">应用</label>
         <div className="row-right">
           <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)}/>
         </div>
-        <div>
-          {appActive && defaultMoule()}
-        </div>
+        <ul className={classnames({ 'active': appActive })}>
+           <li >
+            <span>（icon）选择</span>
+          </li>
+        </ul>
       </div>
       <div className="form-row">
         
@@ -58,9 +63,11 @@ class AssociationModule extends Component {
         <div className="row-right">
          <input id="weiget" type="checkbox" name='weiget' onChange={this.onchange.bind(this)}/>
         </div>
-        <div>
-          {weigetActive && defaultMoule()}
-        </div>
+        <ul className={classnames({ 'active': weigetActive })}>
+           <li >
+            <span>（icon）选择</span>
+          </li>
+        </ul>
       </div>
        <div className="form-row">
        
@@ -68,25 +75,26 @@ class AssociationModule extends Component {
         <div className="row-right">
          <input id="hardware" type="checkbox" name='hardware' onChange={this.onchange.bind(this)}/>
         </div>
-        <div>
-          {hardwareActive&&defaultMoule()}
-        </div>
+        <ul className={classnames({ 'active': hardwareActive })}>
+           <li >
+            <span>（icon）选择</span>
+          </li>
+        </ul>
       </div>
     </div>
     )
   }
 }
-// const mapDispatchToProps = {
+//  const mapDispatchToProps = {
   
-// }
+//  }
 
 // const mapStateToProps = ({ appsCreate }) => ({
 //   initialValues: appsCreate.form,
-//   tags: appsCreate.tags,
-//   cates: appsCreate.cates
 // })
 
 export default connect(
+
 )(reduxForm({
   form: 'AssociationModule',
   fields: [],

@@ -9,7 +9,7 @@
   bottom           : 0;
   z-index          : 300;
   .backdrop {
-    position         : absolute;
+    position         : fixed;
     top              : 0;
     left             : 0;
     width            : 100%;
