@@ -17,8 +17,8 @@ class AppsDetail extends React.Component {
         { LatestVersion(this.props) }
 
         { activeCodeStatus === 0 && Versions(this.props) }
-        { activeCodeStatus === 1 && <Link to={editUrl}><button type="button">编辑</button></Link> }
-        { activeCodeStatus === 3 && <button type="button" onClick={()=>{onClickPublish()}}>确认发布</button> }
+        { activeCodeStatus === 1 && <div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div> }
+        { activeCodeStatus === 3 && <button type="button"  className="btn btn-primary" onClick={()=>{onClickPublish()}}>确认发布</button> }
         { activeCodeStatus === 4 && Unapprove(this.props) }
         { activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
         { activeCodeStatus === 6 && AdminUnshelved(this.props) }

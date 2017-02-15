@@ -18,13 +18,6 @@ export const Header = (props) => {
 
   return data && data.mine === 1 && len > 0 && <div className="tab-nav">
     <ul className="tab-list">
-      { (!preCodeStatus || hidePreCode) ? '' :
-        <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
-            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
-          <div>{preCodeStatus.codeVersion}</div>
-          <div>{preCodeStatus.codeStatusName}</div>
-        </li>
-      }
       <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active'}
           onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus, latestVersions)}}>
         <a>
@@ -32,6 +25,13 @@ export const Header = (props) => {
           <div>{latestCodeStatus.codeStatusName}</div>
         </a>
       </li>
+      { (!preCodeStatus || hidePreCode) ? '' :
+        <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
+            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
+          <div>{preCodeStatus.codeVersion}</div>
+          <div>{preCodeStatus.codeStatusName}</div>
+        </li>
+      }
     </ul>
     { showCreate && <Link to={createUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>
