@@ -12,30 +12,64 @@ const changedMoule = (props) => (
   </div>
 )
 class AssociationModule extends Component {
-  
-  render(){
+  state={
+    appActive:0,
+    weigetActive:0,
+    hardwareActive:0,
+  }
+  onchange(e){
+    if(e.target.name === "app"){
+      if(e.target.checked){
+        this.setState({appActive:1})
+      }else{
+        this.setState({appActive:0})
+      }
+    }else if(e.target.name === "weiget"){
+      if(e.target.checked){
+        this.setState({weigetActive:1})
+      }else{
+        this.setState({weigetActive:0})
+      }
+    }else{
+       if(e.target.checked){
+        this.setState({hardwareActive:1})
+      }else{
+        this.setState({hardwareActive:0})
+      }
+    }
     
+  }
+  render(){
+    const { appActive, weigetActive , hardwareActive} = this.state
     return (
-         <div>
-      <div>
-        <Field id="isShow" component="input" type="checkbox" />
-        <label htmlFor="isShow">应用</label>
+    <div>
+      <div className="form-row">
+        <label htmlFor="app">应用</label>
+        <div className="row-right">
+          <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)}/>
+        </div>
         <div>
-          {defaultMoule()}
+          {appActive && defaultMoule()}
         </div>
       </div>
-      <div>
-        <Field id="isShow" component="input" type="checkbox" />
-        <label htmlFor="isShow">组件</label>
+      <div className="form-row">
+        
+        <label htmlFor="weiget">组件</label>
+        <div className="row-right">
+         <input id="weiget" type="checkbox" name='weiget' onChange={this.onchange.bind(this)}/>
+        </div>
         <div>
-          {defaultMoule()}
+          {weigetActive && defaultMoule()}
         </div>
       </div>
-       <div>
-        <Field id="isShow" component="input" type="checkbox" />
-        <label htmlFor="isShow">硬件</label>
+       <div className="form-row">
+       
+        <label htmlFor="hardware">硬件</label>
+        <div className="row-right">
+         <input id="hardware" type="checkbox" name='hardware' onChange={this.onchange.bind(this)}/>
+        </div>
         <div>
-          {defaultMoule()}
+          {hardwareActive&&defaultMoule()}
         </div>
       </div>
     </div>
