@@ -242,24 +242,23 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     }
 } 
 /*弹窗*/
-      .popup-box {
-        width: 800px;
-        height: 500px;
-        background: #fff;
-        border-radius: 6px;
-      }
-      .popup-title {
+     .popup-title {
         padding: 20px;
         font-size: 16px;
         font-weight: normal;
         line-height: 12px;
         border-bottom: 1px solid #e7e7e7;
+        .icon-turnoff {
+          float: right;
+        }
       }
-      .icon-turnoff {
-        float: right;
-      }
+     
+      .popup-box {
+        width: 800px;
+        background: #fff;
+        border-radius: 6px;
       .popup-search {
-        margin: 14px 10px;
+        margin: 0 10px 14px;
       }
       .popup-search input {
         padding: 0 10px 0 26px;
@@ -274,6 +273,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
       .list-title{
         margin: 10px 10px 0;
         height: 36px;
+        font-size: 16px;
         color: #666;
         line-height: 36px;
         background: #eee;
@@ -302,6 +302,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         overflow-x: hidden;
         border: 1px solid #E7E7E7;
       }
+      .list-box{
+        height:288px;
+      }
       .list-container{
         padding: 6px 0;
         overflow: hidden;
@@ -312,7 +315,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
       }
       .info-img{
         display: block;
-        margin-left: 12px;
         width: 90px;
         height: 90px;
         background: #eee;
@@ -354,17 +356,26 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         margin-top: 10px;
         text-align: center;
       }
+      .info-btn .btn-cancel{
+        width: 84px;
+        height: 30px;
+        font-size: 14px;
+        border: 1px solid #e7e7e7;
+        border-radius: 4px;
+        color: #333;
+        background: white;
+      }
       .info-btn button{
         width: 84px;
         height: 30px;
         font-size: 14px;
-        border: 1px solid black;
+        border: 1px solid #e7e7e7;
         border-radius: 4px;
-        background: white;
-      }
-      .info-btn button:hover{
         color: #fff;
         background: #2692fb;
+      }
+      .null-box{
+        height: 32px;
       }
       .popup-save{
         position: absolute;
@@ -377,4 +388,5 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         border-radius: 4px;
         border: none;
         background: #2692fb;
+      }
       }

@@ -5,6 +5,8 @@ import debug from 'utils/debug'
 const PREFIX = 'EDIT_APP_'
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
+const TOGGLE_ACTIVE = PREFIX+'TOGGLE_ACTIVE'
+//const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -28,6 +30,16 @@ export const toggleStep = (page) => ({
   type : TOGGLE_STEP,
   page
 })
+
+export const toggleActive= (active) => ({
+  type : TOGGLE_ACTIVE,
+  active: active
+})
+
+// export const toggleIdList= (idList) => ({
+//   type : TOGGLE_IDLIST,
+//   idList
+// })
 
 export const updateForm1 = (data) => ({
   type: UPDATE_FORM1,
@@ -73,7 +85,7 @@ export const getAppInfo = (appId) => {
 
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
-        const { codeDesc, codeVersion} = res.data && res.data.versions && res.data.versions[0] || ''
+        const { codeDesc, codeVersion } = res.data && res.data.versions && res.data.versions[0] || ''
         const autoPublish  = res.data && res.data.autoPublish || 1
         const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
         const rnFrameworkVersion = res.data && res.data.rnFrameworkVersion || 0
@@ -123,14 +135,32 @@ export const updateSecondForm = (values) => {
   }
 }
 const ACTION_HANDLERS = {
-  
+//  [TOGGLE_IDLIST]: (state, action) => {
+//     alert(1111)
+//    console.log(action)
+//     return {
+//       ...state,
+//       form2:{
+//         ...state.form2,
+//         idList:action.idList
+//       }
+//     }
+//   },
   [TOGGLE_STEP]: (state, action) => {
     return {
       ...state,
       page: action.page
     }
   },
-
+  [TOGGLE_ACTIVE]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        active:action.active
+      }
+    }
+  },
   [UPDATE_FORM1]: (state, action)=>{
     return {
       ...state,
@@ -159,10 +189,11 @@ const ACTION_HANDLERS = {
   [RECEIVE_CATES]: (state, action) => ({
     ...state,
     cates: action.data
-  })
+  }),
 }
 
 const initialState = {
+ 
   page: 1,
   cates: [{
     categoryId: 1,
@@ -197,7 +228,10 @@ const initialState = {
   },
 
   form2: {
-      active:true,
+      active:{
+        trim:0,
+        type:""
+      },
       publishList: [
         { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
@@ -207,6 +241,7 @@ const initialState = {
         {value:"0.1.0"},
         {value:"1.0.0"}
       ],
+      idList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,

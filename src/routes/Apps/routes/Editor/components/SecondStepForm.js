@@ -4,21 +4,21 @@ import { IndexLink, Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
-import { toggleStep } from '../modules/edit'
+import { toggleStep, toggleActive } from '../modules/edit'
 import { 
     renderField,
     versionTextArea,
     renderFile ,
     renderSelect, 
     renderPublishRadioBox ,
+    ModalList,
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
-const modalClose = ()=>{
-  
-}
+
 const SecondStepForm = props => {
-  const { handleSubmit, submitting, toggleStep, previous, initialValues} = props
-  const {isH5App,publishList,versionsList,active} = initialValues
+  const { handleSubmit, submitting, previous, initialValues} = props
+  const {isH5App,publishList,versionsList,active,datalist} = initialValues
+  console.log(initialValues)
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -52,44 +52,16 @@ const SecondStepForm = props => {
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       {isH5App === 0 && <AssociationModule />}
       <Modal type={"alert"}
-             active={active}
+             active={active.trim}
              hideButtons={true}
              title={true}
-             onClose={updateSecondForm({active:false})}
+             onClose={()=> props.toggleActive({trim:0,type:""})}
         >
-        <div className="popup-box">      
-          <form className="popup-search">
-            <input type="text" placeholder="请输入硬件名称进行搜索" />
-          </form>
-          <ul className="list-title">
-            <li className="w116">Logo</li>
-            <li className="w320">应用名称</li>
-            <li className="w78">价格</li>
-            <li className="w140">状态</li>
-            <li className="w104">操作</li>
-          </ul>
-          <div className="listContent">
-            <div className="list-container">
-              <div className="info-img-container w116">
-                <p className="info-img" href="/apps/detail/771"></p>
-              </div>
-              <div className="info-content w320">
-                <p className="info-name">前端测试H5编辑页</p>
-                <p className="info-introduce">前端测试H5编辑页前端测试H5编辑页前端测试H5编辑页</p>
-              </div>
-              <div className="info-price w78">免费</div>
-              <div className="info-status w140">待审核</div>
-              <div className="info-btn w104">
-                <button disabled="">取消选择</button>
-              </div>
-            </div>
-          </div>
-          <button className="popup-save">保存</button>
-        </div>
+      <Field name="idList" component={ModalList} datalist={datalist} type={active.type}/>
       </Modal>
       <div className="form-btn">
         <div>
-          <button type="button" className="previous" onClick={()=>{toggleStep(1)}}>上一步</button>
+          <button type="button" className="previous" onClick={()=>{props.toggleStep(1)}}>上一步</button>
           <button type="submit" className="next" disabled={submitting}> 提交</button>
         </div>
       </div>
@@ -100,6 +72,7 @@ const SecondStepForm = props => {
 
 const mapDispatchToProps = {
   toggleStep,
+  toggleActive
 }
 
 const mapStateToProps = ({appsEdit}) => ({

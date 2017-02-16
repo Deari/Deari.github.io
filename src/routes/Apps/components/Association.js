@@ -3,13 +3,10 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleStep, updateSecondForm } from '../routes/Editor/modules/edit'
-
+import {toggleActive} from '../routes/Editor/modules/edit'
+import { validate } from '../modules/validate'
 class AssociationModule extends Component {
   state={
-    appActive:0,
-    weigetActive:0,
-    hardwareActive:0,
     active:'',
   }
   onchange(e){
@@ -34,9 +31,6 @@ class AssociationModule extends Component {
     }
     
   }
-  appModalOpen(){
-     
-  }
   render(){
     const changedMoule = (props) => (
       <div>
@@ -52,7 +46,7 @@ class AssociationModule extends Component {
           <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)}/>
         </div>
         <ul className={classnames({ 'active': appActive })}>
-           <li >
+           <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
             <span>（icon）选择</span>
           </li>
         </ul>
@@ -64,7 +58,7 @@ class AssociationModule extends Component {
          <input id="weiget" type="checkbox" name='weiget' onChange={this.onchange.bind(this)}/>
         </div>
         <ul className={classnames({ 'active': weigetActive })}>
-           <li >
+           <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
             <span>（icon）选择</span>
           </li>
         </ul>
@@ -76,7 +70,7 @@ class AssociationModule extends Component {
          <input id="hardware" type="checkbox" name='hardware' onChange={this.onchange.bind(this)}/>
         </div>
         <ul className={classnames({ 'active': hardwareActive })}>
-           <li >
+           <li onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
             <span>（icon）选择</span>
           </li>
         </ul>
@@ -86,11 +80,11 @@ class AssociationModule extends Component {
   }
 }
   const mapDispatchToProps = {
-  
+    toggleActive  
   }
 
  const mapStateToProps = ({ appsEdit }) => ({
-   appsEdit
+    appsEdit
  })
 
 export default connect(
@@ -99,5 +93,7 @@ export default connect(
 )(reduxForm({
   form: 'AssociationModule',
   fields: [],
-  forceUnregisterOnUnmount: true,
+  keepDirtyOnReinitialize: true,
+  enableReinitialize: true,
+  validate,
 })(AssociationModule))

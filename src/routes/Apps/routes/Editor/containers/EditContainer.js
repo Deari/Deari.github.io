@@ -108,7 +108,8 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-  
+   console.log(values.idList)
+   return
     this.isLogin()
 
     let sourceVal = getSourceVal()
