@@ -31,7 +31,7 @@ const LeftSideBar = props => (
           <span>图文类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-        <div className="menu-cont">
+        <div className="menu-cont" style={{height: 278}}>
           图文类
         </div>
       </Collapse>
@@ -42,7 +42,7 @@ const LeftSideBar = props => (
           <span>营销互动类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-        <div className="menu-cont">
+        <div className="menu-cont" style={{height: 278}}>
           营销互动类
         </div>
       </Collapse>
@@ -53,7 +53,7 @@ const LeftSideBar = props => (
           <span>商品类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-        <div className="menu-cont">
+        <div className="menu-cont" style={{height: 278}}>
           商品类
         </div>
       </Collapse>

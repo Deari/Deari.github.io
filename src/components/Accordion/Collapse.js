@@ -24,10 +24,15 @@ export class Collapse extends Component {
       }
     }
 
-    const contentProps = {
-      style: {
+    const contentStyle = {
+      ...{
         display: this.props.isActive ? 'inherit' : 'none'
-      }
+      },
+      ...content.props.style
+    }
+
+    const contentProps = {
+      style: contentStyle
     }
 
     return <div className={classnames('collapse', this.props.className)}>
