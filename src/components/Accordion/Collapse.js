@@ -1,4 +1,5 @@
 import React, { Component, PropTypes, Children } from 'react'
+import classnames from 'classnames'
 
 export class Collapse extends Component {
 
@@ -29,7 +30,7 @@ export class Collapse extends Component {
       }
     }
 
-    return <div>
+    return <div className={classnames('collapse', this.props.className)}>
       {React.cloneElement(title, titleProps)}
       {React.cloneElement(content, contentProps)}
     </div>

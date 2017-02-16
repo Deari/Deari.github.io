@@ -1,6 +1,7 @@
 import React, { Component, PropTypes, Children } from 'react'
 import Collapse from './Collapse'
 import invariant from 'invariant'
+import classnames from 'classnames'
 
 export class Accordion extends Component {
 
@@ -24,7 +25,7 @@ export class Accordion extends Component {
   }
 
   render() {
-    return <div className="Accordion">
+    return <div className={classnames('accordion', this.props.className)}>
       {::this.getCollapses()}
     </div>
   }
