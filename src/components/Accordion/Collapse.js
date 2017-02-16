@@ -5,7 +5,7 @@ export class Collapse extends Component {
   static propTypes = {
     children: PropTypes.arrayOf(React.PropTypes.node).isRequired,
     isActive: PropTypes.bool,
-    onClickTitle: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -19,7 +19,7 @@ export class Collapse extends Component {
 
     const titleProps = {
       onClick: () => {
-        this.props.onClickTitle(this.props.isActive)
+        this.props.onSelect(this.props.isActive)
       }
     }
 

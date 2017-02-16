@@ -1,5 +1,6 @@
 import React, { Component, PropTypes, Children } from 'react'
 import Collapse from './Collapse'
+import invariant from 'invariant'
 
 export class Accordion extends Component {
 
@@ -10,9 +11,11 @@ export class Accordion extends Component {
   getCollapses() {
     const { children } = this.props
     return Children.map(children, (child, index) => {
+      invariant(child.type === Collapse, 'The children\'s type of Accordion ' +
+        'must be <Collapse/>')
       const CollapseProps = {
         isActive: this.state.activeIndex === index,
-        onClickTitle: () => {
+        onSelect: () => {
           this.setState({ activeIndex: index })
         },
       }
@@ -26,7 +29,5 @@ export class Accordion extends Component {
     </div>
   }
 }
-
-
 
 export default Accordion
