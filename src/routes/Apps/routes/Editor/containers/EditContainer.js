@@ -98,7 +98,7 @@ class EditContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-            debug.warn('网络错误')
+          console.log('网络错误', e)
         })
 
       } else {
@@ -159,7 +159,7 @@ class EditContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
         
       } else {

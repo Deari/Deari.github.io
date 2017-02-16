@@ -29,7 +29,7 @@ class HardwareDetail extends React.Component {
         e.preventDefault()
       }
     } catch (e) {
-      debug.warn("获取详情接口返回错误")
+      console.log("获取详情接口返回错误", e)
       e.preventDefault()
     }
   }
@@ -45,7 +45,7 @@ class HardwareDetail extends React.Component {
         e.preventDefault()
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误")
+      console.log("获取标签接口返回错误", e)
       e.preventDefault()
     }
   }
