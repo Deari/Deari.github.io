@@ -40,7 +40,7 @@ export class Preview extends Component {
     let { layouts } = this.props.preview
     try {
       const lay = layouts.find(l => l.i === e.id)
-      return lay || { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+      return lay || { ...e.defaultLayout, ...{ x: 0, y: 2 } }
     } catch (e) {
       alert(e)
     }

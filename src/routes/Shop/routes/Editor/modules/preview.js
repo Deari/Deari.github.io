@@ -21,6 +21,7 @@ const DELETE_ELEMENT = 'DELETE_ELEMENT' // To : src/routes/Shop/routes/Editor/mo
 const EDIT_ELEMENT = 'EDIT_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js'
 const REQUEST_PREVIEW = 'REQUEST_PREVIEW'
 
+// export const addElement = makeActionCreator(ADD_ELEMENT, 'element', 'id')
 export const addElement = makeActionCreator(ADD_ELEMENT, 'element')
 export const setLayout = makeActionCreator(SET_LAYOUT, 'layouts')
 
@@ -57,12 +58,13 @@ const ACTION_HANDLERS = {
   [REQUEST_PREVIEW]: (state, action) => ({ ...state, ...action.data.viewData }),
 
   [ADD_ELEMENT]: (state, action) => ({
-    ...state, elements: [ ...state.elements,
-      {
-        id: getRandomString({}),
-        selected: false,
-        ...action.element,
-      } ]
+    ...state, elements: state.elements.map(element => ({
+      ...element, selected: false,
+    })).concat({
+      id: getRandomString({})+"_"+Date.now(),
+      selected: true,
+      ...action.element,
+    })
   }),
 
   [SET_LAYOUT]: (state, action) => ({
@@ -83,10 +85,10 @@ const ACTION_HANDLERS = {
 
   [EDIT_ELEMENT]: (state, action) => ({
     ...state, elements: state.elements.map(element => {
-      if(element.id === action.id && Array.isArray(element.setting)) {
+      if(element.id === action.id && Array.isArray(element.codeSetting)) {
         return {
           ...element,
-          setting: element.setting.map(item=>{
+          codeSetting: element.codeSetting.map(item=>{
             if(item.label === action.label) {
               return {
                 ...item,
