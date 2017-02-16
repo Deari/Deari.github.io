@@ -42,7 +42,7 @@ export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, er
     {
       sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
         <span className={`${item.image} row-img`}></span>
-        <div className="row-radio">
+        <div className="row-radio row-rotate">
           <input type="radio" name="radio" checked={input.value == item.value}/>
           <span>
             <i className="iconfont icon-radio1"></i>
@@ -122,7 +122,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -169,7 +169,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }        
     }).catch(e => {
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 

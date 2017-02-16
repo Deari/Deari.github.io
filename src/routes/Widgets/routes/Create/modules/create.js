@@ -141,7 +141,7 @@ export const getTags = () => {
         debug.warn("获取标签接口错误")
       }
     }).catch(e => {
-      debug.warn("网络错误")
+      console.log("网络错误", e)
     })
   }
 }
@@ -156,7 +156,7 @@ export const getCates = () => {
         debug.warn("获取分类接口错误")
       }
     }).catch(e => {
-      debug.warn("网络错误")
+      console.log("网络错误", e)
     })
   }
 }

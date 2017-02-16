@@ -109,7 +109,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e=>{
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -155,7 +155,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e=>{
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -187,7 +187,7 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
       处理您的应用，然后才能在应用市场上提供它。当您的应用处于“审核中”状态，您无法拒绝您的应用。
     </p>
     {
-      publishList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
+      publishList.map(item => <div className="row-sizeB" onClick={e => {input.onChange(item.value)}}>
           <div className="row-radio">
 	          <input type="radio" name="radio" checked={input.value == item.value}/>
 	          <span>

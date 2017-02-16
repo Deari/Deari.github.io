@@ -36,7 +36,38 @@ export default class Login extends Component {
     }, url, loginUrl, callbackUrl)
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const isLogin = this.checkIslogin()
+    return true;
+  }
+
+  checkIslogin() {
+    const cookie = document.cookie
+    const cookieArr = cookie && cookie.split(";")
+    const cookieObj = {
+      mix: false,
+      uid: false
+    }
+    cookieArr.length > 0 && cookieArr.map((item, index) => {
+      const arr = item.toString().split("=")
+      const name = arr && arr.length > 0 && arr[0].trim()
+      const value = arr && arr.length > 0 && arr[1].trim()
+      if (name == "WG-PPC-test1" && value) {
+        cookieObj.mix = true
+      }
+      if (name == "WG-PPC-test2" && value) {
+        cookieObj.uid = true
+      }
+    })
+    if (!(cookieObj.mix && cookieObj.uid)) {
+      const origin = location.origin
+      const href = location.href
+      window.location.href = `${origin}/login?callbackurl=${href}`
+    } 
+  }
+
   componentDidMount() {
+    this.checkIslogin()
     let url = getLoginDomain(`passport/session-check.json`)
 
     LoginSDK.getStatus((status, data) => {

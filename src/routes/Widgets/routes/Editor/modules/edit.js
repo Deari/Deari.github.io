@@ -185,7 +185,7 @@ export const fetchTags = () => {
         throw Error ('get tags error')
       }
     }).catch(e => {
-      debug.warn("网络错误")
+      console.log("网络错误", e)
     })
   }
 }
@@ -203,7 +203,7 @@ export const fetchCates = () => {
         throw Error ('get Categories error')
       }
     }).catch(e => {
-      debug.warn("网络错误")
+      console.log("网络错误", e)
     })
   }
 }
@@ -234,7 +234,7 @@ export const getAppInfo = (appId) => {
         debug.warn("获取组件详情失败")
       }
     }).catch(e => {
-      debug.warn("获取组件详情失败")
+      console.log("获取组件详情失败", e)
     })
   }
 }
