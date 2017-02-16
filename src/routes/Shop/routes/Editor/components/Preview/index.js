@@ -36,6 +36,10 @@ export class Preview extends Component {
     })))
   }
 
+  onDragStart(layouts, l) {
+    this.props.selectElement(l.i);
+  }
+
   generateLayout(e) {
     let { layouts } = this.props.preview
     try {
@@ -67,7 +71,6 @@ export class Preview extends Component {
       return <div key={e.id}
                   style={this.generateStyle(e)}
                   className={className}
-                  onClick={this.props.selectElement.bind(null, e.id)}
                   data-grid={this.generateLayout(e)}>
         <Element {...e} layout={this.generateLayout(e)} gridProps={this.props.gridProps}/>
       </div>
@@ -81,6 +84,7 @@ export class Preview extends Component {
 
         <ReactGridLayout className="layout"
                          {...gridProps}
+                         onDragStart={::this.onDragStart} 
                          onLayoutChange={::this.onLayoutChange}>
           {this.generateDOM()}
         </ReactGridLayout>
