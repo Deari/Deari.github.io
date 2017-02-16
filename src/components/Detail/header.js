@@ -1,7 +1,7 @@
 import { Link } from 'react-router'
 
 export const Header = (props) => {
-  const { data, createUrl, onChangeVersion, latestVersion } = props
+  const { data, editUrl, onChangeVersion, latestVersion } = props
   const latestVersions = data && data.versions && data.versions[0] || {}
   const preVersions = data && data.versions && data.versions[1] || {}
   const len = data && data.versions && data.versions.length
@@ -33,7 +33,7 @@ export const Header = (props) => {
         </li>
       }
     </ul>
-    { showCreate && <Link to={createUrl}><button className="btn btn-primary">发布新版本</button></Link> }
+    { showCreate && <Link to={editUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>
 }
 
