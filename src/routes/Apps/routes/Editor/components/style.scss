@@ -5,8 +5,8 @@ $text-color:#020202;
 i.icon-radio{display:none;font-size:18px;color:#cdd4dc;}
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}
 i.icon-radio1{display:inline-block;font-size:18px;color:#cdd4dc;}
-i.icon-publish{ font-size: 18px;}
-input[type="checkbox"],input[type="radio"]{position:absolute;top:-2px;left:-9px;width:20px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
+i.icon-publish{font-size:18px!important;}
+input[type="checkbox"],input[type="radio"]{position:absolute;top:-2px;left:-9px;width:20px;opacity:0;height:28px;cursor:pointer; z-index: 1;}
 input[type="checkbox"]:checked + span i.icon-radio,input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
 input[type="checkbox"]:checked + span i.icon-radio1,input[type="radio"]:checked + span i.icon-radio1{display: none;}
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
@@ -40,6 +40,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     }
     .row-right{
         margin: 0;
+        position: relative;
         @include float-left; 
         input[type="text"]{
             width: 574px; 
@@ -99,8 +100,8 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             vertical-align: middle;
         }
         .row-sizeB{
-            margin:14px 0;
             float: none;
+            margin:14px 0;
             span{
                 display: inline-block;
             }
