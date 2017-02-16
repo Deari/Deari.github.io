@@ -161,7 +161,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('接口错误')
+      console.log('接口错误', e)
     })
   }
 
@@ -229,7 +229,7 @@ export class renderImgsUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e => {
-      debug.warn('上传图片不符合规格', e)
+      console.log('上传图片不符合规格', e)
     })
   }
 
@@ -288,7 +288,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e => {
-      debug.warn('文件代码包格式错误')
+      console.log('文件代码包格式错误', e)
     })
   }
 

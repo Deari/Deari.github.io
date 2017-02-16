@@ -31,7 +31,7 @@ class AppsDetail extends React.Component {
         debug.warn("获取详情接口返回错误")
       }
     } catch (e) {
-     debug.warn("获取详情接口返回错误")
+     console.log("获取详情接口返回错误", e)
     }
   }
 
@@ -45,7 +45,7 @@ class AppsDetail extends React.Component {
         debug.warn("获取标签接口返回错误")
       }
     } catch (e) {
-      debug.warn("获取标签接口返回错误")
+      console.log("获取标签接口返回错误", e)
     }
   }
 
