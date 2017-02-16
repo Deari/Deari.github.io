@@ -52,10 +52,10 @@ export default class Login extends Component {
       const arr = item.toString().split("=")
       const name = arr && arr.length > 0 && arr[0].trim()
       const value = arr && arr.length > 0 && arr[1].trim()
-      if (name == "WG-PPC-MIX" && value) {
+      if (name == "WG-PPC-test1" && value) {
         cookieObj.mix = true
       }
-      if (name == "WG-PPC-UID" && value) {
+      if (name == "WG-PPC-test2" && value) {
         cookieObj.uid = true
       }
     })

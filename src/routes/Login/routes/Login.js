@@ -67,8 +67,8 @@ export class Login extends Component {
   serCookie(expiredays) {
     var exdate = new Date()
     exdate.setDate(exdate.getDate() + expiredays)
-    document.cookie = `WG-PPC-MIX=testmix; expires=${exdate.toGMTString()}`
-    document.cookie = `WG-PPC-UID=testuid; expires=${exdate.toGMTString()}`
+    document.cookie = `WG-PPC-test1=testmix; expires=${exdate.toGMTString()}`
+    document.cookie = `WG-PPC-test2=testuid; expires=${exdate.toGMTString()}`
   }
 
   render() {
