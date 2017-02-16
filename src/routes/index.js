@@ -5,6 +5,7 @@ import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import Demo from './Demo'
 import Mobile from './Mobile'
+import Login from './Login'
 
 import Apps from './Apps'
 import Widgets from './Widgets'
@@ -21,6 +22,7 @@ export const createRoutes = (store) => ({
   indexRoute : Home,
   childRoutes: [
     Mobile(store),
+    Login(store),
     Demo(store),
     Apps(store),
     Widgets(store),

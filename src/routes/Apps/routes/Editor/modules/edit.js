@@ -107,7 +107,7 @@ export const getAppInfo = (appId) => {
         debug.warn('获取应用详情失败')
       }
     }).catch(e=>{
-      debug.warn('获取应用详情失败')
+      console.log('获取应用详情失败', e)
     })
   }
 }
