@@ -4,7 +4,7 @@ import { IndexLink, Link } from 'react-router'
 import { Field, reduxForm } from 'redux-form'
 import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
-import { toggleStep, updateSecondForm } from '../modules/edit'
+import { toggleStep } from '../modules/edit'
 import { 
     renderField,
     versionTextArea,
@@ -14,12 +14,11 @@ import {
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 const modalClose = ()=>{
-  updateSecondForm({active:false})
+  
 }
 const SecondStepForm = props => {
-  const { handleSubmit, submitting, toggleStep, previous, initialValues } = props
+  const { handleSubmit, submitting, toggleStep, previous, initialValues} = props
   const {isH5App,publishList,versionsList,active} = initialValues
-  
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -56,7 +55,7 @@ const SecondStepForm = props => {
              active={active}
              hideButtons={true}
              title={true}
-             onClose={modalClose}
+             onClose={updateSecondForm({active:false})}
         >
         <div className="popup-box">      
           <form className="popup-search">
@@ -101,7 +100,6 @@ const SecondStepForm = props => {
 
 const mapDispatchToProps = {
   toggleStep,
-  updateSecondForm,
 }
 
 const mapStateToProps = ({appsEdit}) => ({

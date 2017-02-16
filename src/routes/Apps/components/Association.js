@@ -85,16 +85,17 @@ class AssociationModule extends Component {
     )
   }
 }
-//  const mapDispatchToProps = {
+  const mapDispatchToProps = {
   
-//  }
+  }
 
-// const mapStateToProps = ({ appsCreate }) => ({
-//   initialValues: appsCreate.form,
-// })
+ const mapStateToProps = ({ appsEdit }) => ({
+   appsEdit
+ })
 
 export default connect(
-
+  mapStateToProps,
+  mapDispatchToProps
 )(reduxForm({
   form: 'AssociationModule',
   fields: [],

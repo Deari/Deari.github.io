@@ -197,7 +197,7 @@ const initialState = {
   },
 
   form2: {
-      active:'',
+      active:true,
       publishList: [
         { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
