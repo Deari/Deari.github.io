@@ -85,7 +85,7 @@ class CreateContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
 
       } else {
@@ -118,13 +118,17 @@ class CreateContainer extends Component {
             appId,
             codeDesc,
             'fileName': file && file.originalName,
-            'fileLink': file && file.url
+            'fileLink': file && file.url,
+            'autoPublish': 0,
+            'codeVersion': '0.0.1'
           })
         } else {
           params = {
             appId,
             codeDesc,
-            'fileLink': values.fileLink
+            'fileLink': values.fileLink,
+            'autoPublish': 0,
+            'codeVersion': '0.0.1'
           }
         }
       
@@ -140,7 +144,7 @@ class CreateContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
         
       } else {

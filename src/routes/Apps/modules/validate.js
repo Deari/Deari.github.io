@@ -5,6 +5,12 @@ export const validate = values => {
   if (!values.appName) {
     errors.appName = <i className="message">请输入应用名称</i>
   }
+  if (values.autoPublish != 0 &&  values.autoPublish != 1) {
+    errors.autoPublish = <i className="message">请选择发布方法</i>
+  }
+  if (!values.codeVersion) {
+    errors.codeVersion = <i className="message">请选择版本信息</i>
+  }
   if (!values.appLogo) {
     errors.appLogo = <i className="message">请选择应用图片</i>
   }

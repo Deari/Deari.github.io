@@ -10,7 +10,7 @@ import DATA from '../components/Probe/data'
 import BARDATA from '../components/Probe/barData'
 
 const getTimeStr = (date)=>{
-  const timeStr = date.getFullYear()+'/'+Math.floor((date.getMonth()+3)/3)+'/'+date.getDate()
+  const timeStr = date.getFullYear()+'/'+(date.getMonth()+1)+'/'+date.getDate()
   return timeStr
 }
 // const keyMap = {
@@ -64,6 +64,7 @@ export const Promised = (Wrapped) => class extends React.Component {
     // const day = new Date ().getDate()
     // const barTimeArr = BARDATA.data.timeArray.slice(day-6,day+1)
     const date = new Date ();
+    console.log(getTimeStr(date))
     const startTime = (new Date (getTimeStr(date)).getTime())/1000
     const endTime = ((date.getTime())/1000).toFixed()
     const startDay = endTime - (6*24*3600)
@@ -73,14 +74,15 @@ export const Promised = (Wrapped) => class extends React.Component {
 
     const hourParams = `storeId=10021141&startTime=${startTime}&endTime=${endTime}&${signParams}`
     const dayParams = `storeId=10021141&startTime=${startDay}&endTime=${endTime}&${signParams}`
-    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/hour?${hourParams}`)
-    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerummary/day?${dayParams}`)
+    const timeApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/hour?${hourParams}`)
+    const dayApiUrl = getHardwareDomain(`bo/store/v1/storePerSummary/day?${dayParams}`)
 
     try{
        const timeRes = await fetchUtil.getJSON(timeApiUrl)
        if(timeRes.status == 200) {
         console.info(timeRes.data);
-        this.setState(timeRes.data);
+        this.setState(DATA)
+        //this.setState(timeRes.data);
        } else {
         Debug.warn('获取数据异常', res);
         this.setState(DATA)
@@ -94,7 +96,8 @@ export const Promised = (Wrapped) => class extends React.Component {
       const dayRes = await fetchUtil.getJSON(dayApiUrl)
       if (dayRes.status == 200) {
         console.info(dayRes.data);
-        this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+        //this.setState({dayArray: dayRes.data&&dayRes.data.timeArray});
+         this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})
       } else {
         Debug.warn('获取数据异常', res);
         this.setState({dayArray: BARDATA.data&&BARDATA.data.timeArray})

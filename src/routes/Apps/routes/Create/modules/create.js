@@ -154,10 +154,22 @@ const getInitialState = () => {
     },
 
     form2: {
+      publishList: [
+        { txt: '自动发布此版本', value: 1 },
+        { txt: '手动发布此版本', value: 0 },
+      ],
+      versionsList:[
+        {value:"0.0.1"},
+        {value:"0.1.0"},
+        {value:"1.0.0"}
+      ],
+      showUpdateMsg:0,
       codeDesc: '',
       appId: -1,
+      codeId:-1,
       platform: 2,
-      isH5App: 0
+      isH5App: 0,
+      autoPublish:1,
     },
   }
 }

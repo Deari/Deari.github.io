@@ -14,7 +14,7 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, getAppCodeInfo, updateFirstForm } from '../modules/edit'
+        getAppInfo, updateFirstForm } from '../modules/edit'
 
 class EditContainer extends Component {
   
@@ -30,7 +30,6 @@ class EditContainer extends Component {
         const appId = parseInt(params.appId);
 
         this.props.getAppInfo(appId);
-        this.props.getAppCodeInfo(appId);
         this.props.fetchTags()
         this.props.fetchCates()
         this.props.toggleStep(1)
@@ -92,7 +91,7 @@ class EditContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
 
       } else {
@@ -127,14 +126,18 @@ class EditContainer extends Component {
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
-            'fileLink': file.url
+            'fileLink': file.url,
+            'autoPublish': 1,
+            'codeVersion': '0.0.1'
           })
           delete params.file
         } else {
           Object.assign(params, {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink
+            'fileLink': values.fileLink,
+            'autoPublish': 1,
+            'codeVersion': '0.0.1'
           })
         }
         
@@ -149,7 +152,7 @@ class EditContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
         
       } else {
@@ -191,9 +194,7 @@ const mapDispatchToProps = {
   toggleStep,
   fetchTags,
   fetchCates,
-  // updateAppId,
   getAppInfo,
-  getAppCodeInfo,
   updateFirstForm
 }
 

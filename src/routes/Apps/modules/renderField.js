@@ -23,6 +23,16 @@ export const renderTextArea = ({ input, label, placeholder, type, meta: { touche
   </div>
 )
 
+export const versionTextArea = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
+  <div className="form-row">
+    <label>{label}</label>
+    <div className="row-right">
+      <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
+      <textarea {...input} placeholder={placeholder || label}></textarea>
+      {(dirty || touched) && ((error && <span>{error}</span>))}
+    </div>
+  </div>
+)
 export const renderSelect = ({ input, label, meta: { touched, dirty, error, warning }, children }) => (
   <div className="form-row">
     <label>{label}</label>
@@ -99,7 +109,7 @@ export class renderImageUpload extends Component {
         debug.warn('上传图片不符合规格')
       }
     }).catch(e=>{
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -145,7 +155,7 @@ export class renderFile extends Component {
         debug.warn('文件代码包格式错误')
       }
     }).catch(e=>{
-      debug.warn('网络错误')
+      console.log('网络错误', e)
     })
   }
 
@@ -168,5 +178,29 @@ export class renderFile extends Component {
   }
   
 }
+export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+  <label>{label}</label>
+  <div className="row-right max-width">
+    <p>
+      在您的应用获得批准后，我们可以立即为您发布它。如果您要自己发布该应用。请选择一个日期或者在批准后的任何时刻手动发布它。
+      当您的应用处于“等待开发人员发布”状态。您可以继续测试，或者拒绝发布并提交一个新的版本。无论您选择哪个选项，我们必须先
+      处理您的应用，然后才能在应用市场上提供它。当您的应用处于“审核中”状态，您无法拒绝您的应用。
+    </p>
+    {
+      publishList.map(item => <div className="row-sizeB" onClick={e => {input.onChange(item.value)}}>
+          <div className="row-radio">
+	          <input type="radio" name="radio" checked={input.value == item.value}/>
+	          <span>
+	            <i className="iconfont icon-radio1 icon-radio1V"></i>
+	            <i className="iconfont icon-radio icon-radioV"></i>
+	          </span>
+	        </div>
+          <span>{item.txt}</span>
+      </div>
+    )}
+    <span className="clearF"></span>
+    {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
+  </div>
+</div>
 
 export default renderField

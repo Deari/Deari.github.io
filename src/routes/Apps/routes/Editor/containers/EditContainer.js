@@ -20,8 +20,8 @@ import {
   getTags, 
   getCates, 
   getAppInfo,
-  getAppCodeInfo,
-  updateFirstForm
+  updateFirstForm,
+  updateSecondForm
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -40,7 +40,6 @@ class EditContainer extends Component {
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)
-        this.props.getAppCodeInfo(appId)
       } else {
         debug.warn("登录失败")
       }
@@ -82,13 +81,24 @@ class EditContainer extends Component {
 
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
+            
+            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+            const versionFormData = new FormData()
+            versionFormData.append("prepareVersion", "1")
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+               if(versionRes.status == 200) {
+                 this.props.updateSecondForm({
+                   codeId:versionRes.data.codeId
+                 })
+               }
+            })
             this.props.updateFirstForm(values)
-            this.props.toggleStep(2)
+            this.props.toggleStep(2)            
           } else {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-            debug.warn('网络错误')
+          console.log('网络错误', e)
         })
 
       } else {
@@ -98,7 +108,7 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-
+  
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -118,14 +128,21 @@ class EditContainer extends Component {
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
-            'fileLink': file.url
+            'fileLink': file.url,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
           delete params.file
         } else {
           Object.assign(params, {
             'appId': values.appId,
+            'codeId':values.codeId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink
+            'fileLink': values.fileLink,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
         }
 
@@ -142,7 +159,7 @@ class EditContainer extends Component {
             debug.warn('请完善表单信息')
           }
         }).catch(e=>{
-          debug.warn('网络错误')
+          console.log('网络错误', e)
         })
         
       } else {
@@ -191,8 +208,8 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   getAppInfo,
-  getAppCodeInfo,
-  updateFirstForm
+  updateFirstForm,
+  updateSecondForm,
 }
 
 const mapStateToProps = ({appsEdit}) => ({

@@ -349,8 +349,8 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 ### 步骤一: 引入JS文件
 
-在需要调用 `JS` 接口的页面引入 `JS` 文件, （支持 https）:
-http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
+在需要调用JS接口的页面引入JS文件，（支持https）：
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.1.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -359,11 +359,11 @@ http://nres.ffan.com/newh5/201727/37594d70e94181d693732aca90698af1959dc136.js
 ```javascript
 // 检验必传参数 config
 ffanSDK.config({
-  appKey: '',   // 第三方应用 appKey
-  ts: '',       // 签名时使用的时间戳
-  nonceStr: '', // 用来生成签名的随机串
-  signature: '',// 生成的签名
-  url: ''       // 当前页面的 url 请使用 urlEncode对url 进行处理
+    appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用appKey
+    ts："1486628893",  //签名时使用的时间戳
+    nonceStr："XX4L3FX6vgorRFf3lklnP8Cp",  //用来生成签名的随机串
+    signature："c3f94fa5ea84885eda0ab7c2cf350fa428cd2b3a",  //生成的签名
+    url : "http%3A%2F%2Flocal.xa.com",  //当前页面的url 请使用urlEncode对url进行处理
 });
 ```
 
@@ -435,12 +435,12 @@ sdk.getDevInfo()
     // data格式为
     {
       data:{
-          name:xxx // 设备名称
-          model:xxx // 设备类型
-          systemVersion:xxx // 系统版本
+          name:'iOS_Wifi', //设备名称
+          model:'营销', //设备类型
+          systemVersion:'1.0.0', //系统版本
       }
-      status:200
-      message:'OK'
+      status:200,
+      msg:'success',
     }
   }).catch(function(err) {
     // fail
@@ -464,11 +464,11 @@ sdk.getLocation()
     // data格式为
     {
       data:{
-        lot:xxx 
-        lat:xxx 
+         lot:'116.46', //经度
+         lat:'39.92', //维度
       }
-      status:200
-      message:'OK'
+      status:200,
+      message:'OK',
     }
   }).catch(function(err) {
     // fail
@@ -489,7 +489,7 @@ sdk.getLocation()
 sdk.setTitle({"title":"飞凡demo"})
 ```
 
-**setRightNavBarItem** 设置右导航图标显隐
+**setRightNavBarItem** 设置右导航图标（分享）的显隐
 
 - 功能描述: `H5` 页面通过 `JSBridge` 设置 `navigationBar` 右边导航图标显示/隐藏(目前只限一个)
 
@@ -497,7 +497,7 @@ sdk.setTitle({"title":"飞凡demo"})
 
 - 参数定义: 参数为一个 `JSON` 对象
 
-  * **title** 为该 `Item` 的文字, 如果 `title` 内容为空则不显示
+  * **title** 为分享图标的文案, 如果 `title` 内容为空则不显示右导航图标
 
 ```javascript
 sdk.setRightNavBarItem({"title":"分享"})
