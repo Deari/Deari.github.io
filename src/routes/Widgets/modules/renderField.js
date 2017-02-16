@@ -42,7 +42,7 @@ export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, er
     {
       sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
         <span className={`${item.image} row-img`}></span>
-        <div className="row-radio">
+        <div className="row-radio row-rotate">
           <input type="radio" name="radio" checked={input.value == item.value}/>
           <span>
             <i className="iconfont icon-radio1"></i>
