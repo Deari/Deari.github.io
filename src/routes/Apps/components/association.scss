@@ -1,10 +1,13 @@
 i.icon-recommend{font-size:23px!important;}
 
 .association{
-  b{
-      font-weight: normal;
-      display: inline-block;
-      line-height: 30px;
+  label.labelCheckbox{
+      width: auto;
+      margin: 0;
+      padding: 0;
+      float: none;
+      position: inherit;
+      cursor: pointer;
   }
   .active{
     display:block;
@@ -12,14 +15,23 @@ i.icon-recommend{font-size:23px!important;}
         width: 100px;
         height: 100px;
         border: 1px solid #ddd;
+        border-radius: 4px;
         text-align: center;
-        margin: 0 10px 10px 0;
+        margin: 10px;
+        position: relative;
         span{
             line-height: 100px;
             font-size: 16px;
             i{
                 vertical-align: 2px;
             }
+        }
+        i.icon-del{
+            position: absolute;
+            font-size: 20px;
+            color: #fc5c63;
+            left: -10px;
+            top: -10px;
         }
     }
   }

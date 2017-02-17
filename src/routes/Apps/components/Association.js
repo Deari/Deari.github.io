@@ -49,18 +49,19 @@ class AssociationModule extends Component {
 		            <i className="iconfont icon-radio icon-recommend"></i>
 		          </span>
 		        </div>
-		        <b htmlFor="app">应用</b>
+		        <label className="labelCheckbox" htmlFor="app">应用</label>
 	        	<ul className={classnames({ 'active': appActive })}>
-		           <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
-		            <span><i className="iconfont icon-add"></i>选择</span>
-		          </li>
 		          {
 		             logoList.map((item,index)=>(
 		              <li key={index}>
 		                <img src={item}/>
+		                <i className="iconfont icon-del"></i>
 		              </li>
 		             ))
 		          }
+		           <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
+		            <span><i className="iconfont icon-add"></i>选择</span>
+		          </li>
 		        </ul>
         	</div>
         	<div>
@@ -71,18 +72,19 @@ class AssociationModule extends Component {
 		            <i className="iconfont icon-radio icon-recommend"></i>
 		          </span>
 		        </div>
-		        <b htmlFor="weiget">组件</b>
+		        <label className="labelCheckbox" htmlFor="weiget">组件</label>
 	        	<ul className={classnames({ 'active': weigetActive })}>
-	           <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
-	            <span><i className="iconfont icon-add"></i>选择</span>
-		          </li>
 		          {
 		             wLogoList.map((item,index)=>(
 		              <li key={index}>
 		                <img src={item}/>
+		                <i className="iconfont icon-del"></i>
 		              </li>
 		             ))
 		          }
+	           <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	            <span><i className="iconfont icon-add"></i>选择</span>
+		          </li>
 		        </ul>
         	</div>
         	<div>
@@ -93,7 +95,7 @@ class AssociationModule extends Component {
 		            <i className="iconfont icon-radio icon-recommend"></i>
 		          </span>
 		        </div>
-		        <b htmlFor="hardware">硬件</b>
+		        <label className="labelCheckbox" htmlFor="hardware">硬件</label>
 	        	<ul className={classnames({ 'active': hardwareActive })}>
 		           <li onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
