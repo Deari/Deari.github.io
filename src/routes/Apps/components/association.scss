@@ -1,6 +1,27 @@
+i.icon-recommend{font-size:23px!important;}
+
 .association{
+  b{
+      font-weight: normal;
+      display: inline-block;
+      line-height: 30px;
+  }
   .active{
     display:block;
+    li{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ddd;
+        text-align: center;
+        margin: 0 10px 10px 0;
+        span{
+            line-height: 100px;
+            font-size: 16px;
+            i{
+                vertical-align: 2px;
+            }
+        }
+    }
   }
   ul{
     display: none;
