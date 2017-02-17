@@ -73,7 +73,6 @@ export const getAppInfo = (appId) => {
 
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
-        //console.log(res.data)
         const { codeDesc, codeVersion} = res.data && res.data.versions && res.data.versions[0] || ''
         const autoPublish  = res.data && res.data.autoPublish || 1
         const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
@@ -81,14 +80,10 @@ export const getAppInfo = (appId) => {
         const tagId = tags.map(v=>v.tagId)
         
         const versionsarray1 = [
-          parseInt(codeVersion.split(".")[0]), 
-          parseInt(codeVersion.split(".")[1])+1,
-          parseInt(codeVersion.split(".")[2])-1
+          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1])+1,0
         ]
         const versionsarray2 = [
-          parseInt(codeVersion.split(".")[0])+1, 
-          parseInt(codeVersion.split(".")[1]), 
-          parseInt(codeVersion.split(".")[2])-1
+          parseInt(codeVersion.split(".")[0])+1, 0, 0
         ]
         
         const versionsList = [
@@ -112,7 +107,7 @@ export const getAppInfo = (appId) => {
         debug.warn('获取应用详情失败')
       }
     }).catch(e=>{
-      debug.warn('获取应用详情失败')
+      console.log('获取应用详情失败', e)
     })
   }
 }

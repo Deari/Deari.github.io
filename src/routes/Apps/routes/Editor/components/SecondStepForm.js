@@ -3,6 +3,7 @@ import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
+//import AssociationModule from '../../../components/Association'
 import { toggleStep } from '../modules/edit'
 import { 
     renderField,
@@ -27,8 +28,8 @@ const SecondStepForm = props => {
         		<div className="row-radio">
 		          <Field name="showUpdateMsg" id="isShow" component="input" type="checkbox" />
 		          <span>
-		            <i className="iconfont icon-radio1"></i>
-		            <i className="iconfont icon-radio"></i>
+		            <i className="iconfont icon-radio1 icon-publish"></i>
+		            <i className="iconfont icon-radio icon-publish"></i>
 		          </span>
 		        </div>
         		<p htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家<span>4000</span></p>
