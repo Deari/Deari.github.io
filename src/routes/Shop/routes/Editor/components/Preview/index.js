@@ -36,11 +36,15 @@ export class Preview extends Component {
     })))
   }
 
+  onDragStart(layouts, l) {
+    this.props.selectElement(l.i);
+  }
+
   generateLayout(e) {
     let { layouts } = this.props.preview
     try {
       const lay = layouts.find(l => l.i === e.id)
-      return lay || { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
+      return lay || { ...e.defaultLayout, ...{ x: 0, y: 2 } }
     } catch (e) {
       alert(e)
     }
@@ -67,7 +71,6 @@ export class Preview extends Component {
       return <div key={e.id}
                   style={this.generateStyle(e)}
                   className={className}
-                  onClick={this.props.selectElement.bind(null, e.id)}
                   data-grid={this.generateLayout(e)}>
         <Element {...e} layout={this.generateLayout(e)} gridProps={this.props.gridProps}/>
       </div>
@@ -81,6 +84,7 @@ export class Preview extends Component {
 
         <ReactGridLayout className="layout"
                          {...gridProps}
+                         onDragStart={::this.onDragStart} 
                          onLayoutChange={::this.onLayoutChange}>
           {this.generateDOM()}
         </ReactGridLayout>

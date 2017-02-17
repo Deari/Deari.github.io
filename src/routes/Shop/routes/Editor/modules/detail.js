@@ -94,7 +94,7 @@ const ACTION_HANDLERS = {
     return {
       ...state, element: {
         ...state.element,
-        setting: state.element.setting.map(item=>{
+        codeSetting: state.element.codeSetting.map(item=>{
           if(item.label === action.label) {
             return {
               ...item,
