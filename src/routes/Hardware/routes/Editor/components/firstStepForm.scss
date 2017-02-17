@@ -135,9 +135,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             margin: 0 $default-margin-right - 20px $default-margin-bottom - 20px 0;
             cursor: pointer;
             &.active,&:hover{
-                background-color: dodgerblue;
+                background-color: #7dbefd;
                 color: $white-color;
-                border-color: dodgerblue;
+                border-color: #7dbefd;
             }
         }
         .label-message{
