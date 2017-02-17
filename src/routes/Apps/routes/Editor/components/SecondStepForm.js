@@ -56,7 +56,7 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-      {isH5App === 0 && <AssociationModule logoList={logoList} wLogoList={wLogoList}/>}
+      <AssociationModule logoList={logoList} wLogoList={wLogoList}/>
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
              active={active.trim}

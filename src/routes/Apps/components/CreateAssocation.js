@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleActive } from '../routes/Editor/modules/edit'
+import { toggleActive } from '../routes/Create/modules/create'
 import { validate } from '../modules/validate'
-class AssociationModule extends Component {
+class CreateAssocation extends Component {
   state={
     appActive:0,
     weigetActive:0,
@@ -36,7 +36,7 @@ class AssociationModule extends Component {
   render(){
     const { appActive, weigetActive , hardwareActive} = this.state
     const { logoList , wLogoList } = this.props
-
+    console.log(logoList)
     return (
     <div className="association">
       <div className="form-row">
@@ -118,4 +118,4 @@ class AssociationModule extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AssociationModule)
+)(CreateAssocation)

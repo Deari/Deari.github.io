@@ -2,15 +2,25 @@ import React from 'react'
 import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
-import { renderField, versionTextArea, renderFile ,renderSelect, renderPublishRadioBox } from '../../../modules/renderField'
 
+import Modal from 'components/Modal'
+import CreateAssocation from '../../../components/CreateAssocation'
+
+import { renderField, versionTextArea, renderFile ,renderSelect, renderPublishRadioBox, ModalList,} from '../../../modules/renderField'
+import { toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList} from '../modules/create'
 import { validate } from '../../../modules/validate'
 
 const SecondStepForm = props => {
 
   const { handleSubmit, submitting, previous, initialValues } = props
-  const {isH5App,publishList,versionsList} = initialValues
-
+  const {isH5App,publishList,versionsList, active, datalist, idList, logoList,wIdList,wLogoList} = initialValues
+  console.log(logoList)
+  const handlechange = (data)=>{
+    active.type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
+  } 
+  const handleIdchange = (data) =>{
+    active.type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
+  }
   return (
     <form onSubmit={handleSubmit}>
     
@@ -43,7 +53,16 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-
+      <CreateAssocation logoList={logoList} wLogoList={wLogoList} />
+      <Modal type={"alert"}
+             text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
+             active={active.trim}
+             hideButtons={true}
+             title={true}
+             onClose={()=> props.toggleActive({trim:0,type:""})}
+      >
+      <Field name={active.type+"IdList"} component={ModalList} datalist={datalist} idList={active.type==='app'?idList:wIdList} type={active.type} handlechange={handlechange} handleIdchange={handleIdchange}/>
+      </Modal>
       <div className="form-btn">
         <div>
           <button type="button" className="previous" onClick={previous}>上一步</button>
@@ -55,7 +74,11 @@ const SecondStepForm = props => {
 }
 
 const mapDispatchToProps = {
-
+  toggleActive,
+  toggleLogoList,
+  toggleIdList,
+  WtoggleIdList, 
+  WtoggleLogoList
 }
 
 const mapStateToProps = ({appsCreate}) => ({

@@ -5,14 +5,14 @@ import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
 
-const remove = (arr,val) => {
-  for(var i=0; i<arr.length; i++) {
-     if(arr[i] == val) {
-      arr.splice(i, 1);
-      break;
-    }
-  }
-}
+// const remove = (arr,val) => {
+//   for(var i=0; i<arr.length; i++) {
+//      if(arr[i] == val) {
+//       arr.splice(i, 1);
+//       break;
+//     }
+//   }
+// }
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
@@ -218,20 +218,14 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 export class ModalList extends Component {
    state= {
      datalist: [],
-     idList: [],
-     logoList: [],
    }
    handleClick(item){
-     this.state.idList.push(item.appId)
-     this.state.logoList.push(item.appLogo)
-     this.props.handleIdchange(this.state.idList)
-     this.props.handlechange(this.state.logoList)
+     this.props.handleIdchange(item.appId)
+     this.props.handlechange(item.appLogo)
    }
    handleCancel(item){
-     remove(this.state.idList,item.appId)
-     remove(this.state.logoList,item.appLogo)
-     this.props.handleIdchange(this.state.idList)
-     this.props.handlechange(this.state.logoList)
+     this.props.handleIdchange(item.appId)
+     this.props.handlechange(item.appLogo)
    }
    handleSave(){
      const { input } = this.props

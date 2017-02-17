@@ -126,6 +126,7 @@ class EditContainer extends Component {
         }
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
+            'codeId':values.codeId,
             'fileName': file.originalName,
             'fileLink': file.url,
             'autoPublish': values.autoPublish,
@@ -144,6 +145,8 @@ class EditContainer extends Component {
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
         }
 

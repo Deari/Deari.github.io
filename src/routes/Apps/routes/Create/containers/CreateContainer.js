@@ -29,7 +29,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(0)
+        this.props.toggleStep(2)
       } else {
         debug.warn("登录失败")
       }
@@ -49,7 +49,6 @@ class CreateContainer extends Component {
   }
 
   submitFirst(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -104,7 +103,8 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-
+    console.log(values)
+    return
     this.isLogin()
 
     let sourceVal = getSourceVal()
