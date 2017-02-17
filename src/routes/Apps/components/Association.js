@@ -65,7 +65,7 @@ class AssociationModule extends Component {
 		        </ul>
         	</div>
         	<div>
-        		<div className="row-radio row-recommend">
+        		<div className="row-radio">
 		          <input id="weiget" type="checkbox" name='weiget' onChange={this.onchange.bind(this)}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
@@ -88,7 +88,7 @@ class AssociationModule extends Component {
 		        </ul>
         	</div>
         	<div>
-        		<div className="row-radio row-recommend">
+        		<div className="row-radio">
 		          <input id="hardware" type="checkbox" name='hardware' onChange={this.onchange.bind(this)}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
