@@ -217,31 +217,33 @@
 .tab-nav{
   position:relative;
   padding:22px 40px 0;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #ccc;
   .tab-list{
     position: relative;
     top:1px;
     overflow:hidden;
     li{
         float:left;
-        width:125px;
-        margin-right:10px;
-        padding:5px 0;
         text-align:center;
-        font-size: 15px;
-        border:1px solid #eee;
-        border-radius:4px 4px 0 0;
+        font-size: 16px;
         cursor:pointer;
         a{
-          display:block;
-          color: $black-color;
+          margin-right:10px;
+          padding:7px 20px;
+          display:inline-block;
+          color: #000;
         }
     }
+    .false{
+      margin-right:10px;
+      padding:7px 20px;
+      display:inline-block;
+      color: #000;
+    }
     .active{
-          border:1px solid $blue-color;
-          border-bottom:1px solid $white-color;
+          border-bottom:2px solid $blue-color;
           a{
-            color:$blue-color;
+            color:#666;
           }
         }
   }
