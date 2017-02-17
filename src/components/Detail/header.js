@@ -28,8 +28,10 @@ export const Header = (props) => {
       { (!preCodeStatus || hidePreCode) ? '' :
         <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
             onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
-          <div>{preCodeStatus.codeVersion}</div>
-          <div>{preCodeStatus.codeStatusName}</div>
+          <a>
+            <div>{preCodeStatus.codeVersion}</div>
+            <div>{preCodeStatus.codeStatusName}</div>
+          </a>
         </li>
       }
     </ul>

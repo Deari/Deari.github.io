@@ -216,7 +216,7 @@
 }
 .tab-nav{
   position:relative;
-  padding:22px 40px 0;
+  padding:13px 40px 0;
   border-bottom:1px solid #ccc;
   .tab-list{
     position: relative;
@@ -224,21 +224,15 @@
     overflow:hidden;
     li{
         float:left;
+        height:52px;
         text-align:center;
         font-size: 16px;
         cursor:pointer;
         a{
-          margin-right:10px;
           padding:7px 20px;
           display:inline-block;
           color: #000;
         }
-    }
-    .false{
-      margin-right:10px;
-      padding:7px 20px;
-      display:inline-block;
-      color: #000;
     }
     .active{
           border-bottom:2px solid $blue-color;
