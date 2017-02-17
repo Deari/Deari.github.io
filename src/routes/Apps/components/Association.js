@@ -7,7 +7,9 @@ import {toggleActive} from '../routes/Editor/modules/edit'
 import { validate } from '../modules/validate'
 class AssociationModule extends Component {
   state={
-    active:'',
+    appActive:0,
+    weigetActive:0,
+    hardwareActive:0
   }
   onchange(e){
     if(e.target.name === "app"){
@@ -32,12 +34,8 @@ class AssociationModule extends Component {
     
   }
   render(){
-    const changedMoule = (props) => (
-      <div>
-        <img src=""/>
-      </div>  
-    )
-    const { appActive, weigetActive , hardwareActive,active} = this.state
+    const { appActive, weigetActive , hardwareActive} = this.state
+    const { logoList , wLogoList } = this.props
     return (
     <div className="association">
       <div className="form-row">
@@ -49,6 +47,13 @@ class AssociationModule extends Component {
            <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
             <span>（icon）选择</span>
           </li>
+          {
+             logoList.map((item,index)=>(
+              <li key={index}>
+                <img src={item}/>
+              </li>
+             ))
+          }
         </ul>
       </div>
       <div className="form-row">
@@ -61,6 +66,13 @@ class AssociationModule extends Component {
            <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
             <span>（icon）选择</span>
           </li>
+          {
+             wLogoList.map((item,index)=>(
+              <li key={index}>
+                <img src={item}/>
+              </li>
+             ))
+          }
         </ul>
       </div>
        <div className="form-row">

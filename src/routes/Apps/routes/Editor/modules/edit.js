@@ -6,7 +6,11 @@ const PREFIX = 'EDIT_APP_'
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
 const TOGGLE_ACTIVE = PREFIX+'TOGGLE_ACTIVE'
-//const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
+
+const TOGGLE_LOGOLIST = PREFIX+'TOGGLE_LOGOLIST'
+const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
+const WTOGGLE_LOGOLIST =  PREFIX+'WTOGGLE_LOGOLIST'
+const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -36,10 +40,22 @@ export const toggleActive= (active) => ({
   active: active
 })
 
-// export const toggleIdList= (idList) => ({
-//   type : TOGGLE_IDLIST,
-//   idList
-// })
+export const toggleLogoList= (logoList) => ({
+  type : TOGGLE_LOGOLIST,
+  logoList
+})
+export const toggleIdList= (idList) => ({
+  type : TOGGLE_IDLIST,
+  idList
+})
+export const WtoggleLogoList= (wLogoList) => ({
+  type : WTOGGLE_LOGOLIST,
+  wLogoList
+})
+export const WtoggleIdList= (wIdList) => ({
+  type : WTOGGLE_IDLIST,
+  wIdList
+})
 
 export const updateForm1 = (data) => ({
   type: UPDATE_FORM1,
@@ -90,20 +106,22 @@ export const getAppInfo = (appId) => {
         const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
         const rnFrameworkVersion = res.data && res.data.rnFrameworkVersion || 0
         const tagId = tags.map(v=>v.tagId)
-        
+
+        const versionsarray0 = [
+          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
+        ]
         const versionsarray1 = [
-          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1])+1,0
+          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
         ]
         const versionsarray2 = [
-          parseInt(codeVersion.split(".")[0])+1, 0, 0
+          parseInt(codeVersion.split(".")[0]) + 1, 0, 0
         ]
         
         const versionsList = [
-          {'value':codeVersion},
+          {'value':codeVersion =="0.0.1"?codeVersion:versionsarray0.join('.')},
           {'value':versionsarray1.join('.')},
           {'value':versionsarray2.join('.')}
         ]
-        console.log(versionsList)
         dispatch(updateForm1({
           appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
@@ -135,17 +153,42 @@ export const updateSecondForm = (values) => {
   }
 }
 const ACTION_HANDLERS = {
-//  [TOGGLE_IDLIST]: (state, action) => {
-//     alert(1111)
-//    console.log(action)
-//     return {
-//       ...state,
-//       form2:{
-//         ...state.form2,
-//         idList:action.idList
-//       }
-//     }
-//   },
+  [WTOGGLE_IDLIST]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wIdList:action.wIdList
+      }
+    }
+  },
+ [WTOGGLE_LOGOLIST]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wLogoList:action.wLogoList
+      }
+    }
+  },
+ [TOGGLE_IDLIST]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        idList:action.idList
+      }
+    }
+  },
+  [TOGGLE_LOGOLIST]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        logoList:action.logoList
+      }
+    }
+  },
   [TOGGLE_STEP]: (state, action) => {
     return {
       ...state,
@@ -242,6 +285,9 @@ const initialState = {
         {value:"1.0.0"}
       ],
       idList:[],
+      logoList:[],
+      wLogoList:[],
+      wIdList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,

@@ -3,6 +3,7 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
+import { updateSecondForm } from '../routes/Editor/modules/edit'
 
 const remove = (arr,val) => {
   for(var i=0; i<arr.length; i++) {
@@ -216,30 +217,25 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 
 export class ModalList extends Component {
    state= {
-      datalist : [],
-      idList : [],
-      logoList:[],
+     datalist: [],
+     idList: [],
+     logoList: [],
    }
    handleClick(item){
-     //console.log(item)
-     
-     const obj = {appId:item.appId,appLogo:item.appLogo}
      this.state.idList.push(item.appId)
      this.state.logoList.push(item.appLogo)
-     //this.setState({active:1})
-     console.log(this.state.idList)
+     this.props.handleIdchange(this.state.idList)
+     this.props.handlechange(this.state.logoList)
    }
    handleCancel(item){
      remove(this.state.idList,item.appId)
-     remove(this.state.idList,item.appLogo)
-     //this.setState({active:0})
-     console.log(this.state.idList)
+     remove(this.state.logoList,item.appLogo)
+     this.props.handleIdchange(this.state.idList)
+     this.props.handlechange(this.state.logoList)
    }
    handleSave(){
      const { input } = this.props
-    // console.log(this.state.idList)
      input.onChange(this.state.idList)
-
    }
    async componentDidMount() {
      if(this.props.type === 'app'){
@@ -272,34 +268,10 @@ export class ModalList extends Component {
 
      }
    }
-  btnChange(item){
-
-    // const {idList,active} = this.state
-    //     console.log(idList)
-    //  if(idList.length !== 0){
-    //   for(var i = 0;i<idList.length;i++){
-    //     if (idList[i].appId === item.appId && active === 1 ) {
-    //       //alert("成功")
-    //       return (
-    //         <button className='btn-cancel'>取消选择</button>
-    //       )
-    //     } else {
-    //       //alert("失败")
-    //       return (
-           
-    //       )
-    //     }
-    //   }
-    // }else{
-    //   return(
-    //       <button onClick={this.handleClick.bind(this,item)}>选择</button>
-    //   )
-    // }
-   
-  }
+ 
   render() {
-    const { input, type, meta: { touched, dirty, error, warning }} = this.props
-    const { datalist, idList , appId} = this.state
+    const { input, type ,idList, meta: { touched, dirty, error, warning }} = this.props
+    const { datalist} = this.state
     return (
        <div className="popup-box">      
           <form className="popup-search">
@@ -328,8 +300,7 @@ export class ModalList extends Component {
                       <div className="info-price w78">免费</div>
                       <div className="info-status w140">已审核</div>
                       <div className="info-btn w104">
-                        <button onClick={this.handleClick.bind(this,item)}>选择</button>    
-                        <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>
+                      {idList.indexOf(item.appId) !==-1? <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>:<button onClick={this.handleClick.bind(this,item)}>选择</button>}                      
                       </div>
                     </div>
                   ) )
@@ -340,8 +311,7 @@ export class ModalList extends Component {
           <button className="popup-save"  onClick={this.handleSave.bind(this)}>保存</button>
         </div>
     )
-  }
-  
+  } 
 }
   
 export default renderField
