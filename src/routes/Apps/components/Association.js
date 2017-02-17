@@ -36,6 +36,7 @@ class AssociationModule extends Component {
   render(){
     const { appActive, weigetActive , hardwareActive} = this.state
     const { logoList , wLogoList } = this.props
+
     return (
     <div className="association">
       <div className="form-row">
@@ -102,10 +103,4 @@ class AssociationModule extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(reduxForm({
-  form: 'AssociationModule',
-  fields: [],
-  keepDirtyOnReinitialize: true,
-  enableReinitialize: true,
-  validate,
-})(AssociationModule))
+)(AssociationModule)
