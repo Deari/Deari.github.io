@@ -5,14 +5,6 @@ import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
 
-// const remove = (arr,val) => {
-//   for(var i=0; i<arr.length; i++) {
-//      if(arr[i] == val) {
-//       arr.splice(i, 1);
-//       break;
-//     }
-//   }
-// }
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>

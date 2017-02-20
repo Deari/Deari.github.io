@@ -14,7 +14,6 @@ const SecondStepForm = props => {
 
   const { handleSubmit, submitting, previous, initialValues } = props
   const {isH5App,publishList,versionsList, active, datalist, idList, logoList,wIdList,wLogoList} = initialValues
-  console.log(logoList)
   const handlechange = (data)=>{
     active.type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
   } 

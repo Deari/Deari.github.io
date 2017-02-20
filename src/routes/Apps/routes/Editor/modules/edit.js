@@ -40,21 +40,21 @@ export const toggleActive= (active) => ({
   active: active
 })
 
-export const toggleLogoList= (logoList) => ({
+export const toggleLogoList= (logo) => ({
   type : TOGGLE_LOGOLIST,
-  logoList
+  logo
 })
-export const toggleIdList= (idList) => ({
+export const toggleIdList= (id) => ({
   type : TOGGLE_IDLIST,
-  idList
+  id
 })
-export const WtoggleLogoList= (wLogoList) => ({
+export const WtoggleLogoList= (logo) => ({
   type : WTOGGLE_LOGOLIST,
-  wLogoList
+  logo
 })
-export const WtoggleIdList= (wIdList) => ({
+export const WtoggleIdList= (id) => ({
   type : WTOGGLE_IDLIST,
-  wIdList
+  id
 })
 
 export const updateForm1 = (data) => ({
@@ -153,39 +153,51 @@ export const updateSecondForm = (values) => {
   }
 }
 const ACTION_HANDLERS = {
-  [WTOGGLE_IDLIST]: (state, action) => {
+ [WTOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.wIdList
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
     return {
       ...state,
       form2:{
         ...state.form2,
-        wIdList:action.wIdList
+        wIdList: newList
       }
     }
   },
  [WTOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.wLogoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
     return {
       ...state,
-      form2:{
+      form2: {
         ...state.form2,
-        wLogoList:action.wLogoList
+        wLogoList:newList
       }
     }
   },
  [TOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.idList;
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
     return {
       ...state,
       form2:{
         ...state.form2,
-        idList:action.idList
+        idList: newList
       }
     }
   },
   [TOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.logoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
     return {
       ...state,
       form2:{
         ...state.form2,
-        logoList:action.logoList
+        logoList: newList
       }
     }
   },
