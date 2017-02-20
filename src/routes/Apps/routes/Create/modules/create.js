@@ -113,37 +113,33 @@ const remove = (arr,val) => {
 const ACTION_HANDLERS = {
  [WTOGGLE_IDLIST]: (state, action) => {
     const idList = state.form2.wIdList
-    let a =[]
-    if(idList.indexOf(action.id)!==-1){
-      a= remove(idList,action.id)
-    }else{
-      const new_idList = [];
-      new_idList.push(action.id)
-      a = new_idList.concat(idList)
-    }
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
     return {
       ...state,
       form2:{
         ...state.form2,
-        wIdList: a
+        wIdList: newList
       }
     }
   },
  [WTOGGLE_LOGOLIST]: (state, action) => {
     const logoList = state.form2.wLogoList
-    let a =[]
-    if(logoList.indexOf(action.logo)!==-1){
-      a= remove(logoList,action.logo)
-    }else{
-      const new_logoList = [];
-      new_logoList.push(action.logo)
-      a = new_logoList.concat(logoList)
-    }
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    // let a =[]
+    // if(logoList.indexOf(action.logo)!==-1){
+    //   a= remove(logoList,action.logo)
+    // }else{
+    //   const new_logoList = [];
+    //   new_logoList.push(action.logo)
+    //   a = new_logoList.concat(logoList)
+    // }
     return {
       ...state,
       form2: {
         ...state.form2,
-        wLogoList:a
+        wLogoList:newList
       }
     }
   },
@@ -161,19 +157,13 @@ const ACTION_HANDLERS = {
   },
   [TOGGLE_LOGOLIST]: (state, action) => {
     const logoList = state.form2.logoList
-    let a =[]
-    if(logoList.indexOf(action.logo)!==-1){
-      a= remove(logoList,action.logo)
-    }else{
-      const new_logoList = [];
-      new_logoList.push(action.logo)
-      a = new_logoList.concat(logoList)
-    }
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
     return {
       ...state,
       form2:{
         ...state.form2,
-        logoList: a
+        logoList: newList
       }
     }
   },
