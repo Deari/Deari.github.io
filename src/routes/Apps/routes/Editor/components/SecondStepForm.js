@@ -15,16 +15,35 @@ import {
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
+
+const compose = (arr1, arr2) => {
+  const newArray = []
+  if(Array.isArray(arr1) && arr1.length !==0){
+   
+    for (let i = 0; i < arr1.length; i++) {
+      const obj = {};
+      obj.id = arr1[i]
+      obj.logo = arr2[i]
+      newArray.push(obj)
+    }
+  }
+  return newArray
+}
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
-  const {isH5App, publishList, versionsList, active, datalist, idList, logoList,wIdList,wLogoList} = initialValues
-  const handlechange = (data)=>{
-    active.type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
+  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList} = initialValues
+  
+  const appObj = compose(idList,logoList)
+  const weiObj = compose(wIdList,wLogoList)
+  console.log(appObj)
+  const handlechange = (data,type)=>{
+    type = type ? type : active.type
+    type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
   } 
-  const handleIdchange = (data) =>{
-    active.type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
+  const handleIdchange = (data,type) =>{
+    type = type ? type : active.type
+    type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
   }
-
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -56,7 +75,7 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-      <AssociationModule logoList={logoList} wLogoList={wLogoList}/>
+      <AssociationModule appObj={appObj} weiObj={weiObj}  handlechange={handlechange} handleIdchange={handleIdchange}/>
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
              active={active.trim}

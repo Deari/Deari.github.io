@@ -85,7 +85,7 @@ class EditContainer extends Component {
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
             // this.props.updateAppId(res.data.appId);
-            const versionurl = getDomain(`web/developer/widget/${values.appId}/code`)
+            const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
             const versionFormData = new FormData()
             versionFormData.append("prepareVersion", "1")
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{

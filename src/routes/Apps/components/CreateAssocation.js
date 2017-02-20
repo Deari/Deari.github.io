@@ -33,9 +33,17 @@ class CreateAssocation extends Component {
     }
     
   }
+  onAppDelete(item,index){
+    this.props.handlechange(item.logo,'app')
+    this.props.handleIdchange(item.id,'app')  
+  }
+  onWeigetDelete(item,index){
+    this.props.handlechange(item.logo,'weiget')
+    this.props.handleIdchange(item.id,'weiget')
+  }
   render(){
     const { appActive, weigetActive , hardwareActive} = this.state
-    const { logoList , wLogoList } = this.props
+    const { appObj , weiObj } = this.props
     return (
     <div className="association">
       <div className="form-row">
@@ -52,10 +60,10 @@ class CreateAssocation extends Component {
 		        <label className="labelCheckbox" htmlFor="app">应用</label>
 	        	<ul className={classnames({ 'active': appActive })}>
 		          {
-		             logoList.map((item,index)=>(
-		              <li key={index}>
-		                <img src={item}/>
-		                <i className="iconfont icon-del"></i>
+		             appObj.map((item,id)=>(
+		              <li key={item.id}>
+		                <img src={item.logo}/>
+		                <i className="iconfont icon-del" onClick={this.onAppDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
@@ -75,10 +83,10 @@ class CreateAssocation extends Component {
 		        <label className="labelCheckbox" htmlFor="weiget">组件</label>
 	        	<ul className={classnames({ 'active': weigetActive })}>
 		          {
-		             wLogoList.map((item,index)=>(
-		              <li key={index}>
-		                <img src={item}/>
-		                <i className="iconfont icon-del"></i>
+		             weiObj.map((item,id)=>(
+		              <li key={item.id}>
+		                <img src={item.logo}/>
+		                <i className="iconfont icon-del" onClick={this.onWeigetDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
