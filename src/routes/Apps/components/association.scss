@@ -1,5 +1,4 @@
 i.icon-recommend{font-size:23px!important;}
-
 .association{
   label.labelCheckbox{
       width: auto;
@@ -38,6 +37,20 @@ i.icon-recommend{font-size:23px!important;}
             color: #fc5c63;
             left: -7px;
             top: -7px;
+            z-index: 2;
+        }
+    }
+    li:not(:last-child){
+        &:after{
+            content: "";
+            background: #fff;
+            position: absolute;
+            width:18px;
+            height: 20px;
+            border-radius: 50%;
+            left: -7px;
+            top: -7px;
+            z-index: 1;
         }
     }
   }

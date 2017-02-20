@@ -59,7 +59,7 @@ class AssociationModule extends Component {
 		              </li>
 		             ))
 		          }
-		           <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
+		          <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
