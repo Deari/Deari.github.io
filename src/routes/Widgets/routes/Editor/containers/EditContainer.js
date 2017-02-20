@@ -137,8 +137,9 @@ class EditContainer extends Component {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': 1,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg': Number(values.showUpdateMsg),
           })
           delete params.file
         } else {
@@ -146,8 +147,9 @@ class EditContainer extends Component {
             'appId': values.appId,
             'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': 1,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg': Number(values.showUpdateMsg),
           })
         }
         

@@ -79,6 +79,7 @@ class CreateContainer extends Component {
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
             console.info("提交成功: ", res.data)
+            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
             const versionFormData = new FormData();
             versionFormData.append("prepareVersion", "1");
             this.props.updateForm2({ appId: res.data.appId});
@@ -102,8 +103,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-    console.log(values)
-    return
     this.isLogin()
 
     let sourceVal = getSourceVal()

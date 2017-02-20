@@ -33,6 +33,16 @@ class AssociationModule extends Component {
     }
     
   }
+  onAppDelete(item){
+    this.props.toggleActive({trim:0,type:'app'})
+    this.props.handlechange(item.appLogo)
+    console.log(item)
+  }
+  onWeigetDelete(item){
+    this.props.toggleActive({trim:0,type:'weiget'})
+    this.props.handlechange(item.appLogo)
+    console.log(item)
+  }
   render(){
     const { appActive, weigetActive , hardwareActive} = this.state
     const { logoList , wLogoList } = this.props
@@ -55,7 +65,7 @@ class AssociationModule extends Component {
 		             logoList.map((item,index)=>(
 		              <li key={index}>
 		                <img src={item}/>
-		                <i className="iconfont icon-del"></i>
+		                <i className="iconfont icon-del" onClick={this.onDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
@@ -78,7 +88,7 @@ class AssociationModule extends Component {
 		             wLogoList.map((item,index)=>(
 		              <li key={index}>
 		                <img src={item}/>
-		                <i className="iconfont icon-del"></i>
+		                <i className="iconfont icon-del" onClick={this.onWeigetDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }

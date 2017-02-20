@@ -101,10 +101,8 @@ export const getAppInfo = (appId) => {
 
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
-        const { codeDesc, codeVersion } = res.data && res.data.versions && res.data.versions[0] || ''
-        const autoPublish  = res.data && res.data.autoPublish || 1
-        const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
-        const rnFrameworkVersion = res.data && res.data.rnFrameworkVersion || 0
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
+          rnFrameworkVersion=0, codeVersion=''} = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
 
         const versionsarray0 = [
@@ -249,7 +247,8 @@ const ACTION_HANDLERS = {
 
 const initialState = {
  
-  page: 1,
+  page: 0,
+
   cates: [{
     categoryId: 1,
     categoryName: "xx"

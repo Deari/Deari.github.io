@@ -226,12 +226,11 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        console.log(res.data)
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size,
           fileName, fileLink, moduleName, setting, } = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
           rnFrameworkVersion=0, codeVersion=''} = res.data && res.data.versions[0]
-               console.log(codeVersion)
+          console.log(codeVersion)
         const tagId = tags.map(v=>v.tagId)
         const versionsarray0 = [
           parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
@@ -244,7 +243,7 @@ export const getAppInfo = (appId) => {
         ]
         
         const versionsList = [
-          {'value':codeVersion =="0.0.1"?codeVersion:versionsarray0.join('.')},
+          codeVersion,
           {'value':versionsarray1.join('.')},
           {'value':versionsarray2.join('.')}
         ]
