@@ -36,7 +36,6 @@ class AssociationModule extends Component {
   render(){
     const { appActive, weigetActive , hardwareActive} = this.state
     const { logoList , wLogoList } = this.props
-
     return (
     <div className="association">
       <div className="form-row">

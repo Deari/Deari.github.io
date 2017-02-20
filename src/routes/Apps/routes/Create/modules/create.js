@@ -101,15 +101,6 @@ export const actionCreator = {
   toggleStep,
   updateForm2,
 }
-const remove = (arr,val) => {
-  var new_Arr = []    
-    for(var i=0; i<arr.length; i++) {
-        if(arr[i] !== val) {
-          new_Arr.push(arr[i])
-        }
-    }
-    return  new_Arr
-}
 const ACTION_HANDLERS = {
  [WTOGGLE_IDLIST]: (state, action) => {
     const idList = state.form2.wIdList
@@ -127,14 +118,6 @@ const ACTION_HANDLERS = {
     const logoList = state.form2.wLogoList
     const newList = logoList.filter((v)=>v!=action.logo)
     newList.length == logoList.length ? newList.push(action.logo) : null;
-    // let a =[]
-    // if(logoList.indexOf(action.logo)!==-1){
-    //   a= remove(logoList,action.logo)
-    // }else{
-    //   const new_logoList = [];
-    //   new_logoList.push(action.logo)
-    //   a = new_logoList.concat(logoList)
-    // }
     return {
       ...state,
       form2: {
