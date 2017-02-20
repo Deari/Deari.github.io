@@ -92,7 +92,7 @@ const ACTION_HANDLERS = {
 }
 
 const initialState = {
-  page: 2,
+  page: 1,
   cates: [{
     categoryId: 0,
     categoryName: "正在加载..."

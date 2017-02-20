@@ -14,7 +14,7 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, updateFirstForm } from '../modules/edit'
+        getAppInfo, updateFirstForm, updateSecondForm } from '../modules/edit'
 
 class EditContainer extends Component {
   
@@ -32,7 +32,7 @@ class EditContainer extends Component {
         this.props.getAppInfo(appId);
         this.props.fetchTags()
         this.props.fetchCates()
-        this.props.toggleStep(2)
+        this.props.toggleStep(1)
       } else {
         debug.warn("登录失败")
       }
@@ -85,6 +85,16 @@ class EditContainer extends Component {
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
             // this.props.updateAppId(res.data.appId);
+            const versionurl = getDomain(`web/developer/widget/${values.appId}/code`)
+            const versionFormData = new FormData()
+            versionFormData.append("prepareVersion", "1")
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+               if(versionRes.status == 200) {
+                 this.props.updateSecondForm({
+                   codeId:versionRes.data.codeId
+                 })
+               }
+            })
             this.props.updateFirstForm(values)
             this.props.toggleStep(2);
           } else {
@@ -195,7 +205,8 @@ const mapDispatchToProps = {
   fetchTags,
   fetchCates,
   getAppInfo,
-  updateFirstForm
+  updateFirstForm,
+  updateSecondForm
 }
 
 const mapStateToProps = ({widgetEdit}) => ({
