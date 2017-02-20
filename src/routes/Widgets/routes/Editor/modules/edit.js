@@ -137,7 +137,7 @@ const ACTION_HANDLERS = {
 }
 
 const initialState = {
-  page: 1,
+  page: 2,
   cates: [{
     categoryId: 0,
     categoryName: "正在加载..."
@@ -163,9 +163,22 @@ const initialState = {
     isH5App: 0
   },
   form2: {
+    publishList: [
+      { txt: '自动发布此版本', value: 1 },
+      { txt: '手动发布此版本', value: 0 },
+    ],
+    versionsList: [
+      { value: "0.0.1" },
+      { value: "0.1.0" },
+      { value: "1.0.0" }
+    ],
     codeDesc: '',
     platform: 2,
-    isH5App: 0
+    isH5App: 0,
+    showUpdateMsg: 0,
+    appId: -1,
+    codeId: -1,
+    autoPublish: 1,
   }
 }
 
