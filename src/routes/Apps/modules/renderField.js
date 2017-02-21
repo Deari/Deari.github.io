@@ -253,13 +253,13 @@ export class ModalList extends Component {
           console.log("网络错误", e)
        }
      }else{
-
+      //未来硬件接口
      }
    }
  
   render() {
     const { input, type ,idList, meta: { touched, dirty, error, warning }} = this.props
-    const { datalist} = this.state
+    const { datalist } = this.state
     return (
        <div className="popup-box">      
           <form className="popup-search">
@@ -282,8 +282,9 @@ export class ModalList extends Component {
                         <p className="info-img" > <img src={item.appLogo} /></p>
                       </div>
                       <div className="info-content w320">
-                        <p className="info-name"> {item.appName}</p>
+                        <p className="info-name"> {item.appName}<i className={item.isH5App?"icon-rnpng":"icon-hpng"}></i></p>
                         <p className="info-introduce"> {item.appDesc}</p>
+                        <p className="info-link"><a>在应用市场中查看</a><i className="iconfont icon-categoryindi"></i></p>
                       </div>
                       <div className="info-price w78">免费</div>
                       <div className="info-status w140">已审核</div>
