@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getGateWayDomain } from 'utils/domain'
 import debug from 'utils/debug'
+import classnames from 'classnames'
+import { updateSecondForm } from '../routes/Editor/modules/edit'
 
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
@@ -86,6 +88,8 @@ export class renderTags extends Component {
   }
   
 }
+
+
 
 export class renderImageUpload extends Component {
 
@@ -205,4 +209,97 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
   </div>
 </div>
 
+export class ModalList extends Component {
+   state= {
+     datalist: [],
+   }
+   handleClick(item){
+     this.props.handleIdchange(item.appId)
+     this.props.handlechange(item.appLogo)
+   }
+   handleCancel(item){
+     this.props.handleIdchange(item.appId)
+     this.props.handlechange(item.appLogo)
+   }
+   handleSave(){
+     const { input } = this.props
+     input.onChange(this.state.idList)
+   }
+   async componentDidMount() {
+     if(this.props.type === 'app'){
+       const apiUrl = getDomain("web/developer/apps")
+       try {
+          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          if (res.status == 200) {
+            this.setState({datalist:res.data && res.data.list})
+          } else {
+            debug.warn("获取列表接口错误")
+            return false
+          }
+       } catch (e) {
+          console.log("网络错误", e)
+       }
+     }else if(this.props.type === 'weiget'){
+      const apiUrl = getDomain("web/developer/widgets")
+       try {
+          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          if (res.status == 200) {
+            this.setState({datalist:res.data && res.data.list})
+          } else {
+            debug.warn("获取列表接口错误")
+            return false
+          }
+       } catch (e) {
+          console.log("网络错误", e)
+       }
+     }else{
+
+     }
+   }
+ 
+  render() {
+    const { input, type ,idList, meta: { touched, dirty, error, warning }} = this.props
+    const { datalist} = this.state
+    return (
+       <div className="popup-box">      
+          <form className="popup-search">
+            <input type="text" placeholder="请输入硬件名称进行搜索" />
+          </form>
+          <ul className="list-title">
+            <li className="w116">Logo</li>
+            <li className="w320">应用名称</li>
+            <li className="w78">价格</li>
+            <li className="w140">状态</li>
+            <li className="w104">操作</li>
+          </ul>
+          <div className="list-box">
+            <div className="listContent">
+              {
+                datalist.length == 0 ? <div className="list-none">没有更多数据了~</div> :
+                  datalist.map( (item, index) => (
+                     <div className="list-container"  key={index}>
+                      <div className="info-img-container w116">
+                        <p className="info-img" > <img src={item.appLogo} /></p>
+                      </div>
+                      <div className="info-content w320">
+                        <p className="info-name"> {item.appName}</p>
+                        <p className="info-introduce"> {item.appDesc}</p>
+                      </div>
+                      <div className="info-price w78">免费</div>
+                      <div className="info-status w140">已审核</div>
+                      <div className="info-btn w104">
+                      {idList.indexOf(item.appId) !==-1? <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>:<button onClick={this.handleClick.bind(this,item)}>选择</button>}                      
+                      </div>
+                    </div>
+                  ) )
+              }
+            </div>
+          </div>      
+          <div className="null-box"></div>
+          <button className="popup-save"  onClick={this.handleSave.bind(this)}>保存</button>
+        </div>
+    )
+  } 
+}
+  
 export default renderField

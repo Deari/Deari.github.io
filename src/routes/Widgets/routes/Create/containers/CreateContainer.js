@@ -28,7 +28,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(0)
+        this.props.toggleStep(1)
       } else {
         debug.warn("登录失败")
       }
@@ -79,7 +79,15 @@ class CreateContainer extends Component {
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
             console.info("提交成功: ", res.data)
+            const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+            const versionFormData = new FormData();
+            versionFormData.append("prepareVersion", "1");
             this.props.updateForm2({ appId: res.data.appId});
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+               if(versionRes.status == 200) {
+                 this.props.updateForm2({codeId:versionRes.data.codeId})
+               }
+            })
             this.props.toggleStep(2);
           } else {
             debug.warn('请完善表单信息')
@@ -95,7 +103,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -119,16 +126,18 @@ class CreateContainer extends Component {
             codeDesc,
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
-            'autoPublish': 0,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg':Number(values.showUpdateMsg),
           })
         } else {
           params = {
             appId,
             codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': 0,
-            'codeVersion': '0.0.1'
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'showUpdateMsg': Number(values.showUpdateMsg),
           }
         }
       

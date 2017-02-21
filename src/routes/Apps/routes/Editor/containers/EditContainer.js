@@ -108,9 +108,8 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-  
-    this.isLogin()
 
+    this.isLogin()
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -127,11 +126,14 @@ class EditContainer extends Component {
         }
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
+            'codeId':values.codeId,
             'fileName': file.originalName,
             'fileLink': file.url,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
           delete params.file
         } else {
@@ -143,12 +145,24 @@ class EditContainer extends Component {
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
         }
 
         const formData = new FormData()
         for (let key in params) {
-          formData.append(key, params[key])
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
+          } else {
+            formData.append(key, params[key])
+          }
         }
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)

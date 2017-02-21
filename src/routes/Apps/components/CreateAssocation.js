@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleActive } from '../routes/Editor/modules/edit'
+import { toggleActive } from '../routes/Create/modules/create'
 import { validate } from '../modules/validate'
-class AssociationModule extends Component {
+class CreateAssocation extends Component {
   state={
     appActive:0,
     weigetActive:0,
@@ -35,8 +35,7 @@ class AssociationModule extends Component {
   }
   onAppDelete(item,index){
     this.props.handlechange(item.logo,'app')
-    this.props.handleIdchange(item.id,'app')
-    
+    this.props.handleIdchange(item.id,'app')  
   }
   onWeigetDelete(item,index){
     this.props.handlechange(item.logo,'weiget')
@@ -91,7 +90,7 @@ class AssociationModule extends Component {
 		              </li>
 		             ))
 		          }
-	           <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	           	<li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -128,4 +127,4 @@ class AssociationModule extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AssociationModule)
+)(CreateAssocation)

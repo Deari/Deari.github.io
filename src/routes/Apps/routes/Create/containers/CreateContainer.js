@@ -49,7 +49,6 @@ class CreateContainer extends Component {
   }
 
   submitFirst(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -104,7 +103,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -130,6 +128,8 @@ class CreateContainer extends Component {
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
         } else {
           params = {
@@ -140,11 +140,23 @@ class CreateContainer extends Component {
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           }
         }
 
         for (let key in params) {
-          formData.append(key, params[key])
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
+          } else {
+            formData.append(key, params[key])
+          }
         }
 
         fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {

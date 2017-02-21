@@ -163,9 +163,22 @@ const initialState = {
     isH5App: 0
   },
   form2: {
+    publishList: [
+      { txt: '自动发布此版本', value: 1 },
+      { txt: '手动发布此版本', value: 0 },
+    ],
+    versionsList: [
+      { value: "0.0.1" },
+      { value: "0.1.0" },
+      { value: "1.0.0" }
+    ],
     codeDesc: '',
     platform: 2,
-    isH5App: 0
+    isH5App: 0,
+    showUpdateMsg: 0,
+    appId: -1,
+    codeId: -1,
+    autoPublish: 1,
   }
 }
 
@@ -214,11 +227,27 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size,
-                fileName, fileLink, moduleName, setting } = res.data
-        const { codeDesc } = res.data && res.data.versions && res.data.versions[0] || ''
-        const rnFrameworkVersion = res.data.rnFrameworkVersion || 0
+          fileName, fileLink, moduleName, setting, } = res.data
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
+          rnFrameworkVersion=0, codeVersion=''} = res.data && res.data.versions[0]
+  
         const tagId = tags.map(v=>v.tagId)
-
+        const versionsarray0 = [
+          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
+        ]
+        const versionsarray1 = [
+          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
+        ]
+        const versionsarray2 = [
+          parseInt(codeVersion.split(".")[0]) + 1, 0, 0
+        ]
+        
+        const versionsList = [
+          {'value':codeVersion =="0.0.1"?codeVersion:versionsarray0.join('.')},
+          {'value':versionsarray1.join('.')},
+          {'value':versionsarray2.join('.')}
+        ]
+       
         dispatch(updateForm({
           appId,
           appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, isH5App, size,
@@ -227,7 +256,8 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({ 
           appId,
-          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting 
+          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
+          versionsList,
         }))
         
       } else {
@@ -242,5 +272,11 @@ export const getAppInfo = (appId) => {
 export const updateFirstForm = (values) => {
   return (dispatch) => {
     dispatch(updateForm(values))
+  }
+}
+
+export const updateSecondForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm2(values))
   }
 }
