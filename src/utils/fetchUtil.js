@@ -1,4 +1,5 @@
 import fetch from '../../fetch'
+import debug from './debug'
 
 
 class FetchUtil {
@@ -39,6 +40,10 @@ class FetchUtil {
             const resp = await res.json();
             if (options[ 'passDate' ]) {
               resp._date = res.headers.get('date');
+            }
+            if (resp.status == 4202) {
+              debug.warn("请先登录")
+              return
             }
             return resolve(resp);
           } catch (e) {
@@ -128,6 +133,10 @@ class FetchUtil {
         if (res.ok) {
           try {
             const resp = await res.json();
+            if (resp.status == 4202) {
+              debug.warn("请先登录")
+              return
+            }
             return resolve(resp);
           } catch (e) {
             return reject(e)
