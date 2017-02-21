@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getGateWayDomain } from 'utils/domain'
+import { getGateWayDomain, getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -296,10 +296,11 @@ export class ModalList extends Component {
             </div>
           </div>      
           <div className="null-box"></div>
-          <button className="popup-save"  onClick={this.handleSave.bind(this)}>保存</button>
+          
         </div>
     )
   } 
 }
   
 export default renderField
+//<button className="popup-save"  onClick={this.handleSave.bind(this)}>保存</button>

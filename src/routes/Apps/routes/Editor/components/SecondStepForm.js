@@ -35,7 +35,6 @@ const SecondStepForm = props => {
   
   const appObj = compose(idList,logoList)
   const weiObj = compose(wIdList,wLogoList)
-  console.log(appObj)
   const handlechange = (data,type)=>{
     type = type ? type : active.type
     type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
