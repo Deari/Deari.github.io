@@ -43,7 +43,7 @@ const compile = async () => {
     const remote = getRemote(project.env === 'production' ? null : 'sit')
     // Initialize a new Git repository inside the `/build` folder
     // if it doesn't exist yet
-    const branch = project.env === 'production' ? 'master' : 'sit'
+    const branch = project.env === 'production' && !process.env.SIT ? 'master' : 'sit'
 
     await repo.setRemote(remote.name, remote.url)
     // Fetch the remote repository if it exists
