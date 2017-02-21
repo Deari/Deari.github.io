@@ -102,9 +102,8 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
-          rnFrameworkVersion=0, codeVersion=''} = res.data && res.data.versions[0]
+          rnFrameworkVersion=0, codeVersion='', reviewStatus} = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-
         const versionsarray0 = [
           parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
         ]
@@ -116,7 +115,7 @@ export const getAppInfo = (appId) => {
         ]
         
         const versionsList = [
-          {'value':codeVersion =="0.0.1"?codeVersion:versionsarray0.join('.')},
+          { 'value': reviewStatus === 0 ? codeVersion : versionsarray0.join('.') },
           {'value':versionsarray1.join('.')},
           {'value':versionsarray2.join('.')}
         ]
