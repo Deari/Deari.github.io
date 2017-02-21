@@ -40,7 +40,7 @@ const compile = async () => {
   try {
     const repo = await GitRepo.open('dist', { init: true })
     // By default deploy to the staging deployment slot
-    const remote = getRemote(project.env === 'production' ? null : 'sit')
+    const remote = getRemote(project.env === 'production' && !process.env.SIT ? null : 'sit')
     // Initialize a new Git repository inside the `/build` folder
     // if it doesn't exist yet
     const branch = project.env === 'production' && !process.env.SIT ? 'master' : 'sit'
