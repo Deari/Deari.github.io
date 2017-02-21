@@ -10,7 +10,7 @@ i.icon-recommend{font-size:23px!important;}
   }
   .active{
     display:block;
-    li{
+    .logo-box{
         width: 100px;
         height: 100px;
         border: 1px solid #ddd;
@@ -40,7 +40,7 @@ i.icon-recommend{font-size:23px!important;}
             z-index: 2;
         }
     }
-    li:not(:last-child){
+    .logo-box:not(:last-child){
         &:after{
             content: "";
             background: #fff;

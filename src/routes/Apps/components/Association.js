@@ -62,13 +62,13 @@ class AssociationModule extends Component {
 	        	<ul className={classnames({ 'active': appActive })}>
 		          {
 		             appObj.map((item,id)=>(
-		              <li key={item.id}>
+		              <li className='logo-box' key={item.id}>
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onAppDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
-		          <li onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
+		          <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -85,13 +85,13 @@ class AssociationModule extends Component {
 	        	<ul className={classnames({ 'active': weigetActive })}>
 		          {
 		             weiObj.map((item,id)=>(
-		              <li key={item.id}>
+		              <li className="logo-box" key={item.id}>
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onWeigetDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
-	           <li onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -106,7 +106,7 @@ class AssociationModule extends Component {
 		        </div>
 		        <label className="labelCheckbox" htmlFor="hardware">硬件</label>
 	        	<ul className={classnames({ 'active': hardwareActive })}>
-		           <li onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
+		           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
