@@ -28,7 +28,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(0)
       } else {
         debug.warn("登录失败")
       }
