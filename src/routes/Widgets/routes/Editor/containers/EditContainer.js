@@ -126,7 +126,6 @@ class EditContainer extends Component {
 
         const url = getDomain(`web/developer/widget/${values.appId}/code`)
         const formData = new FormData();
-
         const file = values.file;
 
         let params = {
@@ -137,18 +136,12 @@ class EditContainer extends Component {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
           delete params.file
         } else {
           Object.assign(params, {
-            'appId': values.appId,
-            'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
         }

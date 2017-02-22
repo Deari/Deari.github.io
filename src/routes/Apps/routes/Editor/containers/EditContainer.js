@@ -126,11 +126,8 @@ class EditContainer extends Component {
         }
         if(file && values.isH5App === 0) {
           Object.assign(params, file, {
-            'codeId':values.codeId,
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,
@@ -138,12 +135,7 @@ class EditContainer extends Component {
           delete params.file
         } else {
           Object.assign(params, {
-            'appId': values.appId,
-            'codeId':values.codeId,
-            'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,

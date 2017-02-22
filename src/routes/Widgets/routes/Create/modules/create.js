@@ -121,6 +121,7 @@ const initialState = {
     isH5App: 0
   },
   form2: {
+    codeId:-1,
     publishList: [
       { txt: '自动发布此版本', value: 1 },
       { txt: '手动发布此版本', value: 0 },

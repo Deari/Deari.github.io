@@ -116,27 +116,20 @@ class CreateContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
-        const { appId, codeDesc } = values;
-        let params = {}
+        let params = {
+          ...values
+        }
 
         if (values.isH5App === 0) {
           const file = values.file
           params = Object.assign({}, file, {
-            appId,
-            codeDesc,
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
         } else {
           params = {
-            appId,
-            codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg': Number(values.showUpdateMsg),
           }
         }

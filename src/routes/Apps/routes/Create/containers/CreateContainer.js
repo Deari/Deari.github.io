@@ -122,6 +122,7 @@ class CreateContainer extends Component {
           const file = values.file
           params = Object.assign({}, file, {    
             'appId': values.appId,
+            'codeId':values.codeId,
             'codeDesc': values.codeDesc,
             'fileName': file.originalName,
             'fileLink': file.url,
