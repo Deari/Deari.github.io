@@ -1,10 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
 import { toggleActive } from '../routes/Editor/modules/edit'
-import { validate } from '../modules/validate'
 class AssociationModule extends Component {
   state={
     appActive:0,

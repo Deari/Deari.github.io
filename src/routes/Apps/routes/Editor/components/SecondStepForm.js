@@ -2,8 +2,11 @@ import React from 'react'
 import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
+
 import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
+import ModalList from '../../../components/ModalList'
+
 import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList } from '../modules/edit'
 import { 
     renderField,
@@ -11,7 +14,6 @@ import {
     renderFile ,
     renderSelect, 
     renderPublishRadioBox ,
-    ModalList,
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
@@ -82,7 +84,14 @@ const SecondStepForm = props => {
              title={true}
              onClose={()=> props.toggleActive({trim:0,type:""})}
         >
-      <Field name={active.type+"IdList"} component={ModalList} datalist={datalist} idList={active.type==='app'?idList:wIdList} type={active.type} handlechange={handlechange} handleIdchange={handleIdchange}/>
+       <ModalList  name={active.type+"IdList"} 
+                   component={ModalList} 
+                   datalist={datalist} 
+                   idList={active.type==='app'?idList:wIdList} 
+                   type={active.type} 
+                   handlechange={handlechange} 
+                   handleIdchange={handleIdchange}
+       />
       </Modal>
       <div className="form-btn">
         <div>

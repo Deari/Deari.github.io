@@ -5,8 +5,9 @@ import { Field, reduxForm } from 'redux-form'
 
 import Modal from 'components/Modal'
 import CreateAssocation from '../../../components/CreateAssocation'
+import ModalList from '../../../components/ModalList'
 
-import { renderField, versionTextArea, renderFile ,renderSelect, renderPublishRadioBox, ModalList,} from '../../../modules/renderField'
+import { renderField, versionTextArea, renderFile ,renderSelect, renderPublishRadioBox,} from '../../../modules/renderField'
 import { toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList} from '../modules/create'
 import { validate } from '../../../modules/validate'
 
@@ -73,14 +74,23 @@ const SecondStepForm = props => {
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <CreateAssocation appObj={appObj} weiObj={weiObj} handlechange={handlechange} handleIdchange={handleIdchange} />
-      <Modal type={"alert"}
-             text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
-             active={active.trim}
-             hideButtons={true}
-             title={true}
-             onClose={()=> props.toggleActive({trim:0,type:""})}
+      <Modal 
+        type={"alert"}
+        text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
+        active={active.trim}
+        hideButtons={true}
+        title={true}
+        onClose={()=> props.toggleActive({trim:0,type:""})}
       >
-      <Field name={active.type+"IdList"} component={ModalList} datalist={datalist} idList={active.type==='app'?idList:wIdList} type={active.type} handlechange={handlechange} handleIdchange={handleIdchange}/>
+        <ModalList  
+            name={active.type+"IdList"} 
+            component={ModalList} 
+            datalist={datalist} 
+            idList={active.type==='app'?idList:wIdList} 
+            type={active.type} 
+            handlechange={handlechange} 
+            handleIdchange={handleIdchange}
+        />
       </Modal>
       <div className="form-btn">
         <div>
