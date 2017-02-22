@@ -21,7 +21,8 @@ import {
   getCates, 
   getAppInfo,
   updateFirstForm,
-  updateSecondForm
+  receiveVersionsList,
+  receiveCodeId
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -52,7 +53,25 @@ class EditContainer extends Component {
       if (!status) debug.warn('请先登录')
     }, sessionUrl)
   }
+  getVersionList(codeVersion,reviewStatus){
+    const versionsArray0 = [
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
+    ]
+    const versionsArray1 = [
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
+    ]
+    const versionsArray2 = [
+      parseInt(codeVersion.split(".")[0]) + 1, 0, 0
+    ]
 
+    const versionsList = [
+      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
+      { 'value': versionsArray1.join('.') },
+      { 'value': versionsArray2.join('.') }
+    ]    
+    return versionsList
+  }
+  
   submitFirst(values) {
 
     this.isLogin()
@@ -87,9 +106,9 @@ class EditContainer extends Component {
             versionFormData.append("prepareVersion", "1")
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
-                 this.props.updateSecondForm({
-                   codeId:versionRes.data.codeId
-                 })
+                 const versionsList = this.getVersionList(versionRes.data.codeVersion,versionRes.data.reviewStatus)
+                 this.props.receiveVersionsList(versionsList)
+                 this.props.receiveCodeId(versionRes.data.codeId)
                }
             })
             this.props.updateFirstForm(values)
@@ -108,7 +127,6 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-
     this.isLogin()
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
@@ -215,7 +233,8 @@ const mapDispatchToProps = {
   getCates,
   getAppInfo,
   updateFirstForm,
-  updateSecondForm,
+  receiveVersionsList,
+  receiveCodeId
 }
 
 const mapStateToProps = ({appsEdit}) => ({

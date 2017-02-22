@@ -103,6 +103,7 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
+    
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -123,22 +124,31 @@ class CreateContainer extends Component {
         if (values.isH5App === 0) {
           const file = values.file
           params = Object.assign({}, file, {
+            'appId':values.appId,
+            'codeId':values.codeId,
+            'codeDesc':values.codeId,
+            'autoPublish':values.autoPublish,
+            'codeVersion':values.codeVersion,
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
         } else {
           params = {
+            'appId':values.appId,
+            'codeId':values.codeId,
+            'codeDesc':values.codeId,
+            'autoPublish':values.autoPublish,
+            'codeVersion':values.codeVersion,
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
           }
         }
-      
         for(let key in params) {
           formData.append(key, params[key])
         }
 
-        const url = getDomain(`web/developer/widget/${appId}/code`)
+        const url = getDomain(`web/developer/widget/${values.appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
             this.props.toggleStep(3);
