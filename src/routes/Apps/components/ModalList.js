@@ -13,14 +13,16 @@ class ModalList extends Component {
      this.props.handleIdchange(item.appId)
      this.props.handlechange(item.appLogo)
    }
-   handleChange(e){
-    alert(e.target.value)
-   }
-   handleKeyDown(e){
-     if (e && e.keyCode == 13) {
-       alert(e.target.value)
-     }
-   }
+  //  handleChange(e){
+  //   alert(e.target.value)
+  //  }
+  //  handleKeyDown(e){
+  //    if (e && e.keyCode == 13) {
+  //      alert(e.target.value)
+  //    }
+  //  }
+  //  onBlur={e=>{this.handleChange(e)}} 
+  //           onKeyDown={e=>{this.handleKeyDown(e)}}
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
@@ -59,8 +61,7 @@ class ModalList extends Component {
     return (
        <div className="popup-box">      
           <div className="popup-search">
-            <input type="text" placeholder="请输入硬件名称进行搜索" onBlur={e=>{this.handleChange(e)}} 
-            onKeyDown={e=>{this.handleKeyDown(e)}}/>
+            <input type="text" placeholder="请输入硬件名称进行搜索" />
           </div>
           <ul className="list-title">
             <li className="w116">Logo</li>
