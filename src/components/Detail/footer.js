@@ -39,10 +39,10 @@ export const Versions = (props) => {
 }
 
 export const Unapprove = (props) => {
-  const { editUrl, data } = props
+  const { editUrl, data, latestVersion} = props
   return <div className="table-info">
     <h3 className="app-title">审核未通过原因:</h3>
-    <p className="text-field"></p>
+    <p className="text-field">{latestVersion.reviewReason ? latestVersion.reviewReason : "无返回信息"}</p>
     <Link to={editUrl}><button className="btn btn-primary fieldBtn" type="button">编辑</button></Link>
   </div>
 }
