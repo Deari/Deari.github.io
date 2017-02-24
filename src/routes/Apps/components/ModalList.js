@@ -83,7 +83,7 @@ class ModalList extends Component {
                         <p className="info-img" > <img src={item.appLogo} /></p>
                       </div>
                       <div className="info-content w320">
-                        <p className="info-name"> {item.appName}<i className={item.isH5App?"icon-rnpng":"icon-hpng"}></i></p>
+                        <p className="info-name"> {item.appName}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i></p>
                         <p className="info-introduce"> {item.appDesc}</p>
                         <Link className="info-link" to={typeUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
                       </div>
