@@ -86,7 +86,8 @@ class widgetsList extends React.Component {
         obj.status = this.getStatus(item).status
         obj.download = 100
         obj.detailUrl = `/widgets/detail/${obj.id}`
-
+        obj.isH5App = item.isH5App
+        obj.marketUrl = `/widgets`
         const editUrl = `/widgets/edit/${obj.id}`
 
         const showBtn = this.getStatus(item)

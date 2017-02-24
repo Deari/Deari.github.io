@@ -65,7 +65,7 @@ class EditContainer extends Component {
     ]
 
     const versionsList = [
-      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
+      { 'value': reviewStatus === 0 || reviewStatus === 3 ? codeVersion : versionsArray0.join('.') },
       { 'value': versionsArray1.join('.') },
       { 'value': versionsArray2.join('.') }
     ]    

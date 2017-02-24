@@ -126,7 +126,7 @@ class CreateContainer extends Component {
           params = Object.assign({}, file, {
             'appId':values.appId,
             'codeId':values.codeId,
-            'codeDesc':values.codeId,
+            'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
             'fileName': file && file.originalName,
@@ -137,7 +137,7 @@ class CreateContainer extends Component {
           params = {
             'appId':values.appId,
             'codeId':values.codeId,
-            'codeDesc':values.codeId,
+            'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
             'fileLink': values.fileLink,

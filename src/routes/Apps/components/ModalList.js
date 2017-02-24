@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { getGateWayDomain, getDomain } from 'utils/domain'
 import fetchUtil from 'utils/fetchUtil'
+import { Link } from 'react-router'
 class ModalList extends Component {
    state= {
      datalist: [],
@@ -56,12 +57,14 @@ class ModalList extends Component {
    }
  
   render() {
-    const { idList } = this.props
+    const { idList,type} = this.props
     const { datalist } = this.state
+    const typeTxt = type==='app'? '应用':'组件'
+    const typeUrl = type==='app'? `/apps`:`/widgets`
     return (
        <div className="popup-box">      
           <div className="popup-search">
-            <input type="text" placeholder="请输入硬件名称进行搜索" />
+            <input type="text" placeholder={"请输入"+typeTxt+"名称进行搜索"} />
           </div>
           <ul className="list-title">
             <li className="w116">Logo</li>
@@ -82,7 +85,7 @@ class ModalList extends Component {
                       <div className="info-content w320">
                         <p className="info-name"> {item.appName}<i className={item.isH5App?"icon-rnpng":"icon-hpng"}></i></p>
                         <p className="info-introduce"> {item.appDesc}</p>
-                        <p className="info-link"><a>在应用市场中查看</a><i className="iconfont icon-categoryindi"></i></p>
+                        <Link className="info-link" to={typeUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
                       </div>
                       <div className="info-price w78">免费</div>
                       <div className="info-status w140">已审核</div>
