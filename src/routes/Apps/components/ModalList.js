@@ -6,6 +6,9 @@ class ModalList extends Component {
    state= {
      datalist: [],
    }
+
+   initial=[]
+
    handleClick(item){
      this.props.handleIdchange(item.appId)
      this.props.handlechange(item.appLogo)
@@ -14,25 +17,11 @@ class ModalList extends Component {
      this.props.handleIdchange(item.appId)
      this.props.handlechange(item.appLogo)
    }
-<<<<<<< HEAD
    handleChange(e){
-    alert(e.target.value)
+      const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
+      this.setState({datalist:newList})
    }
-=======
-  //  handleChange(e){
-  //   alert(e.target.value)
-  //  }
->>>>>>> dev-new
-  //  handleKeyDown(e){
-  //    if (e && e.keyCode == 13) {
-  //      alert(e.target.value)
-  //    }
-  //  }
-<<<<<<< HEAD
-=======
-  //  onBlur={e=>{this.handleChange(e)}} 
-  //           onKeyDown={e=>{this.handleKeyDown(e)}}
->>>>>>> dev-new
+
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
@@ -40,6 +29,7 @@ class ModalList extends Component {
           const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
+            Object.assign(this.initial, res.data && res.data.list)
           } else {
             debug.warn("获取列表接口错误")
             return false
@@ -53,6 +43,7 @@ class ModalList extends Component {
           const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
+            Object.assign(this.initial, res.data && res.data.list)
           } else {
             debug.warn("获取列表接口错误")
             return false
@@ -73,11 +64,7 @@ class ModalList extends Component {
     return (
        <div className="popup-box">      
           <div className="popup-search">
-<<<<<<< HEAD
-            <input type="text" placeholder="请输入硬件名称进行搜索" onChange={e=>{this.handleChange(e)}}/>
-=======
-            <input type="text" placeholder={"请输入"+typeTxt+"名称进行搜索"} />
->>>>>>> dev-new
+            <input type="text" placeholder={"请输入"+typeTxt+"名称进行搜索"} onChange={e=>{this.handleChange(e,this)}}/>
           </div>
           <ul className="list-title">
             <li className="w116">Logo</li>
@@ -89,7 +76,7 @@ class ModalList extends Component {
           <div className="list-box">
             <div className="listContent">
               {
-                datalist.length == 0 ? <div className="list-none">没有更多数据了~</div> :
+                datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
                   datalist.map( (item, index) => (
                      <div className="list-container"  key={index}>
                       <div className="info-img-container w116">
