@@ -255,6 +255,17 @@
     font-size:14px;
     color:$black-color;
     cursor:pointer;
+    input[type=radio]{
+      position: static;
+      top: 0px;
+      left: 0px;
+      width: 16px;
+      height: 16px;
+      opacity: 1;
+      cursor: pointer;
+      z-index: 1;
+      vertical-align: middle;
+    }
   }
 }
 .text-field{

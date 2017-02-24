@@ -15,6 +15,9 @@ const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
 
+const RECEIVE_VERSIONSLIST = PREFIX+'RECEIVE_VERSIONSLIST'
+const RECEIVE_CODEID = PREFIX+'RECEIVE_CODEID'
+
 const REQUEST_CATES = PREFIX+'REQUEST_CATES'
 const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 const UPDATE_FORM1 = PREFIX+'UPDATE_FORM1'
@@ -44,17 +47,29 @@ export const toggleLogoList= (logo) => ({
   type : TOGGLE_LOGOLIST,
   logo
 })
+
 export const toggleIdList= (id) => ({
   type : TOGGLE_IDLIST,
   id
 })
+
 export const WtoggleLogoList= (logo) => ({
   type : WTOGGLE_LOGOLIST,
   logo
 })
+
 export const WtoggleIdList= (id) => ({
   type : WTOGGLE_IDLIST,
   id
+})
+
+export const receiveVersionsList= (versionsList) => ({
+  type :  RECEIVE_VERSIONSLIST,
+  versionsList
+})
+export const receiveCodeId= (codeId) => ({
+  type :  RECEIVE_CODEID,
+  codeId
 })
 
 export const updateForm1 = (data) => ({
@@ -92,7 +107,7 @@ export const getCates = () => {
     })
   }
 }
-
+  
 export const getAppInfo = (appId) => {
   return (dispatch) => {
     const url = getDomain(`web/developer/app/${appId}`)
@@ -102,23 +117,8 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
-          rnFrameworkVersion=0, codeVersion='', reviewStatus} = res.data && res.data.versions[0]
+          rnFrameworkVersion=0 } = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-        const versionsarray0 = [
-          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
-        ]
-        const versionsarray1 = [
-          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
-        ]
-        const versionsarray2 = [
-          parseInt(codeVersion.split(".")[0]) + 1, 0, 0
-        ]
-        
-        const versionsList = [
-          { 'value': reviewStatus === 0 ? codeVersion : versionsarray0.join('.') },
-          {'value':versionsarray1.join('.')},
-          {'value':versionsarray2.join('.')}
-        ]
         dispatch(updateForm1({
           appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
@@ -127,7 +127,6 @@ export const getAppInfo = (appId) => {
         dispatch(updateForm2({
           appId,
           platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
-          versionsList,
         })) 
 
       } else {
@@ -144,12 +143,26 @@ export const updateFirstForm = (values) => {
     dispatch(updateForm1(values))
   }
 }
-export const updateSecondForm = (values) => {
-  return (dispatch) => {
-    dispatch(updateForm2(values))
-  }
-}
+
 const ACTION_HANDLERS = {
+ [RECEIVE_CODEID]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        codeId:action.codeId
+      }
+    }
+ },
+ [RECEIVE_VERSIONSLIST]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        versionsList:action.versionsList
+      }
+    }
+ },
  [WTOGGLE_IDLIST]: (state, action) => {
     const idList = state.form2.wIdList
     const newList = idList.filter((v)=>v!=action.id)

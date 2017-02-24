@@ -28,7 +28,7 @@ class CreateContainer extends Component {
       if (status) {
         this.props.getTags()
         this.props.getCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(0)
       } else {
         debug.warn("登录失败")
       }
@@ -103,6 +103,7 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
+    
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -116,36 +117,38 @@ class CreateContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
-        const { appId, codeDesc } = values;
-        let params = {}
+        let params = {
+          ...values
+        }
 
         if (values.isH5App === 0) {
           const file = values.file
           params = Object.assign({}, file, {
-            appId,
-            codeDesc,
+            'appId':values.appId,
+            'codeId':values.codeId,
+            'codeDesc':values.codeDesc,
+            'autoPublish':values.autoPublish,
+            'codeVersion':values.codeVersion,
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
         } else {
           params = {
-            appId,
-            codeDesc,
+            'appId':values.appId,
+            'codeId':values.codeId,
+            'codeDesc':values.codeDesc,
+            'autoPublish':values.autoPublish,
+            'codeVersion':values.codeVersion,
             'fileLink': values.fileLink,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg': Number(values.showUpdateMsg),
           }
         }
-      
         for(let key in params) {
           formData.append(key, params[key])
         }
 
-        const url = getDomain(`web/developer/widget/${appId}/code`)
+        const url = getDomain(`web/developer/widget/${values.appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
             this.props.toggleStep(3);

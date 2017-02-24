@@ -31,7 +31,7 @@ const getPreviewData = data => ({
 })
 
 export const fetchPreview = () => dispatch => new Promise(resolve => {
-  const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/page/3')
+  const apiUrl = getDomain('web/merchant/page/3')
   fetchUtil.getJSON(apiUrl).then(response => {
       dispatch(getPreviewData(response.data))
       resolve()

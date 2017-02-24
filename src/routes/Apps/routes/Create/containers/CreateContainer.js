@@ -117,28 +117,31 @@ class CreateContainer extends Component {
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         const formData = new FormData()
-        let params = {}
+        let params = {
+          ...values
+        }
         if (values.isH5App === 0) {
           const file = values.file
-          params = Object.assign({}, file, {    
+          params = Object.assign({}, file, {
             'appId': values.appId,
+            'codeId': values.codeId,
             'codeDesc': values.codeDesc,
-            'fileName': file.originalName,
-            'fileLink': file.url,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
-            'showUpdateMsg':Number(values.showUpdateMsg),
-            'relatedApps':values.idList,
-            'relatedWidgets':values.wIdList,
+            'fileName': file.originalName,
+            'fileLink': file.url,
+            'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
           })
         } else {
           params = {
             'appId': values.appId,
-            'codeId':values.codeId,
+            'codeId': values.codeId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
+            'fileLink':values.fileLink,
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,
