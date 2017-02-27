@@ -69,7 +69,7 @@ class ModalList extends Component {
           </div>
           <ul className="list-title">
             <li className="w116">Logo</li>
-            <li className="w320">应用名称</li>
+            <li className="w320">{typeTxt}名称</li>
             <li className="w78">价格</li>
             <li className="w140">状态</li>
             <li className="w104">操作</li>
