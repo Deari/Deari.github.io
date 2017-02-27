@@ -7,11 +7,13 @@ export const Header = (props) => {
   const len = data && data.versions && data.versions.length
  
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)
-
+ 
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
   const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == latestVersion.codeVersion) && latestCodeStatus.codeStatus == 5) 
-                   || (latestCodeStatus && latestCodeStatus.codeStatus!=2 && (preCodeStatus && preCodeStatus.codeVersion == latestVersion.codeVersion) && preCodeStatus.codeStatus == 5) 
-
+                    || (
+                        latestCodeStatus && latestCodeStatus.codeStatus!=2 && latestCodeStatus.codeStatus!=4 &&
+                        (preCodeStatus && preCodeStatus.codeVersion == latestVersion.codeVersion) && preCodeStatus.codeStatus == 5
+                       ) 
   const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
