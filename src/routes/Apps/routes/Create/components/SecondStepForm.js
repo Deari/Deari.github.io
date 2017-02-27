@@ -76,7 +76,7 @@ const SecondStepForm = props => {
       <CreateAssocation appObj={appObj} weiObj={weiObj} handlechange={handlechange} handleIdchange={handleIdchange} />
       <Modal 
         type={"alert"}
-        text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
+        text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}
         active={active.trim}
         hideButtons={true}
         title={true}

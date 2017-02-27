@@ -57,8 +57,7 @@ class ModalList extends Component {
    }
  
   render() {
-    const { idList,type} = this.props
-    console.log(type)
+    const { idList, type } = this.props
     const { datalist } = this.state
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
     const typeUrl = type === 'app' ? `/apps` : type === 'widget' ? `/widgets` : `/hardware`
@@ -104,8 +103,3 @@ class ModalList extends Component {
   } 
 }
 export default ModalList
-//<button className="popup-save"  onClick={this.handleSave.bind(this)}>保存</button>
-  //  handleSave(){
-  //    const { input } = this.props
-  //    input.onChange(this.state.idList)
-  //  }

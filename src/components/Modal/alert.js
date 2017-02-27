@@ -4,6 +4,7 @@ import classnames from 'classnames';
 
 const Alert = ({ active, hideButtons, modalCls, children, ...props }) => {
   const onClose = props.onClose
+  console.log(props.text)
   return <div className={classnames('modal', 'alert', { [`${modalCls}`]: modalCls }, { ['active']: active })}>
     <div className={classnames('modalInner')}>
       <div className={'modalText'}>

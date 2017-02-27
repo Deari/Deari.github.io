@@ -6,7 +6,7 @@ import { toggleActive } from '../routes/Editor/modules/edit'
 class AssociationModule extends Component {
   state={
     appActive:0,
-    weigetActive:0,
+    widgetActive:0,
     hardwareActive:0
   }
   onchange(e){
@@ -16,11 +16,11 @@ class AssociationModule extends Component {
       }else{
         this.setState({appActive:0})
       }
-    }else if(e.target.name === "weiget"){
+    }else if(e.target.name === "widget"){
       if(e.target.checked){
-        this.setState({weigetActive:1})
+        this.setState({widgetActive:1})
       }else{
-        this.setState({weigetActive:0})
+        this.setState({widgetActive:0})
       }
     }else{
        if(e.target.checked){
@@ -36,12 +36,12 @@ class AssociationModule extends Component {
     this.props.handleIdchange(item.id,'app')
     
   }
-  onWeigetDelete(item,index){
-    this.props.handlechange(item.logo,'weiget')
-    this.props.handleIdchange(item.id,'weiget')
+  onWidgetDelete(item,index){
+    this.props.handlechange(item.logo,'widget')
+    this.props.handleIdchange(item.id,'widget')
   }
   render(){
-    const { appActive, weigetActive , hardwareActive} = this.state
+    const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
     return (
     <div className="association">
@@ -73,19 +73,19 @@ class AssociationModule extends Component {
         	</div>
         	<div>
         		<div className="row-radio">
-		          <input id="weiget" type="checkbox" name='weiget' onChange={this.onchange.bind(this)}/>
+		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
 		            <i className="iconfont icon-radio icon-recommend"></i>
 		          </span>
 		        </div>
-		        <label className="labelCheckbox" htmlFor="weiget">组件</label>
-	        	<ul className={classnames({ 'active': weigetActive })}>
+		        <label className="labelCheckbox" htmlFor="widget">组件</label>
+	        	<ul className={classnames({ 'active': widgetActive })}>
 		          {
 		             weiObj.map((item,id)=>(
 		              <li className="logo-box" key={item.id}>
 		                <img src={item.logo}/>
-		                <i className="iconfont icon-del" onClick={this.onWeigetDelete.bind(this,item)}></i>
+		                <i className="iconfont icon-del" onClick={this.onWidgetDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
