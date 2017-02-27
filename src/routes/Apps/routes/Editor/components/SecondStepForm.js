@@ -34,7 +34,6 @@ const compose = (arr1, arr2) => {
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
   const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList} = initialValues
-  
   const appObj = compose(idList,logoList)
   const weiObj = compose(wIdList,wLogoList)
   const handlechange = (data,type)=>{

@@ -109,12 +109,14 @@ class EditContainer extends Component {
                 let versionsList = '';
                 if (versionRes.data[0].reviewStatus == 3) {
                   versionsList = this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus)
+                  this.props.receiveVersionsList(versionsList)
                   this.props.receiveCodeId(versionRes.data[1].codeId)
                 } else {
                   versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)
+                  this.props.receiveVersionsList(versionsList)
                   this.props.receiveCodeId(versionRes.data[0].codeId)
                 }
-                this.props.receiveVersionsList(versionsList)
+                
               }
             })
             this.props.updateFirstForm(values)
