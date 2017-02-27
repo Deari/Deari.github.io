@@ -11,11 +11,13 @@ class ModalList extends Component {
 
    handleClick(item){
      this.props.handleIdchange(item.appId)
-     this.props.handlechange(item.appLogo)
+     this.props.handleLogochange(item.appLogo)
+     this.props.handleNamechange(item.appName)
    }
    handleCancel(item){
      this.props.handleIdchange(item.appId)
-     this.props.handlechange(item.appLogo)
+     this.props.handleLogochange(item.appLogo)
+     this.props.handleNamechange(item.appName)
    }
    handleChange(e){
       const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]

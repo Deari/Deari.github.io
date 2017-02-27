@@ -48,7 +48,7 @@ class EditContainer extends Component {
 
   getVersionList(codeVersion,reviewStatus){
     const versionsArray0 = [
-      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[2]) + 1
     ]
     const versionsArray1 = [
       parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0

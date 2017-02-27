@@ -7,7 +7,7 @@ import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
 
-import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList } from '../modules/edit'
+import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList, toggleNameList, WtoggleNameList } from '../modules/edit'
 import { 
     renderField,
     versionTextArea,
@@ -18,7 +18,7 @@ import {
 import { validate } from '../../../modules/validate'
 
 
-const compose = (arr1, arr2) => {
+const compose = (arr1, arr2, arr3) => {
   const newArray = []
   if(Array.isArray(arr1) && arr1.length !==0){
    
@@ -26,6 +26,7 @@ const compose = (arr1, arr2) => {
       const obj = {};
       obj.id = arr1[i]
       obj.logo = arr2[i]
+      obj.name = arr3[i]
       newArray.push(obj)
     }
   }
@@ -33,16 +34,20 @@ const compose = (arr1, arr2) => {
 }
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
-  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList} = initialValues
-  const appObj = compose(idList,logoList)
-  const weiObj = compose(wIdList,wLogoList)
-  const handlechange = (data,type)=>{
+  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
+  const appObj = compose(idList,logoList,nameList)
+  const weiObj = compose(wIdList,wLogoList,wNameList)
+  const handleLogochange = (data,type)=>{
     type = type ? type : active.type
     type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
   } 
   const handleIdchange = (data,type) =>{
     type = type ? type : active.type
     type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
+  }
+ const handleNamechange = (data,type) =>{
+    type = type ? type : active.type
+    type === "app" ? props.toggleNameList( data ) : props.WtoggleNameList( data )
   }
   return (
     <form onSubmit={handleSubmit}>
@@ -75,7 +80,13 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-      <AssociationModule appObj={appObj} weiObj={weiObj}  handlechange={handlechange} handleIdchange={handleIdchange}/>
+      <AssociationModule 
+        appObj={appObj} 
+        weiObj={weiObj}  
+        handleLogochange={handleLogochange} 
+        handleIdchange={handleIdchange}
+        handleNamechange={handleNamechange}
+      />
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}
              active={active.trim}
@@ -88,8 +99,9 @@ const SecondStepForm = props => {
                    datalist={datalist} 
                    idList={active.type==='app'?idList:wIdList} 
                    type={active.type} 
-                   handlechange={handlechange} 
+                   handleLogochange={handleLogochange} 
                    handleIdchange={handleIdchange}
+                   handleNamechange={handleNamechange}
        />
       </Modal>
       <div className="form-btn">
@@ -109,7 +121,9 @@ const mapDispatchToProps = {
   toggleLogoList,
   toggleIdList,
   WtoggleIdList, 
-  WtoggleLogoList
+  WtoggleLogoList,
+  toggleNameList, 
+  WtoggleNameList
 }
 
 const mapStateToProps = ({appsEdit}) => ({

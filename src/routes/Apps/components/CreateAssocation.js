@@ -34,16 +34,19 @@ class CreateAssocation extends Component {
     
   }
   onAppDelete(item,index){
-    this.props.handlechange(item.logo,'app')
-    this.props.handleIdchange(item.id,'app')  
+    this.props.handleLogochange(item.logo,'app')
+    this.props.handleIdchange(item.id,'app')
+    this.props.handleNamechange(item.name,'app')
   }
   onWidgetDelete(item,index){
-    this.props.handlechange(item.logo,'widget')
+    this.props.handleLogochange(item.logo,'widget')
     this.props.handleIdchange(item.id,'widget')
+    this.props.handleNamechange(item.name,'widget')
   }
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
+    console.log(appObj)
     return (
     <div className="association">
       <div className="form-row">
@@ -64,10 +67,11 @@ class CreateAssocation extends Component {
 		              <li className="logo-box" key={item.id} >
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onAppDelete.bind(this,item)}></i>
+                    <p>{item.name}</p>
 		              </li>
 		             ))
 		          }
-		          <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
+		          <li className="logo-box logo-default" onClick={()=>{this.props.toggleActive({trim:1,type:'app'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -87,10 +91,11 @@ class CreateAssocation extends Component {
 		              <li className="logo-box" key={item.id}>
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onWidgetDelete.bind(this,item)}></i>
+                    <p>{item.name}</p>
 		              </li>
 		             ))
 		          }
-	           	<li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
+	           	<li className="logo-box logo-default" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -105,7 +110,7 @@ class CreateAssocation extends Component {
 		        </div>
 		        <label className="labelCheckbox" htmlFor="hardware">硬件</label>
 	        	<ul className={classnames({ 'active': hardwareActive })}>
-		           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
+		           <li className="logo-box logo-default" onClick={()=>{this.props.toggleActive({trim:1,type:'hardware'})}}>
 		            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>

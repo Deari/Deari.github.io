@@ -11,6 +11,8 @@ const TOGGLE_LOGOLIST = PREFIX+'TOGGLE_LOGOLIST'
 const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
 const WTOGGLE_LOGOLIST =  PREFIX+'WTOGGLE_LOGOLIST'
 const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
+const TOGGLE_NAMELIST = PREFIX+'TOGGLE_NAMELIST'
+const WTOGGLE_NAMELIST = PREFIX+'WTOGGLE_NAMELIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -62,7 +64,14 @@ export const WtoggleIdList= (id) => ({
   type : WTOGGLE_IDLIST,
   id
 })
-
+export const toggleNameList= (name) =>({
+  type : TOGGLE_NAMELIST,
+  name
+})
+export const WtoggleNameList= (name) =>({
+  type : WTOGGLE_NAMELIST,
+  name
+})
 export const receiveVersionsList= (versionsList) => ({
   type :  RECEIVE_VERSIONSLIST,
   versionsList
@@ -145,6 +154,30 @@ export const updateFirstForm = (values) => {
 }
 
 const ACTION_HANDLERS = {
+ [WTOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.wNameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wNameList:newList
+      }
+    }
+ },
+  [TOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.nameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        nameList:newList
+      }
+    }
+ },
  [RECEIVE_CODEID]:(state,action)=>{
     return {
       ...state,
@@ -309,6 +342,8 @@ const initialState = {
       logoList:[],
       wLogoList:[],
       wIdList:[],
+      nameList:[],
+      wNameList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,
