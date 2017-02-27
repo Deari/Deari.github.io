@@ -89,7 +89,7 @@ class AssociationModule extends Component {
 		              </li>
 		             ))
 		          }
-	           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>

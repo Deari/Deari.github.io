@@ -37,7 +37,7 @@ class ModalList extends Component {
        } catch (e) {
           console.log("网络错误", e)
        }
-     }else if(this.props.type === 'weiget'){
+     }else if(this.props.type === 'widget'){
       const apiUrl = getDomain("web/developer/widgets")
        try {
           const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
@@ -58,9 +58,10 @@ class ModalList extends Component {
  
   render() {
     const { idList,type} = this.props
+    console.log(type)
     const { datalist } = this.state
-    const typeTxt = type==='app'? '应用':'组件'
-    const typeUrl = type==='app'? `/apps`:`/widgets`
+    const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
+    const typeUrl = type === 'app' ? `/apps` : type === 'widget' ? `/widgets` : `/hardware`
     return (
        <div className="popup-box">      
           <div className="popup-search">

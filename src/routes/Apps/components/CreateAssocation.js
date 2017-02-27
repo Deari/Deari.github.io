@@ -37,7 +37,7 @@ class CreateAssocation extends Component {
     this.props.handlechange(item.logo,'app')
     this.props.handleIdchange(item.id,'app')  
   }
-  onWeigetDelete(item,index){
+  onWidgetDelete(item,index){
     this.props.handlechange(item.logo,'weiget')
     this.props.handleIdchange(item.id,'weiget')
   }
@@ -86,11 +86,11 @@ class CreateAssocation extends Component {
 		             weiObj.map((item,id)=>(
 		              <li className="logo-box" key={item.id}>
 		                <img src={item.logo}/>
-		                <i className="iconfont icon-del" onClick={this.onWeigetDelete.bind(this,item)}></i>
+		                <i className="iconfont icon-del" onClick={this.onWidgetDelete.bind(this,item)}></i>
 		              </li>
 		             ))
 		          }
-	           	<li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	           	<li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
