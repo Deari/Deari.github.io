@@ -65,7 +65,7 @@ class EditContainer extends Component {
     ]
 
     const versionsList = [
-      { 'value': reviewStatus === 0 || reviewStatus === 3 ? codeVersion : versionsArray0.join('.') },
+      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
       { 'value': versionsArray1.join('.') },
       { 'value': versionsArray2.join('.') }
     ]    
@@ -104,12 +104,18 @@ class EditContainer extends Component {
             const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
             const versionFormData = new FormData()
             versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
-               if(versionRes.status == 200) {
-                 const versionsList = this.getVersionList(versionRes.data.codeVersion,versionRes.data.reviewStatus)
-                 this.props.receiveVersionsList(versionsList)
-                 this.props.receiveCodeId(versionRes.data.codeId)
-               }
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+              if (versionRes.status == 200) {
+                let versionsList = '';
+                if (versionRes.data[0].reviewStatus == 3) {
+                  versionsList = this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus)
+                  this.props.receiveCodeId(versionRes.data[1].codeId)
+                } else {
+                  versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)
+                  this.props.receiveCodeId(versionRes.data[0].codeId)
+                }
+                this.props.receiveVersionsList(versionsList)
+              }
             })
             this.props.updateFirstForm(values)
             this.props.toggleStep(2)            

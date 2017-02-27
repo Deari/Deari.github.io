@@ -303,9 +303,7 @@ const initialState = {
         { txt: '手动发布此版本', value: 0 },
       ],
       versionsList:[
-        {value:"0.0.1"},
-        {value:"0.1.0"},
-        {value:"1.0.0"}
+        {value:"请稍后..."},
       ],
       idList:[],
       logoList:[],

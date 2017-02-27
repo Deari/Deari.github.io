@@ -85,7 +85,7 @@ class CreateContainer extends Component {
             this.props.updateForm2({ appId: res.data.appId});
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
-                 this.props.updateForm2({codeId:versionRes.data.codeId})
+                 this.props.updateForm2({codeId:versionRes.data[0].codeId})
                }
             })
             this.props.toggleStep(2);
