@@ -48,16 +48,28 @@ class AppsList extends React.Component {
 
   getStatus(item) {
     let state = this.formatState(item)
-
+console.log(item)
     switch(state) {
       case 1:
-        return { status: "待审核", showEdit: false, showNew: false }
+        return { status: "审核中", showEdit: false, showNew: false, activeColor: "yellow", }
         break
       case 2:
-        return { status: "已审核", showEdit: false, showNew: true }
+        return { status: "已发布", showEdit: false, showNew: true, activeColor: "green", }
         break
       case 3:
-        return { status: "待提交", showEdit: true, showNew: false }
+        return { status: "被管理员下架", showEdit: false, showNew: true, activeColor: "red", }
+        break
+      case 4:
+        return { status: "被开发者下架", showEdit: false, showNew: true, activeColor: "red", }
+        break
+      case 5:
+        return { status: "等待开发者发布", showEdit: false, showNew: false, activeColor: "yellow", }
+        break
+      case 6:
+        return { status: "审核未通过", showEdit: true, showNew: false, activeColor: "red", }
+        break
+      case 7:
+        return { status: "准备提交", showEdit: true, showNew: false, activeColor: "yellow", }
         break
       default:
         return ''
@@ -65,11 +77,23 @@ class AppsList extends React.Component {
   }
 
   formatState(item) {
-    const status = item.reviewStatus && parseInt(item.reviewStatus)
-    const codeId = item.codeId && item.codeId || ''
-    let state = 3
-    if (codeId && status) state = status
-    return state
+   
+    let state = 0
+    if(item.adminUnshelved){
+      return 3 
+    }else if(item.devUnshelved){
+      return 4
+    }else if(item.publishStatus){
+      return 2
+    }else if(item.reviewStatus==1){
+      return 1
+    }else if(item.reviewStatus==2){
+      return 5
+    }else if (item.reviewStatus==3){
+      return 6
+    }else {
+      return 7
+    }
   }
 
   formatListData(listData) {
@@ -77,17 +101,17 @@ class AppsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
-
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
-        obj.status = this.getStatus(item).status
+        obj.statusObj = this.getStatus(item)
         obj.download = 100
         obj.detailUrl = `/apps/detail/${obj.id}`
         obj.isH5App = item.isH5App
         obj.marketUrl = `/apps`
+        obj.codeVersion = item.codeVersion && item.codeVersion || ''
         const editUrl = `/apps/edit/${obj.id}`
         
         const showBtn = this.getStatus(item)

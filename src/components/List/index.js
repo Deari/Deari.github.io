@@ -7,6 +7,7 @@ class List extends React.Component {
   render() {
 
     const listData = this.props.listData || []
+    //console.log(listData)
     const len = listData.length
     return (
       <div className="listContent">
@@ -23,7 +24,7 @@ class List extends React.Component {
               <Link className="info-link" to={item.marketUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
             </div>
             <div className="info-price w90">{item.price}</div>
-            <div className="info-status w90">{item.status}</div>
+            <div className="info-status w90"><i></i><span>{item.statusObj.status}</span><span>{item.codeVersion}</span></div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
              {
