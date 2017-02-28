@@ -184,7 +184,9 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const { page } = this.props.appsCreate
+    const { page, form2 } = this.props.appsCreate
+
+    const isH5App = form2 && form2.isH5App
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -199,7 +201,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page}/> }
+          { page > 0 && <Step page={page} isH5App={isH5App} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

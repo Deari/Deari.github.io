@@ -34,7 +34,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div>
         <Field label="版本号" name="codeVersion" component={renderSelect}>
-          <option value={-1}>请选择分类</option>
+          <option value={-1}>请选择版本号</option>
           {
             versionsList.map((item) => (
               <option value={item.value}>

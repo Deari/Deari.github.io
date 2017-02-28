@@ -166,8 +166,8 @@ class CreateContainer extends Component {
   }
   
   previous() {
-    const appId = this.props.widgetCreate.form2.appId;
-    window.location.href = '/widgets/edit/' + appId;
+    const appId = this.props.widgetCreate.form2.appId
+    window.location.href = '/widgets/edit/' + appId
   }
 
   render() {
@@ -176,7 +176,9 @@ class CreateContainer extends Component {
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
-    const { page } =this.props.widgetCreate;
+    const { page, form2 } =this.props.widgetCreate
+
+    const isH5App = form2 && form2.isH5App
 
     return (
       <div className="container clx">
@@ -185,7 +187,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page}/> }
+          { page > 0 && <Step page={page} isH5App={isH5App} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
