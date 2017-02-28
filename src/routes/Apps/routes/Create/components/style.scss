@@ -510,7 +510,11 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
   bottom:0px;
   background:#fff;
 }
-.form-btn{
+.create-form-btn{
+  .iconfont{
+    font-size: 30px;
+    vertical-align: top;
+  }
   .title{
     padding:20px 0;
     font-size:20px;
