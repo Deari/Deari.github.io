@@ -48,7 +48,6 @@ class AppsList extends React.Component {
 
   getStatus(item) {
     let state = this.formatState(item)
-console.log(item)
     switch(state) {
       case 1:
         return { status: "审核中", showEdit: false, showNew: false, activeColor: "yellow", }
@@ -77,20 +76,21 @@ console.log(item)
   }
 
   formatState(item) {
-   
     let state = 0
-    if(item.adminUnshelved){
-      return 3 
-    }else if(item.devUnshelved){
-      return 4
-    }else if(item.publishStatus){
-      return 2
-    }else if(item.reviewStatus==1){
-      return 1
+    if(item.reviewStatus==1){
+       return 1
     }else if(item.reviewStatus==2){
-      return 5
-    }else if (item.reviewStatus==3){
-      return 6
+      if(item.adminUnshelved){
+        return 3 
+      }else if(item.devUnshelved){
+        return 4
+      }else if(item.publishStatus){
+        return 2 
+      }else{
+        return 5
+      }
+    }else if(item.reviewStatus==3){
+      return 6 
     }else {
       return 7
     }
@@ -114,11 +114,10 @@ console.log(item)
         obj.codeVersion = item.codeVersion && item.codeVersion || ''
         const editUrl = `/apps/edit/${obj.id}`
         
-        const showBtn = this.getStatus(item)
 
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: showBtn.showEdit},
-          {name: "发布新版本", url: editUrl, active: showBtn.showNew}
+          {name: "编辑", url: editUrl, active: obj.statusObj.showEdit},
+          {name: "发布新版本", url: editUrl, active: obj.statusObj.showNew}
         ]
         
         newData.push(obj)
