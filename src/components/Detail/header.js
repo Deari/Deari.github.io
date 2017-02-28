@@ -9,11 +9,11 @@ export const Header = (props) => {
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)
  
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
-  const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == latestVersion.codeVersion) && latestCodeStatus.codeStatus == 5) 
-                    || (
-                        latestCodeStatus && latestCodeStatus.codeStatus!=2 && latestCodeStatus.codeStatus!=4 &&
-                        (preCodeStatus && preCodeStatus.codeVersion == latestVersion.codeVersion) && preCodeStatus.codeStatus == 5
-                       ) 
+
+  const showCreate = (latestCodeStatus && 
+                     (latestCodeStatus.codeVersion == latestVersion.codeVersion) && 
+                     latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 6 || latestCodeStatus.codeStatus == 7)
+
   const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
@@ -48,12 +48,12 @@ export const getCodeStatus = (data, version) => {
     codeStatusName: ''
   }
   versionInfo.codeVersion = version && version.codeVersion
-  if (data.adminUnshelved) {
+  if (data.adminUnshelved && version.publishStatus) {
     versionInfo.codeStatus = 6
     versionInfo.codeStatusName = "被管理员下架"
     return versionInfo
   }
-  if (data.devUnshelved) {
+  if (data.devUnshelved && version.publishStatus) {
     versionInfo.codeStatus = 7
     versionInfo.codeStatusName = "被开发者下架"
     return versionInfo
