@@ -550,14 +550,11 @@
                         }
                 });
                 $('.background-img').on('click',function () {
-                        console.log(1);
                         $showBig.css({"opacity":0, "z-index":-9999});
                         $('body').css({"overflow":""});
                 })
 
         };
-
-
 
         $.prioritize = function ($elements, condition) {
 
