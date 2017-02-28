@@ -16,7 +16,7 @@ export const Promised = (Wrapped) => class extends Component {
 
   async componentDidMount() {
     try {
-      const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/page/3')
+      const apiUrl = getDomain('/web/merchant/page/3')
       const res = await fetchUtil.getJSON(apiUrl)
       if(res.status==200){
         if (typeof res.data.viewData === 'string') {
