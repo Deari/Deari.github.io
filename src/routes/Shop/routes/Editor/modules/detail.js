@@ -36,7 +36,7 @@ const getPublishStatus = async deployId => {
 
 const repeatPublishStatus = async deployId => {
   let result = await getPublishStatus(deployId)
-  if (result === 1) {
+  if (result !== 2 && result !== 3) {
     await sleep(1000)
     return await repeatPublishStatus(deployId)
   } else {

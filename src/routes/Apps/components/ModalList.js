@@ -75,7 +75,7 @@ class ModalList extends Component {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -89,7 +89,7 @@ class ModalList extends Component {
      }else if(this.props.type === 'widget'){
       const apiUrl = getDomain("web/developer/widgets")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -107,7 +107,7 @@ class ModalList extends Component {
  
   render() {
     const { idList, type } = this.props
-    const { datalist } = this.state
+    const { datalist } = this.state 
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
     const typeUrl = type === 'app' ? `/apps` : type === 'widget' ? `/widgets` : `/hardware`
     return (
@@ -124,28 +124,32 @@ class ModalList extends Component {
           </ul>
           <div className="popup-list-box">
             <div className="listContent">
-              {
-                datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
-                  datalist.map( (item, index) => (
-                     <div className="popup-list-container"  key={index}>
-                      <div className="popup-info-img-container w116">
-                        <p className="popup-info-img" > <img src={item.appLogo} /></p>
+            {
+              datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
+                datalist.map((item, index) => {
+                  if (item.publishStatus&&!item.devUnshelved&&!item.adminUnshelved) {
+                    return (
+                      <div className="popup-list-container" key={index}>
+                        <div className="popup-info-img-container w116">
+                          <p className="popup-info-img" > <img src={item.appLogo} /></p>
+                        </div>
+                        <div className="popup-info-content w320">
+                          <p className="popup-info-name"> {item.appName}<i className={item.isH5App ? "icon-hpng" : "icon-rnpng"}></i></p>
+                          <p className="popup-info-introduce"> {item.appDesc}</p>
+                          <Link className="popup-info-link" to={typeUrl}>在{typeTxt}市场中查看<i className="iconfont icon-categoryindi"></i></Link>
+                        </div>
+                        <div className="popup-info-price w78">免费</div>
+                        <div className="popup-info-status w140">
+                          <span className="info-status-info1"><i className={this.getStatus(item).activeColor == 'red' ? "color-red" : this.getStatus(item).activeColor == 'green' ? "color-green" : ""}></i>{item.codeVersion}</span>
+                          <span className="info-status-info2">{this.getStatus(item).status}</span>
+                        </div>
+                        <div className="popup-info-btn w104">
+                          {idList.indexOf(item.appId) !== -1 ? <button className='btn-cancel' onClick={this.handleCancel.bind(this, item)}>取消选择</button> : <button onClick={this.handleClick.bind(this, item)}>选择</button>}
+                        </div>
                       </div>
-                      <div className="popup-info-content w320">
-                        <p className="popup-info-name"> {item.appName}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i></p>
-                        <p className="popup-info-introduce"> {item.appDesc}</p>
-                        <Link className="popup-info-link" to={typeUrl}>在{typeTxt}市场中查看<i className="iconfont icon-categoryindi"></i></Link>
-                      </div>
-                      <div className="popup-info-price w78">免费</div>
-                      <div className="popup-info-status w140">
-                      	<span className="info-status-info1"><i className={this.getStatus(item).activeColor=='red'?"color-red":this.getStatus(item).activeColor=='green'?"color-green":""}></i>{item.codeVersion}</span>
-              					<span className="info-status-info2">{this.getStatus(item).status}</span>
-                      </div>
-                      <div className="popup-info-btn w104">
-                      {idList.indexOf(item.appId) !==-1? <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>:<button onClick={this.handleClick.bind(this,item)}>选择</button>}                      
-                      </div>
-                    </div>
-                  ) )
+                    )
+                  }
+                })
               }
           </div>
         </div>      
