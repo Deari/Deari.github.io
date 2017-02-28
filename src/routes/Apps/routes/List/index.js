@@ -169,9 +169,9 @@ class AppsList extends React.Component {
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
-            <li className="w342">应用名称</li>
+            <li className="w332">应用名称</li>
             <li className="w90">价格</li>
-            <li className="w90">状态</li>
+            <li className="w100">状态</li>
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>
