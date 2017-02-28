@@ -23,7 +23,54 @@ class ModalList extends Component {
       const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
       this.setState({datalist:newList})
    }
-
+   getStatus(item) {
+    let state = this.formatState(item)
+    switch(state) {
+      case 1:
+        return { status: "审核中", activeColor: "yellow", }
+        break
+      case 2:
+        return { status: "已发布", activeColor: "green", }
+        break
+      case 3:
+        return { status: "被管理员下架", activeColor: "red", }
+        break
+      case 4:
+        return { status: "被开发者下架", activeColor: "red", }
+        break
+      case 5:
+        return { status: "等待开发者发布", activeColor: "yellow", }
+        break
+      case 6:
+        return { status: "审核未通过", activeColor: "red", }
+        break
+      case 7:
+        return { status: "准备提交", activeColor: "yellow", }
+        break
+      default:
+        return ''
+    }
+  }
+  formatState(item) {
+    let state = 0
+    if(item.reviewStatus==1){
+       return 1
+    }else if(item.reviewStatus==2){
+      if(item.adminUnshelved){
+        return 3 
+      }else if(item.devUnshelved){
+        return 4
+      }else if(item.publishStatus){
+        return 2 
+      }else{
+        return 5
+      }
+    }else if(item.reviewStatus==3){
+      return 6 
+    }else {
+      return 7
+    }
+  }
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
@@ -91,8 +138,8 @@ class ModalList extends Component {
                       </div>
                       <div className="popup-info-price w78">免费</div>
                       <div className="popup-info-status w140">
-                      	<span className="info-status-info1"><i></i>1.0.0</span>
-              					<span className="info-status-info2">已审核</span>
+                      	<span className="info-status-info1"><i className={this.getStatus(item).activeColor=='red'?"color-red":this.getStatus(item).activeColor=='green'?"color-green":""}></i>{item.codeVersion}</span>
+              					<span className="info-status-info2">{this.getStatus(item).status}</span>
                       </div>
                       <div className="popup-info-btn w104">
                       {idList.indexOf(item.appId) !==-1? <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>:<button onClick={this.handleClick.bind(this,item)}>选择</button>}                      
