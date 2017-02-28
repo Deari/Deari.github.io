@@ -19,7 +19,7 @@ class List extends React.Component {
             <div className="info-content w332">
               <Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>
               <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
-              <Link className="info-link" to={item.marketUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
+              <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link>
             </div>
             <div className="info-price w90">{item.price}</div>
             <div className="info-status w100">

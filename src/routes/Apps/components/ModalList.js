@@ -134,7 +134,7 @@ class ModalList extends Component {
                       <div className="popup-info-content w320">
                         <p className="popup-info-name"> {item.appName}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i></p>
                         <p className="popup-info-introduce"> {item.appDesc}</p>
-                        <Link className="popup-info-link" to={typeUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
+                        <Link className="popup-info-link" to={typeUrl}>在{typeTxt}市场中查看<i className="iconfont icon-categoryindi"></i></Link>
                       </div>
                       <div className="popup-info-price w78">免费</div>
                       <div className="popup-info-status w140">

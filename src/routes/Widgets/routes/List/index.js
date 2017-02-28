@@ -111,6 +111,7 @@ class widgetsList extends React.Component {
         obj.detailUrl = `/widgets/detail/${obj.id}`
         obj.isH5App = item.isH5App
         obj.marketUrl = `/widgets`
+        obj.marketUrlTxt = '在组件市场中查看'
         obj.codeVersion = item.codeVersion && item.codeVersion || ''
         const editUrl = `/widgets/edit/${obj.id}`
 
