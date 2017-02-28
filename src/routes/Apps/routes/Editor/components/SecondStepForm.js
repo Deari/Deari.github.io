@@ -37,6 +37,8 @@ const SecondStepForm = props => {
   const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
+  const appActive = appObj&&appObj.length!=0 ? 1:0;
+  const widgetActive = weiObj&&weiObj.length!=0 ? 1:0;
   const handleLogochange = (data,type)=>{
     type = type ? type : active.type
     type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
@@ -86,6 +88,8 @@ const SecondStepForm = props => {
         handleLogochange={handleLogochange} 
         handleIdchange={handleIdchange}
         handleNamechange={handleNamechange}
+        appActive={appActive}
+        widgetActive={widgetActive}
       />
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}

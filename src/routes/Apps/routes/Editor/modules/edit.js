@@ -127,15 +127,14 @@ export const getAppInfo = (appId) => {
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
           rnFrameworkVersion=0 } = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-        const {apps, widgets} = res.data && res.data.relations
-
+        const {apps, widgets} = res.data && res.data.relations 
         let idList = []
         let logoList = []
         let nameList = []
         let wLogoList = []
         let wIdList = []
         let wNameList = []
-        for(var i = 0;i<apps.length;i++){    
+        for(var i = 0;i<apps.length;i++){   
           idList.push(apps[i].appId)
           logoList.push(apps[i].appLogo)
           nameList.push(apps[i].appName)
