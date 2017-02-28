@@ -479,6 +479,10 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
   .create-form-btn{
     width: 398px;
     margin: 0 auto;
+    .iconfont{
+      font-size: 30px;
+      vertical-align: middle;
+    }
     .title{
       padding:20px;
       font-size:20px;
@@ -497,44 +501,18 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     }
     .h5-btn{
       color: #607d8b;
+      &:hover{
+        color:#fff;
+        background:#607d8b
+      }
     }
     .rn-btn{
       color: #2e8fff;
+       &:hover{
+        color:#fff;
+        background:#2e8fff
+      }
     }
   }
 }
 
-.create-sub-container{
-  position: fixed;
-  top:77px;
-  right:135px;
-  bottom:0px;
-  background:#fff;
-}
-.create-form-btn{
-  .iconfont{
-    font-size: 30px;
-    vertical-align: top;
-  }
-  .title{
-    padding:20px 0;
-    font-size:20px;
-    color:#000;
-    text-align:center;
-  }
-  .next{
-    width:150px;
-    height:145px;
-    font-size:20px;
-    text-align:center;
-    border:1px solid #eee;
-    border-radius:4px;
-
-  }
-  .rn-btn{
-    color:#2ef888;
-  }
-  .h5-btn{
-    color:#607d8b;
-  }
-}
