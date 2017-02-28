@@ -122,13 +122,30 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
           rnFrameworkVersion=0 } = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-        dispatch(updateForm1({
+        const {apps, widgets} = res.data && res.data.relations
+
+        let idList = []
+        let logoList = []
+        let nameList = []
+        let wLogoList = []
+        let wIdList = []
+        let wNameList = []
+        for(var i = 0;i<apps.length;i++){    
+          idList.push(apps[i].appId)
+          logoList.push(apps[i].appLogo)
+          nameList.push(apps[i].appName)
+        }
+        for(var j=0;j<widgets.length;j++){
+          wIdList.push(widgets[j].appId)
+          wLogoList.push(widgets[j].appLogo)
+          wNameList.push(widgets[j].appName)
+        }
+        dispatch(updateForm1({ 
           appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
         }))
@@ -136,6 +153,7 @@ export const getAppInfo = (appId) => {
         dispatch(updateForm2({
           appId,
           platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          idList, logoList, nameList, wLogoList, wIdList, wNameList
         })) 
 
       } else {
