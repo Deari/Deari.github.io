@@ -509,22 +509,33 @@
                 let $this = this;
                 let imglist = new Array;
                 let $showBig = $('.showBig');
+                let _that;
+                let positionY;
+                let _this;
                 $showBig.css({
-                        "width":window.innerWidth,
+                        "width":"100%",
                         "height":window.innerHeight,
                         "z-index":-9999,
                         "opacity":0
                 });
                 $('.swiper-wrapper').html('');
                 this.find('img').each(function () {
-                        $('.swiper-wrapper').append('<div class="swiper-slide" style="background-image: url('+$(this).attr('src')+')"></div>');
-                        imglist.push($(this).attr('src'));
+                        imglist.push($(this).attr('src').split('/')[1]);
+                        $('.swiper-wrapper').append('<div class="swiper-slide"><div class="background-img" style="background-image: url(bigImages/'+$(this).attr('src').split('/')[1]+');"></div><div class="mask"></div></div>');
                 });
                 $('.swiper-slide').css({width:"100%", height:"100%"});
                 $this.on('click', 'img', function () {
-                        var _this = $(this).children();
-                        swiper.slideTo(imglist.indexOf(_this.context.currentSrc.split('Deari/')[1])+1,0,false);
+                        $('body').css({"overflow":"hidden"});
+                        _this = $(this).children();
+                        _that = $('.swiper-slide').eq(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1).children('.background-img');
+                        positionY = 0;
+                        swiper.slideTo(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
                         $showBig.css({"opacity":1, "z-index":9999});
+                        function _wheelDelta(ev) {
+                                if(ev.wheelDelta>0){positionY+=5;}else {positionY-=5;}
+                                _that.css({"background-position-y":positionY + "px"})
+                        }
+                        document.addEventListener('mousewheel',_wheelDelta,false);
                 });
                 var swiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
@@ -532,9 +543,21 @@
                         loop:true,
                         nextButton: '.swiper-button-next',
                         prevButton: '.swiper-button-prev',
-                        autoHeight: true
+                        autoHeight: true,
+                        onSlideChangeStart:function (swiper,index) {
+                                _that = $('.swiper-slide').eq(swiper.activeIndex).children('.background-img');
+                                positionY = _that[0].style.backgroundPositionY.split('px')[0];
+                        }
                 });
+                $('.background-img').on('click',function () {
+                        console.log(1);
+                        $showBig.css({"opacity":0, "z-index":-9999});
+                        $('body').css({"overflow":""});
+                })
+
         };
+
+
 
         $.prioritize = function ($elements, condition) {
 

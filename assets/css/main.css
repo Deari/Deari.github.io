@@ -1749,7 +1749,27 @@ div.showBig{
 }
 
 .swiper-slide{
+        position: relative;
+        width:100%;
+}
+
+.swiper-slide .background-img{
+        width:100%;
+        height:100%;
         background-repeat: no-repeat;
         background-size: 50%;
-        background-position: 50%;
+        background-position-x: 50%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index:1;
+}
+
+.swiper-slide .mask{
+        width:100%;
+        height:100%;
+        position: absolute;
+        top:0;
+        left: 0;
+        background:rgba(0,0,0,.3);
 }

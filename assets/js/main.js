@@ -230,10 +230,11 @@
                         });
         });
 
-        $imgList.showBig();
-
         window.onresize = function () {
                 $imgList.showBig();
-        }
+        };
+
+
+
 
 })(jQuery);
