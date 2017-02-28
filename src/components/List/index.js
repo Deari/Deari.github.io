@@ -18,12 +18,15 @@ class List extends React.Component {
               <Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>
             </div>
             <div className="info-content w342">
-              <Link className="info-name" title={item.name} to={item.detailUrl}> {item.name}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>
+              <Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>
               <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
               <Link className="info-link" to={item.marketUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
             </div>
             <div className="info-price w90">{item.price}</div>
-            <div className="info-status w90">{item.status}</div>
+            <div className="info-status w90">
+              <span className="info-status-info1"><i></i>1.0.0</span>
+              <span className="info-status-info2">{item.status}</span>
+            </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
              {
