@@ -368,6 +368,7 @@ const initialState = {
       platform: 2,
       isH5App: 0,
       autoPublish:1,
+      codeVersion: -1
   },
 }
 

@@ -249,11 +249,26 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .labelH{
   height:30px;
 }
-.right-info{
-    width: 552px;
-    display: inline-block;
-    span{
-        float: right;
+.form-rowM{
+    .row-right {
+        position: relative;
+        float: none;
+        .right-info{
+            width: inherit;
+            float: none;
+            font-size: 13px;
+            color: #999;
+            padding: 0px;
+            margin: 0px;
+            cursor: pointer;
+        }
+        .font-count{
+            position: absolute;
+            font-size: 13px;
+            right: 20px;
+            top: 5px;
+            color: #999;
+        }
     }
 }
 .form-row .row-right .row-sizeB{

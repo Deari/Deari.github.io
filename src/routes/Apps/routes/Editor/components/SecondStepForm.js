@@ -65,7 +65,8 @@ const SecondStepForm = props => {
 		            <i className="iconfont icon-radio icon-publish"></i>
 		          </span>
 		        </div>
-        		<p htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家<span>4000</span></p>
+            <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
+            <span className="font-count">4000</span>
         	</div>
         </div>
       </div>

@@ -138,6 +138,7 @@ const initialState = {
     appId: -1,
     codeId: -1,
     autoPublish: 1,
+    codeVersion: -1
   }
 }
 

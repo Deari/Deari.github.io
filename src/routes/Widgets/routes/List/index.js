@@ -50,25 +50,25 @@ class widgetsList extends React.Component {
     let state = this.formatState(item)
     switch(state) {
       case 1:
-        return { status: "审核中", showEdit: false, showNew: false, activeColor: "yellow", }
+        return { status: "审核中", showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 2:
-        return { status: "已发布", showEdit: false, showNew: true, activeColor: "green", }
+        return { status: "已发布", showEdit: false, showNew: true, activeColor: "color-green", }
         break
       case 3:
-        return { status: "被管理员下架", showEdit: false, showNew: true, activeColor: "red", }
+        return { status: "被管理员下架", showEdit: false, showNew: true, activeColor: "color-red", }
         break
       case 4:
-        return { status: "被开发者下架", showEdit: false, showNew: true, activeColor: "red", }
+        return { status: "被开发者下架", showEdit: false, showNew: true, activeColor: "color-red", }
         break
       case 5:
-        return { status: "等待开发者发布", showEdit: false, showNew: false, activeColor: "yellow", }
+        return { status: "等待开发者发布", showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 6:
-        return { status: "审核未通过", showEdit: true, showNew: false, activeColor: "red", }
+        return { status: "审核未通过", showEdit: true, showNew: false, activeColor: "color-red", }
         break
       case 7:
-        return { status: "准备提交", showEdit: true, showNew: false, activeColor: "yellow", }
+        return { status: "准备提交", showEdit: true, showNew: false, activeColor: "color-yellow", }
         break
       default:
         return ''
@@ -101,24 +101,26 @@ class widgetsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
-
+        let statusObj = this.getStatus(item)
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
-        obj.statusObj = this.getStatus(item)
+        obj.download = 100
         obj.detailUrl = `/widgets/detail/${obj.id}`
         obj.isH5App = item.isH5App
         obj.marketUrl = `/widgets`
         obj.marketUrlTxt = '在组件市场中查看'
         obj.codeVersion = item.codeVersion && item.codeVersion || ''
+        obj.activeColor = statusObj.activeColor && statusObj.activeColor || ''
+        obj.status = statusObj.status && statusObj.status || ''
+
         const editUrl = `/widgets/edit/${obj.id}`
 
-
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: obj.statusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: obj.statusObj.showNew}
+          {name: "编辑", url: editUrl, active: statusObj.showEdit},
+          {name: "发布新版本", url: editUrl, active: statusObj.showNew}
         ]
 
         newData.push(obj)
@@ -170,9 +172,9 @@ class widgetsList extends React.Component {
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
-            <li className="w342">组件名称</li>
+            <li className="w332">组件名称</li>
             <li className="w90">价格</li>
-            <li className="w90">状态</li>
+            <li className="w100">状态</li>
             <li className="w90">已下载</li>
             <li className="w112">操作</li>
           </ul>

@@ -14,17 +14,22 @@ class List extends React.Component {
         listData.map( (item, index) => (
           <div key={index} className="list-container">
             <div className="info-img-container w124">
-              <Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>
+              {/*<Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>*/}
+              <a className="info-img"> <img src={item.logo} /> </a>
             </div>
             <div className="info-content w332">
-              <Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>
-              <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
-              <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link>
+              {/*<Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>*/}
+              <a className="info-name" title={item.name}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </a>
+              {/*<Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>*/}
+              <a className="info-introduce" title={item.desc}> {item.desc} </a>
+              { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
             </div>
             <div className="info-price w90">{item.price}</div>
             <div className="info-status w100">
-              <span className="info-status-info1"><i  className={item.statusObj.activeColor=="red"?"color-red":item.statusObj.activeColor=="green"?"color-green":""}></i>{item.codeVersion}</span>
-              <span className="info-status-info2">{item.statusObj.status}</span>
+              <span className="info-status-info1">
+                <i className={item.activeColor}></i>{item.codeVersion}
+              </span>
+              <span className="info-status-info2">{item.status}</span>
             </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">

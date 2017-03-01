@@ -17,6 +17,9 @@ export const validate = values => {
   if (!values.appDesc) {
     errors.appDesc = <i className="message">请输入组件简介</i>
   } 
+  if (parseInt(values.codeVersion) == -1) {
+    errors.codeVersion = <i className="message">请选择版本号</i>
+  }
   if (parseInt(values.categoryId) == -1) {
     errors.categoryId = <i className="message">请选择分类</i>
   }

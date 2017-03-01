@@ -3,7 +3,7 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect } from '../../../modules/renderField'
+import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect, showUpdateMsg } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
 import { toggleStep } from '../modules/edit'
@@ -17,7 +17,7 @@ class SecondStepForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit}>
-       <div>
+        <div>
           <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" component={versionTextArea} label="版本介绍" />
           <div className="form-row form-rowM">
             <label className="labelH"></label>
@@ -29,7 +29,8 @@ class SecondStepForm extends React.Component {
                   <i className="iconfont icon-radio icon-publish"></i>
                 </span>
               </div>
-              <p htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家<span>4000</span></p>
+              <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
+              <span className="font-count">4000</span>
             </div>
           </div>
         </div>
