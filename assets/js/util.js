@@ -531,7 +531,7 @@
                         positionY = 0;
                         swiper.slideTo(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
                         $showBig.css({"opacity":1, "z-index":9999});
-                        function _wheelDelta() {
+                        function _wheelDelta(ev) {
                                 if(ev.wheelDelta>0){positionY+=5;}else {positionY-=5;}
                                 _that.css({"background-position-y":positionY + "px"})
                         }
