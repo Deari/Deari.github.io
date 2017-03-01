@@ -524,7 +524,7 @@
                         $('.swiper-wrapper').append('<div class="swiper-slide"><div class="background-img" style="background-image: url(bigImages/'+$(this).attr('src').split('/')[1]+');"></div><div class="mask"></div></div>');
                 });
                 $('.swiper-slide').css({width:"100%", height:"100%"});
-                $this.on('click', 'img', function () {
+                $this.on('click','img', function () {
                         $('body').css({"overflow":"hidden"});
                         _this = $(this).children();
                         _that = $('.swiper-slide').eq(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1).children('.background-img');
