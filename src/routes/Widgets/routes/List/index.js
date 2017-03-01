@@ -23,9 +23,9 @@ class widgetsList extends React.Component {
   
   async getList() {
     const apiUrl = getDomain("web/developer/widgets")
-    const reviewStatus = this.getReviewStatus()
+    const review = this.getReviewStatus()
     try {
-      let res = await fetchUtil.getJSON(apiUrl, { reviewStatus: reviewStatus });
+      let res = await fetchUtil.getJSON(apiUrl, { review: review });
       if(res.status == 200){
         return res.data && res.data.list
       } else {
