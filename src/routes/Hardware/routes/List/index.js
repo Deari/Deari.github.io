@@ -139,7 +139,7 @@ class HardwaresList extends React.Component {
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
-            <li className="w342">硬件名称</li>
+            <li className="w332">硬件名称</li>
             <li className="w90">价格</li>
             <li className="w90">状态</li>
             <li className="w90">已激活</li>

@@ -121,12 +121,12 @@ class FetchUtil {
     }
     const reqsOptions = {
       method: 'POST',
-      credentials: !options.credentials ? 'include' : '',
+      // credentials: !options.credentials ? 'include' : '',
+      credentials: 'include',
       mode: 'cors',
       // ...jsonHeaders,
       body: !options.jsonStringify ? params : JSON.stringify(params)
     }
-        console.log(reqsOptions)
 
     return new Promise((resolve, reject) => {
       fetch(url, reqsOptions).then(async res => {

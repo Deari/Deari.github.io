@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getGateWayDomain } from 'utils/domain'
+import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
@@ -104,7 +104,7 @@ export class renderImageUpload extends Component {
   imageUpload(e) {
     if (!e.target.files[0]) return;
 
-    const url = getGateWayDomain("web/photo/upload")
+    const url = getDomain("web/photo/upload")
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
     if (!this.props.h) {
@@ -115,7 +115,7 @@ export class renderImageUpload extends Component {
     }
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false,
-      credentials: true
+      // credentials: true
     }).then(res => {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
@@ -155,14 +155,14 @@ export class renderFile extends Component {
   fileUpload(e) {
     if (!e.target.files[0]) return;
     
-    const url = getGateWayDomain("web/file/upload")
+    const url = getDomain("web/file/upload")
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false,
-      credentials: true
+      // credentials: true
     }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data)

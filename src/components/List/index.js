@@ -17,14 +17,30 @@ class List extends React.Component {
               <Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>
             </div>
             <div className="info-content w332">
-              <Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i> </Link>
+              <Link className="info-name" title={item.name} to={item.detailUrl}> 
+                <span>{item.name}</span>
+                { item.latestCodeVersion && <i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i> }
+              </Link>
               <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
-              <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link>
+              { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
             </div>
             <div className="info-price w90">{item.price}</div>
-            <div className="info-status w100">
-              <span className="info-status-info1"><i  className={item.statusObj.activeColor=="red"?"color-red":item.statusObj.activeColor=="green"?"color-green":""}></i>{item.codeVersion}</span>
-              <span className="info-status-info2">{item.statusObj.status}</span>
+            { item.status && <div className="w90 info-download"><div>{item.status}</div></div>}
+            <div className="w100">
+              { item.latestCodeVersion && <div className="info-status">
+                <span className="info-status-info1">
+                  <i className={item.latestActiveColor}></i>{item.latestCodeVersion}
+                </span>
+                <span className="info-status-info2">{item.latestStatusName}</span>
+              </div>
+              }
+              { item.prevCodeVersion && <div className="info-status">
+                <span className="info-status-info1">
+                  <i className={item.prevActiveColor}></i>{item.prevCodeVersion}
+                </span>
+                <span className="info-status-info2">{item.prevStatusName}</span>
+              </div>
+              }
             </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">

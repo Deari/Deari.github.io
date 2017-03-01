@@ -52,7 +52,7 @@ export const AdminUnshelved = (props) => {
   return <div className="table-info">
     <h3 class="app-title">下架原因:</h3>
     <p className="text-field">{adminUnshelvedReason}</p>
-    <button className="btn btn-primary fieldBtn" type="button">联系管理员</button>
+    {/**<button className="btn btn-primary fieldBtn" type="button">联系管理员</button>*/}
   </div>
 }
 

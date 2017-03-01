@@ -120,7 +120,7 @@ class Main extends React.Component {
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
               <i className="iconfont icon-hot-control"></i>热门硬件
-              <form>
+              {/**<form>
                 <p>
                   <select>
                     <option>默认排序</option>
@@ -135,7 +135,7 @@ class Main extends React.Component {
                     <option>价格2排序</option>
                   </select>
                 </p>
-              </form>
+              </form>*/}
             </h2>
             <OpenList listData={listData} typeName="hardware" detailLink={detailLink} clickStar={this.clickStar.bind(this)} />
           </div>

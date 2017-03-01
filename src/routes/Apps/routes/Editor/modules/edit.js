@@ -368,6 +368,7 @@ const initialState = {
       platform: 2,
       appKind: 0,
       autoPublish:1,
+      codeVersion: -1
   },
 }
 

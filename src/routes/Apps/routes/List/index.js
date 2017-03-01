@@ -8,6 +8,7 @@ import LoginSDK from 'utils/loginSDK'
 import debug from 'utils/debug'
 import Slidebar from 'components/Sidebar'
 import ListNav from 'components/ListNav'
+import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
 import 'styles/_base.scss'
 
@@ -53,29 +54,29 @@ class AppsList extends React.Component {
     return reviewStatus
   }
 
-  getStatus(item) {
-    let state = this.formatState(item)
-    switch(state) {
+  getStatus(listData, version) {
+    let stateObj = getCodeStatus(listData, version) || {}
+    switch(stateObj.codeStatus) {
       case 1:
-        return { status: "审核中", showEdit: false, showNew: false, activeColor: "yellow", }
+        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
         break
       case 2:
-        return { status: "已发布", showEdit: false, showNew: true, activeColor: "green", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 3:
-        return { status: "被管理员下架", showEdit: false, showNew: true, activeColor: "red", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { status: "被开发者下架", showEdit: false, showNew: true, activeColor: "red", }
+        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
         break
       case 5:
-        return { status: "等待开发者发布", showEdit: false, showNew: false, activeColor: "yellow", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { status: "审核未通过", showEdit: true, showNew: false, activeColor: "red", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { status: "准备提交", showEdit: true, showNew: false, activeColor: "yellow", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
@@ -118,24 +119,37 @@ class AppsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
+        let latestStatusObj = item.versions && item.versions[0] && this.getStatus(listData, item.versions[0]) || {}
+        let prevStatusObj = item.versions && item.versions[1] && this.getStatus(listData, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
-        obj.statusObj = this.getStatus(item)
         obj.download = 100
         obj.detailUrl = `/apps/detail/${obj.id}`
         obj.appKind = item.appKind
         obj.marketUrl = `/apps`
         obj.marketUrlTxt = '在应用市场中查看'
-        obj.codeVersion = item.codeVersion && item.codeVersion || ''
-        const editUrl = `/apps/edit/${obj.id}`
+        obj.latestActiveColor = latestStatusObj.activeColor && latestStatusObj.activeColor || ''
+        obj.latestCodeVersion = latestStatusObj.stateObj && latestStatusObj.stateObj.codeVersion || ''
+        obj.latestStatusName = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatusName || ''
+        obj.prevActiveColor = prevStatusObj.activeColor && prevStatusObj.activeColor || ''
+        obj.prevCodeVersion = prevStatusObj.stateObj && prevStatusObj.stateObj.codeVersion || ''
+        obj.prevStatusName = prevStatusObj.stateObj && prevStatusObj.stateObj.codeStatusName || ''
+
+        let latestCodeStatus = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatus || ''
+        let prevCodeStatus = prevStatusObj.stateObj && prevStatusObj.stateObj.codeStatus || ''
+
+        if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
+
+        obj.showOpenLink = latestCodeStatus == 2
         
+        const editUrl = `/apps/edit/${obj.id}`
 
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: obj.statusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: obj.statusObj.showNew}
+          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
         ]
         
         newData.push(obj)
