@@ -14,7 +14,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
@@ -43,7 +43,7 @@ class CreateContainer extends Component {
   }
 
   submitChoice(values) {
-    this.props.updateIsH5App({isH5App: values})
+    this.props.updateAppkind({appKind: values})
     this.props.toggleStep(1)
   }
 
@@ -117,23 +117,28 @@ class CreateContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
+        const file = values.file
         let params = {
           ...values
         }
 
-        if (values.isH5App === 0) {
-          const file = values.file
+        if (values.appKind === 0) {
+        
           params = Object.assign({}, file, {
             'appId':values.appId,
             'codeId':values.codeId,
             'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
+
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
-        } else {
+        } else if(values.appKind === 1){
           params = {
             'appId':values.appId,
             'codeId':values.codeId,
@@ -209,7 +214,7 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateIsH5App
+  updateAppkind
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

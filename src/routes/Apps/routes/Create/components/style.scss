@@ -360,7 +360,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
         text-overflow: ellipsis;
         overflow: hidden;
         word-break: break-all;
-        .icon-rnpng,.icon-hpng{
+        .icon-rnpng,.icon-hpng,.icon-apkpng{
           position: absolute;
           top: 3px;
           right: 0;
@@ -375,6 +375,10 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
         }
         .icon-hpng{
           background: url('../../../../Home/assets/h5.png') no-repeat;
+          background-size: 100% 100%;      
+        }
+        .icon-apkpng{
+          background: url('../../../../Home/assets/apk.png') no-repeat;
           background-size: 100% 100%;      
         }
       }
@@ -491,8 +495,8 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     font-size: 15px;
     border-bottom: 1px solid #eee;
   }
-  .create-form-btn{
-    width: 398px;
+  .createApp-form-btn{
+    width: 591px;
     margin: 0 auto;
     .iconfont{
       font-size: 30px;
@@ -526,6 +530,13 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
        &:hover{
         color:#fff;
         background:#2e8fff
+      }
+    }
+   .apk-btn{
+      color: #97c03d;
+       &:hover{
+        color:#fff;
+        background:#97c03d
       }
     }
   }

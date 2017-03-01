@@ -147,22 +147,36 @@ class EditContainer extends Component {
         let params = {
           ...values
         }
-        if(file && values.isH5App === 0) {
+        if(file && values.appKind === 0 ) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,
           })
           delete params.file
-        } else {
+        } else if(values.appKind === 1){
           Object.assign(params, {
             'fileLink': values.fileLink,
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,
           })
+        } else {
+           Object.assign(params, file, {
+            'fileName': file.originalName,
+            'fileLink': file.url,
+            'fileSize': file.fileSize,
+
+            'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
+          })
+          delete params.file
         }
 
         const formData = new FormData()

@@ -88,7 +88,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
-      .icon-rnpng,.icon-hpng{
+      .icon-rnpng,.icon-hpng,.icon-apkpng{
         position: absolute;
         top: 3px;
         right: 0;
@@ -104,6 +104,10 @@
       .icon-hpng{
         background: url('../../routes/Home/assets/h5.png') no-repeat;
         background-size: 100% 100%;      
+      }
+      .icon-apkpng{
+        background: url('../../routes/Home/assets/apk.png') no-repeat;
+        background-size: 100% 100%;   
       }
     }
     .info-introduce{

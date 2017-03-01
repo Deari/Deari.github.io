@@ -110,7 +110,7 @@ class AppsList extends React.Component {
         obj.price = '免费'
         obj.download = 100
         obj.detailUrl = `/apps/detail/${obj.id}`
-        obj.isH5App = item.isH5App
+        obj.appKind = item.appKind
         obj.marketUrl = `/apps`
         obj.marketUrlTxt = '在应用市场中查看'
         obj.codeVersion = item.codeVersion && item.codeVersion || ''

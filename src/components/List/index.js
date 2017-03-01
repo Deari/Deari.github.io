@@ -18,10 +18,11 @@ class List extends React.Component {
               <a className="info-img"> <img src={item.logo} /> </a>
             </div>
             <div className="info-content w332">
-              {/*<Link className="info-name" title={item.name} to={item.detailUrl}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>*/}
-              <a className="info-name" title={item.name}> <span>{item.name}</span><i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </a>
-              {/*<Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>*/}
-              <a className="info-introduce" title={item.desc}> {item.desc} </a>
+              <Link className="info-name" title={item.name} to={item.detailUrl}> 
+                <span>{item.name}</span>
+                <i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i> 
+              </Link>
+              <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
               { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
             </div>
             <div className="info-price w90">{item.price}</div>
@@ -33,6 +34,7 @@ class List extends React.Component {
             </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
+             <Link className='active' to={item.detailUrl}><button>查看</button> </Link>
              {
               item.btnData.map( (btn, btnIndex) => (
                 <Link key={btnIndex} className={(btn.active && 'active') || ''} to={btn.url}> 

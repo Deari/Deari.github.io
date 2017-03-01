@@ -34,7 +34,7 @@ const compose = (arr1, arr2, arr3) => {
 }
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
-  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
+  const {appKind, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
   const appActive = appObj&&appObj.length!=0 ? 1:0;
@@ -80,8 +80,9 @@ const SecondStepForm = props => {
           ))
         }
       </Field>
-      {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
-      {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
+      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(RN)" />}
+      {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
+      {appKind === 2 && <Field name="file" component={renderFile} label="应用文件(APK)" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <AssociationModule 
         appObj={appObj} 
