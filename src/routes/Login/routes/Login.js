@@ -1,44 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getHardwareDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import './login.scss'
 
 export class Login extends Component {
-  // clickLogin(e) {
-  //   e.preventDefault()
-  //   const userName = this.refs.userName.value
-  //   const password = this.refs.password.value
-  //   const formData = new FormData()
-  //   formData.append("userName", userName)
-  //   formData.append("password", password)
-
-  //   const url = getHardwareDomain(`site/v1/login`)
-        
-  //   fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
-  //     console.log("res ", res )
-  //     if (res && res.status == 200) {
-  //       debug.warn("登录成功")
-  //     const searchArr = location.search.split("=")
-  //     window.location.href = (searchArr && searchArr[1]) ? searchArr[1] : location.origin
-  //     } else {
-  //       res && res.message && debug.warn(res.message)
-  //     }
-  //   }).catch( e => {
-  //     debug.warn("e ", e)
-  //   })
-  // }
-  // state = {
-  //   userName: '',
-  //   password: ''
-  // }
-
-  // changeInput(type, e) {
-  //   const value = e.target.value || ''
-  //   type == 'password' && this.setState({password: value})
-  //   type == 'userName' && this.setState({userName: value})
-  // }
-
   clickLogin(e) {
     e.preventDefault()
     const userName = this.refs.userName.value

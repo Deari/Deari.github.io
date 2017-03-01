@@ -183,7 +183,9 @@ class CreateContainer extends Component {
     }
     const { page, form2 } =this.props.widgetCreate
 
-    const isH5App = form2 && form2.isH5App
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     return (
       <div className="container clx">
@@ -192,7 +194,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page} isH5App={isH5App} /> }
+          { page > 0 && <Step page={page} appKindName={appKindName} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

@@ -195,7 +195,9 @@ class EditContainer extends Component {
   render() {
     const { page, form2 } =this.props.widgetEdit;
 
-    const isH5App = form2 && form2.isH5App
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -207,7 +209,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} type="widget"/>
         <div className="sub-container">
-          <Step page={page} title={'编辑组件'} isH5App={isH5App} />
+          <Step page={page} title={'编辑组件'} appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

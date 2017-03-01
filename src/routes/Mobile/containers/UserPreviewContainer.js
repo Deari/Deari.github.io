@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import UserPreview from '../components/UserPreview'
 import fetchUtil from 'utils/fetchUtil'
-import {getDomain}  from 'utils/domain';
+import {getMobileDomain}  from 'utils/domain';
 import UserViewData from './data'
 
 
@@ -16,7 +16,7 @@ export const Promised = (Wrapped) => class extends Component {
 
   async componentDidMount() {
     try {
-      const apiUrl = getDomain('/web/merchant/page/3')
+      const apiUrl = getMobileDomain('/web/merchant/page/3')
       const res = await fetchUtil.getJSON(apiUrl)
       if(res.status==200){
         if (typeof res.data.viewData === 'string') {

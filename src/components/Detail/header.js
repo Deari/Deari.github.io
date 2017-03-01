@@ -12,7 +12,7 @@ export const Header = (props) => {
 
   const showCreate = (latestCodeStatus && 
                      (latestCodeStatus.codeVersion == latestVersion.codeVersion) && 
-                     latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 6 || latestCodeStatus.codeStatus == 7)
+                     latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 7)
 
   const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
@@ -20,22 +20,24 @@ export const Header = (props) => {
 
   return data && data.mine === 1 && len > 0 && <div className="tab-nav">
     <ul className="tab-list">
-      <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active'}
+      { (preCodeStatus.codeVersion && !hidePreCode) &&
+          <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''} 
+              onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
+            <a>
+              <div>{preCodeStatus.codeVersion}</div>
+              <div>{preCodeStatus.codeStatusName}</div>
+            </a>
+          </li>
+      }
+
+      <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''}
           onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus, latestVersions)}}>
         <a>
           <div>{latestCodeStatus.codeVersion}</div>
           <div>{latestCodeStatus.codeStatusName}</div>
         </a>
       </li>
-      { (!preCodeStatus || hidePreCode) ? '' :
-        <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
-            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
-          <a>
-            <div>{preCodeStatus.codeVersion}</div>
-            <div>{preCodeStatus.codeStatusName}</div>
-          </a>
-        </li>
-      }
+      
     </ul>
     { showCreate && <Link to={editUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>

@@ -1,5 +1,5 @@
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain';
+import { getMobileDomain } from 'utils/domain';
 const REQUEST_PRODUCTS = 'REQUEST_PRODUCTS'
 
 //const initialState = {
@@ -46,7 +46,7 @@ export const getProduct = (data) => ({
 })
 
 export const fetchProducts = () => {
-  const apiUrl = getDomain('web/merchant/widgets')
+  const apiUrl = getMobileDomain('web/merchant/widgets')
   return (dispatch, getState) => new Promise(resolve => {
     fetchUtil.getJSON(apiUrl)
       .then(v => {

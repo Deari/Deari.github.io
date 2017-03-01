@@ -10,7 +10,7 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal, getDomain1 } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
@@ -71,7 +71,7 @@ class CreateContainer extends Component {
           }
         }
 
-        const url = getDomain(`web/developer/app`)
+        const url = getDomain1(`web/developer/app`)
         
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
@@ -203,7 +203,9 @@ class CreateContainer extends Component {
   render() {
     const { page, form2 } = this.props.appsCreate
 
-    const isH5App = form2 && form2.isH5App
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -218,7 +220,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page} isH5App={isH5App} /> }
+          { page > 0 && <Step page={page} appKindName={appKindName} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

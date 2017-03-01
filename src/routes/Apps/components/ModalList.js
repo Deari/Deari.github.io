@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getGateWayDomain, getDomain } from 'utils/domain'
+import { getDomain } from 'utils/domain'
 import fetchUtil from 'utils/fetchUtil'
 import { Link } from 'react-router'
 class ModalList extends Component {
