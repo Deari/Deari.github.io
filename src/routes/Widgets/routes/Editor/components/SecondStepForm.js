@@ -45,7 +45,6 @@ class SecondStepForm extends React.Component {
         </Field>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
-        {appKind === 2 && <Field name="file" component={renderFile} label="组件文件(APK)" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
           <div>

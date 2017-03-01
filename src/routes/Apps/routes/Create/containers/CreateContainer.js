@@ -117,26 +117,28 @@ class CreateContainer extends Component {
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         const formData = new FormData()
+        const file = values.file
         let params = {
           ...values
         }
-        if (values.appKind === 0||values.appKind === 2) {
-          const file = values.file
+        if (values.appKind === 0) {
           params = Object.assign({}, file, {
-            'appId': values.appId,
             'codeId': values.codeId,
             'codeDesc': values.codeDesc,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
+            
             'fileName': file.originalName,
             'fileLink': file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+      
             'showUpdateMsg': Number(values.showUpdateMsg),
             'relatedApps': values.idList,
             'relatedWidgets': values.wIdList,
           })
-        } else {
+        }else if(values.appKind === 1){
           params = {
-            'appId': values.appId,
             'codeId': values.codeId,
             'codeDesc': values.codeDesc,
             'autoPublish': values.autoPublish,
@@ -146,6 +148,21 @@ class CreateContainer extends Component {
             'relatedApps':values.idList,
             'relatedWidgets':values.wIdList,
           }
+        }else{
+          params = Object.assign({}, file, {
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            
+            'fileName': file.originalName,
+            'fileLink': file.url,
+            'fileSize': file.fileSize,
+      
+            'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
+          })
         }
 
         for (let key in params) {

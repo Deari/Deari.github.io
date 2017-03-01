@@ -117,23 +117,28 @@ class CreateContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
+        const file = values.file
         let params = {
           ...values
         }
 
-        if (values.appKind === 0||values.appKind === 2) {
-          const file = values.file
+        if (values.appKind === 0) {
+        
           params = Object.assign({}, file, {
             'appId':values.appId,
             'codeId':values.codeId,
             'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
+
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
-        } else {
+        } else if(values.appKind === 1){
           params = {
             'appId':values.appId,
             'codeId':values.codeId,

@@ -156,14 +156,16 @@ class EditContainer extends Component {
           ...values
         };
 
-        if(file && (values.appKind === 0||values.appKind === 2)) {
+        if(file && values.appKind === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
           delete params.file
-        } else {
+        } else if(values.appKind === 1) {
           Object.assign(params, {
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
