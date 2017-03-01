@@ -28,6 +28,7 @@ class List extends React.Component {
             </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
+             <Link className='active' to={item.detailUrl}><button>查看</button> </Link>
              {
               item.btnData.map( (btn, btnIndex) => (
                 <Link key={btnIndex} className={(btn.active && 'active') || ''} to={btn.url}> 
