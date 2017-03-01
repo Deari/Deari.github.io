@@ -109,7 +109,7 @@ class widgetsList extends React.Component {
         obj.price = '免费'
         obj.statusObj = this.getStatus(item)
         obj.detailUrl = `/widgets/detail/${obj.id}`
-        obj.isH5App = item.isH5App
+        obj.appKind = item.appKind
         obj.marketUrl = `/widgets`
         obj.marketUrlTxt = '在组件市场中查看'
         obj.codeVersion = item.codeVersion && item.codeVersion || ''

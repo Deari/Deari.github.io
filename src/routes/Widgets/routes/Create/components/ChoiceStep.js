@@ -18,6 +18,7 @@ class ChoiceStepForm extends Component {
           <h3 className="title">请选择组件类型</h3>
           <button type="button" className="next rn-btn" onClick={this.handleSubmit.bind(this, 0)}><i className="iconfont icon-facebook"></i>RN</button>
           <button type="button" className="next h5-btn" onClick={this.handleSubmit.bind(this, 1)}><i className="iconfont icon-html5"></i>HTML5</button>
+          <button type="button" className="next apk-btn" onClick={this.handleSubmit.bind(this, 2)}><i className="iconfont icon-android"></i>APK</button>
         </div>
       </form>
     )

@@ -13,7 +13,7 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { isH5App, versionsList, publishList } = initialValues
+    const { appKind, versionsList, publishList } = initialValues
 
     return (
       <form onSubmit={handleSubmit}>
@@ -43,8 +43,9 @@ class SecondStepForm extends React.Component {
             ))
           }
         </Field>
-        {isH5App === 0 && <Field name="file" component={renderFile} label="组件文件" />}
-        {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
+        {appKind === 0 && <Field name="file" component={renderFile} label="组件RN文件" />}
+        {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
+        {appKind === 2 && <Field name="file" component={renderFile} label="应用APK文件" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
           <div>

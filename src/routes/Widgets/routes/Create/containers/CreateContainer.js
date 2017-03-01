@@ -14,7 +14,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
@@ -43,7 +43,7 @@ class CreateContainer extends Component {
   }
 
   submitChoice(values) {
-    this.props.updateIsH5App({isH5App: values})
+    this.props.updateAppkind({appKind: values})
     this.props.toggleStep(1)
   }
 
@@ -121,7 +121,7 @@ class CreateContainer extends Component {
           ...values
         }
 
-        if (values.isH5App === 0) {
+        if (values.isH5App === 0||values.isH5App === 2) {
           const file = values.file
           params = Object.assign({}, file, {
             'appId':values.appId,
@@ -207,7 +207,7 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateIsH5App
+  updateAppkind
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

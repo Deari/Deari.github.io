@@ -156,7 +156,7 @@ class EditContainer extends Component {
           ...values
         };
 
-        if(file && values.isH5App === 0) {
+        if(file && (values.appKind === 0||values.appKind === 2)) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,

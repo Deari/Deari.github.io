@@ -477,7 +477,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     border-bottom: 1px solid #eee;
   }
   .create-form-btn{
-    width: 398px;
+    width: 591px;
     margin: 0 auto;
     .iconfont{
       font-size: 30px;
@@ -511,6 +511,13 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
        &:hover{
         color:#fff;
         background:#2e8fff
+      }
+    }
+   .apk-btn{
+      color: #97c03d;
+       &:hover{
+        color:#fff;
+        background:#97c03d
       }
     }
   }
