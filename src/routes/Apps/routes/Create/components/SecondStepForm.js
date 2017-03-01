@@ -75,9 +75,9 @@ const SecondStepForm = props => {
           ))
         }
       </Field>
-      {appKind === 0 && <Field name="file" component={renderFile} label="应用RN文件" />}
+      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(RN)" />}
       {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
-      {appKind === 2 && <Field name="file" component={renderFile} label="应用APK文件" />}
+      {appKind === 2 && <Field name="file" component={renderFile} label="应用文件(APK)" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <CreateAssocation 
         appObj={appObj} 

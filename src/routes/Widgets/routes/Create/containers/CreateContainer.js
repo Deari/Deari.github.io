@@ -121,7 +121,7 @@ class CreateContainer extends Component {
           ...values
         }
 
-        if (values.isH5App === 0||values.isH5App === 2) {
+        if (values.appKind === 0||values.appKind === 2) {
           const file = values.file
           params = Object.assign({}, file, {
             'appId':values.appId,
