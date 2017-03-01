@@ -531,11 +531,21 @@
                         positionY = 0;
                         swiper.slideTo(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
                         $showBig.css({"opacity":1, "z-index":9999});
-                        function _wheelDelta(ev) {
+                        function _wheelDelta() {
                                 if(ev.wheelDelta>0){positionY+=5;}else {positionY-=5;}
                                 _that.css({"background-position-y":positionY + "px"})
                         }
                         document.addEventListener('mousewheel',_wheelDelta,false);
+                        $showBig.on('touchstart',function (event) {
+                                let startY = event.originalEvent.targetTouches[0].clientY;
+                                $(this).on('touchmove',function (event) {
+                                        let  moveY = event.originalEvent.touches[0].clientY - startY;
+                                        startY = event.originalEvent.touches[0].clientY;
+                                        if (moveY>0){positionY +=5;}else {positionY -=5;}
+                                        _that.css({"background-position-y":positionY + "px"})
+                                        event.preventDefault();
+                                })
+                        })
                 });
                 var swiper = new Swiper('.swiper-container', {
                         pagination: '.swiper-pagination',
