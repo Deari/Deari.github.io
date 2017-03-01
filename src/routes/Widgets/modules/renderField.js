@@ -115,7 +115,7 @@ export class renderImageUpload extends Component {
     }
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false,
-      credentials: true
+      // credentials: true
     }).then(res => {
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
@@ -162,7 +162,7 @@ export class renderFile extends Component {
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false,
-      credentials: true
+      // credentials: true
     }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data)

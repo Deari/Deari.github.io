@@ -7,6 +7,7 @@ import LoginSDK from 'utils/loginSDK'
 import debug from 'utils/debug'
 import Slidebar from 'components/Sidebar'
 import ListNav from 'components/ListNav'
+import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
 import 'styles/_base.scss'
 
@@ -46,53 +47,32 @@ class widgetsList extends React.Component {
     return reviewStatus
   }
 
-  getStatus(item) {
-    let state = this.formatState(item)
-    switch(state) {
+  getStatus(listData, version) {
+    let stateObj = getCodeStatus(listData, version) || {}
+    switch(stateObj.codeStatus) {
       case 1:
-        return { status: "审核中", showEdit: false, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
         break
       case 2:
-        return { status: "已发布", showEdit: false, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 3:
-        return { status: "被管理员下架", showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { status: "被开发者下架", showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
         break
       case 5:
-        return { status: "等待开发者发布", showEdit: false, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { status: "审核未通过", showEdit: true, showNew: false, activeColor: "color-red", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { status: "准备提交", showEdit: true, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
-    }
-  }
-
-  formatState(item) {
-    let state = 0
-    if(item.reviewStatus==1){
-       return 1
-    }else if(item.reviewStatus==2){
-      if(item.adminUnshelved){
-        return 3 
-      }else if(item.devUnshelved){
-        return 4
-      }else if(item.publishStatus){
-        return 2 
-      }else{
-        return 5
-      }
-    }else if(item.reviewStatus==3){
-      return 6 
-    }else {
-      return 7
     }
   }
 
@@ -101,7 +81,8 @@ class widgetsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
-        let statusObj = this.getStatus(item)
+        let latestStatusObj = item.versions && item.versions[0] && this.getStatus(listData, item.versions[0]) || {}
+        let prevStatusObj = item.versions && item.versions[1] && this.getStatus(listData, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
@@ -112,15 +93,25 @@ class widgetsList extends React.Component {
         obj.appKind = item.appKind
         obj.marketUrl = `/widgets`
         obj.marketUrlTxt = '在组件市场中查看'
-        obj.codeVersion = item.codeVersion && item.codeVersion || ''
-        obj.activeColor = statusObj.activeColor && statusObj.activeColor || ''
-        obj.status = statusObj.status && statusObj.status || ''
+        obj.latestActiveColor = latestStatusObj.activeColor && latestStatusObj.activeColor || ''
+        obj.latestCodeVersion = latestStatusObj.stateObj && latestStatusObj.stateObj.codeVersion || ''
+        obj.latestStatusName = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatusName || ''
+        obj.prevActiveColor = prevStatusObj.activeColor && prevStatusObj.activeColor || ''
+        obj.prevCodeVersion = prevStatusObj.stateObj && prevStatusObj.stateObj.codeVersion || ''
+        obj.prevStatusName = prevStatusObj.stateObj && prevStatusObj.stateObj.codeStatusName || ''
+
+        let latestCodeStatus = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatus || ''
+        let prevCodeStatus = prevStatusObj.stateObj && prevStatusObj.stateObj.codeStatus || ''
+
+        if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
+
+        obj.showOpenLink = latestCodeStatus == 2
 
         const editUrl = `/widgets/edit/${obj.id}`
 
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: statusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: statusObj.showNew}
+          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
         ]
 
         newData.push(obj)
