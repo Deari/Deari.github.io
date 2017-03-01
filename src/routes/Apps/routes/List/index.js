@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
+import Pager from 'components/Pager'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
@@ -18,16 +19,22 @@ class AppsList extends React.Component {
       {name: "已审核", value: 2},
       {name: "待审核", value: 1},
       {name: "待提交", value: 3}
-    ]
+    ],
+    limitList:[10,20,50],
+    currentPageIndex:1,
+    pageIndexs:[],
+    pageSum:0,
+    limit:10
   }
 
   async getList() {
     const apiUrl = getDomain("web/developer/apps")
     const review = this.getReviewStatus()
+    const {limit, currentPageIndex} = this.state
     try {
-      let res = await fetchUtil.getJSON(apiUrl, { review: review });
+      let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex });
       if(res.status == 200){
-        return res.data && res.data.list
+        return res.data 
       } else {
         debug.warn("获取列表接口错误")
         return false
@@ -73,6 +80,16 @@ class AppsList extends React.Component {
       default:
         return ''
     }
+  }
+
+  getPageIndexs(pageSum){
+    let newArray=[]
+    for(let i=0;i<pageSum;i++){
+      const obj = {};
+      obj.value = i+1; 
+      newArray.push(obj)
+    }
+    return newArray
   }
 
   formatState(item) {
@@ -127,22 +144,46 @@ class AppsList extends React.Component {
     
     return newData
   }
+  upDate(currentPageIndex){
+  
+      let sourceVal = getSourceVal()
+      let url = getLoginDomain(`passport/session-check.json`)
+      let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+      let callbackUrl = location.href
 
-  componentDidMount() {
-    let sourceVal = getSourceVal()
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
-    let callbackUrl = location.href
-
-    LoginSDK.getStatus( async (status, data) => {
+      LoginSDK.getStatus( async (status, data) => {
       if (status) {
-        const listData = await this.getList()
+   
+        const resData = await this.getList()
+        const listData = resData.list
         const newData = listData && this.formatListData(listData)
-        newData && this.setState({listData: newData})
+        const pageSum = resData.page.lastPage
+        const pageIndexs = this.getPageIndexs(pageSum)
+  
+        newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
       } else {
         debug.warn("登录失败")
       }
     }, url, loginUrl, callbackUrl)
+  }
+  componentDidMount() {
+      let sourceVal = getSourceVal()
+      let url = getLoginDomain(`passport/session-check.json`)
+      let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+      let callbackUrl = location.href
+
+      LoginSDK.getStatus( async (status, data) => {
+        if (status) {
+          const resData = await this.getList()
+          const listData = resData.list
+          const pageSum = resData.page.lastPage
+          const pageIndexs = this.getPageIndexs(pageSum)
+          const newData = listData && this.formatListData(listData)
+          newData && this.setState({listData: newData,pageIndexs:pageIndexs,pageSum:pageSum})
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
   }
 
   changeNav(obj) {
@@ -152,10 +193,42 @@ class AppsList extends React.Component {
       newData && this.setState({listData: newData})
     })
   }
-
+  changeSelect(e){
+    this.setState({currentPageIndex:e.target.value})
+    this.upDate()
+  }
+  changePage(e,index){
+    this.setState({currentPageIndex:index})
+    this.upDate()
+  }
+  changeNextPage(){
+    const {currentPageIndex,pageSum} = this.state
+    const index = this.state.currentPageIndex + 1
+    if (index <= pageSum) {
+      this.setState({ currentPageIndex: index })
+      this.upDate()
+    } else {
+      alert("已经没有下一页了")
+    }
+  }
+  changePrevPage(){
+    const {currentPageIndex} = this.state
+    const index = currentPageIndex - 1
+    if (index > 0) {
+      this.setState({ currentPageIndex: index })
+      this.upDate()
+    } else {
+      alert("已经没有上一页了")
+    }
+  }
+  changeLimit(e){
+    if(!e.target.value)return
+    this.setState({limit:e.target.value,currentPageIndex:1})
+    this.upDate(this.state.currentPageIndex)
+  }
   render() {
 
-    const { navData, listData } = this.state
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex,limitList} = this.state
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -177,6 +250,17 @@ class AppsList extends React.Component {
             <li className="w112">操作</li>
           </ul>
           <List listData={listData} />
+          <Pager 
+            changePage={this.changePage.bind(this)} 
+            changeNextPage={this.changeNextPage.bind(this)} 
+            changePrevPage={this.changePrevPage.bind(this)}
+            changeSelect={this.changeSelect.bind(this)}
+            changeLimit={this.changeLimit.bind(this)} 
+            pageIndexs={pageIndexs}  
+            pageSum={pageSum} 
+            limitList={limitList}  
+            currentPageIndex={currentPageIndex}      
+          />
         </div>
       </div>
     )

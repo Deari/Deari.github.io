@@ -33,6 +33,7 @@
   color: $gray6-color;
   line-height: $text-line-height + 10;
   background: $graye-color;
+  overflow: hidden;
   @include border-top;
   li{
     @include float-left;
