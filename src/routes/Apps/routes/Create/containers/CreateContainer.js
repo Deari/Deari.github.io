@@ -15,7 +15,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates, updateCodeDesc} from '../modules/create'
 
 class CreateContainer extends Component {
   
@@ -250,7 +250,8 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateAppkind
+  updateAppkind,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({ appsCreate }) => ({
