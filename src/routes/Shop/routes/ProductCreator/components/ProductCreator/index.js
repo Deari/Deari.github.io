@@ -8,6 +8,7 @@ export class ProductCreator extends Component {
 
   render() {
     const mess = new Messages(this)
+    mess.add(<div>dddddddd</div>)
     mess.add(<div>dcccf</div>, 3000)
     mess.add(<div>ccccc</div>, 4000)
     mess.add(<div>ddddd</div>, 5000)
