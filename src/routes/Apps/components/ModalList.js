@@ -23,8 +23,8 @@ class ModalList extends Component {
       const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
       this.setState({datalist:newList})
    }
-   getStatus(item) {
-    let state = this.formatState(item)
+   getStatus(item,v) {
+    let state = this.formatState(item,v)
     switch(state) {
       case 1:
         return { status: "审核中", activeColor: "yellow", }
@@ -51,25 +51,36 @@ class ModalList extends Component {
         return ''
     }
   }
-  formatState(item) {
+  formatState(item,v) {
     let state = 0
-    if(item.reviewStatus==1){
+    if(v.reviewStatus==1){
        return 1
-    }else if(item.reviewStatus==2){
+    }else if(v.reviewStatus==2){
       if(item.adminUnshelved){
         return 3 
       }else if(item.devUnshelved){
         return 4
-      }else if(item.publishStatus){
+      }else if(v.publishStatus){
         return 2 
       }else{
         return 5
       }
-    }else if(item.reviewStatus==3){
+    }else if(v.reviewStatus==3){
       return 6 
     }else {
       return 7
     }
+  }
+  filterList(datalist){
+  
+    const newList = datalist.filter((v)=> {
+      if(v.versions[1]){
+        return (v.versions[0]&&v.versions[0].publishStatus==1) || (v.versions[1]&&v.versions[1].publishStatus==1)
+      }else{
+        return v.versions[0]&&v.versions[0].publishStatus==1
+      }
+    })
+      return(newList)
   }
    async componentDidMount() {
      if(this.props.type === 'app'){
@@ -108,6 +119,7 @@ class ModalList extends Component {
   render() {
     const { idList, type } = this.props
     const { datalist } = this.state 
+    const newList = this.filterList(datalist)
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
     const typeUrl = type === 'app' ? `/apps` : type === 'widget' ? `/widgets` : `/hardware`
     return (
@@ -125,10 +137,8 @@ class ModalList extends Component {
           <div className="popup-list-box">
             <div className="listContent">
             {
-              datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
-                datalist.map((item, index) => {
-                  if (item.publishStatus&&!item.devUnshelved&&!item.adminUnshelved) {
-                    return (
+              newList.length == 0 ? <div className="list-none">请输入正确名称</div> :
+                newList.map((item, index) =>  (
                       <div className="popup-list-container" key={index}>
                         <div className="popup-info-img-container w116">
                           <p className="popup-info-img" > <img src={item.appLogo} /></p>
@@ -140,16 +150,23 @@ class ModalList extends Component {
                         </div>
                         <div className="popup-info-price w78">免费</div>
                         <div className="popup-info-status w140">
-                          <span className="info-status-info1"><i className={this.getStatus(item).activeColor == 'red' ? "color-red" : this.getStatus(item).activeColor == 'green' ? "color-green" : ""}></i>{item.codeVersion}</span>
-                          <span className="info-status-info2">{this.getStatus(item).status}</span>
+                        {
+                          item.versions.slice(0,2).map((v,k)=>{
+                            return(
+                            <div key={k}>
+                              <span className="info-status-info1"><i className={this.getStatus(item,v).activeColor == 'red' ? "color-red" : this.getStatus(item,v).activeColor == 'green' ? "color-green" : ""}></i>{v.codeVersion}</span>
+                              <span className="info-status-info2">{this.getStatus(item,v).status}</span>
+                            </div>
+                          )
+                          })
+                        }
                         </div>
                         <div className="popup-info-btn w104">
                           {idList.indexOf(item.appId) !== -1 ? <button className='btn-cancel' onClick={this.handleCancel.bind(this, item)}>取消选择</button> : <button onClick={this.handleClick.bind(this, item)}>选择</button>}
                         </div>
                       </div>
                     )
-                  }
-                })
+                )
               }
           </div>
         </div>      

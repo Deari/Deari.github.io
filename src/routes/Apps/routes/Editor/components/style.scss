@@ -322,6 +322,8 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       .listContent{
         margin: 0 10px;
         border: 1px solid #E7E7E7;
+        height: 310px;
+        overflow-x: hidden;
       }
       .popup-list-box{
         height:288px;
