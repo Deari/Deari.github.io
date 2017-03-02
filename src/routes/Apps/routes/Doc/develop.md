@@ -4,11 +4,11 @@
 
 # 二、开发
 
-## 1、创建应用
+## 1、发布新应用
 
-1.1 点击 [应用市场](http://open.ffan.net/apps) -> 创建新应用, 按要求填写相关应用信息, 创建应用
+1.1 点击 [应用市场](http://open.ffan.net/apps) -> 发布新应用, 按要求填写相关应用信息, 发布新应用
 
-1.2 成功创建应用后, 系统会生成 AppID 和 AppSecrect（待补充）
+1.2 成功发布新应用后, 系统会生成 AppID 和 AppSecrect（待补充）
 
 ## 2、环境搭建
 
@@ -526,7 +526,7 @@ sdk.setRightNavBarItem({"title":"分享"})
   - 请求样例
 
 ```bash
-curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f5256" http://api.test.ffan.com/oauth/v1/token
+curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f5256" http://api.ffan.com/oauth/v1/token
 ```
 
   - 接口调用频率: 2000 次 / 天（ 00:00:00 - 23:59:59 ）
@@ -609,7 +609,7 @@ accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd05
 - 请求样例
 
 ```bash
-curl -X GET http://api.test.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
+curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
 ```
 
 - 接口调用频率: 200000 次 / 天（00:00:00 - 23:59:59）
@@ -662,7 +662,7 @@ curl -X GET http://api.test.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d9
 - 请求样例
 
   ```bash
-  curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&appKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.test.ffan.com/oauth/v1/token/sign
+  curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&appKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.ffan.com/oauth/v1/token/sign
   ```
 
 - 接口调用频率: 200 次 / 天（00:00:00 - 23:59:59）

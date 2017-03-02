@@ -48,7 +48,7 @@ class EditContainer extends Component {
 
   getVersionList(codeVersion,reviewStatus){
     const versionsArray0 = [
-      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[1]) + 1
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[2]) + 1
     ]
     const versionsArray1 = [
       parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
@@ -58,7 +58,7 @@ class EditContainer extends Component {
     ]
 
     const versionsList = [
-      { 'value': reviewStatus === 0 || reviewStatus === 3 ? codeVersion : versionsArray0.join('.') },
+      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
       { 'value': versionsArray1.join('.') },
       { 'value': versionsArray2.join('.') }
     ]    
@@ -107,12 +107,17 @@ class EditContainer extends Component {
             const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
             const versionFormData = new FormData()
             versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
-               if(versionRes.status == 200) {
-                 const versionsList = this.getVersionList(versionRes.data.codeVersion,versionRes.data.reviewStatus)
-                 this.props.receiveVersionsList(versionsList)
-                 this.props.receiveCodeId(versionRes.data.codeId)
-               }
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+              if (versionRes.status == 200) {
+                let versionsList = '';
+                if (versionRes.data[0].reviewStatus == 3) {
+                  versionsList = versionRes.data[1] ? this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus) : this.getVersionList('0.0.1', 0)               
+                } else {
+                  versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)               
+                }
+                this.props.receiveVersionsList(versionsList)
+                this.props.receiveCodeId(versionRes.data[0].codeId)
+              }
             })
             this.props.updateFirstForm(values)
             this.props.toggleStep(2);
@@ -151,14 +156,16 @@ class EditContainer extends Component {
           ...values
         };
 
-        if(file && values.isH5App === 0) {
+        if(file && values.appKind === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
           delete params.file
-        } else {
+        } else if(values.appKind === 1) {
           Object.assign(params, {
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
@@ -186,7 +193,11 @@ class EditContainer extends Component {
   }
 
   render() {
-    const { page } =this.props.widgetEdit;
+    const { page, form2 } =this.props.widgetEdit;
+
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -198,7 +209,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} type="widget"/>
         <div className="sub-container">
-          <Step page={page} title={'编辑组件'} />
+          <Step page={page} title={'编辑组件'} appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

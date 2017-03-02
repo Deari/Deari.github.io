@@ -191,7 +191,7 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
-    isH5App: 0
+    appKind: 0
   },
   form2: {
     codeId:-1,
@@ -206,11 +206,12 @@ const initialState = {
     ],
     codeDesc: '',
     platform: 2,
-    isH5App: 0,
+    appKind: 0,
     showUpdateMsg: 0,
     appId: -1,
     codeId: -1,
     autoPublish: 1,
+    codeVersion: -1
   }
 }
 
@@ -258,20 +259,20 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size,
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
           fileName, fileLink, moduleName, setting, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
           rnFrameworkVersion = 0,} = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
         dispatch(updateForm({
           appId,
-          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, isH5App, size,
+          appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, appKind, size,
           tags: tagId
         }))
 
         dispatch(updateForm2({ 
           appId,
-          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
+          platform, appKind, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
         }))
         
       } else {

@@ -11,6 +11,8 @@ const TOGGLE_LOGOLIST = PREFIX+'TOGGLE_LOGOLIST'
 const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
 const WTOGGLE_LOGOLIST =  PREFIX+'WTOGGLE_LOGOLIST'
 const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
+const TOGGLE_NAMELIST = PREFIX+'TOGGLE_NAMELIST'
+const WTOGGLE_NAMELIST = PREFIX+'WTOGGLE_NAMELIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -62,7 +64,14 @@ export const WtoggleIdList= (id) => ({
   type : WTOGGLE_IDLIST,
   id
 })
-
+export const toggleNameList= (name) =>({
+  type : TOGGLE_NAMELIST,
+  name
+})
+export const WtoggleNameList= (name) =>({
+  type : WTOGGLE_NAMELIST,
+  name
+})
 export const receiveVersionsList= (versionsList) => ({
   type :  RECEIVE_VERSIONSLIST,
   versionsList
@@ -113,20 +122,37 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-
-        const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
+        const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, 
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
           rnFrameworkVersion=0 } = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-        dispatch(updateForm1({
-          appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
+        const {apps, widgets} = res.data && res.data.relations 
+        let idList = []
+        let logoList = []
+        let nameList = []
+        let wLogoList = []
+        let wIdList = []
+        let wNameList = []
+        for(var i = 0;i<apps.length;i++){   
+          idList.push(apps[i].appId)
+          logoList.push(apps[i].appLogo)
+          nameList.push(apps[i].appName)
+        }
+        for(var j=0;j<widgets.length;j++){
+          wIdList.push(widgets[j].appId)
+          wLogoList.push(widgets[j].appLogo)
+          wNameList.push(widgets[j].appName)
+        }
+        dispatch(updateForm1({ 
+          appId, appName, appLogo, appDesc, categoryId, platform, appKind,
           tags: tagId
         }))
 
         dispatch(updateForm2({
           appId,
-          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          platform, appKind, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          idList, logoList, nameList, wLogoList, wIdList, wNameList
         })) 
 
       } else {
@@ -145,6 +171,30 @@ export const updateFirstForm = (values) => {
 }
 
 const ACTION_HANDLERS = {
+ [WTOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.wNameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wNameList:newList
+      }
+    }
+ },
+  [TOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.nameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        nameList:newList
+      }
+    }
+ },
  [RECEIVE_CODEID]:(state,action)=>{
     return {
       ...state,
@@ -290,7 +340,7 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
-    isH5App: 0
+    appKind: 0
   },
 
   form2: {
@@ -303,21 +353,22 @@ const initialState = {
         { txt: '手动发布此版本', value: 0 },
       ],
       versionsList:[
-        {value:"0.0.1"},
-        {value:"0.1.0"},
-        {value:"1.0.0"}
+        {value:"请稍后..."},
       ],
       idList:[],
       logoList:[],
       wLogoList:[],
       wIdList:[],
+      nameList:[],
+      wNameList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,
       codeId:-1,
       platform: 2,
-      isH5App: 0,
+      appKind: 0,
       autoPublish:1,
+      codeVersion: -1
   },
 }
 

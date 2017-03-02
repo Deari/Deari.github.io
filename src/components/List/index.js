@@ -5,7 +5,6 @@ import 'styles/_base.scss'
 
 class List extends React.Component {
   render() {
-
     const listData = this.props.listData || []
     const len = listData.length
     return (
@@ -17,15 +16,35 @@ class List extends React.Component {
             <div className="info-img-container w124">
               <Link className="info-img" to={item.detailUrl}> <img src={item.logo} /> </Link>
             </div>
-            <div className="info-content w342">
-              <Link className="info-name" title={item.name} to={item.detailUrl}> {item.name}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i> </Link>
+            <div className="info-content w332">
+              <Link className="info-name" title={item.name} to={item.detailUrl}> 
+                <span>{item.name}</span>
+                { item.latestCodeVersion && <i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i> }
+              </Link>
               <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
-              <Link className="info-link" to={item.marketUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
+              { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
             </div>
             <div className="info-price w90">{item.price}</div>
-            <div className="info-status w90">{item.status}</div>
+            { item.status && <div className="w90 info-download"><div>{item.status}</div></div>}
+            <div className="w100">
+              { item.latestCodeVersion && <div className="info-status">
+                <span className="info-status-info1">
+                  <i className={item.latestActiveColor}></i>{item.latestCodeVersion}
+                </span>
+                <span className="info-status-info2">{item.latestStatusName}</span>
+              </div>
+              }
+              { item.prevCodeVersion && <div className="info-status">
+                <span className="info-status-info1">
+                  <i className={item.prevActiveColor}></i>{item.prevCodeVersion}
+                </span>
+                <span className="info-status-info2">{item.prevStatusName}</span>
+              </div>
+              }
+            </div>
             <div className="info-download w90">{item.download}</div>
             <div className="info-btn w112">
+             <Link className='active' to={item.detailUrl}><button>查看</button> </Link>
              {
               item.btnData.map( (btn, btnIndex) => (
                 <Link key={btnIndex} className={(btn.active && 'active') || ''} to={btn.url}> 
