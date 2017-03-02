@@ -17,6 +17,9 @@ export const validate = values => {
   if (!values.appDesc) {
     errors.appDesc = <i className="message">请输入组件简介</i>
   } 
+  if (parseInt(values.codeVersion) == -1) {
+    errors.codeVersion = <i className="message">请选择版本号</i>
+  }
   if (parseInt(values.categoryId) == -1) {
     errors.categoryId = <i className="message">请选择分类</i>
   }
@@ -26,10 +29,10 @@ export const validate = values => {
   if (!values.codeDesc) {
     errors.codeDesc = <i className="message">请输入文字介绍</i>
   }
-  if(!values.file && values.isH5App === 0){
+  if(!values.file && values.appKind === 0){
      errors.file = <i className="message">请选择组件文件</i>
   }
-  if(values.isH5App === 1){
+  if(values.appKind === 1){
     let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
      if (!values.fileLink) {
        errors.fileLink = <i className="message">请输入网址</i>

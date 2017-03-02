@@ -1,4 +1,5 @@
 import fetch from '../../fetch'
+import debug from './debug'
 
 
 class FetchUtil {
@@ -24,6 +25,8 @@ class FetchUtil {
     params = getURLByObj(params)
     options = {
       method: 'GET',
+      credentials: 'include',
+      mode: 'cors',
       // ...jsonHeaders,
       ...options
     }
@@ -37,6 +40,10 @@ class FetchUtil {
             const resp = await res.json();
             if (options[ 'passDate' ]) {
               resp._date = res.headers.get('date');
+            }
+            if (resp.status == 4202) {
+              debug.warn("请先登录")
+              return
             }
             return resolve(resp);
           } catch (e) {
@@ -114,6 +121,9 @@ class FetchUtil {
     }
     const reqsOptions = {
       method: 'POST',
+      // credentials: !options.credentials ? 'include' : '',
+      credentials: 'include',
+      mode: 'cors',
       // ...jsonHeaders,
       body: !options.jsonStringify ? params : JSON.stringify(params)
     }
@@ -123,6 +133,10 @@ class FetchUtil {
         if (res.ok) {
           try {
             const resp = await res.json();
+            if (resp.status == 4202) {
+              debug.warn("请先登录")
+              return
+            }
             return resolve(resp);
           } catch (e) {
             return reject(e)

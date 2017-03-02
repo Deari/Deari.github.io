@@ -8,8 +8,8 @@ export const validate = values => {
   if (values.autoPublish != 0 &&  values.autoPublish != 1) {
     errors.autoPublish = <i className="message">请选择发布方法</i>
   }
-  if (!values.codeVersion) {
-    errors.codeVersion = <i className="message">请选择版本信息</i>
+  if (parseInt(values.codeVersion) == -1) {
+    errors.codeVersion = <i className="message">请选择版本号</i>
   }
   if (!values.appLogo) {
     errors.appLogo = <i className="message">请选择应用图片</i>
@@ -26,10 +26,10 @@ export const validate = values => {
   if (!values.codeDesc) {
     errors.codeDesc = <i className="message">请输入版本介绍</i>
   }
-  if(!values.file && values.isH5App === 0){
+  if(!values.file && values.appKind === 0){
      errors.file = <i className="message">请选择.zip类型的文件</i>
   }
-  if(values.isH5App === 1){
+  if(values.appKind === 1){
     let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
      if (!values.fileLink) {
        errors.fileLink = <i className="message">请输入网址</i>

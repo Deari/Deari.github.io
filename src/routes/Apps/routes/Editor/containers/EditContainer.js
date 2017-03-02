@@ -21,7 +21,8 @@ import {
   getCates, 
   getAppInfo,
   updateFirstForm,
-  updateSecondForm
+  receiveVersionsList,
+  receiveCodeId
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -36,7 +37,7 @@ class EditContainer extends Component {
       if (status) {
         const { params } = this.props
         const appId = parseInt(params.appId)
-        this.props.toggleStep(1)
+        this.props.toggleStep(2)
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)
@@ -52,7 +53,25 @@ class EditContainer extends Component {
       if (!status) debug.warn('请先登录')
     }, sessionUrl)
   }
+  getVersionList(codeVersion,reviewStatus){
+    const versionsArray0 = [
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[2]) + 1
+    ]
+    const versionsArray1 = [
+      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
+    ]
+    const versionsArray2 = [
+      parseInt(codeVersion.split(".")[0]) + 1, 0, 0
+    ]
 
+    const versionsList = [
+      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
+      { 'value': versionsArray1.join('.') },
+      { 'value': versionsArray2.join('.') }
+    ]    
+    return versionsList
+  }
+  
   submitFirst(values) {
 
     this.isLogin()
@@ -85,12 +104,17 @@ class EditContainer extends Component {
             const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
             const versionFormData = new FormData()
             versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
-               if(versionRes.status == 200) {
-                 this.props.updateSecondForm({
-                   codeId:versionRes.data.codeId
-                 })
-               }
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+              if (versionRes.status == 200) {
+                let versionsList = '';
+                if (versionRes.data[0].reviewStatus == 3) {
+                  versionsList = versionRes.data[1] ? this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus) : this.getVersionList('0.0.1', 0)
+                } else {
+                  versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)
+                }
+                this.props.receiveVersionsList(versionsList)
+                this.props.receiveCodeId(versionRes.data[0].codeId)
+              }
             })
             this.props.updateFirstForm(values)
             this.props.toggleStep(2)            
@@ -108,9 +132,7 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-  
     this.isLogin()
-
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -125,30 +147,51 @@ class EditContainer extends Component {
         let params = {
           ...values
         }
-        if(file && values.isH5App === 0) {
+        if(file && values.appKind === 0 ) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
           delete params.file
-        } else {
+        } else if(values.appKind === 1){
           Object.assign(params, {
-            'appId': values.appId,
-            'codeId':values.codeId,
-            'codeDesc': values.codeDesc,
             'fileLink': values.fileLink,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           })
+        } else {
+           Object.assign(params, file, {
+            'fileName': file.originalName,
+            'fileLink': file.url,
+            'fileSize': file.fileSize,
+
+            'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
+          })
+          delete params.file
         }
 
         const formData = new FormData()
         for (let key in params) {
-          formData.append(key, params[key])
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
+          } else {
+            formData.append(key, params[key])
+          }
         }
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)
@@ -174,7 +217,11 @@ class EditContainer extends Component {
   }
 
   render() {
-    const { page } =this.props.appsEdit
+    const { page, form2 } =this.props.appsEdit
+
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -186,7 +233,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} />
         <div className="sub-container">
-          <Step page={page} title={'编辑应用'} />
+          <Step page={page} title={'编辑应用'} appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -209,7 +256,8 @@ const mapDispatchToProps = {
   getCates,
   getAppInfo,
   updateFirstForm,
-  updateSecondForm,
+  receiveVersionsList,
+  receiveCodeId
 }
 
 const mapStateToProps = ({appsEdit}) => ({

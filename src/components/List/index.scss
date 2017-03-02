@@ -33,6 +33,7 @@
   color: $gray6-color;
   line-height: $text-line-height + 10;
   background: $graye-color;
+  overflow: hidden;
   @include border-top;
   li{
     @include float-left;
@@ -77,28 +78,96 @@
     line-height: $text-line-height - 16px;
     .info-name {
       display: block;
+      position: relative;
       font-size: $text-font-size - 4px;
       color: $black-color;
       @include font-nowrap;
       @include font-hidden;
+      span{
+        display: block;
+        width: 280px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .icon-rnpng,.icon-hpng,.icon-apkpng{
+        position: absolute;
+        top: 3px;
+        right: 0;
+        display: inline-block;
+        width: 48px;
+        height: 16px;
+        vertical-align: middle;
+      }
+      .icon-rnpng{
+        background: url('../../routes/Home/assets/rn.png') no-repeat;
+        background-size: 100% 100%;   
+      }
+      .icon-hpng{
+        background: url('../../routes/Home/assets/h5.png') no-repeat;
+        background-size: 100% 100%;      
+      }
+      .icon-apkpng{
+        background: url('../../routes/Home/assets/apk.png') no-repeat;
+        background-size: 100% 100%;   
+      }
     }
     .info-introduce{
       display: block;
       font-size: $text-font-size - 6px;
       color: $gray9-color;
-      max-height: 70px;
+      height: 44px;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       @include font-hidden;
     }
+     .info-link{
+        display: block;
+        margin-top: 6px;
+        color: #999;
+        font-size: 14px;
+        a{
+          color: #999;
+        }
+        .icon-categoryindi{
+          font-size: 10px;
+        }
+      }
   }
-  .info-price,.info-status,.info-download{
+  .info-price,.info-download{
     height: $default-height;
     font-size: $text-font-size - 6;
     text-align: center;
     line-height: $text-line-height + 60;
     word-break:keep-all;white-space:nowrap;text-overflow:elipsis;
+  }
+  .info-status{
+    padding-top: 15px;
+    span{
+      display: block;
+    }
+    .info-status-info1{
+      font-size: 14px;
+      i{
+        display: inline-block;
+        margin-right:4px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ffe100;
+        vertical-align: middle;
+      }
+      .color-red{
+        background: #ff0000;
+      }
+      .color-green{
+        background: #78d80e;
+      }
+    }
+    .info-status-info2{
+      padding-left: 11px;
+      font-size: 12px;
+    }
   }
   .info-btn{
     text-align: center;

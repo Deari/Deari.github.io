@@ -13,7 +13,7 @@ const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 
-const UPDATE_ISH5APP = PREFIX+'UPDATE_ISH5APP'
+const UPDATE_APPKIND = PREFIX+'UPDATE_APPKIND'
 
 export const receiveTags = (data) => {
   return {
@@ -41,8 +41,8 @@ export const updateForm2 = (data) => {
   }
 }
 
-export const updateIsH5App = (data) => ({
-  type : UPDATE_ISH5APP,
+export const updateAppkind = (data) => ({
+  type : UPDATE_APPKIND,
   data
 })
 
@@ -75,7 +75,7 @@ const ACTION_HANDLERS = {
     }
   }),
 
-  [UPDATE_ISH5APP]: (state, action) => {
+  [UPDATE_APPKIND]: (state, action) => {
     return {
       ...state,
       form: {
@@ -87,12 +87,12 @@ const ACTION_HANDLERS = {
         ...action.data
       }
     }
-  }
+  },
   
 }
 
 const initialState = {
-  page: 0,
+  page: 1,
   cates: [{
     categoryId: 0,
     categoryName: "正在加载..."
@@ -108,6 +108,8 @@ const initialState = {
     { image: 'img4', value: {widgetW:4,widgetH:1} },
   ],
   form: {
+    showUpdateMsg:0,
+    autoPublish:1,
     appName: '',
     appThumb: '',
     appPreviewImage: '',
@@ -116,12 +118,27 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
-    isH5App: 0
+    appKind: 0
   },
   form2: {
+    codeId:-1,
+    publishList: [
+      { txt: '自动发布此版本', value: 1 },
+      { txt: '手动发布此版本', value: 0 },
+    ],
+    versionsList: [
+      { value: "0.0.1" },
+      { value: "0.1.0" },
+      { value: "1.0.0" }
+    ],
     codeDesc: '',
     platform: 2,
-    isH5App: 0
+    appKind: 0,
+    showUpdateMsg: 0,
+    appId: -1,
+    codeId: -1,
+    autoPublish: 1,
+    codeVersion: -1
   }
 }
 

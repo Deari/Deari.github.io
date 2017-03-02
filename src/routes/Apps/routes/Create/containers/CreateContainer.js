@@ -10,12 +10,12 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain, getLoginDomain, getApiDomain, getSourceVal, getDomain1 } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
   
@@ -44,12 +44,11 @@ class CreateContainer extends Component {
   }
 
   submitChoice(values) {
-    this.props.updateIsH5App({isH5App: values})
+    this.props.updateAppkind({appKind: values})
     this.props.toggleStep(1)
   }
 
   submitFirst(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -72,7 +71,7 @@ class CreateContainer extends Component {
           }
         }
 
-        const url = getDomain(`web/developer/app`)
+        const url = getDomain1(`web/developer/app`)
         
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
           if(res.status == 200) {
@@ -85,7 +84,7 @@ class CreateContainer extends Component {
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
                  this.props.updateForm2({
-                   codeId:versionRes.data.codeId
+                   codeId:versionRes.data[0].codeId
                  })
                }
             })
@@ -104,7 +103,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -119,32 +117,66 @@ class CreateContainer extends Component {
 
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         const formData = new FormData()
-        let params = {}
-        if (values.isH5App === 0) {
-          const file = values.file
-          params = Object.assign({}, file, {    
-            'appId': values.appId,
+        const file = values.file
+        let params = {
+          ...values
+        }
+        if (values.appKind === 0) {
+          params = Object.assign({}, file, {
+            'codeId': values.codeId,
             'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            
             'fileName': file.originalName,
             'fileLink': file.url,
-            'autoPublish': values.autoPublish,
-            'codeVersion': values.codeVersion,
-            'showUpdateMsg':Number(values.showUpdateMsg),
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+      
+            'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
           })
-        } else {
+        }else if(values.appKind === 1){
           params = {
-            'appId': values.appId,
-            'codeId':values.codeId,
+            'codeId': values.codeId,
             'codeDesc': values.codeDesc,
-            'fileLink': values.fileLink,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
+            'fileLink':values.fileLink,
             'showUpdateMsg':Number(values.showUpdateMsg),
+            'relatedApps':values.idList,
+            'relatedWidgets':values.wIdList,
           }
+        }else{
+          params = Object.assign({}, file, {
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            
+            'fileName': file.originalName,
+            'fileLink': file.url,
+            'fileSize': file.fileSize,
+      
+            'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
+          })
         }
 
         for (let key in params) {
-          formData.append(key, params[key])
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
+          } else {
+            formData.append(key, params[key])
+          }
         }
 
         fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
@@ -169,7 +201,11 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const { page } = this.props.appsCreate
+    const { page, form2 } = this.props.appsCreate
+
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -184,7 +220,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page}/> }
+          { page > 0 && <Step page={page} appKindName={appKindName} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -205,7 +241,7 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateIsH5App
+  updateAppkind
 }
 
 const mapStateToProps = ({ appsCreate }) => ({

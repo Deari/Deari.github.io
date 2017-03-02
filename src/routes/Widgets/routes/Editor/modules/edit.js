@@ -7,9 +7,12 @@ const TOGGLE_TAG = 'TOGGLE_TAG'
 const SUBMIT_CREATE = 'SUBMIT_CREATE'
 const SUBMIT_CREAT_ING = 'SUBMIT_CREAT_ING'
 const SUBMIT_CREATE_COMPLETE = 'SUBMIT_CREATE_COMPLETE'
+
+const RECEIVE_VERSIONSLIST = 'RECEIVE_VERSIONSLIST'
+const RECEIVE_CODEID = 'RECEIVE_CODEID'
+
 const REQUEST_TAGS = 'REQUEST_TAGS'
 const RECEIVE_TAGS = 'RECEIVE_TAGS'
-
 const REQUEST_CATES = 'REQUEST_CATES'
 const RECEIVE_CATES = 'RECEIVE_CATES'
 
@@ -50,6 +53,16 @@ export const toggleTag = (tagId) => {
   }
 }
 
+export const receiveVersionsList= (versionsList) => ({
+  type :  RECEIVE_VERSIONSLIST,
+  versionsList
+})
+
+export const receiveCodeId= (codeId) => ({
+  type :  RECEIVE_CODEID,
+  codeId
+})
+
 
 export const updateForm2 = (data) => ({
   type : UPDATE_FORM2,
@@ -62,6 +75,24 @@ export const updateForm = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+  [RECEIVE_CODEID]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        codeId:action.codeId
+      }
+    }
+  },
+  [RECEIVE_VERSIONSLIST]:(state,action)=>{
+      return {
+        ...state,
+        form2: {
+          ...state.form2,
+          versionsList:action.versionsList
+        }
+      }
+  },
   [TOGGLE_TAG]: (state, action) => {
     const form = state.form
     const newTags = form.tags.filter(function (v){
@@ -160,12 +191,27 @@ const initialState = {
     categoryId: -1,
     platform: 2,
     tags: [],
-    isH5App: 0
+    appKind: 0
   },
   form2: {
+    codeId:-1,
+    publishList: [
+      { txt: '自动发布此版本', value: 1 },
+      { txt: '手动发布此版本', value: 0 },
+    ],
+    versionsList: [
+      { value: "0.0.1" },
+      { value: "0.1.0" },
+      { value: "1.0.0" }
+    ],
     codeDesc: '',
     platform: 2,
-    isH5App: 0
+    appKind: 0,
+    showUpdateMsg: 0,
+    appId: -1,
+    codeId: -1,
+    autoPublish: 1,
+    codeVersion: -1
   }
 }
 
@@ -213,21 +259,20 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, isH5App, defaultLayout:size,
-                fileName, fileLink, moduleName, setting } = res.data
-        const { codeDesc } = res.data && res.data.versions && res.data.versions[0] || ''
-        const rnFrameworkVersion = res.data.rnFrameworkVersion || 0
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
+          fileName, fileLink, moduleName, setting, } = res.data
+        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
+          rnFrameworkVersion = 0,} = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-
         dispatch(updateForm({
           appId,
-          appName, appLogo, appThumb,appPreviewImage, appDesc, categoryId, platform, isH5App, size,
+          appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, appKind, size,
           tags: tagId
         }))
 
         dispatch(updateForm2({ 
           appId,
-          platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting 
+          platform, appKind, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
         }))
         
       } else {
@@ -242,5 +287,11 @@ export const getAppInfo = (appId) => {
 export const updateFirstForm = (values) => {
   return (dispatch) => {
     dispatch(updateForm(values))
+  }
+}
+
+export const updateSecondForm = (values) => {
+  return (dispatch) => {
+    dispatch(updateForm2(values))
   }
 }

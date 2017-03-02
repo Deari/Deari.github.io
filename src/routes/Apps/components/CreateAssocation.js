@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleActive } from '../routes/Editor/modules/edit'
-class AssociationModule extends Component {
+import { toggleActive } from '../routes/Create/modules/create'
+import { validate } from '../modules/validate'
+class CreateAssocation extends Component {
   state={
-    appActive:this.props.appActive,
-    widgetActive:this.props.widgetActive,
+    appActive:0,
+    widgetActive:0,
     hardwareActive:0
   }
   onchange(e){
@@ -44,6 +46,7 @@ class AssociationModule extends Component {
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
+    console.log(appObj)
     return (
     <div className="association">
       <div className="form-row">
@@ -51,7 +54,7 @@ class AssociationModule extends Component {
         <div className="row-right max-width">
         	<div>
         		<div className="row-radio">
-		          <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)} checked={this.state.appActive}/>
+		          <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
 		            <i className="iconfont icon-radio icon-recommend"></i>
@@ -61,10 +64,10 @@ class AssociationModule extends Component {
 	        	<ul className={classnames({ 'active': appActive })}>
 		          {
 		             appObj.map((item,id)=>(
-		              <li className='logo-box' key={item.id}>
+		              <li className="logo-box" key={item.id} >
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onAppDelete.bind(this,item)}></i>
-                     <p>{item.name}</p>
+                    <p>{item.name}</p>
 		              </li>
 		             ))
 		          }
@@ -75,7 +78,7 @@ class AssociationModule extends Component {
         	</div>
         	<div>
         		<div className="row-radio">
-		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)} checked={this.state.widgetActive}/>
+		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
 		            <i className="iconfont icon-radio icon-recommend"></i>
@@ -92,7 +95,7 @@ class AssociationModule extends Component {
 		              </li>
 		             ))
 		          }
-	           <li className="logo-box logo-default" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
+	           	<li className="logo-box logo-default" onClick={()=>{this.props.toggleActive({trim:1,type:'widget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -129,4 +132,4 @@ class AssociationModule extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AssociationModule)
+)(CreateAssocation)

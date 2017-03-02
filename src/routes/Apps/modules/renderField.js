@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
+import classnames from 'classnames'
+import { updateSecondForm } from '../routes/Editor/modules/edit'
 
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
@@ -87,6 +89,8 @@ export class renderTags extends Component {
   
 }
 
+
+
 export class renderImageUpload extends Component {
 
   imageUpload(e) {
@@ -101,7 +105,8 @@ export class renderImageUpload extends Component {
     formData.append("fileSize", 1024 * 300)
 
     fetchUtil.postJSON(url, formData, {
-      jsonStringify: false 
+      jsonStringify: false,
+      // credentials: true
     }).then(res=>{
       if (res.status == 200) {
         this.props.input.onChange(res.data.url)
@@ -147,7 +152,8 @@ export class renderFile extends Component {
     formData.append('fileName', e.target.files[0])
 
     fetchUtil.postJSON(url, formData, {
-      jsonStringify: false
+      jsonStringify: false,
+      // credentials: true
     }).then(res=>{
       if (res.status === 200) {
         this.props.input.onChange(res.data)
@@ -202,5 +208,5 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
     {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
   </div>
 </div>
-
+  
 export default renderField
