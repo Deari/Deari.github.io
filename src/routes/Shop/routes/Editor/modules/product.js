@@ -48,7 +48,14 @@ export const getProduct = (data) => ({
 export const fetchProducts = () => {
   const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
   return (dispatch, getState) => new Promise(resolve => {
-    fetchUtil.getJSON(apiUrl)
+    fetchUtil.getJSON(apiUrl, {}, {
+      headers: {
+        "Accept": "application/json",
+        // "Content-Type": "application/json",
+        "Cache-Control": "no-cache",
+        "BO-FFMID": "10"
+      }
+    })
       .then(v => {
         let data = [ ...v.data ]
         //let data = [ ...customProduct, ...v.data ]
