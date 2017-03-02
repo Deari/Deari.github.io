@@ -77,9 +77,9 @@ const Pager = props => {
     }
     <span className="page-num" onClick={changeNextPage}>下一页</span>
     <span className="page-num" onClick={e=>changePage(e,pageSum)}>尾页</span>
-    <span>
+    <span className="page-selectbox">
     第
-    <select onChange={e=>changeSelect(e)}>
+    <select className="page-select" onChange={e=>changeSelect(e)}>
       {
         pageIndexs.map((item,index)=>(
           <option key={index} value={item.value} selected={item.value===currentPageIndex}>{item.value}</option>
@@ -88,9 +88,9 @@ const Pager = props => {
     </select>
     页/共{pageSum}页
     </span>
-    <span>
+    <span className="fr">
       显示
-      <select  onChange={e=>changeLimit(e)}>
+      <select className="num-select"  onChange={e=>changeLimit(e)}>
         <option value="-1">请选择</option>
         {
           limitList.map((item,index)=>(
