@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
+import Pager from 'components/Pager'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
@@ -19,16 +20,22 @@ class widgetsList extends React.Component {
       {name: "已审核", value: 2},
       {name: "待审核", value: 1},
       {name: "待提交", value: 3}
-    ]
+    ],
+    limitList:[10,20,50],
+    currentPageIndex:1,
+    pageIndexs:[],
+    pageSum:0,
+    limit:10
   }
   
   async getList() {
     const apiUrl = getDomain("web/developer/widgets")
     const review = this.getReviewStatus()
+    const {limit, currentPageIndex} = this.state
     try {
-      let res = await fetchUtil.getJSON(apiUrl, { review: review });
+      let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex });
       if(res.status == 200){
-        return res.data && res.data.list
+        return res.data
       } else {
         debug.warn("获取列表接口错误")
         return false
@@ -121,7 +128,38 @@ class widgetsList extends React.Component {
     return newData
   }
 
-  componentDidMount() {
+  getPageIndexs(pageSum){
+    let newArray=[]
+    for(let i=0;i<pageSum;i++){
+      const obj = {};
+      obj.value = i+1; 
+      newArray.push(obj)
+    }
+    return newArray
+  }
+
+  formatState(item) {
+    let state = 0
+    if(item.reviewStatus==1){
+       return 1
+    }else if(item.reviewStatus==2){
+      if(item.adminUnshelved){
+        return 3 
+      }else if(item.devUnshelved){
+        return 4
+      }else if(item.publishStatus){
+        return 2 
+      }else{
+        return 5
+      }
+    }else if(item.reviewStatus==3){
+      return 6 
+    }else {
+      return 7
+    }
+  }
+  upDate(){
+  
     let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -129,26 +167,64 @@ class widgetsList extends React.Component {
 
     LoginSDK.getStatus( async (status, data) => {
       if (status) {
-        const listData = await this.getList()
+   
+        const resData = await this.getList()
+        const listData = resData.list
         const newData = listData && this.formatListData(listData)
-        newData && this.setState({listData: newData})
+        const pageSum = resData.page.lastPage
+        const pageIndexs = this.getPageIndexs(pageSum)
+  
+        newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
       } else {
         debug.warn("登录失败")
       }
     }, url, loginUrl, callbackUrl)
   }
 
+  componentDidMount() {
+    this.upDate()
+  }
+
   changeNav(obj) {
-    this.setState({...obj}, async () => {
-      const listData = await this.getList()
-      const newData = listData && this.formatListData(listData)
-      newData && this.setState({listData: newData})
-    })
+    this.setState({...obj, currentPageIndex:1 }, this.upDate())
+  }
+
+  changeSelect(e){
+    this.setState({currentPageIndex:e.target.value},this.upDate())
+    
   }
   
+  changePage(e,index){
+    this.setState({currentPageIndex:index},this.upDate())
+  }
+
+  changeNextPage(){
+    const {currentPageIndex,pageSum} = this.state
+    const index = this.state.currentPageIndex + 1
+    if (index <= pageSum) {
+      this.setState({ currentPageIndex: index },this.upDate())
+    } else {
+      alert("已经没有下一页了")
+    }
+  }
+
+  changePrevPage(){
+    const {currentPageIndex} = this.state
+    const index = currentPageIndex - 1
+    if (index > 0) {
+      this.setState({ currentPageIndex: index },this.upDate())
+    } else {
+      alert("已经没有上一页了")
+    }
+  }
+
+  changeLimit(e){
+    this.setState({limit:e.target.value,currentPageIndex:1},this.upDate())
+  }
+
   render() {
 
-    const { navData, listData } = this.state
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList } = this.state
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -170,6 +246,17 @@ class widgetsList extends React.Component {
             <li className="w112">操作</li>
           </ul>
           <List listData={listData} />
+          <Pager 
+            changePage={this.changePage.bind(this)} 
+            changeNextPage={this.changeNextPage.bind(this)} 
+            changePrevPage={this.changePrevPage.bind(this)}
+            changeSelect={this.changeSelect.bind(this)}
+            changeLimit={this.changeLimit.bind(this)} 
+            pageIndexs={pageIndexs}  
+            pageSum={pageSum} 
+            limitList={limitList}  
+            currentPageIndex={currentPageIndex}      
+          />
         </div>
       </div>
     )

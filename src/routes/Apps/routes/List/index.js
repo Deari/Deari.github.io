@@ -181,46 +181,24 @@ class AppsList extends React.Component {
     }, url, loginUrl, callbackUrl)
   }
   componentDidMount() {
-      let sourceVal = getSourceVal()
-      let url = getLoginDomain(`passport/session-check.json`)
-      let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
-      let callbackUrl = location.href
-
-      LoginSDK.getStatus( async (status, data) => {
-        if (status) {
-          const resData = await this.getList()
-          const listData = resData.list
-          const pageSum = resData.page.lastPage
-          const pageIndexs = this.getPageIndexs(pageSum)
-          const newData = listData && this.formatListData(listData)
-          newData && this.setState({listData: newData,pageIndexs:pageIndexs,pageSum:pageSum})
-        } else {
-          debug.warn("登录失败")
-        }
-      }, url, loginUrl, callbackUrl)
+    this.upDate()
   }
 
   changeNav(obj) {
-    this.setState({...obj}, async () => {
-      const listData = await this.getList()
-      const newData = listData && this.formatListData(listData)
-      newData && this.setState({listData: newData})
-    })
+    this.setState({...obj, currentPageIndex:1 }, this.upDate())
   }
   changeSelect(e){
-    this.setState({currentPageIndex:e.target.value})
-    this.upDate()
+    this.setState({currentPageIndex:e.target.value},this.upDate())
+    
   }
   changePage(e,index){
-    this.setState({currentPageIndex:index})
-    this.upDate()
+    this.setState({currentPageIndex:index},this.upDate())
   }
   changeNextPage(){
     const {currentPageIndex,pageSum} = this.state
     const index = this.state.currentPageIndex + 1
     if (index <= pageSum) {
-      this.setState({ currentPageIndex: index })
-      this.upDate()
+      this.setState({ currentPageIndex: index },this.upDate())
     } else {
       alert("已经没有下一页了")
     }
@@ -229,16 +207,13 @@ class AppsList extends React.Component {
     const {currentPageIndex} = this.state
     const index = currentPageIndex - 1
     if (index > 0) {
-      this.setState({ currentPageIndex: index })
-      this.upDate()
+      this.setState({ currentPageIndex: index },this.upDate())
     } else {
       alert("已经没有上一页了")
     }
   }
   changeLimit(e){
-    if(!e.target.value)return
-    this.setState({limit:e.target.value,currentPageIndex:1})
-    this.upDate(this.state.currentPageIndex)
+    this.setState({limit:e.target.value,currentPageIndex:1},this.upDate())
   }
   render() {
 
