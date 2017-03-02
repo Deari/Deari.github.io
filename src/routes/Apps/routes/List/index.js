@@ -116,7 +116,7 @@ class AppsList extends React.Component {
 
   formatListData(listData) {
     let newData = []
-    listData.map((item, index) => {
+    listData && listData.map((item, index) => {
       if (item) {
         let obj = {}
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(listData, item.versions[0]) || {}
@@ -189,7 +189,7 @@ class AppsList extends React.Component {
       LoginSDK.getStatus( async (status, data) => {
         if (status) {
           const resData = await this.getList()
-          const listData = resData.list
+          const listData = resData.list || []
           const pageSum = resData.page.lastPage
           const pageIndexs = this.getPageIndexs(pageSum)
           const newData = listData && this.formatListData(listData)
@@ -202,7 +202,8 @@ class AppsList extends React.Component {
 
   changeNav(obj) {
     this.setState({...obj}, async () => {
-      const listData = await this.getList()
+      const resData = await this.getList()
+      const listData = resData.list || []
       const newData = listData && this.formatListData(listData)
       newData && this.setState({listData: newData})
     })

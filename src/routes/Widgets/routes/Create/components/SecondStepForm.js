@@ -3,21 +3,44 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect} from '../../../modules/renderField'
+import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
-import { toggleStep } from '../modules/create'
+import { toggleStep, updateCodeDesc } from '../modules/create'
 
 class SecondStepForm extends React.Component {
+  
+  state = {
+    totalCount: 4000,
+  }
+
+  onChangeDesc(e) {
+    const { totalCount } = this.state
+    let value = e.target.value
+    let len = value.length
+    if (len > totalCount) return
+    let isErr = (len == 0) ? true : false
+    this.props.updateCodeDesc({codeDescCount: len, codeDesc: value, isDescErr: isErr})
+  }
 
   render(){
 
     const { handleSubmit, pristine, submitting, toggleStep, previous, initialValues } = this.props
-    const {versionsList, appKind, publishList} = initialValues
+    const { versionsList, appKind, publishList, codeDescCount, isDescErr } = initialValues
+    const { totalCount } = this.state
+
     return (
       <form onSubmit={handleSubmit}>
         <div>
-          <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" component={versionTextArea} label="版本介绍" />
+          <div className="form-row code-desc">
+            <label>版本介绍</label>
+            <div className="row-right">
+              <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
+              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。" onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
+              { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
+            </div>
+            <span className="font-count">{codeDescCount} / {totalCount}</span>
+          </div>
           <div className="form-row form-rowM">
             <label className="labelH"></label>
             <div className="row-right">
@@ -61,6 +84,7 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep,
+  updateCodeDesc
 };
 
 export default connect(

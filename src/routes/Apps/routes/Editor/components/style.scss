@@ -185,6 +185,16 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     .row-right.max-width{
         width: 574px;
     }
+    &.code-desc {
+        position: relative;
+        .font-count{
+            position: absolute;
+            bottom: 25px;
+            right: 110px;
+            font-size: 13px;
+            color: #999;
+        }
+    }
 }
 .form-btn{
     width: $sub-container-width;
@@ -228,7 +238,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 }
 .form-rowM{
     .row-right {
-        position: relative;
         float: none;
         .right-info{
             width: inherit;
@@ -239,13 +248,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             margin: 0px;
             cursor: pointer;
         }
-        .font-count{
-            position: absolute;
-            font-size: 13px;
-            right: 20px;
-            top: 5px;
-            color: #999;
-        }
+        
     }
 }
 .form-row .row-right .row-sizeB{

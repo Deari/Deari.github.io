@@ -7,10 +7,9 @@ import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
 
-import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList, toggleNameList, WtoggleNameList } from '../modules/edit'
+import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList, toggleNameList, WtoggleNameList, updateCodeDesc } from '../modules/edit'
 import { 
     renderField,
-    versionTextArea,
     renderFile ,
     renderSelect, 
     renderPublishRadioBox ,
@@ -39,6 +38,10 @@ const SecondStepForm = props => {
   const weiObj = compose(wIdList,wLogoList,wNameList)
   const appActive = appObj&&appObj.length!=0 ? 1:0;
   const widgetActive = weiObj&&weiObj.length!=0 ? 1:0;
+  const totalCount = 4000
+  const count = initialValues && initialValues.codeDescCount || 0
+  const isDescErr = initialValues && initialValues.isDescErr || false
+
   const handleLogochange = (data,type)=>{
     type = type ? type : active.type
     type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
@@ -48,13 +51,29 @@ const SecondStepForm = props => {
     type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
   }
  const handleNamechange = (data,type) =>{
-    type = type ? type : active.type
-    type === "app" ? props.toggleNameList( data ) : props.WtoggleNameList( data )
+   type = type ? type : active.type
+   type === "app" ? props.toggleNameList( data ) : props.WtoggleNameList( data )
   }
+  const onChangeDesc = (e) => {
+    let value = e.target.value
+    let len = value.length
+    if (len > totalCount) return
+    let isErr = (len == 0) ? true : false
+    props.updateCodeDesc({codeDescCount: len, codeDesc: value, isDescErr: isErr})
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="codeDesc" placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" component={versionTextArea} label="版本介绍" />
+        <div className="form-row code-desc">
+          <label>版本介绍</label>
+          <div className="row-right">
+            <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
+            <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" onChange={onChangeDesc} onBlur={onChangeDesc} ></textarea>
+            { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
+          </div>
+          <span className="font-count">{count} / {totalCount}</span>
+        </div>
         <div className="form-row form-rowM">
         	<label className="labelH"></label>
         	<div className="row-right">
@@ -66,7 +85,6 @@ const SecondStepForm = props => {
 		          </span>
 		        </div>
             <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
-            <span className="font-count">4000</span>
         	</div>
         </div>
       </div>
@@ -129,7 +147,8 @@ const mapDispatchToProps = {
   WtoggleIdList, 
   WtoggleLogoList,
   toggleNameList, 
-  WtoggleNameList
+  WtoggleNameList,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({appsEdit}) => ({
