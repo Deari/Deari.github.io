@@ -203,8 +203,6 @@ class widgetsList extends React.Component {
     const index = this.state.currentPageIndex + 1
     if (index <= pageSum) {
       this.setState({ currentPageIndex: index },this.upDate())
-    } else {
-      alert("已经没有下一页了")
     }
   }
 
@@ -213,8 +211,6 @@ class widgetsList extends React.Component {
     const index = currentPageIndex - 1
     if (index > 0) {
       this.setState({ currentPageIndex: index },this.upDate())
-    } else {
-      alert("已经没有上一页了")
     }
   }
 

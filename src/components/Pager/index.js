@@ -68,15 +68,19 @@ const Pager = props => {
 
   return(
   <div className="list-page">
-    <span className="page-num" onClick={e=>changePage(e,1)}>首页</span>
-    <span className="page-num" onClick={changePrevPage}>上一页</span>
+    {currentPageIndex == 1 ? '' : <span>
+        <span className="page-num" onClick={e => changePage(e, 1)}>首页</span>
+        <span className="page-num" onClick={changePrevPage}>上一页</span>
+      </span>}
     {
       newList.map((item,index)=>(
         <span className={currentPageIndex == item.value?'page-num active':'page-num'}  onClick={e=>changePage(e,item.value)} key={index}>{item.value}</span>
       ))
     }
-    <span className="page-num" onClick={changeNextPage}>下一页</span>
-    <span className="page-num" onClick={e=>changePage(e,pageSum)}>尾页</span>
+    {currentPageIndex == pageSum ? '' : <span>
+      <span className="page-num" onClick={changeNextPage}>下一页</span>
+      <span className="page-num" onClick={e => changePage(e, pageSum)}>尾页</span>
+    </span>}
     <span className="page-selectbox">
     第
     <select className="page-select" onChange={e=>changeSelect(e)}>
