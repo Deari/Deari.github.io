@@ -1,0 +1,29 @@
+@import "~layouts/CoreLayout/CoreLayout";
+@import "~styles/_base.scss";
+.list-page{
+  .page-num{
+    display:inline-block;
+    margin:5px 2px;
+    padding:3px 8px;
+    font-size:14px;
+    color:#333;
+    background:#fff;
+    border:1px solid #dfdfdf;
+    border-radius:2px;
+    &:hover{
+      color:#fff;
+      background:#2692fb;
+      border-color:#2692fb;
+    }
+  }
+  .page-num.active{
+    color:#fff;
+    background:#2692fb;
+    border-color:#2692fb;
+  }
+  .page-num.curr{
+    color:#fff;
+    background:#2692fb;
+    border-color:#2692fb; 
+  }
+}

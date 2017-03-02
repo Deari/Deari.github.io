@@ -14,7 +14,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateIsH5App, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
 
 class CreateContainer extends Component {
 
@@ -43,7 +43,7 @@ class CreateContainer extends Component {
   }
 
   submitChoice(values) {
-    this.props.updateIsH5App({isH5App: values})
+    this.props.updateAppkind({appKind: values})
     this.props.toggleStep(1)
   }
 
@@ -117,23 +117,28 @@ class CreateContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
+        const file = values.file
         let params = {
           ...values
         }
 
-        if (values.isH5App === 0) {
-          const file = values.file
+        if (values.appKind === 0) {
+        
           params = Object.assign({}, file, {
             'appId':values.appId,
             'codeId':values.codeId,
             'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
+
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
-        } else {
+        } else if(values.appKind === 1){
           params = {
             'appId':values.appId,
             'codeId':values.codeId,
@@ -166,8 +171,8 @@ class CreateContainer extends Component {
   }
   
   previous() {
-    const appId = this.props.widgetCreate.form2.appId;
-    window.location.href = '/widgets/edit/' + appId;
+    const appId = this.props.widgetCreate.form2.appId
+    window.location.href = '/widgets/edit/' + appId
   }
 
   render() {
@@ -176,7 +181,11 @@ class CreateContainer extends Component {
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
-    const { page } =this.props.widgetCreate;
+    const { page, form2 } =this.props.widgetCreate
+
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     return (
       <div className="container clx">
@@ -185,7 +194,7 @@ class CreateContainer extends Component {
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }
-          { page > 0 && <Step page={page}/> }
+          { page > 0 && <Step page={page} appKindName={appKindName} /> }
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -207,7 +216,7 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateIsH5App
+  updateAppkind
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

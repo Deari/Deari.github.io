@@ -9,33 +9,35 @@ export const Header = (props) => {
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)
  
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
-  const showCreate = (latestCodeStatus && (latestCodeStatus.codeVersion == latestVersion.codeVersion) && latestCodeStatus.codeStatus == 5) 
-                    || (
-                        latestCodeStatus && latestCodeStatus.codeStatus!=2 && latestCodeStatus.codeStatus!=4 &&
-                        (preCodeStatus && preCodeStatus.codeVersion == latestVersion.codeVersion) && preCodeStatus.codeStatus == 5
-                       ) 
+
+  const showCreate = (latestCodeStatus && 
+                     (latestCodeStatus.codeVersion == latestVersion.codeVersion) && 
+                     latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 7)
+
   const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
 
   return data && data.mine === 1 && len > 0 && <div className="tab-nav">
     <ul className="tab-list">
-      <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active'}
+      { (preCodeStatus.codeVersion && !hidePreCode) &&
+          <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''} 
+              onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
+            <a>
+              <div>{preCodeStatus.codeVersion}</div>
+              <div>{preCodeStatus.codeStatusName}</div>
+            </a>
+          </li>
+      }
+
+      <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''}
           onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus, latestVersions)}}>
         <a>
           <div>{latestCodeStatus.codeVersion}</div>
           <div>{latestCodeStatus.codeStatusName}</div>
         </a>
       </li>
-      { (!preCodeStatus || hidePreCode) ? '' :
-        <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active'} 
-            onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
-          <a>
-            <div>{preCodeStatus.codeVersion}</div>
-            <div>{preCodeStatus.codeStatusName}</div>
-          </a>
-        </li>
-      }
+      
     </ul>
     { showCreate && <Link to={editUrl}><button className="btn btn-primary">发布新版本</button></Link> }
   </div>
@@ -48,12 +50,12 @@ export const getCodeStatus = (data, version) => {
     codeStatusName: ''
   }
   versionInfo.codeVersion = version && version.codeVersion
-  if (data.adminUnshelved) {
+  if (data.adminUnshelved && version.publishStatus) {
     versionInfo.codeStatus = 6
     versionInfo.codeStatusName = "被管理员下架"
     return versionInfo
   }
-  if (data.devUnshelved) {
+  if (data.devUnshelved && version.publishStatus) {
     versionInfo.codeStatus = 7
     versionInfo.codeStatusName = "被开发者下架"
     return versionInfo

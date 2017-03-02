@@ -29,7 +29,7 @@ const compose = (arr1, arr2, arr3) => {
 const SecondStepForm = props => {
 
   const { handleSubmit, submitting, previous, initialValues } = props
-  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
+  const {appKind, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList} = initialValues
 
   const appObj = compose(idList, logoList, nameList)
   const weiObj = compose(wIdList, wLogoList, wNameList)
@@ -61,12 +61,13 @@ const SecondStepForm = props => {
 		            <i className="iconfont icon-radio icon-publish"></i>
 		          </span>
 		        </div>
-        		<p htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家<span>4000</span></p>
+            <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
+            <span className="font-count">4000</span>
         	</div>
         </div>
       </div>
       <Field label="版本号" name="codeVersion" component={renderSelect}>
-        <option value={-1}>请选择分类</option>
+        <option value={-1}>请选择版本号</option>
         {
           versionsList.map((item) => (
             <option value={item.value}>
@@ -75,8 +76,9 @@ const SecondStepForm = props => {
           ))
         }
       </Field>
-      {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
-      {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
+      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(RN)" />}
+      {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
+      {appKind === 2 && <Field name="file" component={renderFile} label="应用文件(APK)" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <CreateAssocation 
         appObj={appObj} 

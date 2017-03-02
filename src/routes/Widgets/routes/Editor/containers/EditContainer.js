@@ -156,14 +156,16 @@ class EditContainer extends Component {
           ...values
         };
 
-        if(file && values.isH5App === 0) {
+        if(file && values.appKind === 0) {
           Object.assign(params, file, {
             'fileName': file.originalName,
             'fileLink': file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
           delete params.file
-        } else {
+        } else if(values.appKind === 1) {
           Object.assign(params, {
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
@@ -191,7 +193,11 @@ class EditContainer extends Component {
   }
 
   render() {
-    const { page } =this.props.widgetEdit;
+    const { page, form2 } =this.props.widgetEdit;
+
+    const appKind = form2 && form2.appKind || ''
+
+    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/widgets/create`, name: '发布新组件' },
@@ -203,7 +209,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} type="widget"/>
         <div className="sub-container">
-          <Step page={page} title={'编辑组件'} />
+          <Step page={page} title={'编辑组件'} appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

@@ -5,8 +5,8 @@ import './association.scss'
 import { toggleActive } from '../routes/Editor/modules/edit'
 class AssociationModule extends Component {
   state={
-    appActive:0,
-    widgetActive:0,
+    appActive:this.props.appActive,
+    widgetActive:this.props.widgetActive,
     hardwareActive:0
   }
   onchange(e){
@@ -51,7 +51,7 @@ class AssociationModule extends Component {
         <div className="row-right max-width">
         	<div>
         		<div className="row-radio">
-		          <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)}/>
+		          <input id="app" type="checkbox" name='app' onChange={this.onchange.bind(this)} checked={this.state.appActive}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
 		            <i className="iconfont icon-radio icon-recommend"></i>
@@ -75,7 +75,7 @@ class AssociationModule extends Component {
         	</div>
         	<div>
         		<div className="row-radio">
-		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)}/>
+		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)} checked={this.state.widgetActive}/>
 		          <span>
 		            <i className="iconfont icon-radio1 icon-recommend"></i>
 		            <i className="iconfont icon-radio icon-recommend"></i>

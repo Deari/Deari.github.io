@@ -37,10 +37,10 @@ export const BasicInfo = (props) => {
   return <div className="detail-container">
     <div className="detail-download">
       <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-      { data.mine == 1 ? '' : showSize 
+      {/** data.mine == 1 ? '' : showSize 
         ? <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
         : <p className="btn btn-primary btn-download">使用</p>
-      }
+      */}
     </div>
     <div className="detail-info">
       <dl className="detail-tittle">

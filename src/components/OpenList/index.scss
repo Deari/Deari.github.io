@@ -135,6 +135,9 @@
   color: $blue-color;
   line-height: 40px;
   @include border-top;
+  a {
+    color: #2692fb;
+  }
 }
 .user-img{
   margin-right: 5px;

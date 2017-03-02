@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getGateWayDomain, getDomain } from 'utils/domain'
+import { getDomain } from 'utils/domain'
 import fetchUtil from 'utils/fetchUtil'
 import { Link } from 'react-router'
 class ModalList extends Component {
@@ -23,12 +23,59 @@ class ModalList extends Component {
       const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
       this.setState({datalist:newList})
    }
-
+   getStatus(item) {
+    let state = this.formatState(item)
+    switch(state) {
+      case 1:
+        return { status: "审核中", activeColor: "yellow", }
+        break
+      case 2:
+        return { status: "已发布", activeColor: "green", }
+        break
+      case 3:
+        return { status: "被管理员下架", activeColor: "red", }
+        break
+      case 4:
+        return { status: "被开发者下架", activeColor: "red", }
+        break
+      case 5:
+        return { status: "等待开发者发布", activeColor: "yellow", }
+        break
+      case 6:
+        return { status: "审核未通过", activeColor: "red", }
+        break
+      case 7:
+        return { status: "准备提交", activeColor: "yellow", }
+        break
+      default:
+        return ''
+    }
+  }
+  formatState(item) {
+    let state = 0
+    if(item.reviewStatus==1){
+       return 1
+    }else if(item.reviewStatus==2){
+      if(item.adminUnshelved){
+        return 3 
+      }else if(item.devUnshelved){
+        return 4
+      }else if(item.publishStatus){
+        return 2 
+      }else{
+        return 5
+      }
+    }else if(item.reviewStatus==3){
+      return 6 
+    }else {
+      return 7
+    }
+  }
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -42,7 +89,7 @@ class ModalList extends Component {
      }else if(this.props.type === 'widget'){
       const apiUrl = getDomain("web/developer/widgets")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { reviewStatus: 2 });
+          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -60,7 +107,7 @@ class ModalList extends Component {
  
   render() {
     const { idList, type } = this.props
-    const { datalist } = this.state
+    const { datalist } = this.state 
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
     const typeUrl = type === 'app' ? `/apps` : type === 'widget' ? `/widgets` : `/hardware`
     return (
@@ -68,34 +115,41 @@ class ModalList extends Component {
           <div className="popup-search">
             <input type="text" placeholder={"请输入"+typeTxt+"名称进行搜索"} onChange={e=>{this.handleChange(e,this)}}/>
           </div>
-          <ul className="list-title">
+          <ul className="popup-list-title">
             <li className="w116">Logo</li>
             <li className="w320">{typeTxt}名称</li>
             <li className="w78">价格</li>
             <li className="w140">状态</li>
             <li className="w104">操作</li>
           </ul>
-          <div className="list-box">
+          <div className="popup-list-box">
             <div className="listContent">
-              {
-                datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
-                  datalist.map( (item, index) => (
-                     <div className="list-container"  key={index}>
-                      <div className="info-img-container w116">
-                        <p className="info-img" > <img src={item.appLogo} /></p>
+            {
+              datalist.length == 0 ? <div className="list-none">请输入正确名称</div> :
+                datalist.map((item, index) => {
+                  if (item.publishStatus&&!item.devUnshelved&&!item.adminUnshelved) {
+                    return (
+                      <div className="popup-list-container" key={index}>
+                        <div className="popup-info-img-container w116">
+                          <p className="popup-info-img" > <img src={item.appLogo} /></p>
+                        </div>
+                        <div className="popup-info-content w320">
+                          <p className="popup-info-name"> {item.appName}<i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i></p>
+                          <p className="popup-info-introduce"> {item.appDesc}</p>
+                          <Link className="popup-info-link" to={typeUrl}>在{typeTxt}市场中查看<i className="iconfont icon-categoryindi"></i></Link>
+                        </div>
+                        <div className="popup-info-price w78">免费</div>
+                        <div className="popup-info-status w140">
+                          <span className="info-status-info1"><i className={this.getStatus(item).activeColor == 'red' ? "color-red" : this.getStatus(item).activeColor == 'green' ? "color-green" : ""}></i>{item.codeVersion}</span>
+                          <span className="info-status-info2">{this.getStatus(item).status}</span>
+                        </div>
+                        <div className="popup-info-btn w104">
+                          {idList.indexOf(item.appId) !== -1 ? <button className='btn-cancel' onClick={this.handleCancel.bind(this, item)}>取消选择</button> : <button onClick={this.handleClick.bind(this, item)}>选择</button>}
+                        </div>
                       </div>
-                      <div className="info-content w320">
-                        <p className="info-name"> {item.appName}<i className={item.isH5App?"icon-hpng":"icon-rnpng"}></i></p>
-                        <p className="info-introduce"> {item.appDesc}</p>
-                        <Link className="info-link" to={typeUrl}>在应用市场中查看<i className="iconfont icon-categoryindi"></i></Link>
-                      </div>
-                      <div className="info-price w78">免费</div>
-                      <div className="info-status w140">已审核</div>
-                      <div className="info-btn w104">
-                      {idList.indexOf(item.appId) !==-1? <button className='btn-cancel' onClick={this.handleCancel.bind(this,item)}>取消选择</button>:<button onClick={this.handleClick.bind(this,item)}>选择</button>}                      
-                      </div>
-                    </div>
-                  ) )
+                    )
+                  }
+                })
               }
           </div>
         </div>      

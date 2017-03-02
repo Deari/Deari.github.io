@@ -22,16 +22,17 @@ const choose = (pathname) => {
   }
 }
 const getTpl = ({searchTxt,pathname}) => {
-  if (pathname === '/') {
     return <div className="searchBox"></div>
-  } else {
-    return (
-      <div className="search">
-        <i className="iconfont icon-search"></i>
-        <input type="text" placeholder={searchTxt} />
-      </div>
-    )
-  }
+  // if (pathname === '/') {
+  //   return <div className="searchBox"></div>
+  // } else {
+  //   return (
+  //     <div className="search">
+  //       <i className="iconfont icon-search"></i>
+  //       <input type="text" placeholder={searchTxt} />
+  //     </div>
+  //   )
+  // }
 }
 export const Header = ({ location, hideHeader }) => {
   if (hideHeader) {
