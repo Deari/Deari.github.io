@@ -3,21 +3,48 @@ import { connect} from 'react-redux'
 import { IndexLink, Link } from 'react-router' 
 import { Field, reduxForm } from 'redux-form'
 
-//import AssociationModule from '../../../components/Association'
-import { toggleStep } from '../modules/edit'
+import AssociationModule from '../../../components/Association.js'
+import Modal from 'components/Modal'
+import ModalList from '../../../components/ModalList'
+
+import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList } from '../modules/edit'
 import { 
     renderField,
     versionTextArea,
     renderFile ,
     renderSelect, 
-    renderPublishRadioBox 
+    renderPublishRadioBox ,
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
+
+const compose = (arr1, arr2) => {
+  const newArray = []
+  if(Array.isArray(arr1) && arr1.length !==0){
+   
+    for (let i = 0; i < arr1.length; i++) {
+      const obj = {};
+      obj.id = arr1[i]
+      obj.logo = arr2[i]
+      newArray.push(obj)
+    }
+  }
+  return newArray
+}
 const SecondStepForm = props => {
-  const { handleSubmit, submitting, toggleStep, previous, initialValues } = props
-  const {isH5App,publishList,versionsList} = initialValues
+  const { handleSubmit, submitting, previous, initialValues} = props
+  const {isH5App, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList} = initialValues
   
+  const appObj = compose(idList,logoList)
+  const weiObj = compose(wIdList,wLogoList)
+  const handlechange = (data,type)=>{
+    type = type ? type : active.type
+    type === "app" ? props.toggleLogoList(data) : props.WtoggleLogoList(data)
+  } 
+  const handleIdchange = (data,type) =>{
+    type = type ? type : active.type
+    type === "app" ? props.toggleIdList( data ) : props.WtoggleIdList( data )
+  }
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -49,9 +76,26 @@ const SecondStepForm = props => {
       {isH5App === 0 && <Field name="file" component={renderFile} label="应用文件" />}
       {isH5App === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
+      <AssociationModule appObj={appObj} weiObj={weiObj}  handlechange={handlechange} handleIdchange={handleIdchange}/>
+      <Modal type={"alert"}
+             text={active.type==="app"?"应用":active.type==="weiget"?"组件":"硬件"}
+             active={active.trim}
+             hideButtons={true}
+             title={true}
+             onClose={()=> props.toggleActive({trim:0,type:""})}
+        >
+       <ModalList  name={active.type+"IdList"} 
+                   component={ModalList} 
+                   datalist={datalist} 
+                   idList={active.type==='app'?idList:wIdList} 
+                   type={active.type} 
+                   handlechange={handlechange} 
+                   handleIdchange={handleIdchange}
+       />
+      </Modal>
       <div className="form-btn">
         <div>
-          <button type="button" className="previous" onClick={()=>{toggleStep(1)}}>上一步</button>
+          <button type="button" className="previous" onClick={()=>{props.toggleStep(1)}}>上一步</button>
           <button type="submit" className="next" disabled={submitting}> 提交</button>
         </div>
       </div>
@@ -62,6 +106,11 @@ const SecondStepForm = props => {
 
 const mapDispatchToProps = {
   toggleStep,
+  toggleActive,
+  toggleLogoList,
+  toggleIdList,
+  WtoggleIdList, 
+  WtoggleLogoList
 }
 
 const mapStateToProps = ({appsEdit}) => ({

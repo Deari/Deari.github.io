@@ -56,3 +56,11 @@ $branch_line_background:#bbbfca;
         }
     }
 }
+.association{
+  .active{
+    display:block;
+  }
+  ul{
+    display: none;
+  }
+}

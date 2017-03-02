@@ -86,16 +86,17 @@ class AppsList extends React.Component {
         obj.status = this.getStatus(item).status
         obj.download = 100
         obj.detailUrl = `/apps/detail/${obj.id}`
-
+        obj.isH5App = item.isH5App
+        obj.marketUrl = `/apps`
         const editUrl = `/apps/edit/${obj.id}`
-
+        
         const showBtn = this.getStatus(item)
 
         obj.btnData = [
           {name: "编辑", url: editUrl, active: showBtn.showEdit},
           {name: "发布新版本", url: editUrl, active: showBtn.showNew}
         ]
-
+        
         newData.push(obj)
       }
     })

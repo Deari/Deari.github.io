@@ -26,11 +26,9 @@ class HardwareDetail extends React.Component {
         res.data && this.formatData(res.data)
       } else {
         debug.warn("获取详情接口返回错误")
-        e.preventDefault()
       }
     } catch (e) {
       console.log("获取详情接口返回错误", e)
-      e.preventDefault()
     }
   }
 
@@ -42,11 +40,9 @@ class HardwareDetail extends React.Component {
         res.data && this.setState({ tags: res.data })
       } else {
         debug.warn("获取标签接口返回错误")
-        e.preventDefault()
       }
     } catch (e) {
       console.log("获取标签接口返回错误", e)
-      e.preventDefault()
     }
   }
 

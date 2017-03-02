@@ -29,7 +29,7 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 const getPublishStatus = async deployId => {
-  const apiUrl = getDomain(`http://api.intra.sit.ffan.net/bo/v1/web/merchant/deployPage/${deployId}/status`)
+  const apiUrl = getDomain(`web/merchant/deployPage/${deployId}/status`)
   const result = await fetchUtil.getJSON(apiUrl)
   return result.data.status
 }
@@ -46,7 +46,7 @@ const repeatPublishStatus = async deployId => {
 
 export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
   const state = getState()
-  const apiUrl =  getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/store/3/page/3/publish')
+  const apiUrl =  getDomain('web/merchant/store/3/page/3/publish')
   fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
     console.log(state.preview, "postData");
 
@@ -94,7 +94,7 @@ const ACTION_HANDLERS = {
     return {
       ...state, element: {
         ...state.element,
-        setting: state.element.setting.map(item=>{
+        codeSetting: state.element.codeSetting.map(item=>{
           if(item.label === action.label) {
             return {
               ...item,

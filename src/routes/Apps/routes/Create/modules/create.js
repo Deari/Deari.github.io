@@ -5,6 +5,12 @@ import debug from 'utils/debug'
 const PREFIX = 'CREATE_APP_'
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
+const TOGGLE_ACTIVE = PREFIX+'TOGGLE_ACTIVE'
+
+const TOGGLE_LOGOLIST = PREFIX+'TOGGLE_LOGOLIST'
+const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
+const WTOGGLE_LOGOLIST =  PREFIX+'WTOGGLE_LOGOLIST'
+const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
@@ -29,6 +35,28 @@ export const receiveCates = (data) => ({
 export const toggleStep = (page) => ({
   type : TOGGLE_STEP,
   page
+})
+
+export const toggleActive= (active) => ({
+  type : TOGGLE_ACTIVE,
+  active: active
+})
+
+export const toggleLogoList= (logo) => ({
+  type : TOGGLE_LOGOLIST,
+  logo:logo
+})
+export const toggleIdList= (id) => ({
+  type : TOGGLE_IDLIST,
+  id:id
+})
+export const WtoggleLogoList= (logo) => ({
+  type : WTOGGLE_LOGOLIST,
+  logo:logo
+})
+export const WtoggleIdList= (id) => ({
+  type : WTOGGLE_IDLIST,
+  id:id
 })
 
 export const updateForm2 = (data) => ({
@@ -73,9 +101,64 @@ export const actionCreator = {
   toggleStep,
   updateForm2,
 }
-
 const ACTION_HANDLERS = {
-
+ [WTOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.wIdList
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wIdList: newList
+      }
+    }
+  },
+ [WTOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.wLogoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wLogoList:newList
+      }
+    }
+  },
+ [TOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.idList;
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        idList: newList
+      }
+    }
+  },
+  [TOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.logoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        logoList: newList
+      }
+    }
+  },
+  [TOGGLE_ACTIVE]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        active:action.active
+      }
+    }
+  },
   [TOGGLE_STEP]: (state, action) => {
     return {
       ...state,
@@ -120,7 +203,7 @@ const ACTION_HANDLERS = {
 
 const getInitialState = () => {
   return {
-    page: 0,
+    page: 2,
     cates: [{
       categoryId: 1,
       categoryName: "xx"
@@ -154,6 +237,10 @@ const getInitialState = () => {
     },
 
     form2: {
+      active:{
+        trim:0,
+        type:""
+      },
       publishList: [
         { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
@@ -163,6 +250,10 @@ const getInitialState = () => {
         {value:"0.1.0"},
         {value:"1.0.0"}
       ],
+      idList:[],
+      logoList:[],
+      wLogoList:[],
+      wIdList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,

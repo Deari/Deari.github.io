@@ -5,9 +5,9 @@ import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import Versions from 'components/Versions'
-import 'styles/_base.scss'
-import './index.scss'
+import { getCodeStatus } from 'components/Detail/header'
+import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
+import Detail from 'components/Detail'
 
 class AppsDetail extends React.Component {
   constructor() {
@@ -16,6 +16,9 @@ class AppsDetail extends React.Component {
       data: [],
       tags: [],
       versions: [],
+      currentCode: '',
+      activeCodeVersion: '',
+      activeCodeStatus: 0,
       showAll: false
     };
   }
@@ -70,11 +73,24 @@ class AppsDetail extends React.Component {
       v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
 
+
+    const { currentCode } = this.state
+    const activeCode = data.versions[0]
+    const activeCodeStatus = this.getLatestVersionStatus(data, activeCode)
     const versions = (data.versions && data.versions.slice(1, 2)) || []
-    this.setState({data: data, versions: versions});
+    
+    this.setState({data: data, activeCodeStatus: activeCodeStatus, currentCode: activeCode, versions: versions});
   }
 
-  getVersions() {
+  getLatestVersionStatus(data, currentCode) {
+    if (!data || data.mine == 0) return 0
+    if (currentCode) {
+      const codeStatus = getCodeStatus(data, currentCode).codeStatus
+      return codeStatus
+    }
+  }
+
+  changeShowAll() {
     const { data } = this.state
     const showAll = !this.state.showAll
     const fistHistory = data.versions.slice(1, 2) || []
@@ -84,15 +100,62 @@ class AppsDetail extends React.Component {
       : this.setState({versions: fistHistory, showAll: showAll})
   }
 
+  changeRange(operation) {
+    const { activeCodeStatus } = this.state
+    if ((activeCodeStatus === 5 && operation == 'shelve') ||
+       (activeCodeStatus === 7 && operation == 'unshelve')) return
+    let id = this.props.params.id;
+    let apiUrl = getDomain(`web/developer/shelveApp/${id}?operation=${operation}`);
+    fetchUtil.getJSON(apiUrl).then((res) => {
+      if (res && res.status === 200) {
+        debug.warn("操作成功")
+        this.getInfo()
+      } else {
+        debug.warn("操作失败")
+      }
+    }).catch(e => {
+      debug.warn("网络错误")
+    })
+  }
+
+  changeVersionBtn(code, version) {
+    const { currentCode } = this.state
+    if (code.codeVersion == currentCode.codeVersion) return
+    code && this.setState({
+      currentCode: version,
+      activeCodeStatus: code.codeStatus
+    })
+  }
+
+  clickPublish() {
+    const { data } = this.state
+    const appId = data && data.appId
+    const formData = new FormData()
+    formData.append("onLine", 1)
+
+    let apiUrl = getDomain(`web/developer/app/${appId}/publish`);
+    fetchUtil.postJSON(apiUrl, formData, {jsonStringify: false}).then(res => {
+      if (res.status === 200) {
+        debug.warn("发布成功")
+        this.getInfo()
+      } else {
+        debug.warn("发布失败")
+      }
+    }).catch(e => {
+      debug.warn('网络错误')
+    })
+  }
+
   render() {
     
-    const { data, tags, versions, showAll } = this.state
+    const { data, tags, versions, showAll, currentCode, activeCodeStatus } = this.state
     const infoTags = data.tags || []
-    const len = infoTags.length
-
-    const latestVersion = (data.versions && data.versions[0]) || {}
-
+    const latestVersion = currentCode || {}
     const showSize = true
+
+    const id = this.props.params.id
+    const editUrl = `/apps/edit/${id}`
+    const createUrl = `/apps/create`
 
     const urls = {
       create: { url: `/apps/create`, name: '发布新应用' },
@@ -103,68 +166,12 @@ class AppsDetail extends React.Component {
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
-        <div className="sub-container bg-white">
-          <div className="detail-container">
-            <div className="detail-download">
-              <img className="appImg" src={ data.appLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
-            </div>
-            <div className="detail-info">
-              <dl className="detail-tittle">
-                <dt>{ data.appName }</dt>
-                <dd><i className="user-img"></i><span>{ data.developerName }</span></dd>
-              </dl>
-              <h3 className="app-title">内容提要</h3>
-              <p className="app-text">{ data.appDesc }</p>
-              <h3 className="app-title">信息</h3>
-              <table className="infomation-list">
-                <tr>
-                  <td>类别</td>
-                  <td>
-                    <span className="tag">{ data.categoryName }</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>标签</td>
-                  <td>
-                  {
-                     infoTags.map( (item, index) => {
-                       return (
-                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                       )
-                     } )
-                  }
-                  </td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          
-          <div className="table-info">
-            <h3 className="app-title">版本信息</h3>
-            <ul className="detail-tableList">
-              <li className="item">
-                <div className="cell">
-                  <p className="title">更新日期</p>
-                  <p className="text">{ latestVersion.codeUpdateTime }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本</p>
-                  <p className="text">{ latestVersion.codeVersion }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">大小</p>
-                  <p className="text">{ latestVersion.bundleSize }</p>
-                </div>
-                <div className="cell">
-                  <p className="title">版本介绍</p>
-                  <p className="text">{ latestVersion.codeDesc }</p>
-                </div>
-              </li>
-            </ul>
-            <Versions data={versions} onChange={this.getVersions.bind(this)} showAll={showAll} showSize={showSize} />
-          </div>
-        </div>
+
+        <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
+                showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
+                onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
+                onChangeVersion={this.changeVersionBtn.bind(this)} 
+                activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} />
       </div>
     )
   }

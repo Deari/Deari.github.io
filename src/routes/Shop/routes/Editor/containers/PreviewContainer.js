@@ -27,7 +27,6 @@ const mapDispatchToProps = dispatch => ({
 const productTarget = {
   drop(props, monitor, component) {
     console.log("addElement", monitor.getItem());
-
     props.dispatch(addElement(monitor.getItem()))
   }
 }

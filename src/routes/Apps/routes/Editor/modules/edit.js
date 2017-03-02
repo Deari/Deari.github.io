@@ -5,9 +5,18 @@ import debug from 'utils/debug'
 const PREFIX = 'EDIT_APP_'
 
 const TOGGLE_STEP = PREFIX+'TOGGLE_STEP'
+const TOGGLE_ACTIVE = PREFIX+'TOGGLE_ACTIVE'
+
+const TOGGLE_LOGOLIST = PREFIX+'TOGGLE_LOGOLIST'
+const TOGGLE_IDLIST = PREFIX+'TOGGLE_IDLIST'
+const WTOGGLE_LOGOLIST =  PREFIX+'WTOGGLE_LOGOLIST'
+const WTOGGLE_IDLIST =  PREFIX+'WTOGGLE_IDLIST'
 
 const REQUEST_TAGS = PREFIX+'REQUEST_TAGS'
 const RECEIVE_TAGS = PREFIX+'RECEIVE_TAGS'
+
+const RECEIVE_VERSIONSLIST = PREFIX+'RECEIVE_VERSIONSLIST'
+const RECEIVE_CODEID = PREFIX+'RECEIVE_CODEID'
 
 const REQUEST_CATES = PREFIX+'REQUEST_CATES'
 const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
@@ -27,6 +36,40 @@ export const receiveCates = (data) => ({
 export const toggleStep = (page) => ({
   type : TOGGLE_STEP,
   page
+})
+
+export const toggleActive= (active) => ({
+  type : TOGGLE_ACTIVE,
+  active: active
+})
+
+export const toggleLogoList= (logo) => ({
+  type : TOGGLE_LOGOLIST,
+  logo
+})
+
+export const toggleIdList= (id) => ({
+  type : TOGGLE_IDLIST,
+  id
+})
+
+export const WtoggleLogoList= (logo) => ({
+  type : WTOGGLE_LOGOLIST,
+  logo
+})
+
+export const WtoggleIdList= (id) => ({
+  type : WTOGGLE_IDLIST,
+  id
+})
+
+export const receiveVersionsList= (versionsList) => ({
+  type :  RECEIVE_VERSIONSLIST,
+  versionsList
+})
+export const receiveCodeId= (codeId) => ({
+  type :  RECEIVE_CODEID,
+  codeId
 })
 
 export const updateForm1 = (data) => ({
@@ -64,7 +107,7 @@ export const getCates = () => {
     })
   }
 }
-
+  
 export const getAppInfo = (appId) => {
   return (dispatch) => {
     const url = getDomain(`web/developer/app/${appId}`)
@@ -73,25 +116,9 @@ export const getAppInfo = (appId) => {
 
         const { appName, appLogo, appDesc, categoryId, platform, tags, isH5App, 
                 fileName, fileLink, moduleName, setting} = res.data
-        const { codeDesc, codeVersion} = res.data && res.data.versions && res.data.versions[0] || ''
-        const autoPublish  = res.data && res.data.autoPublish || 1
-        const showUpdateMsg  = res.data && res.data.showUpdateMsg || 0 
-        const rnFrameworkVersion = res.data && res.data.rnFrameworkVersion || 0
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
+          rnFrameworkVersion=0 } = res.data && res.data.versions[0]
         const tagId = tags.map(v=>v.tagId)
-        
-        const versionsarray1 = [
-          parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1])+1,0
-        ]
-        const versionsarray2 = [
-          parseInt(codeVersion.split(".")[0])+1, 0, 0
-        ]
-        
-        const versionsList = [
-          {'value':codeVersion},
-          {'value':versionsarray1.join('.')},
-          {'value':versionsarray2.join('.')}
-        ]
-        console.log(versionsList)
         dispatch(updateForm1({
           appId, appName, appLogo, appDesc, categoryId, platform, isH5App,
           tags: tagId
@@ -100,7 +127,6 @@ export const getAppInfo = (appId) => {
         dispatch(updateForm2({
           appId,
           platform, isH5App, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
-          versionsList,
         })) 
 
       } else {
@@ -117,20 +143,89 @@ export const updateFirstForm = (values) => {
     dispatch(updateForm1(values))
   }
 }
-export const updateSecondForm = (values) => {
-  return (dispatch) => {
-    dispatch(updateForm2(values))
-  }
-}
+
 const ACTION_HANDLERS = {
-  
+ [RECEIVE_CODEID]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        codeId:action.codeId
+      }
+    }
+ },
+ [RECEIVE_VERSIONSLIST]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        versionsList:action.versionsList
+      }
+    }
+ },
+ [WTOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.wIdList
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wIdList: newList
+      }
+    }
+  },
+ [WTOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.wLogoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wLogoList:newList
+      }
+    }
+  },
+ [TOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.idList;
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        idList: newList
+      }
+    }
+  },
+  [TOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.logoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        logoList: newList
+      }
+    }
+  },
   [TOGGLE_STEP]: (state, action) => {
     return {
       ...state,
       page: action.page
     }
   },
-
+  [TOGGLE_ACTIVE]: (state, action) => {
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        active:action.active
+      }
+    }
+  },
   [UPDATE_FORM1]: (state, action)=>{
     return {
       ...state,
@@ -159,11 +254,13 @@ const ACTION_HANDLERS = {
   [RECEIVE_CATES]: (state, action) => ({
     ...state,
     cates: action.data
-  })
+  }),
 }
 
 const initialState = {
-  page: 1,
+ 
+  page: 0,
+
   cates: [{
     categoryId: 1,
     categoryName: "xx"
@@ -197,6 +294,10 @@ const initialState = {
   },
 
   form2: {
+      active:{
+        trim:0,
+        type:""
+      },
       publishList: [
         { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
@@ -206,6 +307,10 @@ const initialState = {
         {value:"0.1.0"},
         {value:"1.0.0"}
       ],
+      idList:[],
+      logoList:[],
+      wLogoList:[],
+      wIdList:[],
       showUpdateMsg:0,
       codeDesc: '',
       appId: -1,

@@ -46,7 +46,7 @@ export const getProduct = (data) => ({
 })
 
 export const fetchProducts = () => {
-  const apiUrl = getDomain('http://api.intra.sit.ffan.net/bo/v1/web/merchant/widgets')
+  const apiUrl = getDomain('web/merchant/widgets')
   return (dispatch, getState) => new Promise(resolve => {
     fetchUtil.getJSON(apiUrl)
       .then(v => {

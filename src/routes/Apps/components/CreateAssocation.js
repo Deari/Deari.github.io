@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleActive } from '../routes/Editor/modules/edit'
-class AssociationModule extends Component {
+import { toggleActive } from '../routes/Create/modules/create'
+import { validate } from '../modules/validate'
+class CreateAssocation extends Component {
   state={
     appActive:0,
     weigetActive:0,
@@ -33,8 +35,7 @@ class AssociationModule extends Component {
   }
   onAppDelete(item,index){
     this.props.handlechange(item.logo,'app')
-    this.props.handleIdchange(item.id,'app')
-    
+    this.props.handleIdchange(item.id,'app')  
   }
   onWeigetDelete(item,index){
     this.props.handlechange(item.logo,'weiget')
@@ -60,7 +61,7 @@ class AssociationModule extends Component {
 	        	<ul className={classnames({ 'active': appActive })}>
 		          {
 		             appObj.map((item,id)=>(
-		              <li className='logo-box' key={item.id}>
+		              <li className="logo-box" key={item.id} >
 		                <img src={item.logo}/>
 		                <i className="iconfont icon-del" onClick={this.onAppDelete.bind(this,item)}></i>
 		              </li>
@@ -89,7 +90,7 @@ class AssociationModule extends Component {
 		              </li>
 		             ))
 		          }
-	           <li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
+	           	<li className="logo-box" onClick={()=>{this.props.toggleActive({trim:1,type:'weiget'})}}>
 	            <span><i className="iconfont icon-add"></i>选择</span>
 		          </li>
 		        </ul>
@@ -126,4 +127,4 @@ class AssociationModule extends Component {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(AssociationModule)
+)(CreateAssocation)

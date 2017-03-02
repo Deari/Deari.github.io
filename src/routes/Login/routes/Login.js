@@ -92,6 +92,7 @@ export const userInfo = [
   {userName: '13910999810', password: 'wanda123'},
   {userName: '18500738359', password: 'wanda123'},
   {userName: '18510000005', password: 'wanda123'},
+  {userName: '18018500728', password: 'wanda123'},
   {userName: 'syzj', password: 'wanda123'},
   {userName: 'keruyun', password: 'wanda123'},
   {userName: 'getui', password: 'wanda123'},
