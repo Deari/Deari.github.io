@@ -181,6 +181,16 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
             margin-right: 0;
         }
     }
+    &.code-desc {
+        position: relative;
+        .font-count{
+            position: absolute;
+            bottom: 25px;
+            right: 110px;
+            font-size: 13px;
+            color: #999;
+        }
+    }
 }
 .form-btn{
     width: $sub-container-width;
@@ -252,7 +262,6 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
 }
 .form-rowM{
     .row-right {
-        position: relative;
         float: none;
         .right-info{
             width: inherit;
@@ -262,13 +271,6 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
             padding: 0px;
             margin: 0px;
             cursor: pointer;
-        }
-        .font-count{
-            position: absolute;
-            font-size: 13px;
-            right: 20px;
-            top: 5px;
-            color: #999;
         }
     }
 }

@@ -18,7 +18,7 @@ const RECEIVE_CATES = 'RECEIVE_CATES'
 
 const UPDATE_FORM = 'UPDATE_FORM'
 const UPDATE_FORM2 = 'UPDATE_FORM2'
-
+const UPDATE_CODE_DESC = 'UPDATE_CODE_DESC'
 
 export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
@@ -71,6 +71,11 @@ export const updateForm2 = (data) => ({
 
 export const updateForm = (data) => ({
   type : UPDATE_FORM,
+  data
+})
+
+export const updateCodeDesc = (data) => ({
+  type : UPDATE_CODE_DESC,
   data
 })
 
@@ -163,7 +168,17 @@ const ACTION_HANDLERS = {
         ...action.data
       }
     }
-  }
+  },
+
+  [UPDATE_CODE_DESC]: (state, action) => {
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
+    }
+  },
 
 }
 
@@ -205,6 +220,8 @@ const initialState = {
       { value: "1.0.0" }
     ],
     codeDesc: '',
+    codeDescCount: 0,
+    isDescErr: false,
     platform: 2,
     appKind: 0,
     showUpdateMsg: 0,

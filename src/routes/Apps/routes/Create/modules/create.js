@@ -23,6 +23,8 @@ const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 
 const UPDATE_APPKIND = PREFIX+'UPDATE_APPKIND'
+const UPDATE_CODE_DESC = PREFIX+'UPDATE_CODE_DESC'
+
 
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
@@ -81,6 +83,11 @@ export const updateForm2 = (data) => ({
 
 export const updateAppkind = (data) => ({
   type : UPDATE_APPKIND,
+  data
+})
+
+export const updateCodeDesc = (data) => ({
+  type : UPDATE_CODE_DESC,
   data
 })
 
@@ -215,6 +222,16 @@ const ACTION_HANDLERS = {
     }
   },
 
+  [UPDATE_CODE_DESC]: (state, action) => {
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
+    }
+  },
+
   [UPDATE_APPKIND]: (state, action) => {
     return {
       ...state,
@@ -297,6 +314,8 @@ const getInitialState = () => {
       wNameList:[],
       showUpdateMsg:0,
       codeDesc: '',
+      codeDescCount: 0,
+      isDescErr: false,
       appId: -1,
       codeId:-1,
       platform: 2,
