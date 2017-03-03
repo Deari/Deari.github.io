@@ -146,53 +146,14 @@ export class renderFile extends Component {
 
   fileUpload(e) {
     if (!e.target.files[0]) return;
-
-    const url = getDomain("web/file/upload")
-    const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
-    formData.append('acttime', new Date().toString())
-    const xhr = new XMLHttpRequest();
-    xhr.onreadystatechange =  () => {
-      try{
-        if (xhr.readyState == 4){
-          if( xhr.status == 200) {
-            const result = JSON.parse(xhr.responseText);
-            console.log(result.data)
-          }else{
-            debug.warn('文件代码包格式错误')
-          }
-        }
-      }catch(e){
-        console.log('网络错误', e)
-      }
-    }
-    // xhr.upload.onprogress = (evt) => {
-    //  alert()
-    // }
-    console.log(xhr.upload)
-    xhr.open("post", url,true);
-    xhr.send(formData);
-
- 
-    
-    
-
-
-
-    // fetchUtil.postJSON(url, formData, {
-    //   jsonStringify: false,
-    //   // credentials: true
-    // }).then(res=>{
-    //   if (res.status === 200) {
-    //     this.props.input.onChange(res.data)
-    //   } else {
-    //     debug.warn('文件代码包格式错误')
-    //   }
-    // }).catch(e=>{
-    //   console.log('网络错误', e)
-    // })
+    const file = e.target.files[0];
+    const name = file.name;
+    const size = file.size;
+    let succed =0;
+    const shardSize = 10 * 1024 * 1024 
   }
 
+  
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     
