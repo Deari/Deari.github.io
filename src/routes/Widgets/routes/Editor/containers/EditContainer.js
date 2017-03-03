@@ -146,6 +146,15 @@ class EditContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
+        let codeDescCount = values.codeDescCount || 0
+
+        if ( codeDescCount == 0 ) {
+          this.props.updateCodeDesc({isDescErr: true})
+          return
+        } else {
+          this.props.updateCodeDesc({isDescErr: false})
+        }
+
         !values.appId && debug.warn('缺少appId')
 
         const url = getDomain(`web/developer/widget/${values.appId}/code`)

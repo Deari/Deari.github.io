@@ -181,7 +181,16 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         
         /*第二步应用文件样式end*/
     }
-    
+    &.code-desc {
+        position: relative;
+        .font-count{
+            position: absolute;
+            bottom: 25px;
+            right: 110px;
+            font-size: 13px;
+            color: #999;
+        }
+    }  
 }
 .form-btn{
     width: $sub-container-width;
@@ -226,7 +235,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 }
 .form-rowM{
     .row-right {
-        position: relative;
         float: none;
         .right-info{
             width: inherit;
@@ -236,13 +244,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             padding: 0px;
             margin: 0px;
             cursor: pointer;
-        }
-        .font-count{
-            position: absolute;
-            font-size: 13px;
-            right: 20px;
-            top: 5px;
-            color: #999;
         }
     }
 }
