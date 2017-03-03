@@ -8,13 +8,13 @@ export class ProductContainer extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      value: 10 /** Start value **/
+      value: 0 /** Start value **/
     };
   }
 
   handleChange = (value) => {
     const scrollDom = findDOMNode(this.refs.scrollWrap)
-    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100-value)/100;
+    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * value/100;
     if(dis >= 0) {
       scrollDom.scrollTop = dis;
       this.setState({
@@ -50,7 +50,8 @@ export class ProductContainer extends Component {
           </ul>
         </div>
         <div className="slider-wrap">
-          <Slider value={this.state.value} orientation="vertical" onChange={this.handleChange} />
+          <Slider value={this.state.value} orientation="vertical" reverse={true}
+            tooltip={false} onChange={this.handleChange} />
         </div>
       </div>
       
