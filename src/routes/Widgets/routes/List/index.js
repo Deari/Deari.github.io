@@ -88,8 +88,8 @@ class widgetsList extends React.Component {
     listData.map((item, index) => {
       if (item) {
         let obj = {}
-        let latestStatusObj = item.versions && item.versions[0] && this.getStatus(listData, item.versions[0]) || {}
-        let prevStatusObj = item.versions && item.versions[1] && this.getStatus(listData, item.versions[1]) || {}
+        let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
+        let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
@@ -138,26 +138,6 @@ class widgetsList extends React.Component {
     return newArray
   }
 
-  formatState(item) {
-    let state = 0
-    if(item.reviewStatus==1){
-       return 1
-    }else if(item.reviewStatus==2){
-      if(item.adminUnshelved){
-        return 3 
-      }else if(item.devUnshelved){
-        return 4
-      }else if(item.publishStatus){
-        return 2 
-      }else{
-        return 5
-      }
-    }else if(item.reviewStatus==3){
-      return 6 
-    }else {
-      return 7
-    }
-  }
   upDate(){
   
     let sourceVal = getSourceVal()
