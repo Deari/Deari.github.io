@@ -52,7 +52,6 @@ class SecondStepForm extends React.Component {
                 </span>
               </div>
               <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
-              <span className="font-count">4000</span>
             </div>
           </div>
         </div>

@@ -14,7 +14,7 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId } from '../modules/edit'
+        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
 
 class EditContainer extends Component {
   
@@ -241,7 +241,8 @@ const mapDispatchToProps = {
   getAppInfo,
   updateFirstForm,
   receiveVersionsList,
-  receiveCodeId
+  receiveCodeId,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({widgetEdit}) => ({
