@@ -100,7 +100,6 @@ class AppsList extends React.Component {
         let obj = {}
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
         let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
-        console.log(prevStatusObj)
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''

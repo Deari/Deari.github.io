@@ -280,6 +280,8 @@ export const getAppInfo = (appId) => {
           fileName, fileLink, moduleName, setting, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
           rnFrameworkVersion = 0,} = res.data && res.data.versions[0]
+        const codeDescCount = codeDesc.length
+        console.log(codeDesc,codeDescCount)
         const tagId = tags.map(v=>v.tagId)
         dispatch(updateForm({
           appId,
@@ -289,7 +291,7 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({ 
           appId,
-          platform, appKind, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
         }))
         
       } else {
