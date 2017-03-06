@@ -81,7 +81,6 @@ export const LatestVersion = (props) => {
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
-  console.log(latestVersion)
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
