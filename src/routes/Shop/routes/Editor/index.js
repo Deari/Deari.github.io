@@ -4,7 +4,7 @@ import { injectReducer } from '../../../../store/reducers'
 const isMobile = location => location.pathname.indexOf('/m/') !== -1
 
 module.exports = (store) => ({
-  path: 'edit',
+  path: 'edit/:pageID',
 
   getComponent (nextState, cb) {
 

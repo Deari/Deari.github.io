@@ -112,7 +112,7 @@ class widgetsList extends React.Component {
 
         if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
 
-        obj.showOpenLink = latestCodeStatus == 2
+        obj.showOpenLink = latestCodeStatus == 5
 
         const editUrl = `/widgets/edit/${obj.id}`
 

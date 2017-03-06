@@ -47,14 +47,13 @@ export const getProduct = (data) => ({
 
 export const fetchProducts = () => {
   const apiUrl = getMobileDomain('web/merchant/widgets')
-  return (dispatch, getState) => new Promise(resolve => {
-    fetchUtil.getJSON(apiUrl)
-      .then(v => {
-        let data = [ ...v.data ]
-        //let data = [ ...customProduct, ...v.data ]
-        dispatch(getProduct({ products: data }))
-        resolve()
-      })
+  return (dispatch, getState) => fetchUtil.getJSON(apiUrl, {debug: 1}).then(res => {
+    if(res.status == 200) {
+      let data = [ ...res.data ]
+      dispatch(getProduct({ products: data }))
+    } else if(res.status == 4201) {
+      alert('登陆异常，请重新登陆！')
+    }
   })
 }
 

@@ -95,7 +95,6 @@ const Pager = props => {
     <span className="fr">
       显示
       <select className="num-select"  onChange={e=>changeLimit(e)}>
-        <option value="-1">请选择</option>
         {
           limitList.map((item,index)=>(
             <option key={index} value={item}>{item}</option>

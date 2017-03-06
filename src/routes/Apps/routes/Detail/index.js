@@ -152,7 +152,7 @@ class AppsDetail extends React.Component {
     const infoTags = data.tags || []
     const latestVersion = currentCode || {}
     const showSize = true
-
+    const versionsAll = data.versions
     const id = this.props.params.id
     const editUrl = `/apps/edit/${id}`
     const createUrl = `/apps/create`
@@ -171,7 +171,7 @@ class AppsDetail extends React.Component {
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
                 onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
                 onChangeVersion={this.changeVersionBtn.bind(this)} 
-                activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} />
+                activeCodeStatus={activeCodeStatus} onClickPublish={this.clickPublish.bind(this)} versionsAll={versionsAll}/>
       </div>
     )
   }

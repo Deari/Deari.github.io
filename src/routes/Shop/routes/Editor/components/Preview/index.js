@@ -6,7 +6,10 @@ import './Preview.scss'
 export class Preview extends Component {
 
   componentDidMount() {
-    setTimeout(this.props.fetchPreview, 1000)
+    console.log(this.props.pageID)
+    // setTimeout(()=>{
+      this.props.fetchPreview(this.props.pageID)
+    // }, 1000)
   }
 
   static propTypes = {
@@ -24,19 +27,19 @@ export class Preview extends Component {
       cols: 4,
       rowHeight: 52.5,
       selectedCls: 'selected',
-      width: 208,
+      width: 212,
       margin: [ 0, 0 ],
     }
   }
 
-  onLayoutChange(layouts) {
+  onLayoutChange = (layouts) => {
     this.props.onLayoutChange();
     this.props.setLayout(layouts.map(l => ({
       i: l.i, w: l.w, h: l.h, x: l.x, y: l.y
     })))
   }
 
-  onDragStart(layouts, l) {
+  onDragStart = (layouts, l) => {
     this.props.selectElement(l.i);
   }
 
@@ -44,7 +47,7 @@ export class Preview extends Component {
     let { layouts } = this.props.preview
     try {
       const lay = layouts.find(l => l.i === e.id)
-      return lay || { ...e.defaultLayout, ...{ x: 0, y: 2 } }
+      return lay || { ...e.defaultLayout, ...{ x: 0, y: Infinity } }
     } catch (e) {
       alert(e)
     }
@@ -71,6 +74,7 @@ export class Preview extends Component {
       return <div key={e.id}
                   style={this.generateStyle(e)}
                   className={className}
+                  onClick={(e)=>{ e.stopPropagation() }}
                   data-grid={this.generateLayout(e)}>
         <Element {...e} layout={this.generateLayout(e)} gridProps={this.props.gridProps}/>
       </div>
@@ -80,12 +84,10 @@ export class Preview extends Component {
   render() {
     const { canDrop, isOver, connectDropTarget, preview, gridProps } = this.props
     return connectDropTarget(
-      <div className="shop-info">
-
-        <ReactGridLayout className="layout"
-                         {...gridProps}
-                         onDragStart={::this.onDragStart} 
-                         onLayoutChange={::this.onLayoutChange}>
+      <div className="shop-info" onClick={()=>{ this.props.cancelElement()}}>
+        <ReactGridLayout {...gridProps} className="preview-layout"
+                         onDragStart={this.onDragStart} 
+                         onLayoutChange={this.onLayoutChange}>
           {this.generateDOM()}
         </ReactGridLayout>
       </div>
