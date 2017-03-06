@@ -38,7 +38,7 @@ class EditContainer extends Component {
       if (status) {
         const { params } = this.props
         const appId = parseInt(params.appId)
-        this.props.toggleStep(2)
+        this.props.toggleStep(1)
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)
@@ -133,6 +133,8 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
+      console.log(values)
+      return
     this.isLogin()
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
@@ -154,6 +156,8 @@ class EditContainer extends Component {
         !values.appId && debug.warn('缺少appId')
 
         const file = values.file
+        const fileObj = values.fileObj
+      
         let params = {
           ...values
         }
@@ -177,10 +181,10 @@ class EditContainer extends Component {
             'relatedWidgets':values.wIdList,
           })
         } else {
-           Object.assign(params, file, {
-            'fileName': file.originalName,
-            'fileLink': file.url,
-            'fileSize': file.fileSize,
+           Object.assign(params, fileObj, {
+            'fileName': fileObj.name,
+            'fileLink': fileObj.url,
+            'fileSize': fileObj.size,
 
             'showUpdateMsg':Number(values.showUpdateMsg),
             'relatedApps':values.idList,

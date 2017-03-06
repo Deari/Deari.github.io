@@ -141,73 +141,130 @@ export class renderImageUpload extends Component {
   
 }
 
-export class renderFile extends Component {
-
+export class renderAPKFile extends Component {
+  state ={
+    file: {},
+    start: 0,
+    end: 5 * 1024 * 1024,
+    sessionId: null,
+    shardSize: 5 * 1024 * 1024,
+  }
   fileUpload(e) {
     if (!e.target.files[0]) return;
-    const file = e.target.files[0];
+    const fileValue = e.target.files[0];
     // const name = file.name;
-    const size = file.size;
-    const shardSize = 10 * 1024 * 1024 ;
-    //const shardCount = Math.ceil(size / shardSize);  //总片数
-    let start = 0;
-    let end = start + shardSize 
-    let sessionId = 0;
-    this.upload(start,end,file,size,shardSize,sessionId)
+    const size = fileValue.size;
+    const shardSize = 5 * 1024 * 1024 ;
+    this.setState({shardSize:shardSize},this.upload(fileValue))
   }
-  upload(start,end,file,size,shardSize,sessionId){
+
+  upload(file){
+    const {start, end, shardSize, sessionId} = this.state
      //计算每一片的起始与结束位置
-    if(end>size){
-       return
-    }
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
-                //构造一个表单，FormData是HTML5新增的
-    fd.append("X-Content-Range", 'bytes ' + start + '-' + end + '/' + size)
-    sessionId!=0? fd.append("X-Session-Id", sessionId):'';
-    fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
-                  //Ajax提交
-    xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
-          //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-          // xhr.setRequestHeader('X-Content-Range',);
-    xhr.onreadystatechange=function(){
-      if(this.readyState==4){
-        if(this.status>=200&&this.status<300){
-          if(this.responseText.indexOf('failed') >= 0){
-             alert('文件发送失败，请重新发送');
-             //des.style.width='0%';
-             //num.innerHTML='';
-             //clearInterval(clock);
-          }else{
-             //alert(this.responseText)
-             // pending=false;
-             
-            // start = end;
-            // end = end + shardSize;
+    const that = this;
+    const readyChange = (that) => {
+      if(xhr.readyState==4){
+        if(xhr.status>=200&&xhr.status<300){
+          if (JSON.parse(xhr.responseText).status == 500) {
+            alert('文件发送失败，请重新发送');
+            return
 
-            console.log(xhr.responseText.data)
-            console.log(succeed+'/'+shardCount)
+            //des.style.width='0%';
+            //num.innerHTML='';
+            //clearInterval(clock);
+          } else {
+            const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
+            const res = JSON.parse(xhr.responseText).data
+            let resp = JSON.parse(xhr.responseText).data.responseBody;
+            if(resp){
+              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp}, that.upload(file))
+            }else{
+               const fileObj ={
+                 url:'http://'+this.state.resp,
+                 name:file.name,
+                 size:file.size
+               }
+               console.log(fileObj)
+               this.props.input.onChange(fileObj)
+               return
+            }
           }
         }
       }
     }
+                //构造一个表单，FormData是HTML5新增的
+    fd.append("X-Content-Range", 'bytes ' + start + '-' + (end-1) + '/' + file.size)
+    sessionId ? fd.append("X-Session-Id", sessionId):'';
+    fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
+                  //Ajax提交
+    xhr.open('POST','http://xapi.intra.sit.ffan.net/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+          //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.onreadystatechange=function(){
+      readyChange(that)
+    }
 
-            // xhr.upload.onprogress=function(ev){
-            //   if(ev.lengthComputable){
-            //     pecent=100*(ev.loaded+start)/file.size;
-              //   if(pecent>100){
-              //     pecent=100;
-              //   }
-              //   //num.innerHTML=parseInt(pecent)+'%';
-              //   des.style.width=pecent+'%';
-              //   des.innerHTML = parseInt(pecent)+'%'
-            //   }
+    // xhr.upload.onprogress=function(ev){
+    //   if(ev.lengthComputable){
+    //     pecent=100*(ev.loaded+start)/file.size;
+    //   if(pecent>100){
+    //     pecent=100;
+    //   }
+    //   //num.innerHTML=parseInt(pecent)+'%';
+    //   des.style.width=pecent+'%';
+    //   des.innerHTML = parseInt(pecent)+'%'
+    //   }
    xhr.send(fd);
   }
   
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     
+    return (
+      <div className="form-row">
+        <label>{label}</label>
+        <div className="row-right">
+          <span className="right-upload">
+            <input type="button" value="选择文件" />
+            <input type="file" accept=".zip" onChange={::this.fileUpload} />
+            {input.value.name}
+          </span>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
+        </div>
+      </div>
+    )
+  }
+  
+}
+
+export class renderFile extends Component {
+
+  fileUpload(e) {
+    if (!e.target.files[0]) return;
+    
+    const url = getDomain("web/file/upload")
+    const formData = new FormData()
+
+    formData.append('fileName', e.target.files[ 0 ])
+
+    fetchUtil.postJSON(url, formData, {
+      jsonStringify: false,
+      // credentials: true
+    }).then(res => {
+      if (res.status === 200) {
+        this.props.input.onChange(res.data)
+      } else {
+        debug.warn('文件代码包格式错误')
+      }        
+    }).catch(e => {
+      console.log('网络错误', e)
+    })
+  }
+
+  render() {
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -222,8 +279,8 @@ export class renderFile extends Component {
       </div>
     )
   }
-  
 }
+
 export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>{label}</label>
   <div className="row-right max-width">

@@ -13,6 +13,7 @@ import {
     renderFile ,
     renderSelect, 
     renderPublishRadioBox ,
+    renderAPKFile
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
@@ -100,7 +101,7 @@ const SecondStepForm = props => {
       </Field>
       {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(RN)" />}
       {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
-      {appKind === 2 && <Field name="file" component={renderFile} label="应用文件(APK)" />}
+      {appKind === 2 && <Field name="file" component={renderAPKFile} label="应用文件(APK)" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <AssociationModule 
         appObj={appObj} 
