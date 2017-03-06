@@ -4,7 +4,6 @@ import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
-
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
@@ -149,8 +148,72 @@ export class renderFile extends Component {
     const file = e.target.files[0];
     const name = file.name;
     const size = file.size;
-    let succed =0;
-    const shardSize = 10 * 1024 * 1024 
+    let succeed =0;
+    const shardSize = 10 * 1024 * 1024 ;
+    const shardCount = Math.ceil(size / shardSize);  //总片数
+    let sessionId = 0;
+    let json = {};
+    for(var i = 0;i < shardCount;++i){
+      //计算每一片的起始与结束位置
+      const xhr=new XMLHttpRequest();
+      var start = i * shardSize,
+          end = Math.min(size, start + shardSize);
+                //构造一个表单，FormData是HTML5新增的
+      
+      if(i=0){
+        json = {
+          'X-Content-Range':'bytes' + start + '-' + end + '/' + size ,
+        }
+      }else{
+        json = {
+          'X-Content-Range':'bytes' + start + '-' + end + '/' + size ,
+          'X-Session-Id': sessionId
+        }
+      }
+    
+      // var fd = new FormData();
+      //     fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
+      //               console.log(file.slice(start,end));
+      //     fd.append("name", name);
+      //     fd.append("total", shardCount);  //总片数
+      //     fd.append("index", i + 1);        //当前是第几片
+                //Ajax提交
+          xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+          xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+          // xhr.setRequestHeader('X-Content-Range',);
+          xhr.onreadystatechange=function(){
+            if(this.readyState==4){
+              if(this.status>=200&&this.status<300){
+                if(this.responseText.indexOf('failed') >= 0){
+                alert('文件发送失败，请重新发送');
+                //des.style.width='0%';
+                //num.innerHTML='';
+                //clearInterval(clock);
+                }else{
+                //alert(this.responseText)
+                // pending=false;
+                 ++succeed;
+                 console.log(responseText)
+                 console.log(succeed+'/'+shardCount)
+                }
+          
+              }
+            }
+           }
+
+            // xhr.upload.onprogress=function(ev){
+            //   if(ev.lengthComputable){
+            //     pecent=100*(ev.loaded+start)/file.size;
+              //   if(pecent>100){
+              //     pecent=100;
+              //   }
+              //   //num.innerHTML=parseInt(pecent)+'%';
+              //   des.style.width=pecent+'%';
+              //   des.innerHTML = parseInt(pecent)+'%'
+            //   }
+   
+             xhr.send(json);
+           }　　
   }
 
   
