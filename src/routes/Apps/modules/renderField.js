@@ -146,51 +146,51 @@ export class renderFile extends Component {
   fileUpload(e) {
     if (!e.target.files[0]) return;
     const file = e.target.files[0];
-    const name = file.name;
+    // const name = file.name;
     const size = file.size;
-    let succeed =0;
     const shardSize = 10 * 1024 * 1024 ;
-    const shardCount = Math.ceil(size / shardSize);  //总片数
+    //const shardCount = Math.ceil(size / shardSize);  //总片数
+    let start = 0;
+    let end = start + shardSize 
     let sessionId = 0;
-   
-    for(var i = 0;i < shardCount;++i){
-      //计算每一片的起始与结束位置
-      const xhr=new XMLHttpRequest();
-      const fd = new FormData();
-      let start = i * shardSize
-      let end = Math.min(size, start + shardSize);
-  
+    this.upload(start,end,file,size,shardSize,sessionId)
+  }
+  upload(start,end,file,size,shardSize,sessionId){
+     //计算每一片的起始与结束位置
+    if(end>size){
+       return
+    }
+    const xhr=new XMLHttpRequest();
+    const fd = new FormData();
                 //构造一个表单，FormData是HTML5新增的
-        fd.append("X-Content-Range", 'bytes ' + start + '-' + end + '/' + size)
-        i==0? fd.append("X-Session-Id", sessionId):'';
-
-        fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
-            //           console.log(file.slice(start,end));
-        fd.append("name", name);
-        fd.append("total", shardCount);  //总片数
-        fd.append("index", i + 1);        //当前是第几片
+    fd.append("X-Content-Range", 'bytes ' + start + '-' + end + '/' + size)
+    sessionId!=0? fd.append("X-Session-Id", sessionId):'';
+    fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
                   //Ajax提交
-        xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+    xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
           //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
           // xhr.setRequestHeader('X-Content-Range',);
-        xhr.onreadystatechange=function(){
-          if(this.readyState==4){
-            if(this.status>=200&&this.status<300){
-              if(this.responseText.indexOf('failed') >= 0){
-                alert('文件发送失败，请重新发送');
-                //des.style.width='0%';
-                //num.innerHTML='';
-                //clearInterval(clock);
-              }else{
-                //alert(this.responseText)
-                // pending=false;
-                 ++succeed;
-                 console.log(xhr.responseText.data.sessionId)
-                 console.log(succeed+'/'+shardCount)
-              }
-            }
+    xhr.onreadystatechange=function(){
+      if(this.readyState==4){
+        if(this.status>=200&&this.status<300){
+          if(this.responseText.indexOf('failed') >= 0){
+             alert('文件发送失败，请重新发送');
+             //des.style.width='0%';
+             //num.innerHTML='';
+             //clearInterval(clock);
+          }else{
+             //alert(this.responseText)
+             // pending=false;
+             
+            // start = end;
+            // end = end + shardSize;
+
+            console.log(xhr.responseText.data)
+            console.log(succeed+'/'+shardCount)
           }
         }
+      }
+    }
 
             // xhr.upload.onprogress=function(ev){
             //   if(ev.lengthComputable){
@@ -202,10 +202,8 @@ export class renderFile extends Component {
               //   des.style.width=pecent+'%';
               //   des.innerHTML = parseInt(pecent)+'%'
             //   }
-        xhr.send(fd);
-     }　　
+   xhr.send(fd);
   }
-
   
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
