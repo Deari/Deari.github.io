@@ -127,6 +127,7 @@ class CreateContainer extends Component {
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         const formData = new FormData()
         const file = values.file
+        const fileObj = values.fileObj
         let params = {
           ...values
         }
@@ -158,15 +159,15 @@ class CreateContainer extends Component {
             'relatedWidgets':values.wIdList,
           }
         }else{
-          params = Object.assign({}, file, {
+          params = Object.assign({}, fileObj, {
             'codeId': values.codeId,
             'codeDesc': values.codeDesc,
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             
-            'fileName': file.originalName,
+            'fileName': file.name,
             'fileLink': file.url,
-            'fileSize': file.fileSize,
+            'fileSize': file.size,
       
             'showUpdateMsg': Number(values.showUpdateMsg),
             'relatedApps': values.idList,
