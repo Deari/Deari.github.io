@@ -152,54 +152,45 @@ export class renderFile extends Component {
     const shardSize = 10 * 1024 * 1024 ;
     const shardCount = Math.ceil(size / shardSize);  //总片数
     let sessionId = 0;
-    let json = {};
+   
     for(var i = 0;i < shardCount;++i){
       //计算每一片的起始与结束位置
       const xhr=new XMLHttpRequest();
-      var start = i * shardSize,
-          end = Math.min(size, start + shardSize);
+      const fd = new FormData();
+      let start = i * shardSize
+      let end = Math.min(size, start + shardSize);
+  
                 //构造一个表单，FormData是HTML5新增的
-      
-      if(i=0){
-        json = {
-          'X-Content-Range':'bytes' + start + '-' + end + '/' + size ,
-        }
-      }else{
-        json = {
-          'X-Content-Range':'bytes' + start + '-' + end + '/' + size ,
-          'X-Session-Id': sessionId
-        }
-      }
-    
-      // var fd = new FormData();
-      //     fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
-      //               console.log(file.slice(start,end));
-      //     fd.append("name", name);
-      //     fd.append("total", shardCount);  //总片数
-      //     fd.append("index", i + 1);        //当前是第几片
-                //Ajax提交
-          xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
-          xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        fd.append("X-Content-Range", 'bytes ' + start + '-' + end + '/' + size)
+        i==0? fd.append("X-Session-Id", sessionId):'';
+
+        fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
+            //           console.log(file.slice(start,end));
+        fd.append("name", name);
+        fd.append("total", shardCount);  //总片数
+        fd.append("index", i + 1);        //当前是第几片
+                  //Ajax提交
+        xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+          //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
           // xhr.setRequestHeader('X-Content-Range',);
-          xhr.onreadystatechange=function(){
-            if(this.readyState==4){
-              if(this.status>=200&&this.status<300){
-                if(this.responseText.indexOf('failed') >= 0){
+        xhr.onreadystatechange=function(){
+          if(this.readyState==4){
+            if(this.status>=200&&this.status<300){
+              if(this.responseText.indexOf('failed') >= 0){
                 alert('文件发送失败，请重新发送');
                 //des.style.width='0%';
                 //num.innerHTML='';
                 //clearInterval(clock);
-                }else{
+              }else{
                 //alert(this.responseText)
                 // pending=false;
                  ++succeed;
-                 console.log(responseText)
+                 console.log(xhr.responseText.data.sessionId)
                  console.log(succeed+'/'+shardCount)
-                }
-          
               }
             }
-           }
+          }
+        }
 
             // xhr.upload.onprogress=function(ev){
             //   if(ev.lengthComputable){
@@ -211,9 +202,8 @@ export class renderFile extends Component {
               //   des.style.width=pecent+'%';
               //   des.innerHTML = parseInt(pecent)+'%'
             //   }
-   
-             xhr.send(json);
-           }　　
+        xhr.send(fd);
+     }　　
   }
 
   
