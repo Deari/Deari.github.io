@@ -164,7 +164,9 @@ export class renderAPKFile extends Component {
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
-    const url = getUploaderDomain('web/bo_appstore?clientType=1');
+    const url = getUploaderDomain('web/bo_appstore?clientType=1')
+    //xapi.intra.sit.ffan.net
+    //getUploaderDomain('web/bo_appstore?clientType=1')
     const readyChange = (that) => {
       if(xhr.readyState==4){
         if(xhr.status>=200&&xhr.status<300){

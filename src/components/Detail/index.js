@@ -81,6 +81,8 @@ export const LatestVersion = (props) => {
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
+  const publishVersionBundleSize = data.platform === 2 ? publishVersion.bundleSize2 : publishVersion.bundleSize
+  const latestVersionBundleSize = data.platform === 2 ? latestVersion.bundleSize2 : latestVersion.bundleSize
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
@@ -96,7 +98,7 @@ export const LatestVersion = (props) => {
         { showSize &&
           <div className="cell">
             <p className="title">大小</p>
-            <p className="text">{!data.mine? publishVersion.bundleSize :latestVersion.bundleSize  }</p>
+            <p className="text">{!data.mine? publishVersionBundleSize : latestVersionBundleSize  }</p>
           </div>
         }
         <div className="cell">
