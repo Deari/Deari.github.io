@@ -67,11 +67,11 @@ const compile = async () => {
         debug('Compilation completed successfully.')
         try {
           // Push the contents of the build folder to the remote server via Git
-          // await repo.add('--all .')
-          // await repo.commit('Update')
-          // await repo.push(remote.name, `master:${branch}`, {
-          //   force: 1
-          // })
+          await repo.add('--all .')
+          await repo.commit('Update')
+          await repo.push(remote.name, `master:${branch}`, {
+            force: 1
+          })
 
           // Check if the site was successfully deployed
           // const response = await fetch(remote.website);
