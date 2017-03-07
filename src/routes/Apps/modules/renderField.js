@@ -148,6 +148,7 @@ export class renderAPKFile extends Component {
     end: 1 * 1024 * 1024,
     sessionId: null,
     shardSize: 1 * 1024 * 1024,
+    txt:""
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
@@ -155,7 +156,7 @@ export class renderAPKFile extends Component {
     // const name = file.name;
     const size = fileValue.size;
     const shardSize = 1 * 1024 * 1024 ;
-    this.setState({shardSize:shardSize},this.upload(fileValue))
+    this.setState({shardSize:shardSize,txt:"请稍等..."},this.upload(fileValue) )
   }
 
   upload(file){
@@ -185,7 +186,7 @@ export class renderAPKFile extends Component {
               that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp}, that.upload(file))
             }else{
                const fileObj ={
-                 url:'http://'+this.state.resp,
+                 url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
                  name:file.name,
                  size:file.size
                }
@@ -231,7 +232,7 @@ export class renderAPKFile extends Component {
           <span className="right-upload">
             <input type="button" value="选择文件" />
             <input type="file" accept=".apk" onChange={::this.fileUpload} />
-            {input.value.name}
+            {input.value.name?input.value.name:this.state.txt}
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
