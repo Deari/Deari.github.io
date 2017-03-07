@@ -6,6 +6,15 @@ import { Messages } from 'components/Message'
 
 export class ProductCreator extends Component {
 
+  constructor(props) {
+    super(props)
+    this._messages = new Messages(this)
+  }
+
+  onClick() {
+    this._messages.add('ttttttttttt', 3000)
+  }
+
   render() {
     const mess = new Messages(this)
     mess.add(<div>dddddddd</div>)
@@ -15,6 +24,7 @@ export class ProductCreator extends Component {
 
     return <div>
       <Board knightPosition={[ 3, 5 ]}/>
+      <button onClick={::this.onClick}>Mess</button>
     </div>
   }
 }

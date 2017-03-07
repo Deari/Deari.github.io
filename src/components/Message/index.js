@@ -2,10 +2,15 @@ import React, { PropTypes, Component } from 'react'
 import classnames from 'classnames'
 
 import {
+  render,
   findDOMNode,
   unmountComponentAtNode,
   unstable_renderSubtreeIntoContainer as renderSubtreeIntoContainer
 } from 'react-dom'
+
+const Message = ({children}) => <div>
+  {children}
+</div>
 
 export class Messages {
 
@@ -26,7 +31,8 @@ export class Messages {
   add(message, during) {
     const messageContainer = document.createElement('div')
     this._getContainer().appendChild(messageContainer)
-    renderSubtreeIntoContainer(this._context, message, messageContainer, () => {
+    render(<Message children={message}/>, messageContainer, () => {
+    //renderSubtreeIntoContainer(this._context, message, messageContainer, () => {
         if (during > 0) {
           setTimeout(() => {
             unmountComponentAtNode(messageContainer)
