@@ -9,7 +9,7 @@ class AppsDetail extends React.Component {
 
     const { data, activeCodeStatus, editUrl, onChangeRange, onClickPublish } = this.props
     const len = data && data.versions && data.versions.length  
-
+        
     return (
       <div className="sub-container bg-white">
         { data && data.mine == 1 && len > 0 && Header(this.props) }
@@ -76,31 +76,32 @@ export const BasicInfo = (props) => {
 
 export const LatestVersion = (props) => {
 
-  const { latestVersion, showSize, data } = props
+  const { latestVersion, showSize, data ,versionsAll=[]} = props
+  
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
-
+  const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
       <li className="item">
         <div className="cell">
           <p className="title">更新日期</p>
-          <p className="text">{ latestVersion.codeUpdateTime }</p>
+          <p className="text">{!data.mine? publishVersion.codeUpdateTime : latestVersion.codeUpdateTime}</p>
         </div>
         <div className="cell">
           <p className="title">版本</p>
-          <p className="text">{ latestVersion.codeVersion }</p>
+          <p className="text">{!data.mine? publishVersion.codeVersion : latestVersion.codeVersion}</p>
         </div>
         { showSize &&
           <div className="cell">
             <p className="title">大小</p>
-            <p className="text">{ latestVersion.bundleSize }</p>
+            <p className="text">{!data.mine? publishVersion.bundleSize :latestVersion.bundleSize  }</p>
           </div>
         }
         <div className="cell">
           <p className="title">版本介绍</p>
-          <p className="text">{ latestVersion.codeDesc }</p>
+          <p className="text">{!data.mine? publishVersion.codeDesc : latestVersion.codeDesc}</p>
         </div>
         { !showSize &&
           <div className="cell">

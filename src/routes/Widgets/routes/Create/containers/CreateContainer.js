@@ -14,7 +14,7 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateForm2, updateAppkind, getTags, getCates } from '../modules/create'
+import { toggleStep, updateForm2, updateAppkind, getTags, getCates, updateCodeDesc} from '../modules/create'
 
 class CreateContainer extends Component {
 
@@ -103,7 +103,6 @@ class CreateContainer extends Component {
   }
 
   submitSecond(values) {
-    
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -114,6 +113,15 @@ class CreateContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
+        let codeDescCount = values.codeDescCount || 0
+
+        if ( codeDescCount == 0 ) {
+          this.props.updateCodeDesc({isDescErr: true})
+          return
+        } else {
+          this.props.updateCodeDesc({isDescErr: false})
+        }
+        
         !values.appId && debug.warn('缺少appId')
 
         const formData = new FormData();
@@ -216,7 +224,8 @@ const mapDispatchToProps = {
   getTags,
   getCates,
   updateForm2,
-  updateAppkind
+  updateAppkind,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({widgetCreate}) => ({

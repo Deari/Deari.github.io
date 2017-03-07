@@ -22,7 +22,8 @@ import {
   getAppInfo,
   updateFirstForm,
   receiveVersionsList,
-  receiveCodeId
+  receiveCodeId,
+  updateCodeDesc
 } from '../modules/edit'
 
 class EditContainer extends Component {
@@ -141,6 +142,15 @@ class EditContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
+        let codeDescCount = values.codeDescCount || 0
+
+        if ( codeDescCount == 0 ) {
+          this.props.updateCodeDesc({isDescErr: true})
+          return
+        } else {
+          this.props.updateCodeDesc({isDescErr: false})
+        }
+
         !values.appId && debug.warn('缺少appId')
 
         const file = values.file
@@ -177,6 +187,8 @@ class EditContainer extends Component {
             'relatedWidgets':values.wIdList,
           })
           delete params.file
+          delete params.codeDescCount
+          delete params.isDescErr
         }
 
         const formData = new FormData()
@@ -257,7 +269,8 @@ const mapDispatchToProps = {
   getAppInfo,
   updateFirstForm,
   receiveVersionsList,
-  receiveCodeId
+  receiveCodeId,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({appsEdit}) => ({

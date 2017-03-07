@@ -24,6 +24,7 @@ const REQUEST_CATES = PREFIX+'REQUEST_CATES'
 const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 const UPDATE_FORM1 = PREFIX+'UPDATE_FORM1'
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
+const UPDATE_CODE_DESC = PREFIX+'UPDATE_CODE_DESC'
 
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
@@ -91,6 +92,11 @@ export const updateForm2 = (data) => ({
   data
 })
 
+export const updateCodeDesc = (data) => ({
+  type : UPDATE_CODE_DESC,
+  data
+})
+
 export const getTags = () => {
   return (dispatch) => {
     const url = getDomain("public/app/tags")
@@ -126,6 +132,7 @@ export const getAppInfo = (appId) => {
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
           rnFrameworkVersion=0 } = res.data && res.data.versions[0]
+        const codeDescCount = codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         const {apps, widgets} = res.data && res.data.relations 
         let idList = []
@@ -151,10 +158,10 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({
           appId,
-          platform, appKind, codeDesc, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList
         })) 
-
+        
       } else {
         debug.warn('获取应用详情失败')
       }
@@ -296,6 +303,16 @@ const ACTION_HANDLERS = {
     }
   },
 
+  [UPDATE_CODE_DESC]: (state, action) => {
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        ...action.data
+      }
+    }
+  },
+
   [RECEIVE_TAGS]: (state, action) => ({
     ...state,
     tags: action.data
@@ -363,6 +380,8 @@ const initialState = {
       wNameList:[],
       showUpdateMsg:0,
       codeDesc: '',
+      codeDescCount: 0,
+      isDescErr: false,
       appId: -1,
       codeId:-1,
       platform: 2,

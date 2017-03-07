@@ -47,11 +47,11 @@ const compile = async () => {
 
     await repo.setRemote(remote.name, remote.url)
     // Fetch the remote repository if it exists
-    if ((await repo.hasRef(remote.url, 'master'))) {
-      await repo.fetch(remote.name)
-      await repo.reset(`${remote.name}/${branch}`, { hard: true })
-      await repo.clean({ force: true })
-    }
+    // if ((await repo.hasRef(remote.url, 'master'))) {
+    //   await repo.fetch(remote.name)
+    //   await repo.reset(`${remote.name}/${branch}`, { hard: true })
+    //   await repo.clean({ force: true })
+    // }
 
     debug('Starting compiler.')
     return Promise.resolve()
@@ -67,11 +67,11 @@ const compile = async () => {
         debug('Compilation completed successfully.')
         try {
           // Push the contents of the build folder to the remote server via Git
-          await repo.add('--all .')
-          await repo.commit('Update')
-          await repo.push(remote.name, `master:${branch}`, {
-            // force: 1
-          })
+          // await repo.add('--all .')
+          // await repo.commit('Update')
+          // await repo.push(remote.name, `master:${branch}`, {
+          //   force: 1
+          // })
 
           // Check if the site was successfully deployed
           // const response = await fetch(remote.website);

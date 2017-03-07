@@ -73,7 +73,7 @@ export class Editor extends Component {
     super(props, context);
     this.state = {
       show: false,
-      value: 100 /** Start value **/
+      value: 0
     };
   }
 
@@ -83,7 +83,7 @@ export class Editor extends Component {
     if (!scrollDom) {
       return
     }
-    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * (100 - value) / 100;
+    const dis = (scrollDom.scrollHeight - scrollDom.clientHeight) * value / 100;
 
     if (dis > 0 || scrollDom.scrollTop != dis) {
       scrollDom.scrollTop = dis;
@@ -96,6 +96,10 @@ export class Editor extends Component {
         value: 100
       });
     }
+  }
+
+  scrollIntoView = () => {
+    this.handleChange(100)
   }
 
   onLayoutChange = () => {
@@ -115,6 +119,7 @@ export class Editor extends Component {
 
   render() {
     const { value, show } = this.state;
+    const { pageID } = this.props.params
 
     return <div className="clx">
       <LeftSideBar/>
@@ -125,12 +130,13 @@ export class Editor extends Component {
               <img className="clock" src="http://timg.ffan.com/convert/resize/url_T1AOhTB7Wg1RCvBVdK/tfs/b03fdb9b6fa122d0.png"/>
             </div>
             <div className="scroll-wrap" ref="scrollWrap">
-              <Preview onLayoutChange={this.onLayoutChange}/>
+              <Preview onLayoutChange={this.onLayoutChange} pageID={pageID}
+                scrollIntoView={this.scrollIntoView} />
             </div>
             <div className="slider-wrap">
-              { show ? <Slider value={value} orientation="vertical" onChange={this.handleChange}/> : ''}
+              { show ? <Slider value={value} reverse={true} orientation="vertical" 
+              tooltip={false} onChange={this.handleChange}/> : ''}
             </div>
-            { /* <span className="slide-text">滑动此区域以展示更多</span> */ }
           </div>
         </div>
       </div>

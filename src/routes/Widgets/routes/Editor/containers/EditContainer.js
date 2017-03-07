@@ -14,7 +14,7 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId } from '../modules/edit'
+        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
 
 class EditContainer extends Component {
   
@@ -146,6 +146,15 @@ class EditContainer extends Component {
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
+        let codeDescCount = values.codeDescCount || 0
+
+        if ( codeDescCount == 0 ) {
+          this.props.updateCodeDesc({isDescErr: true})
+          return
+        } else {
+          this.props.updateCodeDesc({isDescErr: false})
+        }
+
         !values.appId && debug.warn('缺少appId')
 
         const url = getDomain(`web/developer/widget/${values.appId}/code`)
@@ -232,7 +241,8 @@ const mapDispatchToProps = {
   getAppInfo,
   updateFirstForm,
   receiveVersionsList,
-  receiveCodeId
+  receiveCodeId,
+  updateCodeDesc
 }
 
 const mapStateToProps = ({widgetEdit}) => ({

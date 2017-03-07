@@ -30,16 +30,18 @@ const getPreviewData = data => ({
   data,
 })
 
-export const fetchPreview = () => dispatch => new Promise(resolve => {
-  const apiUrl = getMobileDomain('web/merchant/page/3')
-  fetchUtil.getJSON(apiUrl).then(response => {
-      dispatch(getPreviewData(response.data))
-      resolve()
-  }).catch(e => {
-    alert(e)
-    // TODO : 错误处理
+export const fetchPreview = (pageID) => dispatch => {
+  const apiUrl = getMobileDomain(`web/merchant/page/${pageID}`)
+  return fetchUtil.getJSON(apiUrl, {debug: 1}).then(res => {
+    if(res.status == 200) {
+      dispatch(getPreviewData(res.data))
+    } else if(res.status == 4201){
+      alert('登陆异常，请重新登陆！')
+    } else {
+      console.log(res);
+    }
   })
-})
+}
 
 export const selectElement = id => (dispatch, getState) => dispatch({
   type: SELECT_ELEMENT,
@@ -47,10 +49,15 @@ export const selectElement = id => (dispatch, getState) => dispatch({
   selectedElement: getState().preview.elements.find(e => e.id === id),
 })
 
+export const cancelElement = () => ({
+  type: CANCEL_ELEMENT,
+})
+
 export const actions = {
   addElement,
   setLayout,
   selectElement,
+  cancelElement
 }
 
 const ACTION_HANDLERS = {
@@ -61,7 +68,6 @@ const ACTION_HANDLERS = {
     ...state, elements: state.elements.map(element => ({
       ...element, selected: false,
     })).concat({
-      id: getRandomString({})+"_"+Date.now(),
       selected: true,
       ...action.element,
     })

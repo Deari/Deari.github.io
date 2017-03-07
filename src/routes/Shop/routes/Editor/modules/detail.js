@@ -30,7 +30,7 @@ export const saveDetail = (element, detail) => dispatch => dispatch({
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 const getPublishStatus = async deployId => {
   const apiUrl = getMobileDomain(`web/merchant/deployPage/${deployId}/status`)
-  const result = await fetchUtil.getJSON(apiUrl)
+  const result = await fetchUtil.getJSON(apiUrl, {debug: 1})
   return result.data.status
 }
 
@@ -44,23 +44,24 @@ const repeatPublishStatus = async deployId => {
   }
 }
 
-export const savePage = pageId => (dispatch, getState) => new Promise((resolve, reject) => {
+export const savePage = pageId => (dispatch, getState) => {
   const state = getState()
   const apiUrl =  getMobileDomain('web/merchant/store/3/page/3/publish')
-  fetchUtil.postForm(apiUrl,{viewData: state.preview,}).then(v => {
-    console.log(state.preview, "postData");
+  return fetchUtil.postForm(apiUrl,{viewData: state.preview, debug: 1}).then(v => {
 
-    dispatch(startPublishPage())
-    const { deployId } = v.data
-    repeatPublishStatus(deployId).then(pubResult => {
-      dispatch(endPublishPage(pubResult))
-      resolve(v)
-    }).catch(e => {
-      console.log(e)
-    })
-
+    if(v.status == 200) {
+      dispatch(startPublishPage())
+      const { deployId } = v.data
+      repeatPublishStatus(deployId).then(pubResult => {
+        dispatch(endPublishPage(pubResult))
+      }).catch(e => {
+        console.log(e)
+      })
+    } else {
+      console.log(v)
+    }
   })
-})
+}
 
 export const startPublishPage = () => ({
   type: PAGE_PUBLISH_START,
