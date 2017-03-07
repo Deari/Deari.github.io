@@ -72,25 +72,23 @@ class ModalList extends Component {
     }
   }
   filterList(datalist){
-  
-    const newList = datalist.filter((v)=> {
-      if (!v.adminUnshelved && !v.devUnshelved) {
-        if (v.versions[1]) {
-          return (v.versions[0] && v.versions[0].publishStatus == 1) || (v.versions[1] && v.versions[1].publishStatus == 1)
-        } else {
-          return v.versions[0] && v.versions[0].publishStatus == 1
+    const newList =[]; 
+    datalist.map((item,index)=>{
+      if(!item.adminUnshelved && !item.devUnshelved){
+        for(let i =0;i<item.versions.slice(0,2).length;i++){
+          if(item.versions[i].publishStatus && item.versions[i].reviewStatus!=3){
+              newList.push(item)
+          }
         }
-      } else {
-         return false;
       }
     })
-      return(newList)
+    return(newList)
   }
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
+          const res = await fetchUtil.getJSON(apiUrl,{limit:5000});
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -104,7 +102,7 @@ class ModalList extends Component {
      }else if(this.props.type === 'widget'){
       const apiUrl = getDomain("web/developer/widgets")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
+          const res = await fetchUtil.getJSON(apiUrl,{limit:5000});
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)

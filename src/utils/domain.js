@@ -87,6 +87,12 @@ export function getApiDomain(url) {
   return domain + url.replace(domainReg, "")
 }
 
+export function getUploaderDomain(url) {
+  const domainReg = new RegExp("^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/|^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/")
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://api.ffan.com/app/v1/bo/v1/' : 'http://api.sit.ffan.com/app/v1/bo/v1/'
+  return domain + url.replace(domainReg, "")
+}
 // 判断从哪个路由跳转的
 export function getSourceVal(name) {
   const pathName = name || location.pathname

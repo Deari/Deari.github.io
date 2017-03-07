@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain, getUploaderDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -164,10 +164,11 @@ export class renderAPKFile extends Component {
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
+    const url = getUploaderDomain('web/bo_appstore?clientType=1');
     const readyChange = (that) => {
       if(xhr.readyState==4){
         if(xhr.status>=200&&xhr.status<300){
-          if (JSON.parse(xhr.responseText).status == 500 ||JSON.parse(xhr.responseText).status == 404) {
+          if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
             alert(JSON.parse(xhr.responseText).message);
             return
 
@@ -199,7 +200,7 @@ export class renderAPKFile extends Component {
     sessionId ? fd.append("X-Session-Id", sessionId):'';
     fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
                   //Ajax提交
-    xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+    xhr.open('POST',url,true);
           //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.onreadystatechange=function(){
       readyChange(that)

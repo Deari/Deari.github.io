@@ -122,7 +122,7 @@ class AppsList extends React.Component {
 
         if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
 
-        obj.showOpenLink = latestCodeStatus == 5
+        obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
         
         const editUrl = `/apps/edit/${obj.id}`
 
