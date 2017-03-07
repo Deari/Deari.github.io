@@ -145,16 +145,16 @@ export class renderAPKFile extends Component {
   state ={
     file: {},
     start: 0,
-    end: 5 * 1024 * 1024,
+    end: 1 * 1024 * 1024,
     sessionId: null,
-    shardSize: 5 * 1024 * 1024,
+    shardSize: 1 * 1024 * 1024,
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
     const fileValue = e.target.files[0];
     // const name = file.name;
     const size = fileValue.size;
-    const shardSize = 5 * 1024 * 1024 ;
+    const shardSize = 1 * 1024 * 1024 ;
     this.setState({shardSize:shardSize},this.upload(fileValue))
   }
 
