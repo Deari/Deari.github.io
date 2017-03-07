@@ -167,8 +167,8 @@ export class renderAPKFile extends Component {
     const readyChange = (that) => {
       if(xhr.readyState==4){
         if(xhr.status>=200&&xhr.status<300){
-          if (JSON.parse(xhr.responseText).status == 500) {
-            alert('文件发送失败，请重新发送');
+          if (JSON.parse(xhr.responseText).status == 500 ||JSON.parse(xhr.responseText).status == 404) {
+            alert(JSON.parse(xhr.responseText).message);
             return
 
             //des.style.width='0%';
@@ -199,7 +199,7 @@ export class renderAPKFile extends Component {
     sessionId ? fd.append("X-Session-Id", sessionId):'';
     fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
                   //Ajax提交
-    xhr.open('POST','http://xapi.intra.sit.ffan.net/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
+    xhr.open('POST','http://10.1.82.114/app/v1/bo/v1/web/bo_appstore?clientType=1',true);
           //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
     xhr.onreadystatechange=function(){
       readyChange(that)
