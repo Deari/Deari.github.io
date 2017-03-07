@@ -233,6 +233,7 @@ export class renderAPKFile extends Component {
             <input type="button" value="选择文件" />
             <input type="file" accept=".apk" onChange={::this.fileUpload} />
             {input.value.name?input.value.name:this.state.txt}
+
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
@@ -312,28 +313,5 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 </div>
   
 export default renderField
-    // const xhr=new XMLHttpRequest();
-    // xhr.open('POST',url,true);
-    // //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-    // xhr.onreadystatechange=function(){
-    //   if(xhr.readyState==4){
-    //     if(xhr.status==200){
-    //        const res = JSON.parse(xhr.responseText).data
-    //        console.log(res)
-    //     }
-    //   }
-    // }
-    // xhr.upload.onprogress=function(ev){
-    //   let pecent = 0
-    //   if(ev.lengthComputable){
-    //     pecent=100*(ev.loaded+start)/file.size;
-    //   if(pecent>100){
-    //     pecent=100;
-    //   }
-    //   console.log(pecent)
-    //   //num.innerHTML=parseInt(pecent)+'%';
-    //   //des.style.width=pecent+'%';
-    //   //des.innerHTML = parseInt(pecent)+'%'
-    //   }
-    // }
-    // xhr.send(formData);
+
+                //<b className='progress-stoke'><i className='progress-full'></i></b>

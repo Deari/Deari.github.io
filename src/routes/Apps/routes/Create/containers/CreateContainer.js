@@ -165,9 +165,9 @@ class CreateContainer extends Component {
             'autoPublish': values.autoPublish,
             'codeVersion': values.codeVersion,
             
-            'fileName': file.name,
-            'fileLink': file.url,
-            'fileSize': file.size,
+            'fileName': fileObj.name,
+            'fileLink': fileObj.url,
+            'fileSize': fileObj.size,
       
             'showUpdateMsg': Number(values.showUpdateMsg),
             'relatedApps': values.idList,

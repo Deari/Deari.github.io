@@ -89,8 +89,8 @@ export const LatestVersion = (props) => {
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
-  const publishVersionBundleSize = data.platform === 2 ? bundleSizeFixed(publishVersion.bundleSize2) : bundleSizeFixed(publishVersion.bundleSize)
-  const latestVersionBundleSize = data.platform === 2 ? bundleSizeFixed(latestVersion.bundleSize2) : bundleSizeFixed(latestVersion.bundleSize)
+  const publishVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion.bundleSize2) : bundleSizeFixed(publishVersion.bundleSize)
+  const latestVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(latestVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(latestVersion.bundleSize2) : bundleSizeFixed(latestVersion.bundleSize)
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">

@@ -78,12 +78,14 @@ class ModalList extends Component {
         for(let i =0;i<item.versions.slice(0,2).length;i++){
           if(item.versions[i].publishStatus && item.versions[i].reviewStatus!=3){
               newList.push(item)
+              break;
           }
         }
       }
     })
     return(newList)
   }
+
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
