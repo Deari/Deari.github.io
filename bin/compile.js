@@ -47,11 +47,11 @@ const compile = async () => {
 
     await repo.setRemote(remote.name, remote.url)
     // Fetch the remote repository if it exists
-    if ((await repo.hasRef(remote.url, 'master'))) {
-      await repo.fetch(remote.name)
-      await repo.reset(`${remote.name}/${branch}`, { hard: true })
-      await repo.clean({ force: true })
-    }
+    // if ((await repo.hasRef(remote.url, 'master'))) {
+    //   await repo.fetch(remote.name)
+    //   await repo.reset(`${remote.name}/${branch}`, { hard: true })
+    //   await repo.clean({ force: true })
+    // }
 
     debug('Starting compiler.')
     return Promise.resolve()
@@ -70,7 +70,7 @@ const compile = async () => {
           await repo.add('--all .')
           await repo.commit('Update')
           await repo.push(remote.name, `master:${branch}`, {
-            // force: 1
+            force: 1
           })
 
           // Check if the site was successfully deployed
