@@ -72,21 +72,25 @@ class ModalList extends Component {
     }
   }
   filterList(datalist){
-  
-    const newList = datalist.filter((v)=> {
-      if(v.versions[1]){
-        return (v.versions[0]&&v.versions[0].publishStatus==1) || (v.versions[1]&&v.versions[1].publishStatus==1)
-      }else{
-        return v.versions[0]&&v.versions[0].publishStatus==1
+    const newList =[]; 
+    datalist.map((item,index)=>{
+      if(item.appId!=this.props.appId&&!item.adminUnshelved && !item.devUnshelved){
+        for(let i =0;i<item.versions.slice(0,2).length;i++){
+          if(item.versions[i].publishStatus && item.versions[i].reviewStatus!=3){
+              newList.push(item)
+              break;
+          }
+        }
       }
     })
-      return(newList)
+    return(newList)
   }
+
    async componentDidMount() {
      if(this.props.type === 'app'){
        const apiUrl = getDomain("web/developer/apps")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
+          const res = await fetchUtil.getJSON(apiUrl,{limit:5000});
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -100,7 +104,7 @@ class ModalList extends Component {
      }else if(this.props.type === 'widget'){
       const apiUrl = getDomain("web/developer/widgets")
        try {
-          const res = await fetchUtil.getJSON(apiUrl, { review: 2 });
+          const res = await fetchUtil.getJSON(apiUrl,{limit:5000});
           if (res.status == 200) {
             this.setState({datalist:res.data && res.data.list})
             Object.assign(this.initial, res.data && res.data.list)
@@ -117,7 +121,7 @@ class ModalList extends Component {
    }
  
   render() {
-    const { idList, type } = this.props
+    const { idList, type} = this.props
     const { datalist } = this.state 
     const newList = this.filterList(datalist)
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'
@@ -151,6 +155,16 @@ class ModalList extends Component {
                         <div className="popup-info-price w78">免费</div>
                         <div className="popup-info-status w140">
                         {
+                          item.versions[0].publishStatus?
+                            item.versions.slice(0,1).map((v,k)=>{
+                              return(
+                              <div key={k}>
+                                <span className="info-status-info1"><i className={this.getStatus(item,v).activeColor == 'red' ? "color-red" : this.getStatus(item,v).activeColor == 'green' ? "color-green" : ""}></i>{v.codeVersion}</span>
+                                <span className="info-status-info2">{this.getStatus(item,v).status}</span>
+                              </div>
+                              )
+                            })
+                          :
                           item.versions.slice(0,2).map((v,k)=>{
                             return(
                             <div key={k}>

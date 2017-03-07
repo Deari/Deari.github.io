@@ -87,6 +87,7 @@ export function getApiDomain(url) {
   return domain + url.replace(domainReg, "")
 }
 
+
 // 判断从哪个路由跳转的
 export function getSourceVal(name) {
   const pathName = name || location.pathname

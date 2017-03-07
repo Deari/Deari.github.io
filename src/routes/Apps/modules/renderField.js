@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain, getUploaderDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
-
 export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
@@ -142,32 +141,136 @@ export class renderImageUpload extends Component {
   
 }
 
+export class renderAPKFile extends Component {
+  state ={
+    file: {},
+    start: 0,
+    end: 1 * 1024 * 1024,
+    sessionId: null,
+    shardSize: 1 * 1024 * 1024,
+    txt:""
+  }
+  fileUpload(e) {
+    if (!e.target.files[0]) return;
+    const fileValue = e.target.files[0];
+    // const name = file.name;
+    const size = fileValue.size;
+    const shardSize = 1 * 1024 * 1024 ;
+    this.setState({shardSize:shardSize,txt:"请稍等..."},this.upload(fileValue) )
+  }
+
+  upload(file){
+    const {start, end, shardSize, sessionId} = this.state
+     //计算每一片的起始与结束位置
+    const xhr=new XMLHttpRequest();
+    const fd = new FormData();
+    const that = this;
+    const url = getDomain('web/bo_appstore?clientType=1')
+    //xapi.intra.sit.ffan.net
+    //getUploaderDomain('web/bo_appstore?clientType=1')
+    const readyChange = (that) => {
+      if(xhr.readyState==4){
+        if(xhr.status>=200&&xhr.status<300){
+          if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
+            alert(JSON.parse(xhr.responseText).message);
+            return
+
+            //des.style.width='0%';
+            //num.innerHTML='';
+            //clearInterval(clock);
+          } else {
+            const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
+            const res = JSON.parse(xhr.responseText).data
+            let resp = JSON.parse(xhr.responseText).data.responseBody;
+            if(resp){
+              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp}, that.upload(file))
+            }else{
+               const fileObj ={
+                 url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
+                 name:file.name,
+                 size:file.size
+               }
+               console.log(fileObj)
+               this.props.input.onChange(fileObj)
+               return
+            }
+          }
+        }
+      }
+    }
+                //构造一个表单，FormData是HTML5新增的
+    fd.append("X-Content-Range", 'bytes ' + start + '-' + (end-1) + '/' + file.size)
+    sessionId ? fd.append("X-Session-Id", sessionId):'';
+    fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
+                  //Ajax提交
+    xhr.open('POST',url,true);
+          //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+    xhr.onreadystatechange=function(){
+      readyChange(that)
+    }
+    // xhr.upload.onprogress=function(ev){
+    //   if(ev.lengthComputable){
+    //     pecent=100*(ev.loaded+start)/file.size;
+    //   if(pecent>100){
+    //     pecent=100;
+    //   }
+    //   //num.innerHTML=parseInt(pecent)+'%';
+    //   des.style.width=pecent+'%';
+    //   des.innerHTML = parseInt(pecent)+'%'
+    //   }
+
+   xhr.send(fd);
+  }
+  
+  render() {
+    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
+    
+    return (
+      <div className="form-row">
+        <label>{label}</label>
+        <div className="row-right">
+          <span className="right-upload">
+            <input type="button" value="选择文件" />
+            <input type="file" accept=".apk" onChange={::this.fileUpload} />
+            {input.value.name?input.value.name:this.state.txt}
+
+          </span>
+          {(dirty || touched) && ((error && <span>{error}</span>))}
+        </div>
+      </div>
+    )
+  }
+  
+}
+
 export class renderFile extends Component {
 
   fileUpload(e) {
     if (!e.target.files[0]) return;
-
+    
     const url = getDomain("web/file/upload")
     const formData = new FormData()
-    formData.append('fileName', e.target.files[0])
+
+    
+    formData.append('fileName', e.target.files[ 0 ])
 
     fetchUtil.postJSON(url, formData, {
       jsonStringify: false,
       // credentials: true
-    }).then(res=>{
+    }).then(res => {
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
         debug.warn('文件代码包格式错误')
-      }
-    }).catch(e=>{
+      }        
+    }).catch(e => {
       console.log('网络错误', e)
     })
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
-    
+    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -182,8 +285,8 @@ export class renderFile extends Component {
       </div>
     )
   }
-  
 }
+
 export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>{label}</label>
   <div className="row-right max-width">
@@ -210,3 +313,5 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 </div>
   
 export default renderField
+
+                //<b className='progress-stoke'><i className='progress-full'></i></b>

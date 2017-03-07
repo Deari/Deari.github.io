@@ -73,7 +73,15 @@ export const BasicInfo = (props) => {
     </div>
   </div>
 }
-
+const bundleSizeFixed = (bundleSize)=>{
+    const KBSize = bundleSize/1024
+    const MBSize = bundleSize/1024/1024
+    if(MBSize<1){
+      return Math.round(KBSize) +'KB'
+    }else{
+      return Math.round(MBSize) +'MB'
+    }
+}
 export const LatestVersion = (props) => {
 
   const { latestVersion, showSize, data ,versionsAll=[]} = props
@@ -81,7 +89,8 @@ export const LatestVersion = (props) => {
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
-  console.log(latestVersion)
+  const publishVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion.bundleSize2) : bundleSizeFixed(publishVersion.bundleSize)
+  const latestVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(latestVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(latestVersion.bundleSize2) : bundleSizeFixed(latestVersion.bundleSize)
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
@@ -97,7 +106,7 @@ export const LatestVersion = (props) => {
         { showSize &&
           <div className="cell">
             <p className="title">大小</p>
-            <p className="text">{!data.mine? publishVersion.bundleSize :latestVersion.bundleSize  }</p>
+            <p className="text">{!data.mine? publishVersionBundleSize : latestVersionBundleSize  }</p>
           </div>
         }
         <div className="cell">

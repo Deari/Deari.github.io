@@ -46,7 +46,6 @@ class CreateAssocation extends Component {
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
-    console.log(appObj)
     return (
     <div className="association">
       <div className="form-row">

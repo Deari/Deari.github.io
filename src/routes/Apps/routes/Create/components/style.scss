@@ -120,12 +120,22 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         &>span{
             cursor: default!important;
         }
-        .right-upload{
-            input[type="button"]{
-                margin:0 10px 0 0;
-                display: inline-block;
-            }
-        }
+        // .right-upload{
+        //   .progress-stoke{
+        //      display: inline-block;
+        //      width: 32px;
+        //      height:17px;
+        //      border:1px #ccc solid;
+        //   }
+        //   .progress-full{
+        //     display: inline-block;
+        //   }
+          input[type="button"]{
+              margin:0 10px 0 0;
+              display: inline-block;
+          }
+
+        // }
         img{
             width: $default-width;
             height: $default-height;

@@ -100,7 +100,6 @@ class AppsList extends React.Component {
         let obj = {}
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
         let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
-        console.log(prevStatusObj)
         obj.id = item.appId && item.appId || ''
         obj.logo = item.appLogo && item.appLogo || ''
         obj.name = item.appName && item.appName || ''
@@ -123,7 +122,7 @@ class AppsList extends React.Component {
 
         if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
 
-        obj.showOpenLink = latestCodeStatus == 5
+        obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
         
         const editUrl = `/apps/edit/${obj.id}`
 
