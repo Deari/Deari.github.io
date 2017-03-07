@@ -74,7 +74,7 @@ class ModalList extends Component {
   filterList(datalist){
     const newList =[]; 
     datalist.map((item,index)=>{
-      if(!item.adminUnshelved && !item.devUnshelved){
+      if(item.appId!=this.props.appId&&!item.adminUnshelved && !item.devUnshelved){
         for(let i =0;i<item.versions.slice(0,2).length;i++){
           if(item.versions[i].publishStatus && item.versions[i].reviewStatus!=3){
               newList.push(item)
@@ -119,7 +119,7 @@ class ModalList extends Component {
    }
  
   render() {
-    const { idList, type } = this.props
+    const { idList, type} = this.props
     const { datalist } = this.state 
     const newList = this.filterList(datalist)
     const typeTxt = type === 'app' ? '应用' : type === 'widget' ? '组件' : '硬件'

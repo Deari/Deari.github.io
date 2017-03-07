@@ -34,7 +34,7 @@ const compose = (arr1, arr2, arr3) => {
 }
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
-  const {appKind, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList ,codeDesc} = initialValues
+  const {appKind, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList ,codeDesc,appId} = initialValues
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
   const appActive = appObj&&appObj.length!=0 ? 1:0;
@@ -120,6 +120,7 @@ const SecondStepForm = props => {
              onClose={()=> props.toggleActive({trim:0,type:""})}
         >
        <ModalList  name={active.type+"IdList"} 
+                   appId={appId}
                    component={ModalList} 
                    datalist={datalist} 
                    idList={active.type==='app'?idList:wIdList} 
