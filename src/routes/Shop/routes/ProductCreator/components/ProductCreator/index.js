@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './ProductCreator.scss'
 import Board from './Board'
 import { Accordion, Collapse } from 'components/Accordion'
-import { Messages } from 'components/Message'
+import Messages from 'components/Message'
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 
 class Todo extends Component {
@@ -60,10 +60,11 @@ export class ProductCreator extends Component {
   constructor(props) {
     super(props)
     this._messages = new Messages()
+    this.index = 0
   }
 
   onClick() {
-    this._messages.add(<div>sdfs</div>, 3000)
+    this._messages.add(<div>{`aaaaaaa${this.index++}`}</div>, 3000)
   }
 
   render() {
