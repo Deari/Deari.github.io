@@ -110,7 +110,7 @@ class EditContainer extends Component {
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
               if (versionRes.status == 200) {
                 let versionsList = '';
-                if (versionRes.data[0].reviewStatus == 3) {
+                if ( versionRes.data[0].reviewStatus === 3 || versionRes.data[0].reviewStatus === 0) {
                   versionsList = versionRes.data[1] ? this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus) : this.getVersionList('0.0.1', 0)               
                 } else {
                   versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)               
