@@ -88,30 +88,31 @@ export const LatestVersion = (props) => {
   
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
-  const publishVersion = versionsAll[1] && versionsAll[1].publishStatus ? versionsAll[1] : latestVersion;
-  const publishVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion.bundleSize2) : bundleSizeFixed(publishVersion.bundleSize)
-  const latestVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(latestVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(latestVersion.bundleSize2) : bundleSizeFixed(latestVersion.bundleSize)
+  const publishVersion =  latestVersion && latestVersion.publishStatus? latestVersion : versionsAll[1];
+
+  const publishVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion&&publishVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion&&publishVersion.bundleSize2) : bundleSizeFixed(publishVersion&&publishVersion.bundleSize)
+  const latestVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion&&latestVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion&&latestVersion.bundleSize2) : bundleSizeFixed(publishVersion&&latestVersion.bundleSize)
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
       <li className="item">
         <div className="cell">
           <p className="title">更新日期</p>
-          <p className="text">{!data.mine? publishVersion.codeUpdateTime : latestVersion.codeUpdateTime}</p>
+          <p className="text">{!data.mine? publishVersion&&publishVersion.codeUpdateTime : latestVersion.codeUpdateTime}</p>
         </div>
         <div className="cell">
           <p className="title">版本</p>
-          <p className="text">{!data.mine? publishVersion.codeVersion : latestVersion.codeVersion}</p>
+          <p className="text">{!data.mine? publishVersion&&publishVersion.codeVersion : latestVersion.codeVersion}</p>
         </div>
         { showSize &&
           <div className="cell">
             <p className="title">大小</p>
-            <p className="text">{!data.mine? publishVersionBundleSize : latestVersionBundleSize  }</p>
+            <p className="text">{!data.mine? publishVersion&&publishVersionBundleSize : latestVersionBundleSize  }</p>
           </div>
         }
         <div className="cell">
           <p className="title">版本介绍</p>
-          <p className="text">{!data.mine? publishVersion.codeDesc : latestVersion.codeDesc}</p>
+          <p className="text">{!data.mine?publishVersion&&publishVersion.codeDesc : latestVersion.codeDesc}</p>
         </div>
         { !showSize &&
           <div className="cell">
