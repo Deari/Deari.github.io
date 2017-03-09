@@ -145,17 +145,18 @@ export class renderAPKFile extends Component {
   state ={
     file: {},
     start: 0,
-    end: 5 * 1024 * 1024,
+    end: 1 * 1024 * 1024,
     sessionId: null,
-    shardSize: 5 * 1024 * 1024,
+    shardSize: 1 * 1024 * 1024,
+    txt:""
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
     const fileValue = e.target.files[0];
     // const name = file.name;
     const size = fileValue.size;
-    const shardSize = 5 * 1024 * 1024 ;
-    this.setState({shardSize:shardSize},this.upload(fileValue))
+    const shardSize = 1 * 1024 * 1024 ;
+    this.setState({shardSize:shardSize,txt:"请稍等..."},this.upload(fileValue) )
   }
 
   upload(file){
@@ -164,7 +165,7 @@ export class renderAPKFile extends Component {
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
-    const url = getUploaderDomain('web/bo_appstore?clientType=1')
+    const url = getDomain('web/bo_appstore?clientType=1')
     //xapi.intra.sit.ffan.net
     //getUploaderDomain('web/bo_appstore?clientType=1')
     const readyChange = (that) => {
@@ -185,7 +186,7 @@ export class renderAPKFile extends Component {
               that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp}, that.upload(file))
             }else{
                const fileObj ={
-                 url:'http://'+this.state.resp,
+                 url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
                  name:file.name,
                  size:file.size
                }
@@ -207,7 +208,6 @@ export class renderAPKFile extends Component {
     xhr.onreadystatechange=function(){
       readyChange(that)
     }
-
     // xhr.upload.onprogress=function(ev){
     //   if(ev.lengthComputable){
     //     pecent=100*(ev.loaded+start)/file.size;
@@ -218,6 +218,7 @@ export class renderAPKFile extends Component {
     //   des.style.width=pecent+'%';
     //   des.innerHTML = parseInt(pecent)+'%'
     //   }
+
    xhr.send(fd);
   }
   
@@ -231,7 +232,8 @@ export class renderAPKFile extends Component {
           <span className="right-upload">
             <input type="button" value="选择文件" />
             <input type="file" accept=".apk" onChange={::this.fileUpload} />
-            {input.value.name}
+            {input.value.name?input.value.name:this.state.txt}
+
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
@@ -249,6 +251,7 @@ export class renderFile extends Component {
     const url = getDomain("web/file/upload")
     const formData = new FormData()
 
+    
     formData.append('fileName', e.target.files[ 0 ])
 
     fetchUtil.postJSON(url, formData, {
@@ -310,3 +313,5 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 </div>
   
 export default renderField
+
+                //<b className='progress-stoke'><i className='progress-full'></i></b>

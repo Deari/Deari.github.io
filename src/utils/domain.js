@@ -56,7 +56,7 @@ export function getDomainEnv(url) {
 export function getMobileDomain(url) {
   const domainReg = new RegExp("^http:\/\/xapi\.intra\.(sit\.|test\.)?ffan\.net\/app\/v1\/bo\/v1\/|^http:\/\/xapi\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/")
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://api.ffan.com/app/v1/bo/v1/' : 'http://xapi.intra.sit.ffan.net/app/v1/bo/v1/'
+  const domain =  (env === 'pub') ? 'http://api.ffan.net/app/v1/bo/v1/' : 'http://xapi.intra.sit.ffan.net/app/v1/bo/v1/'
   return domain + url.replace(domainReg, "")
 }
 // 主站
@@ -69,7 +69,7 @@ export function getDomain(url) {
 
 export function getHardwareDomain(url) {
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://api.ffan.com/' : 'http://api.sit.ffan.com/'
+  const domain =  (env === 'pub') ? 'http://api.ffan.net/' : 'http://api.sit.ffan.net/'
   return domain + url
 }
 // 获取登录相关的接口地址
@@ -87,12 +87,7 @@ export function getApiDomain(url) {
   return domain + url.replace(domainReg, "")
 }
 
-export function getUploaderDomain(url) {
-  const domainReg = new RegExp("^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/|^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/")
-  const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://api.ffan.com/app/v1/bo/v1/' : 'http://api.sit.ffan.com/app/v1/bo/v1/'
-  return domain + url.replace(domainReg, "")
-}
+
 // 判断从哪个路由跳转的
 export function getSourceVal(name) {
   const pathName = name || location.pathname
