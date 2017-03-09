@@ -16,8 +16,8 @@ export const Promised = (Wrapped) => class extends Component {
 
   async componentDidMount() {
     try {
-      const apiUrl = getMobileDomain('web/merchant/page/3')
-      const res = await fetchUtil.getJSON(apiUrl)
+      const apiUrl = getMobileDomain('web/merchant/page/'+this.props.params.pageID)
+      const res = await fetchUtil.getJSON(apiUrl, { debug: 1 })
       if(res.status==200){
         if (typeof res.data.viewData === 'string') {
           res.data.viewData = JSON.parse(v.data.viewData)
