@@ -5,7 +5,12 @@ import { Field, reduxForm } from 'redux-form'
 import { renderField, renderSelect} from '../modules/renderField'
 import './widgetConfig.scss'
 class ConfigTpl extends Component {
-
+  addConfig(){
+    alert('add')
+  }
+  removeConfig(){
+    alert('remove')
+  }
   render(){
     const {configList}=this.props
     return (<div className='config-box'>
@@ -15,7 +20,7 @@ class ConfigTpl extends Component {
                 {
                 configList.map((item,index)=>(
                   <div key={index}  className="config-item">
-                  	<i className="iconfont icon-close"></i>
+                  	<i className="iconfont icon-close" onClick={this.removeConfig}></i>
                       <Field name={"type"+index} component={renderSelect}>
                         <option value="input">文本框</option>
                       </Field>
@@ -29,7 +34,7 @@ class ConfigTpl extends Component {
                 ))
                }
        					<div className="config-clx"></div>
-       					<div className="config-edit"><i className="iconfont icon-fileadd"></i>填写属性值</div>
+       					<div className="config-edit" onClick={this.addConfig}><i className="iconfont icon-fileadd"></i>填写属性值</div>
 			       </div>
 			    </div>)
   }
