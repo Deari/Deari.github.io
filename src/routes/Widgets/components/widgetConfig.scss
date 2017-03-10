@@ -1,14 +1,80 @@
 .config-box{
-
-  .form-row{
-    width: 94px;
-    padding: 0px 93px 0px 80px;
-    label{
-       height:30px;
+    width: 874px;
+    padding: 0 93px 45px 80px;
+    overflow: hidden;
+    background: #fff;
+    margin-top: -45px;
+    .config-contain{
+        border-radius: 2px;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        margin-left: 109px;
+        padding-top: 36px;
+        .config-btn{
+            width: 100px;
+            height: 30px;
+            background: #9bcd65;
+            border: 1px solid #89ab62;
+            border-radius: 2px;
+            margin: 10px 12px 22px 0;
+            float: right;
+            display: none;
+        }
+        .config-clx{
+            clear: both;
+        }
+        .form-row{
+            padding: 0;
+            width:106px;
+            float: left;
+            padding-left: 10px;
+            label{
+                float: left;
+            }
+            select{
+                width: 96px;
+                height: 34px;
+                border-radius: 2px;
+                border: 1px solid #ddd;
+                color: #999999;
+                outline: none;
+                appearance:none;
+                -moz-appearance:none;
+                -webkit-appearance:none;
+                background: url(../../Home/assets/arrD.png) no-repeat 80px center;
+                background-size: 12px 6px;
+            }
+        }
+        .config-textBox{
+            float:left;
+            margin-bottom: 34px;
+            .form-row{
+                float: none;
+                margin:0 0 12px 16px;
+                width:380px;
+                padding-left: 0;
+                label{
+                    height: 0;
+                }
+                input{
+                    width:380px;
+                    height:34px;
+                    border-radius: 2px;
+                    border: 1px solid #ddd;
+                    color: #999999;
+                    padding-left: 10px;
+                }
+            }
+        }
+        .config-edit{
+            margin: 0 10px 20px;
+            border-radius: 2px;
+            border: 1px dashed #ddd;
+            height: 34px;
+            line-height: 34px;
+            text-align: center;
+            color: #999999;
+            display: none;
+        }
     }
-
-  }
-  .config-textBox{
-    float:left;
-  }
 }
