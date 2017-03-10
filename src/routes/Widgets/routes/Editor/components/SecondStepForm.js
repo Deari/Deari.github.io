@@ -8,6 +8,8 @@ import { validate } from '../../../modules/validate'
 
 import { toggleStep, updateCodeDesc } from '../modules/edit'
 
+import ConfigTpl from '../../../components/WidgetConfig'
+
 class SecondStepForm extends React.Component {
 
   state = {
@@ -66,6 +68,7 @@ class SecondStepForm extends React.Component {
           }
         </Field>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
+        {appKind === 0 && <ConfigTpl versionsList={versionsList}/>}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">

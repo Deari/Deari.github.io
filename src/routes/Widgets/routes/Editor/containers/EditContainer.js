@@ -32,7 +32,7 @@ class EditContainer extends Component {
         this.props.getAppInfo(appId);
         this.props.fetchTags()
         this.props.fetchCates()
-        this.props.toggleStep(1)
+        this.props.toggleStep(2)
       } else {
         debug.warn("登录失败")
       }
@@ -135,7 +135,8 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-
+    console.log(values)
+    return
     this.isLogin()
 
     let sourceVal = getSourceVal()
