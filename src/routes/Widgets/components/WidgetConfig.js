@@ -15,6 +15,7 @@ class ConfigTpl extends Component {
                 {
                 configList.map((item,index)=>(
                   <div key={index}  className="config-item">
+                  	<i className="iconfont icon-close"></i>
                       <Field name={"type"+index} component={renderSelect}>
                         <option value="input">文本框</option>
                       </Field>
@@ -28,7 +29,7 @@ class ConfigTpl extends Component {
                 ))
                }
        					<div className="config-clx"></div>
-       					<div className="config-edit">填写属性值</div>
+       					<div className="config-edit"><i className="iconfont icon-fileadd"></i>填写属性值</div>
 			       </div>
 			    </div>)
   }
