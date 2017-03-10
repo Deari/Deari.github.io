@@ -38,7 +38,7 @@ class EditContainer extends Component {
       if (status) {
         const { params } = this.props
         const appId = parseInt(params.appId)
-        this.props.toggleStep(1)
+        this.props.toggleStep(2)
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)

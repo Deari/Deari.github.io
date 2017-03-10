@@ -148,7 +148,9 @@ export class renderAPKFile extends Component {
     end: 1 * 1024 * 1024,
     sessionId: null,
     shardSize: 1 * 1024 * 1024,
-    txt:""
+    txt:"",
+    index:0,
+    pressNum:0,
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
@@ -156,34 +158,31 @@ export class renderAPKFile extends Component {
     // const name = file.name;
     const size = fileValue.size;
     const shardSize = 1 * 1024 * 1024 ;
-    this.setState({shardSize:shardSize,txt:"请稍等..."},this.upload(fileValue) )
+    const pressNum = Math.ceil(size/shardSize)
+    console.log(pressNum)
+    this.setState({shardSize:shardSize,txt:"上传中...",pressNum:pressNum,index:0, sessionId: null},this.upload(fileValue) )
   }
 
   upload(file){
-    const {start, end, shardSize, sessionId} = this.state
-     //计算每一片的起始与结束位置
+    const {start, end, shardSize, sessionId,index} = this.state
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
     const url = getDomain('web/bo_appstore?clientType=1')
-    //xapi.intra.sit.ffan.net
-    //getUploaderDomain('web/bo_appstore?clientType=1')
     const readyChange = (that) => {
+ 
       if(xhr.readyState==4){
         if(xhr.status>=200&&xhr.status<300){
           if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
             alert(JSON.parse(xhr.responseText).message);
             return
-
-            //des.style.width='0%';
-            //num.innerHTML='';
-            //clearInterval(clock);
           } else {
             const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
             const res = JSON.parse(xhr.responseText).data
             let resp = JSON.parse(xhr.responseText).data.responseBody;
             if(resp){
-              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp}, that.upload(file))
+              const newIndex = index+1;
+              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp,index:newIndex}, that.upload(file))
             }else{
                const fileObj ={
                  url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
@@ -198,33 +197,35 @@ export class renderAPKFile extends Component {
         }
       }
     }
-                //构造一个表单，FormData是HTML5新增的
     fd.append("X-Content-Range", 'bytes ' + start + '-' + (end-1) + '/' + file.size)
     sessionId ? fd.append("X-Session-Id", sessionId):'';
-    fd.append("data", file.slice(start,end));  //slice方法用于切出文件的一部分
-                  //Ajax提交
+    fd.append("data", file.slice(start,end));  
+
     xhr.open('POST',url,true);
-          //xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+         
     xhr.onreadystatechange=function(){
       readyChange(that)
     }
-    // xhr.upload.onprogress=function(ev){
-    //   if(ev.lengthComputable){
-    //     pecent=100*(ev.loaded+start)/file.size;
-    //   if(pecent>100){
-    //     pecent=100;
-    //   }
-    //   //num.innerHTML=parseInt(pecent)+'%';
-    //   des.style.width=pecent+'%';
-    //   des.innerHTML = parseInt(pecent)+'%'
-    //   }
-
-   xhr.send(fd);
+    xhr.send(fd);
   }
-  
+  getArr(pressNum){
+    if(pressNum<=0) return
+    const newArr = [];
+    for(let i = 1;i<=pressNum;i++){
+      newArr.push(i)
+    }
+    return(newArr)
+  }
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
-    
+    const {pressNum,index}=this.state;
+    const stokeStyle = {
+      width:Math.round((1/pressNum)*300)+"px",
+    }
+    const fillStyle = {
+      width:Math.round((1/pressNum)*300)-2+"px"
+    }
+    const pressArr = this.getArr(pressNum)
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -233,7 +234,17 @@ export class renderAPKFile extends Component {
             <input type="button" value="选择文件" />
             <input type="file" accept=".apk" onChange={::this.fileUpload} />
             {input.value.name?input.value.name:this.state.txt}
-
+            <span className="progress-box">
+            {
+              Array.isArray(pressArr)&&pressArr.map((item,key)=>{
+                return(
+                  <b key={key} className="progress-stoke" style={stokeStyle}><i className={item <= index ? 'progressed-fill' : 'progress-fill'} style={fillStyle}></i></b>
+                )
+              })     
+            }
+            {index&&pressNum? <b className='progress-num'>{index}MB/共{pressNum}MB</b>:''}
+           
+           </span>
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
