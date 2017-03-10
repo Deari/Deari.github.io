@@ -5,20 +5,28 @@ import { Field, reduxForm } from 'redux-form'
 import { renderField, renderSelect} from '../modules/renderField'
 import './widgetConfig.scss'
 class ConfigTpl extends Component {
+
   render(){
+    const {configList}=this.props
     return (<div className='config-box'>
     					<div className="config-contain">
     						<div className="config-btn"></div>
     						<div className="config-clx"></div>
-				        <Field name="type" component={renderSelect}>
-				          <option value="input">文本框</option>
-				        </Field>
-				        <div className='config-textBox'>
-					        <Field name="label"  placeholder="标题" component={renderField}></Field>
-					        <Field name="id"  placeholder="KEY" component={renderField}></Field>
-					        <Field name="value"  placeholder="VALUE" component={renderField}></Field>
-					        <Field name="desc"  placeholder="描述" component={renderField}></Field>
-       					</div>
+                {
+                configList.map((item,index)=>(
+                  <div key={index}  className="config-item">
+                      <Field name={"type"+index} component={renderSelect}>
+                        <option value="input">文本框</option>
+                      </Field>
+                      <div className='config-textBox'>
+                        <Field name={"label"+index}  placeholder="标题" component={renderField}></Field>
+                        <Field name={"id"+index}  placeholder="KEY" component={renderField}></Field>
+                        <Field name={"value"+index}  placeholder="VALUE" component={renderField}></Field>
+                        <Field name={"desc"+index}  placeholder="描述" component={renderField}></Field>
+                      </div>
+                  </div>
+                ))
+               }
        					<div className="config-clx"></div>
        					<div className="config-edit">填写属性值</div>
 			       </div>

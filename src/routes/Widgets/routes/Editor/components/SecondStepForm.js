@@ -28,7 +28,7 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr } = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
     const { totalCount } = this.state
 
     return (
@@ -68,7 +68,7 @@ class SecondStepForm extends React.Component {
           }
         </Field>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
-        {appKind === 0 && <ConfigTpl versionsList={versionsList}/>}
+        {appKind === 0 && <ConfigTpl configList={configList}/>}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">

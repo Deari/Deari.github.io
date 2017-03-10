@@ -219,6 +219,24 @@ const initialState = {
       { value: "0.1.0" },
       { value: "1.0.0" }
     ],
+    configList:[
+      {
+        id: '',
+        label: '',
+        type: 'input',
+        value: '',
+        enableEdit: true,
+        desc: ''
+      },
+      {
+        id: '',
+        label: '',
+        type: 'input',
+        value: '',
+        enableEdit: true,
+        desc: ''
+      }
+    ],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
