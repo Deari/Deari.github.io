@@ -1101,6 +1101,21 @@ header > p {
         width: 100%;
 }
 
+.image{
+        position: relative;
+}
+
+.image span{
+        position: absolute;
+        top: 40%;
+        text-align: center;
+        display: block;
+        left: 0;
+        width: 100%;
+        font-size: 1em;
+        color: #fff;
+}
+
 .image.featured {
         display: block;
         width: 100%;
