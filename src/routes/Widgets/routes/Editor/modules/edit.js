@@ -396,10 +396,8 @@ export const getAppInfo = (appId) => {
           fileName, fileLink, moduleName, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
           rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
-        const codeDescCount = codeDesc.length
+        const codeDescCount = codeDesc && codeDesc.length 
         let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
-
-        
 
         const tagId = tags.map(v=>v.tagId)
         dispatch(updateForm({

@@ -143,14 +143,14 @@ export class renderImageUpload extends Component {
 
 export class renderAPKFile extends Component {
   state ={
-    file: {},
     start: 0,
     end: 1 * 1024 * 1024,
-    sessionId: null,
+    sessionId: 0,
     shardSize: 1 * 1024 * 1024,
     txt:"",
     index:0,
     pressNum:0,
+    resp:''
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
@@ -159,12 +159,11 @@ export class renderAPKFile extends Component {
     const size = fileValue.size;
     const shardSize = 1 * 1024 * 1024 ;
     const pressNum = Math.ceil(size/shardSize)
-    console.log(pressNum)
-    this.setState({shardSize:shardSize,txt:"上传中...",pressNum:pressNum,index:0, sessionId: null},this.upload(fileValue) )
+    this.setState({ index: 0, sessionId: 0, start: 0, end: shardSize, shardSize: shardSize, txt: "上传中...", pressNum: pressNum ,resp:''}, ()=>{this.upload(fileValue)})
   }
 
   upload(file){
-    const {start, end, shardSize, sessionId,index} = this.state
+    const {start, end, shardSize, sessionId, index} = this.state
     const xhr=new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
@@ -182,7 +181,8 @@ export class renderAPKFile extends Component {
             let resp = JSON.parse(xhr.responseText).data.responseBody;
             if(resp){
               const newIndex = index+1;
-              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp,index:newIndex}, that.upload(file))
+              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp,index:newIndex})
+              that.upload(file)
             }else{
                const fileObj ={
                  url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
@@ -218,7 +218,7 @@ export class renderAPKFile extends Component {
   }
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
-    const {pressNum,index}=this.state;
+    const {pressNum, index} = this.state;
     const stokeStyle = {
       width:Math.round((1/pressNum)*420)+"px",
     }
@@ -232,8 +232,8 @@ export class renderAPKFile extends Component {
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
-            <input type="file" accept=".apk" onChange={::this.fileUpload} />
-            {input.value.name?input.value.name:this.state.txt}
+            <input type="file" accept=".apk" onChange={this.fileUpload.bind(this)} />
+            {index && pressNum && index < pressNum ? this.state.txt : input.value.name}
             <span className="progress-box">
             {
               Array.isArray(pressArr)&&pressArr.map((item,key)=>{
