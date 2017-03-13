@@ -44,7 +44,6 @@ class ConfigTpl extends Component {
                   </div>
               ))
                }
-       					<div className="config-clx"></div>
        					<div className="config-edit" onClick={this.addConfig.bind(this)}><i className="iconfont icon-fileadd"></i>填写属性值</div>
 			       </div>
 			    </div>)
