@@ -41,10 +41,10 @@ class ConfigTpl extends Component {
                         <option value="input">文本框</option>
                       </select>
                       <div className='config-textBox'>
-                        <input type='text' placeholder="标题" onChange={this.titleChange.bind(this,index)}/>
-                        <input type='text' placeholder="KEY" onChange={this.keyChange.bind(this,index)}/>
-                        <input type='text' placeholder="VALUE" onChange={this.valueChange.bind(this,index)}/>
-                        <input type='text' placeholder="描述" onChange={this.descChange.bind(this,index)}/> 
+                        <input type='text' placeholder="标题" value={item.label&&item.label} onChange={this.titleChange.bind(this,index)}/>
+                        <input type='text' placeholder="KEY" value={item.id&&item.id} onChange={this.keyChange.bind(this,index)}/>
+                        <input type='text' placeholder="VALUE" value={item.value&&item.value} onChange={this.valueChange.bind(this,index)}/>
+                        <input type='text' placeholder="描述" value={item.desc&&item.desc} onChange={this.descChange.bind(this,index)}/> 
                       </div>
                     </div>
                   ))

@@ -402,10 +402,11 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
-          fileName, fileLink, moduleName, setting, } = res.data
+          fileName, fileLink, moduleName, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
-          rnFrameworkVersion = 0,} = res.data && res.data.versions[0]
+          rnFrameworkVersion = 0, codeSetting =[]} = res.data && res.data.versions[0]
         const codeDescCount = codeDesc.length
+        const setting = !res.data.versions[0].codeSetting?res.data.versions[1].codeSetting:res.data.versions[0].codeSetting
         const tagId = tags.map(v=>v.tagId)
         dispatch(updateForm({
           appId,
@@ -415,9 +416,9 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({ 
           appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName,  
         }))
-        
+        !res.data.versions[0]&&!res.data.versions[1]?'':dispatch(updateForm2({configList:JSON.parse(setting)}))
       } else {
         debug.warn("获取组件详情失败")
       }
