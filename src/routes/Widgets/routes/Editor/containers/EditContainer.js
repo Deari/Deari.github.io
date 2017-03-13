@@ -32,7 +32,7 @@ class EditContainer extends Component {
         this.props.getAppInfo(appId);
         this.props.fetchTags()
         this.props.fetchCates()
-        this.props.toggleStep(2)
+        this.props.toggleStep(1)
       } else {
         debug.warn("登录失败")
       }
@@ -135,8 +135,7 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-    console.log(values)
-    return
+
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -173,6 +172,7 @@ class EditContainer extends Component {
             'fileSize': file.fileSize,
             'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
+            'setting': JSON.stringify(values.configList)
           })
           delete params.file
         } else if(values.appKind === 1) {
@@ -186,7 +186,7 @@ class EditContainer extends Component {
           formData.append(key, params[key])
         }
 
-        fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
+        fetchUtil.postJSON(url, formData, {Stringify: false}).then(res=>{
           if (res.status == 200) {
             this.props.toggleStep(3);
           } else {

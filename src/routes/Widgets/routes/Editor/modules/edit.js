@@ -21,10 +21,42 @@ const UPDATE_FORM2 = 'UPDATE_FORM2'
 const UPDATE_CODE_DESC = 'UPDATE_CODE_DESC'
 
 const UPDATE_CONFIGARR = 'UPDATE_CONFIGARR'
+const UPDATE_CONFIGTYPE = 'UPDATE_CONFIGTYPE'
+const UPDATE_CONFIGID = 'UPDATE_CONFIGID'
+const UPDATE_CONFIGLABEL = 'UPDATE_CONFIGLABEL'
+const UPDATE_CONFIGVALUE = 'UPDATE_CONFIGVALUE'
+const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
+
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
   index
 })
+export const updateconfigType = (index,configType)=>({
+  type:UPDATE_CONFIGTYPE,
+  configType,
+  index
+})
+export const updateconfigId = (index,id)=>({
+  type:UPDATE_CONFIGID,
+  id,
+  index
+})
+export const updateconfigLabel = (index,label)=>({
+  type:UPDATE_CONFIGLABEL,
+  label,
+  index
+})
+export const updateconfigValue = (index,value)=>({
+  type:UPDATE_CONFIGVALUE,
+  value,
+  index
+})
+export const updateconfigDesc = (index,desc)=>({
+  type:UPDATE_CONFIGDESC,
+  desc,
+  index
+})
+
 
 export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
@@ -86,13 +118,73 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+  [UPDATE_CONFIGTYPE]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].type = action.configType
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGDESC]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].desc = action.desc
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGVALUE]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].value = action.value
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGLABEL]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].label = action.label
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGID]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].id = action.id
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [UPDATE_CONFIGARR]:(state,action)=>{
     const configList = state.form2.configList;
     let newList = [...configList];
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: '', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,}
       newList.push(obj)
     }
     return{
@@ -244,7 +336,7 @@ const initialState = {
     ],
     configList:[
       {
-        type:'',
+        type:'input',
         id:0,
         label:'',
         value:'',
