@@ -268,16 +268,7 @@ const initialState = {
     platform: 2,
     appKind: 0,
     showUpdateMsg: 0,
-    configList:[
-      {
-        type:'input',
-        id:0,
-        label:'',
-        value:'',
-        enableEdit: true,
-        desc:''
-      }
-    ],
+    configList:[],
     appId: -1,
     codeId: -1,
     autoPublish: 1,

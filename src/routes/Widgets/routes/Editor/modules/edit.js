@@ -334,16 +334,7 @@ const initialState = {
       { value: "0.1.0" },
       { value: "1.0.0" }
     ],
-    configList:[
-      {
-        type:'input',
-        id:'',
-        label:'',
-        value:'',
-        enableEdit: true,
-        desc:''
-      }
-    ],
+    configList:[],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
