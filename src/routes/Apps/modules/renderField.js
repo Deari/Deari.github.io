@@ -220,10 +220,10 @@ export class renderAPKFile extends Component {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     const {pressNum,index}=this.state;
     const stokeStyle = {
-      width:Math.round((1/pressNum)*300)+"px",
+      width:Math.round((1/pressNum)*420)+"px",
     }
     const fillStyle = {
-      width:Math.round((1/pressNum)*300)-2+"px"
+      width:Math.round((1/pressNum)*420)-2+"px"
     }
     const pressArr = this.getArr(pressNum)
     return (
