@@ -20,6 +20,12 @@ const UPDATE_FORM = 'UPDATE_FORM'
 const UPDATE_FORM2 = 'UPDATE_FORM2'
 const UPDATE_CODE_DESC = 'UPDATE_CODE_DESC'
 
+const UPDATE_CONFIGARR = 'UPDATE_CONFIGARR'
+export const updateConfigArr = (index)=>({
+  type:UPDATE_CONFIGARR,
+  index
+})
+
 export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
 })
@@ -80,6 +86,23 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+  [UPDATE_CONFIGARR]:(state,action)=>{
+    const configList = state.form2.configList;
+    let newList = [...configList];
+    if(action.index!=-1){
+      newList.splice(action.index,1)
+    }else{
+      const obj = { type: '', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      newList.push(obj)
+    }
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [RECEIVE_CODEID]:(state,action)=>{
     return {
       ...state,
@@ -220,7 +243,14 @@ const initialState = {
       { value: "1.0.0" }
     ],
     configList:[
-      0
+      {
+        type:'',
+        id:0,
+        label:'',
+        value:'',
+        enableEdit: true,
+        desc:''
+      }
     ],
     codeDesc: '',
     codeDescCount: 0,

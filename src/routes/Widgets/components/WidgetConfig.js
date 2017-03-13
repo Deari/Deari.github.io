@@ -1,15 +1,26 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames';
-import { Field, reduxForm } from 'redux-form'
-import { renderField, renderSelect} from '../modules/renderField'
+import{updateConfigArr} from '../routes/Editor/modules/edit';
 import './widgetConfig.scss'
 class ConfigTpl extends Component {
   addConfig(){
-    alert('add')
+    this.props.updateConfigArr(-1)
   }
-  removeConfig(){
-    alert('remove')
+  removeConfig(index){
+    this.props.updateConfigArr(index)
+  }
+  titleChange(){
+    alert('title')
+  }
+  keyChange(){
+    alert('key') 
+  }
+  valueChange(){
+    alert('value')
+  }
+  descChange(){
+    alert('desc')
   }
   render(){
     const {configList}=this.props
@@ -20,26 +31,27 @@ class ConfigTpl extends Component {
                 {
                 configList.map((item,index)=>(
                   <div key={index}  className="config-item">
-                  	<i className="iconfont icon-close" onClick={this.removeConfig}></i>
-                      <Field name={"type"+index} component={renderSelect}>
-                        <option value="input">文本框</option>
-                      </Field>
-                      <div className='config-textBox'>
-                        <Field name={"label"+index}  placeholder="标题" component={renderField}></Field>
-                        <Field name={"id"+index}  placeholder="KEY" component={renderField}></Field>
-                        <Field name={"value"+index}  placeholder="VALUE" component={renderField}></Field>
-                        <Field name={"desc"+index}  placeholder="描述" component={renderField}></Field>
-                      </div>
+                  	<i className="iconfont icon-close" onClick={this.removeConfig.bind(this,index)}></i>
+                    <select>
+                      <option value="input">文本框</option>
+                    </select>
+                    <div className='config-textBox'>
+                      <input type='text' placeholder="标题" onChange={this.titleChange}/>
+                      <input type='text' placeholder="KEY" onChange={this.keyChange}/>
+                      <input type='text' placeholder="VALUE" onChange={this.valueChange}/>
+                      <input type='text' placeholder="描述" onChange={this.descChange}/> 
+                    </div>
                   </div>
-                ))
+              ))
                }
        					<div className="config-clx"></div>
-       					<div className="config-edit" onClick={this.addConfig}><i className="iconfont icon-fileadd"></i>填写属性值</div>
+       					<div className="config-edit" onClick={this.addConfig.bind(this)}><i className="iconfont icon-fileadd"></i>填写属性值</div>
 			       </div>
 			    </div>)
   }
 }
 const mapDispatchToProps = {
+  updateConfigArr
 }
 
 const mapStateToProps = ({ widgetEdit }) => ({
