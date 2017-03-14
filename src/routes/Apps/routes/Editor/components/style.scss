@@ -125,6 +125,41 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 margin:0 10px 0 0;
                 display: inline-block;
             }
+            .progress-box{
+               display: block;
+               width: 574px;
+               margin-top: 10px;
+              .progress-num{
+                  font-weight: normal;
+                  font-size: 12px;
+                  color:#999;
+                  float:right;
+                  margin-top: 4px;
+              }
+              .progress-stoke{
+                position: relative;
+                display: inline-block;
+                height: 6px;
+                border: 1px solid #eee;
+    
+                .progress-fill{
+                  position: absolute;
+                  left:1;
+                  background: #fff;
+                  display: inline-block;
+                  height: 4px;
+                }
+                .progressed-fill{
+                  position: absolute;
+                  left:1;
+                  background: -webkit-linear-gradient(#57acff,#2692fb);
+                  display: inline-block;
+                  height: 4px;
+                }
+              }
+            }
+           
+            
         }
         img{
             width: $default-width;

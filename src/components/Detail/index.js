@@ -74,6 +74,9 @@ export const BasicInfo = (props) => {
   </div>
 }
 const bundleSizeFixed = (bundleSize)=>{
+   if(!bundleSize){
+     bundleSize = 0
+   }
     const KBSize = bundleSize/1024
     const MBSize = bundleSize/1024/1024
     if(MBSize<1){
@@ -83,15 +86,18 @@ const bundleSizeFixed = (bundleSize)=>{
     }
 }
 export const LatestVersion = (props) => {
-
   const { latestVersion, showSize, data ,versionsAll=[]} = props
-  
   const defaultLayout = data.defaultLayout || {}
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion =  latestVersion && latestVersion.publishStatus? latestVersion : versionsAll[1];
-
-  const publishVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion&&publishVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion&&publishVersion.bundleSize2) : bundleSizeFixed(publishVersion&&publishVersion.bundleSize)
-  const latestVersionBundleSize = data.appKind == 2 ? bundleSizeFixed(publishVersion&&latestVersion.fileSize) : data.platform === 2 ? bundleSizeFixed(publishVersion&&latestVersion.bundleSize2) : bundleSizeFixed(publishVersion&&latestVersion.bundleSize)
+  const publishVersionBundleSize = data.appKind == 2 ? 
+  bundleSizeFixed(publishVersion&&publishVersion.fileSize) : 
+  data.platform === 2 ? 
+  bundleSizeFixed(publishVersion&&publishVersion.bundleSize2) : bundleSizeFixed(publishVersion&&publishVersion.bundleSize)
+  const latestVersionBundleSize = data.appKind == 2 ? 
+  bundleSizeFixed(publishVersion&&latestVersion.fileSize) : 
+  data.platform === 2 ? 
+  bundleSizeFixed(publishVersion&&latestVersion.bundleSize2) : bundleSizeFixed(publishVersion&&latestVersion.bundleSize)
   return <div className="table-info">
     <h3 className="app-title">版本信息</h3>
     <ul className="detail-tableList">
