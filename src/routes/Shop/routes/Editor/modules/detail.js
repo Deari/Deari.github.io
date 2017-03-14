@@ -10,20 +10,6 @@ function makeActionCreator(type, ...argNames) {
     return action
   }
 }
-function fixedDate(state){
-  const newState = {
-    ...state,
-  }
-  newState.preview.elements.map((v,k)=>{
-    const obj = {};
-    Array.isArray(v.codeSetting)&& v.codeSetting.length > 0? v.codeSetting.map((item,index)=>{
-      obj[item.id]=item.value;
-    }):null;
-    v.codeSetting = obj
-  })
-  return newState
-}
-
 const SELECT_ELEMENT = 'SELECT_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
 
 const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
@@ -59,9 +45,8 @@ const repeatPublishStatus = async deployId => {
 
 export const savePage = pageId => (dispatch, getState) => {
   const state = getState()
-  const newState = fixedDate(state)
   const apiUrl =  getMobileDomain('web/merchant/store/3/page/3/publish')
-  return fetchUtil.postForm(apiUrl,{viewData: newState.preview, debug: 1}).then(v => {
+  return fetchUtil.postForm(apiUrl,{viewData: state.preview, debug: 1}).then(v => {
     if(v.status == 200) {
       dispatch(startPublishPage())
       const { deployId } = v.data
