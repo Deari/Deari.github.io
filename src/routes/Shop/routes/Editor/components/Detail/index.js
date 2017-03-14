@@ -18,15 +18,26 @@ export class Detail extends Component {
     const { codeSetting } = element;
 
     if (!element.id) {
-      return <div className="share">
-        <div className="bg-qr">
-          <i className="iconfont icon-leftjiao"></i>
-          <div className="qr"></div>
+      return <div>
+        <h3 className="sidebar-right-title">扫描预览</h3>
+        <div className="share">  
+            <div className="qr"></div>
         </div>
-        <p className="text" style={{'text-align': 'center'}}>用蓝海APP扫描<br/>即可预览店铺装修效果</p>
+         <p className="text" style={{'text-align': 'center'}}>用蓝海APP扫描<br/>即可预览店铺装修效果</p>
       </div>
     }
 
+<div id="detail-container">
+  <h3 class="sidebar-right-title">扫描预览</h3>
+  <div class="share">
+    <div class="qr"></div>
+  </div>
+  <p class="qr-text">用蓝海APP扫描即可预览装修效果</p>
+  <div class="btn-block">
+    <button class="m-btn m-btn-blue m-btn-block ">
+    <i class="iconfont icon-save"></i>保存并发布</button>
+  </div>
+</div>
     if (element.moduleType === 'html5') {
       const { Detail } = Business[ element.moduleName ]
       if (Detail) {
@@ -42,6 +53,7 @@ export class Detail extends Component {
     return <div>
       {Array.isArray(codeSetting) && codeSetting.length > 0 ?
         <div className="editor-container">
+         <h3 className="sidebar-right-title">门店信息</h3>
         {
           codeSetting.map(({ label, type, enableEdit, value ,desc}) => enableEdit && 
           allowEditItemList.findIndex(item=>item === type) > -1 ? 
