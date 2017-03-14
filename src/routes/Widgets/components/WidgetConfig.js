@@ -17,8 +17,7 @@ class ConfigTpl extends Component {
     this.props.updateconfigLabel(index,e.target.value)
   }
   keyChange(index,e){
-    const id = parseInt(e.target.value)
-    this.props.updateconfigId(index,id)
+    this.props.updateconfigId(index,e.target.value)
   }
   valueChange(index,e){
     this.props.updateconfigValue(index,e.target.value)
@@ -42,7 +41,7 @@ class ConfigTpl extends Component {
                       </select>
                       <div className='config-textBox'>
                         <input type='text' placeholder="标题" value={item.label?item.label:''} onChange={this.titleChange.bind(this,index)}/>
-                        <input type='text' placeholder="KEY" value={item.id?item.id:''} onChange={this.keyChange.bind(this,index)}/>
+                        <input type='number' placeholder="KEY" value={item.id?item.id:''} onChange={this.keyChange.bind(this,index)}/>
                         <input type='text' placeholder="VALUE" value={item.value?item.value:''} onChange={this.valueChange.bind(this,index)}/>
                         <input type='text' placeholder="描述" value={item.desc?item.desc:''} onChange={this.descChange.bind(this,index)}/> 
                       </div>

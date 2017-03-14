@@ -1,4 +1,6 @@
 .editor-container {
+  overflow-y: auto;
+  height: 440px;
   .item {
     margin-bottom: 8px;
     padding: 10px;
@@ -9,14 +11,31 @@
   .label {
     font-size: 18px;
     font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    overflow: hidden;
   }
-
+  .desc{
+    display: block;
+    font-size: 14px;
+    color:#666;
+    padding: 2px 4px;
+    margin-top: 6px;
+    line-height: 22px;
+    background: #fff;
+    border-radius: 5px;
+  }
   input {
     padding: 6px 8px;
     margin-top: 5px;
     font-size: 16px;
     width: 180px;
     border: 1px solid #dedede;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: break-all;
+    overflow: hidden;
   }
 }
 .modal.preview-modal {

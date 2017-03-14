@@ -43,11 +43,12 @@ export class Detail extends Component {
       {Array.isArray(codeSetting) && codeSetting.length > 0 ?
         <div className="editor-container">
         {
-          codeSetting.map(({ label, type, enableEdit, value }) => enableEdit && 
+          codeSetting.map(({ label, type, enableEdit, value ,desc}) => enableEdit && 
           allowEditItemList.findIndex(item=>item === type) > -1 ? 
           <div key={label} className="item">
             <label htmlFor="" className="label">{label}</label>
             <input type="text" className="input" value={value} onChange={(e)=>editElement(element.id, label, e.target.value)}/>
+            <span className='desc'>{desc}</span>
           </div> : null)
         }
         </div> : null
