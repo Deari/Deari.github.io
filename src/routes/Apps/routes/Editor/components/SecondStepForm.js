@@ -7,7 +7,18 @@ import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
 
-import { toggleStep, toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList, toggleNameList, WtoggleNameList, updateCodeDesc } from '../modules/edit'
+import { 
+  toggleStep, 
+  toggleActive, 
+  toggleLogoList, 
+  toggleIdList,
+   WtoggleIdList, 
+   WtoggleLogoList, 
+   toggleNameList, 
+   WtoggleNameList, 
+   updateCodeDesc 
+} from '../modules/edit'
+
 import { 
     renderField,
     renderFile ,
@@ -111,6 +122,7 @@ const SecondStepForm = props => {
         handleNamechange={handleNamechange}
         appActive={appActive}
         widgetActive={widgetActive}
+        toggleActive={props.toggleActive}
       />
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}
