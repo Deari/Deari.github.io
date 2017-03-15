@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getUploaderDomain } from 'utils/domain'
+import { getDomain, getUploaderDomain, getDownLoadDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -185,7 +185,7 @@ export class renderAPKFile extends Component {
               that.upload(file)
             }else{
                const fileObj ={
-                 url:'http://storage.intra.ffan.net/large_files/bo_appstore/'+this.state.resp,
+                 url:getDownLoadDomain(`large_files/bo_appstore/${this.state.resp}`),
                  name:file.name,
                  size:file.size
                }
