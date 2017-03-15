@@ -15,7 +15,22 @@ import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
         getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
-
+function unique(list){
+  const setting=[list[0]]
+  for(let i =0;i<list.length;i++){
+    let repeat =false;
+    for(let j =0;j<setting.length;j++){
+      if(list[i].id&&setting[j].id&&list[i].id==setting[j].id){
+        repeat=true;
+        break
+      }
+    }
+    if(!repeat){
+      setting.push(list[i])
+    }
+  }
+   return setting
+}
 class EditContainer extends Component {
   
   componentWillMount() {
@@ -135,7 +150,12 @@ class EditContainer extends Component {
   }
 
   submitSecond(values) {
-
+    this.isLogin()
+    if(values.configList){
+      if(Array.isArray(values.configList)&&values.configList.length!=0){
+        const setting = unique(values.configList)
+      }
+    }
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -172,7 +192,7 @@ class EditContainer extends Component {
             'fileSize': file.fileSize,
             'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
-            'setting': JSON.stringify(values.configList)
+            'setting': JSON.stringify(setting)
           })
           delete params.file
         } else if(values.appKind === 1) {
