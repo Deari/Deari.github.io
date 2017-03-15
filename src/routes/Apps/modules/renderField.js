@@ -185,7 +185,7 @@ export class renderAPKFile extends Component {
               that.upload(file)
             }else{
                const fileObj ={
-                 url:'http://storage.intra.sit.ffan.net/large_files/bo_appstore/'+this.state.resp,
+                 url:'http://storage.intra.ffan.net/large_files/bo_appstore/'+this.state.resp,
                  name:file.name,
                  size:file.size
                }
