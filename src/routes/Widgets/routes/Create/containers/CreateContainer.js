@@ -138,11 +138,12 @@ class CreateContainer extends Component {
             'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
-
+            
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
             'fileSize': file.fileSize,
             'platform': file.platform,
+            'setting': JSON.stringify(values.configList),
 
             'showUpdateMsg':Number(values.showUpdateMsg),
           })

@@ -172,6 +172,7 @@ class EditContainer extends Component {
             'fileSize': file.fileSize,
             'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
+            'setting': JSON.stringify(values.configList)
           })
           delete params.file
         } else if(values.appKind === 1) {
@@ -185,7 +186,7 @@ class EditContainer extends Component {
           formData.append(key, params[key])
         }
 
-        fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
+        fetchUtil.postJSON(url, formData, {Stringify: false}).then(res=>{
           if (res.status == 200) {
             this.props.toggleStep(3);
           } else {

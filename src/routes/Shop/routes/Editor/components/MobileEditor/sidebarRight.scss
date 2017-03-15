@@ -7,7 +7,7 @@
   bottom: 0;
   right: 0;
   width: 200px;
-  background: #f7f8fa;
+  background: #fff;
   .widgets-btn-container {
     position: relative;
     height: 510px;
@@ -24,38 +24,31 @@
   #detail-container {
     font-size: 14px;
     color: $gray6-color;
+    .sidebar-right-title {
+      padding: 15px 7px;
+      font-size: 16px;
+      border-bottom: 1px solid #ededed;
+    }
     .icon-wechat {
       color: #05af10;
     }
     .share {
       width: 130px;
-      margin: 40px auto 10px;
-      .bg-qr {
-        position: relative;
-        padding: 1px 0;
-        background: #eef1f5;
-        .qr {
-          width: 115px;
-          height: 115px;
-          margin: 5px auto;
-          background-image: url(http://timg.ffan.com/convert/resize/url_T1QUWTBKY_1RCvBVdK/tfs/userPreivew.png);
-          background-size: 100%;
-        }
-        .icon-leftjiao {
-          position: absolute;
-          left: -33px;
-          top: 47px;
-          font-size: 40px;
-          color: #3fa7ff;
-        }
+      margin: 10px auto;      
+      .qr {
+        width: 115px;
+        height: 115px;
+        margin: 5px auto;
+        background-image: url(http://img1.ffan.com/T1FP_TBmd_1RCvBVdK);
+        background-size: 100%;
       }
-      .text {
-        margin-top: 10px;
-        font-size: 12px;
-        line-height: 1.3;
-        text-align: left;
-      }
-    }
+     }
+    .qr-text {
+      font-size: 13px;
+      color: #c2c2c2;
+      padding: 0 15px;
+      text-align: center;
+     }
     .btn {
       display: inline-block;
       width: 95.5%;

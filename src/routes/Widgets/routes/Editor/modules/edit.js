@@ -20,6 +20,44 @@ const UPDATE_FORM = 'UPDATE_FORM'
 const UPDATE_FORM2 = 'UPDATE_FORM2'
 const UPDATE_CODE_DESC = 'UPDATE_CODE_DESC'
 
+const UPDATE_CONFIGARR = 'UPDATE_CONFIGARR'
+const UPDATE_CONFIGTYPE = 'UPDATE_CONFIGTYPE'
+const UPDATE_CONFIGID = 'UPDATE_CONFIGID'
+const UPDATE_CONFIGLABEL = 'UPDATE_CONFIGLABEL'
+const UPDATE_CONFIGVALUE = 'UPDATE_CONFIGVALUE'
+const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
+
+export const updateConfigArr = (index)=>({
+  type:UPDATE_CONFIGARR,
+  index
+})
+export const updateconfigType = (index,configType)=>({
+  type:UPDATE_CONFIGTYPE,
+  configType,
+  index
+})
+export const updateconfigId = (index,id)=>({
+  type:UPDATE_CONFIGID,
+  id,
+  index
+})
+export const updateconfigLabel = (index,label)=>({
+  type:UPDATE_CONFIGLABEL,
+  label,
+  index
+})
+export const updateconfigValue = (index,value)=>({
+  type:UPDATE_CONFIGVALUE,
+  value,
+  index
+})
+export const updateconfigDesc = (index,desc)=>({
+  type:UPDATE_CONFIGDESC,
+  desc,
+  index
+})
+
+
 export const requestSubmitCreate = ()=>({
   type: SUBMIT_CREAT_ING,
 })
@@ -80,6 +118,83 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+  [UPDATE_CONFIGTYPE]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].type = action.configType
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGDESC]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].desc = action.desc
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGVALUE]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].value = action.value
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGLABEL]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].label = action.label
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGID]:(state,action)=>{
+    const configList =  state.form2.configList
+    let newList = [...configList]
+    newList[action.index].id = action.id
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
+  [UPDATE_CONFIGARR]:(state,action)=>{
+    const configList = state.form2.configList;
+    let newList = [...configList];
+    if(action.index!=-1){
+      newList.splice(action.index,1)
+    }else{
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      newList.push(obj)
+    }
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [RECEIVE_CODEID]:(state,action)=>{
     return {
       ...state,
@@ -219,6 +334,7 @@ const initialState = {
       { value: "0.1.0" },
       { value: "1.0.0" }
     ],
+    configList:[],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
@@ -277,11 +393,12 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
-          fileName, fileLink, moduleName, setting, } = res.data
+          fileName, fileLink, moduleName, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
-          rnFrameworkVersion = 0,} = res.data && res.data.versions[0]
-        const codeDescCount = codeDesc.length
-        console.log(codeDesc,codeDescCount)
+          rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
+        const codeDescCount = codeDesc && codeDesc.length 
+        let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
+
         const tagId = tags.map(v=>v.tagId)
         dispatch(updateForm({
           appId,
@@ -291,9 +408,9 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({ 
           appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting, 
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName,  
         }))
-        
+        !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))
       } else {
         debug.warn("获取组件详情失败")
       }

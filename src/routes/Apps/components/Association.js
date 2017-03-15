@@ -1,8 +1,7 @@
 import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
 import classnames from 'classnames';
 import './association.scss'
-import { toggleActive } from '../routes/Editor/modules/edit'
+import { validate } from '../modules/validate'
 class AssociationModule extends Component {
   state={
     appActive:this.props.appActive,
@@ -118,15 +117,6 @@ class AssociationModule extends Component {
     )
   }
 }
-  const mapDispatchToProps = {
-    toggleActive  
-  }
 
- const mapStateToProps = ({ appsEdit }) => ({
-    appsEdit
- })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AssociationModule)
+export default AssociationModule

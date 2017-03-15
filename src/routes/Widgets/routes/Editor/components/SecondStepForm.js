@@ -3,10 +3,30 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect, showUpdateMsg } from '../../../modules/renderField'
+import { 
+  renderField, 
+  renderTextArea, 
+  renderFile, 
+  renderPublishRadioBox, 
+  versionTextArea, 
+  renderSelect, 
+  showUpdateMsg 
+} from '../../../modules/renderField'
+
 import { validate } from '../../../modules/validate'
 
-import { toggleStep, updateCodeDesc } from '../modules/edit'
+import { 
+  toggleStep, 
+  updateCodeDesc, 
+  updateConfigArr,
+  updateconfigId,
+  updateconfigLabel,
+  updateconfigValue,
+  updateconfigDesc,
+  updateconfigType
+} from '../modules/edit'
+
+import ConfigTpl from '../../../components/WidgetConfig'
 
 class SecondStepForm extends React.Component {
 
@@ -26,7 +46,7 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr } = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
     const { totalCount } = this.state
 
     return (
@@ -66,6 +86,15 @@ class SecondStepForm extends React.Component {
           }
         </Field>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
+        {appKind === 0 && <ConfigTpl 
+          configList={configList} 
+          updateConfigArr={this.props.updateConfigArr}
+          updateconfigId={this.props.updateconfigId}
+          updateconfigLabel={this.props.updateconfigLabel}
+          updateconfigValue={this.props.updateconfigValue}
+          updateconfigDesc={this.props.updateconfigDesc}
+          updateconfigType={this.props.updateconfigType}
+          />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
@@ -82,7 +111,13 @@ class SecondStepForm extends React.Component {
 
 const mapDispatchToProps = {
   toggleStep,
-  updateCodeDesc
+  updateCodeDesc,
+  updateConfigArr,
+  updateconfigId,
+  updateconfigLabel,
+  updateconfigValue,
+  updateconfigDesc,
+  updateconfigType
 };
 
 export default connect(

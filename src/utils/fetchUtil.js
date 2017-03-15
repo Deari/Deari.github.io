@@ -73,6 +73,8 @@ class FetchUtil {
     const reqsOptions = {
       method: 'POST',
       body : fromData,
+      credentials: 'include',
+      mode: 'cors',
       ...options
     }
 
