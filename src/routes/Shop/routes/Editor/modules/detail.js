@@ -10,7 +10,6 @@ function makeActionCreator(type, ...argNames) {
     return action
   }
 }
-
 const SELECT_ELEMENT = 'SELECT_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
 
 const CANCEL_ELEMENT = 'CANCEL_ELEMENT' // To : src/routes/Shop/routes/Editor/modules/preview.js
@@ -48,7 +47,6 @@ export const savePage = pageId => (dispatch, getState) => {
   const state = getState()
   const apiUrl =  getMobileDomain('web/merchant/store/3/page/3/publish')
   return fetchUtil.postForm(apiUrl,{viewData: state.preview, debug: 1}).then(v => {
-
     if(v.status == 200) {
       dispatch(startPublishPage())
       const { deployId } = v.data

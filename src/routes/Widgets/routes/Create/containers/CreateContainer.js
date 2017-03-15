@@ -15,7 +15,22 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateForm2, updateAppkind, getTags, getCates, updateCodeDesc} from '../modules/create'
-
+function unique(list){
+  const setting=[list[0]]
+  for(let i =0;i<list.length;i++){
+    let repeat =false;
+    for(let j =0;j<setting.length;j++){
+      if(list[i].id&&setting[j].id&&list[i].id==setting[j].id){
+        repeat=true;
+        break
+      }
+    }
+    if(!repeat){
+      setting.push(list[i])
+    }
+  }
+   return setting
+}
 class CreateContainer extends Component {
 
   componentWillMount() {
@@ -104,7 +119,12 @@ class CreateContainer extends Component {
 
   submitSecond(values) {
     this.isLogin()
-
+    let setting =[]; 
+    if(values.configList){
+      if(Array.isArray(values.configList)&&values.configList.length!=0){
+        setting = unique(values.configList)
+      }
+    }
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -138,11 +158,12 @@ class CreateContainer extends Component {
             'codeDesc':values.codeDesc,
             'autoPublish':values.autoPublish,
             'codeVersion':values.codeVersion,
-
+            
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
             'fileSize': file.fileSize,
             'platform': file.platform,
+            'setting': JSON.stringify(setting),
 
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
