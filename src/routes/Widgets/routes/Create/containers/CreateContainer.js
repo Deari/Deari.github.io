@@ -119,9 +119,10 @@ class CreateContainer extends Component {
 
   submitSecond(values) {
     this.isLogin()
+    let setting =[]; 
     if(values.configList){
       if(Array.isArray(values.configList)&&values.configList.length!=0){
-        const setting = unique(values.configList)
+        setting = unique(values.configList)
       }
     }
     let sourceVal = getSourceVal()
