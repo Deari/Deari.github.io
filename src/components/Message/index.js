@@ -1,6 +1,7 @@
 import React, { PropTypes, PureComponent } from 'react'
 import { render, findDOMNode, unmountComponentAtNode, } from 'react-dom'
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
+import './Message.scss'
 
 const LeaveTimeout = 500
 const AppearTimeout = 500

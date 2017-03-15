@@ -1,4 +1,4 @@
-$message-container : message;
+$message : message;
 $message-margin-top : 10px;
 $message-height : 40px;
 
@@ -10,7 +10,7 @@ $message-height : 40px;
   top       : 0;
 }
 
-.#{$message-container} {
+.#{$message} {
   margin-top    : $message-margin-top;
   height        : $message-height;
   line-height   : $message-height;
@@ -20,24 +20,24 @@ $message-height : 40px;
   border        : 1px solid #CCC;
 }
 
-.#{$message-container}-appear {
+.#{$message}-appear {
   margin-top : -($message-margin-top + $message-height) / 2;
   opacity    : 0.01;
 }
 
-.#{$message-container}-appear.#{$message-container}-appear-active {
+.#{$message}-appear.#{$message}-appear-active {
   margin-top : $message-margin-top;
   opacity    : 1;
   transition : opacity 500ms ease-in-out,
   margin-top 500ms ease-in-out;
 }
 
-.#{$message-container}-leave {
+.#{$message}-leave {
   margin-top : $message-margin-top;
   opacity    : 1;
 }
 
-.#{$message-container}-leave.#{$message-container}-leave-active {
+.#{$message}-leave.#{$message}-leave-active {
   margin-top : -($message-height);
   opacity    : 0.01;
   transition : opacity 500ms ease-in-out,

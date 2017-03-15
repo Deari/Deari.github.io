@@ -69,11 +69,12 @@ export class ProductCreator extends Component {
 
   render() {
     const mess = new Messages()
-    //mess.add(<div>dddddddd</div>)
-    //mess.add(<div>dcccf</div>, 3000)
-    //mess.add(<div>ccccc</div>, 4000)
-    //mess.add(<div>ddddd</div>, 5000)
-
+    mess.add(<div style={{ background: "#87cefa" }}>First</div>, 2000)
+    mess.add(<div style={{ background: "#79b9e1" }}>Second</div>, 3000)
+    mess.add(<div style={{ background: "#6ca4c8" }}>First</div>, 4000)
+    mess.add(<div style={{ background: "#e7f5fe" }}>Second</div>, 5000)
+    mess.add(<div style={{ background: "#dbf0fd" }}>First</div>, 6000)
+    mess.add(<div style={{ background: "#cfebfd" }}>Second</div>, 0)
     return <div>
       <Board knightPosition={[ 3, 5 ]}/>
       <TodoList/>
