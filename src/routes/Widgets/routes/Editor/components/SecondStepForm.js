@@ -23,7 +23,10 @@ import {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 } from '../modules/edit'
 
 import ConfigTpl from '../../../components/WidgetConfig'
@@ -94,6 +97,9 @@ class SecondStepForm extends React.Component {
           updateconfigValue={this.props.updateconfigValue}
           updateconfigDesc={this.props.updateconfigDesc}
           updateconfigType={this.props.updateconfigType}
+          updateConfigAudioArr={this.props.updateConfigAudioArr}
+          updateConfigAudioValue={this.props.updateConfigAudioValue}
+          updateConfigAudioKey={this.props.updateConfigAudioKey}
           />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
@@ -117,7 +123,10 @@ const mapDispatchToProps = {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 };
 
 export default connect(

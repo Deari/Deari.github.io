@@ -27,9 +27,30 @@ const UPDATE_CONFIGLABEL = 'UPDATE_CONFIGLABEL'
 const UPDATE_CONFIGVALUE = 'UPDATE_CONFIGVALUE'
 const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
 
+const UPDATE_CONFIGAUDIOARR = 'UPDATE_CONFIGAUDIOARR'
+const UPDATE_CONFIGAUDIOKEY = 'UPDATE_CONFIGAUDIOKEY'
+const UPDATE_CONFIGAUDIOVALUE = 'UPDATE_CONFIGAUDIOVALUE'
+
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
   index
+})
+export const updateConfigAudioArr = (index,k)=>({
+  type:UPDATE_CONFIGAUDIOARR,
+  index,
+  k
+})
+export const updateConfigAudioKey = (index,k,key)=>({
+  type:UPDATE_CONFIGAUDIOKEY,
+  index,
+  k,
+  key
+})
+export const updateConfigAudioValue = (index,k,value)=>({
+  type:UPDATE_CONFIGAUDIOVALUE,
+  index,
+  k,
+  value
 })
 export const updateconfigType = (index,configType)=>({
   type:UPDATE_CONFIGTYPE,
@@ -118,6 +139,48 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+   [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioValue = action.value
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
+       console.log(action)
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioKey = action.key
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOARR]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     if(action.k!=-1){
+       newList[action.index].audioList.splice(action.k,1)
+     }else{
+       const obj = {audioKey:'',audioValue:''}
+       newList[action.index].audioList.push(obj)
+     }
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [UPDATE_CONFIGTYPE]:(state,action)=>{
     const configList =  state.form2.configList
     let newList = [...configList]
@@ -179,12 +242,13 @@ const ACTION_HANDLERS = {
     }
   },
   [UPDATE_CONFIGARR]:(state,action)=>{
+    console.log(action)
     const configList = state.form2.configList;
     let newList = [...configList];
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,audioList:[]}
       newList.push(obj)
     }
     return{
