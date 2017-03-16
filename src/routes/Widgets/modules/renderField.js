@@ -214,7 +214,8 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
       处理您的应用，然后才能在应用市场上提供它。当您的应用处于“审核中”状态，您无法拒绝您的应用。
     </p>
     {
-      publishList.map(item => <div className="row-sizeB" onClick={e => {input.onChange(item.value)}}>
+      publishList.map(item => <div className="row-sizeB">
+        <span onClick={e => {input.onChange(item.value)}}>
           <div className="row-radio">
 	          <input type="radio" name="radio" checked={input.value == item.value}/>
 	          <span>
@@ -223,6 +224,7 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 	          </span>
 	        </div>
           <span>{item.txt}</span>
+        </span>
       </div>
     )}
     <span className="clearF"></span>
@@ -234,7 +236,8 @@ export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched,
   <label>{label}</label>
   <div className="row-right max-width">
     {
-      versionsList.map(item => <div className="row-sizeB version" onClick={e => {input.onChange(item.value)}}>
+      versionsList.map(item => <div className="row-sizeB version">
+        <span onClick={e => {input.onChange(item.value)}}>
           <div className="row-radio">
 	          <input type="radio" name="version" checked={input.value == item.value}/>
 	          <span>
@@ -243,6 +246,7 @@ export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched,
 	          </span>
 	        </div>
           <span>{item.txt}</span>
+        </span>
       </div>
     )}
     <p>版本号为： {input.value}</p>
