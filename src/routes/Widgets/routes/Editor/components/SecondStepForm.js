@@ -7,6 +7,7 @@ import {
   renderField, 
   renderTextArea, 
   renderFile, 
+  renderCodeVersion,
   renderPublishRadioBox, 
   versionTextArea, 
   renderSelect, 
@@ -75,16 +76,7 @@ class SecondStepForm extends React.Component {
             </div>
           </div>
         </div>
-        <Field label="版本号" name="codeVersion" component={renderSelect}>
-          <option value={-1}>请选择版本号</option>
-          {
-            versionsList.map((item) => (
-              <option value={item.value}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
+        <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
