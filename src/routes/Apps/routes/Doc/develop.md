@@ -350,7 +350,7 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.1.min.js
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.2.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -445,6 +445,34 @@ sdk.getDevInfo()
   }).catch(function(err) {
     // fail
   })
+```
+
+**getEnvInfo** 获取启动参数
+
+- 功能描述: `H5` 页面通过 `JSBridge` 获取启动参数
+
+- 方法名称: sdk.getEnvInfo
+
+- 参数定义: 空
+
+- 返回值: 返回值为一个 `JSON` 对象, 其返回值为当前获取启动参数
+
+```javascript
+
+sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
+  then(function(data){ 
+    {
+    // success
+    // data格式为启动之前传递的参数
+      data:{
+       'bar':'foo',
+      }
+      status:200,
+      msg:'success',
+    }
+  }).catch(function(err){
+    //fail
+  }) 
 ```
 
 **getLocation** 获取位置信息

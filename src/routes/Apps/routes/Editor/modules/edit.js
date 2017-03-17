@@ -216,7 +216,8 @@ const ACTION_HANDLERS = {
       ...state,
       form2: {
         ...state.form2,
-        versionsList:action.versionsList
+        versionsList:action.versionsList,
+        codeVersion: action.versionsList[2].value
       }
     }
  },

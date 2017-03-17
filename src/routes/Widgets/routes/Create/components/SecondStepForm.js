@@ -3,7 +3,7 @@ import { connect} from 'react-redux'
 
 import { Field, reduxForm } from 'redux-form'
 
-import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect } from '../../../modules/renderField'
+import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect, renderCodeVersion } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
 import { 
@@ -65,16 +65,7 @@ class SecondStepForm extends React.Component {
             </div>
           </div>
         </div>
-        <Field label="版本号" name="codeVersion" component={renderSelect}>
-          <option value={-1}>请选择版本号</option>
-          {
-            versionsList.map((item) => (
-              <option value={item.value}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
+        <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 

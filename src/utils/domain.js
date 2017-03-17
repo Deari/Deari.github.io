@@ -86,7 +86,12 @@ export function getApiDomain(url) {
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
-
+export function getDownLoadDomain(url) {
+  const domainReg = new RegExp("^http:\/\/storage\.intra\.(sit\.|test\.)?ffan\.net\/")
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://storage.ffan.net/' : 'http://storage.intra.sit.ffan.net/'
+  return domain + url.replace(domainReg, "")
+}
 
 // 判断从哪个路由跳转的
 export function getSourceVal(name) {
