@@ -434,13 +434,9 @@ sdk.getDevInfo()
     // success
     // data格式为
     {
-      data:{
-          name:'iOS_Wifi', //设备名称
-          model:'营销', //设备类型
-          systemVersion:'1.0.0', //系统版本
-      }
-      status:200,
-      msg:'success',
+      name:'iOS_Wifi', //设备名称
+      model:'营销', //设备类型
+      systemVersion:'1.0.0', //系统版本
     }
   }).catch(function(err) {
     // fail
@@ -464,11 +460,11 @@ sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
     {
     // success
     // data格式为启动之前传递的参数
-      data:{
-       'bar':'foo',
-      }
-      status:200,
-      msg:'success',
+      "storeName":"GAP",
+      "org":"wanda",
+      "storeId":"10000",
+      "token":"8943o9432943948394839",
+      "userId":"18510000005"
     }
   }).catch(function(err){
     //fail
@@ -491,12 +487,8 @@ sdk.getLocation()
     // success
     // data格式为
     {
-      data:{
-         lot:'116.46', //经度
-         lat:'39.92', //维度
-      }
-      status:200,
-      message:'OK',
+      lot:'116.46', //经度
+      lat:'39.92', //维度
     }
   }).catch(function(err) {
     // fail
@@ -604,7 +596,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
-- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `sha1` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
+- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `sha256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -626,7 +618,7 @@ url=http://m.ffan.com?a=b&c=d
 accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
 ```
 
-  3\. 对 `string1` 进行 `sha1` 签名, 得到 `signature`
+  3\. 对 `string1` 进行 `sha256` 签名, 得到 `signature`
 
 ```
 928dfbcabb55bc663a925306f11e2ab17c4a6d65  
