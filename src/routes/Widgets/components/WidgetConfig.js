@@ -60,18 +60,20 @@ class ConfigTpl extends Component {
                           <input type='text' placeholder="描述" value={item.desc?item.desc:''} onChange={this.descChange.bind(this,index)}/> 
                         </div>
                         :
-                         <div className='config-audio'>
+                         <div className='config-audio config-textBox'>
                           <span>标题：</span><input type='text' placeholder='标题' onChange={this.titleChange.bind(this,index)}/>
-                         {
-                          item.audioList.map((v,k)=>(
-                              <div key={k}>
-                                <span>key：</span><input type='text' placeholder='KEY' onChange={this.audioKeyChange.bind(this,index,k)}/>  
-                                <span>value：</span><input type='text' placeholder='VALUE' onChange={this.audioValueChange.bind(this,index,k)}/> 
-                                <i className='dele-item' onClick={this.removeConfigAudio.bind(this,index,k)}>x</i>   
-                              </div>
-                             ))
-                           }  
-                           <span className='add-item' onClick={this.addConfigAudio.bind(this,index)}>+新选项</span>                                           
+                          <div className="audio-contain">
+		                         {
+		                          item.audioList.map((v,k)=>(
+		                              <div key={k} className="key-value">
+		                                <span>key：</span><input type='text' placeholder='KEY' onChange={this.audioKeyChange.bind(this,index,k)}/>  
+		                                <span>value：</span><input type='text' placeholder='VALUE' onChange={this.audioValueChange.bind(this,index,k)}/> 
+		                                <i className='iconfont icon-del1' onClick={this.removeConfigAudio.bind(this,index,k)}></i>   
+		                              </div>
+		                             ))
+		                           }  
+		                           <div className='config-edit' onClick={this.addConfigAudio.bind(this,index)}><i className="iconfont icon-fileadd"></i>新选项</div>
+                           </div>
                          </div>
                       }
                       
