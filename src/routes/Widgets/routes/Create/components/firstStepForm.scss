@@ -279,6 +279,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     span{
         display: inline-block;
     }
+    &.version {
+      margin: 5px 0;
+    }
 }
 .row-radio{position:relative; display: inline-block; vertical-align: -3px; margin-right: 4px; }
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}

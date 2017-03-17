@@ -280,6 +280,9 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
     span{
         display: inline-block;
     }
+    &.version {
+      margin: 5px 0;
+    }
 }
 .row-radio{position:relative; display: inline-block; vertical-align: -3px; margin-right: 4px; }
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}
