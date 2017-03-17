@@ -39,7 +39,6 @@ class ConfigTpl extends Component {
   }
   render(){
     const {configList}=this.props
-    console.log(configList)
     return (<div className='config-box'>
     					<div className="config-contain">
     						<div className="config-btn"></div>
