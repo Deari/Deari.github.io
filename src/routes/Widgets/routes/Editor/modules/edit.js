@@ -152,7 +152,6 @@ const ACTION_HANDLERS = {
     }
    },
    [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
-       console.log(action)
      const configList = state.form2.configList
      let newList = [...configList];
      newList[action.index].audioList[action.k].audioKey = action.key

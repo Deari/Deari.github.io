@@ -15,22 +15,6 @@ import debug from 'utils/debug'
 
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
         getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
-function unique(list){
-  const setting=[list[0]]
-  for(let i =0;i<list.length;i++){
-    let repeat =false;
-    for(let j =0;j<setting.length;j++){
-      if(list[i].id&&setting[j].id&&list[i].id==setting[j].id){
-        repeat=true;
-        break
-      }
-    }
-    if(!repeat){
-      setting.push(list[i])
-    }
-  }
-   return setting
-}
 class EditContainer extends Component {
   
   componentWillMount() {
@@ -151,14 +135,6 @@ class EditContainer extends Component {
 
   submitSecond(values) {
     this.isLogin()
-    let setting =[];
-    if(values.configList){
-      if(Array.isArray(values.configList)&&values.configList.length!=0){
-         setting = unique(values.configList)
-      }
-    }
-    this.isLogin()
-
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -185,6 +161,7 @@ class EditContainer extends Component {
         let params = {
           ...values
         };
+          
 
         if(file && values.appKind === 0) {
           Object.assign(params, file, {
@@ -193,7 +170,7 @@ class EditContainer extends Component {
             'fileSize': file.fileSize,
             'platform': file.platform,
             'showUpdateMsg': Number(values.showUpdateMsg),
-            'setting': JSON.stringify(setting)
+            'setting': JSON.stringify(values.configList)
           })
           delete params.file
         } else if(values.appKind === 1) {
