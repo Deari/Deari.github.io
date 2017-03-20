@@ -48,7 +48,7 @@ export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, er
             <i className="iconfont icon-radio1"></i>
             <i className="iconfont icon-radio"></i>
           </span>
-          4*2
+          {item.value.widgetH+'x'+item.value.widgetW}
         </div>
       </div>
     )}
