@@ -37,7 +37,6 @@ class EditContainer extends Component {
       }
     }, url, loginUrl, callbackUrl)
   }
-
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     LoginSDK.getStatus((status, data) => {
@@ -120,6 +119,7 @@ class EditContainer extends Component {
             })
             this.props.updateFirstForm(values)
             this.props.toggleStep(2);
+            window.scrollTo(0,0)
           } else {
             debug.warn('请完善表单信息')
           }

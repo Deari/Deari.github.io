@@ -97,7 +97,7 @@ class SecondStepForm extends React.Component {
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
+            <button type="button" className="previous" onClick={()=>{toggleStep(1);window.scrollTo(0,0)}}>上一步</button>
             <button type="submit" className="next" disabled={submitting}> 提交</button>
           </div>
         </div>
