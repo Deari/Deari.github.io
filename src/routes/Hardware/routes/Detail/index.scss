@@ -232,7 +232,8 @@
     border: 1px solid #dbdbdb;
     li{
       float: left;
-      padding: 0 20px 0 30px;
+      padding-left: 20px;
+      width: 140px;
     }
     .row-radio{
       position: relative;
@@ -242,7 +243,7 @@
     }
     i.icon-radio2{display:none;font-size:18px;color:#2692fb;}
     i.icon-radio1{display:inline-block;font-size:18px;color:#cdd4dc;}
-    input[type="radio"]{position:absolute;left:0;width:22px;height:45px;opacity:0;cursor:pointer; z-index: 1;}
+    input[type="radio"]{position:absolute;left:0;width:120px;height:45px;opacity:0;cursor:pointer; z-index: 1;}
     input[type="radio"]:checked + span i.icon-radio2{display:inline-block;}
     input[type="radio"]:checked + span i.icon-radio1{display:none;}
   }

@@ -211,7 +211,7 @@ class HardwareDetail extends React.Component {
                       <i className="iconfont icon-radio2"></i>
                     </span>
                   </div>
-                  <label>评价:110</label>
+                  <label>好评:110</label>
                 </li>
                 <li>
                   <div className="row-radio">
@@ -221,7 +221,17 @@ class HardwareDetail extends React.Component {
                       <i className="iconfont icon-radio2"></i>
                     </span>
                   </div>
-                  <label>中评:110</label>
+                  <label>中评:60</label>
+                </li>
+                <li>
+                  <div className="row-radio">
+                    <input type="radio" name="radio" value="" />
+                    <span>
+                      <i className="iconfont icon-radio1"></i>
+                      <i className="iconfont icon-radio2"></i>
+                    </span>
+                  </div>
+                  <label>差评:10</label>
                 </li>
               </ul>
               <div className="detail-evaluate-box">
