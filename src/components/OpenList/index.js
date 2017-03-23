@@ -17,7 +17,7 @@ class OpenList extends React.Component {
             <li>
               {/**<p className="open-list-start" onClick={() => {clickStar && clickStar(item)}}>
                 <i className="iconfont icon-star icon-start-hover"></i>
-                { item.checkedStar ? '' : <i className="iconfont icon-uncollected"></i> }
+                { item.checkedStar ? '' : <i className="iconfont icon-uncollected icon-uncollected1"></i> }
               </p>*/}
               <Link className="open-content-info" to={detailLink + item[`${typeName}Id`]}>
                 <p className="open-info-name" title={ item[`${typeName}Name`] }>{ item[`${typeName}Name`] }</p>

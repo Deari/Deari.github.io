@@ -77,98 +77,174 @@ class HardwareDetail extends React.Component {
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
-        <div className="sub-container bg-white">
-          <div className="detail-container">
-            <div className="detail-download">
+        <div className="sub-container">
+          <div className="detail-container bg-white">
+            <div className="detail-returnnav">
+              <p>返回</p>
+            </div>
+            <div className="detail-img">
               <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download">购买</a>
+              <a className="detail-start"><i className="iconfont icon-uncollected icon-uncollected2"></i><span>收藏</span></a>
             </div>
             <div className="detail-info">
               <dl className="detail-tittle">
                 <dt>{ data.hardwareName }</dt>
                 <dd><i className="user-img"></i><span>{ data.hardwareProducer }</span></dd>
               </dl>
-              <h3 className="app-title">内容提要</h3>
-              <p className="app-text">{ data.hardwareFunction }</p>
-              <h3 className="app-title">信息</h3>
-              <table className="infomation-list">
-                <tr>
-                  <td>类别</td>
-                  <td>
-                    <span className="tag">{ data.majorCategoryName } - </span>
-                    <span className="tag">{ data.minorCategoryName }</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>标签</td>
-                  <td>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>硬件介绍:</h5>
+              <p className="detail-introduce">{ data.hardwareFunction }</p>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>类别:
+                <span className="detail-genre">
+                  <i className="tag">{ data.majorCategoryName } - </i>
+                  <i className="tag">{ data.minorCategoryName }</i>
+                </span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>标签:
+                <span className="detail-label">
                   {
-                     infoTags.map( (item, index) => {
-                       return (
-                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                       )
-                     } )
+                    infoTags.map( (item, index) => {
+                      return (
+                        <i>{item.tagName}{ (index < len - 1) ? `、` : '' }</i>
+                      )
+                    } )
                   }
-                  </td>
-                </tr>
-              </table>
+                  <i>酒店</i>
+                </span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>已售:
+                <span className="detail-sold">180件</span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>价格 :
+                <span className="detail-price">￥200<i>元</i></span>
+              </h5>
             </div>
           </div>
-          <div className="table-info hardware-info">
-            <h3 className="app-title">硬件信息</h3>
-            <table className="detail-table">
-              <tr>
-                <td className="title">发布时间</td>
-                <td className="text">{ data.createTime }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件型号</td>
-                <td className="text">{ data.hardwareMode }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件品牌</td>
-                <td className="text">{ data.hardwareBrand }</td>
-              </tr>
-              <tr>
-                <td className="title">生产厂家</td>
-                <td className="text">{ data.hardwareProducer }</td>
-              </tr>
-              <tr>
-                <td className="title">通讯方式</td>
-                <td className="text">
-                { data.commType1 ? <span className="tag">WIFI</span> : '' }
-                { data.commType2 ? <span className="tag">蓝牙</span> : '' }
-                </td>
-              </tr>
-              <tr>
-                <td className="title">详细功能描述</td>
-                <td className="text">{ data.hardwareDetail }</td>
-              </tr>
-              <tr>
-                <td className="title">SDK类型</td>
-                <td className="text">{ data.sdkTypeName }</td>
-              </tr>
-              <tr>
-                <td className="title">操作平台</td>
-                <td className="text">{ data.osName }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件平台</td>
-                <td className="text">{ data.hardwarePlatformName }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件图片</td>
-                <td className="text">
-                {
-                  hardwarePics.map( (item, index) => (
-                    <div className="img-block">
-                      <img className="img" src={item} />
-                    </div>
-                   ) )
-                }
-                </td>
-              </tr>
-            </table>
+          <div className="detail-table-box bg-white">
+            <ul className="detail-table-nav">
+              <li><a className="active">商品介绍</a></li>
+              <li><a>规格参数</a></li>
+              <li><a>评论(180)</a></li>
+            </ul>
+            <div className="detail-table-content">
+              <h5 className="detail-title">基本信息</h5>
+              <ul className="detail-info">
+                <li>
+                  <p>
+                    <span className="w62">发布时间:</span>
+                    <span className="w200">{ data.createTime }</span>
+                  </p>
+                  <p>
+                    <span className="w62">通讯方式:</span>
+                    <span className="w200">13566147822</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span className="w62">硬件品牌:</span>
+                    <span className="w200">{ data.hardwareBrand }</span>
+                  </p>
+                  <p>
+                    <span className="w62">操作系统:</span>
+                    <span className="w200">安卓</span>
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <span className="w62">硬件型号:</span>
+                    <span className="w200">{ data.hardwareMode }</span>
+                  </p>
+                  <p>
+                    <span className="w62">硬件平台:</span>
+                    <span className="w200">蓝海</span>
+                  </p>
+                </li>
+              </ul>
+              <p className="detail-info-text1">功能描述:</p>
+              <p className="detail-info-text2">空间大结局,撒电力建设劳,动竞赛路径路径空间大结局,撒电力建设劳,动竞赛路径路径撒电力建设劳,动竞赛路径路径撒电力建设劳,动竞赛路径路径撒电力建设劳,动竞赛路径路径</p>
+              <div className="line"></div>  
+              <h5 className="detail-title">商品介绍</h5>
+              <img className="detail-introduce-img" src="" />
+              <h5 className="detail-title">商品使用说明</h5>
+              <img className="detail-introduce-img" src="" />
+            </div>
+            
+            <div className="detail-table-content">
+              <h5 className="detail-title">规格参数</h5>
+              <img className="detail-introduce-img" src="" />
+            </div>
+            
+            <div className="detail-table-content">
+              <h5 className="detail-title-evaluate">商品评价</h5>
+              <div className="detail-evaluate">
+                <dl>
+                  <dt>好评度</dt>
+                  <dd>92%</dd>
+                </dl>
+                <ul>
+                  <li>配置不错</li>
+                  <li>外形好看</li>
+                  <li>速度快</li>
+                  <li>配置不错</li>
+                  <li>外形好看</li>
+                  <li>速度快</li>
+                  <li>配置不错</li>
+                  <li>外形好看</li>
+                  <li>速度快</li>
+                </ul>
+              </div>
+              <ul className="detail-evaluate-nav">
+                <li>
+                  <div className="row-radio">
+                    <input type="radio" name="radio" value="" />
+                    <span>
+                      <i className="iconfont icon-radio1"></i>
+                      <i className="iconfont icon-radio2"></i>
+                    </span>
+                  </div>
+                  <label>全部评价180</label>
+                </li>
+                <li>
+                  <div className="row-radio">
+                    <input type="radio" name="radio" value="" />
+                    <span>
+                      <i className="iconfont icon-radio1"></i>
+                      <i className="iconfont icon-radio2"></i>
+                    </span>
+                  </div>
+                  <label>评价:110</label>
+                </li>
+                <li>
+                  <div className="row-radio">
+                    <input type="radio" name="radio" value="" />
+                    <span>
+                      <i className="iconfont icon-radio1"></i>
+                      <i className="iconfont icon-radio2"></i>
+                    </span>
+                  </div>
+                  <label>中评:110</label>
+                </li>
+              </ul>
+              <div className="detail-evaluate-box">
+                <div className="detail-evaluate-contaier">
+                  <dl className="detail-evaluate-user">
+                    <dt><img src="" /></dt>
+                    <dd className="detail-evaluate-name">用户名</dd>
+                    <dd className="detail-evaluate-star">
+                      <i className="iconfont icon-star"></i>
+                      <i className="iconfont icon-star"></i>
+                      <i className="iconfont icon-star"></i>
+                      <i className="iconfont icon-uncollected"></i>
+                      <i className="iconfont icon-uncollected"></i>
+                    </dd>
+                  </dl>
+                  <dl className="detail-evaluate-text">
+                    <dt>商品性价比不错，物有所值。特别是卖家的服务态度没的说，解决问题利索。以后还会再来买东西的！</dt>
+                    <dd>2017年03月03日 13:07</dd>
+                  </dl>
+                </div>
+              </div>
+              
+            </div>
           </div>
         </div>
       </div>

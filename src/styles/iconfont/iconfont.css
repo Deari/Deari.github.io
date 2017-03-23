@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1489716886834'); /* IE9*/
-  src: url('iconfont.eot?t=1489716886834#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1489716886834') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1489716886834') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1489716886834#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1490241343789'); /* IE9*/
+  src: url('iconfont.eot?t=1490241343789#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1490241343789') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1490241343789') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1490241343789#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -22,6 +22,8 @@
 .icon-android:before { content: "\e604"; }
 
 .icon-wechat:before { content: "\e66f"; }
+
+.icon-radio2:before { content: "\e671"; }
 
 .icon-heart:before { content: "\e65e"; }
 
