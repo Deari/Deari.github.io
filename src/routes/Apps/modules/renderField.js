@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getUploaderDomain, getDownLoadDomain } from 'utils/domain'
+import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -176,12 +176,11 @@ export class renderAPKFile extends Component {
             alert(JSON.parse(xhr.responseText).message);
             return
           } else {
-          
             const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
             const res = JSON.parse(xhr.responseText).data
             if (index === pressNum) {
               const fileObj = {
-                url: getDownLoadDomain(`large_files/bo_appstore/${this.state.filecode}`),
+                url: getDownloadDomain(`${this.state.filecode}`),
                 name: file.name,
                 size: file.size
               }
@@ -357,5 +356,3 @@ export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched,
 </div>
 
 export default renderField
-
-                //<b className='progress-stoke'><i className='progress-full'></i></b>
