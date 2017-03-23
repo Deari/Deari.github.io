@@ -4,41 +4,36 @@
 *,*:before,*:after {
   box-sizing: border-box;
 }
-
 html, body, div, span, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, address, big, cite,
 code, del, em, font, img, ins, small, strong, var, b, u, i, center, dl, dt, dd, ul , li, ol,
 fieldset, form, label, legend,a,table {
   margin: 0;
   padding: 0;
 }
-
 html, body {
   height: 100%;
   font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial,sans-serif;
   background: #f1f1f3;
 }
-
 button{
   font-family: PingFang SC, "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', Arial,sans-serif;
 }
-
-ul {
+ul{
   list-style:none;
 }
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6{
   font-weight: normal;
 }
-
-a {
+a{
   color: #000;
   text-decoration:none;
 }
-
-a:active {
+a:active{
   color: #2692fb;
 }
-
-hr {
+hr{
   border: 1px solid #eeeeee;
+}
+i{
+  display: inline-block;
 }
