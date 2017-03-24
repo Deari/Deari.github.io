@@ -36,10 +36,14 @@ class Sidebar extends React.Component {
         <ul className="help-menu">
           <li>
             <a className={(urls.list.active && 'active') || ''} onClick={this.clickBtn.bind(this, urls.list.url)}>
-              <i className="iconfont icon-application"></i>{urls.list.name ? urls.list.name : '我的列表'}
+              {this.props.typeName?'':<i className="iconfont icon-application"></i>}{urls.list.name ? urls.list.name : '我的列表'}
             </a>
           </li>
-          <li><Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}><i className="iconfont icon-file"></i>开发者文档</Link></li>
+          <li>
+            <Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}> 
+              {this.props.typeName?'':<i className="iconfont icon-file"></i>}开发者文档
+            </Link>
+          </li>
         </ul>
 
         {renderBottomComponent}
@@ -56,7 +60,7 @@ export const RenderTags = (props) => (
         <Link className={ item.className } 
               to={ item.aHref } 
               onClick={()=> { props.onTagChange && props.onTagChange(item.tagId) }}>
-          <i className={ `iconfont icon-sidebar${ item.tagId }` }></i>{ item.tagName }
+         {props.typeName?'':<i className={ `iconfont icon-sidebar${ item.tagId }` }></i>} { item.tagName }
         </Link>
       </li>
     } ) }

@@ -25,7 +25,19 @@ class Main extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
-        res.data && this.setState({ listData: res.data.list })
+        let arr = [];
+        res.data.map((v)=>{
+          const obj={
+            hardwareFunction:v.productDesc,
+            hardwareLogo:v.image,
+            hardwareName:v.verboseName,
+            hardwarePrice:v.price,
+            hardwareId:v.productKey,
+            developerName:v.brand
+          }
+          arr.push(obj)
+        })
+        res.data && this.setState({ listData: arr })
       } else {
         debug.warn("获取列表接口返回错误")
       }
@@ -113,9 +125,10 @@ class Main extends React.Component {
 
   render () {
     const { listData, tags, urls, detailLink } = this.state
+
     return (
         <div className="container clx">
-          <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} bottomComponent={RenderTags} />
+          <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} bottomComponent={RenderTags} typeName="hardware"/>
           <div className="sub-container">
             <div className="sub-container-banner"></div>
             <h2 className="open-content-nav">
