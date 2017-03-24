@@ -19,18 +19,8 @@ const ProductDescTpl = (props) => (
           <span className="w200">{props.data.hardwareProducer}</span>
         </p>
         <p>
-          <span className="w62">操作系统:</span>
-          <span className="w200">安卓</span>
-        </p>
-      </li>
-      <li>
-        <p>
           <span className="w62">硬件型号:</span>
           <span className="w200">{props.data.model}</span>
-        </p>
-        <p>
-          <span className="w62">硬件平台:</span>
-          <span className="w200">蓝海</span>
         </p>
       </li>
     </ul>
