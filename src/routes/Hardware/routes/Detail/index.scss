@@ -65,6 +65,9 @@
       width: 18px;
       height: 18px;
     }
+    .user-txt{
+      padding-left: 14px;   
+    }
   }
   .detail-title{
     padding-top: 18px;
@@ -72,9 +75,6 @@
     color: $gray6-color;
     i{
       font-style: normal;
-    }
-    span{
-      padding-left: 14px;
     }
     .detail-title-dot{
       margin-right: 5px;
