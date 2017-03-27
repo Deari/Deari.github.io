@@ -7,16 +7,16 @@ import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
 
-import { 
-  toggleStep, 
-  toggleActive, 
-  toggleLogoList, 
+import {
+  toggleStep,
+  toggleActive,
+  toggleLogoList,
   toggleIdList,
-   WtoggleIdList, 
-   WtoggleLogoList, 
-   toggleNameList, 
-   WtoggleNameList, 
-   updateCodeDesc 
+  WtoggleIdList,
+  WtoggleLogoList,
+  toggleNameList,
+  WtoggleNameList,
+  updateCodeDesc
 } from '../modules/edit'
 
 import { 
@@ -46,7 +46,24 @@ const compose = (arr1, arr2, arr3) => {
 }
 const SecondStepForm = props => {
   const { handleSubmit, submitting, previous, initialValues} = props
-  const {appKind, publishList, versionsList, active, datalist, idList, logoList, wIdList, wLogoList, nameList, wNameList ,codeDesc,appId} = initialValues
+  const {
+    appKind,
+    publishList,
+    versionsList,
+    active,
+    datalist,
+    idList,
+    logoList,
+    wIdList,
+    wLogoList,
+    nameList,
+    wNameList,
+    codeDesc,
+    appId,
+    appKey,
+    appName,
+    appLogo,
+  } = initialValues
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
   const appActive = appObj&&appObj.length!=0 ? 1:0;
@@ -74,9 +91,16 @@ const SecondStepForm = props => {
     let isErr = (len == 0) ? true : false
     props.updateCodeDesc({codeDescCount: len, codeDesc: value, isDescErr: isErr})
   }
-
   return (
     <form onSubmit={handleSubmit}>
+      <div>
+        <img src={appLogo} />
+        <div>
+          <h3>{appName}</h3>
+          <p><i>AppID：</i><span>{appId}</span></p>
+          <p><i>AppKey：</i><span>{appKey}</span></p>
+        </div>
+      </div>
       <div>
         <div className="form-row code-desc">
           <label>版本介绍</label>

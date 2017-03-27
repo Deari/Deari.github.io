@@ -65,7 +65,49 @@
                     margin-bottom: 10px;
                 }
             }
+            /**单选框css strat**/
+            .config-audio{
+                span{
+                    width: 48px;
+                    display: inline-block;
+                }
+                input{
+                    width: 332px;
+                }
+                .audio-contain{
+                    border: 1px solid #ddd;
+                    padding: 20px;
+                    .key-value{
+                         border-top: 1px dashed #ddd;
+                         padding-top: 20px;
+                         position: relative;
+                         &:first-child{
+                             border-top: 0;
+                             margin-top: -20px;
+                         }
+                        input{
+                            width: 274px;
+                            &:last-of-type{
+                                margin-bottom: 20px;
+                            }
+                        }
+                        
+                        .icon-del1{
+                            cursor: pointer;
+                            font-size: 20px;
+                            color: #fc5c63;
+                            position: absolute;
+                            right: -12px;
+                            top: 49px;
+                        }
+                    }
+                    .config-edit{
+                        margin:0;
+                    }
+                }
+            }
         }
+        /**单选框css end**/
         .config-edit{
             margin: 0 20px 20px;
             border-radius: 2px;

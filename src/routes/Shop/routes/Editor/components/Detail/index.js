@@ -65,10 +65,6 @@ export class Detail extends Component {
         }
         </div> : null
       }
-      <div className="widgets-btn-container">
-        <button className="m-btn m-btn-red" onClick={deleteElement.bind(null, element.id)}>删除组件</button>
-        <button className="m-btn m-btn-border-green" onClick={cancelElement}>取消</button>
-      </div>
     </div>
     
   }
@@ -96,9 +92,9 @@ export class Detail extends Component {
   }
 
   render() {
-    const { detail } = this.props
+    const { detail,deleteElement,cancelElement} = this.props
     const { pagePublish } = detail
-
+console.log(this.props.detail.element)
     return <div id="detail-container">
       <Modal type={"alert"}
              active={pagePublish === 'start'}
@@ -112,10 +108,21 @@ export class Detail extends Component {
 
       {::this.getWidgetContainer()}
       <div className="btn-block">
+      {
+        this.props.detail.element.appId ? 
+        <div className="widgets-btn-container">
+          <button className="m-btn m-btn-red">删除组件</button>
+          <button className="m-btn m-btn-border-green" onClick={cancelElement}>取消</button>
+        </div>
+        :
         <button className={ `m-btn m-btn-blue m-btn-block ${pagePublish === 'start' ? 'disabled' : ''}` }
                 onClick={::this.savePageHandler}><i className="iconfont icon-save"></i>
           {pagePublish === 'start' ? '发布中...' : '保存并发布'}
         </button>
+      }
+        
+       
+   
       </div>
     </div>
   }

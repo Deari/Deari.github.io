@@ -24,7 +24,10 @@ import {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 } from '../modules/edit'
 
 import ConfigTpl from '../../../components/WidgetConfig'
@@ -47,11 +50,24 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList,
+      appId,
+      appKey,
+      appName,
+      appLogo,
+    } = initialValues
     const { totalCount } = this.state
 
     return (
       <form onSubmit={handleSubmit}>
+        <div className="form-row show-contain">
+          <img src={appLogo} />
+          <div className="show-text">
+            <h3>{appName}</h3>
+            <p><i>WidgetID：</i><span>{appId}</span></p>
+            <p><i>WidgetKey：</i><span>{appKey}</span></p>
+          </div>
+        </div>
         <div>
           <div className="form-row code-desc">
             <label>版本介绍</label>
@@ -86,12 +102,15 @@ class SecondStepForm extends React.Component {
           updateconfigValue={this.props.updateconfigValue}
           updateconfigDesc={this.props.updateconfigDesc}
           updateconfigType={this.props.updateconfigType}
+          updateConfigAudioArr={this.props.updateConfigAudioArr}
+          updateConfigAudioValue={this.props.updateConfigAudioValue}
+          updateConfigAudioKey={this.props.updateConfigAudioKey}
           />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
+            <button type="button" className="previous" onClick={()=>{toggleStep(1);window.scrollTo(0,0)}}>上一步</button>
             <button type="submit" className="next" disabled={submitting}> 提交</button>
           </div>
         </div>
@@ -109,7 +128,10 @@ const mapDispatchToProps = {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 };
 
 export default connect(

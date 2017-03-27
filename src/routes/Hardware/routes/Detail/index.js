@@ -7,13 +7,19 @@ import moment from 'moment'
 import Slidebar from 'components/Sidebar'
 import 'styles/_base.scss'
 import './index.scss'
+import CommentTpl from './Comment.js'
+import ParamTpl from './Param.js'
+import ProductDescTpl from './ProductDesc.js'
+
+import commentData from './data.js'
 
 class HardwareDetail extends React.Component {
   constructor() {
     super();
     this.state = {
       data: [],
-      tags:[]
+      tags:[],
+      active:'productDesc'
     };
   }
 
@@ -23,7 +29,16 @@ class HardwareDetail extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl);
       if (res && res.status === 200) {
-        res.data && this.formatData(res.data)
+        const obj={
+          ...res.data,
+          hardwareName:res.data.verboseName,
+          hardwareProducer:res.data.brand,
+          hardwareLogo:res.data.image,
+          hardwareFunction:res.data.productDesc,
+          hardwareTags:res.data.tagList,
+          createTime:res.data.createdAt,
+        }
+        res.data && this.formatData(obj)
       } else {
         debug.warn("获取详情接口返回错误")
       }
@@ -47,9 +62,7 @@ class HardwareDetail extends React.Component {
   }
 
   formatData(data) {
-    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format("YYYY-MM-DD H:m:s")
     data.createTime = data.createTime && moment(data.createTime * 1000).format("YYYY-MM-DD H:m:s")
-
     this.setState({data: data});
   }
 
@@ -63,112 +76,75 @@ class HardwareDetail extends React.Component {
     })
     this.setState({ tags: tags })
   }
-
+  handleTabChange(type){
+    this.setState({active:type})
+  }
   render() {
-    let { data, tags } = this.state
+    let { data, tags ,active} = this.state
     const infoTags = data.hardwareTags || []
-    const hardwarePics = data.hardwarePics || []
     const len = infoTags.length
     const urls = {
-      create: { url: `/hardware/create`, name: '发布新硬件' },
-      list: { url: `/hardware/list`, name: '我的硬件' },
+      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '发布新硬件' },
+      list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
+    const navList=[{value:'商品介绍',type:'productDesc'},{value:'规格参数',type:'typeParam'},{value:'评论('+commentData.assessList[0].list.length+')',type:'comment'}];
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />
-        <div className="sub-container bg-white">
-          <div className="detail-container">
-            <div className="detail-download">
+        <div className="sub-container">
+          <div className="detail-container bg-white">
+            <div className="detail-returnnav">
+              <p onClick={()=>{window.history.go(-1)}}>返回</p>
+            </div>
+            <div className="detail-img">
               <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
-              <a className="btn btn-primary btn-download">购买</a>
+              <a className="detail-start"><i className="iconfont icon-uncollected icon-uncollected2"></i><span>收藏</span></a>
             </div>
             <div className="detail-info">
-              <dl className="detail-tittle">
+              <dl className="detail-tittle1">
                 <dt>{ data.hardwareName }</dt>
-                <dd><i className="user-img"></i><span>{ data.hardwareProducer }</span></dd>
+                <dd><i className="user-img"></i><span className="user-txt">{ data.hardwareProducer }</span></dd>
               </dl>
-              <h3 className="app-title">内容提要</h3>
-              <p className="app-text">{ data.hardwareFunction }</p>
-              <h3 className="app-title">信息</h3>
-              <table className="infomation-list">
-                <tr>
-                  <td>类别</td>
-                  <td>
-                    <span className="tag">{ data.majorCategoryName } - </span>
-                    <span className="tag">{ data.minorCategoryName }</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>标签</td>
-                  <td>
-                  {
-                     infoTags.map( (item, index) => {
-                       return (
-                         <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
-                       )
-                     } )
-                  }
-                  </td>
-                </tr>
-              </table>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>硬件介绍:</h5>
+              <p className="detail-introduce">{ data.hardwareFunction }</p>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>类别:
+                <span className="detail-genre">
+                  <i className="tag">wifi</i>
+                </span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>标签:
+                <span className="detail-label">
+                  {infoTags.map( (item) =>  (<i>{item}{ len === 0 ? `、` : '' }</i>))}
+                </span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>已售:
+                <span className="detail-sold">180件</span>
+              </h5>
+              <h5 className="detail-title"><i className="detail-title-dot"></i>价格 :
+                <span className="detail-price">￥{data.price}<i>元</i></span>
+              </h5>
             </div>
           </div>
-          <div className="table-info hardware-info">
-            <h3 className="app-title">硬件信息</h3>
-            <table className="detail-table">
-              <tr>
-                <td className="title">发布时间</td>
-                <td className="text">{ data.createTime }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件型号</td>
-                <td className="text">{ data.hardwareMode }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件品牌</td>
-                <td className="text">{ data.hardwareBrand }</td>
-              </tr>
-              <tr>
-                <td className="title">生产厂家</td>
-                <td className="text">{ data.hardwareProducer }</td>
-              </tr>
-              <tr>
-                <td className="title">通讯方式</td>
-                <td className="text">
-                { data.commType1 ? <span className="tag">WIFI</span> : '' }
-                { data.commType2 ? <span className="tag">蓝牙</span> : '' }
-                </td>
-              </tr>
-              <tr>
-                <td className="title">详细功能描述</td>
-                <td className="text">{ data.hardwareDetail }</td>
-              </tr>
-              <tr>
-                <td className="title">SDK类型</td>
-                <td className="text">{ data.sdkTypeName }</td>
-              </tr>
-              <tr>
-                <td className="title">操作平台</td>
-                <td className="text">{ data.osName }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件平台</td>
-                <td className="text">{ data.hardwarePlatformName }</td>
-              </tr>
-              <tr>
-                <td className="title">硬件图片</td>
-                <td className="text">
-                {
-                  hardwarePics.map( (item, index) => (
-                    <div className="img-block">
-                      <img className="img" src={item} />
-                    </div>
-                   ) )
-                }
-                </td>
-              </tr>
-            </table>
+          <div className="detail-table-box bg-white">
+            <ul className="detail-table-nav">
+             { 
+               navList.map((v,k)=>(
+                <li key={k}>
+                  <span className={v.type === active?'active':''} onClick={this.handleTabChange.bind(this,v.type)}>{v.value}</span>
+                </li>
+               ))
+             }
+            </ul>
+            {
+              active === 'productDesc'?
+                <ProductDescTpl data={data}/>
+              :
+              active === 'typeParam'?
+                <ParamTpl uploadProductSpecification={data.uploadProductSpecification}/> 
+              : 
+                <CommentTpl {...commentData}/>
+            }            
           </div>
         </div>
       </div>

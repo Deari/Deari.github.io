@@ -434,13 +434,9 @@ sdk.getDevInfo()
     // success
     // data格式为
     {
-      data:{
           name:'iOS_Wifi', //设备名称
           model:'营销', //设备类型
           systemVersion:'1.0.0', //系统版本
-      }
-      status:200,
-      msg:'success',
     }
   }).catch(function(err) {
     // fail
@@ -460,19 +456,19 @@ sdk.getDevInfo()
 ```javascript
 
 sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
-  then(function(data){ 
+  then(function(data){
     {
     // success
     // data格式为启动之前传递的参数
-      data:{
-       'bar':'foo',
-      }
-      status:200,
-      msg:'success',
+      "storeName":"GAP",
+      "org":"wanda",
+      "storeId":"10000",
+      "token":"8943o9432943948394839",
+      "userId":"18510000005"
     }
   }).catch(function(err){
     //fail
-  }) 
+  })
 ```
 
 **getLocation** 获取位置信息
@@ -491,12 +487,8 @@ sdk.getLocation()
     // success
     // data格式为
     {
-      data:{
          lot:'116.46', //经度
          lat:'39.92', //维度
-      }
-      status:200,
-      message:'OK',
     }
   }).catch(function(err) {
     // fail

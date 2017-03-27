@@ -72,6 +72,11 @@ export function getHardwareDomain(url) {
   const domain =  (env === 'pub') ? 'http://api.ffan.net/' : 'http://api.sit.ffan.net/'
   return domain + url
 }
+export function getDownloadDomain(url) {
+  const env = getDomainEnv()
+  const domain =  (env === 'pub') ? 'http://fdfs.intra.ffan.net/v1/file/' : 'http://fdfs.intra.sit.ffan.net/v1/file/'
+  return domain + url
+}
 // 获取登录相关的接口地址
 export function getLoginDomain(url) {
   const domainReg = new RegExp("^http:\/\/passport\.intra\.(sit\.|test\.)?ffan\.net\/")
