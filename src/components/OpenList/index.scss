@@ -25,6 +25,14 @@
 }
 .open-content-info{
   display: block;
+  .sizeTxt{
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 10px;
+    i{
+      font-style: normal;
+    }
+  }
   .open-info-name{
       padding: 13px 34px 0px;
       height: 38px;

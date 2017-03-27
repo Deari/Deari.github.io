@@ -28,7 +28,7 @@ class OpenList extends React.Component {
                 <span className="open-user-name" title={ item.developerName }><i className="user-img"></i>{ item.developerName }</span>
                 <img className="open-list-img" src={ item[`${typeName}Logo`] } alt="LOGO"/>
                 {
-                  defaultLayout?<span>尺寸：<i>{defaultLayout.w}x{defaultLayout.h}</i></span>:''
+                  defaultLayout?<p className='sizeTxt'>尺寸：<i>{defaultLayout.w}x{defaultLayout.h}</i></p>:''
                 }
                 <span className="open-info-introduce" title={ desc }>{ desc }</span>
               </Link>
