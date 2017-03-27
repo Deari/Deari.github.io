@@ -52,9 +52,9 @@ class SecondStepForm extends React.Component {
 
     return (
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-row show-contain">
           <img src={appLogo} />
-          <div>
+          <div className="show-text">
             <h3>{appName}</h3>
             <p><i>WidgetID：</i><span>{appId}</span></p>
             <p><i>WidgetKey：</i><span>{appKey}</span></p>
