@@ -97,11 +97,11 @@ class HardwareDetail extends React.Component {
             <div className="detail-returnnav">
               <p onClick={()=>{window.history.go(-1)}}>返回</p>
             </div>
-            <div className="detail-img">
+            <div className="detail-hardwareimg">
               <img className="appImg" src={ data.hardwareLogo } alt="LOGO"/>
               <a className="detail-start"><i className="iconfont icon-uncollected icon-uncollected2"></i><span>收藏</span></a>
             </div>
-            <div className="detail-info">
+            <div className="detail-hardwareinfo">
               <dl className="detail-tittle1">
                 <dt>{ data.hardwareName }</dt>
                 <dd><i className="user-img"></i><span className="user-txt">{ data.hardwareProducer }</span></dd>
