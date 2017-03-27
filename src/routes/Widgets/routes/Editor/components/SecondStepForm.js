@@ -55,6 +55,7 @@ class SecondStepForm extends React.Component {
       appKey,
       appName,
       appLogo,
+      codeDesc,
     } = initialValues
     const { totalCount } = this.state
 
@@ -73,7 +74,7 @@ class SecondStepForm extends React.Component {
             <label>版本介绍</label>
             <div className="row-right">
               <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
-              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。" onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
+              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。"  value={codeDesc?codeDesc:''} onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
               { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
             </div>
             <span className="font-count">{codeDescCount} / {totalCount}</span>
