@@ -12,8 +12,8 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `/hardware/create`, name: '发布新硬件' },
-      list: { url: `/hardware/list`, name: '我的硬件' },
+      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '发布新硬件' },
+      list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     },
     detailLink: '/hardware/detail/'
