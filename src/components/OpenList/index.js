@@ -6,7 +6,6 @@ class OpenList extends React.Component {
   render() {
     const { typeName, detailLink, clickStar } = this.props
     const listData = this.props.listData || []
-
     return (
       <ul className="open-content-list">
       {
@@ -14,6 +13,7 @@ class OpenList extends React.Component {
         listData.map(( item, index ) => {
           const desc = item[`${typeName}Function`] || item[`${typeName}Desc`]
           const price = item.hardwarePrice || '免费'
+          const defaultLayout = item.defaultLayout&&JSON.parse(item.defaultLayout)
           return (
             <li>
               {
@@ -27,6 +27,9 @@ class OpenList extends React.Component {
                 <p className="open-info-name" title={ item[`${typeName}Name`] }>{ item[`${typeName}Name`] }</p>
                 <span className="open-user-name" title={ item.developerName }><i className="user-img"></i>{ item.developerName }</span>
                 <img className="open-list-img" src={ item[`${typeName}Logo`] } alt="LOGO"/>
+                {
+                  defaultLayout?<span>尺寸：<i>{defaultLayout.w}x{defaultLayout.h}</i></span>:''
+                }
                 <span className="open-info-introduce" title={ desc }>{ desc }</span>
               </Link>
               { 
