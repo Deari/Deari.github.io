@@ -183,7 +183,7 @@ export class renderFile extends Component {
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
-            <input type="file" accept=".ffap" onChange={::this.fileUpload} />
+            <input type="file" accept=".fap" onChange={::this.fileUpload} />
             {input.value.originalName}
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}

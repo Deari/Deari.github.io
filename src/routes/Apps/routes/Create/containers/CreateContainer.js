@@ -92,6 +92,7 @@ class CreateContainer extends Component {
                }
             })
             this.props.toggleStep(2)
+            window.scrollTo(0,0)
           } else {
             debug.warn('请完善表单信息')
           }
