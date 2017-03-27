@@ -15,22 +15,6 @@ import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
 import { toggleStep, updateForm2, updateAppkind, getTags, getCates, updateCodeDesc} from '../modules/create'
-function unique(list){
-  const setting=[list[0]]
-  for(let i =0;i<list.length;i++){
-    let repeat =false;
-    for(let j =0;j<setting.length;j++){
-      if(list[i].id&&setting[j].id&&list[i].id==setting[j].id){
-        repeat=true;
-        break
-      }
-    }
-    if(!repeat){
-      setting.push(list[i])
-    }
-  }
-   return setting
-}
 class CreateContainer extends Component {
 
   componentWillMount() {
@@ -97,13 +81,19 @@ class CreateContainer extends Component {
             const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
             const versionFormData = new FormData();
             versionFormData.append("prepareVersion", "1");
-            this.props.updateForm2({ appId: res.data.appId});
+            this.props.updateForm2({
+              appId: res.data.appId,
+              appLogo: res.data.appLogo,
+              appKey: res.data.appkey,
+              appName: res.data.appName
+            })
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
                  this.props.updateForm2({codeId:versionRes.data[0].codeId})
                }
             })
             this.props.toggleStep(2);
+            window.scrollTo(0,0)
           } else {
             debug.warn('请完善表单信息')
           }
@@ -120,11 +110,6 @@ class CreateContainer extends Component {
   submitSecond(values) {
     this.isLogin()
     let setting =[]; 
-    if(values.configList){
-      if(Array.isArray(values.configList)&&values.configList.length!=0){
-        setting = unique(values.configList)
-      }
-    }
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
@@ -163,7 +148,7 @@ class CreateContainer extends Component {
             'fileLink': file && file.url,
             'fileSize': file.fileSize,
             'platform': file.platform,
-            'setting': JSON.stringify(setting),
+            'setting': JSON.stringify(values.configList),
 
             'showUpdateMsg':Number(values.showUpdateMsg),
           })
@@ -254,3 +239,5 @@ const mapStateToProps = ({widgetCreate}) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateContainer)
+
+

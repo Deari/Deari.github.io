@@ -66,9 +66,9 @@ class EditContainer extends Component {
     ]
 
     const versionsList = [
-      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.') },
-      { 'value': versionsArray1.join('.') },
-      { 'value': versionsArray2.join('.') }
+      { 'value': versionsArray2.join('.'), txt: "大版本,调整了核心框架。" },
+      { 'value': versionsArray1.join('.'), txt: "小版本,增加核心功能。" },
+      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.'), txt: "子版本,优化或修复bug。" }
     ]    
     return versionsList
   }
@@ -118,7 +118,8 @@ class EditContainer extends Component {
               }
             })
             this.props.updateFirstForm(values)
-            this.props.toggleStep(2)            
+            this.props.toggleStep(2) 
+             window.scrollTo(0,0)           
           } else {
             debug.warn('请完善表单信息')
           }

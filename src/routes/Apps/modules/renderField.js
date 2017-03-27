@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getUploaderDomain, getDownLoadDomain } from 'utils/domain'
+import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -142,88 +142,95 @@ export class renderImageUpload extends Component {
 }
 
 export class renderAPKFile extends Component {
-  state ={
+  state = {
     start: 0,
     end: 1 * 1024 * 1024,
-    sessionId: 0,
+    filecode: 0,
     shardSize: 1 * 1024 * 1024,
-    txt:"",
-    index:0,
-    pressNum:0,
-    resp:''
+    txt: "",
+    index: 0,
+    pressNum: 0,
+    resp: ''
   }
   fileUpload(e) {
     if (!e.target.files[0]) return;
     const fileValue = e.target.files[0];
     // const name = file.name;
     const size = fileValue.size;
-    const shardSize = 1 * 1024 * 1024 ;
-    const pressNum = Math.ceil(size/shardSize)
-    this.setState({ index: 0, sessionId: 0, start: 0, end: shardSize, shardSize: shardSize, txt: "上传中...", pressNum: pressNum ,resp:''}, ()=>{this.upload(fileValue)})
+    const shardSize = 1 * 1024 * 1024;
+    const pressNum = Math.ceil(size / shardSize)
+    this.setState({ index: 0, filecode: 0, start: 0, end: shardSize, shardSize: shardSize, txt: "上传中...", pressNum: pressNum }, () => { this.upload(fileValue) })
   }
 
-  upload(file){
-    const {start, end, shardSize, sessionId, index} = this.state
-    const xhr=new XMLHttpRequest();
+  upload(file) {
+    const {start, end, shardSize, filecode, index, pressNum} = this.state
+    const xhr = new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
-    const url = getDomain('web/bo_appstore?clientType=1')
+    const url = `http://xapi.intra.sit.ffan.net/app/v1/bo/sliceUpload`
     const readyChange = (that) => {
- 
-      if(xhr.readyState==4){
-        if(xhr.status>=200&&xhr.status<300){
+
+      if (xhr.readyState == 4) {
+        if (xhr.status >= 200 && xhr.status < 300) {
           if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
             alert(JSON.parse(xhr.responseText).message);
             return
           } else {
             const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
             const res = JSON.parse(xhr.responseText).data
-            let resp = JSON.parse(xhr.responseText).data.responseBody;
-            if(resp){
-              const newIndex = index+1;
-              that.setState({ start: end, end: changeEnd, sessionId: res["X-Session-Id"],resp:resp,index:newIndex})
-              that.upload(file)
-            }else{
-               const fileObj ={
-                 url:getDownLoadDomain(`large_files/bo_appstore/${this.state.resp}`),
-                 name:file.name,
-                 size:file.size
-               }
-               console.log(fileObj)
-               this.props.input.onChange(fileObj)
-               return
+            if (index === pressNum) {
+              const fileObj = {
+                url: getDownloadDomain(`${this.state.filecode}`),
+                name: file.name,
+                size: file.size
+              }
+              console.log(fileObj)
+              this.props.input.onChange(fileObj)
+              return
             }
+            const newIndex = index + 1;
+            that.setState({ start: end, end: changeEnd, filecode: res.fileCode, index: newIndex })
+            that.upload(file)
           }
         }
       }
     }
-    fd.append("X-Content-Range", 'bytes ' + start + '-' + (end-1) + '/' + file.size)
-    sessionId ? fd.append("X-Session-Id", sessionId):'';
-    fd.append("data", file.slice(start,end));  
+    if (index + 1 === 1) {
+      fd.append('totalblocks', pressNum)
+      fd.append('filesize', file.size)
+      fd.append('clientType', 1)
+      fd.append('file', file.slice(start, end))
+      fd.append('blocksort', index + 1)
+    } else {
+      fd.append('clientType', 1)
+      fd.append('file', file.slice(start, end))
+      fd.append('blocksort', index + 1)
+      fd.append('filecode', filecode)
+    }
 
-    xhr.open('POST',url,true);
-         
-    xhr.onreadystatechange=function(){
+    xhr.open('POST', url, true);
+
+    xhr.onreadystatechange = function () {
       readyChange(that)
     }
     xhr.send(fd);
   }
-  getArr(pressNum){
-    if(pressNum<=0) return
+  getArr(pressNum) {
+    if (pressNum <= 0) return
     const newArr = [];
-    for(let i = 1;i<=pressNum;i++){
+    for (let i = 1; i <= pressNum; i++) {
       newArr.push(i)
     }
-    return(newArr)
+    return (newArr)
   }
   render() {
     const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     const {pressNum, index} = this.state;
     const stokeStyle = {
-      width:Math.round((1/pressNum)*420)+"px",
+      width: Math.round((1 / pressNum) * 420) + "px",
     }
     const fillStyle = {
-      width:Math.round((1/pressNum)*420)-2+"px"
+      width: Math.round((1 / pressNum) * 420) - 2 + "px"
     }
     const pressArr = this.getArr(pressNum)
     return (
@@ -235,23 +242,23 @@ export class renderAPKFile extends Component {
             <input type="file" accept=".apk" onChange={this.fileUpload.bind(this)} />
             {index && pressNum && index < pressNum ? this.state.txt : input.value.name}
             <span className="progress-box">
-            {
-              Array.isArray(pressArr)&&pressArr.map((item,key)=>{
-                return(
-                  <b key={key} className="progress-stoke" style={stokeStyle}><i className={item <= index ? 'progressed-fill' : 'progress-fill'} style={fillStyle}></i></b>
-                )
-              })     
-            }
-            {index&&pressNum? <b className='progress-num'>{index}MB/共{pressNum}MB</b>:''}
-           
-           </span>
+              {
+                Array.isArray(pressArr) && pressArr.map((item, key) => {
+                  return (
+                    <b key={key} className="progress-stoke" style={stokeStyle}><i className={item <= index ? 'progressed-fill' : 'progress-fill'} style={fillStyle}></i></b>
+                  )
+                })
+              }
+              {index && pressNum ? <b className='progress-num'>{index}MB/共{pressNum}MB</b> : ''}
+
+            </span>
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
       </div>
     )
   }
-  
+
 }
 
 export class renderFile extends Component {
@@ -288,7 +295,7 @@ export class renderFile extends Component {
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
-            <input type="file" accept=".zip" onChange={::this.fileUpload} />
+            <input type="file" accept=".fap" onChange={::this.fileUpload} />
             {input.value.originalName}
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -307,7 +314,8 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
       处理您的应用，然后才能在应用市场上提供它。当您的应用处于“审核中”状态，您无法拒绝您的应用。
     </p>
     {
-      publishList.map(item => <div className="row-sizeB" onClick={e => {input.onChange(item.value)}}>
+      publishList.map(item => <div className="row-sizeB">
+        <span onClick={e => {input.onChange(item.value)}}>
           <div className="row-radio">
 	          <input type="radio" name="radio" checked={input.value == item.value}/>
 	          <span>
@@ -316,6 +324,7 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 	          </span>
 	        </div>
           <span>{item.txt}</span>
+        </span>
       </div>
     )}
     <span className="clearF"></span>
@@ -323,6 +332,27 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
   </div>
 </div>
   
-export default renderField
+export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+  <label>{label}</label>
+  <div className="row-right max-width">
+    {
+      versionsList.map(item => <div className="row-sizeB version">
+        <span onClick={e => {input.onChange(item.value)}}>
+          <div className="row-radio">
+	          <input type="radio" name="version" checked={input.value == item.value} />
+	          <span>
+	            <i className="iconfont icon-radio1 icon-radio1V"></i>
+	            <i className="iconfont icon-radio icon-radioV"></i>
+	          </span>
+	        </div>
+          <span>{item.txt}</span>
+        </span>
+      </div>
+    )}
+    <p>版本号为： {input.value}</p>
+    <span className="clearF"></span>
+    {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
+  </div>
+</div>
 
-                //<b className='progress-stoke'><i className='progress-full'></i></b>
+export default renderField

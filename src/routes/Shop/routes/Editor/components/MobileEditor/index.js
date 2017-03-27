@@ -8,12 +8,14 @@ import Detail from '../../containers/DetailContainer'
 import '../../../../../../styles/mobile/mbase.scss'
 import './MobileEditor.scss'
 
+import { Accordion, Collapse } from 'components/Accordion'
+
 import Slider from 'react-rangeslider';
 
 const LeftSideBar = props => (
   <div className='sidebar-left'>
-    <ul className="nav">
-      <li className="item active">
+    <Accordion className="nav">
+      <Collapse className="item">
         <div className="menu-title">
           <i className="iconfont icon-uncollected"></i>
           <span>常用</span>
@@ -21,29 +23,43 @@ const LeftSideBar = props => (
         <div className="menu-cont">
           <Product />
         </div>
-      </li>
-      <li className="item">
+      </Collapse>
+
+      <Collapse className="item">
         <div className="menu-title">
           <i className="iconfont icon-text"></i>
           <span>图文类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-      </li>
-      <li className="item">
+        <div className="menu-cont" style={{height: 278}}>
+          图文类
+        </div>
+      </Collapse>
+
+      <Collapse className="item">
         <div className="menu-title">
           <i className="iconfont icon-gift"></i>
           <span>营销互动类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-      </li>
-      <li className="item">
+        <div className="menu-cont" style={{height: 278}}>
+          营销互动类
+        </div>
+      </Collapse>
+
+      <Collapse className="item">
         <div className="menu-title">
           <i className="iconfont icon-goods"></i>
           <span>商品类</span>
           <i className="fr-icon iconfont icon-menu-more"></i>
         </div>
-      </li>
-    </ul>
+        <div className="menu-cont" style={{height: 278}}>
+          商品类
+        </div>
+      </Collapse>
+
+    </Accordion>
+
     <a className="btn-more" href="wandaffoap://jump/componentMarket">
       <i className="iconfont icon-puzzle"></i>
       <span className="text">获取更多组件</span>

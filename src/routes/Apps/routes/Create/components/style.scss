@@ -263,6 +263,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     span{
         display: inline-block;
     }
+    &.version {
+      margin: 5px 0;
+    }
 }
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}
 i.icon-publish{font-size:18px!important;}
@@ -552,4 +555,23 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     }
   }
 }
-
+.show-contain{
+    padding-bottom:17px!important;
+    img{
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        float: left;
+    }
+    .show-text{
+        float: left;
+        line-height: 28px;
+        padding: 8px 0;
+        p{
+            color: #666;
+        }
+        i{
+            font-style: normal;
+        }
+    }
+}

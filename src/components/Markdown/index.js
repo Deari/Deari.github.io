@@ -16,7 +16,6 @@ marked.setOptions({
  * @returns {{html: String, tocList: Array}}
  */
 export const transerMdToMarkdown = (md) => {
-
   const renderer = new Renderer()
   const tocList = []
 

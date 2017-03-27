@@ -16,16 +16,37 @@ const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 const UPDATE_APPKIND = PREFIX+'UPDATE_APPKIND'
 const UPDATE_CODE_DESC = PREFIX+'UPDATE_CODE_DESC'
 
-const UPDATE_CONFIGARR = 'UPDATE_CONFIGARR'
-const UPDATE_CONFIGTYPE = 'UPDATE_CONFIGTYPE'
-const UPDATE_CONFIGID = 'UPDATE_CONFIGID'
-const UPDATE_CONFIGLABEL = 'UPDATE_CONFIGLABEL'
-const UPDATE_CONFIGVALUE = 'UPDATE_CONFIGVALUE'
-const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
+const UPDATE_CONFIGARR = PREFIX+'UPDATE_CONFIGARR'
+const UPDATE_CONFIGTYPE = PREFIX+'UPDATE_CONFIGTYPE'
+const UPDATE_CONFIGID = PREFIX+'UPDATE_CONFIGID'
+const UPDATE_CONFIGLABEL = PREFIX+'UPDATE_CONFIGLABEL'
+const UPDATE_CONFIGVALUE = PREFIX+'UPDATE_CONFIGVALUE'
+const UPDATE_CONFIGDESC = PREFIX+'UPDATE_CONFIGDESC'
+
+const UPDATE_CONFIGAUDIOARR = PREFIX+'UPDATE_CONFIGAUDIOARR'
+const UPDATE_CONFIGAUDIOKEY = PREFIX+'UPDATE_CONFIGAUDIOKEY'
+const UPDATE_CONFIGAUDIOVALUE = PREFIX+'UPDATE_CONFIGAUDIOVALUE'
 
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
   index
+})
+export const updateConfigAudioArr = (index,k)=>({
+  type:UPDATE_CONFIGAUDIOARR,
+  index,
+  k
+})
+export const updateConfigAudioKey = (index,k,key)=>({
+  type:UPDATE_CONFIGAUDIOKEY,
+  index,
+  k,
+  key
+})
+export const updateConfigAudioValue = (index,k,value)=>({
+  type:UPDATE_CONFIGAUDIOVALUE,
+  index,
+  k,
+  value
 })
 export const updateconfigType = (index,configType)=>({
   type:UPDATE_CONFIGTYPE,
@@ -90,7 +111,47 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
-  
+     [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioValue = action.value
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioKey = action.key
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOARR]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     if(action.k!=-1){
+       newList[action.index].audioList.splice(action.k,1)
+     }else{
+       const obj = {audioKey:'',audioValue:''}
+       newList[action.index].audioList.push(obj)
+     }
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [UPDATE_CONFIGTYPE]:(state,action)=>{
     const configList =  state.form2.configList
     let newList = [...configList]
@@ -157,7 +218,7 @@ const ACTION_HANDLERS = {
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true, audioList: [] }
       newList.push(obj)
     }
     return{
@@ -247,7 +308,7 @@ const initialState = {
     appLogo: '',
     appDesc: '',
     categoryId: -1,
-    platform: 2,
+    platform: 0,
     tags: [],
     appKind: 0
   },
@@ -258,21 +319,21 @@ const initialState = {
       { txt: '手动发布此版本', value: 0 },
     ],
     versionsList: [
-      { value: "0.0.1" },
-      { value: "0.1.0" },
-      { value: "1.0.0" }
+      { value: "1.0.0", txt: "大版本,调整了核心框架。" },
+      { value: "0.1.0", txt: "小版本,增加核心功能。" },
+      { value: "0.0.1", txt: "子版本,优化或修复bug。" },
     ],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: 0,
     appKind: 0,
     showUpdateMsg: 0,
     configList:[],
     appId: -1,
     codeId: -1,
     autoPublish: 1,
-    codeVersion: -1
+    codeVersion: '0.0.1'
   }
 }
 

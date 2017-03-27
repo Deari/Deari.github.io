@@ -183,7 +183,7 @@ export class renderFile extends Component {
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
-            <input type="file" accept=".ffap" onChange={::this.fileUpload} />
+            <input type="file" accept=".fap" onChange={::this.fileUpload} />
             {input.value.originalName}
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -214,7 +214,8 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
       处理您的应用，然后才能在应用市场上提供它。当您的应用处于“审核中”状态，您无法拒绝您的应用。
     </p>
     {
-      publishList.map(item => <div className="row-sizeB" onClick={e => {input.onChange(item.value)}}>
+      publishList.map(item => <div className="row-sizeB">
+        <span onClick={e => {input.onChange(item.value)}}>
           <div className="row-radio">
 	          <input type="radio" name="radio" checked={input.value == item.value}/>
 	          <span>
@@ -223,8 +224,32 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
 	          </span>
 	        </div>
           <span>{item.txt}</span>
+        </span>
       </div>
     )}
+    <span className="clearF"></span>
+    {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
+  </div>
+</div>
+
+export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+  <label>{label}</label>
+  <div className="row-right max-width">
+    {
+      versionsList.map(item => <div className="row-sizeB version">
+        <span onClick={e => {input.onChange(item.value)}}>
+          <div className="row-radio">
+	          <input type="radio" name="version" checked={input.value == item.value}/>
+	          <span>
+	            <i className="iconfont icon-radio1 icon-radio1V"></i>
+	            <i className="iconfont icon-radio icon-radioV"></i>
+	          </span>
+	        </div>
+          <span>{item.txt}</span>
+        </span>
+      </div>
+    )}
+    <p>版本号为： {input.value}</p>
     <span className="clearF"></span>
     {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
   </div>

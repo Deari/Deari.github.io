@@ -7,6 +7,7 @@ import {
   renderField, 
   renderTextArea, 
   renderFile, 
+  renderCodeVersion,
   renderPublishRadioBox, 
   versionTextArea, 
   renderSelect, 
@@ -23,7 +24,10 @@ import {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 } from '../modules/edit'
 
 import ConfigTpl from '../../../components/WidgetConfig'
@@ -46,17 +50,31 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList,
+      appId,
+      appKey,
+      appName,
+      appLogo,
+      codeDesc,
+    } = initialValues
     const { totalCount } = this.state
 
     return (
       <form onSubmit={handleSubmit}>
+        <div className="form-row show-contain">
+          <img src={appLogo} />
+          <div className="show-text">
+            <h3>{appName}</h3>
+            <p><i>WidgetID：</i><span>{appId}</span></p>
+            <p><i>WidgetKey：</i><span>{appKey}</span></p>
+          </div>
+        </div>
         <div>
           <div className="form-row code-desc">
             <label>版本介绍</label>
             <div className="row-right">
               <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
-              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。" onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
+              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。"  value={codeDesc?codeDesc:''} onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
               { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
             </div>
             <span className="font-count">{codeDescCount} / {totalCount}</span>
@@ -75,16 +93,7 @@ class SecondStepForm extends React.Component {
             </div>
           </div>
         </div>
-        <Field label="版本号" name="codeVersion" component={renderSelect}>
-          <option value={-1}>请选择版本号</option>
-          {
-            versionsList.map((item) => (
-              <option value={item.value}>
-                {item.value}
-              </option>
-            ))
-          }
-        </Field>
+        <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
@@ -94,12 +103,15 @@ class SecondStepForm extends React.Component {
           updateconfigValue={this.props.updateconfigValue}
           updateconfigDesc={this.props.updateconfigDesc}
           updateconfigType={this.props.updateconfigType}
+          updateConfigAudioArr={this.props.updateConfigAudioArr}
+          updateConfigAudioValue={this.props.updateConfigAudioValue}
+          updateConfigAudioKey={this.props.updateConfigAudioKey}
           />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>toggleStep(1)}>上一步</button>
+            <button type="button" className="previous" onClick={()=>{toggleStep(1);window.scrollTo(0,0)}}>上一步</button>
             <button type="submit" className="next" disabled={submitting}> 提交</button>
           </div>
         </div>
@@ -117,7 +129,10 @@ const mapDispatchToProps = {
   updateconfigLabel,
   updateconfigValue,
   updateconfigDesc,
-  updateconfigType
+  updateconfigType,
+  updateConfigAudioArr,
+  updateConfigAudioValue,
+  updateConfigAudioKey
 };
 
 export default connect(

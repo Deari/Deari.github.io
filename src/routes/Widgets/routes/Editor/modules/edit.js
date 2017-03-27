@@ -27,9 +27,30 @@ const UPDATE_CONFIGLABEL = 'UPDATE_CONFIGLABEL'
 const UPDATE_CONFIGVALUE = 'UPDATE_CONFIGVALUE'
 const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
 
+const UPDATE_CONFIGAUDIOARR = 'UPDATE_CONFIGAUDIOARR'
+const UPDATE_CONFIGAUDIOKEY = 'UPDATE_CONFIGAUDIOKEY'
+const UPDATE_CONFIGAUDIOVALUE = 'UPDATE_CONFIGAUDIOVALUE'
+
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
   index
+})
+export const updateConfigAudioArr = (index,k)=>({
+  type:UPDATE_CONFIGAUDIOARR,
+  index,
+  k
+})
+export const updateConfigAudioKey = (index,k,key)=>({
+  type:UPDATE_CONFIGAUDIOKEY,
+  index,
+  k,
+  key
+})
+export const updateConfigAudioValue = (index,k,value)=>({
+  type:UPDATE_CONFIGAUDIOVALUE,
+  index,
+  k,
+  value
 })
 export const updateconfigType = (index,configType)=>({
   type:UPDATE_CONFIGTYPE,
@@ -118,6 +139,47 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+   [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioValue = action.value
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     newList[action.index].audioList[action.k].audioKey = action.key
+     return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+   },
+   [UPDATE_CONFIGAUDIOARR]:(state,action)=>{
+     const configList = state.form2.configList
+     let newList = [...configList];
+     if(action.k!=-1){
+       newList[action.index].audioList.splice(action.k,1)
+     }else{
+       const obj = {audioKey:'',audioValue:''}
+       newList[action.index].audioList.push(obj)
+     }
+    return{
+      ...state,
+      form2:{
+        ...state.form2,
+        configList:newList
+      }
+    }
+  },
   [UPDATE_CONFIGTYPE]:(state,action)=>{
     const configList =  state.form2.configList
     let newList = [...configList]
@@ -179,12 +241,13 @@ const ACTION_HANDLERS = {
     }
   },
   [UPDATE_CONFIGARR]:(state,action)=>{
+    console.log(action)
     const configList = state.form2.configList;
     let newList = [...configList];
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,audioList:[]}
       newList.push(obj)
     }
     return{
@@ -209,7 +272,8 @@ const ACTION_HANDLERS = {
         ...state,
         form2: {
           ...state.form2,
-          versionsList:action.versionsList
+          versionsList:action.versionsList,
+          codeVersion: action.versionsList[2].value
         }
       }
   },
@@ -308,9 +372,10 @@ const initialState = {
     tagName: '正在加载...'
   }],
   sizeList :[
-    { image: 'img1', value: {w:2,h:1} },
-    { image: 'img2', value: {w:1,h:1} },
-    { image: 'img3', value: {w:2,h:2} },
+    { image: 'img1', value: {widgetW:4,widgetH:2} },
+    { image: 'img2', value: {widgetW:1,widgetH:1} },
+    { image: 'img3', value: {widgetW:4,widgetH:4} },
+    { image: 'img4', value: {widgetW:4,widgetH:1} },
   ],
   form: {
     appName: '',
@@ -318,8 +383,8 @@ const initialState = {
     appPreviewImage: '',
     appLogo: '',
     appDesc: '',
+    platform: 0,
     categoryId: -1,
-    platform: 2,
     tags: [],
     appKind: 0
   },
@@ -338,7 +403,7 @@ const initialState = {
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: -1,
     appKind: 0,
     showUpdateMsg: 0,
     appId: -1,
@@ -392,11 +457,12 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
+          defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
           rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
-        const codeDescCount = codeDesc && codeDesc.length 
+        const codeDescCount = codeDesc ? codeDesc.length : 0 
         let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
 
         const tagId = tags.map(v=>v.tagId)
@@ -405,10 +471,10 @@ export const getAppInfo = (appId) => {
           appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, appKind, size,
           tags: tagId
         }))
-
         dispatch(updateForm2({ 
-          appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName,  
+          appId,appName,appLogo,
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, 
+          appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))
       } else {

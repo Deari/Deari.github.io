@@ -79,7 +79,10 @@ class CreateContainer extends Component {
             const versionFormData = new FormData();
             versionFormData.append("prepareVersion", "1");
             this.props.updateForm2({
-              appId: res.data.appId
+              appId: res.data.appId,
+              appLogo:res.data.appLogo,
+              appKey:res.data.appkey,
+              appName:res.data.appName
             })
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
@@ -89,6 +92,7 @@ class CreateContainer extends Component {
                }
             })
             this.props.toggleStep(2)
+            window.scrollTo(0,0)
           } else {
             debug.warn('请完善表单信息')
           }

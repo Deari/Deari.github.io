@@ -1,14 +1,13 @@
 @import "~layouts/CoreLayout/CoreLayout.scss";
 $border-color:#dddddd;
 $text-color:#020202;
-.row-size .row-rotate{position:relative; text-align: center; }
+.row-size .row-rotate{ width:100%; position:relative; text-align: center; }
 i.icon-radio{display:none;font-size:32px;color:#cdd4dc;}
 i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
 input[type="radio"]{position:absolute;top:5px;left:23px;width:26px;height:28px;opacity:0;cursor:pointer; z-index: 1;}
 input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
 input[type="radio"]:checked + span i.icon-radio1{display: none;}
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
-.row-rotate{ width:100%;}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px; 
@@ -279,6 +278,9 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     span{
         display: inline-block;
     }
+    &.version {
+      margin: 5px 0;
+    }
 }
 .row-radio{position:relative; display: inline-block; vertical-align: -3px; margin-right: 4px; }
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}
@@ -347,4 +349,24 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       }
     }
   }
+}
+.show-contain{
+    padding-bottom:17px!important;
+    img{
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        float: left;
+    }
+    .show-text{
+        float: left;
+        line-height: 28px;
+        padding: 8px 0;
+        p{
+            color: #666;
+        }
+        i{
+            font-style: normal;
+        }
+    }
 }

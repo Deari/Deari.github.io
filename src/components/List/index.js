@@ -26,7 +26,7 @@ class List extends React.Component {
             </div>
             <div className="info-price w90">{item.price}</div>
             { item.status && <div className="w90 info-download"><div>{item.status}</div></div>}
-            <div className="w100">
+            <div className="w190">
               { item.latestCodeVersion && <div className="info-status">
                 <span className="info-status-info1">
                   <i className={item.latestActiveColor}></i>{item.latestCodeVersion}
@@ -42,7 +42,7 @@ class List extends React.Component {
               </div>
               }
             </div>
-            <div className="info-download w90">{item.download}</div>
+            {/**<div className="info-download w90">{item.download}</div> */}
             <div className="info-btn w112">
              <Link className='active' to={item.detailUrl}><button>查看</button> </Link>
              {

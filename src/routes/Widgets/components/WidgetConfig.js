@@ -10,8 +10,7 @@ class ConfigTpl extends Component {
     this.props.updateConfigArr(index)
   }
   typeChange(index,e){
-    console.log(e.target.value)
-    //this.props.updateconfigType()
+    this.props.updateconfigType(index,e.target.value)
   }
   titleChange(index,e){
     this.props.updateconfigLabel(index,e.target.value)
@@ -25,7 +24,19 @@ class ConfigTpl extends Component {
   descChange(index,e){
     this.props.updateconfigDesc(index,e.target.value)
   }
-
+  addConfigAudio(index){
+    this.props.updateConfigAudioArr(index,-1)
+  }
+  removeConfigAudio(index,k){
+    this.props.updateConfigAudioArr(index,k)
+  }
+  audioValueChange(index,k,e){
+    this.props.updateConfigAudioValue(index,k,e.target.value)
+    
+  }
+  audioKeyChange(index,k,e){
+    this.props.updateConfigAudioKey(index,k,e.target.value)
+  }
   render(){
     const {configList}=this.props
     return (<div className='config-box'>
@@ -38,13 +49,34 @@ class ConfigTpl extends Component {
                       <i className="iconfont icon-close" onClick={this.removeConfig.bind(this,index)}></i>
                       <select onChange={this.typeChange.bind(this,index)}>
                         <option value="input">文本框</option>
+                        <option value="audio">单选框</option>
                       </select>
-                      <div className='config-textBox'>
-                        <input type='text' placeholder="标题" value={item.label?item.label:''} onChange={this.titleChange.bind(this,index)}/>
-                        <input type='text' placeholder="KEY" value={item.id?item.id:''} onChange={this.keyChange.bind(this,index)}/>
-                        <input type='text' placeholder="VALUE" value={item.value?item.value:''} onChange={this.valueChange.bind(this,index)}/>
-                        <input type='text' placeholder="描述" value={item.desc?item.desc:''} onChange={this.descChange.bind(this,index)}/> 
-                      </div>
+                      {
+                      item.type=='input'?
+                        <div className='config-textBox'>
+                          <input type='text' placeholder="标题" value={item.label?item.label:''} onChange={this.titleChange.bind(this,index)}/>
+                          <input type='text' placeholder="KEY" value={item.id?item.id:''} onChange={this.keyChange.bind(this,index)}/>
+                          <input type='text' placeholder="VALUE" value={item.value?item.value:''} onChange={this.valueChange.bind(this,index)}/>
+                          <input type='text' placeholder="描述" value={item.desc?item.desc:''} onChange={this.descChange.bind(this,index)}/> 
+                        </div>
+                        :
+                         <div className='config-audio config-textBox'>
+                          <span>标题：</span><input type='text' value={item.id?item.id:''} placeholder='KEY' onChange={this.keyChange.bind(this,index)}/>
+                          <div className="audio-contain">
+		                         {
+		                          item.audioList.map((v,k)=>(
+		                              <div key={k} className="key-value">
+		                                <span>name：</span><input type='text' placeholder='name' value={v.audioKey?v.audioKey:''}  onChange={this.audioKeyChange.bind(this,index,k)}/>  
+		                                <span>value：</span><input type='text' placeholder='VALUE'  value={v.audioValue?v.audioValue:''} onChange={this.audioValueChange.bind(this,index,k)}/> 
+		                                <i className='iconfont icon-del1' onClick={this.removeConfigAudio.bind(this,index,k)}></i>   
+		                              </div>
+		                             ))
+		                           }  
+		                           <div className='config-edit' onClick={this.addConfigAudio.bind(this,index)}><i className="iconfont icon-fileadd"></i>新选项</div>
+                           </div>
+                         </div>
+                      }
+                      
                     </div>
                   ))
                 }
