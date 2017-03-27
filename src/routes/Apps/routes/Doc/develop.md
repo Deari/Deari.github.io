@@ -106,7 +106,7 @@
 ## 1、发布新应用
 
 1.1 点击 [应用市场](http://open.ffan.net/apps) -> 发布新应用, 按要求填写相关应用信息, 发布新应用
-  
+
 1.2 成功发布新应用后, 系统会生成 AppID 和 AppSecrect（待补充）
 
 ## 2、环境搭建
@@ -183,13 +183,13 @@ brew install flow
   将包含 `libReactConfig.a`, 一系列头文件和 `Fonts` 目录的文件夹 `FFOAPSDK` 拖拽到工程中
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1l6bTBvV_1RCvBVdK/tfs/addsdk.jpeg)
- 
+
   3\. 设置 `flag`
 
   找到对应 `target` 的 `Build Settings`, `Linking－>Other Linker Flags` 添加 `flag`, `-Objc` 和 `-all_load`
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1u2ETBj_T1RCvBVdK/tfs/projectflag.jpeg)
-  
+
   4\. 添加 `ReactNative` 库
 
   添加 `React` 组件工程文件:
@@ -197,21 +197,21 @@ brew install flow
   将 `node_modules/react-native/React/React.xcodeproj` 拖到工程中
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T13OJTBTbT1RCvBVdK/tfs/14834343700116.jpeg)
-  
+
   5\. 配置库依赖
 
   点击你的主工程文件, 选择 `Build Phases`, 然后把刚才所添加进去的 `.xcodeproj` 下的 `Products` 文件夹中的静态库文件（.a文件）, 拖到 `Link Binary With Libraries` 组内。
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1D6LTB5__1RCvBVdK/tfs/14834348297098.jpeg)
-  
+
   6\. 添加其它组件依赖
-  
+
   其它本地组件都在 `node_modules/react-native/Libraries` 目录。使用同样的方法添加 `RCTImage` 或其他组件
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1f7hTB4JT1RCvBVdK/tfs/14834501543939.jpeg)
-  
+
   7\. 添加系统依赖库
-  
+
   点击你的主工程文件, 选择 `General`, 在 `Linked Frameworks and Libraries` 添加 `libstdc++.tbd` 和 `libicucore.tbd`
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1t0JTBTdT1RCvBVdK/tfs/14834496841174.jpeg)
@@ -490,7 +490,7 @@ ffanSDK.error(function(res) {
 
 <p><font color=red>所有接口通过 `ready` 中返回的参数 `sdk` 来调用, 参数是一个对象, 目前提供以下方法:</font></p>
 
-**openWebPage** 
+**openWebPage**
 
 - 功能描述: 通过 `H5` 打开一个新的 `WebView` 去加载新的 `H5` 页面
 
@@ -503,7 +503,7 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
-**openLocalRNPage** 
+**openLocalRNPage**
 
 - 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
 
@@ -512,7 +512,7 @@ sdk.openWebPage({"url":"www.baidu.com"})
 - 参数定义: 参数为一个 `JSON` 对象
 
   * **moduleName** 要打开的 `RN` 模块名称
-  
+
   * **path** `FFOAP` 内 `RN` 入口文件的相对路径
 
 ```javascript
@@ -555,7 +555,7 @@ sdk.getDevInfo()
 ```javascript
 
 sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
-  then(function(data){ 
+  then(function(data){
     {
     // success
     // data格式为启动之前传递的参数
@@ -567,7 +567,7 @@ sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
     }
   }).catch(function(err){
     //fail
-  }) 
+  })
 ```
 
 **getLocation** 获取位置信息
@@ -673,13 +673,13 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 ```
 // 失败:
 {
-  "status": 4000  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 , 
+  "status": 4000  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 ,
   "message": "param error"  // string 型, 对 status 的文字描述
 }
     ```
 
   - 错误码对照表
-  
+
 
 | 错误码 | 错误说明 |
 | :--- | :----- |
@@ -695,7 +695,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
-- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `sha256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
+- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -717,10 +717,10 @@ url=http://m.ffan.com?a=b&c=d
 accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
 ```
 
-  3\. 对 `string1` 进行 `sha256` 签名, 得到 `signature`
+  3\. 对 `string1` 进行 `SHA256` 签名, 得到 `signature`
 
 ```
-928dfbcabb55bc663a925306f11e2ab17c4a6d65  
+928dfbcabb55bc663a925306f11e2ab17c4a6d65
 ```
 
 **验证accessToken的签名是否正确接口说明**
@@ -764,7 +764,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 ```
 
 - 错误码对照表:
-  
+
 | 错误码 | 错误说明 |
 | :--- | :----- |
 | 4001 | appKey 参数错误 |
@@ -773,7 +773,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 | 4010 | 签名参数错误或者签名无效 |
-  
+
 **生成 `accessToken` 的签名接口说明**
 
 <p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方应用在自己的服务端实现签名逻辑</font></p>
@@ -789,14 +789,14 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 - 参数说明
 
   * `accessToken`: 资源接口的调用凭证
-  
+
   * `appKey`: 第三方应用 appKey
-  
+
   * `ts`: 签名时使用的时间戳
-  
+
   * `nonceStr`: 用来生成签名的随机串
-  
-  * `url`: 调用 `JS` 接口页面的完整 `URL`, 不包含 # 及其后面部分,  <font color=red>请使用 `urlEncode` 对 url 进行处理</font>    
+
+  * `url`: 调用 `JS` 接口页面的完整 `URL`, 不包含 # 及其后面部分,  <font color=red>请使用 `urlEncode` 对 url 进行处理</font>
 
 - 返回值说明
 
@@ -862,7 +862,7 @@ public ArrayMap<String, String> getLocalDebugParams() {
 ### 刷新 Javascript
 
 - 传统的原生应用开发中, 每一次修改都需要重新编译, 但在 `RN` 中你只需要刷新一下 `JavaScript` 代码, 就能立刻看到变化。具体的操作就是在开发菜单中点击 "Reload" 选项。也可以在 `iOS` 模拟器中按下 `Command⌘ + R`。
- 
+
 - 如果在 `iOS` 模拟器中按下 `Command⌘ + R` 没啥感觉, 则注意检查 `Hardware` 菜单中, `Keyboard` 选项下的 "Connect Hardware Keyboard" 是否被选中。
 
 - 选择开发菜单中的 Enable Live Reload 可以开启自动刷新, 这样可以节省你开发中的时间。
