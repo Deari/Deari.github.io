@@ -29,7 +29,7 @@ class FirstStepForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
-        <div>
+        <div className="form-row size-img">
           <img src={initialValues.appPreviewImage} style={imgStyle}/>
           <span>{hwString}</span>
         </div>
