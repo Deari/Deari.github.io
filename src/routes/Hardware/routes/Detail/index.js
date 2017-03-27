@@ -84,8 +84,8 @@ class HardwareDetail extends React.Component {
     const infoTags = data.hardwareTags || []
     const len = infoTags.length
     const urls = {
-      create: { url: `/hardware/create`, name: '发布新硬件' },
-      list: { url: `/hardware/list`, name: '我的硬件' },
+      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '发布新硬件' },
+      list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }
     const navList=[{value:'商品介绍',type:'productDesc'},{value:'规格参数',type:'typeParam'},{value:'评论('+commentData.assessList[0].list.length+')',type:'comment'}];
@@ -102,7 +102,7 @@ class HardwareDetail extends React.Component {
               <a className="detail-start"><i className="iconfont icon-uncollected icon-uncollected2"></i><span>收藏</span></a>
             </div>
             <div className="detail-info">
-              <dl className="detail-tittle">
+              <dl className="detail-tittle1">
                 <dt>{ data.hardwareName }</dt>
                 <dd><i className="user-img"></i><span className="user-txt">{ data.hardwareProducer }</span></dd>
               </dl>

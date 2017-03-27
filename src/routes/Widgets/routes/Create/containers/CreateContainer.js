@@ -81,7 +81,12 @@ class CreateContainer extends Component {
             const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
             const versionFormData = new FormData();
             versionFormData.append("prepareVersion", "1");
-            this.props.updateForm2({ appId: res.data.appId});
+            this.props.updateForm2({
+              appId: res.data.appId,
+              appLogo: res.data.appLogo,
+              appKey: res.data.appkey,
+              appName: res.data.appName
+            })
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
                  this.props.updateForm2({codeId:versionRes.data[0].codeId})

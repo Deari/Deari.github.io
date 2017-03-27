@@ -30,17 +30,21 @@ const SecondStepForm = props => {
 
   const { handleSubmit, submitting, previous, initialValues } = props
   const {
-    appKind, 
-    publishList, 
-    versionsList, 
-    active, 
-    datalist, 
-    idList, 
-    logoList, 
-    wIdList, 
-    wLogoList, 
-    nameList, 
-    wNameList
+    appKind,
+    publishList,
+    versionsList,
+    active,
+    datalist,
+    idList,
+    logoList,
+    wIdList,
+    wLogoList,
+    nameList,
+    wNameList,
+    appId,
+    appKey,
+    appName,
+    appLogo,
   } = initialValues
 
   const appObj = compose(idList, logoList, nameList)
@@ -72,7 +76,14 @@ const SecondStepForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
-    
+      <div>
+        <img src={appLogo}/>
+        <div>
+          <h3>{appName}</h3>
+          <p><i>AppID：</i><span>{appId}</span></p>
+          <p><i>AppKey：</i><span>{appKey}</span></p>
+        </div>
+      </div>
       <div>
         <div className="form-row code-desc">
           <label>版本介绍</label>

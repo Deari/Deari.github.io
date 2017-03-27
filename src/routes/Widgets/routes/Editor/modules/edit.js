@@ -382,8 +382,8 @@ const initialState = {
     appPreviewImage: '',
     appLogo: '',
     appDesc: '',
+    platform: 0,
     categoryId: -1,
-    platform: 2,
     tags: [],
     appKind: 0
   },
@@ -402,7 +402,7 @@ const initialState = {
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: -1,
     appKind: 0,
     showUpdateMsg: 0,
     appId: -1,
@@ -456,7 +456,8 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
+          defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
           rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
@@ -471,8 +472,9 @@ export const getAppInfo = (appId) => {
         }))
 
         dispatch(updateForm2({ 
-          appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName,  
+          appId,appName,appLogo,
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, 
+          appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))
       } else {

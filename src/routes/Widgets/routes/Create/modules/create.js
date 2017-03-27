@@ -308,7 +308,7 @@ const initialState = {
     appLogo: '',
     appDesc: '',
     categoryId: -1,
-    platform: 2,
+    platform: 0,
     tags: [],
     appKind: 0
   },
@@ -326,7 +326,7 @@ const initialState = {
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: 0,
     appKind: 0,
     showUpdateMsg: 0,
     configList:[],

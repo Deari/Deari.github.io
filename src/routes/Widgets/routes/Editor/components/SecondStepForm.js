@@ -50,11 +50,24 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList,
+      appId,
+      appKey,
+      appName,
+      appLogo,
+    } = initialValues
     const { totalCount } = this.state
 
     return (
       <form onSubmit={handleSubmit}>
+        <div>
+          <img src={appLogo} />
+          <div>
+            <h3>{appName}</h3>
+            <p><i>WidgetID：</i><span>{appId}</span></p>
+            <p><i>WidgetKey：</i><span>{appKey}</span></p>
+          </div>
+        </div>
         <div>
           <div className="form-row code-desc">
             <label>版本介绍</label>

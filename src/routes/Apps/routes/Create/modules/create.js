@@ -287,7 +287,7 @@ const getInitialState = () => {
       appLogo: '',
       appDesc: '',
       categoryId: -1,
-      platform: 2,
+      platform: 0,
       tags: [],
       appKind: 0
     },
@@ -317,6 +317,9 @@ const getInitialState = () => {
       codeDescCount: 0,
       isDescErr: false,
       appId: -1,
+      appKey:'',
+      appName:'',
+      appLogo:'',
       codeId:-1,
       platform: 2,
       appKind: 0,
