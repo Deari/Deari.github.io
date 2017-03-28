@@ -207,7 +207,7 @@ class EditContainer extends Component {
 
     const appKind = form2 && form2.appKind || ''
 
-    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
+    let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
       create: { url: `/widgets/create`, name: '创建新组件' },

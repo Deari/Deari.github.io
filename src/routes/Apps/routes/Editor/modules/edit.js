@@ -368,8 +368,8 @@ const initialState = {
         type:""
       },
       publishList: [
-        { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
+        { txt: '自动发布此版本', value: 1 },
       ],
       versionsList:[
         {value:"请稍后..."},
@@ -391,7 +391,7 @@ const initialState = {
       codeId:-1,
       platform: 2,
       appKind: 0,
-      autoPublish:1,
+      autoPublish:0,
       codeVersion: -1
   },
 }

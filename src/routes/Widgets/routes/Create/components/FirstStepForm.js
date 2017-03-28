@@ -25,9 +25,10 @@ class FirstStepForm extends Component {
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField} />
         <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox} />
-        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
+        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height} />
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
         <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea} />
+    
         {/**    <Field label="分类" name="categoryId" component={renderSelect}>
           <option value={-1}>请选择分类</option>
           {
