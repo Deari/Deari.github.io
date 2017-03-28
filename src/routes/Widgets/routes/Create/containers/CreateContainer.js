@@ -60,15 +60,17 @@ class CreateContainer extends Component {
         
         const formData = new FormData();
 
-        for(let key in values) {
-          if(key == 'tags') {
-            for(let v of values[key]){
+        for (let key in values) {
+          if (key == 'tags') {
+            for (let v of values[key]) {
               formData.append('tags[]', v)
             }
-          } else if(key =='size'){
-            for(let k in values[key]){
-              formData.append( k, values[key][k])
+          } else if (key == 'size') {
+            for (let k in values[key]) {
+              formData.append(k, values[key][k])
             }
+          } else if (key == 'categoryId') {
+            formData.append('categoryId', 8)
           } else {
             formData.append(key, values[key])
           }

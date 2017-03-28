@@ -13,7 +13,7 @@ class ChoiceStepForm extends Component {
   render() {
     return (
       <form className="create-choice-block">
-        <p className="create-choice-title">发布新组件</p>
+        <p className="create-choice-title">创建新组件</p>
         <div className="create-form-btn">
           <h3 className="title">请选择组件类型</h3>
           <button type="button" className="next rn-btn" onClick={this.handleSubmit.bind(this, 0)}><i className="iconfont icon-download_react-native"></i>RN</button>

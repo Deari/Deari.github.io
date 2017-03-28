@@ -28,7 +28,7 @@ class FirstStepForm extends Component {
         <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
         <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea} />
-        <Field label="分类" name="categoryId" component={renderSelect}>
+        {/**    <Field label="分类" name="categoryId" component={renderSelect}>
           <option value={-1}>请选择分类</option>
           {
             cates.map((item) => (
@@ -37,7 +37,7 @@ class FirstStepForm extends Component {
               </option>
             ))
           }
-        </Field>
+        </Field> */}
         <Field label="标签" name="tags" component={renderTags} tags={tags} />
         <div className="form-btn">
           <div>

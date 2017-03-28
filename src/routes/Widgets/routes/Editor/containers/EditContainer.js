@@ -90,6 +90,8 @@ class EditContainer extends Component {
             // for (let k in sizeObj) {
             //   formData.append(k, sizeObj[k])
             // }
+          } else if (key == 'categoryId') {
+            formData.append('categoryId', 8)
           } else {
             formData.append(key, values[key])
           }

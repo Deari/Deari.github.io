@@ -384,7 +384,7 @@ const initialState = {
     appLogo: '',
     appDesc: '',
     platform: 0,
-    categoryId: -1,
+    categoryId: 8,
     tags: [],
     appKind: 0
   },

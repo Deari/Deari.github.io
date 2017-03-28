@@ -356,7 +356,7 @@ const initialState = {
     appName: '',
     appLogo: '',
     appDesc: '',
-    categoryId: -1,
+    categoryId: 8,
     platform: 0,
     tags: [],
     appKind: 0
