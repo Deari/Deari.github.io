@@ -32,13 +32,19 @@ class FirstStepForm extends Component {
     const imgSrc = initialValues.size&&getimgSrc(sizeList,initialValues.size)
     const h = initialValues.size && initialValues.size.h || 0;
     const w = initialValues.size && initialValues.size.w || 0;
-    const hwString = '【' +'尺寸'+w  + "*" +h +'】'
+    const hwString = w  + "*" +h
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
-        <div className="form-row show-size">
-          <span className={`${imgSrc} row-img`}></span>
-          <span>{hwString}</span>
+        <div className="form-row">
+        	<label>尺寸</label>
+        	<div className="row-right">
+        		<p>组件在手机屏幕中所占比例的尺寸</p>
+        		<div className="row-size show-size">
+	        		<span className={`${imgSrc} row-img`}></span>
+	          	<span>{hwString}</span>
+        		</div>
+        	</div>
         </div>
         <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />

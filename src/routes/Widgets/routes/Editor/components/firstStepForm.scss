@@ -250,6 +250,9 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
         background-size: 100%;
     }
 }
+.form-row .row-right .show-size{
+    text-align: center;
+}
 .clearF{
     @include clx;
 }
@@ -315,9 +318,6 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
 .img4{
     background: url(../../../../Home/assets/size4.png) no-repeat;
     background-size: 100%;
-}
-.show-size{
-  padding-left:200px!important;
 }
 .size-img img{
     display: block;
