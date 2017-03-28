@@ -128,7 +128,7 @@ class AppsList extends React.Component {
 
         obj.btnData = [
           {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "创建新版本", url: editUrl, active: latestStatusObj.showNew}
         ]
         
         newData.push(obj)
@@ -196,7 +196,7 @@ class AppsList extends React.Component {
     const { navData, listData, pageIndexs, pageSum, currentPageIndex,limitList} = this.state
 
     const urls = {
-      create: { url: `/apps/create`, name: '发布新应用' },
+      create: { url: `/apps/create`, name: '创建新应用' },
       list: { url: `/apps/list`, name: '我的应用', active: true },
       doc: { url: `/apps/doc` }
     }

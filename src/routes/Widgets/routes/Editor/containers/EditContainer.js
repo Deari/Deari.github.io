@@ -208,7 +208,7 @@ class EditContainer extends Component {
     let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
-      create: { url: `/widgets/create`, name: '发布新组件' },
+      create: { url: `/widgets/create`, name: '创建新组件' },
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }

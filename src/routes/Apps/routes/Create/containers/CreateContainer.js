@@ -222,7 +222,7 @@ class CreateContainer extends Component {
     let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
-      create: { url: `/apps/create`, name: '发布新应用' },
+      create: { url: `/apps/create`, name: '创建新应用' },
       list: { url: `/apps/list`, name: '我的应用' },
       doc: { url: `/apps/doc` }
     }
