@@ -69,8 +69,6 @@ class AppsDetail extends React.Component {
 
     data.versions.map((v, index) => {
       v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
-      const size = (v.bundleSize && (v.bundleSize/1024/1024).toFixed(2)) || 0
-      v.bundleSize = (size && size != 0.00 && `${size} MB`) || `0 MB`
     })
 
 
