@@ -16,7 +16,7 @@ class ChoiceStepForm extends Component {
         <p className="create-choice-title">发布新组件</p>
         <div className="create-form-btn">
           <h3 className="title">请选择组件类型</h3>
-          <button type="button" className="next rn-btn" onClick={this.handleSubmit.bind(this, 0)}><i className="iconfont icon-activite"></i>RN</button>
+          <button type="button" className="next rn-btn" onClick={this.handleSubmit.bind(this, 0)}><i className="iconfont icon-download_react-native"></i>RN</button>
           <button type="button" className="next h5-btn" onClick={this.handleSubmit.bind(this, 1)}><i className="iconfont icon-html5"></i>HTML5</button>
         </div>
       </form>

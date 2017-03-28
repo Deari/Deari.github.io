@@ -20,7 +20,7 @@ class Main extends React.Component {
   }
 
   async getList(tagId) {
-    let id = tagId || 'all'
+    let id = tagId || 0
     let apiUrl = getDomain(`web/market/tag/${id}/hardware`) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
