@@ -27,7 +27,7 @@ export const validate = values => {
     errors.codeDesc = <i className="message">请输入版本介绍</i>
   }
   if(!values.file && values.appKind === 0){
-     errors.file = <i className="message">请选择.zip类型的文件</i>
+     errors.file = <i className="message">请选择应用的文件</i>
   }
   if(values.appKind === 1){
     let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
