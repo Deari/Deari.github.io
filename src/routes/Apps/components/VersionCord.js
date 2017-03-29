@@ -32,6 +32,14 @@ class VersionCordModule extends Component {
   handleBlur(e){
     this.setState({isErr:0,errTxt:''})
     const codeVersion = this.props.codeVersion
+    const versionArr = e.target.value.split(".");
+    const a1 = parseInt(versionArr[0]);
+    const a2 = parseInt(versionArr[1]);
+    const a3 = parseInt(versionArr[2]);
+    if(a1===0&&a2===0&&a3===0){
+      this.setState({isErr:1,errTxt:'您输入的版本格式有误'})
+      return
+    }
     if(!e.target.value){
       this.setState({isErr:1,errTxt:'请输入版本号'})
       return
@@ -42,7 +50,6 @@ class VersionCordModule extends Component {
     }
     
     if(codeVersion){
-      const versionArr = e.target.value.split(".");
 		  const lastCodeVersionArr = codeVersion.split(".");
       if(!this.compareVersion(versionArr, lastCodeVersionArr)){
         this.setState({isErr:1,errTxt:'您输入的版本不可小于老版本'})
