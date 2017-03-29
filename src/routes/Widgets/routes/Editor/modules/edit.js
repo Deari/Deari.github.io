@@ -460,8 +460,7 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
           defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
-        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
-          rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
+        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting=''} = res.data && res.data.versions[0]
         const codeDescCount = codeDesc ? codeDesc.length : 0 
         let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
 
@@ -473,7 +472,7 @@ export const getAppInfo = (appId) => {
         }))
         dispatch(updateForm2({ 
           appId,appName,appLogo,
-          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, 
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink,  moduleName, 
           appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))

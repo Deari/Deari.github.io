@@ -130,8 +130,7 @@ export const getAppInfo = (appId) => {
       if(res.status == 200) {
         const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, appkey,
                 fileName, fileLink, moduleName, setting} = res.data
-        const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
-          rnFrameworkVersion=0 } = res.data && res.data.versions[0]
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0} = res.data && res.data.versions[0]
         const codeDescCount = codeDesc&&codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         const {apps, widgets} = res.data && res.data.relations 
@@ -158,7 +157,7 @@ export const getAppInfo = (appId) => {
 
         dispatch(updateForm2({
           appId,appName,appLogo,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           appKey:appkey,
         })) 
