@@ -175,11 +175,11 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+    const { input, tags, label, genre, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
-        <label>{label}</label>
+        <label>{label}<span>{genre}</span></label>
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />

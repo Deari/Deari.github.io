@@ -94,7 +94,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div>
         <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
-        {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(FAP小程序)" />}
+        {appKind === 0 && <Field name="file" component={renderFile} label="组件文件" genre='(FAP小程序)' />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
           updateConfigArr={this.props.updateConfigArr}
