@@ -49,23 +49,24 @@
     font-size : inherit; }
 
   h1 {
-    font-size     : 20px;
+    font-size     : 26px;
     line-height   : 50px;
     margin-bottom : 10px;
     border-bottom : 1px solid #cccccc; }
 
   h2 {
-    font-size   : 16px;
+    font-size   : 20px;
     line-height : 34px;
   }
 
   h3 {
-    font-size : 14px; 
+    font-size : 16px; 
     margin:10px 0;
   }
 
   h4 {
-    font-size   : 12px;
+    font-size   : 14px;
+    margin:10px 0;
   }
 
   h5 {
@@ -123,6 +124,9 @@
 
   ul :last-child, ol :last-child {
     margin-bottom : 0; }
+
+  ol li{
+    padding:10px 0;}
 
   dl {
     padding : 0; }
@@ -285,6 +289,7 @@
 
   pre {
     margin-bottom    : 15px;
+    margin-top       : 10px;
     background-color : #f8f8f8;
     border           : 1px solid #cccccc;
     font-family      : "arial";
