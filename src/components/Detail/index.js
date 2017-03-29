@@ -51,12 +51,12 @@ export const BasicInfo = (props) => {
       <p className="app-text">{ data.appDesc }</p>
       <h3 className="app-title">信息</h3>
       <table className="infomation-list">
-        <tr>
+      {/**  <tr>
           <td>类别</td>
           <td>
             <span className="tag">{ data.categoryName }</span>
           </td>
-        </tr>
+        </tr>*/}
         <tr>
           <td>标签</td>
           <td>
