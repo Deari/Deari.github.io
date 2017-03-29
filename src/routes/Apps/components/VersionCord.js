@@ -13,7 +13,9 @@ class VersionCordModule extends Component {
     const b2= parseInt(lastCodeVersionArr[1]);
     const a3 = parseInt(versionArr[2]);
     const b3 = parseInt(lastCodeVersionArr[2]);
-        console.log(a1>b1)
+    if(a1===0&&b1===0&c1===0){
+       return false
+    }
     if(a1>b1){
       return true
     } else if(a1===b1){
