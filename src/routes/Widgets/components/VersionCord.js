@@ -47,6 +47,7 @@ class VersionCordModule extends Component {
       return
     }
     if(codeVersion){
+      
 		  const lastCodeVersionArr = codeVersion.split(".");
       if(!this.compareVersion(versionArr, lastCodeVersionArr)){
         this.setState({isErr:1,errTxt:'您输入的版本不可小于老版本'})
