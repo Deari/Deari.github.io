@@ -5,25 +5,28 @@ class VersionCordModule extends Component {
     isErr:0,
   }
   compareVersion(versionArr, lastCodeVersionArr) {
+
     const a1 = parseInt(versionArr[0]);
     const b1 = parseInt(lastCodeVersionArr[0]);
     const a2 = parseInt(versionArr[1]);
-    const b2 = parseInt(lastCodeVersionArr[1]);
+    const b2= parseInt(lastCodeVersionArr[1]);
     const a3 = parseInt(versionArr[2]);
     const b3 = parseInt(lastCodeVersionArr[2]);
+
     if(a1>b1){
-      return false
-    } else {
+      return true
+    } else if(a1===b1){
       if(a2>b2){
-        return false
-      }else{
+        return true
+      }else if(a2===b2){
         if(a3>b3){
-          return false
+          return true
         }
       }
     }
-    return true
+    return false
 	}
+
   handleBlur(e){
     this.setState({isErr:0,errTxt:''})
     const codeVersion = this.props.codeVersion
@@ -38,7 +41,7 @@ class VersionCordModule extends Component {
     if(codeVersion){
       const versionArr = e.target.value.split(".");
 		  const lastCodeVersionArr = codeVersion.split(".");
-      if(this.compareVersion(versionArr, lastCodeVersionArr)){
+      if(!this.compareVersion(versionArr, lastCodeVersionArr)){
         this.setState({isErr:1,errTxt:'您输入的版本不可小于老版本'})
         return
       }

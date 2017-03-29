@@ -6,24 +6,26 @@ class VersionCordModule extends Component {
     isErr:0,
   }
   compareVersion(versionArr, lastCodeVersionArr) {
+
     const a1 = parseInt(versionArr[0]);
     const b1 = parseInt(lastCodeVersionArr[0]);
     const a2 = parseInt(versionArr[1]);
     const b2= parseInt(lastCodeVersionArr[1]);
     const a3 = parseInt(versionArr[2]);
     const b3 = parseInt(lastCodeVersionArr[2]);
+        console.log(a1>b1)
     if(a1>b1){
-      return false
-    } else {
+      return true
+    } else if(a1===b1){
       if(a2>b2){
-        return false
-      }else{
+        return true
+      }else if(a2===b2){
         if(a3>b3){
-          return false
+          return true
         }
       }
     }
-    return true
+    return false
 	}
   handleBlur(e){
     this.setState({isErr:0,errTxt:''})
@@ -36,10 +38,11 @@ class VersionCordModule extends Component {
       this.setState({isErr:1,errTxt:'您输入的版本格式有误'})
       return
     }
+    
     if(codeVersion){
       const versionArr = e.target.value.split(".");
 		  const lastCodeVersionArr = codeVersion.split(".");
-      if(this.compareVersion(versionArr, lastCodeVersionArr)){
+      if(!this.compareVersion(versionArr, lastCodeVersionArr)){
         this.setState({isErr:1,errTxt:'您输入的版本不可小于老版本'})
         return
       }
@@ -53,7 +56,15 @@ class VersionCordModule extends Component {
           <label>版本号：</label>
           <div className="row-right">
             <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
-             {isErr?<span className="message-info">{errTxt}</span>:<span className="message-info message-info-gray">{this.props.codeVersion?`您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:`请根据上面描述的软件版本规范，填写新的版本的版本号`}</span>}
+             {
+               isErr?
+               <span className="message-info">{errTxt}</span>:
+               <span className="message-info message-info-gray">
+               {this.props.codeVersion?
+                 `您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:
+                 `请根据上面描述的软件版本规范，填写新的版本的版本号`}
+               </span>
+              }
           </div>
       </div>
     )
