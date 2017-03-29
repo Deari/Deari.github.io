@@ -34,23 +34,27 @@ class VersionCordModule extends Component {
     const a1 = parseInt(versionArr[0]);
     const a2 = parseInt(versionArr[1]);
     const a3 = parseInt(versionArr[2]);
-    if(a1===0&&a2===0&&a3===0){
-      this.setState({isErr:1,errTxt:'您输入的版本格式有误'})
+    if (a1 === 0 && a2 === 0 && a3 === 0) {
+      this.setState({ isErr: 1, errTxt: '您输入的版本格式有误' })
+      this.props.toggleCodeVersion(-1)
       return
     }
-    if(!e.target.value){
-      this.setState({isErr:1,errTxt:'请输入版本号'})
+    if (!e.target.value) {
+      this.setState({ isErr: 1, errTxt: '请输入版本号' })
+      this.props.toggleCodeVersion(-1)
       return
     }
-    if(!/^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/.test(e.target.value)){
-      this.setState({isErr:1,errTxt:'您输入的版本格式有误'})
+    if (!/^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/.test(e.target.value)) {
+      this.setState({ isErr: 1, errTxt: '您输入的版本格式有误' })
+      this.props.toggleCodeVersion(-1)
       return
     }
-    if(codeVersion){
-      
-		  const lastCodeVersionArr = codeVersion.split(".");
-      if(!this.compareVersion(versionArr, lastCodeVersionArr)){
-        this.setState({isErr:1,errTxt:'您输入的版本不可小于老版本'})
+    if (codeVersion) {
+
+      const lastCodeVersionArr = codeVersion.split(".");
+      if (!this.compareVersion(versionArr, lastCodeVersionArr)) {
+        this.setState({ isErr: 1, errTxt: '您输入的版本不可小于老版本' })
+        this.props.toggleCodeVersion(-1)
         return
       }
     }

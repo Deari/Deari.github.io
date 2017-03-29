@@ -44,25 +44,6 @@ class EditContainer extends Component {
     }, sessionUrl)
   }
 
-  getVersionList(codeVersion,reviewStatus){
-    const versionsArray0 = [
-      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]), parseInt(codeVersion.split(".")[2]) + 1
-    ]
-    const versionsArray1 = [
-      parseInt(codeVersion.split(".")[0]), parseInt(codeVersion.split(".")[1]) + 1, 0
-    ]
-    const versionsArray2 = [
-      parseInt(codeVersion.split(".")[0]) + 1, 0, 0
-    ]
-
-    const versionsList = [
-      { 'value': versionsArray2.join('.'), txt: "大版本,调整了核心框架。" },
-      { 'value': versionsArray1.join('.'), txt: "小版本,增加核心功能。" },
-      { 'value': reviewStatus === 0 ? codeVersion : versionsArray0.join('.'), txt: "子版本,优化或修复bug。" },
-    ]    
-    return versionsList
-  }
-
   submitFirst(values) {
 
     this.isLogin()
@@ -109,13 +90,6 @@ class EditContainer extends Component {
             versionFormData.append("prepareVersion", "1")
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
               if (versionRes.status == 200) {
-                let versionsList = '';
-                if ( versionRes.data[0].reviewStatus === 3 || versionRes.data[0].reviewStatus === 0) {
-                  versionsList = versionRes.data[1] ? this.getVersionList(versionRes.data[1].codeVersion, versionRes.data[1].reviewStatus) : this.getVersionList('0.0.1', 0)               
-                } else {
-                  versionsList = this.getVersionList(versionRes.data[0].codeVersion, versionRes.data[0].reviewStatus)               
-                }
-                this.props.receiveVersionsList(versionsList)
                 this.props.receiveCodeId(versionRes.data[0].codeId)
               }
             })
