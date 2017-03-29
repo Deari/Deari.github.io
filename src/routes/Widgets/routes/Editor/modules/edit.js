@@ -30,7 +30,11 @@ const UPDATE_CONFIGDESC = 'UPDATE_CONFIGDESC'
 const UPDATE_CONFIGAUDIOARR = 'UPDATE_CONFIGAUDIOARR'
 const UPDATE_CONFIGAUDIOKEY = 'UPDATE_CONFIGAUDIOKEY'
 const UPDATE_CONFIGAUDIOVALUE = 'UPDATE_CONFIGAUDIOVALUE'
-
+const UPDATE_CODE_VERSION = 'UPDATE_CODE_VERSION'
+export const toggleCodeVersion = (version) => ({
+  type: UPDATE_CODE_VERSION,
+  version
+})
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
   index
@@ -139,6 +143,15 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+  [UPDATE_CODE_VERSION]:(state,action)=>{
+      return {
+        ...state,
+        form2: {
+          ...state.form2,
+          codeVersion:action.version
+        }
+      }
+  },
    [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
@@ -394,11 +407,6 @@ const initialState = {
       { txt: '手动发布此版本', value: 0 },
       { txt: '自动发布此版本', value: 1 },
     ],
-    versionsList: [
-      { value: "0.0.1" },
-      { value: "0.1.0" },
-      { value: "1.0.0" }
-    ],
     configList:[],
     codeDesc: '',
     codeDescCount: 0,
@@ -460,7 +468,7 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
           defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
-        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting=''} = res.data && res.data.versions[0]
+        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion=''} = res.data && res.data.versions[0]
         const codeDescCount = codeDesc ? codeDesc.length : 0 
         let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
 
@@ -472,7 +480,7 @@ export const getAppInfo = (appId) => {
         }))
         dispatch(updateForm2({ 
           appId,appName,appLogo,
-          platform, appKind, codeDesc, codeDescCount, fileName, fileLink,  moduleName, 
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, codeVersion, 
           appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))

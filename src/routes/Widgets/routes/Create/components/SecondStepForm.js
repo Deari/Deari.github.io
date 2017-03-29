@@ -6,6 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import { renderField, renderTextArea, renderFile, renderPublishRadioBox, versionTextArea, renderSelect, renderCodeVersion } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
 
+
 import { 
   toggleStep, 
   updateCodeDesc,
@@ -17,11 +18,13 @@ import {
   updateconfigType,
   updateConfigAudioArr,
   updateConfigAudioValue,
-  updateConfigAudioKey
-  
+  updateConfigAudioKey,
+  toggleCodeVersion
  } from '../modules/create'
 
 import ConfigTpl from '../../../components/WidgetConfig'
+import VersionCordModule from '../../../components/VersionCord'
+
 class SecondStepForm extends React.Component {
   
   state = {
@@ -84,7 +87,8 @@ class SecondStepForm extends React.Component {
             </div>
           </div>
         </div>
-        <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
+        {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />*/}
+        <VersionCordModule toggleCodeVersion ={this.props.toggleCodeVersion}/>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件" genre='(FAP小程序)'/>}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
@@ -124,7 +128,8 @@ const mapDispatchToProps = {
   updateconfigType,
   updateConfigAudioArr,
   updateConfigAudioValue,
-  updateConfigAudioKey
+  updateConfigAudioKey,
+  toggleCodeVersion
 };
 
 export default connect(

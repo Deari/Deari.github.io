@@ -6,9 +6,20 @@ import { Field, reduxForm } from 'redux-form'
 import Modal from 'components/Modal'
 import AssociationModule from '../../../components/Association.js'
 import ModalList from '../../../components/ModalList'
+import VersionCordModule from '../../../components/VersionCord'
 
 import { renderField, renderFile, renderSelect, renderCodeVersion, renderPublishRadioBox, renderAPKFile } from '../../../modules/renderField'
-import { toggleActive, toggleLogoList, toggleIdList, WtoggleIdList, WtoggleLogoList, toggleNameList, WtoggleNameList, updateCodeDesc } from '../modules/create'
+import { 
+  toggleActive, 
+  toggleLogoList, 
+  toggleIdList, 
+  WtoggleIdList,
+  WtoggleLogoList, 
+  toggleNameList, 
+  WtoggleNameList, 
+  updateCodeDesc,
+  toggleCodeVersion 
+} from '../modules/create'
 import { validate } from '../../../modules/validate'
 
 const compose = (arr1, arr2, arr3) => {
@@ -32,7 +43,6 @@ const SecondStepForm = props => {
   const {
     appKind,
     publishList,
-    versionsList,
     active,
     datalist,
     idList,
@@ -108,7 +118,8 @@ const SecondStepForm = props => {
         	</div>
         </div>
       </div>
-      <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
+      {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
+      <VersionCordModule toggleCodeVersion ={props.toggleCodeVersion}/>
       {appKind === 0 && <Field name="file" component={renderFile} label="应用文件"  genre='(FAP小程序)'/>}
       {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       {appKind === 2 && <Field name="fileObj" component={renderAPKFile} label="应用文件(APK)" />}
@@ -158,7 +169,8 @@ const mapDispatchToProps = {
   WtoggleLogoList,
   toggleNameList,
   WtoggleNameList,
-  updateCodeDesc
+  updateCodeDesc,
+  toggleCodeVersion
 }
 
 const mapStateToProps = ({appsCreate}) => ({

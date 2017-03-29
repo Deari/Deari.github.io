@@ -13,7 +13,7 @@ class OpenList extends React.Component {
         listData.map(( item, index ) => {
           const desc = item[`${typeName}Function`] || item[`${typeName}Desc`]
           const price = item.hardwarePrice || '免费'
-          const defaultLayout = item.defaultLayout&&JSON.parse(item.defaultLayout)
+          const defaultLayout = item.defaultLayout
           return (
             <li>
               {

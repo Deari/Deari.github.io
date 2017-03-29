@@ -24,7 +24,12 @@ const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 
 const UPDATE_APPKIND = PREFIX+'UPDATE_APPKIND'
 const UPDATE_CODE_DESC = PREFIX+'UPDATE_CODE_DESC'
+const UPDATE_CODE_VERSION = PREFIX+'UPDATE_CODE_VERSION'
 
+export const toggleCodeVersion = (version) => ({
+  type: UPDATE_CODE_VERSION,
+  version
+})
 
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
@@ -124,6 +129,15 @@ export const actionCreator = {
   updateForm2,
 }
 const ACTION_HANDLERS = {
+  [UPDATE_CODE_VERSION]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        codeVersion:action.version
+      }
+    }
+  },
   [WTOGGLE_NAMELIST]:(state,action)=>{
     const nameList = state.form2.wNameList
     const newList = nameList.filter((v)=>v!=action.name)
@@ -301,11 +315,6 @@ const getInitialState = () => {
         { txt: '手动发布此版本', value: 0 },
         { txt: '自动发布此版本', value: 1 },
       ],
-      versionsList:[
-        { value: "1.0.0", txt: "大版本,调整了核心框架。" },
-        { value: "0.1.0", txt: "小版本,增加核心功能。" },
-        { value: "0.0.1", txt: "子版本,优化或修复bug。" },
-      ],
       idList:[],
       logoList:[],
       wLogoList:[],
@@ -324,7 +333,7 @@ const getInitialState = () => {
       platform: 2,
       appKind: 0,
       autoPublish:0,
-      codeVersion: '0.0.1'
+      codeVersion: ''
     },
   }
 }
