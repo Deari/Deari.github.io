@@ -163,6 +163,7 @@ export const getAppInfo = (appId) => {
           appId,appName,appLogo,
           platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,codeVersion,
+          lastVersion:codeVersion,
           appKey:appkey,
         })) 
         
@@ -402,6 +403,7 @@ const initialState = {
       appKind: 0,
       autoPublish:0,
       codeVersion:'',
+      lastVersion:''
   },
 }
 

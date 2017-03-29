@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import './versionCord.scss'
-import { validate } from '../modules/validate'
 class VersionCordModule extends Component {
   state={
     errTxt:'',
@@ -50,10 +48,12 @@ class VersionCordModule extends Component {
   render(){
     const {errTxt,isErr} = this.state
     return(
-      <div>
-          <label>版本号</label>
-          <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
-          {isErr?<span>{errTxt}</span>:''}
+      <div className="form-row">
+          <label>版本号：</label>
+          <div className="row-right">
+            <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
+             {isErr?<span className="message-info">{errTxt}</span>:<span className="message-info message-info-gray">{this.props.codeVersion?`您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:`请根据上面描述的软件版本规范，填写新的版本的版本号`}</span>}
+          </div>
       </div>
     )
   }

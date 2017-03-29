@@ -58,7 +58,8 @@ class SecondStepForm extends React.Component {
       appName,
       appLogo,
       codeDesc,
-      codeVersion
+      codeVersion,
+      lastVersion
     } = initialValues
     const { totalCount } = this.state
 
@@ -97,7 +98,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div>
         {/** <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
-        <VersionCordModule codeVersion={codeVersion} toggleCodeVersion ={this.props.toggleCodeVersion}/>
+        <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={this.props.toggleCodeVersion}/>
         {appKind === 0 && <Field name="file" component={renderFile} label="组件文件" genre='(FAP小程序)' />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 

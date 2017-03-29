@@ -481,6 +481,7 @@ export const getAppInfo = (appId) => {
         dispatch(updateForm2({ 
           appId,appName,appLogo,
           platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, codeVersion, 
+          lastVersion:codeVersion,
           appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))

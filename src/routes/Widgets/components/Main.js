@@ -25,11 +25,8 @@ class Main extends React.Component {
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
-         console.log(res.data)
         res.data && this.setState({ listData: res.data.list })
-        console.log(res.data.list)
       } else {
-        
         debug.warn("获取列表接口返回错误")
       }
     } catch (e) {
