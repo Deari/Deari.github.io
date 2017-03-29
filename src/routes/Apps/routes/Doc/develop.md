@@ -97,19 +97,19 @@
 
 # RN应用开发
 
-# 一、注册
+## 1、注册
 
 首先您需要打开 [开发者平台首页](http://open.ffan.net), 点击右上角注册按钮, 填写相关信息注册为开发者.
 
-# 二、开发
+## 2、开发
 
-## 1、发布新应用
+### 1、发布新应用
 
 1.1 点击 [应用市场](http://open.ffan.net/apps) -> 发布新应用, 按要求填写相关应用信息, 发布新应用
 
 1.2 成功发布新应用后, 系统会生成 AppID 和 AppSecrect（待补充）
 
-## 2、环境搭建
+### 2、环境搭建
 
 2.1 **Android 开发者:**
 
@@ -238,11 +238,11 @@ react-native run-ios
 
 - 验证环境（待补充）
 
-## 3、开发应用
+### 3、开发应用
 
 **iOS 开发者:**
 
-### 3.1 创建 `App`
+#### 3.1 创建 `App`
 
 - 首先打开 `FFOAPDemo` 工程, 进入到 `FFOAP` 文件夹下面, 可以看到 `FFOAP` 下面, 有两个目标文件夹, `applications` 和 `widgets`, 如下图所示
 
@@ -254,7 +254,7 @@ react-native run-ios
 
 - 如上步骤所述, 创建完成相关 `JS` 文件, 之后即可创建配置文件。
 
-### 3.2 创建配置文件
+#### 3.2 创建配置文件
 
 - `App Config` 文件放在 `app` 的根目录下, 文件名为 `config.json`, 文件内容是一个 `json` 串。格式如下:
 
@@ -282,7 +282,7 @@ react-native run-ios
 | version    |   app版本号 |
 | icon    |   app图标, 目前没有使用 |
 
-### 3.3 创建配置文件
+#### 3.3 创建配置文件
 
 - 打开 `FFOAPDemo` 中 `AppDelegate` 文件, 在 `applicationDidBecomeActive` 调用 `FFReactNativeTempleteManager` 中的 `requestConfigWithAppId:channelId:pageIds:platform` 方法拉取各页面远端配置打开方式。
 
@@ -377,7 +377,7 @@ webVC.urlStr = config[@"url"];
 [self.navigationController pushViewController:webVC animated:YES];
 ```
 
-### 3.4 API 文档
+#### 3.4 API 文档
 
 - 网络状态
 
@@ -434,7 +434,7 @@ RCT_EXPORT_METHOD(setObject:(id)obj forKey:(NSString *)key)
 RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)callback)
 ```
 
-## 4、JSSDK使用文档
+### 4、JSSDK使用文档
 
 **概述:**
 
@@ -446,12 +446,12 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 **JSSDK使用步骤:**
 
-### 步骤一: 引入JS文件
+#### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
 > http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.2.min.js
 
-### 步骤二: 通过 `config` 接口注入权限验证配置
+#### 步骤二: 通过 `config` 接口注入权限验证配置
 
 <p><font color=red>所有需要使用JS-SDK的页面必须先注入配置信息, 到后台去进行验证, 否则无法调用</font></p>
 
@@ -466,7 +466,7 @@ ffanSDK.config({
 });
 ```
 
-### 步骤三: 通过 `ready` 接口处理成功验证
+#### 步骤三: 通过 `ready` 接口处理成功验证
 
 ```javascript
 // 验证通过 ready 函数
@@ -475,7 +475,7 @@ ffanSDK.ready(function(sdk) {
 });
 ```
 
-### 步骤四: 通过 `error` 接口处理失败验证
+#### 步骤四: 通过 `error` 接口处理失败验证
 
 ```javascript
 // 校验失败的 error 函数
@@ -622,9 +622,9 @@ sdk.setTitle({"title":"飞凡demo"})
 sdk.setRightNavBarItem({"title":"分享"})
 ```
 
-## 5、H5授权接口说明
+### 5、H5授权接口说明
 
-### 5.1、 **`accessToken` 说明**
+#### 5.1、 **`accessToken` 说明**
 
 - `accessToken` 是开放平台的全局唯一票据, 第三方应用调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
 
@@ -687,7 +687,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 | 4002 | appSecret 参数错误 |
 | 5001 | 服务器存储错误 |
 
-### 5.2、 **`accessToken` 的签名说明**
+#### 5.2、 **`accessToken` 的签名说明**
 
 **签名算法**
 
@@ -830,9 +830,9 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 
-# 三、调试
+## 2、调试
 
-## 1、Android开发者
+### 1、Android开发者
 
 进入工程目录中的 `js_module` 目录, 运行 `npm start` 或者 `react-native start`, 开启服务, 初始化 `IReactConfig` 时候在下列方法中返回 `true`, 并在 `LocalDebugParams` 中传入调试的 `moduleName`。
 
@@ -850,9 +850,9 @@ public ArrayMap<String, String> getLocalDebugParams() {
 }
 ```
 
-## 2、iOS开发者
+### 2、iOS开发者
 
-### 访问 App 内的开发菜单
+#### 访问 App 内的开发菜单
 
 你可以通过摇晃设备或是选择 `iOS` 模拟器的 "Hardware" 菜单中的 "Shake Gesture" 选项来打开开发菜单。如果是在 `iOS` 模拟器中运行, 还可以按下 `Command⌘ + Z` 快捷键。如图所示:
 
@@ -860,7 +860,7 @@ public ArrayMap<String, String> getLocalDebugParams() {
 
 ![Alt text](http://p1.bqimg.com/1949/4aae427b5dbcc18c.png)
 
-### 刷新 Javascript
+#### 刷新 Javascript
 
 - 传统的原生应用开发中, 每一次修改都需要重新编译, 但在 `RN` 中你只需要刷新一下 `JavaScript` 代码, 就能立刻看到变化。具体的操作就是在开发菜单中点击 "Reload" 选项。也可以在 `iOS` 模拟器中按下 `Command⌘ + R`。
 
@@ -876,13 +876,13 @@ public ArrayMap<String, String> getLocalDebugParams() {
 
   2\. 更改了任何的原生代码（objective-c/swift/java）
 
-### FFOAP 本地开发调试
+#### FFOAP 本地开发调试
 
 - 参照上述开发步骤, 调整代码参数为本地调试模式
 
 - 进入 `FFOAP` 目录, 启动 `startServer` 脚本, 本地启动服务
 
-# 四、打包
+## 4、打包
 
 4.1、[请下载打包工具](http://open.ffan.net/apps/list)
 
@@ -891,7 +891,7 @@ public ArrayMap<String, String> getLocalDebugParams() {
 4.3、参考打包工具中的使用文档进行打包（待补充）
 
 
-# 五、发布
+## 5、发布
 
 5.1、[登录开发者平台首页](http://open.ffan.net), 点击 应用市场->我的应用->发布新版本, 并上传应用文件, 如:应用名.fap
 
@@ -901,11 +901,11 @@ public ArrayMap<String, String> getLocalDebugParams() {
 
 5.4、提交审核（审核规则待补充）
 
-# 六、审核
+## 6、审核
 
 6.1、应用审核通过后, 可以在 我的应用->已审核 中查看
 6.2、点击发布, 会上架到应用商店
 
-# h5应用开发
+## 7、h5应用开发
 
-# APK应用开发
+## 8、APK应用开发
