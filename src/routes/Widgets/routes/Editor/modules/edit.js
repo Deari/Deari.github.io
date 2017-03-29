@@ -384,15 +384,15 @@ const initialState = {
     appLogo: '',
     appDesc: '',
     platform: 0,
-    categoryId: -1,
+    categoryId: 8,
     tags: [],
     appKind: 0
   },
   form2: {
     codeId:-1,
     publishList: [
-      { txt: '自动发布此版本', value: 1 },
       { txt: '手动发布此版本', value: 0 },
+      { txt: '自动发布此版本', value: 1 },
     ],
     versionsList: [
       { value: "0.0.1" },
@@ -408,7 +408,7 @@ const initialState = {
     showUpdateMsg: 0,
     appId: -1,
     codeId: -1,
-    autoPublish: 1,
+    autoPublish: 0,
     codeVersion: -1
   }
 }

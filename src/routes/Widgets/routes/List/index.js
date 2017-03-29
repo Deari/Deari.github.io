@@ -118,7 +118,7 @@ class widgetsList extends React.Component {
 
         obj.btnData = [
           {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "创建新版本", url: editUrl, active: latestStatusObj.showNew}
         ]
 
         newData.push(obj)
@@ -203,7 +203,7 @@ class widgetsList extends React.Component {
     const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList } = this.state
 
     const urls = {
-      create: { url: `/widgets/create`, name: '发布新组件' },
+      create: { url: `/widgets/create`, name: '创建新组件' },
       list: { url: `/widgets/list`, name: '我的组件', active: true },
       doc: { url: `/widgets/doc` }
     }

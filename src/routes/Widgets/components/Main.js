@@ -12,7 +12,7 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `/widgets/create`, name: '发布新组件' },
+      create: { url: `/widgets/create`, name: '创建新组件' },
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     },

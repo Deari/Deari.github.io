@@ -39,7 +39,7 @@ export const Header = (props) => {
       </li>
       
     </ul>
-    { showCreate && <Link to={editUrl}><button className="btn btn-primary">发布新版本</button></Link> }
+    { showCreate && <Link to={editUrl}><button className="btn btn-primary">创建新版本</button></Link> }
   </div>
 }
 

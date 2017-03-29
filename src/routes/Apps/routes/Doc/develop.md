@@ -696,7 +696,6 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
 - 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
->>>>>>> sit
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 

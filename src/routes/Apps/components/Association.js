@@ -46,7 +46,7 @@ class AssociationModule extends Component {
     return (
     <div className="association">
       <div className="form-row">
-      	<label>推荐</label>
+      	<label>配套使用</label>
         <div className="row-right max-width">
         	<div>
         		<div className="row-radio">

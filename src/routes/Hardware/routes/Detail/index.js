@@ -84,7 +84,7 @@ class HardwareDetail extends React.Component {
     const infoTags = data.hardwareTags || []
     const len = infoTags.length
     const urls = {
-      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '发布新硬件' },
+      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '创建新硬件' },
       list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     }

@@ -12,7 +12,7 @@ class Main extends React.Component {
     tags: [], 
     activeTag: 0,
     urls: {
-      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '发布新硬件' },
+      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '创建新硬件' },
       list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     },
@@ -20,7 +20,7 @@ class Main extends React.Component {
   }
 
   async getList(tagId) {
-    let id = tagId || 'all'
+    let id = tagId || 0
     let apiUrl = getDomain(`web/market/tag/${id}/hardware`) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)

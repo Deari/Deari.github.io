@@ -438,7 +438,7 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 - `JS-SDK` 是飞凡网内部向网页开发者提供的网页开发工具包
 
-- 通过使用 `JS-SDK`, 网页开发者可借助 `js-bridge` 调用手机等设备的功能
+- 通过使用 `JS-SDK`, 网页开发者可借助 `jsbridge` 调用手机等设备的功能
 
 - 此文档面向网页开发者介绍 `JS-SDK` 如何使用及相关注意事项
 
@@ -530,11 +530,11 @@ sdk.getDevInfo()
   .then(function(data) {
     // success
     // data格式为
-    {
-          name:'iOS_Wifi', //设备名称
-          model:'营销', //设备类型
-          systemVersion:'1.0.0', //系统版本
-    }
+    // {
+    //   name: 'iOS_Wifi', //设备名称
+    //   model: '营销',     //设备类型
+    //   systemVersion: '1.0.0', //系统版本
+    // }
   }).catch(function(err) {
     // fail
   })
@@ -552,20 +552,18 @@ sdk.getDevInfo()
 
 ```javascript
 
-sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
-  then(function(data){
-    {
-    // success
-    // data格式为启动之前传递的参数
-      "storeName":"GAP",
-      "org":"wanda",
-      "storeId":"10000",
-      "token":"8943o9432943948394839",
-      "userId":"18510000005"
-    }
-  }).catch(function(err){
-    //fail
-  })
+sdk.getEnvInfo().then(function(data){
+  // success data格式为启动之前传递的参数
+  // {
+  //   "storeName": "GAP",
+  //   "org": "wanda",
+  //   "storeId": "10000",
+  //   "token": "8943o9432943948394839",
+  //   "userId": "18510000005"
+  // }
+}).catch(function(err){
+  //fail
+})
 ```
 
 **getLocation** 获取位置信息
@@ -583,10 +581,10 @@ sdk.getLocation()
   .then(function(data) {
     // success
     // data格式为
-    {
-         lot:'116.46', //经度
-         lat:'39.92', //维度
-    }
+    // {
+    //   lot: '116.46', //经度
+    //   lat: '39.92', //维度
+    // }
   }).catch(function(err) {
     // fail
   })

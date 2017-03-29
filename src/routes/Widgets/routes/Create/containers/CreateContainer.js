@@ -47,7 +47,6 @@ class CreateContainer extends Component {
   }
 
   submitFirst(values) {
-
     this.isLogin()
 
     let sourceVal = getSourceVal()
@@ -60,15 +59,17 @@ class CreateContainer extends Component {
         
         const formData = new FormData();
 
-        for(let key in values) {
-          if(key == 'tags') {
-            for(let v of values[key]){
+        for (let key in values) {
+          if (key == 'tags') {
+            for (let v of values[key]) {
               formData.append('tags[]', v)
             }
-          } else if(key =='size'){
-            for(let k in values[key]){
-              formData.append( k, values[key][k])
+          } else if (key == 'size') {
+            for (let k in values[key]) {
+              formData.append(k, values[key][k])
             }
+          } else if (key == 'categoryId') {
+            formData.append('categoryId', 8)
           } else {
             formData.append(key, values[key])
           }
@@ -191,7 +192,7 @@ class CreateContainer extends Component {
 
   render() {
     const urls = {
-      create: { url: `/widgets/create`, name: '发布新组件' },
+      create: { url: `/widgets/create`, name: '创建新组件' },
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
@@ -199,7 +200,7 @@ class CreateContainer extends Component {
 
     const appKind = form2 && form2.appKind || ''
 
-    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
+    let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     return (
       <div className="container clx">

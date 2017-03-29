@@ -128,7 +128,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning } , doc , h} = this.props
+    const { input, label, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -140,7 +140,7 @@ export class renderImageUpload extends Component {
             <input type="file" accept={h ? "image/*" : ".png"} onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
-            <img src={input.value} alt="上传图片" className="img-thumbnail"/>
+            <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>

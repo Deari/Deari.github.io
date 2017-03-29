@@ -107,7 +107,7 @@ const SecondStepForm = props => {
           <div className="row-right">
             <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
             <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" value={codeDesc?codeDesc:''} onChange={onChangeDesc} onBlur={onChangeDesc} ></textarea>
-            { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
+            { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
           </div>
           <span className="font-count">{count} / {totalCount}</span>
         </div>
@@ -126,7 +126,7 @@ const SecondStepForm = props => {
         </div>
       </div>
       <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
-      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(RN)" />}
+      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件(FAP小程序)" />}
       {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       {appKind === 2 && <Field name="fileObj" component={renderAPKFile} label="应用文件(APK)" />}
       <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
