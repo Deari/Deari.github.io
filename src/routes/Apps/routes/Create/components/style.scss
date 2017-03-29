@@ -33,6 +33,12 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             left: 657px;
         }
     }
+    .label-type{
+        line-height:20px;
+        span{
+            font-size: 12px;
+        }
+    }
     .row-right{
         margin: 0;
         @include float-left; 
@@ -82,7 +88,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             vertical-align: -2px;
             margin-right: 2px;
         }
-        
         input[type="checkbox"]{
             margin-right:5px;
             vertical-align: middle;
@@ -120,22 +125,45 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         &>span{
             cursor: default!important;
         }
-        // .right-upload{
-        //   .progress-stoke{
-        //      display: inline-block;
-        //      width: 32px;
-        //      height:17px;
-        //      border:1px #ccc solid;
-        //   }
-        //   .progress-full{
-        //     display: inline-block;
-        //   }
-          input[type="button"]{
-              margin:0 10px 0 0;
-              display: inline-block;
-          }
-
-        // }
+        .right-upload{
+            input[type="button"]{
+                margin:0 10px 0 0;
+                display: inline-block;
+            }
+            .progress-box{
+               display: block;
+               width: 574px;
+               margin-top: 10px;
+              .progress-num{
+                  font-weight: normal;
+                  font-size: 12px;
+                  color:#999;
+                  float:right;
+                  margin-top: 4px;
+              }
+              .progress-stoke{
+                position: relative;
+                display: inline-block;
+                height: 6px;
+                border: 1px solid #eee;
+    
+                .progress-fill{
+                  position: absolute;
+                  left:1;
+                  background: #fff;
+                  display: inline-block;
+                  height: 4px;
+                }
+                .progressed-fill{
+                  position: absolute;
+                  left:1;
+                  background: -webkit-linear-gradient(#57acff,#2692fb);
+                  display: inline-block;
+                  height: 4px;
+                }
+              }
+            }
+        }
         img{
             width: $default-width;
             height: $default-height;
