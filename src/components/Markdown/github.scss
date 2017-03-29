@@ -66,6 +66,7 @@
 
   h4 {
     font-size   : 14px;
+    margin:10px 0;
   }
 
   h5 {
@@ -123,6 +124,9 @@
 
   ul :last-child, ol :last-child {
     margin-bottom : 0; }
+
+  ol li{
+    padding:10px 0;}
 
   dl {
     padding : 0; }
@@ -285,6 +289,7 @@
 
   pre {
     margin-bottom    : 15px;
+    margin-top       : 10px;
     background-color : #f8f8f8;
     border           : 1px solid #cccccc;
     font-family      : "arial";
