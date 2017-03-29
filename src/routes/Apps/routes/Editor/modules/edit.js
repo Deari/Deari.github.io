@@ -135,7 +135,14 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, appkey,
                 fileName, fileLink, moduleName, setting} = res.data
         const {codeDesc='', autoPublish=1, showUpdateMsg=0 , codeVersion=''} = res.data && res.data.versions[0]
-        const lastVersion = res.data && res.data.versions[1]?codeVersion:''
+        let lastVersion = codeVersion
+        if( res.data && res.data.versions[0].reviewStatus ==  0 ){
+          if(!res.data.versions[1]){
+            lastVersion=''
+          }else{
+            lastVersion=res.data.versions[1].codeVersion
+          }
+        }
         const codeDescCount = codeDesc&&codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         const {apps, widgets} = res.data && res.data.relations 

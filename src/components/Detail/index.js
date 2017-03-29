@@ -88,6 +88,10 @@ const bundleSizeFixed = (bundleSize)=>{
 export const LatestVersion = (props) => {
   const { latestVersion, showSize, data ,versionsAll=[]} = props
   const defaultLayout = data.defaultLayout || {}
+  const styleObj={
+    width:defaultLayout.w*50+'px',
+    height:defaultLayout.h*50+'px'
+  }
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion =  latestVersion && latestVersion.publishStatus? latestVersion : versionsAll[1];
   const publishVersionBundleSize = data.appKind == 2 ? 
@@ -131,7 +135,7 @@ export const LatestVersion = (props) => {
             <p className="title">预览图</p>
             <p className="text">
               <div className="img-block">
-                {data.appPreviewImage ? <img className="img" src={ data.appPreviewImage } /> : <p className="img-text">加载中</p>}
+                {data.appPreviewImage ? <img  className="img" src={ data.appPreviewImage } style={styleObj}/> : <p className="img-text">加载中</p>}
               </div>
             </p>
           </div>
