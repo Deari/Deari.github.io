@@ -10,10 +10,6 @@ export const Header = (props) => {
  
   const preCodeStatus = preVersions && getCodeStatus(data, preVersions)
 
-  const showCreate = (latestCodeStatus && 
-                     (latestCodeStatus.codeVersion == latestVersion.codeVersion) && 
-                     latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 7)
-
   const hidePreCode = (latestCodeStatus.codeStatus == 5 && preCodeStatus.codeStatus == 5) ||
                       (latestCodeStatus.codeStatus == 6 && preCodeStatus.codeStatus == 6) ||
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
@@ -39,10 +35,12 @@ export const Header = (props) => {
       </li>
       
     </ul>
-    { showCreate && <Link to={editUrl}><button className="btn btn-primary">创建新版本</button></Link> }
   </div>
 }
-
+//{ showCreate && <Link to={editUrl}><button className="btn btn-primary">创建新版本</button></Link> }
+  // const showCreate = (latestCodeStatus && 
+  //                    (latestCodeStatus.codeVersion == latestVersion.codeVersion) && 
+  //                    latestCodeStatus.codeStatus == 5 || latestCodeStatus.codeStatus == 7)
 export const getCodeStatus = (data, version) => {
   let versionInfo = {
     codeVersion: '',

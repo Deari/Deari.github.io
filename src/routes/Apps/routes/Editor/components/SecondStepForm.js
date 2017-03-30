@@ -97,6 +97,7 @@ const SecondStepForm = props => {
   }
   return (
     <form onSubmit={handleSubmit}>
+     <h2 className="step-tittle">版本信息 </h2>
       <div>
         <div className="form-row code-desc">
           <label>版本介绍</label>

@@ -134,12 +134,9 @@ export const getAppInfo = (appId) => {
       if(res.status == 200) {
         const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, appkey,
                 fileName, fileLink, moduleName, setting} = res.data
-        const {codeDesc='', autoPublish=1, showUpdateMsg=0 , codeVersion='',codeId=-1} = res.data && res.data.versions[0]
-        console.log(res.data.versions[0])
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0 , codeVersion=''} = res.data && res.data.versions[0]
         let lastVersion = codeVersion
-        let lastCodeId = ''
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
-          lastCodeId=codeId
           if(!res.data.versions[1]){
             lastVersion=''
           }else{
@@ -175,7 +172,6 @@ export const getAppInfo = (appId) => {
           platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,
-          codeId:lastCodeId,
           appKey:appkey,
         })) 
         

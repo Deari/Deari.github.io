@@ -7,35 +7,18 @@ $branch_line_background:#bbbfca;
     background: $white-color; 
     padding: 0 $default-padding-left - 25px;
     .step-smallnav{
-      margin-bottom: 10px;
       padding: 10px 0;
       font-size: 14px;
       color: #666;
       border-bottom: 1px solid #eee;
-      i{
-        font-size: 13px;
+      a{
+        font-size: 14px;
         vertical-align: middle;
+        padding-right: 4px;
+        cursor: pointer;
       }
       .step-smallnav-arrow{
         padding: 0 4px;
-      }
-    }
-    .step-tittle{
-      padding: 14px 0;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .step-prompt{
-      padding: 0 4px;
-      height: 30px;
-      font-size: 14px;
-      line-height: 30px;
-      color: #fff;
-      background: #78909c;
-      border: 1px solid #546e7a;
-      i{
-        padding-right: 4px;
-        font-size: 12px;
       }
     }
 }

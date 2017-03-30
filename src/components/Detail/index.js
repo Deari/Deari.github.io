@@ -17,7 +17,6 @@ class AppsDetail extends React.Component {
         { LatestVersion(this.props) }
 
         { data.mine == 1 && activeCodeStatus === 0 &&  Versions(this.props) }
-        { data.mine == 1 && activeCodeStatus === 1 && <div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div> }
         { data.mine == 1 && activeCodeStatus === 3 && <button type="button"  className="btn btn-primary" onClick={()=>{onClickPublish()}}>确认发布</button> }
         { data.mine == 1 && activeCodeStatus === 4 && Unapprove(this.props) }
         { data.mine == 1 && activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
@@ -28,7 +27,7 @@ class AppsDetail extends React.Component {
     )
   }
 }
-
+//        { data.mine == 1 && activeCodeStatus === 1 && <div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div> }
 export const BasicInfo = (props) => {
 
   const { data, latestVersion, infoTags, showSize } = props
