@@ -32,7 +32,7 @@ class Main extends React.Component {
             hardwareLogo:v.image,
             hardwareName:v.verboseName,
             hardwarePrice:v.price,
-            hardwareId:v.productKey,
+            hardwareId:v.id,
             developerName:v.brand
           }
           arr.push(obj)
