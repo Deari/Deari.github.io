@@ -26,6 +26,12 @@ const UPDATE_CONFIGDESC = PREFIX+'UPDATE_CONFIGDESC'
 const UPDATE_CONFIGAUDIOARR = PREFIX+'UPDATE_CONFIGAUDIOARR'
 const UPDATE_CONFIGAUDIOKEY = PREFIX+'UPDATE_CONFIGAUDIOKEY'
 const UPDATE_CONFIGAUDIOVALUE = PREFIX+'UPDATE_CONFIGAUDIOVALUE'
+const UPDATE_CODE_VERSION = PREFIX+'UPDATE_CODE_VERSION'
+
+export const toggleCodeVersion = (version) => ({
+  type: UPDATE_CODE_VERSION,
+  version
+})
 
 export const updateConfigArr = (index)=>({
   type:UPDATE_CONFIGARR,
@@ -111,7 +117,16 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
-     [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
+    [UPDATE_CODE_VERSION]:(state,action)=>{
+      return {
+        ...state,
+        form2: {
+          ...state.form2,
+          codeVersion:action.version
+        }
+      }
+    },
+    [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
      newList[action.index].audioList[action.k].audioValue = action.value
@@ -318,11 +333,6 @@ const initialState = {
       { txt: '手动发布此版本', value: 0 },
       { txt: '自动发布此版本', value: 1 },
     ],
-    versionsList: [
-      { value: "1.0.0", txt: "大版本,调整了核心框架。" },
-      { value: "0.1.0", txt: "小版本,增加核心功能。" },
-      { value: "0.0.1", txt: "子版本,优化或修复bug。" },
-    ],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
@@ -333,7 +343,7 @@ const initialState = {
     appId: -1,
     codeId: -1,
     autoPublish: 0,
-    codeVersion: '0.0.1'
+    codeVersion: ''
   }
 }
 

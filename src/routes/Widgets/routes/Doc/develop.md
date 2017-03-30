@@ -1,11 +1,12 @@
 # 开始前必读
 
-## 1、蓝海开放平台概述
+## 首页
 
-蓝海开放平台是开发者通过应用、组件、硬件为蓝海商家和蓝海顾客，提供服务的平台，
-而蓝海开放平台API市场中的接口则是提供服务的基础，开发者在蓝海开放平台中获取API接口权限后，可以通过阅读本接口文档来帮助开发出蓝海商家需要的应用、组件、硬件.
+### 蓝海开放平台概述
 
-## 2、服务人群
+蓝海开放平台是开发者通过应用、组件、硬件为蓝海商家和蓝海顾客，提供服务的平台，而蓝海开放平台API市场中的接口则是提供服务的基础，开发者在蓝海开放平台中获取API接口权限后，可以通过阅读本接口文档来帮助开发出蓝海商家需要的应用、组件、硬件。
+
+### 服务人群
 
 开发者主要为两类人群提供服务，一类是蓝海商家，一类是蓝海顾客。
 
@@ -17,104 +18,95 @@
 
 为了识别蓝海顾客中的会员，每个会员针对每个商家，会产生一个安全的openID。开发者在使用API的官方接口时，都需要传递openID。
 
-## 3、开发者注意
+ - 开发者注意
 
-1.1 蓝海开放平台开发是指为蓝海商家进行业务开发，为移动应用、PC端网站、硬件的开发。
+>1、蓝海开放平台开发是指为蓝海商家进行业务开发，为移动应用、PC端网站、硬件的开发。
 
-1.2 在进行开发时，你可以先通过测试号申请系统，快速申请一个接口测试号，立即开始接口测试开发。
+>2、在进行开发时，你可以先通过测试号申请系统，快速申请一个接口测试号，立即开始接口测试开发。
 
-1.3 在开发过程中，可以使用接口调试工具来在线调试某些接口。
+>3、在开发过程中，可以使用接口调试工具来在线调试某些接口。
 
-1.4 每个接口都有每日接口调用频次限制，可以在蓝海开放平台-开发者中心处查看具体频次。
+>4、每个接口都有每日接口调用频次限制，可以在蓝海开放平台-开发者中心处查看具体频次。
 
-1.5 在开发出现问题时，可以通过接口调用的返回码，以及报警排查指引（在蓝海开放平台-开发者中心处可以设置接口报警），来发现和解决问题。
+>5、在开发出现问题时，可以通过接口调用的返回码，以及报警排查指引（在蓝海开放平台-开发者中心处可以设置接口报警），来发现和解决问题。
 
-1.6 公众平台以access_token为接口调用凭据，来调用接口，所有接口的调用需要先获取access_token，access_token在2小时内有效，过期需要重新获取，但1天内获取次数有限，开发者需自行存储，详见获取接口调用凭据（access_token）文档。
+>6、公众平台以access_token为接口调用凭据，来调用接口，所有接口的调用需要先获取access_token，access_token在2小时内有效，过期需要重新获取，但1天内获取次数有限，开发者需自行存储，详见获取接口调用凭据（access_token）文档。
 
-1.7 蓝海开放平台的API接口调用仅支持80端口。
+>7、蓝海开放平台的API接口调用仅支持80端口。
 
-# 开发者规范
 
-## 1、涉及用户数据时
-
-您的服务需要收集用户任何数据的，必须事先获得用户的明确同意，且仅应当收集为运营及功能实现目的而必要的用户数据，同时应当告知用户相关数据收集的目的、范围及使用方式等，保障用户知情权。 
+## 开发者规范
+ - 涉及用户数据时
+您的服务需要收集用户任何数据的，必须事先获得用户的明确同意，且仅应当收集为运营及功能实现目的而必要的用户数据，同时应当告知用户相关数据收集的目的、范围及使用方式等，保障用户知情权。
 您收集用户的数据后，必须采取必要的保护措施，防止用户数据被盗、泄漏等。
 
-您在特定蓝海商家中收集的用户数据仅可以在该特定蓝海商家中使用，不得将其使用在该特定蓝海商家之外或为其他任何目的进行使用，也不得以任何方式将其提供给他人。
+ 您在特定蓝海商家中收集的用户数据仅可以在该特定蓝海商家中使用，不得将其使用在该特定蓝海商家之外或为其他任何目的进行使用，也不得以任何方式将其提供给他人。
 
-如果蓝海开放平台认为您收集、使用用户数据的方式，可能损害用户体验，蓝海开放平台有权要求您删除相关数据并不得再以该方式收集、使用用户数据。
+ 如果蓝海开放平台认为您收集、使用用户数据的方式，可能损害用户体验，蓝海开放平台有权要求您删除相关数据并不得再以该方式收集、使用用户数据。
 
-一旦您停止使用本服务，或蓝海开放平台基于任何原因终止您使用本服务，您必须立即删除全部因使用本服务而获得的数据（包括各种备份）， 且不得再以任何方式进行使用。
+ 一旦您停止使用本服务，或蓝海开放平台基于任何原因终止您使用本服务，您必须立即删除全部因使用本服务而获得的数据（包括各种备份）， 且不得再以任何方式进行使用。
 
-## 2、其他规范：
-2.1 请勿为任何用户自动登录到蓝海开放平台提供代理身份验证凭据。
+ - 其他规范：
+请勿为任何用户自动登录到蓝海开放平台提供代理身份验证凭据。
 
-2.2 请勿提供跟踪功能，包括但不限于识别其他用户在个人主页上查看、点击等操作行为。
+ 请勿提供跟踪功能，包括但不限于识别其他用户在个人主页上查看、点击等操作行为。
 
-2.3 请勿自动将浏览器窗口定向到其他网页。
+ 请勿自动将浏览器窗口定向到其他网页。
 
-2.4 请勿设置或发布任何违反相关法规、公序良俗、社会公德等的玩法、内容等。
+ 请勿设置或发布任何违反相关法规、公序良俗、社会公德等的玩法、内容等。
 
-2.5 请勿公开表达或暗示，您与腾讯之间存在合作关系，包括但不限于相互持股、商业往来或合作关系等，或声称腾讯对您的认可。
+ 请勿公开表达或暗示，您与蓝海开放平台之间存在合作关系，包括但不限于相互持股、商业往来或合作关系等，或声称蓝海开放平台对您的认可。
 
-2.6 完整的开发者规范和接口限制，请详见开发者接口文档，以及蓝海开放平台开发者协议。
+ 完整的开发者规范和接口限制，请详见开发者接口文档，以及蓝海开放平台开发者协议。
 
-# 开发流程概述
+## 开发流程概述
 
-## 1、注册
+### 注册
 
-您需要打开开发者平台首页,点击右上角注册按钮,填写相关信息注册为开发者。
+您需要打开开发者平台首页,点击右上角[注册][1]按钮,填写相关信息注册为开发者。
 
-## 2、发布新组件
+### 发布新组件
+- 点击页面左侧的[发布新组件][2]
 
-2.1 点击页面左侧的发布新组件
+- 选择发布新应用的类型。应用类型包括RN、HTML5。
 
-2.2 选择发布新组件的类型。组件类型包括RN、HTML5。
+### 开发、打包、调试
 
-## 3、开发、打包、调试
+#### Android开发者
+- 开发RN类型的应用
 
-3.1 开发RN类型的组件
+#### iOS开发者
+- 开发RN类型的应用
 
-3.2 开发HTML5类型的组件
+#### H5开发者
+- 开发HTML5类型的应用
 
-## 4、审核
+### 审核
 
-4.1 登录开发者平台首页,点击应用市场->我的应用->发布新版本,并上传应用文件, 如:应用名.fap
+ 1. 登录开发者平台首页,点击组件市场->我的组件->发布新版本,并上传组件文件, 如:组件名.fap
+ 2. 填写版本号, 版本号采用标准三段式, 如: 1.0.0
+ 3. 填写版本简介, 字数请限制在 120 字内
+ 4. 提交审核（审核规则待补充）
 
-4.2 填写版本号, 版本号采用标准三段式, 如: 1.0.0
+### 发布
 
-4.3 填写版本简介, 字数请限制在 120 字内
+1. 组件审核通过后, 可以在 我的组件->已审核 中查看。
+2. 点击发布, 会上架到组件市场。
 
-4.4 提交审核（审核规则待补充）
+[1]: http://apistore.intra.ffan.net/#/register
+[2]: http://open.ffan.net/widgets/create
 
-## 5、发布
+# Android开发者
 
-5.1 应用审核通过后, 可以在 我的应用->已审核 中查看。
-
-5.2 点击发布, 会上架到应用市场。
-
-# RN组件开发
-
-# 一、注册
-
-首先您需要打开 [开发者平台首页](http://open.ffan.net), 点击右上角注册按钮, 填写相关信息注册为开发者.
-
-# 二、开发
-
-## 1、发布新组件
-
-1.1 点击 [组件市场](http://open.ffan.net/widgets) -> 创建新组件, 按要求填写相关组件信息, 创建组件
-
-1.2 成功创建组件后, 系统会生成 AppID 和 AppSecrect（待补充）
-
-## 2、环境搭建
-
-2.1 **Android 开发者:**
-
-- 首先, 请下载安装 `IDE`。[请点击下载 AndroidStudio](https://developer.android.com/studio/index.html)
-
-- 安装 `ReactNative` 运行环境。[参考官方文档](http://facebook.github.io/react-native/docs/getting-started.html)
-
+## 集成
+1. 下载安装[Android Studio](https://developer.android.com/studio/index.html)
+2. 下载安装[JDK](http://www.oracle.com/technetwork/java/javase/archive-139210.html)
+3. 安装Android SDK：
+打开Android Studio打开设置，如下图所示:
+![Alt text](http://img1.ffan.com/T1WThTBshT1RCvBVdK)
+在设置选项中选择System Setting中的Android SDK选择下载安装
+![Alt text](http://img1.ffan.com/T1seETBQYv1RCvBVdK)
+4. 安装React-Native环境[官方文档](http://facebook.github.io/react-native/docs/getting-started.html)
 ```bash
 # 1. 安装 brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -125,136 +117,16 @@ brew install watchman
 # 4. 安装 react-native
 npm install -g react-native-cli
 ```
+5. 下载[ffoap sdk](http://static.ffan.com/bo/ffoap_sdk_Android_v0.2.0.zip)并导入到Android Studio中
 
-- 集成 `SDK`（待补充）[点击下载 SDK](http://open.ffan.net/apps/create)
+## 开发简易说明
 
-  * 打开 `android studio` 选择打开已有 `android` 工程
+### 一、开发目录
+1. 目录结构图：
+![Alt text](http://img1.ffan.com/T1QvWTBQKg1RCvBVdK)
+2. 配置文件说明：
 
-  ![Alt text](http://p1.bqimg.com/1949/c0537c381afed1e9.jpg)
-
-  * 选择已下载 `SDK` 目录, 点击打开, 等待 `gradle` 编译通过
-
-- 验证环境（待补充）
-
-2.2 **iOS 开发者:**
-
-- 首先, 请下载安装 `Xcode`。[请点击下载 Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
-
-> 注:`Xcode` 最低版本要求为7.0
-
-- 安装 `ReactNative` 运行环境。
-
-```bash
-# 1.homebrew—— Mac系统的包管理器, 用于安装 NodeJS 和一些其他必需的工具软件。
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# 2.node——使用Homebrew来安装node.js
-brew install node
-# 3.安装完node后可以采用设置npm镜像, 加速后面的过程
-npm config set registry https://registry.npm.taobao.org –global
-npm config set disturl https://npm.taobao.org/dist –global
-# 4.react native cli——用于创建、初始化、更新、打包等任务
-npm install -g react-native-cli
-# 5.Watchman——packger可以快速捕捉文件的变化, 从而实现实时刷新
-brew install watchman
-# 6.Flow——facebook自家代码规范检查工具
-brew install flow
-```
-
-- `Atom & Nuclide`: Facebook 提供的基于 `atom` 的集成开发环境, 可用于编写、运行和 调试 `React Native` 应用
-
-  [请点击下载Atom](https://atom.io/)
-
-  [请点击下载Nuclide](https://github.com/facebook/nuclide)
-
-  其他 `IDE` 参考: `DECO`, `sublime2`, `webStorm`
-
-- 集成 `SDK` :[点击下载 SDK](http://open.ffan.net/apps/create)
-
-  1\. 添加 `SDK` 文件
-
-  将 `FFOAPSDK` 目录, `node_modules` 目录, `package.json`, `startServer` 拷贝到工程同级目录
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1YcLTB4__1RCvBVdK/tfs/14834337846233.jpeg)
-
-  2\. 添加 `libReactConfig`
-
-  将包含 `libReactConfig.a`, 一系列头文件和 `Fonts` 目录的文件夹 `FFOAPSDK` 拖拽到工程中
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1l6bTBvV_1RCvBVdK/tfs/addsdk.jpeg)
-
-  3\. 设置 `flag`
-
-  找到对应 `target` 的 `Build Settings`, `Linking－>Other Linker Flags` 添加 `flag`, `-Objc` 和 `-all_load`
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1u2ETBj_T1RCvBVdK/tfs/projectflag.jpeg)
-
-  4\. 添加 `ReactNative` 库
-
-  添加 `React` 组件工程文件:
-
-  将 `node_modules/react-native/React/React.xcodeproj` 拖到工程中
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T13OJTBTbT1RCvBVdK/tfs/14834343700116.jpeg)
-
-  5\. 配置库依赖
-
-  点击你的主工程文件, 选择 `Build Phases`, 然后把刚才所添加进去的 `.xcodeproj` 下的 `Products` 文件夹中的静态库文件（.a文件）, 拖到 `Link Binary With Libraries` 组内。
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1D6LTB5__1RCvBVdK/tfs/14834348297098.jpeg)
-
-  6\. 添加其它组件依赖
-
-  其它本地组件都在 `node_modules/react-native/Libraries` 目录。使用同样的方法添加 `RCTImage` 或其他组件
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1f7hTB4JT1RCvBVdK/tfs/14834501543939.jpeg)
-
-  7\. 添加系统依赖库
-
-  点击你的主工程文件, 选择 `General`, 在 `Linked Frameworks and Libraries` 添加 `libstdc++.tbd` 和 `libicucore.tbd`
-
-  ![Alt text](http://timg.ffan.com/convert/resize/url_T1t0JTBTdT1RCvBVdK/tfs/14834496841174.jpeg)
-
-- 验证环境, 请输入如下命令行:
-
-```bash
-react-native init AwesomeProject
-cd AwesomeProject
-react-native run-ios
-```
-现在你已经成功运行了项目, 我们可以开始尝试动手改一改了:
-
-> 1\. 使用你喜欢的编辑器打开 `index.ios.js` 并随便改上几行。
-> 2\. 在 `iOS` 模拟器中按下 `⌘-R` 就可以刷新 `App` 并看到你的最新修改！
-
-2.3 **FE开发者:**
-
-- 首先, 请下载安装 `IDE`。[JS 开发者请点击下载 WebStorm](http://www.jetbrains.com/webstorm/)
-
-- 安装 `ReactNative` 运行环境（待补充）
-
-- 集成代码审查规则文件（待补充）[点击下载代码审查规则文件](http://www.jetbrains.com/webstorm/)
-
-- 验证环境（待补充）
-
-## 3、开发应用
-
-**iOS 开发者:**
-
-### 3.1 创建 `App`
-
-- 首先打开 `FFOAPDemo` 工程, 进入到 `FFOAP` 文件夹下面, 可以看到 `FFOAP` 下面, 有两个目标文件夹, `applications` 和 `widgets`, 如下图所示
-
-  ![Alt text](http://p1.bqimg.com/1949/072f9ae612034516.png)
-
-- 如果想开发普通 `App`, 则进入到 `applications` 目录下, 参照 `ReactNative` 语法规范开发 `JS` 文件。
-
-- 如果想开发组件, 则进入到 `widgets` 目录下, 参照 `ReactNative` 语法规范开发 `JS` 文件。
-
-- 如上步骤所述, 创建完成相关 `JS` 文件, 之后即可创建配置文件。
-
-### 3.2 创建配置文件
-
-- `App Config` 文件放在 `app` 的根目录下, 文件名为 `config.json`, 文件内容是一个 `json` 串。格式如下:
+App Config 文件放在 app 的根目录下, 文件名为 config.json, 文件内容是一个 json 串。格式如下:
 
 ```javascript
 {
@@ -268,177 +140,85 @@ react-native run-ios
 }
 ```
 
-- 字段说明如下表所示
+字段说明如下表所示：
 
-| 字段      |     描述 |
-| :-------- | :--------|
-| index    |   app入口文件路径(相对路径), 如"test/index.js" |
-| name   |   app名称, 目前没有使用 |
-| moduleName    |   入口module Name |
-| platform    |   平台类型, int值, ios:1,  android:2 |
-| rnFrameworkVersion    |   ffoap框架版本号 |
-| version    |   app版本号 |
-| icon    |   app图标, 目前没有使用 |
+| 字段      |描述 |   
+| :-------- | --------:| 
+| index    |   app入口文件路径(相对路径), 如"test/index.js" |  
+| name    |   app名称 |   
+| platform    |平台类型（int值） ios:1, Android:2，ios&Android:3 |  
+| rnFrameworkVersion     |   ffoap框架版本号 |  
+| version    |   app版本号 |  
 
-### 3.3 创建配置文件
-
-- 打开 `FFOAPDemo` 中 `AppDelegate` 文件, 在 `applicationDidBecomeActive` 调用 `FFReactNativeTempleteManager` 中的 `requestConfigWithAppId:channelId:pageIds:platform` 方法拉取各页面远端配置打开方式。
+### 二、配置
+> 在demo工程中的MyConfig Java类中对相应的配置进行修改
 
 ```java
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-[[FFReactNativeTempletManager sharedInstance] requestConfigWithAppId:@"1"
-                                                       channelId:@"appstore"
-                                                         pageIds:nil
-                                                        platform:FFReactNativePlatform_iOS];
+public class MyConfig extends DefaultConfig {
+    //本地调试模式开关
+    public boolean isLocalDebugMode() {
+        return false;
+    }
+  //RN入口文件路径
+    public String getRNDebugIndexJsPath() {
+        return "FFOAP/applications/applists";
+    }
+    //RN入口文件ModuleName
+    public String getRNDebugModuleName() {
+        return "template";
+    }
+  //调试bundle包在手机中的绝对路径
+    public String getRNDebugBundlePath() {
+        return Environment.getExternalStorageDirectory() + File.separator + "1.b";
+    }
+  //渠道id
+    public String getChannelId() {
+        return "3";
+    }
+  //Android应用id
+    public String getAppId() {
+        return "1";
+    }
+  //Android应用版本
+    public String getAppVersion() {
+        return "1.0.0.0";
+    }
+  //调试H5页面地址
+    public String getDebugHtmlPage() {
+        return "www.baidu.com";
+    }
+  //调试ffoap app类型
+    public AppType getDebugAppType() {
+        return AppType.APK;
+    }
+  //调试apk路径
+    public String getDebugApkPath() {
+        return Environment.getExternalStorageDirectory() + File.separator + "toutiao.apk";
+    }
 }
 ```
-- 进入到 `FFOAPRootViewController`,修改 `dataSource` 的 `get` 方法, 向里面填充 `FFOAPCellModel`, 其内容说明如下
+### 三、调试
+1.  修改Demo 工程的MyConfig类修改调试ffoap app类型
+2.  如果是rn类型，进入工程目录中的 js_module 目录, 运行 npm start 或者 react-native start, 开启服务，即可进行正常调试。
+3.  在手机RN界面中摇一摇或者按手机硬件menu键，启动RN调试界面。如下图：
+![Alt text](http://img1.ffan.com/T1DehTB4J_1RCvBVdK)
+4.  进入开发选项，选择端口设置，查看电脑ip地址，设置为ip地址加8081端口。如下图：
+![Alt text](http://img1.ffan.com/T19ehTBghv1RCvBVdK)![Alt text](http://img1.ffan.com/T1hTxTB4KT1RCvBVdK)
+5.  电脑端安装chrome浏览器，在手机RN界面中摇一摇或者按手机硬件menu键，启动RN调试界面，选择start remote JS debuging，如图：
+![Alt text](http://img1.ffan.com/T1jPVTBCZb1RCvBVdK)
+电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机RN开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
+## 接口说明
+[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
 
-| 字段      |     描述 |
-| :-------- | :--------|
-| displayName    |   在当前页面展示的名字 |
-| moduleName   |   打开指定App入口文件的模块名 |
-| appid    |   注册应用时候返回的appid, 如果为模板型app, 则为模板id |
-| isLocal    |   是否是本地调试 |
-| localPath    |   本地调试时候文件的相对路径 |
+# HTML5开发者
 
-- 如果为本地调试, 则初始化 `FFReactNativeController`, 打开本地服务调试即可
-
-```java
-NSString *moduleName = model.moduleName;
-NSString *path = model.localPath;
-FFReactNativeController *vc = [FFReactNativeController new];
-[vc setParamsWithIsRNLocalDebug:@"1"
-             jsCodeLocation:path
-                 moduleName:moduleName
-                    appType:1
-               jsProperties:nil];
-[vc setNativeNavigationBarHidden:YES];
-[self.navigationController pushViewController:vc animated:YES];
-```
-
-- 如果为远端调试, 则需要先调用 `FFReactNativeTempletManager` 中的获取配置信息的方法 `getPageConfig:params:`,之后根据配置信息, 如果类型为 `ReactNative`, 检查本地是否有差分包, 如果存在, 则加载同时后台检查是否更新, 如果不存在, 则先进入错误页面, 同时后台检查更新。具体如下
-
-```java
-NSString *appid = model.appid;
-NSString *moduleName = model.moduleName;
-NSDictionary *config = [[FFReactNativeTempletManager sharedInstance] getPageConfig:appid
-                                                                          params:nil];
-  if ([config[@"type"] isEqualToString:@"RN"]) {
-      moduleName = config[@"moduleName"];
-      FFReactNativeAppInfo *appInfo = [[FFReactNativeHelper sharedInstance] appInfoFromArchivePathWithModuleName:moduleName];
-      if (appInfo.downloadUrl) { // 没有更新, 取本地
-          FFReactNativeController *vc = [FFReactNativeController new];
-          [vc setParamsWithIsRNLocalDebug:@"0"
-                            jsCodeLocation:appInfo.downloadUrl
-                                moduleName:moduleName
-                                  appType:1
-                              jsProperties:nil];
-          [vc setNativeNavigationBarHidden:YES];
-          [self.navigationController pushViewController:vc animated:YES];
-          dispatch_async(dispatch_get_global_queue(0, 0), ^{
-              [[FFReactNativeCheckUpdateManager sharedInstance] checkJSBundleUpdateWithAppType:1
-                                                                                    sdkVersion:@"4"
-                                                                                    appVersion:@"4.9.3"
-                                                                                          apps:@[appInfo]
-                                                                                completionBlock:nil];
-          });
-      } else { // 网络加载
-          FFOAPErrorViewController *errorVC = [FFOAPErrorViewController new];
-          [self.navigationController pushViewController:errorVC animated:YES];
-          dispatch_async(dispatch_get_global_queue(0, 0), ^{
-              FFReactNativeAppInfo *appInfo = [FFReactNativeAppInfo new];
-              appInfo.appId = @"pageapp_2_1_10025585_3";
-              appInfo.version = @"0";
-              appInfo.moduleName = moduleName;
-              [[FFReactNativeCheckUpdateManager sharedInstance] checkJSBundleUpdateWithAppType:1
-                                                                                    sdkVersion:@"4"
-                                                                                    appVersion:@"4.9.3"
-                                                                                          apps:@[appInfo]
-                                                                                completionBlock:nil];
-          });
-      }
-```
-
-- 如果类型为 `Native`, 则跳转到指定 `Native` 界面
-
-```java
-FFOAPNativeViewController *native = [[FFOAPNativeViewController alloc] init];
-[self.navigationController pushViewController:native animated:YES];
-```
-
-- 如果类型为 `hybrid`, 则跳转到指定 `H5` 界面
-
-```java
-FFOAPWebViewController *webVC = [[FFOAPWebViewController alloc] init];
-webVC.urlStr = config[@"url"];
-[self.navigationController pushViewController:webVC animated:YES];
-```
-
-### 3.4 API 文档
-
-- 网络状态
-
-```java
-// 开始网络状态监听
-RCT_EXPORT_METHOD(startNotifier)
-// 停止网络状态监听
-RCT_EXPORT_METHOD(stopNotifier)
-// 当前状态
-RCT_EXPORT_METHOD(currentReachabilityStatus:(RCTResponseSenderBlock)callback)
-typedef enum : NSInteger {
-WDNotReachable = 0,
-WDReachableViaWiFi,
-} WDNetworkStatus;
-// 状态变化通知
-RCT_EXPORT_METHOD(onNotifyStatus:(RCTResponseSenderBlock)callback)
-```
-
-- 电话短信
-
-```java
-// 打电话
-RCT_EXPORT_METHOD(call:(NSString *)tel)
-// 发短信
-RCT_EXPORT_METHOD(sms:(NSString *)mobile)
-// 调起短信UI
-RCT_EXPORT_METHOD(openSmsUI:(NSArray *)mobiles subject:(NSString *)subject body:(NSString *)body)
-```
-
-- 相机相册
-
-```java
-// 打开摄像头, 拍摄一张图片
-RCT_EXPORT_METHOD(openCamera:(RCTResponseSenderBlock)callback)
-// 打开相册, 选取多张图片
-RCT_EXPORT_METHOD(openAlbum:(int)count callback:(RCTResponseSenderBlock)callback)
-```
-
-- 设备信息
-
-```java
-// 按列表过滤, 获取信息
-RCT_EXPORT_METHOD(deviceInfo:(NSArray *)filter callback:(RCTResponseSenderBlock)callback)
-// 全部设备信息
-RCT_EXPORT_METHOD(deviceInfoAll:(RCTResponseSenderBlock)callback)
-```
-
-- 存取 `NSUserDefault` 数据
-
-```java
-// 存json对象
-RCT_EXPORT_METHOD(setObject:(id)obj forKey:(NSString *)key)
-// 读json对象
-RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)callback)
-```
-
-## 4、JSSDK使用文档
+## JSSDK使用文档
 
 **概述:**
 
 - `JS-SDK` 是飞凡网内部向网页开发者提供的网页开发工具包
 
-- 通过使用 `JS-SDK`, 网页开发者可借助 `jsbridge` 调用手机等设备的功能
+- 通过使用 `JS-SDK`, 网页开发者可借助 `js-bridge` 调用手机等设备的功能
 
 - 此文档面向网页开发者介绍 `JS-SDK` 如何使用及相关注意事项
 
@@ -530,11 +310,11 @@ sdk.getDevInfo()
   .then(function(data) {
     // success
     // data格式为
-    // {
-    //   name: 'iOS_Wifi', //设备名称
-    //   model: '营销',     //设备类型
-    //   systemVersion: '1.0.0', //系统版本
-    // }
+    {
+      name:'iOS_Wifi', //设备名称
+      model:'营销', //设备类型
+      systemVersion:'1.0.0', //系统版本
+    }
   }).catch(function(err) {
     // fail
   })
@@ -552,18 +332,20 @@ sdk.getDevInfo()
 
 ```javascript
 
-sdk.getEnvInfo().then(function(data){
-  // success data格式为启动之前传递的参数
-  // {
-  //   "storeName": "GAP",
-  //   "org": "wanda",
-  //   "storeId": "10000",
-  //   "token": "8943o9432943948394839",
-  //   "userId": "18510000005"
-  // }
-}).catch(function(err){
-  //fail
-})
+sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
+  then(function(data){
+    {
+    // success
+    // data格式为启动之前传递的参数
+      "storeName":"GAP",
+      "org":"wanda",
+      "storeId":"10000",
+      "token":"8943o9432943948394839",
+      "userId":"18510000005"
+    }
+  }).catch(function(err){
+    //fail
+  })
 ```
 
 **getLocation** 获取位置信息
@@ -581,10 +363,10 @@ sdk.getLocation()
   .then(function(data) {
     // success
     // data格式为
-    // {
-    //   lot: '116.46', //经度
-    //   lat: '39.92', //维度
-    // }
+    {
+      lot:'116.46', //经度
+      lat:'39.92', //维度
+    }
   }).catch(function(err) {
     // fail
   })
@@ -618,9 +400,9 @@ sdk.setTitle({"title":"飞凡demo"})
 sdk.setRightNavBarItem({"title":"分享"})
 ```
 
-## 5、H5授权接口说明
+## H5授权接口说明
 
-### 5.1、 **`accessToken` 说明**
+###  **`accessToken` 说明**
 
 - `accessToken` 是开放平台的全局唯一票据, 第三方应用调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
 
@@ -683,7 +465,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 | 4002 | appSecret 参数错误 |
 | 5001 | 服务器存储错误 |
 
-### 5.2、 **`accessToken` 的签名说明**
+### **`accessToken` 的签名说明**
 
 **签名算法**
 
@@ -692,6 +474,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
 - 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
+> sit
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -714,7 +497,6 @@ accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd05
 ```
 
   3\. 对 `string1` 进行 `SHA256` 签名, 得到 `signature`
-
 
 ```
 928dfbcabb55bc663a925306f11e2ab17c4a6d65
@@ -826,82 +608,330 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 
-# 三、调试
+# iOS开发者
 
-## 1、Android开发者
+## ReactNative部分
 
-进入工程目录中的 `js_module` 目录, 运行 `npm start` 或者 `react-native start`, 开启服务, 初始化 `IReactConfig` 时候在下列方法中返回 `true`, 并在 `LocalDebugParams` 中传入调试的 `moduleName`。
+### FFOAP ReactNative App 概述
+采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生应用体验。下文中ReactNative简称为RN。
 
-```java
-@Override
-public boolean isLocalDebug() {
-  return true;
-}
+### 搭建环境
+#### iOS开发环境
+XCode下载：[点击下载Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
+#### Mac RN开发环境
+1. 安装Homebrew:
+``` 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+2. 安装Node : 使用Homebrew来安装node.js
+```
+brew install node 
+```
+3. 安装完node后可以采用设置npm镜像，加速后面的过程 
+```
+npm config set registry https://registry.npm.taobao.org –global 
+npm config set disturl https://npm.taobao.org/dist –global
+```
+参考链接：https://facebook.github.io/react-native/docs/getting-started.html
+4. 安装react-native-cli: 用于创建、初始化、更新、打包等任务
+```
+npm install -g react-native-cli
+```
+5. 安装Watchman:packger可以快速捕捉文件的变化，从而实现实时刷新
+```
+brew install watchman
+```
+6. 安装cocoapods: 用于管理iOS库依赖
+```
+gem install cocoapods 建议通过安装cocoapods MacApp 自动安装
+```
+参考链接：https://cocoapods.org/
+7. 其它工具:
+>Sublime Text，Deco，WebStorm， nuclide
 
-@Override
-public ArrayMap<String, String> getLocalDebugParams() {
-	ArrayMap<String, String> params = new ArrayMap();
-	params.put(Constants.VIEW_CONFIG_RN_MODULE_NAME, "test");
-	return params;
+### 项目集成
+#### 下载SDK（含Demo工程）
+通过以下链接下载SDK和Demo：
+[SDK下载](http://static.ffan.com/bo/iOS.ffoap-alpha.zip)
+
+#### iOS FFOAPSDK介绍
+##### FFOAPSDK结构
+pod安装后效果如下：
+![](http://img1.ffan.com/T1mPWTBCDj1RCvBVdK)
+
+**按功能划分为以下几个部分**
+
+**1. RN部分**
+
+| 文件名      |   类型 |   功能 |
+| :-------- | :--------| :--------|
+| FFReactNativeController.h    | 头文件 | 承载RN页面的通用VC |
+
+
+**2. Hybrid部分**
+
+| 文件名      |   类型 |   功能 |
+| :-------- | :--------| :--------|
+| FFHybridViewController.h  | 头文件 | 承载webview的VC基类 |
+| FFHybridWidget.h     | 头文件 | 供js调用的接口的抽象协议|
+| FFHybridXXXWidget.h  | 头文件 | 实现FFHybridWidget协议的系列接口|
+
+**3. 公用部分**
+
+| 文件名      |   类型 |   功能 |
+| :-------- | :--------| :--------|
+| FFRoute.h    | 头文件 | 页面导航管理 |
+| FFUtils.h     | 头文件 | 工具类，提供一些快捷方法|
+| Fonts/* | 文件夹 | RN必要字体库。使用该字体，iOS需要配置工程中Info.plist的Fonts provided by application列表|
+| Images/* | 文件夹 | 图片资源 |
+| FFOAPSDKLib.podspec | 描述文件 | 描述FFOAPSDK库全部内容，供Podfile使用 |
+
+#### 接入SDK
+##### 添加SDK文件
+将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
+![](http://img1.ffan.com/T1hwJTBvD_1RCvBVdK)
+
+##### 加载RN组件
+执行 `npm install`，加载ReactNative组件
+
+##### 编写Podfile
+在同级目录下，创建纯文本文件Podfile内容如下：
+
+``` objectivec
+platform :ios, '8.0'
+workspace 'FFOAPDemo'
+target 'FFOAPDemo' do
+    project 'FFOAPDemo'
+    pod 'FFOAPSDKLib', :path => 'FFOAPSDK'
+    pod 'React', :path => 'node_modules/react-native', :subspecs => [
+    'Core',
+    'CSSLayout',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTText',
+    'RCTWebSocket',
+    'RCTSettings',
+    'RCTActionSheet',
+    'RCTCameraRoll',
+    'RCTGeolocation'
+    ]
+end
+``` 
+
+##### 安装Pod
+工程根目录下，命令行执行`pod install --no-repo-update`
+将FFOAPDemo与React和FFOAPSDK的依赖关系建立起来。
+安装成功后，工程结构如下：
+![](http://img1.ffan.com/T1UehTBjKv1RCvBVdK)
+
+##### 配置Info.plist
+如下图所示，修改Info.plist，配置定位权限，访问相册权限和自定义字体
+![](http://img1.ffan.com/T1dSETB4Zj1RCvBVdK)
+
+### 开发APP
+以zhihu为例
+1. 在工程同级目录下创建文件夹FFOAP/applications/zhihu
+2. 在zhihu中添加js代码，完成RN App开发
+![](http://img1.ffan.com/T1NvbTBXAy1RCvBVdK)
+3. 修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
+``` objectivec
+NSMutableArray *array = @[].mutableCopy;
+{
+     FFOAPCellModel *model = FFOAPCellMake(@"本地知乎Demo",@"ZhiHuDemo",@"");
+     model.localPath = @"FFOAP/applications/zhihu/ZhiHuMainView";
+     [array addObject:model];
+ }
+[tempDataSource addObject:FFOAPSectionMake(@"本地RN调试", array)];
+```
+其中ZhiHu为moduleName，FFOAP/applications/zhihu/ZhiHuMainView 为入口文件路径
+
+### 调试
+
+1. 命令行执行./startServer ，开启npm服务
+2. 从XCode运行FFOAPDemo工程，启动iOS模拟器
+3. 点击zhihu对应的cell，进入RN页面
+4. 访问App内的开发菜单
+你可以通过摇晃设备或是选择iOS模拟器的"Hardware"菜单中的"Shake Gesture"选项来打开开发菜单。
+如果是在iOS模拟器中运行，还可以按下Command⌘ + Z 快捷键。如图所示：
+![](http://img1.ffan.com/T1gTJTBgxv1RCvBVdK)
+![](http://img1.ffan.com/T1oeETBCE_1RCvBVdK)
+5. 刷新JavaScript
+
+传统的原生应用开发中，每一次修改都需要重新编译，但在RN中你只需要刷新一下JavaScript代码，就能立刻看到变化。具体的操作就是在开发菜单中点击"Reload"选项。也可以在iOS模拟器中按下Command⌘ + R。
+如果在iOS模拟器中按下Command⌘ + R没啥感觉，则注意检查Hardware菜单中，Keyboard选项下的"Connect Hardware Keyboard"是否被选中。
+
+**自动刷新**
+
+选择开发菜单中的**Enable Live Reload**可以开启自动刷新，这样可以节省你开发中的时间。
+某些情况下hot reload并不能顺利实施。如果碰到任何界面刷新上的问题，请尝试手动完全刷新。
+但有些时候你必须要重新编译应用才能使修改生效：
+增加了新的资源
+更改了任何的原生代码（objective-c/swift/java）
+
+### 打包
+1. 下载打包工具mac版本：
+[mac版本](http://static.ffan.com/bo/bundlemac.app.zip)
+[windows版本](http://static.ffan.com/bo/bundlewindows.exe.zip)
+2. 在js源代码同级目录，添加打包配置文件config.json，内容如下
+``` objectivec
+{
+  "index": "ZhiHuMainView.js",
+  "moduleName":"ZhiHuDemo",
+  "platform":"3",
+  "name": "ZhiHuDemo",
+  "version": "0.0.1",
+  "rnFrameworkVersion":"1",
+  "icon": "http://img4.imgtn.bdimg.com/it/u=712933712,3452046272&fm=21&gp=0.jpg"
 }
 ```
 
-## 2、iOS开发者
+字段说明如下表所示:
 
-### 访问 App 内的开发菜单
+| 字段 | 描述 |
+| --- | --- |
+| index | app入口文件路径(相对路径)，如"test/index.js" |
+| name | app名称，目前没有使用 |
+| moduleName | 入口module Name |
+| platform | 平台类型，int值，ios：1， android：2 双平台: 3 |
+|  mFrameworkVersion | ffoap框架版本号 |
+| version | app版本号 |
+| icon | app图标，目前没有使用 |
 
-你可以通过摇晃设备或是选择 `iOS` 模拟器的 "Hardware" 菜单中的 "Shake Gesture" 选项来打开开发菜单。如果是在 `iOS` 模拟器中运行, 还可以按下 `Command⌘ + Z` 快捷键。如图所示:
+3. 开始打包：
+ 打开打包工具，填写源代码目录和代码包输出目录，点击开始打包。**zhihu201703011148.fap** 即为最终产品。
+![](http://img1.ffan.com/T1QeJTBsZv1RCvBVdK)
 
-![Alt text](http://p1.bqimg.com/1949/5c217c931a014723.png)
+### 发布
+1. 打开BO开放平台应用市场首页：http://open.ffan.net/apps，注册账号，并确认邮件完成身份验证，成为开发者。
+![](http://img1.ffan.com/T1mTJTBghv1RCvBVdK)
+2. 创建应用
+![](http://img1.ffan.com/T1gSJTBsLT1RCvBVdK)
 
-![Alt text](http://p1.bqimg.com/1949/4aae427b5dbcc18c.png)
+点击左上脚**发布新应用**按钮，选择应用类型为**RN应用**，填写应用名称，应用介绍，选择分类，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
+3. 审核
+应用提交后呈现待审核状态，如下图：
+![](http://img1.ffan.com/T19vLTBgVj1RCvBVdK)
 
-### 刷新 Javascript
+待审核通过，即可供用户下载。
+4. 管理我的应用
+选择左侧**我的应用**按钮，可进行查看，编辑应用信息，发布新版本，下架在线应用等操作，管理我的应用。
 
-- 传统的原生应用开发中, 每一次修改都需要重新编译, 但在 `RN` 中你只需要刷新一下 `JavaScript` 代码, 就能立刻看到变化。具体的操作就是在开发菜单中点击 "Reload" 选项。也可以在 `iOS` 模拟器中按下 `Command⌘ + R`。
+### 验证
 
-- 如果在 `iOS` 模拟器中按下 `Command⌘ + R` 没啥感觉, 则注意检查 `Hardware` 菜单中, `Keyboard` 选项下的 "Connect Hardware Keyboard" 是否被选中。
+1. 获取应用ID
 
-- 选择开发菜单中的 Enable Live Reload 可以开启自动刷新, 这样可以节省你开发中的时间。
+待通过审核，应用上架后，点击应用图标，打开链接如下http://open.sit.ffan.net/apps/detail/1101，应用ID即为：**app_1101**
+2.  修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
 
-- 某些情况下 hot reload 并不能顺利实施。如果碰到任何界面刷新上的问题, 请尝试手动完全刷新。
+``` objectivec
+{
+   FFOAPCellModel *model = FFOAPCellMake(@"知乎Demo",@"",@"app_1101");
+   [array addObject:model];
+}
+```
 
-- 但有些时候你必须要重新编译应用才能使修改生效:
+3. 模拟器或真机运行Demo，点击列表对应项，即可下载app_1101对应的app，进行线上验证。
 
-  1\. 增加了新的资源
+## Hybrid部分
+### H5 APP 概述
+使用Webkit渲染，跨平台的web应用。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
+>iOS参考链接：https://github.com/marcuswestin/WebViewJavascriptBridge
+>Android参考链接：https://github.com/gzsll/WebViewJavascriptBridge
 
-  2\. 更改了任何的原生代码（objective-c/swift/java）
+### Hybrid iOS SDK
+#### Hybrid iOS SDK简介
+Hybrid SDK 核心部分包括一个控制器FFHybridViewController，一个协议FFHybridWidget，以及一组实现FFHybridWidget协议的Widget，开发者也可以按需要实现自己的Widget。
 
-### FFOAP 本地开发调试
+![](http://img1.ffan.com/T1tvATBCYb1RCvBVdK)
 
-- 参照上述开发步骤, 调整代码参数为本地调试模式
+#### Widgets
+Widgets是native与h5的接口，各Widget实现独立接口
 
-- 进入 `FFOAP` 目录, 启动 `startServer` 脚本, 本地启动服务
+| Widgets      |   方法名 |   功能 |
+| :-------- | :--------| :--------|
+| FFHybridDeviceInfoWidget  | common.getDevInfo | 获取设备信息 |
+| FFHybridLocationWidget    | common.getLocation | 获取地理位置信息 |
+| FFHybridNavTitleWidget    | common.setTitle | 修改navgationbar title |
+| FFHybridWebViewWidget     | common.openWebPage | 打开新的web页面 |
+| FFHybridRNAppWidget       | common.openLocalRNPage | 打开reactnative app |
+| FFHybridNavbarItemsWidget | common.setRightNavBarItem | 自定义navgationbar 右按钮 |
 
-# 四、打包
 
-4.1、[请下载打包工具](http://open.ffan.net/apps/list)
+#### FFHybridViewController的使用
+封装WKWebview和WebViewJavascriptBridge，用于接入h5应用，展示加载进度，返回和关闭按钮
+为定制Widgets，FFHybridViewController 需要子类实现，这里以FFOAPWebViewController为例
 
-4.2、参考打包工具中的应用规范对包进行调整（待补充）
+``` objectivec
+#import <UIKit/UIKit.h>
+#import "FFHybridViewController.h"
 
-4.3、参考打包工具中的使用文档进行打包（待补充）
+@interface FFOAPWebViewController : FFHybridViewController
 
+@end
+```
+``` objectivec
+@implementation FFOAPWebViewController
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // 添加widgets的监听
+    [self registerHandlers];
+    // urlStr 是h5地址
+    if (self.urlStr) {
+        [self loadURL:self.urlStr];
+    }
+    // 显示进度条
+    self.showProgress = YES;
+    // 定制进度条颜色
+    self.progressColor = [UIColor redColor];
+}
+// 配置需要监听的接口
+- (NSArray *)widgets{
+    return @[[FFHybridWebViewWidget new],
+             [FFHybridNavTitleWidget new],
+             [FFHybridDeviceInfoWidget new],
+             [FFHybridRNAppWidget new],
+             [FFHybridLocationWidget new],
+             [FFHybridNavbarItemsWidget new],
+             ];
+}
 
-# 五、发布
+@end
+```
 
-5.1、[登录开发者平台首页](http://open.ffan.net), 点击 应用市场->我的组件->发布新版本, 并上传应用文件, 如:应用名.fap
+#### Widgets开发示例
+修改navgationbar title
 
-5.2、填写版本号, 版本号采用标准三段式, 如: 1.0.0
+``` objectivec
+@interface FFHybridNavTitleWidget ()
+@property (nonatomic, copy) NSString *title;
+@end
 
-5.3、填写版本简介, 字数请限制在 120 字内
+@implementation FFHybridNavTitleWidget
+// 配置接口字段
+- (NSString *)action
+{
+    return @"common.setTitle";
+}
+// 配置接口是否生效
+- (BOOL)canPerformAction
+{
+    return YES;
+}
+// 解析js调用参数
+- (void)prepareWithData:(id)data
+{
+    self.title = data[@"title"];
+}
+// 业务处理，回调js
+- (void)performWithController:(FFHybridViewController *)controller  callback:(FFHybridWidgetCallback) callback
+{
+    if (controller) {
+        // 修改navgationbar title
+        controller.title = self.title;
+    }
+    callback(FFHybridWidgetData(@{@"title":self.title}, @200, @"OK"));
+}
 
-5.4、提交审核（审核规则待补充）
-
-# 六、审核
-
-6.1、组件审核通过后, 可以在 我的组件->已审核 中查看
-6.2、点击发布, 会上架到应用商店
-
-# h5组件开发
-
-# APK组件开发
+@end
+```

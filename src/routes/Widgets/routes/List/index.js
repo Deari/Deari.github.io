@@ -118,7 +118,7 @@ class widgetsList extends React.Component {
 
         obj.btnData = [
           {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "创建新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
         ]
 
         newData.push(obj)

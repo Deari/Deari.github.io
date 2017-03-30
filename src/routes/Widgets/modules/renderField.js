@@ -179,7 +179,7 @@ export class renderFile extends Component {
 
     return (
       <div className="form-row">
-        <label>{label}<span>{genre}</span></label>
+        <label className="label-type">{label}<span>{genre}</span></label>
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />

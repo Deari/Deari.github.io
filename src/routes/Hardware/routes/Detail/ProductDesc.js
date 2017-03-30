@@ -10,7 +10,7 @@ const ProductDescTpl = (props) => (
         </p>
         <p>
           <span className="w62">通讯方式:</span>
-          <span className="w200">13566147822</span>
+          <span className="w200">{props.data.connectType}</span>
         </p>
       </li>
       <li>

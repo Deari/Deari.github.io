@@ -33,6 +33,12 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             left: 657px;
         }
     }
+    .label-type{
+        line-height:20px;
+        span{
+            font-size: 12px;
+        }
+    }
     .row-right{
         margin: 0;
         position: relative;
@@ -158,8 +164,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
                 }
               }
             }
-           
-            
         }
         img{
             width: $default-width;

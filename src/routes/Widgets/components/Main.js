@@ -30,6 +30,7 @@ class Main extends React.Component {
         debug.warn("获取列表接口返回错误")
       }
     } catch (e) {
+     
       console.log("获取列表接口返回错误", e)
     }
   }

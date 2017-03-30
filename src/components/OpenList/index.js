@@ -13,7 +13,7 @@ class OpenList extends React.Component {
         listData.map(( item, index ) => {
           const desc = item[`${typeName}Function`] || item[`${typeName}Desc`]
           const price = item.hardwarePrice || '免费'
-          const defaultLayout = item.defaultLayout&&JSON.parse(item.defaultLayout)
+          const defaultLayout = item.defaultLayout
           return (
             <li>
               {
@@ -35,7 +35,7 @@ class OpenList extends React.Component {
               { 
                 typeName==='hardware'?
                 <div>
-                  <p className="open-list-price">{price === '免费' ? price : '￥' + price} <i>元</i></p>
+                  <p className="open-list-price">{price === '免费' ? price : '￥' + price} {price === '免费'?'':<i>元</i>}</p>
                   <p className="open-list-show">
                     <a><i className="iconfont icon-sold"></i>已售251</a>
                     {/**<a><i className="iconfont icon-star"></i>251</a>*/}

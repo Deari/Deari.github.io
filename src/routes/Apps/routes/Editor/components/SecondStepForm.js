@@ -6,6 +6,7 @@ import { Field, reduxForm } from 'redux-form'
 import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
+import VersionCordModule from '../../../components/VersionCord'
 
 import {
   toggleStep,
@@ -16,7 +17,8 @@ import {
   WtoggleLogoList,
   toggleNameList,
   WtoggleNameList,
-  updateCodeDesc
+  updateCodeDesc,
+  toggleCodeVersion
 } from '../modules/edit'
 
 import { 
@@ -25,6 +27,7 @@ import {
     renderSelect, 
     renderCodeVersion,
     renderPublishRadioBox,
+    renderVersionField,
     renderAPKFile
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
@@ -49,7 +52,6 @@ const SecondStepForm = props => {
   const {
     appKind,
     publishList,
-    versionsList,
     active,
     datalist,
     idList,
@@ -63,6 +65,8 @@ const SecondStepForm = props => {
     appKey,
     appName,
     appLogo,
+    codeVersion,
+    lastVersion
   } = initialValues
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
@@ -93,14 +97,6 @@ const SecondStepForm = props => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-row show-contain">
-        <img src={appLogo} />
-        <div className="show-text">
-          <h3>{appName}</h3>
-          <p><i>AppID：</i><span>{appId}</span></p>
-          <p><i>AppKey：</i><span>{appKey}</span></p>
-        </div>
-      </div>
       <div>
         <div className="form-row code-desc">
           <label>版本介绍</label>
@@ -125,7 +121,8 @@ const SecondStepForm = props => {
         	</div>
         </div>
       </div>
-      <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
+      {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
+     <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={props.toggleCodeVersion}/>
       {appKind === 0 && <Field name="file" component={renderFile} label="应用文件"  genre='(FAP小程序)'/>}
       {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
       {appKind === 2 && <Field name="fileObj" component={renderAPKFile} label="应用文件(APK)" />}
@@ -178,7 +175,8 @@ const mapDispatchToProps = {
   WtoggleLogoList,
   toggleNameList, 
   WtoggleNameList,
-  updateCodeDesc
+  updateCodeDesc,
+  toggleCodeVersion
 }
 
 const mapStateToProps = ({appsEdit}) => ({

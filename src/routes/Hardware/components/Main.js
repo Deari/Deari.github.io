@@ -26,13 +26,13 @@ class Main extends React.Component {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
         let arr = [];
-        res.data.map((v)=>{
+        res.data.list.map((v)=>{
           const obj={
             hardwareFunction:v.productDesc,
             hardwareLogo:v.image,
             hardwareName:v.verboseName,
             hardwarePrice:v.price,
-            hardwareId:v.productKey,
+            hardwareId:v.id,
             developerName:v.brand
           }
           arr.push(obj)

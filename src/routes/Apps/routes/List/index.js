@@ -124,11 +124,11 @@ class AppsList extends React.Component {
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
         
-        const editUrl = `/apps/edit/${obj.id}`
-
+        const editUrl = `/apps/edit/${obj.id}/1`
+        const versionEditUrl = `/apps/edit/${obj.id}/3`
         obj.btnData = [
           {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "创建新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
         
         newData.push(obj)

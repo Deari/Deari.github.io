@@ -8,6 +8,15 @@ i.icon-recommend{font-size:23px!important;}
       position: inherit;
       cursor: pointer;
   }
+  .association-text{
+      i{
+          width:300px;
+          height:182px;
+          display: block;
+          background: url(../../Home/assets/use-img.png) no-repeat;
+          background-size: 100%;;
+      }
+  }
   .active{
     display:block;
     .logo-box{

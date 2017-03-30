@@ -25,7 +25,11 @@ const RECEIVE_CATES = PREFIX+'RECEIVE_CATES'
 const UPDATE_FORM1 = PREFIX+'UPDATE_FORM1'
 const UPDATE_FORM2 = PREFIX+'UPDATE_FORM2'
 const UPDATE_CODE_DESC = PREFIX+'UPDATE_CODE_DESC'
-
+const UPDATE_CODE_VERSION = PREFIX+'UPDATE_CODE_VERSION'
+export const toggleCodeVersion = (version) => ({
+  type: UPDATE_CODE_VERSION,
+  version
+})
 export const receiveTags = (data) => ({
   type: RECEIVE_TAGS,
   data
@@ -130,7 +134,15 @@ export const getAppInfo = (appId) => {
       if(res.status == 200) {
         const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, appkey,
                 fileName, fileLink, moduleName, setting} = res.data
-        const {codeDesc='', autoPublish=1, showUpdateMsg=0} = res.data && res.data.versions[0]
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0 , codeVersion=''} = res.data && res.data.versions[0]
+        let lastVersion = codeVersion
+        if( res.data && res.data.versions[0].reviewStatus ==  0 ){
+          if(!res.data.versions[1]){
+            lastVersion=''
+          }else{
+            lastVersion=res.data.versions[1].codeVersion
+          }
+        }
         const codeDescCount = codeDesc&&codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         const {apps, widgets} = res.data && res.data.relations 
@@ -159,6 +171,7 @@ export const getAppInfo = (appId) => {
           appId,appName,appLogo,
           platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
+          lastVersion:lastVersion,
           appKey:appkey,
         })) 
         
@@ -178,6 +191,15 @@ export const updateFirstForm = (values) => {
 }
 
 const ACTION_HANDLERS = {
+  [UPDATE_CODE_VERSION]:(state,action)=>{
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        codeVersion:action.version
+      }
+    }
+ },
  [WTOGGLE_NAMELIST]:(state,action)=>{
     const nameList = state.form2.wNameList
     const newList = nameList.filter((v)=>v!=action.name)
@@ -370,9 +392,6 @@ const initialState = {
         { txt: '手动发布此版本', value: 0 },
         { txt: '自动发布此版本', value: 1 },
       ],
-      versionsList:[
-        {value:"请稍后..."},
-      ],
       idList:[],
       logoList:[],
       wLogoList:[],
@@ -391,7 +410,8 @@ const initialState = {
       platform: 2,
       appKind: 0,
       autoPublish:0,
-      codeVersion: -1
+      codeVersion:'',
+      lastVersion:''
   },
 }
 

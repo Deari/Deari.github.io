@@ -110,7 +110,7 @@ class HardwareDetail extends React.Component {
               <p className="detail-introduce">{ data.hardwareFunction }</p>
               <h5 className="detail-title"><i className="detail-title-dot"></i>类别:
                 <span className="detail-genre">
-                  <i className="tag">wifi</i>
+                  <i className="tag">{data.type}</i>
                 </span>
               </h5>
               <h5 className="detail-title"><i className="detail-title-dot"></i>标签:
