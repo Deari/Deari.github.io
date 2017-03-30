@@ -4,29 +4,7 @@ import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
-export class DescribeIcon extends Component {
-  onMouseEnter() {
-    let {describeId} = this.props
-    let content = document.getElementById(`Describe-${describeId}`);
-    content.style.display = "block";
-  }
-  onMouseLeave() {
-    let {describeId} = this.props
-    let content = document.getElementById(`Describe-${describeId}`);
-    content.style.display = "none";
-  }
-  render() {
-    let { describeId, describeContent } = this.props
-    return (
-      <div className="describe-container" 
-           onMouseEnter={this.onMouseEnter.bind(this)} 
-           onMouseLeave={this.onMouseLeave.bind(this)}>
-        <span className="iconfont icon-miashu"></span>
-        <div id={'Describe-' + describeId} className="describe-content">{describeContent}</div>
-      </div>
-    )
-  }
-}
+import DescribeIcon from 'components/DescribeIcon'
 
 export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">

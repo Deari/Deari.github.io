@@ -103,11 +103,12 @@ class EditContainer extends Component {
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
               if (versionRes.status == 200) {
                 this.props.receiveCodeId(versionRes.data[0].codeId)
+                this.props.updateFirstForm(values)
+                location.href="/apps/list";    
               }
             })
-            this.props.updateFirstForm(values)
-            this.props.toggleStep(2) 
-             window.scrollTo(0,0)           
+            // this.props.toggleStep(2) 
+            //  window.scrollTo(0,0)       
           } else {
             debug.warn('请完善表单信息')
           }

@@ -19,6 +19,9 @@ const FirstStepForm = props => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="header-title">
+        <h2 className="step-tittle">基本信息</h2>
+      </div>
       <Field label="应用名称" name="appName" type="text" component={renderField}
              describeId='appName' describeContent="您的 应用 在 应用市场 中显示的名称" />
       <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
@@ -38,7 +41,7 @@ const FirstStepForm = props => {
              describeId='tags' describeContent="一个或多个标签，用以描述您的应用" />
       <div className="form-btn">
         <div>
-          <button type="submit" className="next">下一步</button>
+          <button type="submit" className="next">保存</button>
         </div>
       </div>
     </form>

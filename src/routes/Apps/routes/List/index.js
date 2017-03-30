@@ -58,7 +58,7 @@ class AppsList extends React.Component {
     let stateObj = getCodeStatus(listData, version) || {}
     switch(stateObj.codeStatus) {
       case 1:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-yellow", }
         break
       case 2:
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
@@ -70,7 +70,7 @@ class AppsList extends React.Component {
         return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
         break
       case 5:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
         break
       case 6:
         return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
@@ -128,7 +128,7 @@ class AppsList extends React.Component {
         const editUrl = `/apps/edit/${obj.id}/1`
         const versionEditUrl = `/apps/edit/${obj.id}/3`
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
           {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
         

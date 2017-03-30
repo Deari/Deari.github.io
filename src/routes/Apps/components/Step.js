@@ -6,6 +6,8 @@ const Step = (props)=>(
   </div>
 )
 export default Step
+    // <h2 className="step-tittle">{props.page == 3?'版本信息':'基本信息'} </h2>
+    // {props.page == 1&&<p className='step-prompt'><i className="iconfont icon-radio2"></i>您的这次更新会在新的应用版本发布后，在应用是市场上显示。</p>}
   	// <div className='branchBox'>
 	  //   <div className={props.page == 1? 'branch active':'branch'}>
 	  //   	<span>1</span>
