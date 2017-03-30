@@ -23,6 +23,12 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     @include clx;
     overflow: hidden;
     background: $white-color;
+    &.version-module-container {
+      overflow: visible;
+      .describe-container {
+        margin-top: 39px;
+      }
+    }
     &:not(:first-child){
         padding-top: 0;
     }

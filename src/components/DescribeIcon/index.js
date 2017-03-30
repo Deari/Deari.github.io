@@ -13,14 +13,14 @@ class DescribeIcon extends Component {
     content.style.display = "none";
   }
   render() {
-    let { describeId, describeContent } = this.props
-    return (
+    let { describeId='', describeContent='' } = this.props
+    return ( !(describeId && describeContent) ? <div></div> :
       <div className="describe-container" 
            onMouseEnter={this.onMouseEnter.bind(this)} 
            onMouseLeave={this.onMouseLeave.bind(this)}>
         <span className="iconfont icon-miashu"></span>
         <div id={'Describe-' + describeId} className="describe-content">{describeContent}</div>
-      </div>
+      </div> 
     )
   }
 }
