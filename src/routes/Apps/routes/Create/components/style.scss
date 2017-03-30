@@ -8,6 +8,15 @@ input[type="radio"]{position:absolute;top:-2px;left:-3px;width:20px;height:28px;
 input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
 input[type="radio"]:checked + span i.icon-radio1{display: none;}
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
+.header-title {
+  background-color: #fff;
+  padding: 0 15px;
+  .step-tittle{
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 80px $default-margin-bottom + 5px 80px; 
@@ -228,25 +237,6 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             font-size: 13px;
             color: #999;
         }
-    } 
-    .describe-container {
-      float: left;
-      margin: 5px 0px 0px 10px;
-      cursor: pointer;
-      position: relative;
-      .describe-content {
-        border: 1px solid #f1f1f3;
-        position: absolute;
-        top: 0px;
-        left: 16px;
-        width: 150px;
-        color: #666;
-        font-size: 12px;
-        padding: 5px;
-        line-height: 18px;
-        background-color: #e1e1e1;
-        display: none;
-      }
     } 
 }
 .form-btn{

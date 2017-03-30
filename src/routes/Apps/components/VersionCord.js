@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import DescribeIcon from 'components/DescribeIcon'
 
 class VersionCordModule extends Component {
   state={
@@ -61,6 +62,7 @@ class VersionCordModule extends Component {
   }
   render(){
     const {errTxt,isErr} = this.state
+    let describeContent = ''
     return(
       <div className="form-row">
           <label>版本号：</label>
@@ -73,6 +75,7 @@ class VersionCordModule extends Component {
             <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
              {isErr?<span className="message-info">{errTxt}</span>:''}
           </div>
+          <DescribeIcon describeId='codeVersion' describeContent={describeContent} />
       </div>
     )
   }

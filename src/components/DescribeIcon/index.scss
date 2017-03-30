@@ -1,0 +1,19 @@
+.describe-container {
+  float: left;
+  margin: 5px 0px 0px 10px;
+  cursor: pointer;
+  position: relative;
+  .describe-content {
+    border: 1px solid #f1f1f3;
+    position: absolute;
+    top: 0px;
+    left: 16px;
+    width: 150px;
+    color: #666;
+    font-size: 12px;
+    padding: 5px;
+    line-height: 18px;
+    background-color: #e1e1e1;
+    display: none;
+  }
+} 
