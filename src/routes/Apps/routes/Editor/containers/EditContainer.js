@@ -38,7 +38,8 @@ class EditContainer extends Component {
       if (status) {
         const { params } = this.props
         const appId = parseInt(params.appId)
-        this.props.toggleStep(1)
+        const step = parseInt(params.step)
+        this.props.toggleStep(step)
         this.props.getTags()
         this.props.getCates()
         this.props.getAppInfo(appId)
@@ -220,12 +221,11 @@ class EditContainer extends Component {
       list: { url: `/apps/list`, name: '我的应用' },
       doc: { url: `/apps/doc` }
     }
-    
     return (
       <div className="container clx">
         <Sidebar urls={urls} />
         <div className="sub-container">
-          <Step page={page} title={'编辑应用'} appKindName={appKindName} />
+         <Step page={page}  appKindName={appKindName} /> 
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
@@ -234,7 +234,12 @@ class EditContainer extends Component {
               previous={::this.previous}/>
           }
           {
-            page === 3 && <Complete />
+            page === 3 && <SecondStep onSubmit={::this.submitSecond} 
+              previous={::this.previous}/>
+          }
+
+          {
+            page === 4 && <Complete />
           }
         </div>
       </div>

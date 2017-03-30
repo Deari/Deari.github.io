@@ -3,7 +3,7 @@ import { injectReducer } from '../../../../store/reducers'
 import { reducer as formReducer } from 'redux-form'
 
 module.exports = (store) => ({
-  path: 'edit/:appId',
+  path: 'edit/:appId/:step',
   
   getComponent (nextState, cb) {
     require.ensure([], (require) => {

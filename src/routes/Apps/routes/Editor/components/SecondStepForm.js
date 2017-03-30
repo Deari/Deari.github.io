@@ -97,14 +97,6 @@ const SecondStepForm = props => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div className="form-row show-contain">
-        <img src={appLogo} />
-        <div className="show-text">
-          <h3>{appName}</h3>
-          <p><i>AppID：</i><span>{appId}</span></p>
-          <p><i>AppKey：</i><span>{appKey}</span></p>
-        </div>
-      </div>
       <div>
         <div className="form-row code-desc">
           <label>版本介绍</label>
