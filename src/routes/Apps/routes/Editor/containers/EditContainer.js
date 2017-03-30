@@ -190,7 +190,7 @@ class EditContainer extends Component {
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
-            this.props.toggleStep(3)
+            this.props.toggleStep(4)
           } else {
             debug.warn('请完善表单信息')
           }

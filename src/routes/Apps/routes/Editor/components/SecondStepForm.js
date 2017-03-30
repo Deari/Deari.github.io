@@ -157,8 +157,7 @@ const SecondStepForm = props => {
       </Modal>
       <div className="form-btn">
         <div>
-          <button type="button" className="previous" onClick={()=>{props.toggleStep(1)}}>上一步</button>
-          <button type="submit" className="next" disabled={submitting}> 提交</button>
+          <button type="submit" className="next" disabled={submitting}>保存，并提交审核</button>
         </div>
       </div>
     </form>
