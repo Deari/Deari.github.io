@@ -108,9 +108,9 @@ const SecondStepForm = props => {
             { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
           </div>
           <DescribeIcon describeId='codeDesc' describeContent='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' />
-          <span className="font-count">{count} / {totalCount}</span>
+          {/*<span className="font-count">{count} / {totalCount}</span>*/}
         </div>
-        <div className="form-row form-rowM">
+        {/*<div className="form-row form-rowM">
         	<label className="labelH"></label>
         	<div className="row-right">
         		<div className="row-radio">
@@ -122,7 +122,7 @@ const SecondStepForm = props => {
 		        </div>
             <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
         	</div>
-        </div>
+        </div>*/}
       </div>
       {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
      <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={props.toggleCodeVersion}/>
