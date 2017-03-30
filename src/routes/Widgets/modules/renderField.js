@@ -128,7 +128,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning } , doc , h} = this.props
+    const { input, label, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -140,7 +140,7 @@ export class renderImageUpload extends Component {
             <input type="file" accept={h ? "image/*" : ".png"} onChange={::this.imageUpload}/>
           </span>
           <div className="img-container">
-            <img src={input.value} alt="上传图片" className="img-thumbnail"/>
+            <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
@@ -175,15 +175,15 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+    const { input, tags, label, genre, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
-        <label>{label}</label>
+        <label>{label}<span>{genre}</span></label>
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
-            <input type="file" accept=".ffap" onChange={::this.fileUpload} />
+            <input type="file" accept=".fap" onChange={::this.fileUpload} />
             {input.value.originalName}
           </span>
           {(dirty || touched) && ((error && <span>{error}</span>))}

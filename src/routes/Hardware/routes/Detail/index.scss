@@ -17,7 +17,7 @@
       background-size: 11px 34px;
     }
   }
-  .detail-img{
+  .detail-hardwareimg{
     @include float-left;
     .appImg{
       width: 300px;
@@ -45,46 +45,47 @@
       color: #aaa;
     }
   }
-  .detail-info{
+  .detail-hardwareinfo{
     width: 490px;
     @include float-right;
-  }
-  .detail-tittle{
-    dt{
-      font-size: 18px;
-      color: $black-color;
-      font-weight: bold;
+    .detail-tittle1{
+      dt{
+        font-size: 18px;
+        color: $black-color;
+        font-weight: bold;
+      }
+      dd{
+        padding-top: 10px;
+        font-size: 14px;
+        color: $gray6-color;
+      }
+      .user-img{
+        display: inline-block;
+        width: 18px;
+        height: 18px;
+      }
+      .user-txt{
+        padding-left: 14px;   
+      }
     }
-    dd{
-      padding-top: 10px;
+    .detail-title{
+      padding-top: 18px;
       font-size: 14px;
       color: $gray6-color;
-    }
-    .user-img{
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-    }
-  }
-  .detail-title{
-    padding-top: 18px;
-    font-size: 14px;
-    color: $gray6-color;
-    i{
-      font-style: normal;
-    }
-    span{
-      padding-left: 14px;
-    }
-    .detail-title-dot{
-      margin-right: 5px;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: #999;
-      vertical-align: middle;
+      i{
+        font-style: normal;
+      }
+      .detail-title-dot{
+        margin-right: 5px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #999;
+        vertical-align: middle;
+      }
     }
   }
+ 
   .detail-introduce{
     padding-top: 4px;
     font-size: 14px;
@@ -124,13 +125,14 @@
       float: left;
       margin-right: 43px;
       text-align: center;
-      a{
+      span{
+        display: block;
+        width: 87px;
         color: $gray6-color;
         cursor: pointer;
       }
       .active{
         display: inline-block;
-        width: 87px;
         color: $black-color;
         border-bottom: 2px solid #1c8fff;
       }
@@ -222,12 +224,11 @@
     }
   }
   .detail-evaluate-nav{
-    margin-bottom: 22px;
     height: 45px;
     line-height: 45px;
     font-size: 14px;
     color: $black-color;
-    @include clx;
+    overflow: hidden;
     background: #f7f7f7;
     border: 1px solid #dbdbdb;
     li{
@@ -248,7 +249,7 @@
     input[type="radio"]:checked + span i.icon-radio1{display:none;}
   }
   .detail-evaluate-contaier{
-    padding-bottom: 22px;
+    padding: 22px 0;
     border-bottom: 1px solid #c2c2c2;
     @include clx;
     .detail-evaluate-user{

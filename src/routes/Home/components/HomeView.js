@@ -16,7 +16,7 @@ const SimpleSlider = React.createClass({
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/${type}/create`
-    
+
     LoginSDK.getStatus((status, data) => {
       if (status) window.location.href = `/${type}/create`
     }, url, loginUrl, callbackUrl)
@@ -44,7 +44,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/apps">浏览应用</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'apps')}>发布应用</a>
+           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'apps')}>创建应用</a>
           </p>
           <div className="banner-img">
             <img width src="http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg" />
@@ -57,7 +57,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/widgets">浏览组件</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'widgets')}>发布组件</a>
+           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'widgets')}>创建组件</a>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/fd7753080ecf0b2ad2f18d5bfb1460da2586dcd2.jpg" />
@@ -70,7 +70,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <a className="btn-left btn btn-primary" href={apiViewUrl}>浏览API</a>
-           <a className="btn-right btn" href={apiAddUrl}>发布API</a>
+           <a className="btn-right btn" href={apiAddUrl}>创建API</a>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/978419104ea4e5700f1f83012acecd4d78c3a635.jpg" />
@@ -83,7 +83,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/hardware">浏览硬件</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'hardware')}>发布硬件</a>
+           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'hardware')}>创建硬件</a>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/852f665fa0464d7187afc22c667d0d8bfbfc20d3.jpg" />
@@ -98,7 +98,7 @@ export const HomeView = () => (
   <div className="">
     <div className="home-banner">
     <SimpleSlider></SimpleSlider>
-      
+
     </div>
     <div className="home-reminder">
       <div className="container">
@@ -200,11 +200,10 @@ export const HomeView = () => (
     </div>
     <div className="footer">
       <div className="container">
-        <p>万达科技有限公司官网 2010-2018 Wanda 版权所有 京ICP备 1000000000号</p>
+        <p>© 2015-2017 open.ffan.net 版权所有 <br/>　BO开放平台 <a target="_blank" href="http://www.beianbeian.com/search/ffan.net">沪ICP备15013245号</a> 上海新飞凡电子商务有限公司</p>
       </div>
     </div>
   </div>
 )
 
 export default HomeView;
- 

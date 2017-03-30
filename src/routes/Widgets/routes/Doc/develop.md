@@ -1,3 +1,100 @@
+# 开始前必读
+
+## 1、蓝海开放平台概述
+
+蓝海开放平台是开发者通过应用、组件、硬件为蓝海商家和蓝海顾客，提供服务的平台，
+而蓝海开放平台API市场中的接口则是提供服务的基础，开发者在蓝海开放平台中获取API接口权限后，可以通过阅读本接口文档来帮助开发出蓝海商家需要的应用、组件、硬件.
+
+## 2、服务人群
+
+开发者主要为两类人群提供服务，一类是蓝海商家，一类是蓝海顾客。
+
+蓝海商家，通过蓝海开放平台为商家提供的客户端，使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；可以使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；可以使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。
+
+蓝海顾客，通过蓝海开放平台为顾客提供的客户端，或者嵌入第三方的SDK，使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
+
+为了识别蓝海商家中的员工，每个员工针对每个商家，会产生一个安全的wID。开发者在使用API的官方接口时，都需要传递wID。
+
+为了识别蓝海顾客中的会员，每个会员针对每个商家，会产生一个安全的openID。开发者在使用API的官方接口时，都需要传递openID。
+
+## 3、开发者注意
+
+1.1 蓝海开放平台开发是指为蓝海商家进行业务开发，为移动应用、PC端网站、硬件的开发。
+
+1.2 在进行开发时，你可以先通过测试号申请系统，快速申请一个接口测试号，立即开始接口测试开发。
+
+1.3 在开发过程中，可以使用接口调试工具来在线调试某些接口。
+
+1.4 每个接口都有每日接口调用频次限制，可以在蓝海开放平台-开发者中心处查看具体频次。
+
+1.5 在开发出现问题时，可以通过接口调用的返回码，以及报警排查指引（在蓝海开放平台-开发者中心处可以设置接口报警），来发现和解决问题。
+
+1.6 公众平台以access_token为接口调用凭据，来调用接口，所有接口的调用需要先获取access_token，access_token在2小时内有效，过期需要重新获取，但1天内获取次数有限，开发者需自行存储，详见获取接口调用凭据（access_token）文档。
+
+1.7 蓝海开放平台的API接口调用仅支持80端口。
+
+# 开发者规范
+
+## 1、涉及用户数据时
+
+您的服务需要收集用户任何数据的，必须事先获得用户的明确同意，且仅应当收集为运营及功能实现目的而必要的用户数据，同时应当告知用户相关数据收集的目的、范围及使用方式等，保障用户知情权。 
+您收集用户的数据后，必须采取必要的保护措施，防止用户数据被盗、泄漏等。
+
+您在特定蓝海商家中收集的用户数据仅可以在该特定蓝海商家中使用，不得将其使用在该特定蓝海商家之外或为其他任何目的进行使用，也不得以任何方式将其提供给他人。
+
+如果蓝海开放平台认为您收集、使用用户数据的方式，可能损害用户体验，蓝海开放平台有权要求您删除相关数据并不得再以该方式收集、使用用户数据。
+
+一旦您停止使用本服务，或蓝海开放平台基于任何原因终止您使用本服务，您必须立即删除全部因使用本服务而获得的数据（包括各种备份）， 且不得再以任何方式进行使用。
+
+## 2、其他规范：
+2.1 请勿为任何用户自动登录到蓝海开放平台提供代理身份验证凭据。
+
+2.2 请勿提供跟踪功能，包括但不限于识别其他用户在个人主页上查看、点击等操作行为。
+
+2.3 请勿自动将浏览器窗口定向到其他网页。
+
+2.4 请勿设置或发布任何违反相关法规、公序良俗、社会公德等的玩法、内容等。
+
+2.5 请勿公开表达或暗示，您与腾讯之间存在合作关系，包括但不限于相互持股、商业往来或合作关系等，或声称腾讯对您的认可。
+
+2.6 完整的开发者规范和接口限制，请详见开发者接口文档，以及蓝海开放平台开发者协议。
+
+# 开发流程概述
+
+## 1、注册
+
+您需要打开开发者平台首页,点击右上角注册按钮,填写相关信息注册为开发者。
+
+## 2、发布新组件
+
+2.1 点击页面左侧的发布新组件
+
+2.2 选择发布新组件的类型。组件类型包括RN、HTML5。
+
+## 3、开发、打包、调试
+
+3.1 开发RN类型的组件
+
+3.2 开发HTML5类型的组件
+
+## 4、审核
+
+4.1 登录开发者平台首页,点击应用市场->我的应用->发布新版本,并上传应用文件, 如:应用名.fap
+
+4.2 填写版本号, 版本号采用标准三段式, 如: 1.0.0
+
+4.3 填写版本简介, 字数请限制在 120 字内
+
+4.4 提交审核（审核规则待补充）
+
+## 5、发布
+
+5.1 应用审核通过后, 可以在 我的应用->已审核 中查看。
+
+5.2 点击发布, 会上架到应用市场。
+
+# RN组件开发
+
 # 一、注册
 
 首先您需要打开 [开发者平台首页](http://open.ffan.net), 点击右上角注册按钮, 填写相关信息注册为开发者.
@@ -7,7 +104,7 @@
 ## 1、发布新组件
 
 1.1 点击 [组件市场](http://open.ffan.net/widgets) -> 创建新组件, 按要求填写相关组件信息, 创建组件
-  
+
 1.2 成功创建组件后, 系统会生成 AppID 和 AppSecrect（待补充）
 
 ## 2、环境搭建
@@ -84,13 +181,13 @@ brew install flow
   将包含 `libReactConfig.a`, 一系列头文件和 `Fonts` 目录的文件夹 `FFOAPSDK` 拖拽到工程中
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1l6bTBvV_1RCvBVdK/tfs/addsdk.jpeg)
- 
+
   3\. 设置 `flag`
 
   找到对应 `target` 的 `Build Settings`, `Linking－>Other Linker Flags` 添加 `flag`, `-Objc` 和 `-all_load`
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1u2ETBj_T1RCvBVdK/tfs/projectflag.jpeg)
-  
+
   4\. 添加 `ReactNative` 库
 
   添加 `React` 组件工程文件:
@@ -98,21 +195,21 @@ brew install flow
   将 `node_modules/react-native/React/React.xcodeproj` 拖到工程中
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T13OJTBTbT1RCvBVdK/tfs/14834343700116.jpeg)
-  
+
   5\. 配置库依赖
 
   点击你的主工程文件, 选择 `Build Phases`, 然后把刚才所添加进去的 `.xcodeproj` 下的 `Products` 文件夹中的静态库文件（.a文件）, 拖到 `Link Binary With Libraries` 组内。
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1D6LTB5__1RCvBVdK/tfs/14834348297098.jpeg)
-  
+
   6\. 添加其它组件依赖
-  
+
   其它本地组件都在 `node_modules/react-native/Libraries` 目录。使用同样的方法添加 `RCTImage` 或其他组件
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1f7hTB4JT1RCvBVdK/tfs/14834501543939.jpeg)
-  
+
   7\. 添加系统依赖库
-  
+
   点击你的主工程文件, 选择 `General`, 在 `Linked Frameworks and Libraries` 添加 `libstdc++.tbd` 和 `libicucore.tbd`
 
   ![Alt text](http://timg.ffan.com/convert/resize/url_T1t0JTBTdT1RCvBVdK/tfs/14834496841174.jpeg)
@@ -341,7 +438,7 @@ RCT_EXPORT_METHOD(objectForKey:(NSString *)key callback:(RCTResponseSenderBlock)
 
 - `JS-SDK` 是飞凡网内部向网页开发者提供的网页开发工具包
 
-- 通过使用 `JS-SDK`, 网页开发者可借助 `js-bridge` 调用手机等设备的功能
+- 通过使用 `JS-SDK`, 网页开发者可借助 `jsbridge` 调用手机等设备的功能
 
 - 此文档面向网页开发者介绍 `JS-SDK` 如何使用及相关注意事项
 
@@ -391,7 +488,7 @@ ffanSDK.error(function(res) {
 
 <p><font color=red>所有接口通过 `ready` 中返回的参数 `sdk` 来调用, 参数是一个对象, 目前提供以下方法:</font></p>
 
-**openWebPage** 
+**openWebPage**
 
 - 功能描述: 通过 `H5` 打开一个新的 `WebView` 去加载新的 `H5` 页面
 
@@ -404,7 +501,7 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
-**openLocalRNPage** 
+**openLocalRNPage**
 
 - 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
 
@@ -413,7 +510,7 @@ sdk.openWebPage({"url":"www.baidu.com"})
 - 参数定义: 参数为一个 `JSON` 对象
 
   * **moduleName** 要打开的 `RN` 模块名称
-  
+
   * **path** `FFOAP` 内 `RN` 入口文件的相对路径
 
 ```javascript
@@ -433,11 +530,11 @@ sdk.getDevInfo()
   .then(function(data) {
     // success
     // data格式为
-    {
-          name:'iOS_Wifi', //设备名称
-          model:'营销', //设备类型
-          systemVersion:'1.0.0', //系统版本
-    }
+    // {
+    //   name: 'iOS_Wifi', //设备名称
+    //   model: '营销',     //设备类型
+    //   systemVersion: '1.0.0', //系统版本
+    // }
   }).catch(function(err) {
     // fail
   })
@@ -455,20 +552,18 @@ sdk.getDevInfo()
 
 ```javascript
 
-sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
-  then(function(data){ 
-    {
-    // success
-    // data格式为启动之前传递的参数
-      "storeName":"GAP",
-      "org":"wanda",
-      "storeId":"10000",
-      "token":"8943o9432943948394839",
-      "userId":"18510000005"
-    }
-  }).catch(function(err){
-    //fail
-  }) 
+sdk.getEnvInfo().then(function(data){
+  // success data格式为启动之前传递的参数
+  // {
+  //   "storeName": "GAP",
+  //   "org": "wanda",
+  //   "storeId": "10000",
+  //   "token": "8943o9432943948394839",
+  //   "userId": "18510000005"
+  // }
+}).catch(function(err){
+  //fail
+})
 ```
 
 **getLocation** 获取位置信息
@@ -486,10 +581,10 @@ sdk.getLocation()
   .then(function(data) {
     // success
     // data格式为
-    {
-         lot:'116.46', //经度
-         lat:'39.92', //维度
-    }
+    // {
+    //   lot: '116.46', //经度
+    //   lat: '39.92', //维度
+    // }
   }).catch(function(err) {
     // fail
   })
@@ -574,13 +669,13 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 ```
 // 失败:
 {
-  "status": 4000  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 , 
+  "status": 4000  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 ,
   "message": "param error"  // string 型, 对 status 的文字描述
 }
     ```
 
   - 错误码对照表
-  
+
 
 | 错误码 | 错误说明 |
 | :--- | :----- |
@@ -596,7 +691,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
-- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `sha256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
+- 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -618,10 +713,11 @@ url=http://m.ffan.com?a=b&c=d
 accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
 ```
 
-  3\. 对 `string1` 进行 `sha256` 签名, 得到 `signature`
+  3\. 对 `string1` 进行 `SHA256` 签名, 得到 `signature`
+
 
 ```
-928dfbcabb55bc663a925306f11e2ab17c4a6d65  
+928dfbcabb55bc663a925306f11e2ab17c4a6d65
 ```
 
 **验证accessToken的签名是否正确接口说明**
@@ -665,7 +761,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 ```
 
 - 错误码对照表:
-  
+
 | 错误码 | 错误说明 |
 | :--- | :----- |
 | 4001 | appKey 参数错误 |
@@ -674,7 +770,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 | 4010 | 签名参数错误或者签名无效 |
-  
+
 **生成 `accessToken` 的签名接口说明**
 
 <p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方应用在自己的服务端实现签名逻辑</font></p>
@@ -690,14 +786,14 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 - 参数说明
 
   * `accessToken`: 资源接口的调用凭证
-  
+
   * `appKey`: 第三方应用 appKey
-  
+
   * `ts`: 签名时使用的时间戳
-  
+
   * `nonceStr`: 用来生成签名的随机串
-  
-  * `url`: 调用 `JS` 接口页面的完整 `URL`, 不包含 # 及其后面部分,  <font color=red>请使用 `urlEncode` 对 url 进行处理</font>    
+
+  * `url`: 调用 `JS` 接口页面的完整 `URL`, 不包含 # 及其后面部分,  <font color=red>请使用 `urlEncode` 对 url 进行处理</font>
 
 - 返回值说明
 
@@ -763,7 +859,7 @@ public ArrayMap<String, String> getLocalDebugParams() {
 ### 刷新 Javascript
 
 - 传统的原生应用开发中, 每一次修改都需要重新编译, 但在 `RN` 中你只需要刷新一下 `JavaScript` 代码, 就能立刻看到变化。具体的操作就是在开发菜单中点击 "Reload" 选项。也可以在 `iOS` 模拟器中按下 `Command⌘ + R`。
- 
+
 - 如果在 `iOS` 模拟器中按下 `Command⌘ + R` 没啥感觉, 则注意检查 `Hardware` 菜单中, `Keyboard` 选项下的 "Connect Hardware Keyboard" 是否被选中。
 
 - 选择开发菜单中的 Enable Live Reload 可以开启自动刷新, 这样可以节省你开发中的时间。
@@ -793,7 +889,7 @@ public ArrayMap<String, String> getLocalDebugParams() {
 
 # 五、发布
 
-5.1、[登录开发者平台首页](http://open.ffan.net), 点击 应用市场->我的应用->发布新版本, 并上传应用文件, 如:应用名.fap
+5.1、[登录开发者平台首页](http://open.ffan.net), 点击 应用市场->我的组件->发布新版本, 并上传应用文件, 如:应用名.fap
 
 5.2、填写版本号, 版本号采用标准三段式, 如: 1.0.0
 
@@ -803,5 +899,9 @@ public ArrayMap<String, String> getLocalDebugParams() {
 
 # 六、审核
 
-6.1、应用审核通过后, 可以在 我的应用->已审核 中查看
+6.1、组件审核通过后, 可以在 我的组件->已审核 中查看
 6.2、点击发布, 会上架到应用商店
+
+# h5组件开发
+
+# APK组件开发

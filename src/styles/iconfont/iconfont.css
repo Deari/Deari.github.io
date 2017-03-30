@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1490241343789'); /* IE9*/
-  src: url('iconfont.eot?t=1490241343789#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1490241343789') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1490241343789') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1490241343789#iconfont') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1490690191668'); /* IE9*/
+  src: url('iconfont.eot?t=1490690191668#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1490690191668') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1490690191668') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1490690191668#iconfont') format('svg'); /* iOS 4.1- */
 }
 
 .iconfont {
@@ -113,6 +113,8 @@
 
 .icon-edit:before { content: "\e653"; }
 
+.icon-download_react-native:before { content: "\e642"; }
+
 .icon-access:before { content: "\e655"; }
 
 .icon-pay:before { content: "\e656"; }
@@ -187,5 +189,7 @@
 
 .icon-h:before { content: "\e853"; }
 
-.icon-activite:before { content: "\e66b"; }
+.icon-hands:before { content: "\e625"; }
+
+.icon-sold:before { content: "\e628"; }
 

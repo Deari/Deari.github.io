@@ -128,10 +128,9 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, 
+        const { appName, appLogo, appDesc, categoryId, platform, tags, appKind, appkey,
                 fileName, fileLink, moduleName, setting} = res.data
-        const {codeDesc='', autoPublish=1, showUpdateMsg=0, 
-          rnFrameworkVersion=0 } = res.data && res.data.versions[0]
+        const {codeDesc='', autoPublish=1, showUpdateMsg=0} = res.data && res.data.versions[0]
         const codeDescCount = codeDesc&&codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         const {apps, widgets} = res.data && res.data.relations 
@@ -157,9 +156,10 @@ export const getAppInfo = (appId) => {
         }))
 
         dispatch(updateForm2({
-          appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName, setting,
-          idList, logoList, nameList, wLogoList, wIdList, wNameList
+          appId,appName,appLogo,
+          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
+          idList, logoList, nameList, wLogoList, wIdList, wNameList,
+          appKey:appkey,
         })) 
         
       } else {
@@ -355,8 +355,8 @@ const initialState = {
     appName: '',
     appLogo: '',
     appDesc: '',
-    categoryId: -1,
-    platform: 2,
+    categoryId: 8,
+    platform: 0,
     tags: [],
     appKind: 0
   },
@@ -367,8 +367,8 @@ const initialState = {
         type:""
       },
       publishList: [
-        { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
+        { txt: '自动发布此版本', value: 1 },
       ],
       versionsList:[
         {value:"请稍后..."},
@@ -384,10 +384,13 @@ const initialState = {
       codeDescCount: 0,
       isDescErr: false,
       appId: -1,
+      appKey:'',
+      appName:'',
+      appLogo:'',
       codeId:-1,
       platform: 2,
       appKind: 0,
-      autoPublish:1,
+      autoPublish:0,
       codeVersion: -1
   },
 }

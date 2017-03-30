@@ -50,18 +50,32 @@ class SecondStepForm extends React.Component {
   render(){
 
     const { handleSubmit, submitting, toggleStep, initialValues } = this.props
-    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList} = initialValues
+    const { appKind, versionsList, publishList, codeDescCount, isDescErr,configList,
+      appId,
+      appKey,
+      appName,
+      appLogo,
+      codeDesc,
+    } = initialValues
     const { totalCount } = this.state
 
     return (
       <form onSubmit={handleSubmit}>
+        <div className="form-row show-contain">
+          <img src={appLogo} />
+          <div className="show-text">
+            <h3>{appName}</h3>
+            <p><i>WidgetID：</i><span>{appId}</span></p>
+            <p><i>WidgetKey：</i><span>{appKey}</span></p>
+          </div>
+        </div>
         <div>
           <div className="form-row code-desc">
             <label>版本介绍</label>
             <div className="row-right">
               <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
-              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。" onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
-              { isDescErr && <span><i className="message">请输入版本介绍</i></span> }
+              <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。"  value={codeDesc?codeDesc:''} onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
+              { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
             </div>
             <span className="font-count">{codeDescCount} / {totalCount}</span>
           </div>
@@ -80,7 +94,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div>
         <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} />
-        {appKind === 0 && <Field name="file" component={renderFile} label="组件文件(RN)" />}
+        {appKind === 0 && <Field name="file" component={renderFile} label="组件文件" genre='(FAP小程序)' />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
           updateConfigArr={this.props.updateConfigArr}

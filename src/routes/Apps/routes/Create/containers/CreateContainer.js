@@ -61,11 +61,13 @@ class CreateContainer extends Component {
 
         const formData = new FormData()
 
-        for(let key in values) {
-          if(key == 'tags') {
-            for(let v of values[key]){
+        for (let key in values) {
+          if (key == 'tags') {
+            for (let v of values[key]) {
               formData.append('tags[]', v)
             }
+          } else if (key == 'categoryId') {
+            formData.append('categoryId', 8)
           } else {
             formData.append(key, values[key])
           }
@@ -79,7 +81,10 @@ class CreateContainer extends Component {
             const versionFormData = new FormData();
             versionFormData.append("prepareVersion", "1");
             this.props.updateForm2({
-              appId: res.data.appId
+              appId: res.data.appId,
+              appLogo:res.data.appLogo,
+              appKey:res.data.appkey,
+              appName:res.data.appName
             })
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
                if(versionRes.status == 200) {
@@ -89,6 +94,7 @@ class CreateContainer extends Component {
                }
             })
             this.props.toggleStep(2)
+            window.scrollTo(0,0)
           } else {
             debug.warn('请完善表单信息')
           }
@@ -215,10 +221,10 @@ class CreateContainer extends Component {
 
     const appKind = form2 && form2.appKind || ''
 
-    let appKindName = appKind == 0 ? '( RN 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
+    let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     const urls = {
-      create: { url: `/apps/create`, name: '发布新应用' },
+      create: { url: `/apps/create`, name: '创建新应用' },
       list: { url: `/apps/list`, name: '我的应用' },
       doc: { url: `/apps/doc` }
     }

@@ -14,21 +14,43 @@ import {
 import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
 
 import './firstStepForm.scss'
-
+const getimgSrc = (sizeList, size) => {
+  let image = ''
+  sizeList.map((v) => {
+    if (v.value.widgetW === size.w && v.value.widgetH === size.h) {
+      image = v.image
+    }
+  })
+  return image
+}
 class FirstStepForm extends Component {
 
   render() {
     const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
     const imgDoc = '预览图用于商家在装修自己店面时，在操作区域展示的图片';
     const height = 200;
+    const imgSrc = initialValues.size&&getimgSrc(sizeList,initialValues.size)
+    const h = initialValues.size && initialValues.size.h || 0;
+    const w = initialValues.size && initialValues.size.w || 0;
+    const styleObj = h != 0 && w != 0 ? { height: h * 100 / 4 + 'px', width: w * 100 / 4 + 'px', } : { height: 100 + 'px', width:100 + 'px'}
+    const hwString = w  + "*" +h
     return (
       <form onSubmit={handleSubmit}>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
-        {/*<Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox}/>*/}
-        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height}/>
+        <div className="form-row">
+        	<label>尺寸</label>
+        	<div className="row-right">
+        		<p>组件在手机屏幕中所占比例的尺寸</p>
+        		<div className="row-size show-size">
+	        		<span className={`${imgSrc} row-img`}></span>
+	          	<span>{hwString}</span>
+        		</div>
+        	</div>
+        </div>
+        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height} styleObj={styleObj}/>
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
         <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea} />
-        <Field label="分类" name="categoryId" component={renderSelect}>
+        {/**    <Field label="分类" name="categoryId" component={renderSelect}>
           <option value={-1}>请选择分类</option>
           {
             cates.map((item) => (
@@ -37,8 +59,7 @@ class FirstStepForm extends Component {
               </option>
             ))
           }
-        </Field>
-
+        </Field> */}
         <Field label="标签" name="tags"
           component={renderTags} tags={tags}
         />

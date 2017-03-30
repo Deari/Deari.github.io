@@ -307,16 +307,16 @@ const initialState = {
     appPreviewImage: '',
     appLogo: '',
     appDesc: '',
-    categoryId: -1,
-    platform: 2,
+    categoryId: 8,
+    platform: 0,
     tags: [],
     appKind: 0
   },
   form2: {
     codeId:-1,
     publishList: [
-      { txt: '自动发布此版本', value: 1 },
       { txt: '手动发布此版本', value: 0 },
+      { txt: '自动发布此版本', value: 1 },
     ],
     versionsList: [
       { value: "1.0.0", txt: "大版本,调整了核心框架。" },
@@ -326,13 +326,13 @@ const initialState = {
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: 0,
     appKind: 0,
     showUpdateMsg: 0,
     configList:[],
     appId: -1,
     codeId: -1,
-    autoPublish: 1,
+    autoPublish: 0,
     codeVersion: '0.0.1'
   }
 }

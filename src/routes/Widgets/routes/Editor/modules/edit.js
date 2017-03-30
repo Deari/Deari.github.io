@@ -372,9 +372,10 @@ const initialState = {
     tagName: '正在加载...'
   }],
   sizeList :[
-    { image: 'img1', value: {w:2,h:1} },
-    { image: 'img2', value: {w:1,h:1} },
-    { image: 'img3', value: {w:2,h:2} },
+    { image: 'img1', value: {widgetW:4,widgetH:2} },
+    { image: 'img2', value: {widgetW:1,widgetH:1} },
+    { image: 'img3', value: {widgetW:4,widgetH:4} },
+    { image: 'img4', value: {widgetW:4,widgetH:1} },
   ],
   form: {
     appName: '',
@@ -382,16 +383,16 @@ const initialState = {
     appPreviewImage: '',
     appLogo: '',
     appDesc: '',
-    categoryId: -1,
-    platform: 2,
+    platform: 0,
+    categoryId: 8,
     tags: [],
     appKind: 0
   },
   form2: {
     codeId:-1,
     publishList: [
-      { txt: '自动发布此版本', value: 1 },
       { txt: '手动发布此版本', value: 0 },
+      { txt: '自动发布此版本', value: 1 },
     ],
     versionsList: [
       { value: "0.0.1" },
@@ -402,12 +403,12 @@ const initialState = {
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
-    platform: 2,
+    platform: -1,
     appKind: 0,
     showUpdateMsg: 0,
     appId: -1,
     codeId: -1,
-    autoPublish: 1,
+    autoPublish: 0,
     codeVersion: -1
   }
 }
@@ -456,11 +457,11 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, defaultLayout:size,
+        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
+          defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
-        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0,
-          rnFrameworkVersion = 0, codeSetting=''} = res.data && res.data.versions[0]
-        const codeDescCount = codeDesc && codeDesc.length 
+        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting=''} = res.data && res.data.versions[0]
+        const codeDescCount = codeDesc ? codeDesc.length : 0 
         let setting = codeSetting ? codeSetting : res.data.versions[1]&&res.data.versions[1].codeSetting ;
 
         const tagId = tags.map(v=>v.tagId)
@@ -469,10 +470,10 @@ export const getAppInfo = (appId) => {
           appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, appKind, size,
           tags: tagId
         }))
-
         dispatch(updateForm2({ 
-          appId,
-          platform, appKind, codeDesc,codeDescCount, fileName, fileLink, rnFrameworkVersion, moduleName,  
+          appId,appName,appLogo,
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink,  moduleName, 
+          appKey:appkey, 
         }))
         !setting?'':dispatch(updateForm2({configList:JSON.parse(setting)}))
       } else {

@@ -286,8 +286,8 @@ const getInitialState = () => {
       appName: '',
       appLogo: '',
       appDesc: '',
-      categoryId: -1,
-      platform: 2,
+      categoryId: 8,
+      platform: 0,
       tags: [],
       appKind: 0
     },
@@ -298,8 +298,8 @@ const getInitialState = () => {
         type:""
       },
       publishList: [
-        { txt: '自动发布此版本', value: 1 },
         { txt: '手动发布此版本', value: 0 },
+        { txt: '自动发布此版本', value: 1 },
       ],
       versionsList:[
         { value: "1.0.0", txt: "大版本,调整了核心框架。" },
@@ -317,10 +317,13 @@ const getInitialState = () => {
       codeDescCount: 0,
       isDescErr: false,
       appId: -1,
+      appKey:'',
+      appName:'',
+      appLogo:'',
       codeId:-1,
       platform: 2,
       appKind: 0,
-      autoPublish:1,
+      autoPublish:0,
       codeVersion: '0.0.1'
     },
   }
