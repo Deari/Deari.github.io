@@ -4,7 +4,6 @@ $i-color:#46db60;
 .step-finish{
   padding: 80px 0;
   width: $sub-container-width; 
-  text-align: center;
   background: $white-color;
   .finish-btn{
     padding-bottom:40px;
@@ -26,6 +25,9 @@ $i-color:#46db60;
       border-radius: 4px;
       cursor: pointer;
     }
+  }
+  .finish-text-box{
+    text-align: center;
   }
   .finish-return{
     padding-bottom: 16px;
