@@ -4,23 +4,49 @@ import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
-export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
+export class DescribeIcon extends Component {
+  onMouseEnter() {
+    let {describeId} = this.props
+    let content = document.getElementById(`Describe-${describeId}`);
+    content.style.display = "block";
+  }
+  onMouseLeave() {
+    let {describeId} = this.props
+    let content = document.getElementById(`Describe-${describeId}`);
+    content.style.display = "none";
+  }
+  render() {
+    let { describeId, describeContent } = this.props
+    return (
+      <div className="describe-container" 
+           onMouseEnter={this.onMouseEnter.bind(this)} 
+           onMouseLeave={this.onMouseLeave.bind(this)}>
+        <span className="iconfont icon-miashu"></span>
+        <div id={'Describe-' + describeId} className="describe-content">{describeContent}</div>
+      </div>
+    )
+  }
+}
+
+export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
       <input {...input} placeholder={placeholder || label} type={type}/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
+    <DescribeIcon describeId={describeId} describeContent={describeContent} />
   </div>
 )
 
-export const renderTextArea = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
+export const renderTextArea = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={placeholder || label}></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
+    <DescribeIcon describeId={describeId} describeContent={describeContent} />
   </div>
 )
 
@@ -59,10 +85,10 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
+    const { input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
 
     return (
-      <div className="form-row">
+      <div className="form-row describe-tags">
         <label>{label}</label>
         <div className="row-right max-width">
         	<ul>
@@ -82,13 +108,12 @@ export class renderTags extends Component {
 	        </ul>
           {(dirty || touched) && ((error && <span className="label-message">{error}</span>))}
         </div>
+        <DescribeIcon describeId={describeId} describeContent={describeContent} />
       </div>
     )
   }
   
 }
-
-
 
 export class renderImageUpload extends Component {
 
