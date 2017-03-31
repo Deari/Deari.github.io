@@ -67,6 +67,7 @@ class HardwareDetail extends React.Component {
   }
 
   async componentDidMount() {
+    window.scrollTo(0,0) 
     await this.getInfo()
     await this.getTags()
     let { tags } = this.state
@@ -122,7 +123,7 @@ class HardwareDetail extends React.Component {
                 <span className="detail-sold">180件</span>
               </h5>
               <h5 className="detail-title"><i className="detail-title-dot"></i>价格 :
-                <span className="detail-price">￥{data.price}<i>元</i></span>
+                <span className="detail-price">{data.price}<i>元</i></span>
               </h5>
             </div>
           </div>

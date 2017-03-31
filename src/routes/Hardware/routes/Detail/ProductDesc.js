@@ -9,8 +9,8 @@ const ProductDescTpl = (props) => (
           <span className="w200">{props.data.createTime}</span>
         </p>
         <p>
-          <span className="w62">通讯方式:</span>
-          <span className="w200">{props.data.connectType}</span>
+          <span className="w62">硬件型号:</span>
+          <span className="w200">{props.data.model}</span>
         </p>
       </li>
       <li>
@@ -19,8 +19,8 @@ const ProductDescTpl = (props) => (
           <span className="w200">{props.data.hardwareProducer}</span>
         </p>
         <p>
-          <span className="w62">硬件型号:</span>
-          <span className="w200">{props.data.model}</span>
+          <span className="w62">通讯方式:</span>
+          <span className="w200">{props.data.connectType}</span>
         </p>
       </li>
     </ul>

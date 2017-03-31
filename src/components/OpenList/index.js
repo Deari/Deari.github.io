@@ -35,7 +35,7 @@ class OpenList extends React.Component {
               { 
                 typeName==='hardware'?
                 <div>
-                  <p className="open-list-price">{price === '免费' ? price : '￥' + price} {price === '免费'?'':<i>元</i>}</p>
+                  <Link to={detailLink + item[`${typeName}Id`]}><p className="open-list-price">{price === '免费' ? price :  price} {price === '免费'?'':<i>元</i>}</p></Link>
                   <p className="open-list-show">
                     <a><i className="iconfont icon-sold"></i>已售251</a>
                     {/**<a><i className="iconfont icon-star"></i>251</a>*/}
