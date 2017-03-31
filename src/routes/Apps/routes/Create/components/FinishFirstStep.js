@@ -33,7 +33,7 @@ const FinishFirstStep = props => {
             <Link to='/apps/doc#开始前必读'>点击进入</Link>
           </li>
           <li>
-            <p>ios开发者文档</p>
+            <p>IOS开发者文档</p>
             <Link to='/apps/doc#iOS开发者'>点击进入</Link>
           </li>
           <li>

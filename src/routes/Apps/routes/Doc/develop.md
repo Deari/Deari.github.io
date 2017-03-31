@@ -236,7 +236,7 @@ public class MyConfig extends DefaultConfig {
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.2.min.js
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.3.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
