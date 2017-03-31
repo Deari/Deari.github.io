@@ -59,8 +59,8 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         margin: 0;
         position: relative;
         @include float-left; 
-        input[type="text"]{
-            width: 450px; 
+        input[type="text"].use-input{
+            width: 450px!important; 
             height: $default-height - 71px; 
             font-size: $text-font-size - 5px; 
             color: $text-color; 
@@ -71,8 +71,8 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         input[type="text"]::selection{
             background: #ace4fe;
         }
-        textarea{
-            width: 450px; 
+        textarea.use-textarea{
+            width: 450px!important; 
             height: $default-height + 40px; 
             border: 1px solid $border-color; 
             resize: none;
@@ -238,7 +238,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
-        width: 470px;
+        width: 470px!important;
     }
     &.code-desc {
         position: relative;
