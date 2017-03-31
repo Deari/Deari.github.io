@@ -227,7 +227,7 @@ public class MyConfig extends DefaultConfig {
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.2.min.js
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.3.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -281,6 +281,17 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
+
+**closeWindow**
+
+- 功能描述: 通过 `H5` 关闭一个 `WebView`中的`H5` 页面
+
+- 方法名称: sdk.closeWindow
+
+```javascript
+sdk.closeWindow()
+```
+
 **openLocalRNPage**
 
 - 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
@@ -823,7 +834,7 @@ NSMutableArray *array = @[].mutableCopy;
 ![](http://img1.ffan.com/T14PVTB_As1RCvBVdK)
 2. 创建应用
 ![](http://img1.ffan.com/T16exTBmAv1RCvBVdK)
-点击左上脚**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，选择分类，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
+点击左上脚**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
 3. 审核
 应用提交后呈现待审核状态，如下图：
 ![](http://img1.ffan.com/T1GILTBgCj1RCvBVdK)
