@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import DescribeIcon from 'components/DescribeIcon'
 
 class VersionCordModule extends Component {
   state={
@@ -61,18 +62,21 @@ class VersionCordModule extends Component {
   }
   render(){
     const {errTxt,isErr} = this.state
+    let describeContent = `您要填入的 App 版本号。编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。`
     return(
-      <div className="form-row">
-          <label>版本号：</label>
-          <div className="row-right">
-            <span className="message-info message-info-gray">
-               {this.props.codeVersion?
-                 `您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:
-                 `请根据上面描述的软件版本规范，填写新的版本的版本号`}
-            </span>
-            <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
-             {isErr?<span className="message-info">{errTxt}</span>:''}
-          </div>
+      <div className="form-row version-module-container">
+        <label>版本号：</label>
+        <div className="row-right">
+          <span className="message-info message-info-gray">
+              {/*this.props.codeVersion?
+                `您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:
+              `请根据上面描述的软件版本规范，填写新的版本的版本号`*/}
+            您要填入的版本号。编号应遵循软件版本规范。
+          </span>
+          <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
+            {isErr?<span className="message-info">{errTxt}</span>:''}
+        </div>
+        <DescribeIcon describeId='codeVersion' describeContent={describeContent} />
       </div>
     )
   }

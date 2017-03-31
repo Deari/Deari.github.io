@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react'
 import classnames from 'classnames';
 import './association.scss'
 import { validate } from '../modules/validate'
+import DescribeIcon from 'components/DescribeIcon'
+
 class AssociationModule extends Component {
   state={
     appActive:this.props.appActive,
@@ -43,12 +45,16 @@ class AssociationModule extends Component {
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
+		const describeContent = `商家在使用应用时，必须配套使用一下关联的组件、硬件、应用。因为勾选以下组件、硬件、应用后，代表商家无法单独使用此应用，必须与勾选项配套使用。商家在下载应用时，应用详情页中，会展示配套使用的组件、硬件、应用。`
     return (
     <div className="association">
       <div className="form-row">
       	<label>配套使用</label>
         <div className="row-right max-width">
-        	<p className="association-text">应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。商家在使用应用时，必须配套使用一下关联的组件、硬件、应用。因为勾选以下组件、硬件、应用后，代表商家无法单独使用此应用，必须与勾选项配套使用。商家在下载应用时，应用详情页中，会展示配套使用的组件、硬件、应用。如图：<i></i></p>
+        	<p className="association-text">
+						应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。
+					</p>
+        	<p className="association-text">应用市场详情页的显示，如下图：<i></i></p>
         	<div>
         		<div className="row-radio">
 		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)} checked={this.state.widgetActive}/>
@@ -113,6 +119,7 @@ class AssociationModule extends Component {
 		        </ul>
         	</div>
         </div>
+				<DescribeIcon describeId='AssociationModule' describeContent={describeContent} />
       </div>
     </div>
     )

@@ -18,9 +18,14 @@ const FirstStepForm = props => {
   const { handleSubmit, tags, cates } = props
   return (
     <form onSubmit={handleSubmit}>
-      <Field label="应用名称" name="appName" type="text" component={renderField}/>
+      <div className="header-title">
+        <h2 className="step-tittle">基本信息</h2>
+      </div>
+      <Field label="应用名称" name="appName" type="text" component={renderField} 
+             describeId='appName' describeContent="您的 应用 在 应用市场 中显示的名称" />
       <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
-      <Field label="应用简介" name="appDesc" placeholder="请输入应用简介。此内容将显示在应用列表页中。" component={renderTextArea} />
+      <Field label="应用简介" name="appDesc" placeholder="请输入应用简介。此内容将显示在应用列表页中。" component={renderTextArea} 
+             describeId='appLogo' describeContent="对您的 应用 的描述，用以详细说明特性和功能" />
       {/** <Field label="分类" name="categoryId" component={renderSelect}>
         <option value={-1}>请选择分类</option>
         {
@@ -31,10 +36,11 @@ const FirstStepForm = props => {
           ))
         }
       </Field>*/}
-      <Field label="标签" name="tags" component={renderTags} tags={tags} />
+      <Field label="标签" name="tags" component={renderTags} tags={tags} 
+             describeId='tags' describeContent="一个或多个标签，用以描述您的应用" />
       <div className="form-btn">
         <div>
-          <button type="submit" className="next">下一步</button>
+          <button type="submit" className="next">保存</button>
         </div>
       </div>
     </form>

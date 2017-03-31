@@ -93,11 +93,12 @@ class EditContainer extends Component {
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
               if (versionRes.status == 200) {
                 this.props.receiveCodeId(versionRes.data[0].codeId)
+                this.props.updateFirstForm(values)
+                location.href="/apps/list";    
               }
             })
-            this.props.updateFirstForm(values)
-            this.props.toggleStep(2) 
-             window.scrollTo(0,0)           
+            // this.props.toggleStep(2) 
+            //  window.scrollTo(0,0)       
           } else {
             debug.warn('请完善表单信息')
           }
@@ -190,7 +191,7 @@ class EditContainer extends Component {
         const url = getDomain(`web/developer/app/${values.appId}/code`)
         fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
           if (res.status == 200) {
-            this.props.toggleStep(3)
+            this.props.toggleStep(4)
           } else {
             debug.warn('请完善表单信息')
           }
