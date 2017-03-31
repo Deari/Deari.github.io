@@ -121,7 +121,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning }} = this.props
+    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
@@ -138,6 +138,7 @@ export class renderImageUpload extends Component {
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
+         <DescribeIcon describeId={describeId} describeContent={describeContent} />
       </div>
     )
   }
