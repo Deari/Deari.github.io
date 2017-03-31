@@ -32,10 +32,10 @@ export const BasicInfo = (props) => {
   const { data, latestVersion, infoTags, showSize } = props
   let list = []
   if (data.mine && latestVersion.publishStatus == 0) {
-    list = infoTags
+    list = [...data.changes.tags]
   } else {
     if (data.changes) {
-      list = data.changes.tags
+       list = [...infoTags]
     }
   }
   const len = list.length
