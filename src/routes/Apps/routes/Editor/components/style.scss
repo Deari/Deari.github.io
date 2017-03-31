@@ -567,3 +567,20 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
         }
     }
 }
+.update-msg{
+  padding: 10px 10px;
+  color:#fff;
+  font-size: 14px;
+  background: #fff;
+  p{
+    padding: 0 6px;
+    height: 30px;
+    line-height: 30px;
+    background:#78909c;
+    border:1px solid #546e7a;
+    i{
+      font-size: 13px;
+      padding-right: 4px;
+    }
+  }
+}

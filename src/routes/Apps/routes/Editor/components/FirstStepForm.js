@@ -22,6 +22,9 @@ const FirstStepForm = props => {
       <div className="header-title">
         <h2 className="step-tittle">基本信息</h2>
       </div>
+      <div className='update-msg'>
+        <p><i className='iconfont icon-zhuyi'></i>您的这次更新会在新的 应用 版本发布后，在 应用市场 上显示。</p>
+      </div>
       <Field label="应用名称" name="appName" type="text" component={renderField}
              describeId='appName' describeContent="您的 应用 在 应用市场 中显示的名称" />
       <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}

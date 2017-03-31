@@ -71,7 +71,7 @@ class VersionCordModule extends Component {
               {/*this.props.codeVersion?
                 `您的线上版本为：${this.props.codeVersion}。请根据上面描述的软件版本规范，填写新的版本的版本号。`:
               `请根据上面描述的软件版本规范，填写新的版本的版本号`*/}
-            您要填入的版本号。编号应遵循软件版本规范。
+          {this.props.codeVersion&&`您的线上版本为：${this.props.codeVersion}。`}您要填入的版本号。编号应遵循软件版本规范。
           </span>
           <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)}/>
             {isErr?<span className="message-info">{errTxt}</span>:''}

@@ -67,16 +67,16 @@ class AppsList extends React.Component {
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 5:
         return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
