@@ -37,7 +37,7 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
 
 export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>尺寸</label>
-  <div className="row-right max-width">
+  <div className="row-right size-width">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>
     {
       sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
