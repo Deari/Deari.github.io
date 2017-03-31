@@ -1,7 +1,7 @@
 import './complete.scss'
 import { Link } from 'react-router'
 const Complete = (props)=>(
-  <div className="step-finish">
+  <div className="step-finish1">
     <div className="finish-btn">
       <span><i className="iconfont icon-radio"></i>已提交审核</span>
     </div>
