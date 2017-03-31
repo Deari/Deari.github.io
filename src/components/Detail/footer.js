@@ -44,7 +44,6 @@ export const Unapprove = (props) => {
     <h3 className="app-title">审核未通过原因:</h3>
     <p className="text-field">{latestVersion.reviewReason ? latestVersion.reviewReason : "无返回信息"}</p>
     {/**<Link to={editUrl}><button className="btn btn-primary fieldBtn" type="button">编辑</button></Link> */}
-    <Link to={editUrl}><button className="btn btn-primary fieldBtn" type="button">编辑</button></Link>
   </div>
 }
 
