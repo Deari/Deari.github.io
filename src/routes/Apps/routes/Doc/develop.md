@@ -290,6 +290,15 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
+**closeWindow**
+
+- 功能描述: 通过 `H5` 关闭一个 `WebView`中的`H5` 页面
+
+- 方法名称: sdk.closeWindow
+
+```javascript
+sdk.closeWindow()
+```
 **openLocalRNPage**
 
 - 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
