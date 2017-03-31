@@ -2,7 +2,7 @@
 
 $i-color:#46db60;
 
-.step-finish{
+.step-finish1{
   padding: 20px 0;
   width: $sub-container-width; 
   background: $white-color;
@@ -23,6 +23,7 @@ $i-color:#46db60;
     width: 500px;
     font-size: 14px;
     p{
+      padding-bottom: 10px;
       color: #666;
       line-height: 20px;
     }
