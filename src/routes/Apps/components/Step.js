@@ -2,7 +2,7 @@ import './step.scss'
 
 const Step = (props)=>(
   <div className="step">
-  	<p className="step-smallnav"><i className="iconfont icon-radio2"></i><span>我的应用</span><span className="step-smallnav-arrow">></span>{props.page == 1?'编辑应用':'发布新版本'} {props.appKindName || ''}</p>
+  	<p className="step-smallnav"><i className="iconfont icon-fanhui"></i><span>我的应用</span><span className="step-smallnav-arrow">></span>{props.page == 1?'编辑应用':'发布新版本'} {props.appKindName || ''}</p>
   </div>
 )
 export default Step
