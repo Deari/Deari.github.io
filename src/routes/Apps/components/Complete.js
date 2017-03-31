@@ -1,9 +1,9 @@
 import './complete.scss'
-
+import { Link } from 'react-router'
 const Complete = (props)=>(
   <div className="step-finish">
     <div className="finish-btn">
-      <a href="/apps/list"><i className="iconfont icon-radio"></i>已提交审核</a>
+      <span><i className="iconfont icon-radio"></i>已提交审核</span>
     </div>
     <div className="finish-text-box">
       <p className="finish-return">返回<a>我的应用</a>，关注审核状态</p>

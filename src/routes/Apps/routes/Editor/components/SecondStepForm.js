@@ -31,7 +31,7 @@ import {
     renderAPKFile
   } from '../../../modules/renderField'
 import { validate } from '../../../modules/validate'
-
+import DescribeIcon from 'components/DescribeIcon'
 
 const compose = (arr1, arr2, arr3) => {
   const newArray = []
@@ -101,13 +101,13 @@ const SecondStepForm = props => {
         <div className="form-row code-desc">
           <label>版本介绍</label>
           <div className="row-right">
-            <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
             <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" value={codeDesc?codeDesc:''} onChange={onChangeDesc} onBlur={onChangeDesc} ></textarea>
             { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
           </div>
-          <span className="font-count">{count} / {totalCount}</span>
+          <DescribeIcon describeId='codeDesc' describeContent='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' />
+          {/*<span className="font-count">{count} / {totalCount}</span>*/}
         </div>
-        <div className="form-row form-rowM">
+        {/*<div className="form-row form-rowM">
         	<label className="labelH"></label>
         	<div className="row-right">
         		<div className="row-radio">
@@ -119,7 +119,7 @@ const SecondStepForm = props => {
 		        </div>
             <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
         	</div>
-        </div>
+        </div>*/}
       </div>
       {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
      <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={props.toggleCodeVersion}/>
@@ -157,8 +157,7 @@ const SecondStepForm = props => {
       </Modal>
       <div className="form-btn">
         <div>
-          <button type="button" className="previous" onClick={()=>{props.toggleStep(1)}}>上一步</button>
-          <button type="submit" className="next" disabled={submitting}> 提交</button>
+          <button type="submit" className="next" disabled={submitting}>保存，并提交审核</button>
         </div>
       </div>
     </form>

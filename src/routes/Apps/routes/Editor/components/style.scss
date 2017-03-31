@@ -8,12 +8,27 @@ input[type="radio"]{position:absolute;top:-2px;left:-3px;width:20px;opacity:0;he
 input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
 input[type="radio"]:checked + span i.icon-radio1{display: none;}
 input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
+.header-title {
+  background-color: #fff;
+  padding: 0 15px;
+  .step-tittle{
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
 .form-row{
     width: $sub-container-width;
-    padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px; 
+    padding: $default-margin-top - 12px 80px $default-margin-bottom + 5px 80px; 
     @include clx;
     overflow: hidden;
     background: $white-color;
+    &.version-module-container {
+      overflow: visible;
+      .describe-container {
+        margin-top: 39px;
+      }
+    }
     &:not(:first-child){
         padding-top: 0;
     }
@@ -30,7 +45,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         i{
             position: absolute;
             top: 1px;
-            left: 657px;
+            left: 534px;
         }
     }
     .label-type{
@@ -44,7 +59,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         position: relative;
         @include float-left; 
         input[type="text"]{
-            width: 574px; 
+            width: 450px; 
             height: $default-height - 71px; 
             font-size: $text-font-size - 5px; 
             color: $text-color; 
@@ -56,7 +71,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             background: #ace4fe;
         }
         textarea{
-            width: 574px; 
+            width: 450px; 
             height: $default-height + 40px; 
             border: 1px solid $border-color; 
             resize: none;
@@ -222,14 +237,14 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         /*第二步应用文件样式end*/
     }
     .row-right.max-width{
-        width: 574px;
+        width: 470px;
     }
     &.code-desc {
         position: relative;
         .font-count{
             position: absolute;
             bottom: 25px;
-            right: 110px;
+            right: 236px;
             font-size: 13px;
             color: #999;
         }
@@ -299,6 +314,11 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     &.version {
       margin: 5px 0;
     }
+}
+.form-row.describe-tags {
+  .describe-container {
+    margin: 0px 0px 0px -9px;
+  }
 }
 i.icon-radio1V,i.icon-radioV{ font-size: 23px!important;}
 i.icon-publish{font-size:18px!important;}
