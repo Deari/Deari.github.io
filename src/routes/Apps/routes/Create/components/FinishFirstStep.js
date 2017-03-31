@@ -30,19 +30,19 @@ const FinishFirstStep = props => {
         <ul className="finish-apps-doc">
           <li>
             <p>开发者必读</p>
-            <span>点击进入</span>
+            <Link to='/apps/doc#开始前必读'>点击进入</Link>
           </li>
           <li>
             <p>ios开发者文档</p>
-            <span>点击进入</span>
+            <Link to='/apps/doc#iOS开发者'>点击进入</Link>
           </li>
           <li>
             <p>Android开发者文档</p>
-            <span>点击进入</span>
+            <Link to='/apps/doc#Android开发者'>点击进入</Link>
           </li>
           <li>
             <p>HTML5开发者文档</p>
-            <span>点击进入</span>
+            <Link to='/apps/doc#HTML5开发者'>点击进入</Link>
           </li>
         </ul>
       </div>

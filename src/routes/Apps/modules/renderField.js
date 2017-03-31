@@ -8,7 +8,7 @@ import DescribeIcon from 'components/DescribeIcon'
 
 export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label} <i className="iconfont icon-edit"></i></label>
+    <label>{label} <i className="iconfont icon-edit diff"></i></label>
     <div className="row-right">
       <input {...input} placeholder={placeholder || label} type={type} className="use-input"/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
