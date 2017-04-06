@@ -254,7 +254,6 @@ const ACTION_HANDLERS = {
     }
   },
   [UPDATE_CONFIGARR]:(state,action)=>{
-    console.log(action)
     const configList = state.form2.configList;
     let newList = [...configList];
     if(action.index!=-1){

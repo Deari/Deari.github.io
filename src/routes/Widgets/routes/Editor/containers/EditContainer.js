@@ -39,9 +39,14 @@ class EditContainer extends Component {
   }
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) debug.warn('请先登录')
-    }, sessionUrl)
+    try {
+      LoginSDK.getStatus((status, data) => {
+        if (!status) debug.warn('请先登录')
+      }, sessionUrl)
+    } catch (e){
+      console.log(e)
+    }
+
   }
 
   submitFirst(values) {
@@ -119,65 +124,68 @@ class EditContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/widgets/list`
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
+          let codeDescCount = values.codeDescCount || 0
 
-        let codeDescCount = values.codeDescCount || 0
+          if (codeDescCount == 0) {
+            this.props.updateCodeDesc({ isDescErr: true })
+            return
+          } else {
+            this.props.updateCodeDesc({ isDescErr: false })
+          }
 
-        if ( codeDescCount == 0 ) {
-          this.props.updateCodeDesc({isDescErr: true})
-          return
-        } else {
-          this.props.updateCodeDesc({isDescErr: false})
-        }
+          !values.appId && debug.warn('缺少appId')
 
-        !values.appId && debug.warn('缺少appId')
+          const url = getDomain(`web/developer/widget/${values.appId}/code`)
+          const formData = new FormData();
+          const file = values.file;
 
-        const url = getDomain(`web/developer/widget/${values.appId}/code`)
-        const formData = new FormData();
-        const file = values.file;
-
-        let params = {
+          let params = {
           ...values
         };
           
 
-        if(file && values.appKind === 0) {
-          Object.assign(params, file, {
-            'fileName': file.originalName,
-            'fileLink': file.url,
-            'fileSize': file.fileSize,
-            'platform': file.platform,
-            'showUpdateMsg': Number(values.showUpdateMsg),
-            'setting': JSON.stringify(values.configList)
-          })
-          delete params.file
-        } else if(values.appKind === 1) {
-          Object.assign(params, {
-            'fileLink': values.fileLink,
-            'showUpdateMsg': Number(values.showUpdateMsg),
-          })
-        }
-        
-        for (let key in params) {
-          formData.append(key, params[key])
-        }
+    if (file && values.appKind === 0) {
+      Object.assign(params, file, {
+        'fileName': file.originalName,
+        'fileLink': file.url,
+        'fileSize': file.fileSize,
+        'platform': file.platform,
+        'showUpdateMsg': Number(values.showUpdateMsg),
+        'setting': JSON.stringify(values.configList)
+      })
+      delete params.file
+    } else if (values.appKind === 1) {
+      Object.assign(params, {
+        'fileLink': values.fileLink,
+        'showUpdateMsg': Number(values.showUpdateMsg),
+      })
+    }
 
-        fetchUtil.postJSON(url, formData, {Stringify: false}).then(res=>{
-          if (res.status == 200) {
-            this.props.toggleStep(3);
-          } else {
-            debug.warn('请完善表单信息')
-          }
-        }).catch(e=>{
-          console.log('网络错误', e)
-        })
-        
+    for (let key in params) {
+      formData.append(key, params[key])
+    }
+
+    fetchUtil.postJSON(url, formData, { Stringify: false }).then(res => {
+      if (res.status == 200) {
+        this.props.toggleStep(3);
       } else {
-        debug.warn("请先登录")
+        debug.warn('请完善表单信息')
       }
+    }).catch(e => {
+      console.log('网络错误', e)
+    })
+
+    } else {
+      debug.warn("请先登录")
+    }
     }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   render() {
