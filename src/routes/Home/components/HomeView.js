@@ -16,10 +16,14 @@ const SimpleSlider = React.createClass({
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/${type}/create`
-
-    LoginSDK.getStatus((status, data) => {
-      if (status) window.location.href = `/${type}/create`
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) window.location.href = `/${type}/create`
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
+   
   },
 
   render: function () {

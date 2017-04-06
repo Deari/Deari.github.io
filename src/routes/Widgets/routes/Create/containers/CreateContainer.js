@@ -128,75 +128,75 @@ class CreateContainer extends Component {
     let callbackUrl = `${location.origin}/widgets/list`
     try {
       LoginSDK.getStatus((status, data) => {
-        if (status) {
+            if (status) {
 
-          let codeDescCount = values.codeDescCount || 0
+              let codeDescCount = values.codeDescCount || 0
 
-          if (codeDescCount == 0) {
-            this.props.updateCodeDesc({ isDescErr: true })
-            return
-          } else {
-            this.props.updateCodeDesc({ isDescErr: false })
+              if (codeDescCount == 0) {
+                this.props.updateCodeDesc({ isDescErr: true })
+                return
+              } else {
+                this.props.updateCodeDesc({ isDescErr: false })
+              }
+
+              !values.appId && debug.warn('缺少appId')
+
+              const formData = new FormData();
+              const file = values.file
+              let params = {
+              ...values
+            }
+
+            if (values.appKind === 0) {
+
+          params = Object.assign({}, file, {
+            'appId': values.appId,
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+
+            'fileName': file && file.originalName,
+            'fileLink': file && file.url,
+            'fileSize': file.fileSize,
+            'platform': file.platform,
+            'setting': JSON.stringify(values.configList),
+
+            'showUpdateMsg': Number(values.showUpdateMsg),
+          })
+        } else if (values.appKind === 1) {
+          params = {
+            'appId': values.appId,
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+            'fileLink': values.fileLink,
+            'showUpdateMsg': Number(values.showUpdateMsg),
           }
-
-          !values.appId && debug.warn('缺少appId')
-
-          const formData = new FormData();
-          const file = values.file
-          let params = {
-          ...values
+        }
+        for (let key in params) {
+          formData.append(key, params[key])
         }
 
-        if (values.appKind === 0) {
+          const url = getDomain(`web/developer/widget/${values.appId}/code`)
+          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+            if (res.status == 200) {
+              this.props.toggleStep(3);
+            } else {
+              debug.warn('请完善表单信息')
+            }
+          }).catch(e => {
+            console.log('网络错误', e)
+          })
 
-      params = Object.assign({}, file, {
-        'appId': values.appId,
-        'codeId': values.codeId,
-        'codeDesc': values.codeDesc,
-        'autoPublish': values.autoPublish,
-        'codeVersion': values.codeVersion,
-
-        'fileName': file && file.originalName,
-        'fileLink': file && file.url,
-        'fileSize': file.fileSize,
-        'platform': file.platform,
-        'setting': JSON.stringify(values.configList),
-
-        'showUpdateMsg': Number(values.showUpdateMsg),
-      })
-    } else if (values.appKind === 1) {
-      params = {
-        'appId': values.appId,
-        'codeId': values.codeId,
-        'codeDesc': values.codeDesc,
-        'autoPublish': values.autoPublish,
-        'codeVersion': values.codeVersion,
-        'fileLink': values.fileLink,
-        'showUpdateMsg': Number(values.showUpdateMsg),
-      }
-    }
-    for (let key in params) {
-      formData.append(key, params[key])
-    }
-
-      const url = getDomain(`web/developer/widget/${values.appId}/code`)
-      fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
-        if (res.status == 200) {
-          this.props.toggleStep(3);
         } else {
-          debug.warn('请完善表单信息')
+          debug.warn("请先登录")
         }
-      }).catch(e => {
-        console.log('网络错误', e)
-      })
-
-    } else {
-      debug.warn("请先登录")
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e) {
+      console.log(e)
     }
-  }, sessionUrl, loginUrl, callbackUrl)
-}catch(e) {
-  console.log(e)
-}
   }
   
   previous() {

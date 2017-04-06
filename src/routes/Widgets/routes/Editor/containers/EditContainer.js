@@ -22,20 +22,23 @@ class EditContainer extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
+          const { params } = this.props;
+          const appId = parseInt(params.appId);
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        const { params } = this.props;
-        const appId = parseInt(params.appId);
-
-        this.props.getAppInfo(appId);
-        this.props.fetchTags()
-        this.props.fetchCates()
-        this.props.toggleStep(1)
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+          this.props.getAppInfo(appId);
+          this.props.fetchTags()
+          this.props.fetchCates()
+          this.props.toggleStep(1)
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)

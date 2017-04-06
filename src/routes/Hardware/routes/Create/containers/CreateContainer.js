@@ -30,24 +30,32 @@ class CreateContainer extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
-
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        this.props.toggleStep(1)
-        this.props.getTags()
-        this.props.getCates()
-        this.props.getSdkInfo()
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
+          this.props.toggleStep(1)
+          this.props.getTags()
+          this.props.getCates()
+          this.props.getSdkInfo()
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) debug.warn('请先登录')
-    }, sessionUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (!status) debug.warn('请先登录')
+      }, sessionUrl)
+    }catch(e){
+      console.log(e)
+    }
+
   }
 
   submitFirst(values) {
@@ -58,59 +66,63 @@ class CreateContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/hardware/list`
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
+          const formData = new FormData()
 
-        const formData = new FormData()
+          const params = {
+            hardwareName : values['hardwareName'],
+            hardwareLogo : values['hardwareLogo'],
+            hardwareFunction : values['hardwareFunction'],
+            majorCategoryId : values.category['majorCategoryId'],
+            minorCategoryId : values.category['minorCategoryId'],
+            hardwareMode : values['hardwareMode'],
+            hardwareProducer : values['hardwareProducer'],
+            commType1: values['commType1'] ? 1 : 0,
+            commType2: values['commType2'] ? 1 : 0,
+            sdkType: values['sdkType'],
+            os: values['os'],
+            hardwarePlatform: values['hardwarePlatform'],
+          }
 
-        const params = {
-          hardwareName : values['hardwareName'],
-          hardwareLogo : values['hardwareLogo'],
-          hardwareFunction : values['hardwareFunction'],
-          majorCategoryId : values.category['majorCategoryId'],
-          minorCategoryId : values.category['minorCategoryId'],
-          hardwareMode : values['hardwareMode'],
-          hardwareProducer : values['hardwareProducer'],
-          commType1: values['commType1'] ? 1 : 0,
-          commType2: values['commType2'] ? 1 : 0,
-          sdkType: values['sdkType'],
-          os: values['os'],
-          hardwarePlatform: values['hardwarePlatform'],
+          for(let key in params) {
+            formData.append(key, params[key])
+          }
+
+          for(let v of values.tags) {
+            formData.append("hardwareTags[]", v)
+          }
+
+          const url = getDomain(`web/hardware/addHardware/step1`)
+
+          fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(
+            res => {
+              if(res.status == 200) {
+                const hardwareId = res.data.hardwareId
+                const firstStepValue = { ...values }
+
+                this.setState({firstStepValue, hardwareId}, () => {
+                  this.props.updateFirstForm(values)
+                  this.props.toggleStep(2)
+                })
+
+              } else {
+                debug.warn('请完善表单信息')
+              }
+            }).catch(e => {
+              console.log("e ", e)
+            })
+
+        } else {
+          debug.warn("请先登录")
         }
-
-        for(let key in params) {
-          formData.append(key, params[key])
-        }
-
-        for(let v of values.tags) {
-          formData.append("hardwareTags[]", v)
-        }
-
-        const url = getDomain(`web/hardware/addHardware/step1`)
-
-        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(
-          res => {
-            if(res.status == 200) {
-              const hardwareId = res.data.hardwareId
-              const firstStepValue = { ...values }
-
-              this.setState({firstStepValue, hardwareId}, () => {
-                this.props.updateFirstForm(values)
-                this.props.toggleStep(2)
-              })
-
-            } else {
-              debug.warn('请完善表单信息')
-            }
-          }).catch(e => {
-            console.log("e ", e)
-          })
-
-      } else {
-        debug.warn("请先登录")
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
+    
   }
 
   submitSecond(values) {
