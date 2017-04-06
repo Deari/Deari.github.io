@@ -99,7 +99,7 @@ const SecondStepForm = props => {
           <label>版本介绍</label>
           <div className="row-right">
             <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
-            <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" onChange={onChangeDesc} onBlur={onChangeDesc} ></textarea>
+            <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" onChange={onChangeDesc} onBlur={onChangeDesc}  ></textarea>
             { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
           </div>
           <span className="font-count">{count} / {totalCount}</span>

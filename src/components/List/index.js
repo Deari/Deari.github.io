@@ -7,6 +7,7 @@ class List extends React.Component {
   render() {
     const listData = this.props.listData || []
     const len = listData.length
+    console.log(listData)
     return (
       <div className="listContent">
       {
@@ -21,7 +22,11 @@ class List extends React.Component {
                 <span>{item.name}</span>
                 { item.latestCodeVersion && <i className={item.appKind === 0 ?"icon-rnpng":item.appKind ===1 ?"icon-hpng":"icon-apkpng"}></i> }
               </Link>
-              <Link className="info-introduce" title={item.desc} to={item.detailUrl}> {item.desc} </Link>
+              
+              <div className="info-introduce">
+                <p>AppID：{item.id}</p>
+                <p>AppKEY：{item.appKey}</p>
+              </div>
               { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
             </div>
             <div className="info-price w90">{item.price}</div>

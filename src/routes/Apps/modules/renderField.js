@@ -8,9 +8,9 @@ import DescribeIcon from 'components/DescribeIcon'
 
 export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label} <i className="iconfont icon-edit"></i></label>
+    <label>{label} <i className="iconfont icon-edit diff"></i></label>
     <div className="row-right">
-      <input {...input} placeholder={placeholder || label} type={type}/>
+      <input {...input} placeholder={placeholder || label} type={type} className="use-input"/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
     <DescribeIcon describeId={describeId} describeContent={describeContent} />
@@ -21,7 +21,7 @@ export const renderTextArea = ({ input, label, placeholder, type, describeId, de
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
-      <textarea {...input} placeholder={placeholder || label}></textarea>
+      <textarea {...input} placeholder={placeholder || label} className="use-textarea"></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
     <DescribeIcon describeId={describeId} describeContent={describeContent} />
@@ -121,7 +121,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning }} = this.props
+    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
@@ -138,6 +138,7 @@ export class renderImageUpload extends Component {
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
+         <DescribeIcon describeId={describeId} describeContent={describeContent} />
       </div>
     )
   }

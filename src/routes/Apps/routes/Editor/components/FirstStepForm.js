@@ -22,11 +22,15 @@ const FirstStepForm = props => {
       <div className="header-title">
         <h2 className="step-tittle">基本信息</h2>
       </div>
+      <div className='update-msg'>
+        <p><i className='iconfont icon-zhuyi'></i>您的这次更新会在新的 应用 版本发布后，在 应用市场 上显示。</p>
+      </div>
       <Field label="应用名称" name="appName" type="text" component={renderField}
              describeId='appName' describeContent="您的 应用 在 应用市场 中显示的名称" />
-      <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}/>
+      <Field label="应用图片" name="appLogo" type="text" component={renderImageUpload}
+             describeId='appLogo' describeContent="此图标将用于 应用市场，最低分辨率至少为 72 DPI，并采用 RGB 色彩空间。它不能包含图层或圆角。"/>
       <Field label="应用简介" name="appDesc" placeholder="请输入应用简介。此内容将显示在应用列表页中。" component={renderTextArea} 
-             describeId='appLogo' describeContent="对您的 应用 的描述，用以详细说明特性和功能" />
+             describeId='appDesc' describeContent="对您的 应用 的描述，用以详细说明特性和功能" />
       {/**   <Field label="分类" name="categoryId" component={renderSelect}>
         <option value={-1}>请选择分类</option>
         {

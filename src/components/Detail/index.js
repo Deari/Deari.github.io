@@ -9,16 +9,14 @@ class AppsDetail extends React.Component {
 
     const { data, activeCodeStatus, editUrl, onChangeRange, onClickPublish } = this.props
     const len = data && data.versions && data.versions.length  
-        
     return (
       <div className="sub-container bg-white">
         { data && data.mine == 1 && len > 0 && Header(this.props) }
         { BasicInfo(this.props) }
         { LatestVersion(this.props) }
-
+        
         { data.mine == 1 && activeCodeStatus === 0 &&  Versions(this.props) }
-        { data.mine == 1 && activeCodeStatus === 1 && <div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div> }
-        { data.mine == 1 && activeCodeStatus === 3 && <button type="button"  className="btn btn-primary" onClick={()=>{onClickPublish()}}>确认发布</button> }
+        { data.mine == 1 && activeCodeStatus === 3 && <div className='mar'><button type="button"  className="btn btn-primary" onClick={()=>{onClickPublish()}}>确认发布</button></div> }
         { data.mine == 1 && activeCodeStatus === 4 && Unapprove(this.props) }
         { data.mine == 1 && activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
         { data.mine == 1 && activeCodeStatus === 6 && AdminUnshelved(this.props) }
@@ -28,15 +26,22 @@ class AppsDetail extends React.Component {
     )
   }
 }
-
+//        { data.mine == 1 && activeCodeStatus === 1 && <div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div> }
 export const BasicInfo = (props) => {
 
   const { data, latestVersion, infoTags, showSize } = props
-  const len = infoTags.length
-
+  let list = []
+  if (data.mine && latestVersion.publishStatus == 0) {
+    list = [...data.changes.tags]
+  } else {
+    if (data.changes) {
+       list = [...infoTags]
+    }
+  }
+  const len = list.length
   return <div className="detail-container">
     <div className="detail-download">
-      <img className="appImg" src={ data.appLogo } alt="LOGO"/>
+      <img className="appImg" src={data.mine&&latestVersion.publishStatus==0?data.changes&&data.changes.appLogo:data.appLogo } alt="LOGO"/>
       {/** data.mine == 1 ? '' : showSize 
         ? <a className="btn btn-primary btn-download" href={ latestVersion.downloadUrl } target="_blank">下载</a>
         : <p className="btn btn-primary btn-download">使用</p>
@@ -44,16 +49,16 @@ export const BasicInfo = (props) => {
     </div>
     <div className="detail-info">
       <dl className="detail-tittle">
-        <dt>{ data.appName }</dt>
-        <dd><i className="user-img"></i><span>{ data.developerName }</span></dd>
+        <dt>{data.mine&&latestVersion.publishStatus==0? data.changes&&data.changes.appName : data.appName }</dt>
+        <dd><i className="user-img"></i><span>{data.developerName}</span></dd>
       </dl>
       <h3 className="app-title">内容提要</h3>
-      <p className="app-text">{ data.appDesc }</p>
+      <p className="app-text">{ data.mine&&latestVersion.publishStatus==0?data.changes&&data.changes.appDesc:data.appDesc}</p>
       <h3 className="app-title">信息</h3>
       <table className="infomation-list">
       {/**  <tr>
           <td>类别</td>
-          <td>
+          <td>      
             <span className="tag">{ data.categoryName }</span>
           </td>
         </tr>*/}
@@ -61,7 +66,7 @@ export const BasicInfo = (props) => {
           <td>标签</td>
           <td>
           {
-            infoTags.map( (item, index) => {
+            list.map( (item, index) => {
               return (
                 <span className="tag">{item.tagName}{ (index < len - 1) ? `、` : '' }</span>
               )

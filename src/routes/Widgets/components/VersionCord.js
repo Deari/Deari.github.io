@@ -64,7 +64,7 @@ class VersionCordModule extends Component {
     const {errTxt,isErr} = this.state
     return(
       <div className="form-row">
-          <label>版本号：</label>
+          <label>版本号</label>
           <div className="row-right">
             <span className="message-info message-info-gray">
               {

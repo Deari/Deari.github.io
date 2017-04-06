@@ -58,7 +58,7 @@ class AppsList extends React.Component {
     let stateObj = getCodeStatus(listData, version) || {}
     switch(stateObj.codeStatus) {
       case 1:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-yellow", }
         break
       case 2:
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
@@ -67,16 +67,16 @@ class AppsList extends React.Component {
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 5:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
@@ -101,8 +101,8 @@ class AppsList extends React.Component {
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
         let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
-        obj.logo = item.appLogo && item.appLogo || ''
-        obj.name = item.appName && item.appName || ''
+        obj.logo = item.changes && item.changes.appLogo || ''
+        obj.name = item.changes && item.changes.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
         obj.download = 100
@@ -110,6 +110,7 @@ class AppsList extends React.Component {
         obj.appKind = item.appKind
         obj.marketUrl = `/apps`
         obj.marketUrlTxt = '在应用市场中查看'
+        obj.appKey = item.appkey
         obj.latestActiveColor = latestStatusObj.activeColor && latestStatusObj.activeColor || ''
         obj.latestCodeVersion = latestStatusObj.stateObj && latestStatusObj.stateObj.codeVersion || ''
         obj.latestStatusName = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatusName || ''
@@ -124,10 +125,10 @@ class AppsList extends React.Component {
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
         
-        const editUrl = `/apps/edit/${obj.id}/1`
+        const editUrl = `/apps/edit/${obj.id}/5`
         const versionEditUrl = `/apps/edit/${obj.id}/3`
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
           {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
         

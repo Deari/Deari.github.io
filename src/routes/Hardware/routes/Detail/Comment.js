@@ -48,7 +48,7 @@ class CommentTpl extends React.Component {
             list.map((v, k) => (
               <div className="detail-evaluate-contaier" key={k}>
                 <dl className="detail-evaluate-user">
-                  <dt><img src="../../../Home/assets/userIcn.jpg" /></dt>
+                  <dt><img src="../../../Home/assets/user-img.jpg" /></dt>
                   <dd className="detail-evaluate-name">用户名</dd>
                   <dd className="detail-evaluate-star">
                     <i className="iconfont icon-star"></i>

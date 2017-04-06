@@ -133,13 +133,10 @@ export const getAppInfo = (appId) => {
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
         const { categoryId, platform, appKind, appkey, fileName, fileLink, moduleName, setting} = res.data
-        const { appDesc, appLogo, appName, tagList=''} = res.data.changes
+        const { appDesc, appLogo, appName, tags=''} = res.data.changes
         const {codeDesc='', autoPublish=1, showUpdateMsg=0 , codeVersion='',codeId=-1} = res.data && res.data.versions[0]
-        console.log(res.data.versions[0])
         let lastVersion = codeVersion
-        let lastCodeId = ''
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
-          lastCodeId=codeId
           if(!res.data.versions[1]){
             lastVersion=''
           }else{
@@ -147,8 +144,9 @@ export const getAppInfo = (appId) => {
           }
         }
         const codeDescCount = codeDesc&&codeDesc.length 
-        // const tagId = tags.map(v=>v.tagId)
-        const tagId = tagList.split(",").map(Number)
+        const tagId = tags.map(v=>v.tagId)
+        //const tagId = tagList.split(",").map(Number)
+        console.log(tags)
         const {apps, widgets} = res.data && res.data.relations 
         let idList = []
         let logoList = []
@@ -176,7 +174,6 @@ export const getAppInfo = (appId) => {
           platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,
-          codeId:lastCodeId,
           appKey:appkey,
         })) 
         
