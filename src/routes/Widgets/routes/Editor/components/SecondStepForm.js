@@ -28,11 +28,35 @@ import {
   updateConfigAudioArr,
   updateConfigAudioValue,
   updateConfigAudioKey,
-  toggleCodeVersion
+  toggleCodeVersion,
+  toggleActive,
+  toggleLogoList,
+  toggleIdList,
+  WtoggleIdList, 
+  WtoggleLogoList,
+  toggleNameList, 
+  WtoggleNameList,
 } from '../modules/edit'
 
 import ConfigTpl from '../../../components/WidgetConfig'
+import AssociationModule from '../../../components/Association.js'
+import Modal from 'components/Modal'
+import ModalList from '../../../components/ModalList'
 import VersionCordModule from '../../../components/VersionCord'
+
+const compose = (arr1, arr2, arr3) => {
+  const newArray = []
+  if(Array.isArray(arr1) && arr1.length !==0){
+    for (let i = 0; i < arr1.length; i++) {
+      const obj = {};
+      obj.id = arr1[i]
+      obj.logo = arr2[i]
+      obj.name = arr3[i]
+      newArray.push(obj)
+    }
+  }
+  return newArray
+}
 
 class SecondStepForm extends React.Component {
 
@@ -59,10 +83,33 @@ class SecondStepForm extends React.Component {
       appLogo,
       codeDesc,
       codeVersion,
-      lastVersion
+      lastVersion,
+      active,
+      idList,
+      logoList,
+      wIdList,
+      wLogoList,
+      nameList,
+      wNameList,
+      datalist
     } = initialValues
     const { totalCount } = this.state
-
+    const appObj = compose(idList,logoList,nameList)
+    const weiObj = compose(wIdList,wLogoList,wNameList)
+    const appActive = appObj&&appObj.length!=0 ? 1:0;
+    const widgetActive = weiObj&&weiObj.length!=0 ? 1:0;
+    const handleLogochange = (data,type)=>{
+      type = type ? type : active.type
+      type === "app" ? this.props.toggleLogoList(data) : this.props.WtoggleLogoList(data)
+    } 
+    const handleIdchange = (data,type) =>{
+      type = type ? type : active.type
+      type === "app" ? this.props.toggleIdList( data ) : this.props.WtoggleIdList( data )
+    }
+    const handleNamechange = (data,type) =>{
+      type = type ? type : active.type
+      type === "app" ? this.props.toggleNameList( data ) : this.props.WtoggleNameList( data )
+    }
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-row show-contain">
@@ -114,6 +161,33 @@ class SecondStepForm extends React.Component {
           />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
+         <AssociationModule 
+          appObj={appObj} 
+          weiObj={weiObj} 
+          handleLogochange={handleLogochange} 
+          handleIdchange={handleIdchange} 
+          handleNamechange={handleNamechange}
+          toggleActive={this.props.toggleActive}
+          />
+         <Modal 
+          type={"alert"}
+          text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}
+          active={active.trim}
+          hideButtons={true}
+          title={true}
+          onClose={()=> this.props.toggleActive({trim:0,type:""})}
+         >
+         <ModalList  
+              name={active.type+"IdList"} 
+              component={ModalList} 
+              datalist={datalist} 
+              idList={active.type==='app'?idList:wIdList} 
+              type={active.type} 
+              handleLogochange={handleLogochange} 
+              handleIdchange={handleIdchange}
+              handleNamechange={handleNamechange}
+          />
+        </Modal>
         <div className="form-btn">
           <div>
             <button type="button" className="previous" onClick={()=>{toggleStep(1);window.scrollTo(0,0)}}>上一步</button>
@@ -138,7 +212,14 @@ const mapDispatchToProps = {
   updateConfigAudioArr,
   updateConfigAudioValue,
   updateConfigAudioKey,
-  toggleCodeVersion
+  toggleCodeVersion,
+  toggleActive,
+  toggleLogoList,
+  toggleIdList,
+  WtoggleIdList, 
+  WtoggleLogoList,
+  toggleNameList, 
+  WtoggleNameList,
 };
 
 export default connect(

@@ -31,6 +31,48 @@ const UPDATE_CONFIGAUDIOARR = 'UPDATE_CONFIGAUDIOARR'
 const UPDATE_CONFIGAUDIOKEY = 'UPDATE_CONFIGAUDIOKEY'
 const UPDATE_CONFIGAUDIOVALUE = 'UPDATE_CONFIGAUDIOVALUE'
 const UPDATE_CODE_VERSION = 'UPDATE_CODE_VERSION'
+
+const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE'
+const TOGGLE_LOGOLIST = 'TOGGLE_LOGOLIST'
+const TOGGLE_IDLIST = 'TOGGLE_IDLIST'
+const WTOGGLE_LOGOLIST =  'WTOGGLE_LOGOLIST'
+const WTOGGLE_IDLIST =  'WTOGGLE_IDLIST'
+const TOGGLE_NAMELIST = 'TOGGLE_NAMELIST'
+const WTOGGLE_NAMELIST = 'WTOGGLE_NAMELIST'
+
+export const toggleActive= (active) => ({
+  type : TOGGLE_ACTIVE,
+  active: active
+})
+
+export const toggleLogoList= (logo) => ({
+  type : TOGGLE_LOGOLIST,
+  logo
+})
+
+export const toggleIdList= (id) => ({
+  type : TOGGLE_IDLIST,
+  id
+})
+
+export const WtoggleLogoList= (logo) => ({
+  type : WTOGGLE_LOGOLIST,
+  logo
+})
+
+export const WtoggleIdList= (id) => ({
+  type : WTOGGLE_IDLIST,
+  id
+})
+export const toggleNameList= (name) =>({
+  type : TOGGLE_NAMELIST,
+  name
+})
+export const WtoggleNameList= (name) =>({
+  type : WTOGGLE_NAMELIST,
+  name
+})
+
 export const toggleCodeVersion = (version) => ({
   type: UPDATE_CODE_VERSION,
   version
@@ -143,6 +185,87 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+    [TOGGLE_ACTIVE]: (state, action) => {
+      return {
+        ...state,
+        form2:{
+          ...state.form2,
+          active:action.active
+        }
+      }
+    },
+   [WTOGGLE_NAMELIST]:(state,action)=>{
+      const nameList = state.form2.wNameList
+      const newList = nameList.filter((v)=>v!=action.name)
+      newList.length == nameList.length ? newList.push(action.name) : null;
+      return {
+        ...state,
+        form2: {
+          ...state.form2,
+          wNameList:newList
+        }
+      }
+  },
+  [TOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.nameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        nameList:newList
+      }
+    }
+  },
+   [WTOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.wIdList
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wIdList: newList
+      }
+    }
+  },
+ [WTOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.wLogoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wLogoList:newList
+      }
+    }
+  },
+ [TOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.idList;
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        idList: newList
+      }
+    }
+  },
+  [TOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.logoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        logoList: newList
+      }
+    }
+  },  
   [UPDATE_CODE_VERSION]:(state,action)=>{
       return {
         ...state,
@@ -401,12 +524,22 @@ const initialState = {
     appKind: 0
   },
   form2: {
-    codeId:-1,
+    active: {
+      trim: 0,
+      type: ""
+    },
     publishList: [
       { txt: '手动发布此版本', value: 0 },
       { txt: '自动发布此版本', value: 1 },
     ],
-    configList:[],
+    datalist:[],
+    idList: [],
+    logoList: [],
+    wLogoList: [],
+    wIdList: [],
+    nameList: [],
+    wNameList: [],
+    configList: [],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
