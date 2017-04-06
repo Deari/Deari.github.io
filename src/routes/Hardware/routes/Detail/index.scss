@@ -88,12 +88,13 @@
   }
  
   .detail-introduce{
-    padding-top: 4px;
+    padding: 4px 0 0 9px;
     font-size: 14px;
     line-height: 24px;
     color: $black-color;
   }
   .detail-genre,.detail-label,.detail-sold{
+    margin-left: 6px;
     color: $black-color;
   }
   .detail-label{
@@ -104,6 +105,7 @@
     }
   }
   .detail-price{
+    margin-left: 6px;
     font-size: 22px;
     color: #eb4f4e;
     font-weight: bold;
