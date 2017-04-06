@@ -53,60 +53,64 @@ class EditContainer extends Component {
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/widgets/list`
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
 
-        const formData = new FormData();
+          const formData = new FormData();
 
-        for (let key in values) {
-          if (key == 'tags') {
-            for (let v of values[key]) {
-              formData.append('tags[]', v)
-            }
-          } else if (key == 'size') {
-            // const sizeObj = {
-            //   widgetW: values.size.w,
-            //   widgetH: values.size.h
-            // }
-            // for (let k in sizeObj) {
-            //   formData.append(k, sizeObj[k])
-            // }
-          } else if (key == 'categoryId') {
-            formData.append('categoryId', 8)
-          } else {
-            formData.append(key, values[key])
-          }
-        }
-      
-        for (let key in values) {
-        }
-        const url = getDomain(`web/developer/widget/${values.appId}`)
-        
-        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-          if(res.status == 200) {
-            // this.props.updateAppId(res.data.appId);
-            const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
-            const versionFormData = new FormData()
-            versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
-              if (versionRes.status == 200) {
-                this.props.receiveCodeId(versionRes.data[0].codeId)
+          for (let key in values) {
+            if (key == 'tags') {
+              for (let v of values[key]) {
+                formData.append('tags[]', v)
               }
-            })
-            this.props.updateFirstForm(values)
-            this.props.toggleStep(2);
-            window.scrollTo(0,0)
-          } else {
-            debug.warn('请完善表单信息')
+            } else if (key == 'size') {
+              // const sizeObj = {
+              //   widgetW: values.size.w,
+              //   widgetH: values.size.h
+              // }
+              // for (let k in sizeObj) {
+              //   formData.append(k, sizeObj[k])
+              // }
+            } else if (key == 'categoryId') {
+              formData.append('categoryId', 8)
+            } else {
+              formData.append(key, values[key])
+            }
           }
-        }).catch(e=>{
-          console.log('网络错误', e)
-        })
 
-      } else {
-        debug.warn("请先登录")
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+          for (let key in values) {
+          }
+          const url = getDomain(`web/developer/widget/${values.appId}`)
+
+          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+            if (res.status == 200) {
+              // this.props.updateAppId(res.data.appId);
+              const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+              const versionFormData = new FormData()
+              versionFormData.append("prepareVersion", "1")
+              fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+                if (versionRes.status == 200) {
+                  this.props.receiveCodeId(versionRes.data[0].codeId)
+                }
+              })
+              this.props.updateFirstForm(values)
+              this.props.toggleStep(2);
+              window.scrollTo(0, 0)
+            } else {
+              debug.warn('请完善表单信息')
+            }
+          }).catch(e => {
+            console.log('网络错误', e)
+          })
+
+        } else {
+          debug.warn("请先登录")
+        }
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitSecond(values) {

@@ -74,52 +74,55 @@ class EditContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/apps/list`
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
+          const formData = new FormData()
 
-        const formData = new FormData()
-
-        for (let key in values) {
-          if (key == 'tags') {
-            for (let v of values[key]) {
-              formData.append('tags[]', v)
-            }
-          } else if (key == 'categoryId') {
-            formData.append('categoryId', 8)
-          } else {
-            formData.append(key, values[key])
-          }
-        }
-
-        const url = getDomain(`web/developer/app/${values.appId}`)
-
-        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-          if(res.status == 200) {
-            
-            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
-            const versionFormData = new FormData()
-            versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
-              if (versionRes.status == 200) {
-                this.props.receiveCodeId(versionRes.data[0].codeId)
-                this.props.updateFirstForm(values)
-                location.href="/apps/list";    
+          for (let key in values) {
+            if (key == 'tags') {
+              for (let v of values[key]) {
+                formData.apepend('tags[]', v)
               }
-            })
-            // this.props.toggleStep(2) 
-            //  window.scrollTo(0,0)       
-          } else {
-            debug.warn('请完善表单信息')
+            } else if (key == 'categoryId') {
+              formData.append('categoryId', 8)
+            } else {
+              formData.append(key, values[key])
+            }
           }
-        }).catch(e=>{
-          console.log('网络错误', e)
-        })
 
-      } else {
-        debug.warn("请先登录")
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+          const url = getDomain(`web/developer/app/${values.appId}`)
+
+          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+            if (res.status == 200) {
+
+              const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+              const versionFormData = new FormData()
+              versionFormData.append("prepareVersion", "1")
+              fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+                if (versionRes.status == 200) {
+                  this.props.receiveCodeId(versionRes.data[0].codeId)
+                  this.props.updateFirstForm(values)
+                  location.href = "/apps/list";
+                }
+              })
+              // this.props.toggleStep(2) 
+              //  window.scrollTo(0,0)       
+            } else {
+              debug.warn('请完善表单信息')
+            }
+          }).catch(e => {
+            console.log('网络错误', e)
+          })
+
+        } else {
+          debug.warn("请先登录")
+        }
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitSecond(values) {

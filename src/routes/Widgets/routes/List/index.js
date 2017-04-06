@@ -145,21 +145,24 @@ class widgetsList extends React.Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
-
-    LoginSDK.getStatus( async (status, data) => {
-      if (status) {
-   
-        const resData = await this.getList()
-        const listData = resData.list
-        const newData = listData && this.formatListData(listData)
-        const pageSum = resData.page.lastPage
-        const pageIndexs = this.getPageIndexs(pageSum)
-  
-        newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus( async (status, data) => {
+        if (status) {
+    
+          const resData = await this.getList()
+          const listData = resData.list
+          const newData = listData && this.formatListData(listData)
+          const pageSum = resData.page.lastPage
+          const pageIndexs = this.getPageIndexs(pageSum)
+    
+          newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   componentDidMount() {

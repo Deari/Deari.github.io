@@ -25,16 +25,19 @@ class CreateContainer extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
-
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        this.props.getTags()
-        this.props.getCates()
-        this.props.toggleStep(0)
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
+          this.props.getTags()
+          this.props.getCates()
+          this.props.toggleStep(0)
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   isLogin() {
