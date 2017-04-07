@@ -158,18 +158,31 @@ class EditContainer extends Component {
         'fileSize': file.fileSize,
         'platform': file.platform,
         'showUpdateMsg': Number(values.showUpdateMsg),
-        'setting': JSON.stringify(values.configList)
+        'setting': JSON.stringify(values.configList),
+        'relatedApps': values.idList,
+        'relatedWidgets': values.wIdList,
       })
       delete params.file
     } else if (values.appKind === 1) {
       Object.assign(params, {
         'fileLink': values.fileLink,
         'showUpdateMsg': Number(values.showUpdateMsg),
+        'relatedApps': values.idList,
+        'relatedWidgets': values.wIdList,
       })
     }
-
     for (let key in params) {
-      formData.append(key, params[key])
+        if (key == "relatedApps") {
+          for (let i = 0; i < params[key].length; i++) {
+            formData.append('relatedApps[]', params[key][i])
+          }
+        } else if (key == "relatedWidgets") {
+          for (let i = 0; i < params[key].length; i++) {
+            formData.append('relatedWidgets[]', params[key][i])
+          }
+        } else {
+          formData.append(key, params[key])
+        }
     }
 
     fetchUtil.postJSON(url, formData, { Stringify: false }).then(res => {
