@@ -91,10 +91,10 @@ $header-height:70px;
       font-size: 18px;
       border-bottom: solid 1px #ededed;
     }
-    .formBox {
+    .login-formBox {
       position: relative;
       padding: 20px 45px;
-      .warnBox{
+      .login-warnBox{
         position: absolute;
         top: 0;
         left: 0;
@@ -105,10 +105,10 @@ $header-height:70px;
         line-height: 32px;
         background: #ffcfcf;
       }
-      .form-content {
+      .login-form-content {
         width: 90%;
         margin: 20px auto;
-        .form-row {
+        .login-form-row {
           margin: 15px 0;
           font-size: 16px;
           label {
@@ -121,7 +121,7 @@ $header-height:70px;
             color: #888;
             margin-bottom: 10px;
           }
-          .conten-input {
+          .login-conten-input {
             width: 50%;
             height: 32px;
             line-height: 32px;
