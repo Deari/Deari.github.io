@@ -227,7 +227,7 @@ public class MyConfig extends DefaultConfig {
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.2.min.js
+> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.3.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -281,6 +281,16 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
+**closeWindow**
+
+- 功能描述: 通过 `WebView` 关闭一个 `h5` 页面
+
+- 方法名称: sdk.closeWindow
+
+```javascript
+sdk.closeWindow()
+```
+
 **openLocalRNPage**
 
 - 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
