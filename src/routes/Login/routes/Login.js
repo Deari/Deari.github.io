@@ -4,6 +4,10 @@ import debug from 'utils/debug'
 import './login.scss'
 
 export class Login extends Component {
+  state = {
+    errMsg: ''
+  }
+
   clickLogin(e) {
     e.preventDefault()
     const userName = this.refs.userName.value
@@ -11,8 +15,7 @@ export class Login extends Component {
     for(let i=0; i<userInfo.length; i++) {
       if (userInfo[i].userName == userName){
         if (userInfo[i].password == password) {
-          debug.warn("登录成功")
-          this.serCookie(365)
+          this.setCookie(365)
           const searchArr = location.search.split("=")
           if (searchArr && searchArr[1]) {
             window.location.href = searchArr[2] ? `${searchArr[1]}=${searchArr[2]}` : searchArr[1]
@@ -21,15 +24,15 @@ export class Login extends Component {
           }
           return false
         } else {
-          (i == userInfo.length - 1) && debug.warn("密码错误")
+          (i == userInfo.length - 1) && this.setState({errMsg: '密码错误，请重新输入'})
         }
       } else {
-        (i == userInfo.length - 1) && debug.warn("用户不存在")
+        (i == userInfo.length - 1) && this.setState({errMsg: '账号不存在'})
       }
     }
   }
 
-  serCookie(expiredays) {
+  setCookie(expiredays) {
     var exdate = new Date()
     exdate.setDate(exdate.getDate() + expiredays)
     document.cookie = `WG-PPC-test1=testmix; expires=${exdate.toGMTString()}`
@@ -37,18 +40,42 @@ export class Login extends Component {
   }
 
   render() {
+    const { errMsg } = this.state
+
     return (
-      <form className="login-form-container" onSubmit={this.clickLogin.bind(this)}>
-        <div className="content">
-          <label>登录账号: </label>
-          <input className="conten-input" type="text" placeholder="请输入登录账号" ref="userName" />
+      <div>
+        <div className="login-header-wrapper">
+          <div className="login-header-bg"></div>
+          <div className="login-g-header container ">
+            <h1 className="login-title pull-left ">
+              <a className="login-logo" href="/"><i className="login-icon"></i><span className="login-text">BO开放平台</span></a>
+              <small className="login-small-title">开发者平台</small>
+            </h1>
+          </div>
         </div>
-        <div className="content">
-          <label>登录密码: </label>
-          <input className="conten-input" type="password" placeholder="请输入登录密码" ref="password" />
+        <div className="login-container">
+          <div className="login-center">
+            <h3>登录</h3>
+            <div className="formBox">
+              <div className="warnBox" style={{display: errMsg ? 'block' : 'none'}}>{errMsg}</div>
+              <form className="form-content" onSubmit={this.clickLogin.bind(this)}>
+                <div className="form-row">
+                  <label>登录账号 </label>
+                  <input className="conten-input" type="text" placeholder="请输入登录账号" ref="userName" />
+                </div>
+                <div className="form-row">
+                  <label>登录密码 </label>
+                  <input className="conten-input" type="password" placeholder="请输入登录密码" ref="password" />
+                </div>
+                <div className="form-row">
+                  <label></label>
+                  <button className="btn" type="submit">登录</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <button type="submit">登录</button>
-      </form>
+      </div>
     )
   }
 }
