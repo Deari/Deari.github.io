@@ -184,9 +184,9 @@
     margin: 20px 0;
   }
   .detail-introduce-img{
-    margin: 20px 0 16px;
-    width: 100%;
-    height: 250px;
+    display: block;
+    margin: 20px auto;
+    max-width: 640px;
     background: $graye-color;
     border-color: none;
   }

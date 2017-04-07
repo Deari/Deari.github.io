@@ -34,6 +34,7 @@ import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
 import VersionCordModule from '../../../components/VersionCord'
+
 const compose = (arr1, arr2, arr3) => {
   const newArray = []
   if(Array.isArray(arr1) && arr1.length !==0){
@@ -150,14 +151,14 @@ class SecondStepForm extends React.Component {
           />}
         {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
         <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
-             <AssociationModule 
-          appObj={appObj} 
-          weiObj={weiObj} 
-          handleLogochange={handleLogochange} 
-          handleIdchange={handleIdchange} 
-          handleNamechange={handleNamechange}
-          toggleActive={this.props.toggleActive}
-          />
+         <AssociationModule 
+           appObj={appObj} 
+           weiObj={weiObj} 
+           handleLogochange={handleLogochange} 
+           handleIdchange={handleIdchange} 
+           handleNamechange={handleNamechange}
+           toggleActive={this.props.toggleActive}
+         />
          <Modal 
           type={"alert"}
           text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}

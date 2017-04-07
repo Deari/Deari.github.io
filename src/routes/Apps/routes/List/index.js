@@ -25,17 +25,30 @@ class AppsList extends React.Component {
     currentPageIndex:1,
     pageIndexs:[],
     pageSum:0,
-    limit:10
+    limit:10,
+    searchValue:'',
   }
-
+  //initial=[]
+  // handleChange(e){
+  //    const newList = this.initial.filter((v)=> v.name.indexOf(e.target.value)!= -1 )||[]
+  //    this.setState({listData:newList,searchValue:e.target.value})
+  // }
   async getList() {
     const apiUrl = getDomain("web/developer/apps")
     const review = this.getReviewStatus()
-    const {limit, currentPageIndex} = this.state
+    const {limit, currentPageIndex,searchValue} = this.state
     try {
       let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex });
       if(res.status == 200){
-        return res.data 
+        // if(searchValue){
+        //   const newList = res.data.list.filter((v)=> v.appName.indexOf(searchValue)!= -1 )
+        //   const data = {
+        //     ...res.data,
+        //     list :newList
+        //   }
+        // return data
+        // }
+        return res.data
       } else {
         debug.warn("获取列表接口错误")
         return false
@@ -147,14 +160,12 @@ class AppsList extends React.Component {
       try{
          LoginSDK.getStatus( async (status, data) => {
           if (status) {
-      
             const resData = await this.getList()
             const listData = resData.list
             const newData = listData && this.formatListData(listData)
-    
             const pageSum = resData.page.lastPage
             const pageIndexs = this.getPageIndexs(pageSum)
-      
+            //newData && Object.assign(this.initial, newData)
             newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
           } else {
             debug.warn("登录失败")
@@ -209,6 +220,7 @@ class AppsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
+        {/** <input type="text" placeholder="请输入应用名称进行搜索" onChange={e=>{this.handleChange(e,this)}}/>*/}
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
