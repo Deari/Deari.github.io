@@ -14,10 +14,15 @@ class ListNav extends React.Component {
 
   render() {
 
-    const navData = this.props.navData || []
-    
+    const {navData, handleSearch, label, searchValue} = this.props
+    const str = ''
     return (
-      <BasicNav navData={navData} onChange={this.changeNav.bind(this)} />
+      <div>
+      {searchValue?<i onClick={str=>{handleSearch(str)}}>x</i>:''}
+        <input type="text" placeholder={label}  onChange={e=>{handleSearch(e)}} value={searchValue?searchValue:''}/>
+        <BasicNav navData={navData} onChange={this.changeNav.bind(this)} />
+      </div>
+     
     )
   }
 }

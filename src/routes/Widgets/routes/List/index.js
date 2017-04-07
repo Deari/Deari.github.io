@@ -25,11 +25,17 @@ class widgetsList extends React.Component {
     currentPageIndex:1,
     pageIndexs:[],
     pageSum:0,
-    limit:10
+    limit:10,
+    searchValue:''
   }
-  
-  async getList() {
-    const apiUrl = getDomain("web/developer/widgets")
+  handleChange(e){
+    if (!e) {
+      this.setState({ searchValue: '' }, this.upDate())
+    }
+    this.setState({searchValue:e.target.value},this.upDate())
+  }
+  async getList(appName) {
+    const apiUrl = appName?getDomain(`web/developer/widgets?appName=${appName}`):getDomain("web/developer/widgets")
     const review = this.getReviewStatus()
     const {limit, currentPageIndex} = this.state
     try {
@@ -149,7 +155,7 @@ class widgetsList extends React.Component {
       LoginSDK.getStatus( async (status, data) => {
         if (status) {
     
-          const resData = await this.getList()
+          const resData = this.state.searchValue ? await this.getList(this.state.searchValue) : await this.getList()
           const listData = resData.list
           const newData = listData && this.formatListData(listData)
           const pageSum = resData.page.lastPage
@@ -204,7 +210,7 @@ class widgetsList extends React.Component {
 
   render() {
 
-    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList } = this.state
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList, searchValue} = this.state
 
     const urls = {
       create: { url: `/widgets/create`, name: '创建新组件' },
@@ -216,7 +222,7 @@ class widgetsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls}  type="widget"/>
         <div className="sub-container plf bg-white">
-          <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
+          <ListNav navData={navData} onChange={this.changeNav.bind(this)} searchValue={searchValue} label='组件名称' handleSearch={this.handleChange.bind(this)}/>
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w332">组件名称</li>
