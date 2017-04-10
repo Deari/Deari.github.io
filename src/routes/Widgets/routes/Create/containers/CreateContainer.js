@@ -162,6 +162,8 @@ class CreateContainer extends Component {
             'fileSize': file.fileSize,
             'platform': file.platform,
             'setting': JSON.stringify(values.configList),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
 
             'showUpdateMsg': Number(values.showUpdateMsg),
           })
@@ -174,12 +176,23 @@ class CreateContainer extends Component {
             'codeVersion': values.codeVersion,
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
           }
         }
         for (let key in params) {
-          formData.append(key, params[key])
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
+          } else {
+            formData.append(key, params[key])
+          }
         }
-
           const url = getDomain(`web/developer/widget/${values.appId}/code`)
           fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
             if (res.status == 200) {

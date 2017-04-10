@@ -252,7 +252,7 @@ class EditContainer extends Component {
         <div className="sub-container">
          <Step page={page}  appKindName={appKindName} /> 
           {
-            page === 5 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1&& <FirstStep onSubmit={::this.submitFirst} />
           }
           {
             page === 2 && <SecondStep onSubmit={::this.submitSecond} 

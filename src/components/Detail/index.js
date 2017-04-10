@@ -30,6 +30,7 @@ class AppsDetail extends React.Component {
 export const BasicInfo = (props) => {
 
   const { data, latestVersion, infoTags, showSize } = props
+  console.log(data)
   let list = []
   if (data.mine && latestVersion.publishStatus == 0) {
     list = [...data.changes.tags]

@@ -600,8 +600,7 @@ export const getAppInfo = (appId) => {
         const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
           defaultLayout:size,
           fileName, fileLink, moduleName, } = res.data
-        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion=''} = res.data && res.data.versions[0]
-
+        const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion='',codeId=-1} = res.data && res.data.versions[0]
         let lastVersion = codeVersion
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
           if(!res.data.versions[1]){
@@ -621,7 +620,7 @@ export const getAppInfo = (appId) => {
         }))
         dispatch(updateForm2({ 
           appId,appName,appLogo,
-          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, 
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, codeId,
           lastVersion:lastVersion,
           appKey:appkey, 
         }))

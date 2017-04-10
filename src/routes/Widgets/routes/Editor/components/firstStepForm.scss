@@ -9,6 +9,15 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
   input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
   input[type="radio"]:checked + span i.icon-radio1{display: none;}
 }
+.header-title {
+  background-color: #fff;
+  padding: 0 15px;
+  .step-tittle{
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
 .form-row{
     width: $sub-container-width;
     padding: $default-margin-top - 12px 93px $default-margin-bottom + 5px 80px;

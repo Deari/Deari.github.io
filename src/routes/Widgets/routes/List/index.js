@@ -64,7 +64,7 @@ class widgetsList extends React.Component {
     let stateObj = getCodeStatus(listData, version) || {}
     switch(stateObj.codeStatus) {
       case 1:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-yellow", }
         break
       case 2:
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
@@ -73,16 +73,16 @@ class widgetsList extends React.Component {
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 5:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
@@ -121,11 +121,12 @@ class widgetsList extends React.Component {
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
 
-        const editUrl = `/widgets/edit/${obj.id}`
+        const editUrl = `/widgets/edit/${obj.id}/1`
+        const versionEditUrl = `/widgets/edit/${obj.id}/3`
 
         obj.btnData = [
           {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
 
         newData.push(obj)
