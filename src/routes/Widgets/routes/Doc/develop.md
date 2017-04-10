@@ -834,7 +834,7 @@ NSMutableArray *array = @[].mutableCopy;
 ![](http://img1.ffan.com/T14PVTB_As1RCvBVdK)
 2. 创建组件
 ![](http://img1.ffan.com/T16exTBmAv1RCvBVdK)
-点击左上脚**创建新组件**按钮，选择组件类型为**FAP小程序组件**，填写组件名称，组件尺寸、组件介绍，选择分类，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
+点击左上角**创建新组件**按钮，选择组件类型为**FAP小程序组件**，填写组件名称，组件尺寸、组件介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
 3. 审核
 组件提交后呈现待审核状态，如下图：
 ![](http://img1.ffan.com/T1GILTBgCj1RCvBVdK)
