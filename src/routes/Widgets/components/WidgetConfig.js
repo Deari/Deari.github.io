@@ -64,10 +64,10 @@ class ConfigTpl extends Component {
                           <span>标题：</span><input type='text' value={item.id?item.id:''} placeholder='KEY' onChange={this.keyChange.bind(this,index)}/>
                           <div className="audio-contain">
 		                         {
-		                          item.audioList.map((v,k)=>(
+		                          item.valueList&&item.valueList.map((v,k)=>(
 		                              <div key={k} className="key-value">
-		                                <span>name：</span><input type='text' placeholder='name' value={v.audioKey?v.audioKey:''}  onChange={this.audioKeyChange.bind(this,index,k)}/>  
-		                                <span>value：</span><input type='text' placeholder='VALUE'  value={v.audioValue?v.audioValue:''} onChange={this.audioValueChange.bind(this,index,k)}/> 
+		                                <span>name：</span><input type='text' placeholder='NAME' value={v.key?v.key:''}  onChange={this.audioKeyChange.bind(this,index,k)}/>  
+		                                <span>value：</span><input type='text' placeholder='VALUE'  value={v.value?v.value:''} onChange={this.audioValueChange.bind(this,index,k)}/> 
 		                                <i className='iconfont icon-del1' onClick={this.removeConfigAudio.bind(this,index,k)}></i>   
 		                              </div>
 		                             ))

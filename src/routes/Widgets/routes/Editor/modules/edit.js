@@ -278,7 +278,7 @@ const ACTION_HANDLERS = {
    [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
-     newList[action.index].audioList[action.k].audioValue = action.value
+     newList[action.index].valueList[action.k].value = action.value
      return{
       ...state,
       form2:{
@@ -290,7 +290,7 @@ const ACTION_HANDLERS = {
    [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
-     newList[action.index].audioList[action.k].audioKey = action.key
+     newList[action.index].valueList[action.k].key = action.key
      return{
       ...state,
       form2:{
@@ -303,10 +303,10 @@ const ACTION_HANDLERS = {
      const configList = state.form2.configList
      let newList = [...configList];
      if(action.k!=-1){
-       newList[action.index].audioList.splice(action.k,1)
+       newList[action.index].valueList.splice(action.k,1)
      }else{
-       const obj = {audioKey:'',audioValue:''}
-       newList[action.index].audioList.push(obj)
+       const obj = {key:'',value:''}
+       newList[action.index].valueList.push(obj)
      }
     return{
       ...state,
@@ -382,7 +382,7 @@ const ACTION_HANDLERS = {
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,audioList:[]}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,valueList:[]}
       newList.push(obj)
     }
     return{
