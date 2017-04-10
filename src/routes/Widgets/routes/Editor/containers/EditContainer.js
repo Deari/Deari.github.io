@@ -109,14 +109,11 @@ class EditContainer extends Component {
               versionFormData.append("prepareVersion", "1")
               fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
                 if (versionRes.status == 200) {
-                  //this.props.receiveCodeId(versionRes.data[0].codeId)
-                  this.props.updateFirstForm(values)
-                  location.href = "/widgets/list";
+                  this.props.receiveCodeId(versionRes.data[0].codeId)
                 }
               })
-              // this.props.updateFirstForm(values)
-              // this.props.toggleStep(2);
-              // window.scrollTo(0, 0)
+              this.props.updateFirstForm(values)
+              location.href = "/widgets/list"
             } else {
               debug.warn('请完善表单信息')
             }
@@ -236,7 +233,7 @@ class EditContainer extends Component {
       <div className="container clx">
         <Sidebar urls={urls} type="widget"/>
         <div className="sub-container">
-          <Step page={page} title={'编辑组件'} appKindName={appKindName} />
+          <Step page={page} title='编辑组件' appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }

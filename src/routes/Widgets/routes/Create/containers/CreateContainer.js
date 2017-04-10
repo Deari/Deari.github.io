@@ -6,6 +6,7 @@ import Sidebar from 'components/Sidebar'
 import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
+import FinishFirstStep from '../components/FinishFirstStep'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
@@ -241,7 +242,7 @@ class CreateContainer extends Component {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond} previous={::this.previous} />
+            page === 2 && <FinishFirstStep />
           }
           {
             page === 3 && <Complete />
