@@ -103,8 +103,7 @@ class EditContainer extends Component {
                 }
               })
               this.props.updateFirstForm(values)
-              this.props.toggleStep(2);
-              window.scrollTo(0, 0)
+              location.href = "/widgets/list"
             } else {
               debug.warn('请完善表单信息')
             }

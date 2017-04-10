@@ -139,7 +139,7 @@ export class renderImageUpload extends Component {
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>
         <div className='describe-padding'>
-         <DescribeIcon describeId={describeId} describeContent={describeContent} />
+          <DescribeIcon describeId={describeId} describeContent={describeContent} />
         </div>
       </div>
     )

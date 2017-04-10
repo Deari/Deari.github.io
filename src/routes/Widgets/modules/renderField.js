@@ -2,24 +2,27 @@ import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
+import DescribeIcon from 'components/DescribeIcon'
 
-export const renderField = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
+export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label} <i className="iconfont icon-edit"></i></label>
     <div className="row-right">
       <input {...input} placeholder={placeholder || label} type={type}/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
+    <DescribeIcon describeId={describeId} describeContent={describeContent} />
   </div>
 )
 
-export const renderTextArea = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
+export const renderTextArea = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
     <label>{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={placeholder || label}></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
+    <DescribeIcon describeId={describeId} describeContent={describeContent} />
   </div>
 )
 
@@ -70,10 +73,10 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning } } = this.props
+    const { input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning } } = this.props
 
     return (
-      <div className="form-row">
+      <div className="form-row describe-tags">
         <label>{label}</label>
         <div className="row-right max-width">
           <ul>
@@ -93,6 +96,7 @@ export class renderTags extends Component {
           </ul>
           {(dirty || touched) && ((error && <span className="label-message">{error}</span>))}
         </div>
+        <DescribeIcon describeId={describeId} describeContent={describeContent} />
       </div>
     )
   }
@@ -128,7 +132,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
+    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -143,6 +147,9 @@ export class renderImageUpload extends Component {
             <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
+        </div>
+        <div className='describe-padding'>
+          <DescribeIcon describeId={describeId} describeContent={describeContent} />
         </div>
       </div>
     )
