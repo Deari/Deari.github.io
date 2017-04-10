@@ -56,18 +56,18 @@ export class Login extends Component {
         <div className="login-container">
           <div className="login-center">
             <h3>登录</h3>
-            <div className="formBox">
-              <div className="warnBox" style={{display: errMsg ? 'block' : 'none'}}>{errMsg}</div>
-              <form className="form-content" onSubmit={this.clickLogin.bind(this)}>
-                <div className="form-row">
+            <div className="login-formBox">
+              <div className="login-warnBox" style={{display: errMsg ? 'block' : 'none'}}>{errMsg}</div>
+              <form className="login-form-content" onSubmit={this.clickLogin.bind(this)}>
+                <div className="login-form-row">
                   <label>登录账号 </label>
-                  <input className="conten-input" type="text" placeholder="请输入登录账号" ref="userName" />
+                  <input className="login-conten-input" type="text" placeholder="请输入登录账号" ref="userName" />
                 </div>
-                <div className="form-row">
+                <div className="login-form-row">
                   <label>登录密码 </label>
-                  <input className="conten-input" type="password" placeholder="请输入登录密码" ref="password" />
+                  <input className="login-conten-input" type="password" placeholder="请输入登录密码" ref="password" />
                 </div>
-                <div className="form-row">
+                <div className="login-form-row">
                   <label></label>
                   <button className="btn" type="submit">登录</button>
                 </div>
