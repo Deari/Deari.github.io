@@ -171,7 +171,7 @@ export const getAppInfo = (appId) => {
         dispatch(updateForm2({
           appId,appName,appLogo,
           platform, appKind, codeDesc,codeDescCount, fileName, fileLink, moduleName, setting,
-          idList, logoList, nameList, wLogoList, wIdList, wNameList,
+          idList, logoList, nameList, wLogoList, wIdList, wNameList,codeId,
           lastVersion:lastVersion,
           appKey:appkey,
         })) 

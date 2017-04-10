@@ -36,6 +36,12 @@ class FirstStepForm extends Component {
     const hwString = w  + "*" +h
     return (
       <form onSubmit={handleSubmit}>
+      <div className="header-title">
+        <h2 className="step-tittle">基本信息</h2>
+      </div>
+      <div className='update-msg'>
+        <p><i className='iconfont icon-zhuyi'></i>您的这次更新会在新的 组件 版本发布后，在 组件市场 上显示。</p>
+      </div>
         <Field label="组件名称" name="appName" type="text" component={renderField}/>
         <div className="form-row">
         	<label>尺寸</label>

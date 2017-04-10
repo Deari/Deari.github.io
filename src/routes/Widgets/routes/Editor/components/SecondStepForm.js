@@ -112,13 +112,16 @@ class SecondStepForm extends React.Component {
     }
     return (
       <form onSubmit={handleSubmit}>
-        <div className="form-row show-contain">
+      {/**       <div className="form-row show-contain">
           <img src={appLogo} />
           <div className="show-text">
             <h3>{appName}</h3>
             <p><i>WidgetID：</i><span>{appId}</span></p>
             <p><i>WidgetKey：</i><span>{appKey}</span></p>
           </div>
+        </div> */}
+         <div className='header-title'>
+          <h2 className="step-tittle">版本信息 </h2>
         </div>
         <div>
           <div className="form-row code-desc">
@@ -130,7 +133,8 @@ class SecondStepForm extends React.Component {
             </div>
             <span className="font-count">{codeDescCount} / {totalCount}</span>
           </div>
-          <div className="form-row form-rowM">
+          {/**
+            <div className="form-row form-rowM">
             <label className="labelH"></label>
             <div className="row-right">
               <div className="row-radio">
@@ -140,9 +144,10 @@ class SecondStepForm extends React.Component {
                   <i className="iconfont icon-radio icon-publish"></i>
                 </span>
               </div>
-              <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
+                <label htmlFor="isShow" className="right-info">发布此版本后，将更新内容显示给商家</label>
             </div>
           </div>
+           */}
         </div>
         {/** <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
         <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={this.props.toggleCodeVersion}/>
@@ -190,8 +195,7 @@ class SecondStepForm extends React.Component {
         </Modal>
         <div className="form-btn">
           <div>
-            <button type="button" className="previous" onClick={()=>{toggleStep(1);window.scrollTo(0,0)}}>上一步</button>
-            <button type="submit" className="next" disabled={submitting}> 提交</button>
+             <button type="submit" className="next" disabled={submitting}>保存，并提交审核</button>
           </div>
         </div>
       </form>

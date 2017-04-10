@@ -111,7 +111,7 @@ class EditContainer extends Component {
               versionFormData.append("prepareVersion", "1")
               fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
                 if (versionRes.status == 200) {
-                  this.props.receiveCodeId(versionRes.data[0].codeId)
+                  //this.props.receiveCodeId(versionRes.data[0].codeId)
                   this.props.updateFirstForm(values)
                   location.href = "/apps/list";
                 }
@@ -254,7 +254,7 @@ class EditContainer extends Component {
         <div className="sub-container">
          <Step page={page}  appKindName={appKindName} /> 
           {
-            page === 5 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1&& <FirstStep onSubmit={::this.submitFirst} />
           }
           {
             page === 2 && <SecondStep onSubmit={::this.submitSecond} 

@@ -27,11 +27,21 @@ class EditContainer extends Component {
         if (status) {
           const { params } = this.props;
           const appId = parseInt(params.appId);
-
+          const step = parseInt(params.step)
+          if(step==3){
+            const versionurl = getDomain(`web/developer/app/${appId}/code`)
+            const versionFormData = new FormData()
+            versionFormData.append("prepareVersion", "1")
+            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+              if (versionRes.status == 200) {
+                this.props.receiveCodeId(versionRes.data[0].codeId)
+              }
+            })
+          }
           this.props.getAppInfo(appId);
           this.props.fetchTags()
-          this.props.fetchCates()
-          this.props.toggleStep(1)
+          this.props.fetchCates()          
+          this.props.toggleStep(step)
         } else {
           debug.warn("登录失败")
         }
@@ -99,12 +109,14 @@ class EditContainer extends Component {
               versionFormData.append("prepareVersion", "1")
               fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
                 if (versionRes.status == 200) {
-                  this.props.receiveCodeId(versionRes.data[0].codeId)
+                  //this.props.receiveCodeId(versionRes.data[0].codeId)
+                  this.props.updateFirstForm(values)
+                  location.href = "/widgets/list";
                 }
               })
-              this.props.updateFirstForm(values)
-              this.props.toggleStep(2);
-              window.scrollTo(0, 0)
+              // this.props.updateFirstForm(values)
+              // this.props.toggleStep(2);
+              // window.scrollTo(0, 0)
             } else {
               debug.warn('请完善表单信息')
             }
@@ -187,7 +199,7 @@ class EditContainer extends Component {
 
     fetchUtil.postJSON(url, formData, { Stringify: false }).then(res => {
       if (res.status == 200) {
-        this.props.toggleStep(3);
+        this.props.toggleStep(4);
       } else {
         debug.warn('请完善表单信息')
       }
@@ -203,7 +215,10 @@ class EditContainer extends Component {
       console.log(e)
     }
   }
-
+  previous() {
+    const appId = this.props.widgetCreate.form2.appId
+    window.location.href = '/widgets/edit/' + appId
+  }
   render() {
     const { page, form2 } =this.props.widgetEdit;
 
@@ -229,7 +244,11 @@ class EditContainer extends Component {
             page === 2 && <SecondStep onSubmit={::this.submitSecond} />
           }
           {
-            page === 3 && <Complete />
+            page === 3 && <SecondStep onSubmit={::this.submitSecond} />
+          }
+
+          {
+            page === 4 && <Complete />
           }
         </div>
       </div>
