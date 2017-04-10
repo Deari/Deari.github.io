@@ -125,7 +125,7 @@ class widgetsList extends React.Component {
         const versionEditUrl = `/widgets/edit/${obj.id}/3`
 
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
           {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
 
