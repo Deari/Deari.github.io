@@ -33,16 +33,17 @@ class FirstStepForm extends Component {
     const h = initialValues.size && initialValues.size.h || 0;
     const w = initialValues.size && initialValues.size.w || 0;
     const styleObj = h != 0 && w != 0 ? { height: h * 100 / 4 + 'px', width: w * 100 / 4 + 'px', } : { height: 100 + 'px', width:100 + 'px'}
-    const hwString = w  + "*" +h
+    const hwString = w  + "*" + h
     return (
       <form onSubmit={handleSubmit}>
-      <div className="header-title">
-        <h2 className="step-tittle">基本信息</h2>
-      </div>
-      <div className='update-msg'>
-        <p><i className='iconfont icon-zhuyi'></i>您的这次更新会在新的 组件 版本发布后，在 组件市场 上显示。</p>
-      </div>
-        <Field label="组件名称" name="appName" type="text" component={renderField}/>
+        <div className="header-title">
+          <h2 className="step-tittle">基本信息</h2>
+        </div>
+        <div className='update-msg'>
+          <p><i className='iconfont icon-zhuyi'></i>您的这次更新会在新的 组件 版本发布后，在 组件市场 上显示。</p>
+        </div>
+        <Field label="组件名称" name="appName" type="text" component={renderField}
+               describeId='appName' describeContent="您的 组件 在 组件市场 中显示的名称" />
         <div className="form-row">
         	<label>尺寸</label>
         	<div className="row-right">
@@ -54,8 +55,10 @@ class FirstStepForm extends Component {
         	</div>
         </div>
         <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height} styleObj={styleObj}/>
-        <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload} />
-        <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea} />
+        <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload}
+               describeId='appLogo' describeContent="此图标将用于 组件市场，最低分辨率至少为 72 DPI，并采用 RGB 色彩空间。它不能包含图层或圆角。" />
+        <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea}
+               describeId='appDesc' describeContent="对您的 组件 的描述，用以详细说明特性和功能" />
         {/**    <Field label="分类" name="categoryId" component={renderSelect}>
           <option value={-1}>请选择分类</option>
           {
@@ -66,13 +69,12 @@ class FirstStepForm extends Component {
             ))
           }
         </Field> */}
-        <Field label="标签" name="tags"
-          component={renderTags} tags={tags}
-        />
+        <Field label="标签" name="tags" component={renderTags} tags={tags}
+               describeId='tags' describeContent="一个或多个标签，用以描述您的组件" />
 
         <div className="form-btn">
           <div>
-            <button type="submit" className="next">下一步</button>
+            <button type="submit" className="next">保存</button>
           </div>
         </div>
       </form>
