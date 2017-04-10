@@ -92,7 +92,7 @@ class EditContainer extends Component {
           for (let key in values) {
             if (key == 'tags') {
               for (let v of values[key]) {
-                formData.apepend('tags[]', v)
+                formData.append('tags[]', v)
               }
             } else if (key == 'categoryId') {
               formData.append('categoryId', 8)
