@@ -179,7 +179,8 @@ export class renderAPKFile extends Component {
       if (xhr.readyState == 4) {
         if (xhr.status >= 200 && xhr.status < 300) {
           if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
-            alert(JSON.parse(xhr.responseText).message);
+            const errMsg = debug.getErrStatus(JSON.parse(xhr.responseText).status)
+            debug.warn(errMsg)
             return
           } else {
             const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
@@ -285,7 +286,8 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
-        debug.warn('文件代码包格式错误')
+        const errMsg = debug.getErrStatus(res.status)
+        debug.warn(errMsg)
       }        
     }).catch(e => {
       console.log('网络错误', e)

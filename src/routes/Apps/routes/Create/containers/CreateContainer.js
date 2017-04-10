@@ -104,7 +104,8 @@ class CreateContainer extends Component {
               this.props.toggleStep(2)
               window.scrollTo(0,0)
             } else {
-              debug.warn('请完善表单信息')
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
             }
           }).catch(e => {  
             console.log('网络错误', e)
@@ -210,7 +211,8 @@ class CreateContainer extends Component {
           if (res.status == 200) {
             this.props.toggleStep(3)
           } else {
-            debug.warn('请完善表单信息')
+            const errMsg = debug.getErrStatus(res.status)
+            debug.warn(errMsg)
           }
         }).catch(e => {
           console.log('网络错误', e)

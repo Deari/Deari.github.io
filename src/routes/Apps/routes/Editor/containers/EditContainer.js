@@ -117,7 +117,8 @@ class EditContainer extends Component {
               this.props.updateFirstForm(values)
               location.href = "/apps/list"    
             } else {
-              debug.warn('请完善表单信息')
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
             }
           }).catch(e => {
             console.log('网络错误', e)
@@ -213,7 +214,8 @@ class EditContainer extends Component {
             if (res.status == 200) {
               this.props.toggleStep(4)
             } else {
-              debug.warn('请完善表单信息')
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
             }
           }).catch(e=>{
             console.log('网络错误', e)

@@ -174,7 +174,8 @@ export class renderFile extends Component {
       if (res.status === 200) {
         this.props.input.onChange(res.data)
       } else {
-        debug.warn('文件代码包格式错误')
+        const errMsg = debug.getErrStatus(res.status)
+        debug.warn(errMsg)
       }        
     }).catch(e => {
       console.log('网络错误', e)
