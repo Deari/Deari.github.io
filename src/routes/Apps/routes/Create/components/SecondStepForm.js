@@ -149,6 +149,7 @@ const SecondStepForm = props => {
             handleLogochange={handleLogochange} 
             handleIdchange={handleIdchange}
             handleNamechange={handleNamechange}
+            appId={appId}
         />
       </Modal>
       <div className="form-btn">

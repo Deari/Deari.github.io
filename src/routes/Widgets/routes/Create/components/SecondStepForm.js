@@ -176,6 +176,7 @@ class SecondStepForm extends React.Component {
               handleLogochange={handleLogochange} 
               handleIdchange={handleIdchange}
               handleNamechange={handleNamechange}
+              appId={appId}
           />
         </Modal>
         <div className="form-btn">
