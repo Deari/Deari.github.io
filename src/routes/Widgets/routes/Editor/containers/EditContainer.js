@@ -29,7 +29,7 @@ class EditContainer extends Component {
           const appId = parseInt(params.appId);
           const step = parseInt(params.step)
           if(step==3){
-            const versionurl = getDomain(`web/developer/app/${appId}/code`)
+            const versionurl = getDomain(`web/developer/widget/${appId}/code`)
             const versionFormData = new FormData()
             versionFormData.append("prepareVersion", "1")
             fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {

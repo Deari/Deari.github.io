@@ -959,3 +959,37 @@ Widgets是native与h5的接口，各Widget实现独立接口
 
 @end
 ```
+
+# FAQ
+##上传失败
+请检查以下内容
+* 要使用打包工具打包
+* 必须指定文件夹打包
+* config.json文件是否存在
+* FAP小程序的包大小不能超过5M
+##提交失败
+请检查以下内容
+* rn包目录不允许有空格，否则导致找不到config.json，提交失败
+* 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
+##js语法错误，调试时不显示js错误行数，只是卡在99%不动
+请升级nodejs到6.6版本以上
+##本地调试正常，远程打包应用报错
+请检查入口类是否使用export default class导出默认类
+
+##iOS运行正常，安卓运行崩溃
+请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
+
+##文本框iOS使用正常，安卓推出两次
+请按照下面例子的方式调用
+```
+<TextInput
+ref={component => this._textInput = component}
+blurOnSubmit={false}
+onSubmitEditing={this._onSubmitEditing.bind(this)}
+/>
+
+_onSubmitEditing(event) {
+this._textInput.blur();
+console.log('do something')
+}
+```
