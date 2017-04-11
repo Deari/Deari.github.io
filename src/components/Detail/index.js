@@ -140,7 +140,7 @@ export const LatestVersion = (props) => {
             <p className="title">预览图</p>
             <p className="text">
               <div className="img-block">
-                {data.appPreviewImage ? <img  className="img" src={ data.appPreviewImage } style={styleObj}/> : <p className="img-text">加载中</p>}
+                {data.appPreviewImage ? <img  className="img" src={data.mine&&latestVersion.publishStatus==0?data.changes&&data.changes.appPreviewImage:data.appPreviewImage } style={styleObj}/> : <p className="img-text">加载中</p>}
               </div>
             </p>
           </div>

@@ -597,9 +597,10 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
-          defaultLayout:size,
+        const {  appThumb, categoryId, platform, appKind, appkey,
+          defaultLayout: size,
           fileName, fileLink, moduleName, } = res.data
+        const { appDesc, appLogo, appName, tags='',appPreviewImage} = res.data.changes
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion=''} = res.data && res.data.versions[0]
         let lastVersion = codeVersion
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
