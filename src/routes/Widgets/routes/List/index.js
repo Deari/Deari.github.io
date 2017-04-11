@@ -97,8 +97,8 @@ class widgetsList extends React.Component {
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
         let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
-        obj.logo = item.appLogo && item.appLogo || ''
-        obj.name = item.appName && item.appName || ''
+        obj.logo = item.changes && item.changes.appLogo || ''
+        obj.name = item.changes && item.changes.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
         obj.download = 100
