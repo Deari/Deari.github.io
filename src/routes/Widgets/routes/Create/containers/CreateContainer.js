@@ -6,6 +6,7 @@ import Sidebar from 'components/Sidebar'
 import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
+import FinishFirstStep from '../components/FinishFirstStep'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
@@ -22,23 +23,31 @@ class CreateContainer extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
+          this.props.getTags()
+          this.props.getCates()
+          this.props.toggleStep(0)
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        this.props.getTags()
-        this.props.getCates()
-        this.props.toggleStep(0)
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
   }
 
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
-      if (!status) debug.warn('请先登录')
-    }, sessionUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (!status) debug.warn('请先登录')
+      }, sessionUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitChoice(values) {
@@ -53,59 +62,63 @@ class CreateContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/widgets/list`
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        
-        const formData = new FormData();
+          const formData = new FormData();
 
-        for (let key in values) {
-          if (key == 'tags') {
-            for (let v of values[key]) {
-              formData.append('tags[]', v)
+          for (let key in values) {
+            if (key == 'tags') {
+              for (let v of values[key]) {
+                formData.append('tags[]', v)
+              }
+            } else if (key == 'size') {
+              for (let k in values[key]) {
+                formData.append(k, values[key][k])
+              }
+            } else if (key == 'categoryId') {
+              formData.append('categoryId', 8)
+            } else {
+              formData.append(key, values[key])
             }
-          } else if (key == 'size') {
-            for (let k in values[key]) {
-              formData.append(k, values[key][k])
-            }
-          } else if (key == 'categoryId') {
-            formData.append('categoryId', 8)
-          } else {
-            formData.append(key, values[key])
           }
+
+          const url = getDomain(`web/developer/widget`)
+          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+            if (res.status == 200) {
+              console.info("提交成功: ", res.data)
+              const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+              const versionFormData = new FormData();
+              versionFormData.append("prepareVersion", "1");
+              this.props.updateForm2({
+                appId: res.data.appId,
+                appLogo: res.data.appLogo,
+                appKey: res.data.appkey,
+                appName: res.data.appName
+              })
+              fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+                if (versionRes.status == 200) {
+                  this.props.updateForm2({ codeId: versionRes.data[0].codeId })
+                }
+              })
+              this.props.toggleStep(2);
+              window.scrollTo(0, 0)
+            } else {
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
+            }
+          }).catch(e => {
+            console.log('网络错误', e)
+          })
+
+        } else {
+          debug.warn("请先登录")
         }
-
-        const url = getDomain(`web/developer/widget`)
-        fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-          if(res.status == 200) {
-            console.info("提交成功: ", res.data)
-            const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
-            const versionFormData = new FormData();
-            versionFormData.append("prepareVersion", "1");
-            this.props.updateForm2({
-              appId: res.data.appId,
-              appLogo: res.data.appLogo,
-              appKey: res.data.appkey,
-              appName: res.data.appName
-            })
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
-               if(versionRes.status == 200) {
-                 this.props.updateForm2({codeId:versionRes.data[0].codeId})
-               }
-            })
-            this.props.toggleStep(2);
-            window.scrollTo(0,0)
-          } else {
-            debug.warn('请完善表单信息')
-          }
-        }).catch(e=>{
-          console.log('网络错误', e)
-        })
-
-      } else {
-        debug.warn("请先登录")
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitSecond(values) {
@@ -115,74 +128,91 @@ class CreateContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/widgets/list`
+    try {
+      LoginSDK.getStatus((status, data) => {
+            if (status) {
 
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
+              let codeDescCount = values.codeDescCount || 0
 
-        let codeDescCount = values.codeDescCount || 0
+              if (codeDescCount == 0) {
+                this.props.updateCodeDesc({ isDescErr: true })
+                return
+              } else {
+                this.props.updateCodeDesc({ isDescErr: false })
+              }
 
-        if ( codeDescCount == 0 ) {
-          this.props.updateCodeDesc({isDescErr: true})
-          return
-        } else {
-          this.props.updateCodeDesc({isDescErr: false})
-        }
-        
-        !values.appId && debug.warn('缺少appId')
+              !values.appId && debug.warn('缺少appId')
 
-        const formData = new FormData();
-        const file = values.file
-        let params = {
-          ...values
-        }
+              const formData = new FormData();
+              const file = values.file
+              let params = {
+              ...values
+            }
 
-        if (values.appKind === 0) {
-        
+            if (values.appKind === 0) {
+
           params = Object.assign({}, file, {
-            'appId':values.appId,
-            'codeId':values.codeId,
-            'codeDesc':values.codeDesc,
-            'autoPublish':values.autoPublish,
-            'codeVersion':values.codeVersion,
-            
+            'appId': values.appId,
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
+
             'fileName': file && file.originalName,
             'fileLink': file && file.url,
             'fileSize': file.fileSize,
             'platform': file.platform,
             'setting': JSON.stringify(values.configList),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
 
-            'showUpdateMsg':Number(values.showUpdateMsg),
+            'showUpdateMsg': Number(values.showUpdateMsg),
           })
-        } else if(values.appKind === 1){
+        } else if (values.appKind === 1) {
           params = {
-            'appId':values.appId,
-            'codeId':values.codeId,
-            'codeDesc':values.codeDesc,
-            'autoPublish':values.autoPublish,
-            'codeVersion':values.codeVersion,
+            'appId': values.appId,
+            'codeId': values.codeId,
+            'codeDesc': values.codeDesc,
+            'autoPublish': values.autoPublish,
+            'codeVersion': values.codeVersion,
             'fileLink': values.fileLink,
             'showUpdateMsg': Number(values.showUpdateMsg),
+            'relatedApps': values.idList,
+            'relatedWidgets': values.wIdList,
           }
         }
-        for(let key in params) {
-          formData.append(key, params[key])
-        }
-
-        const url = getDomain(`web/developer/widget/${values.appId}/code`)
-        fetchUtil.postJSON(url, formData, {jsonStringify: false}).then(res=>{
-          if (res.status == 200) {
-            this.props.toggleStep(3);
+        for (let key in params) {
+          if (key == "relatedApps") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedApps[]', params[key][i])
+            }
+          } else if (key == "relatedWidgets") {
+            for (let i = 0; i < params[key].length; i++) {
+              formData.append('relatedWidgets[]', params[key][i])
+            }
           } else {
-            debug.warn('请完善表单信息')
+            formData.append(key, params[key])
           }
-        }).catch(e=>{
-          console.log('网络错误', e)
-        })
-        
-      } else {
-        debug.warn("请先登录")
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+        }
+          const url = getDomain(`web/developer/widget/${values.appId}/code`)
+          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+            if (res.status == 200) {
+              this.props.toggleStep(3);
+            } else {
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
+            }
+          }).catch(e => {
+            console.log('网络错误', e)
+          })
+
+        } else {
+          debug.warn("请先登录")
+        }
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e) {
+      console.log(e)
+    }
   }
   
   previous() {
@@ -214,7 +244,7 @@ class CreateContainer extends Component {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
           }
           {
-            page === 2 && <SecondStep onSubmit={::this.submitSecond} previous={::this.previous} />
+            page === 2 && <FinishFirstStep />
           }
           {
             page === 3 && <Complete />

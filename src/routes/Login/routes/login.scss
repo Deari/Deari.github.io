@@ -1,43 +1,148 @@
-.login-form-container {
-  width: 280px;
-  height: 140px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -100px 0 0 -140px;
-  text-align: center;
-  .content {
-    margin-bottom: 20px;
-    label {
-      width: 80px;
-      font-size: 16px;
-      color: #000;
-      margin-right: 10px;
-      line-height: 30px;
-      text-align: right;
-      position: relative;
-    }
-    .conten-input {
-      width: 180px;
-      height: 29px;
-      font-size: 15px;
-      color: #020202;
-      border: 1px solid #ddd;
-      padding-left: 5px;
-      outline: none;
+@import "../../../layouts/CoreLayout/CoreLayout";
+
+$header-grayd7-color:#d7d7d7;
+//header new style begin
+$border-bule-color:#2692FB;
+$zindex:0;
+$header-height:70px;
+
+@mixin position-direction{
+    top: 0;
+    right: 0;
+    left: 0;
+}
+@mixin absolute{
+  position:absolute;
+}
+@mixin fixed{
+  position:fixed;
+}
+
+.login-header-wrapper {
+  z-index: 3;
+  @include fixed;
+  @include position-direction;
+  .login-header-bg {
+    z-index: $zindex - 1;
+    @include absolute;
+    @include position-direction;
+    background: $white-color;
+    border-top: 2px solid $blue-color;
+    height: 77px;
+    border-bottom: 1px solid $header-grayd7-color;
+  }
+  .login-g-header {
+    overflow: hidden;
+    height: 77px;
+    .login-title {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      .login-logo {
+        float: left;
+        margin-right: 6px;
+      }
+
+      .login-small-title{
+        float: left;
+        padding-top: 10px;
+        font-size: 16px;
+        color: $gray6-color;
+        & > a {
+          color: $gray6-color;
+        }
+      }
+  
+      .login-icon, .login-text {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .login-text {
+        color: $blue-color;
+        font-size: 26px;
+        padding-right:6px;
+        border-right: 1px solid #cacaca;
+      }
+
+      .login-icon {
+        margin-right: 8px;
+        width: $default-width - 57;
+        height: $default-height - 56;
+        background: url("../../Home/assets/nav_logo.png") no-repeat;
+        background-size: 100%;
+      }     
     }
   }
-  button {
-    width: 70px;
-    height: 30px;
-    background: #2692fb;
-    border-radius: 2px;
-    border: 0;
-    font-size: 13px;
-    color: #fff;
-    line-height: 28px;
-    margin-right: 10px;
-    display: inline-block;
-    cursor: pointer;
+}
+
+.login-container {
+  width: 890px;
+  min-height: 650px;
+  margin: 0 auto;
+  .login-center {
+    margin-top: 94px;
+    background: $white-color;
+    min-height: 600px;
+    h3 {
+      height: 60px;
+      padding-left: 45px;
+      line-height: 60px;
+      font-size: 18px;
+      border-bottom: solid 1px #ededed;
+    }
+    .login-formBox {
+      position: relative;
+      padding: 20px 45px;
+      .login-warnBox{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        padding-left: 45px;
+        color: #000;
+        line-height: 32px;
+        background: #ffcfcf;
+      }
+      .login-form-content {
+        width: 90%;
+        margin: 20px auto;
+        .login-form-row {
+          margin: 15px 0;
+          font-size: 16px;
+          label {
+            display: block;
+            float: left;
+            width: 20%;
+            padding-right: 15px;
+            line-height: 32px;
+            text-align: right;
+            color: #888;
+            margin-bottom: 10px;
+          }
+          .login-conten-input {
+            width: 50%;
+            height: 32px;
+            line-height: 32px;
+            padding-left: 5px;
+            font-size: 14px;
+            border: solid 1px #a0a0a0;
+            border-radius: 2px;
+            color: #333;
+            background: #fff;
+          }
+          button {
+            width: 120px;
+            height: 42px;
+            background: #2692fb;
+            border: solid 1px #2692fb;
+            font-size: 16px;
+            color: #fff;
+            // cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }

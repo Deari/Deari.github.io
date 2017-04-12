@@ -16,12 +16,13 @@ class Main extends React.Component {
       list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
       doc: { url: `/hardware/doc` }
     },
-    detailLink: '/hardware/detail/'
+    detailLink: '/hardware/detail/',
+    limit:100,
   }
 
   async getList(tagId) {
     let id = tagId || 0
-    let apiUrl = getDomain(`web/market/tag/${id}/hardware`) 
+    let apiUrl = getDomain(`web/market/tag/${id}/hardware?limit=${this.state.limit}`) 
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {

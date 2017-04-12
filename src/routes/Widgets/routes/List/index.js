@@ -25,11 +25,17 @@ class widgetsList extends React.Component {
     currentPageIndex:1,
     pageIndexs:[],
     pageSum:0,
-    limit:10
+    limit:10,
+    searchValue:''
   }
-  
-  async getList() {
-    const apiUrl = getDomain("web/developer/widgets")
+  handleChange(e){
+    if (!e) {
+      this.setState({ searchValue: '' }, this.upDate())
+    }
+    this.setState({searchValue:e.target.value},this.upDate())
+  }
+  async getList(appName) {
+    const apiUrl = appName?getDomain(`web/developer/widgets?appName=${appName}`):getDomain("web/developer/widgets")
     const review = this.getReviewStatus()
     const {limit, currentPageIndex} = this.state
     try {
@@ -58,7 +64,7 @@ class widgetsList extends React.Component {
     let stateObj = getCodeStatus(listData, version) || {}
     switch(stateObj.codeStatus) {
       case 1:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-yellow", }
         break
       case 2:
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
@@ -67,16 +73,16 @@ class widgetsList extends React.Component {
         return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
         break
       case 4:
-        return { stateObj, showEdit: true, showNew: false, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 5:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
         break
       case 6:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       case 7:
-        return { stateObj, showEdit: false, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
         break
       default:
         return ''
@@ -91,8 +97,8 @@ class widgetsList extends React.Component {
         let latestStatusObj = item.versions && item.versions[0] && this.getStatus(item, item.versions[0]) || {}
         let prevStatusObj = item.versions && item.versions[1] && this.getStatus(item, item.versions[1]) || {}
         obj.id = item.appId && item.appId || ''
-        obj.logo = item.appLogo && item.appLogo || ''
-        obj.name = item.appName && item.appName || ''
+        obj.logo = item.changes && item.changes.appLogo || ''
+        obj.name = item.changes && item.changes.appName || ''
         obj.desc = item.appDesc && item.appDesc || ''
         obj.price = '免费'
         obj.download = 100
@@ -115,11 +121,12 @@ class widgetsList extends React.Component {
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
 
-        const editUrl = `/widgets/edit/${obj.id}`
+        const editUrl = `/widgets/edit/${obj.id}/1`
+        const versionEditUrl = `/widgets/edit/${obj.id}/3`
 
         obj.btnData = [
-          {name: "编辑", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "发布新版本", url: editUrl, active: latestStatusObj.showNew}
+          {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
+          {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
         ]
 
         newData.push(obj)
@@ -145,21 +152,24 @@ class widgetsList extends React.Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
-
-    LoginSDK.getStatus( async (status, data) => {
-      if (status) {
-   
-        const resData = await this.getList()
-        const listData = resData.list
-        const newData = listData && this.formatListData(listData)
-        const pageSum = resData.page.lastPage
-        const pageIndexs = this.getPageIndexs(pageSum)
-  
-        newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus( async (status, data) => {
+        if (status) {
+    
+          const resData = this.state.searchValue ? await this.getList(this.state.searchValue) : await this.getList()
+          const listData = resData.list
+          const newData = listData && this.formatListData(listData)
+          const pageSum = resData.page.lastPage
+          const pageIndexs = this.getPageIndexs(pageSum)
+    
+          newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   componentDidMount() {
@@ -201,7 +211,7 @@ class widgetsList extends React.Component {
 
   render() {
 
-    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList } = this.state
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList, searchValue} = this.state
 
     const urls = {
       create: { url: `/widgets/create`, name: '创建新组件' },
@@ -213,7 +223,7 @@ class widgetsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls}  type="widget"/>
         <div className="sub-container plf bg-white">
-          <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
+          <ListNav navData={navData} onChange={this.changeNav.bind(this)} searchValue={searchValue} label='组件名称' handleSearch={this.handleChange.bind(this)}/>
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w332">组件名称</li>

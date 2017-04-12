@@ -1,0 +1,88 @@
+.finish-first-step{
+  padding: 10px 0;
+  width: 874px; 
+  background: #fff;
+}
+.finish-success{
+  text-align: center;
+  i{
+    font-size: 74px;
+    color: #46db60;
+    vertical-align: middle;
+    margin-right: 22px;
+  }
+  span{
+    height: 238px;
+    line-height: 180px;
+  }
+}
+.finish-apps-box{
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.finish-apps{
+  padding-bottom: 14px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.finish-apps-img{
+  padding: 30px;
+  border: 1px solid #ececec;
+  overflow: hidden;
+  dt{
+    float: left;
+    padding-right: 24px;
+    img{
+      width: 110px;
+      height: 110px;
+    }
+  }
+  dd{
+    font-size: 16px;
+    line-height: 30px;
+    color: #333;
+  }
+}
+.finish-apps-text{
+  padding-top: 36px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+  .finish-apps-text-p{
+    padding-top: 20px;
+  }
+}
+.finish-apps-text-link{
+  display: block;
+  margin: 20px 0 70px;
+  width: 132px;
+  height: 33px;
+  line-height: 33px;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  background: #1a8fff;
+  border-radius: 2px;
+}
+.finish-apps-doc{
+  overflow: hidden;
+  li{
+    float: left;
+    padding: 20px 0 20px 60px;
+    width: 50%;
+    background: url(../../../../Home/assets/finish-apps-doc.png) no-repeat left center;
+    background-size: 42px 46px;
+    p{
+      padding-bottom: 4px;
+      font-size: 18px;
+      color: #000;
+      line-height: 24px;
+    }
+    a{
+      font-size: 14px;
+      color: #1a8fff;
+      text-decoration: underline;
+    }
+  }
+}
+

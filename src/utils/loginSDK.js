@@ -45,7 +45,7 @@ export default {
                 mode: 'cors',
                 cache: 'default',
                 credentials: 'include',
-                body: postData
+                body: JSON.stringify(postData)
         }).then(function(response){
           if (response.status == 200) {
             response.json().then(function(rest){
@@ -111,7 +111,7 @@ export default {
             mode: 'cors',
             cache: 'default',
             credentials: 'include',
-            body: postData
+            body: JSON.stringify(postData)
     }).then(function(response){
       if (response.status == 200) {
         response.json().then(function(rest){

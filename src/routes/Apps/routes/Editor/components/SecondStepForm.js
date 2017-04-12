@@ -36,7 +36,6 @@ import DescribeIcon from 'components/DescribeIcon'
 const compose = (arr1, arr2, arr3) => {
   const newArray = []
   if(Array.isArray(arr1) && arr1.length !==0){
-   
     for (let i = 0; i < arr1.length; i++) {
       const obj = {};
       obj.id = arr1[i]
@@ -68,6 +67,7 @@ const SecondStepForm = props => {
     codeVersion,
     lastVersion
   } = initialValues
+
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
   const appActive = appObj&&appObj.length!=0 ? 1:0;

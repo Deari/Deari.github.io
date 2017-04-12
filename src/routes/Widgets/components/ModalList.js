@@ -20,8 +20,8 @@ class ModalList extends Component {
      this.props.handleNamechange(item.appName)
    }
    handleChange(e){
-     const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
-     this.setState({datalist:newList})
+      const newList = this.initial.filter((v)=> v.appName.indexOf(e.target.value)!= -1 )||[]
+      this.setState({datalist:newList})
    }
    getStatus(item,v) {
     let state = this.formatState(item,v)

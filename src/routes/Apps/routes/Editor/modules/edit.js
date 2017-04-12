@@ -146,7 +146,6 @@ export const getAppInfo = (appId) => {
         const codeDescCount = codeDesc&&codeDesc.length 
         const tagId = tags.map(v=>v.tagId)
         //const tagId = tagList.split(",").map(Number)
-        console.log(tags)
         const {apps, widgets} = res.data && res.data.relations 
         let idList = []
         let logoList = []
@@ -285,6 +284,7 @@ const ACTION_HANDLERS = {
     const logoList = state.form2.logoList
     const newList = logoList.filter((v)=>v!=action.logo)
     newList.length == logoList.length ? newList.push(action.logo) : null;
+    console.log(newList)
     return {
       ...state,
       form2:{
