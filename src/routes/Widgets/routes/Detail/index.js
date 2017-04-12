@@ -159,7 +159,6 @@ class WidgetsDetail extends React.Component {
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
-
     return (
       <div className="container clx">
         <Slidebar urls={urls} tags={tags} />

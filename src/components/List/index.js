@@ -7,7 +7,6 @@ class List extends React.Component {
   render() {
     const listData = this.props.listData || []
     const len = listData.length
-    console.log(listData)
     return (
       <div className="listContent">
       {

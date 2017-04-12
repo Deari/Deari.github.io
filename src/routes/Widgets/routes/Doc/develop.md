@@ -1,4 +1,4 @@
-# 开始前必读
+﻿# 开始前必读
 
 ## 首页
 
@@ -14,7 +14,7 @@
 
 什么是蓝海顾客。蓝海开放平台为顾客提供的客户端，或者其他客户端嵌入蓝海开放平台的SDK，顾客可以使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
 
-为了识别蓝海商家中的员工，每个员工针对每个商家，会产生一个安全的wID。开发者在使用API的官方接口时，都需要传递wID。
+为了识别蓝海商家中的员工，每个员工针对每个商家，会产生一个安全的wid。开发者在使用API的官方接口时，都需要传递wid。
 
 为了识别蓝海顾客中的会员，每个会员针对每个商家，会产生一个安全的openID。开发者在使用API的官方接口时，都需要传递openID。
 
@@ -67,22 +67,22 @@
 ### 创建新组件
 
 - 点击页面左侧的[创建新组件][2]
-- 选择创建新应用的类型。应用类型包括FAP小程序、HTML5。
+- 选择创建新组件的类型。组件类型包括FAP小程序、HTML5。
 
 ### 开发、打包、调试
 
 #### Android开发者
-- 开发FAP小程序类型的应用
+- 开发FAP小程序类型的组件
 
 #### iOS开发者
-- 开发FAP小程序类型的应用
+- 开发FAP小程序类型的组件
 
 #### H5开发者
-- 开发HTML5类型的应用
+- 开发HTML5类型的组件
 
 ### 审核
 
- 1. 登录开发者平台首页,点击组件市场->我的组件->发布新版本,并上传应用文件（如:应用名.fap）或HTML5链接。
+ 1. 登录开发者平台首页,点击组件市场->我的组件->发布新版本,并上传组件文件（如:组件名.fap）或HTML5链接。
  2. 填写版本号, 版本号采用标准三段式, 如: 1.0.0。
  3. 填写版本简介, 字数请限制在 120 字内。
  4. 提交审核（审核规则待补充）。
@@ -236,7 +236,7 @@ public class MyConfig extends DefaultConfig {
 ```javascript
 // 检验必传参数 config
 ffanSDK.config({
-    appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用appKey
+    appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方组件appKey
     ts："1486628893",  //签名时使用的时间戳
     nonceStr："XX4L3FX6vgorRFf3lklnP8Cp",  //用来生成签名的随机串
     signature："c3f94fa5ea84885eda0ab7c2cf350fa428cd2b3a",  //生成的签名
@@ -281,10 +281,9 @@ ffanSDK.error(function(res) {
 ```javascript
 sdk.openWebPage({"url":"www.baidu.com"})
 ```
-
 **closeWindow**
 
-- 功能描述: 通过 `H5` 关闭一个 `WebView`中的`H5` 页面
+- 功能描述: 通过 `WebView` 关闭一个 `h5` 页面
 
 - 方法名称: sdk.closeWindow
 
@@ -348,12 +347,14 @@ sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
     {
     // success
     // data格式为启动之前传递的参数
-      "storeName":"GAP",
-      "org":"wanda",
-      "storeId":"10000",
-      "token":"8943o9432943948394839",
-      "userId":"18510000005"
+        "wid": "9843o94329439483lkujndhsa", //账号唯一标识，类似微信登录的openid
+        "storeName": "GAP金地中心店", //店铺名称
+        "storeAddress": "北京市朝阳区建国路91号1层", //店铺地址
+        "storeLogo": "http://img0.imgtn.bdimg.com/it/u=3322805433,3472912087&fm=23&gp=0.jpg", //店铺logo
+        "org": "wanda”, //标识来源，固定值
+        "token": "8943o9432943948394809" //登录身份令牌
     }
+
   }).catch(function(err){
     //fail
   })
@@ -415,7 +416,7 @@ sdk.setRightNavBarItem({"title":"分享"})
 
 ###  **`accessToken` 说明**
 
-- `accessToken` 是开放平台的全局唯一票据, 第三方应用调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
+- `accessToken` 是开放平台的全局唯一票据, 第三方组件调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
 
 - `accessToken` 的存储至少要保留 512 个字符空间
 
@@ -441,9 +442,9 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
   - 参数说明
 
-    * **appKey**: 第三方应用 `appKey`
+    * **appKey**: 第三方组件 `appKey`
 
-    * **appSecret**: 第三方应用的的密钥
+    * **appSecret**: 第三方组件的的密钥
 
   - 返回值说明
 
@@ -480,12 +481,11 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 **签名算法**
 
-- 参与签名的字段: `accessToken`（资源调用凭证）、`appKey`（第三方应用的 appKey）、`nonceStr`（随机字符串）、`ts`（当前时间戳）、`url`（调用 JS 接口页面的完整 URL, 不包含 # 及其后面部分）
+- 参与签名的字段: `accessToken`（资源调用凭证）、`appKey`（第三方组件的 appKey）、`nonceStr`（随机字符串）、`ts`（当前时间戳）、`url`（调用 JS 接口页面的完整 URL, 不包含 # 及其后面部分）
 
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
 - 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
->>>>>>> sit
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -525,7 +525,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 - 参数说明
 
-  * **appKey**: 第三方应用 appKey
+  * **appKey**: 第三方组件 appKey
 
   * **ts**: 签名时使用的时间戳
 
@@ -566,7 +566,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 **生成 `accessToken` 的签名接口说明**
 
-<p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方应用在自己的服务端实现签名逻辑</font></p>
+<p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方组件在自己的服务端实现签名逻辑</font></p>
 
 - 请求样例
 
@@ -580,7 +580,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
   * `accessToken`: 资源接口的调用凭证
 
-  * `appKey`: 第三方应用 appKey
+  * `appKey`: 第三方组件 appKey
 
   * `ts`: 签名时使用的时间戳
 
@@ -625,7 +625,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 ### FFOAP ReactNative App 概述
 
-采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生应用体验。下文中ReactNative简称为FAP小程序。
+采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生组件体验。下文中ReactNative简称为FAP小程序。
 
 ### 搭建环境
 
@@ -783,14 +783,14 @@ NSMutableArray *array = @[].mutableCopy;
 ![](http://img1.ffan.com/T1pPVTB4ZX1RCvBVdK)
 ![](http://img1.ffan.com/T1ZShTBbb_1RCvBVdK)
 5. 刷新JavaScript
-传统的原生应用开发中，每一次修改都需要重新编译，但在FAP小程序中你只需要刷新一下JavaScript代码，就能立刻看到变化。具体的操作就是在开发菜单中点击"Reload"选项。也可以在iOS模拟器中按下Command⌘ + R。
+传统的原生组件开发中，每一次修改都需要重新编译，但在FAP小程序中你只需要刷新一下JavaScript代码，就能立刻看到变化。具体的操作就是在开发菜单中点击"Reload"选项。也可以在iOS模拟器中按下Command⌘ + R。
 如果在iOS模拟器中按下Command⌘ + R没啥感觉，则注意检查Hardware菜单中，Keyboard选项下的"Connect Hardware Keyboard"是否被选中。
 
 **自动刷新**
 
 选择开发菜单中的**Enable Live Reload**可以开启自动刷新，这样可以节省你开发中的时间。
 某些情况下hot reload并不能顺利实施。如果碰到任何界面刷新上的问题，请尝试手动完全刷新。
-但有些时候你必须要重新编译应用才能使修改生效：
+但有些时候你必须要重新编译组件才能使修改生效：
 增加了新的资源
 更改了任何的原生代码（objective-c/swift/java）
 
@@ -830,22 +830,22 @@ NSMutableArray *array = @[].mutableCopy;
 
 ### 发布
 
-1. 打开BO开放平台应用市场首页：http://open.ffan.net/apps，注册账号，并确认邮件完成身份验证，成为开发者。
+1. 打开BO开放平台组件市场首页：http://open.ffan.net/widgets，注册账号，并确认邮件完成身份验证，成为开发者。
 ![](http://img1.ffan.com/T14PVTB_As1RCvBVdK)
-2. 创建应用
+2. 创建组件
 ![](http://img1.ffan.com/T16exTBmAv1RCvBVdK)
-点击左上脚**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
+点击左上角**创建新组件**按钮，选择组件类型为**FAP小程序组件**，填写组件名称，组件尺寸、组件介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
 3. 审核
-应用提交后呈现待审核状态，如下图：
+组件提交后呈现待审核状态，如下图：
 ![](http://img1.ffan.com/T1GILTBgCj1RCvBVdK)
 待审核通过，即可供用户下载。
-4. 管理我的应用
-选择左侧**我的应用**按钮，可进行查看，编辑应用信息，发布新版本，下架在线应用等操作，管理我的应用。
+4. 管理我的组件
+选择左侧**我的组件**按钮，可进行查看，编辑组件信息，发布新版本，下架在线组件等操作，管理我的组件。
 
 ### 验证
 
-1. 获取应用ID
-待通过审核，应用上架后，点击应用图标，打开链接如下http://open.sit.ffan.net/apps/detail/1101，应用ID即为：**app_1101**
+1. 获取组件ID
+待通过审核，组件上架后，点击组件图标，打开链接如下http://open.ffan.net/apps/detail/1101，组件ID即为：**app_1101**
 2.  修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
 ``` objectivec
 {
@@ -857,7 +857,7 @@ NSMutableArray *array = @[].mutableCopy;
 
 ## Hybrid部分
 ### H5 APP 概述
-使用Webkit渲染，跨平台的web应用。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
+使用Webkit渲染，跨平台的web组件。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
 >iOS参考链接：https://github.com/marcuswestin/WebViewJavascriptBridge
 >Android参考链接：https://github.com/gzsll/WebViewJavascriptBridge
 
@@ -882,7 +882,7 @@ Widgets是native与h5的接口，各Widget实现独立接口
 
 #### FFHybridViewController的使用
 
-封装WKWebview和WebViewJavascriptBridge，用于接入h5应用，展示加载进度，返回和关闭按钮
+封装WKWebview和WebViewJavascriptBridge，用于接入h5组件，展示加载进度，返回和关闭按钮
 为定制Widgets，FFHybridViewController 需要子类实现，这里以FFOAPWebViewController为例
 ``` objectivec
 #import <UIKit/UIKit.h>
@@ -958,4 +958,38 @@ Widgets是native与h5的接口，各Widget实现独立接口
 }
 
 @end
+```
+
+# FAQ
+##上传失败
+请检查以下内容
+* 要使用打包工具打包
+* 必须指定文件夹打包
+* config.json文件是否存在
+* FAP小程序的包大小不能超过5M
+##提交失败
+请检查以下内容
+* rn包目录不允许有空格，否则导致找不到config.json，提交失败
+* 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
+##js语法错误，调试时不显示js错误行数，只是卡在99%不动
+请升级nodejs到6.6版本以上
+##本地调试正常，远程打包应用报错
+请检查入口类是否使用export default class导出默认类
+
+##iOS运行正常，安卓运行崩溃
+请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
+
+##文本框iOS使用正常，安卓推出两次
+请按照下面例子的方式调用
+```
+<TextInput
+ref={component => this._textInput = component}
+blurOnSubmit={false}
+onSubmitEditing={this._onSubmitEditing.bind(this)}
+/>
+
+_onSubmitEditing(event) {
+this._textInput.blur();
+console.log('do something')
+}
 ```

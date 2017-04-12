@@ -1,4 +1,4 @@
-# 开始前必读
+﻿# 开始前必读
 
 ## 首页
 
@@ -14,7 +14,7 @@
 
 什么是蓝海顾客。蓝海开放平台为顾客提供的客户端，或者其他客户端嵌入蓝海开放平台的SDK，顾客可以使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
 
-为了识别蓝海商家中的员工，每个员工针对每个商家，会产生一个安全的wID。开发者在使用API的官方接口时，都需要传递wID。
+为了识别蓝海商家中的员工，每个员工针对每个商家，会产生一个安全的wid。开发者在使用API的官方接口时，都需要传递wid。
 
 为了识别蓝海顾客中的会员，每个会员针对每个商家，会产生一个安全的openID。开发者在使用API的官方接口时，都需要传递openID。
 
@@ -292,7 +292,7 @@ sdk.openWebPage({"url":"www.baidu.com"})
 ```
 **closeWindow**
 
-- 功能描述: 通过 `H5` 关闭一个 `WebView`中的`H5` 页面
+- 功能描述: 通过 `WebView` 关闭一个 `h5` 页面
 
 - 方法名称: sdk.closeWindow
 
@@ -355,13 +355,14 @@ sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
     {
     // success
     // data格式为启动之前传递的参数
-      "storeName":"GAP",
-      "org":"wanda",
-      "storeId":"10000",
-      "token":"8943o9432943948394839",
-      "userId":"18510000005"
+        "wid": "9843o94329439483lkujndhsa", //账号唯一标识，类似微信登录的openid
+        "storeName": "GAP金地中心店", //店铺名称
+        "storeAddress": "北京市朝阳区建国路91号1层", //店铺地址
+        "storeLogo": "http://img0.imgtn.bdimg.com/it/u=3322805433,3472912087&fm=23&gp=0.jpg", //店铺logo
+        "org": "wanda”, //标识来源，固定值
+        "token": "8943o9432943948394809" //登录身份令牌
     }
-  }).catch(function(err){
+}).catch(function(err){
     //fail
   })
 ```
@@ -492,7 +493,6 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
 - 这里需要注意的是所有参数名均为小写字符。对 `str1` 作 `SHA256` 加密, 字段名和字段值都采用原始值, 不进行 `URL` 转义。
->>>>>>> sit
 
   <p><font color=red>注意: 出于安全考虑, 开发者必须在服务器端实现签名的逻辑</font></p>
 
@@ -832,7 +832,7 @@ NSMutableArray *array = @[].mutableCopy;
 
 2. 创建应用
 ![](http://img1.ffan.com/T1KIVTBTYb1RCvBVdK)
-点击左上脚**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
+点击左上角**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
 
 3. 审核
 应用提交后呈现待审核状态，如下图：
@@ -845,7 +845,7 @@ NSMutableArray *array = @[].mutableCopy;
 ### 验证
 
 1. 获取应用ID
-待通过审核，应用上架后，点击应用图标，打开链接如下http://open.sit.ffan.net/apps/detail/1101，应用ID即为：**app_1101**
+待通过审核，应用上架后，点击应用图标，打开链接如下http://open.ffan.net/apps/detail/1101，应用ID即为：**app_1101**
 2.  修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
 ``` objectivec
 {
@@ -967,4 +967,38 @@ Widgets是native与h5的接口，各Widget实现独立接口
 }
 
 @end
+```
+
+# FAQ
+##上传失败
+请检查以下内容
+* 要使用打包工具打包
+* 必须指定文件夹打包
+* config.json文件是否存在
+* FAP小程序的包大小不能超过5M
+##提交失败
+请检查以下内容
+* rn包目录不允许有空格，否则导致找不到config.json，提交失败
+* 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
+##js语法错误，调试时不显示js错误行数，只是卡在99%不动
+请升级nodejs到6.6版本以上
+##本地调试正常，远程打包应用报错
+请检查入口类是否使用export default class导出默认类
+
+##iOS运行正常，安卓运行崩溃
+请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
+
+##文本框iOS使用正常，安卓推出两次
+请按照下面例子的方式调用
+```
+<TextInput
+ref={component => this._textInput = component}
+blurOnSubmit={false}
+onSubmitEditing={this._onSubmitEditing.bind(this)}
+/>
+
+_onSubmitEditing(event) {
+this._textInput.blur();
+console.log('do something')
+}
 ```

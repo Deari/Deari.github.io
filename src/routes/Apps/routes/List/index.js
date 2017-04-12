@@ -25,17 +25,23 @@ class AppsList extends React.Component {
     currentPageIndex:1,
     pageIndexs:[],
     pageSum:0,
-    limit:10
+    limit:10,
+    searchValue:''
   }
-
-  async getList() {
-    const apiUrl = getDomain("web/developer/apps")
+  handleChange(e){
+    if(!e){
+       this.setState({searchValue:''},this.upDate())  
+    }
+    this.setState({searchValue:e.target.value},this.upDate())
+  }
+  async getList(appName) {
+    const apiUrl = appName?getDomain(`web/developer/apps?appName=${appName}`):getDomain("web/developer/apps")
     const review = this.getReviewStatus()
-    const {limit, currentPageIndex} = this.state
+    const {limit, currentPageIndex,searchValue} = this.state
     try {
       let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex });
       if(res.status == 200){
-        return res.data 
+        return res.data
       } else {
         debug.warn("获取列表接口错误")
         return false
@@ -125,7 +131,7 @@ class AppsList extends React.Component {
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
         
-        const editUrl = `/apps/edit/${obj.id}/5`
+        const editUrl = `/apps/edit/${obj.id}/1`
         const versionEditUrl = `/apps/edit/${obj.id}/3`
         obj.btnData = [
           {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
@@ -144,22 +150,22 @@ class AppsList extends React.Component {
       let url = getLoginDomain(`passport/session-check.json`)
       let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
       let callbackUrl = location.href
-
-      LoginSDK.getStatus( async (status, data) => {
-      if (status) {
-   
-        const resData = await this.getList()
-        const listData = resData.list
-        const newData = listData && this.formatListData(listData)
- 
-        const pageSum = resData.page.lastPage
-        const pageIndexs = this.getPageIndexs(pageSum)
-  
-        newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
-      } else {
-        debug.warn("登录失败")
+      try{
+         LoginSDK.getStatus( async (status, data) => {
+          if (status) {
+            const resData = this.state.searchValue?await this.getList(this.state.searchValue):await this.getList()
+            const listData = resData.list
+            const newData = listData && this.formatListData(listData)
+            const pageSum = resData.page.lastPage
+            const pageIndexs = this.getPageIndexs(pageSum)
+            newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
+          } else {
+            debug.warn("登录失败")
+          }
+        }, url, loginUrl, callbackUrl)
+      }catch(e){
+        console.log(e)
       }
-    }, url, loginUrl, callbackUrl)
   }
   componentDidMount() {
     this.upDate()
@@ -194,8 +200,7 @@ class AppsList extends React.Component {
   }
   render() {
 
-    const { navData, listData, pageIndexs, pageSum, currentPageIndex,limitList} = this.state
-
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList, searchValue} = this.state
     const urls = {
       create: { url: `/apps/create`, name: '创建新应用' },
       list: { url: `/apps/list`, name: '我的应用', active: true },
@@ -206,7 +211,7 @@ class AppsList extends React.Component {
       <div className="container clx">
         <Slidebar urls={urls} />
         <div className="sub-container plf bg-white">
-          <ListNav navData={navData} onChange={this.changeNav.bind(this)} />
+          <ListNav navData={navData} label='应用名称' searchValue={searchValue} handleSearch={this.handleChange.bind(this)} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
             <li className="w124">Logo</li>
             <li className="w332">应用名称</li>

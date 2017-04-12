@@ -31,6 +31,48 @@ const UPDATE_CONFIGAUDIOARR = 'UPDATE_CONFIGAUDIOARR'
 const UPDATE_CONFIGAUDIOKEY = 'UPDATE_CONFIGAUDIOKEY'
 const UPDATE_CONFIGAUDIOVALUE = 'UPDATE_CONFIGAUDIOVALUE'
 const UPDATE_CODE_VERSION = 'UPDATE_CODE_VERSION'
+
+const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE'
+const TOGGLE_LOGOLIST = 'TOGGLE_LOGOLIST'
+const TOGGLE_IDLIST = 'TOGGLE_IDLIST'
+const WTOGGLE_LOGOLIST =  'WTOGGLE_LOGOLIST'
+const WTOGGLE_IDLIST =  'WTOGGLE_IDLIST'
+const TOGGLE_NAMELIST = 'TOGGLE_NAMELIST'
+const WTOGGLE_NAMELIST = 'WTOGGLE_NAMELIST'
+
+export const toggleActive= (active) => ({
+  type : TOGGLE_ACTIVE,
+  active: active
+})
+
+export const toggleLogoList= (logo) => ({
+  type : TOGGLE_LOGOLIST,
+  logo
+})
+
+export const toggleIdList= (id) => ({
+  type : TOGGLE_IDLIST,
+  id
+})
+
+export const WtoggleLogoList= (logo) => ({
+  type : WTOGGLE_LOGOLIST,
+  logo
+})
+
+export const WtoggleIdList= (id) => ({
+  type : WTOGGLE_IDLIST,
+  id
+})
+export const toggleNameList= (name) =>({
+  type : TOGGLE_NAMELIST,
+  name
+})
+export const WtoggleNameList= (name) =>({
+  type : WTOGGLE_NAMELIST,
+  name
+})
+
 export const toggleCodeVersion = (version) => ({
   type: UPDATE_CODE_VERSION,
   version
@@ -143,6 +185,87 @@ export const updateCodeDesc = (data) => ({
 })
 
 const ACTION_HANDLERS = {
+    [TOGGLE_ACTIVE]: (state, action) => {
+      return {
+        ...state,
+        form2:{
+          ...state.form2,
+          active:action.active
+        }
+      }
+    },
+   [WTOGGLE_NAMELIST]:(state,action)=>{
+      const nameList = state.form2.wNameList
+      const newList = nameList.filter((v)=>v!=action.name)
+      newList.length == nameList.length ? newList.push(action.name) : null;
+      return {
+        ...state,
+        form2: {
+          ...state.form2,
+          wNameList:newList
+        }
+      }
+  },
+  [TOGGLE_NAMELIST]:(state,action)=>{
+    const nameList = state.form2.nameList
+    const newList = nameList.filter((v)=>v!=action.name)
+    newList.length == nameList.length ? newList.push(action.name) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        nameList:newList
+      }
+    }
+  },
+   [WTOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.wIdList
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        wIdList: newList
+      }
+    }
+  },
+ [WTOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.wLogoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2: {
+        ...state.form2,
+        wLogoList:newList
+      }
+    }
+  },
+ [TOGGLE_IDLIST]: (state, action) => {
+    const idList = state.form2.idList;
+    const newList = idList.filter((v)=>v!=action.id)
+    newList.length == idList.length ? newList.push(action.id) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        idList: newList
+      }
+    }
+  },
+  [TOGGLE_LOGOLIST]: (state, action) => {
+    const logoList = state.form2.logoList
+    const newList = logoList.filter((v)=>v!=action.logo)
+    newList.length == logoList.length ? newList.push(action.logo) : null;
+    return {
+      ...state,
+      form2:{
+        ...state.form2,
+        logoList: newList
+      }
+    }
+  },  
   [UPDATE_CODE_VERSION]:(state,action)=>{
       return {
         ...state,
@@ -155,7 +278,7 @@ const ACTION_HANDLERS = {
    [UPDATE_CONFIGAUDIOVALUE]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
-     newList[action.index].audioList[action.k].audioValue = action.value
+     newList[action.index].valueList[action.k].value = action.value
      return{
       ...state,
       form2:{
@@ -167,7 +290,7 @@ const ACTION_HANDLERS = {
    [UPDATE_CONFIGAUDIOKEY]:(state,action)=>{
      const configList = state.form2.configList
      let newList = [...configList];
-     newList[action.index].audioList[action.k].audioKey = action.key
+     newList[action.index].valueList[action.k].key = action.key
      return{
       ...state,
       form2:{
@@ -180,10 +303,10 @@ const ACTION_HANDLERS = {
      const configList = state.form2.configList
      let newList = [...configList];
      if(action.k!=-1){
-       newList[action.index].audioList.splice(action.k,1)
+       newList[action.index].valueList.splice(action.k,1)
      }else{
-       const obj = {audioKey:'',audioValue:''}
-       newList[action.index].audioList.push(obj)
+       const obj = {key:'',value:''}
+       newList[action.index].valueList.push(obj)
      }
     return{
       ...state,
@@ -254,13 +377,12 @@ const ACTION_HANDLERS = {
     }
   },
   [UPDATE_CONFIGARR]:(state,action)=>{
-    console.log(action)
     const configList = state.form2.configList;
     let newList = [...configList];
     if(action.index!=-1){
       newList.splice(action.index,1)
     }else{
-      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,audioList:[]}
+      const obj = { type: 'input', id: 0, label: '', value: '', desc: '', enableEdit: true,valueList:[]}
       newList.push(obj)
     }
     return{
@@ -402,12 +524,22 @@ const initialState = {
     appKind: 0
   },
   form2: {
-    codeId:-1,
+    active: {
+      trim: 0,
+      type: ""
+    },
     publishList: [
       { txt: '手动发布此版本', value: 0 },
       { txt: '自动发布此版本', value: 1 },
     ],
-    configList:[],
+    datalist:[],
+    idList: [],
+    logoList: [],
+    wLogoList: [],
+    wIdList: [],
+    nameList: [],
+    wNameList: [],
+    configList: [],
     codeDesc: '',
     codeDescCount: 0,
     isDescErr: false,
@@ -465,11 +597,11 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res=>{
       if(res.status == 200) {
-        const { appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, tags, appKind, appkey, 
-          defaultLayout:size,
+        const {  appThumb, categoryId, platform, appKind, appkey,
+          defaultLayout: size,
           fileName, fileLink, moduleName, } = res.data
+        const { appDesc, appLogo, appName, tags='',appPreviewImage} = res.data.changes
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion=''} = res.data && res.data.versions[0]
-
         let lastVersion = codeVersion
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
           if(!res.data.versions[1]){

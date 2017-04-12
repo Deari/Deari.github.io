@@ -25,23 +25,30 @@ class CreateContainer extends Component {
     let url = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = location.href
-
-    LoginSDK.getStatus((status, data) => {
-      if (status) {
-        this.props.getTags()
-        this.props.getCates()
-        this.props.toggleStep(0)
-      } else {
-        debug.warn("登录失败")
-      }
-    }, url, loginUrl, callbackUrl)
+    try{
+      LoginSDK.getStatus((status, data) => {
+        if (status) {
+          this.props.getTags()
+          this.props.getCates()
+          this.props.toggleStep(0)
+        } else {
+          debug.warn("登录失败")
+        }
+      }, url, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   isLogin() {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    LoginSDK.getStatus((status, data) => {
+    try{
+      LoginSDK.getStatus((status, data) => {
       if (!status) debug.warn('请先登录')
-    }, sessionUrl)
+      }, sessionUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitChoice(values) {
@@ -56,8 +63,8 @@ class CreateContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/apps/list`
-
-    LoginSDK.getStatus((status, data) => {
+    try{
+         LoginSDK.getStatus((status, data) => {
       if (status) {
 
         const formData = new FormData()
@@ -77,36 +84,40 @@ class CreateContainer extends Component {
         const url = getDomain(`web/developer/app`)
         
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
-          if(res.status == 200) {
-            const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
-            const versionFormData = new FormData();
-            versionFormData.append("prepareVersion", "1");
-            this.props.updateForm2({
-              appId: res.data.appId,
-              appLogo:res.data.appLogo,
-              appKey:res.data.appkey,
-              appName:res.data.appName
-            })
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
-               if(versionRes.status == 200) {
-                 this.props.updateForm2({
-                   codeId:versionRes.data[0].codeId
-                 })
-               }
-            })
-            this.props.toggleStep(2)
-            window.scrollTo(0,0)
-          } else {
-            debug.warn('请完善表单信息')
-          }
-        }).catch(e => {  
-          console.log('网络错误', e)
-        })
+            if(res.status == 200) {
+              const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+              const versionFormData = new FormData();
+              versionFormData.append("prepareVersion", "1");
+              this.props.updateForm2({
+                appId: res.data.appId,
+                appLogo:res.data.appLogo,
+                appKey:res.data.appkey,
+                appName:res.data.appName
+              })
+              fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false}).then(versionRes =>{
+                if(versionRes.status == 200) {
+                  this.props.updateForm2({
+                    codeId:versionRes.data[0].codeId
+                  })
+                }
+              })
+              this.props.toggleStep(2)
+              window.scrollTo(0,0)
+            } else {
+              const errMsg = debug.getErrStatus(res.status)
+              debug.warn(errMsg)
+            }
+          }).catch(e => {  
+            console.log('网络错误', e)
+          })
 
-      } else {
-        debug.warn('请先登录')
-      }
-    }, sessionUrl, loginUrl, callbackUrl)
+          } else {
+            debug.warn('请先登录')
+          }
+      }, sessionUrl, loginUrl, callbackUrl)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   submitSecond(values) {
@@ -116,7 +127,7 @@ class CreateContainer extends Component {
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/apps/list`
-
+    try{
     LoginSDK.getStatus((status, data) => {
       if (status) {
 
@@ -200,7 +211,8 @@ class CreateContainer extends Component {
           if (res.status == 200) {
             this.props.toggleStep(3)
           } else {
-            debug.warn('请完善表单信息')
+            const errMsg = debug.getErrStatus(res.status)
+            debug.warn(errMsg)
           }
         }).catch(e => {
           console.log('网络错误', e)
@@ -210,6 +222,9 @@ class CreateContainer extends Component {
         debug.warn("请先登录")
       }
     }, sessionUrl, loginUrl, callbackUrl)
+    } catch(e) {
+      console.log(e)
+    }
   }
 
   previous() {

@@ -1,43 +1,42 @@
 @import "~layouts/CoreLayout/CoreLayout.scss";
+
 $i-color:#46db60;
-.step-finish{
-    width: $sub-container-width; 
-    font-size: 18px;
-    color: $black-color;
+
+.step-finish1{
+  padding: 20px 0;
+  width: $sub-container-width; 
+  background: $white-color;
+  .finish-btn{
     text-align: center;
-    padding: 0 93px 0 80px;
-    background: $white-color;
-    span{
-        height: $default-height + 138px;
-        line-height: $default-height + 140px;
-    }
     i{
-        font-size: 74px;
-        color: $i-color;
-        vertical-align: middle;
-        margin-right: 22px;
+      font-size: 74px;
+      color: #46db60;
+      vertical-align: middle;
+      margin-right: 22px;
     }
-     .form-btn{
-        width:100%;
-        height: 110px;
-        border-top: 1px solid #ededed;
-        text-align: center;
-        button{
-            width: $default-width + 32px;
-            height: $default-width - 65px;
-            background: #2692fb;
-            border-radius: 2px;
-            border: 0;
-            font-size: $text-font-size - 7px;
-            color: $white-color;
-            line-height: $text-line-height - 5px;
-            margin-top: 31px;
-            margin-right: $default-margin-right - 30px;
-            display: inline-block;
-            cursor: pointer;
-        }
-         button:last-child{
-            margin-right: 0;
-        }
-    } 
+    span{
+      line-height: 130px;
+    }
+  }
+  .finish-text-box{
+    margin: 6px auto;
+    width: 500px;
+    font-size: 14px;
+    p{
+      padding-bottom: 10px;
+      color: #666;
+      line-height: 20px;
+    }
+  }
+  .finish-return{
+    display: block;
+    margin: 20px 0;
+    width: 132px;
+    height: 33px;
+    line-height: 33px;
+    color: #fff;
+    text-align: center;
+    background: #1a8fff;
+    border-radius: 2px;
+  }
 }

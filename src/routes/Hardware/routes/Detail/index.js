@@ -122,7 +122,7 @@ class HardwareDetail extends React.Component {
               <h5 className="detail-title"><i className="detail-title-dot"></i>已售:
                 <span className="detail-sold">180件</span>
               </h5>
-              <h5 className="detail-title"><i className="detail-title-dot"></i>价格 :
+              <h5 className="detail-title"><i className="detail-title-dot"></i>价格:
                 <span className="detail-price">{data.price}<i>元</i></span>
               </h5>
             </div>
