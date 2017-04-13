@@ -131,7 +131,7 @@ class Main extends React.Component {
         <div className="container clx">
           <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} bottomComponent={RenderTags} typeName="hardware"/>
           <div className="sub-container">
-            <div className="sub-container-banner"></div>
+            <div className="sub-container-banner-hardware"></div>
             <h2 className="open-content-nav">
               <i className="iconfont icon-hot-control"></i>热门硬件
               {/**<form>
