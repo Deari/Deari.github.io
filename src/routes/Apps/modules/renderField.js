@@ -173,7 +173,7 @@ export class renderAPKFile extends Component {
     const xhr = new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
-    const url = `http://xapi.intra.sit.ffan.net/app/v1/bo/sliceUpload`
+    const url = `http://api.ffan.net/app/v1/bo/sliceUpload`
     const readyChange = (that) => {
 
       if (xhr.readyState == 4) {
