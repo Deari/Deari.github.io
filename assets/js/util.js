@@ -507,7 +507,7 @@
 
         $.fn.showBig = function (options) {
                 let $this = this;
-                let imglist = new Array;
+                let imgList = [];
                 let $showBig = $('.showBig');
                 let _that;
                 let positionY;
@@ -520,16 +520,16 @@
                 });
                 $('.swiper-wrapper').html('');
                 this.find('img').each(function () {
-                        imglist.push($(this).attr('src').split('/')[1]);
+                        imgList.push($(this).attr('src').split('/')[1]);
                         $('.swiper-wrapper').append('<div class="swiper-slide"><div class="background-img" style="background-image: url(bigImages/'+$(this).attr('src').split('/')[1]+');"></div><div class="mask"></div></div>');
                 });
                 $('.swiper-slide').css({width:"100%", height:"100%"});
                 $this.on('click','img', function () {
                         $('body').css({"overflow":"hidden"});
                         _this = $(this).children();
-                        _that = $('.swiper-slide').eq(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1).children('.background-img');
+                        _that = $('.swiper-slide').eq(imgList.indexOf(_this.context.currentSrc.split('images/')[1]) + 1).children('.background-img');
                         positionY = 0;
-                        swiper.slideTo(imglist.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
+                        swiper.slideTo(imgList.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
                         $showBig.css({"opacity":1, "z-index":9999});
                         function _wheelDelta(ev) {
                                 if(ev.wheelDelta>0){positionY+=5;}else {positionY-=5;}
@@ -542,7 +542,7 @@
                                         let  moveY = event.originalEvent.touches[0].clientY - startY;
                                         startY = event.originalEvent.touches[0].clientY;
                                         if (moveY>0){positionY +=5;}else {positionY -=5;}
-                                        _that.css({"background-position-y":positionY + "px"})
+                                        _that.css({"background-position-y":positionY + "px"});
                                         event.preventDefault();
                                 })
                         })
