@@ -532,7 +532,7 @@
                         swiper.slideTo(imgList.indexOf(_this.context.currentSrc.split('images/')[1]) + 1,0,false);
                         $showBig.css({"opacity":1, "z-index":9999});
                         function _wheelDelta(ev) {
-                                if(ev.wheelDelta>0){positionY+=10;}else {positionY-=10;}
+                                if(ev.wheelDelta>0){positionY+=15;}else {positionY-=15;}
                                 _that.css({"background-position-y":positionY + "px"})
                         }
                         document.addEventListener('mousewheel',_wheelDelta,false);
