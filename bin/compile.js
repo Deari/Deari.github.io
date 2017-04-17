@@ -96,7 +96,7 @@ const getRemote = (slot) => {
   const website  = `http://open.${slot}.ffan.net`;
   return {
     name: 'origin',
-    url: 'git@10.77.144.192:web-fe/colosseum-build.git',
+    url: 'git@10.77.144.192:sj-fe/colosseum-build.git',
     website,
   }
 }
