@@ -602,6 +602,23 @@ export const getAppInfo = (appId) => {
           fileName, fileLink, moduleName, } = res.data
         const { appDesc, appLogo, appName, tags='',appPreviewImage} = res.data.changes
         const {codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting='',codeVersion=''} = res.data && res.data.versions[0]
+        const {apps, widgets} = res.data && res.data.relations 
+        let idList = []
+        let logoList = []
+        let nameList = []
+        let wLogoList = []
+        let wIdList = []
+        let wNameList = []
+        for(var i = 0;i<apps.length;i++){   
+          idList.push(apps[i].appId)
+          logoList.push(apps[i].appLogo)
+          nameList.push(apps[i].appName)
+        }
+        for(var j=0;j<widgets.length;j++){
+          wIdList.push(widgets[j].appId)
+          wLogoList.push(widgets[j].appLogo)
+          wNameList.push(widgets[j].appName)
+        }
         let lastVersion = codeVersion
         if( res.data && res.data.versions[0].reviewStatus ==  0 ){
           if(!res.data.versions[1]){
@@ -621,7 +638,8 @@ export const getAppInfo = (appId) => {
         }))
         dispatch(updateForm2({ 
           appId,appName,appLogo,
-          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, 
+          platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName,
+          idList, logoList, nameList, wLogoList, wIdList, wNameList, 
           lastVersion:lastVersion,
           appKey:appkey, 
         }))
