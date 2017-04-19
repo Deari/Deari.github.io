@@ -1,6 +1,7 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
 import Main from './components/Main'
+// import Main from './cs-new/Main'
 
 export default (store) => ({
   path: 'apps',
@@ -16,7 +17,8 @@ export default (store) => ({
         require('./routes/Detail')(store),
         require('./routes/List')(store),
         require('./routes/Editor')(store),
-        require('./routes/Doc')
+        require('./routes/Doc'),
+        require('./routes/Analytics').default
       ])
     })
   }

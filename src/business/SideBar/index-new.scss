@@ -1,0 +1,42 @@
+@import 'src/styles/v/var';
+
+
+.sideBar {
+  position: absolute;
+  top: 77px;
+  bottom: 0;
+  width: 210px;
+  padding: 0 10px;
+  background: #fff;
+}
+
+.createBtn {
+  display: block;
+  width: 150px;
+  height: 30px;
+  margin: 30px auto;
+  border: 1px solid $site-blue;
+  border-radius: 2px;
+  font-size: 15px;
+  color: $site-blue;
+  background: #fff;
+  outline: none;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background: $site-blue;
+  }
+  i {
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}
+.pageLinks {
+  
+}
+.tagLinks {
+
+}
+.content {
+
+}

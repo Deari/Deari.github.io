@@ -1,0 +1,24 @@
+@import 'src/styles/v/var';
+
+.root {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+}
+.item {
+  border-bottom: 1px solid #eee;
+  &.active {
+    border-color: $site-blue;
+    border-radius: 2px;
+    & > a {
+      color: #fff;
+    }
+  }
+  &:hover {
+    border-color: $site-blue;
+  }
+  & > a {
+    display: block;
+    padding: 10px;
+    font-size: 14px;
+  }
+} 
