@@ -5,11 +5,12 @@ class Table extends Component {
   
   render() {
     return (
-      <div className="panel">
-        <table>
+     <div className={s.panel}>
+        <h2 className={s.title}><i className="iconfont icon-data-count"></i>应用数据统计</h2>
+        <table className={s.table} cellspacing="0" cellpadding="0">
           <thead>
             <tr>
-              <th>LOGO</th>
+              <th>Logo</th>
               <th>应用名称</th>
               <th>新增商家</th>
               <th>活跃商家</th>
@@ -20,32 +21,30 @@ class Table extends Component {
           </thead>
           <tbody>
             <tr>
-              <td><img src="x" alt="LOGO"/></td>
-              <td>
-                <div>
-                  <span>会员管理</span>
-                  <span>FAP</span>
-                  <span>简介</span>
-                </div>
+              <td className={s.imgWrap}><img src="x" alt="LOGO"/></td>
+              <td className={s.appInfo}>
+                <span className={s.name}>会员管理</span>
+                <span className={s.desc}>全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据, 全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据</span>
+                <span className={s.link}>在 应用市场 中查看<i className="iconfont icon-look"></i></span>
               </td>
-              <td>
-                <span>今：</span>
-                <span>昨：2</span>
+              <td className={s.common}>
+                <span>今：<i className={s.num}>2</i></span>
+                <span>昨：<i className={s.num}>2</i></span>
               </td>
-              <td>
-                <span>今：2</span>
-                <span>昨：2</span>
+              <td className={s.common}>
+                <span>今：<i className={s.num}>2</i></span>
+                <span>昨：<i className={s.num}>2</i></span>
               </td>
-              <td>
-                <span>今：2</span>
-                <span>昨：2</span>
+              <td className={s.common}>
+                <span>今：<i className={s.num}>2</i></span>
+                <span>昨：<i className={s.num}>2</i></span>
               </td>
-              <td>
-                <span>今：2</span>
-                <span>昨：2</span>
+              <td className={s.common}>
+                <span>今：<i className={s.num}>2</i></span>
+                <span>昨：<i className={s.num}>2</i></span>
               </td>
-              <td>
-                <span>查看</span>
+              <td className={s.actions}>
+                <span className={s.btn}>查看</span>
               </td>
             </tr>
           </tbody>
