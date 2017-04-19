@@ -1,0 +1,98 @@
+.panel{
+    padding: 0 12px;
+    h2{
+        padding: 0 15px;
+        height: 71px;
+        line-height: 71px;
+        font-size: 16px;
+        color: #000;
+        i{
+            color: #2692fb;
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    }
+    table{
+        border: 1px solid #eeeeee;
+        font-size: 16px;
+        th{
+            height: 50px;
+            background: #eeeeee;
+            border-right: 1px solid #fff;
+            color: #666666;
+            &:last-child{
+                border-right: 0;
+            }
+        }
+        td{
+            height: 126px;
+            &:first-child{
+                width: 122px;
+                img{
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 8px;
+                    margin: 12px 9px 15px 13px;
+                }
+            }
+            &:nth-child(2){
+                width: 242px;
+                div{
+                    padding: 16px 13px;
+                    span:first-child{
+                        color: #000;
+                        display: block;
+                        margin-bottom: 10px;
+                    }
+                    span:nth-child(2){
+                        overflow : hidden;
+                        text-overflow: ellipsis;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                        font-size: 13px;
+                        color: #666666;
+                        line-height: 22px;
+                    }
+                    span:last-child{
+                        font-size: 13px;
+                        color: #999;
+                        margin-top: 10px;
+                        display: block;
+                        i{
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+            &:nth-child(3),&:nth-child(4),&:nth-child(4),&:nth-child(5),&:nth-child(6){
+                width: 91px;
+                span{
+                    display: block;
+                    margin:0 0 14px 14px;
+                    color: #aaaaaa;
+                    .num-color{
+                        color: #000000;
+                        font-style: normal;
+                    }
+                }
+            }
+            &:last-child {
+                text-align: center;
+                width: 112px;
+                span{
+                    width: 85px;
+                    height: 30px;
+                    line-height: 30px;
+                    border: 1px solid #999999;
+                    border-radius: 4px;
+                    display: block;
+                    margin: 0 auto;
+                    cursor: pointer;
+                    font-size: 14px;
+                    color: #000;
+                }
+            }
+        }
+    }
+}
