@@ -70,8 +70,6 @@ const SecondStepForm = props => {
 
   const appObj = compose(idList,logoList,nameList)
   const weiObj = compose(wIdList,wLogoList,wNameList)
-  const appActive = appObj&&appObj.length!=0 ? 1:0;
-  const widgetActive = weiObj&&weiObj.length!=0 ? 1:0;
   const totalCount = 4000
   const count = initialValues && initialValues.codeDescCount || 0
   const isDescErr = initialValues && initialValues.isDescErr || false
@@ -136,9 +134,6 @@ const SecondStepForm = props => {
         handleLogochange={handleLogochange} 
         handleIdchange={handleIdchange}
         handleNamechange={handleNamechange}
-        appActive={appActive}
-        widgetActive={widgetActive}
-        toggleActive={props.toggleActive}
       />
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}

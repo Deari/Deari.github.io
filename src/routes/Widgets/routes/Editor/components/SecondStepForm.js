@@ -97,8 +97,6 @@ class SecondStepForm extends React.Component {
     const { totalCount } = this.state
     const appObj = compose(idList,logoList,nameList)
     const weiObj = compose(wIdList,wLogoList,wNameList)
-    const appActive = appObj&&appObj.length!=0 ? 1:0;
-    const widgetActive = weiObj&&weiObj.length!=0 ? 1:0;
     const handleLogochange = (data,type)=>{
       type = type ? type : active.type
       type === "app" ? this.props.toggleLogoList(data) : this.props.WtoggleLogoList(data)

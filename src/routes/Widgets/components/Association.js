@@ -6,8 +6,8 @@ import DescribeIcon from 'components/DescribeIcon'
 
 class AssociationModule extends Component {
   state={
-    appActive:this.props.appActive,
-    widgetActive:this.props.widgetActive,
+    appActive:0,
+    widgetActive:0,
     hardwareActive:0
   }
   onchange(e){
@@ -42,6 +42,15 @@ class AssociationModule extends Component {
     this.props.handleIdchange(item.id,'widget')
     this.props.handleNamechange(item.name,'widget')
   }
+  componentWillReceiveProps() {
+    const { appObj, weiObj } = this.props
+    if (Array.isArray(appObj)&&appObj.length!=0) {
+      this.setState({ appActive: 1 })
+    }
+    if (Array.isArray(weiObj)&&weiObj.length!==0) {
+      this.setState({ widgetActive: 1 })
+    }
+  }
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
     const { appObj , weiObj } = this.props
@@ -54,7 +63,7 @@ class AssociationModule extends Component {
         	<p className="association-text">
 						应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。
 					</p>
-        	<p className="association-text">应用市场详情页的显示，如下图：<i></i></p>
+        	<p className="association-text">组件市场详情页的显示，如下图：<i></i></p>
         	<div>
         		<div className="row-radio">
 		          <input id="widget" type="checkbox" name='widget' onChange={this.onchange.bind(this)} checked={this.state.widgetActive}/>
