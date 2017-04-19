@@ -20,6 +20,7 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json', 'scss', 'css'],
     alias: {
+      "src": project.paths.client(),
       "styles" : path.join(project.paths.client(), 'styles/')
     }
   },
@@ -157,10 +158,24 @@ webpackConfig.module.loaders = [ {
 // We use cssnano with the postcss loader, so we tell
 // css-loader not to duplicate minimization.
 const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
+const NEW_CSS_LOADER = 'css?sourceMap&-minimize&modules&&localIdentName=[local]_[hash:base64:5]'
+const NEW_CSS_REG = /[\s\S]*-new\.scss$/
+
+webpackConfig.module.loaders.push({
+  test    : NEW_CSS_REG,
+  exclude : null,
+  loaders : [
+    'style',
+    NEW_CSS_LOADER,
+    'resolve-url-loader',
+    'postcss',
+    'sass?sourceMap'
+  ]
+})
 
 webpackConfig.module.loaders.push({
   test    : /\.scss$/,
-  exclude : null,
+  exclude : NEW_CSS_REG,
   loaders : [
     'style',
     BASE_CSS_LOADER,
@@ -168,6 +183,7 @@ webpackConfig.module.loaders.push({
     'sass?sourceMap'
   ]
 })
+
 webpackConfig.module.loaders.push({
   test    : /\.css$/,
   exclude : null,
