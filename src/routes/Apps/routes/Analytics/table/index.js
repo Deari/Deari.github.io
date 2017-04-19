@@ -29,7 +29,7 @@ class Table extends Component {
                 </div>
               </td>
               <td>
-                <span>今：2</span>
+                <span>今：</span>
                 <span>昨：2</span>
               </td>
               <td>
