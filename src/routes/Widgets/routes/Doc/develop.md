@@ -227,7 +227,7 @@ public class MyConfig extends DefaultConfig {
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/ffan-bo-jssdk-0.0.3.min.js
+> http://nres.ffan.com/newactivity/umd/ffan-bo-jssdk-0.0.4.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -261,7 +261,7 @@ ffanSDK.ready(function(sdk) {
 ffanSDK.error(function(res) {
   // config 信息验证失败会执行 error 函数
   // 如签名过期导致验证失败, 具体错误信息可以打开 config 的 debug 模式查看
-  // 也可以在返回的 res 参数中查看, 对于 SPA 可以在这里更新签名
+  // 也可以在返回的 res 参数中查看
 });
 ```
 
