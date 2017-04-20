@@ -243,7 +243,6 @@ public class MyConfig extends DefaultConfig {
 <p><font color=red>所有需要使用JS-SDK的页面必须先注入配置信息, 到后台去进行验证, 否则无法调用</font></p>
 
 ```javascript
-// 检验必传参数 config
 ffanSDK.config({
     appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用appKey
     ts："1486628893",  //签名时使用的时间戳
@@ -256,16 +255,18 @@ ffanSDK.config({
 ### 步骤三: 通过 `ready` 接口处理成功验证
 
 ```javascript
-// 验证通过 ready 函数
 ffanSDK.ready(function(sdk) {
-  // config 信息验证通过后会执行 ready 方法
-});
+  // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，
+  // config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口
+  // 放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，
+  // 不需要放在ready函数中。
+})
+
 ```
 
 ### 步骤四: 通过 `error` 接口处理失败验证
 
 ```javascript
-// 校验失败的 error 函数
 ffanSDK.error(function(res) {
   // config 信息验证失败会执行 error 函数
   // 如签名过期导致验证失败, 具体错误信息可以打开 config 的 debug 模式查看
@@ -273,150 +274,88 @@ ffanSDK.error(function(res) {
 });
 ```
 
-**接口调用说明:**
+## 接口调用说明: 
 
-<p><font color=red>所有接口通过 `ready` 中返回的参数 `sdk` 来调用, 参数是一个对象, 目前提供以下方法:</font></p>
+以下示例代码中的`sdk` 实例对象可通过 `ffanSDK.ready` 函数获取到，或者当接口是在用户触发才调用时，也可以直接通过`ffanSDK` 对象来调用。
 
-**openWebPage**
-
-- 功能描述: 通过 `H5` 打开一个新的 `WebView` 去加载新的 `H5` 页面
-
-- 方法名称: sdk.openWebPage
-
-- 参数定义: 参数为一个 `JSON` 对象
-
-  * **url** 新的 `H5` 页面地址
+**打开指定的H5页面接口**
 
 ```javascript
-sdk.openWebPage({"url":"www.baidu.com"})
+sdk.openWebPage({ "url": "http://www.baidu.com" })
+
 ```
-**closeWindow**
 
-- 功能描述: 通过 `WebView` 关闭一个 `h5` 页面
-
-- 方法名称: sdk.closeWindow
+**关闭当前H5页面接口**
 
 ```javascript
 sdk.closeWindow()
 ```
-**openLocalRNPage**
 
-- 功能描述: 通过H5打开一个新的 `WebView` 去打开一个本地 `React Native` 页面
-
-- 方法名称: sdk.openLocalRNPage
-
-- 参数定义: 参数为一个 `JSON` 对象
-
-  * **moduleName** 要打开的 `FAP小程序` 模块名称
-
-  * **path** `FFOAP` 内 `FAP小程序` 入口文件的相对路径
+**获取设备信息接口** 
 
 ```javascript
-sdk.openLocalRNPage({"moduleName":"test", "path":"FFOAP/applications/applists.ios"})
+sdk.getDevInfo().then(function(data) {
+  // success
+}).catch(function () {
+  // fail
+})
 ```
 
-**getDevInfo** 获取设备信息
+- 调用成功的返回值: 
 
-- 功能描述: `H5` 页面通过 `JSBridge` 获取设备信息
-
-- 方法名称: sdk.getDevInfo
-
-- 参数定义: 空
-
-```javascript
-sdk.getDevInfo()
-  .then(function(data) {
-    // success
-    // data格式为
-    {
-      name:'iOS_Wifi', //设备名称
-      model:'营销', //设备类型
-      systemVersion:'1.0.0', //系统版本
-    }
-  }).catch(function(err) {
-    // fail
-  })
+```json
+{
+  "name": "iOS_Wifi", //设备名称
+  "model": "营销", //设备类型
+  "systemVersion": "1.0.0", //系统版本
+}
 ```
 
-**getEnvInfo** 获取启动参数
-
-- 功能描述: `H5` 页面通过 `JSBridge` 获取启动参数
-
-- 方法名称: sdk.getEnvInfo
-
-- 参数定义: 空
-
-- 返回值: 返回值为一个 `JSON` 对象, 其返回值为当前获取启动参数
+**获取启动参数接口** 
 
 ```javascript
-
-sdk.getEnvInfo({fn:'getLaunchParams',fnParams:{'bar':'foo'}})
-  then(function(data){
-    {
-    // success
-    // data格式为启动之前传递的参数
-        "wid": "9843o94329439483lkujndhsa", //账号唯一标识，类似微信登录的openid
-        "storeName": "GAP金地中心店", //店铺名称
-        "storeAddress": "北京市朝阳区建国路91号1层", //店铺地址
-        "storeLogo": "http://img0.imgtn.bdimg.com/it/u=3322805433,3472912087&fm=23&gp=0.jpg", //店铺logo
-        "org": "wanda”, //标识来源，固定值
-        "token": "8943o9432943948394809" //登录身份令牌
-    }
+sdk.getEnvInfo().then(function(data){
+  // success
 }).catch(function(err){
-    //fail
-  })
+  //fail
+})
 ```
 
-**getLocation** 获取位置信息
+- 调用成功的返回值: 
 
-- 功能描述: `H5` 页面通过 `JSBridge` 获取位置信息
-
-- 方法名称: sdk.getLocation
-
-- 参数定义: 空
-
-- 返回值: 返回值为一个 `JSON` 对象, 其返回值为当前位置的坐标
+```json
+{
+  "wid": "d0da5e64a7515694878fad2f906d5937",
+  "token": "7383079305542ff120faffcd5ae4e33e",
+  "storeName": "门店名称",
+  "storeAddress": "北京市朝阳区",
+  "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK",
+  "org": "wanda"
+}
+```
+**获取位置信息接口** 
 
 ```javascript
-sdk.getLocation()
-  .then(function(data) {
-    // success
-    // data格式为
-    {
-      lot:'116.46', //经度
-      lat:'39.92', //维度
-    }
-  }).catch(function(err) {
-    // fail
-  })
+sdk.getLocation().then(function(data) {
+  //success
+}).catch(function(err) {
+  // fail
+})
 ```
 
-**setTitle** 设置标题
+- 调用成功的返回值
 
-- 功能描述: `H5` 页面通过 `JSBridge` 设置标题
-
-- 方法名称: sdk.setTitle
-
-- 参数定义: 参数为一个 `JSON` 对象
-
-  * **title** 标题的名称
-
-```javascript
-sdk.setTitle({"title":"飞凡demo"})
+```json
+{
+  "lot": "116.46", //经度
+  "lat": "39.92", //维度
+}
 ```
 
-**setRightNavBarItem** 设置右导航图标（分享）的显隐
-
-- 功能描述: `H5` 页面通过 `JSBridge` 设置 `navigationBar` 右边导航图标显示/隐藏(目前只限一个)
-
-- 方法名称: sdk.setRightNavBarItem
-
-- 参数定义: 参数为一个 `JSON` 对象
-
-  * **title** 为分享图标的文案, 如果 `title` 内容为空则不显示右导航图标
+**设置页面标题接口** 
 
 ```javascript
-sdk.setRightNavBarItem({"title":"分享"})
+sdk.setTitle({ "title": "飞凡demo" })
 ```
 
 ## H5授权接口说明
