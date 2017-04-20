@@ -10,7 +10,7 @@ import Login from './Login'
 import Apps from './Apps'
 import Widgets from './Widgets'
 import Hardware from './Hardware'
-
+import ApplyAccount from './ApplyAccount'
 import '../styles/_base.scss'
 
 /*  Note: Instead of using JSX, we recommend using react-router
@@ -27,7 +27,8 @@ export const createRoutes = (store) => ({
     Shop(store),
     Apps(store),
     Widgets(store),
-    Hardware(store)
+    Hardware(store),
+    ApplyAccount
   ]
 })
 

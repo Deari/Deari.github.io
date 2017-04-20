@@ -1,9 +1,54 @@
 import React, { Component } from 'react'
 import s from './index-new.scss'
 
+const TabelItem = ({ data }) => {
+  return ( 
+    <tr>
+      <td className={s.imgWrap}><img src="x" alt="LOGO"/></td>
+      <td className={s.appInfo}>
+        <span className={s.name}>{data.appName}</span>
+        <span className={s.desc}>{data.appDesc}</span>
+        <span className={s.link}>在 应用市场 中查看<i className="iconfont icon-look"></i></span>
+      </td>
+      <td className={s.common}>
+        <span>今：<i className={s.num}>{data.new[0]}</i></span>
+        <span>昨：<i className={s.num}>{data.new[1]}</i></span>
+      </td>
+      <td className={s.common}>
+        <span>今：<i className={s.num}>{data.active[0]}</i></span>
+        <span>昨：<i className={s.num}>{data.active[1]}</i></span>
+      </td>
+      <td className={s.common}>
+        <span>今：<i className={s.num}>{data.launch[0]}</i></span>
+        <span>昨：<i className={s.num}>{data.launch[1]}</i></span>
+      </td>
+      <td className={s.common}>
+        <span>今：<i className={s.num}>{data.download[0]}</i></span>
+        <span>昨：<i className={s.num}>{data.download[1]}</i></span>
+      </td>
+      <td className={s.actions}>
+        <span className={s.btn}>查看</span>
+      </td>
+    </tr>
+  )
+}
+
+TabelItem.defaultProps = {
+  data: {
+    appName: '--',
+    appDesc: '--',
+    aooId: '--',
+    new: [0,0],
+    launch: [0,0],
+    download: [0,0],
+    active: [0,0]
+  }
+}
+
 class Table extends Component {
   
   render() {
+    const { data } = this.props
     return (
      <div className={s.panel}>
         <h2 className={s.title}><i className="iconfont icon-data-count"></i>应用数据统计</h2>
@@ -20,33 +65,8 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className={s.imgWrap}><img src="x" alt="LOGO"/></td>
-              <td className={s.appInfo}>
-                <span className={s.name}>会员管理</span>
-                <span className={s.desc}>全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据, 全国30多个省市县的邮编号码查询，数据权威准确，数百万条数据</span>
-                <span className={s.link}>在 应用市场 中查看<i className="iconfont icon-look"></i></span>
-              </td>
-              <td className={s.common}>
-                <span>今：<i className={s.num}>2</i></span>
-                <span>昨：<i className={s.num}>2</i></span>
-              </td>
-              <td className={s.common}>
-                <span>今：<i className={s.num}>2</i></span>
-                <span>昨：<i className={s.num}>2</i></span>
-              </td>
-              <td className={s.common}>
-                <span>今：<i className={s.num}>2</i></span>
-                <span>昨：<i className={s.num}>2</i></span>
-              </td>
-              <td className={s.common}>
-                <span>今：<i className={s.num}>2</i></span>
-                <span>昨：<i className={s.num}>2</i></span>
-              </td>
-              <td className={s.actions}>
-                <span className={s.btn}>查看</span>
-              </td>
-            </tr>
+            { Array.isArray(data) &&
+              data.map((item, index) => <TabelItem key={index} />) }
           </tbody>
         </table>
       </div>

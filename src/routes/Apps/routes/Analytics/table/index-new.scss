@@ -18,6 +18,9 @@
     border: 1px solid #eeeeee;
     font-size: 16px;
     border-collapse: collapse;
+    tr {
+      // border-bottom: 1px solid #eee;
+    }
     th {
       height: 50px;
       background: #eeeeee;
@@ -28,6 +31,7 @@
       }
     }
     td {
+      padding: 10px;
       &.imgWrap {
         width: 122px;
         text-align: center;

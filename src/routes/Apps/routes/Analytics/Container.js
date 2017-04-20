@@ -43,7 +43,7 @@ class Analytics extends Component {
         <SideBar></SideBar>
         <div className={s.content}>
           <Search onSearch={this.onSearch}></Search>
-          <Table></Table>
+          <Table data={[1,2]}></Table>
         </div>
       </div>
     )
