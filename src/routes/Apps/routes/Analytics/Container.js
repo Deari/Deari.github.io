@@ -9,11 +9,11 @@ import s from './index-new.scss'
 class Analytics extends Component {
   state = {
     api: {
-      uri: getEnvDomain()+'/bo/v1/web/developer/statistics/app',
+      uri: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/app',
       params: {
         page: 1,
         limit: 10,
-        appId: '',
+        appId: 1421,
         appName: ''
       }
     }
@@ -26,7 +26,7 @@ class Analytics extends Component {
 
   getData(){
     const { api } = this.state
-    return fetch(api.uri, { ...api.params }).then(data=>{
+    return fetchUtil.getJSON(api.uri, { ...api.params }).then(data=>{
       console.log(data)
     }).catch(e=>{
       console.warn(e)
