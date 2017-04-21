@@ -440,9 +440,9 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
   1\. 待签名字段
 
 ```javascript
-accessToken=1f7f568afa4204326fede5cc17472b8a535ca39f
-appKey=3b997a1c75a61c26fd0576f814f51df6
-nonceStr=abcdeaasdfasdf
+accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f
+appkey=3b997a1c75a61c26fd0576f814f51df6
+noncestr=abcdeaasdfasdf
 ts=1486351078
 url=http://m.ffan.com?a=b&c=d
 ```
