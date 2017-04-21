@@ -316,14 +316,13 @@ sdk.getEnvInfo().then(function(data){
 
 ```json
 {
-  "uid": "54c2d53dd6eb4363a1eeb58727fc7be6",
-  "token": "7383079305542ff120faffcd5ae4e33e",
-  "wid": "d0da5e64a7515694878fad2f906d5937",
-  "storeName": "门店名称",
-  "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK",
-  "org": "wanda",
-  "plazaId": "1102755",
-  "selectedFloorName": "F2"
+  "wid": "d0da5e64a7515694878fad2f906d5937", //店铺的唯一标识
+  "storeName": "门店名称", //店铺的名称
+  "storeAddress": "北京市朝阳区", // 店铺的地址
+  "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", // 门店的logo
+  "org": "wanda", // 信息来源的标识
+  "plazaId": "1102755", //店铺所在广场的id, 可能为空
+  "selectedFloorName": "F2", // 店铺所在广场的楼层, 可能为空
 }
 ```
 **获取位置信息接口** 
@@ -363,10 +362,10 @@ sdk.getUserInfo().then(function (data){
 
 ```json
 {
-  "nickName": "hhhh",
-  "puid": "FA9A86E801054D23A15CEB04CAC847BD",
-  "headPortrait": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK",
-  "mobile": "13466729982"
+  "nickName": "hhhh", // 用户昵称
+  "puid": "FA9A86E801054D23A15CEB04CAC847BD", // 用户id
+  "headPortrait": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", // 用户头像
+  "mobile": "13466729982" // 用户手机号
 }
 ```
 
@@ -420,22 +419,22 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
   - 返回值说明
 
-```
+```json
 // 成功:
 {
-  "status": 200  // int 型, 200 表示成功,
-  "message": "ok"  // string 型,  对 status 的说明,
+  "status": 200,  // int 型, 200 表示成功,
+  "message": "ok",  // string 型,  对 status 的说明,
   "data":{
-    "accessToken":"86f7e437faa5a7fce15d1ddcb9eaeaea377667b8"  // string 型 , 资源接口调用凭证
+    "accessToken":"86f7e437faa5a7fce15d1ddcb9eaeaea377667b8",  // string 型 , 资源接口调用凭证
     "expiresIn":7200  // int 型 accessToken 的过期时间 单位秒
   }
 }
 ```
 
-```
+```json
 // 失败:
 {
-  "status": 4000  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 ,
+  "status": 4000,  // int 型, 4000 表示客户端错误, 5000 表示服务端内部错误 ,
   "message": "param error"  // string 型, 对 status 的文字描述
 }
     ```
