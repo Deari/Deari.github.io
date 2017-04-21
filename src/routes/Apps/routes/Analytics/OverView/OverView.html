@@ -1,66 +1,60 @@
-<h2>应用数据统计/应用名称</h2>
-<ul>
-  <li data-to="1">概况</li>
-  <li data-to="2">版本分布</li>
-</ul>
 
-<div>
-  <div id="1" className='tab-content active'> 
-    <div class="yestoday">
-      <div className="main">
-        <h4>昨日关键指标</h4>
-        <div class="list">
-          <div className='item 1 '>
-            <span>新增商家</span>
-            <span>0</span>
-          </div>
-          <div className='item 2'>
-            <span>活跃商家</span>
-            <span>0</span>
+<h2 className="title"><i className="iconfont icon-fanhui"></i>应用数据统计/应用名称</h2>
+<ul className="tab">
+  <li data-to="1" className="active">概况</li>
+</ul>
+<div className="tab-box">
+  <div id="1" className='box-content active'>
+    <div className="yesterday-business">
+      <div className="yesterday common">
+        <h4 className="content-title">昨日关键指标</h4>
+        <div className="list">
+          <div className='item'>
+            <span className="item-name">新增商家</span>
+            <span className="item-num">0</span>
           </div>
           <div className='item'>
-            <span>启动次数</span>
-            <span>0</span>
+            <span className="item-name">活跃商家</span>
+            <span className="item-num">0</span>
           </div>
           <div className='item'>
-            <span>下载次数</span>
-            <span>0</span>
+            <span className="item-name">启动次数</span>
+            <span className="item-num">0</span>
           </div>
+          <div className='item'>
+            <span className="item-name">下载次数</span>
+            <span className="item-num">0</span>
+          </div>
+          <div className="clear"></div>
         </div>
       </div>
-
-      <div className="sidebar">
-        <h4>累计商家</h4>
-        <span>0</span>
+      <div className="business common">
+        <h4 className="content-title">累计商家</h4>
+        <span className="item-num no-name">0</span>
       </div>
     </div>
-
-    <div>
-      <div className='tab-title'>
+    <div className="chart-show">
+      <div className='chart-title'>
         <select name="" id="">
-        <option value=""></option>
-      </select>
-
-      <ul>
-        <li>新增商家</li>
-        <li>活跃商家</li>
-        <li>启动次数</li>
-        <li>下载次数</li>
-      </ul>
-
+          <option value="">最近30天</option>
+        </select>
+        <ul className="chart-tab">
+          <li className="active">新增商家</li>
+          <li>活跃商家</li>
+          <li>启动次数</li>
+          <li>下载次数</li>
+        </ul>
       </div>
-
-      <div class="tab-content">
-        <h4>2017-04-06至2017-03-07</h4>
-        <div></div>
+      <div className="chart-content">
+        <h4 className="content-title">2017-04-06至2017-03-07</h4>
+        <div className="chart">这里是图表</div>
       </div>
-
-      <div class="tab-content">
-        <div>
+      <div className="chart-table">
+        <div className="table-title content-title">
           <span>2017-04-06至2017-03-07</span>
           <a href="#">下载表格</a>
         </div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>时间</th>
@@ -90,5 +84,4 @@
       </div>
     </div>
   </div>
-  <div id="1" class="tab-content"></div>
 </div>

@@ -1,0 +1,153 @@
+.content{
+	margin-top: 16px;
+ 	width: 874px;
+ 	padding: 24px 12px;
+ 	.title{
+		font-size: 16px;
+		line-height: 30px;
+		font-weight: normal;
+		border-bottom: 1px solid #eee;
+		color: #333;
+	}
+	.tab{
+		overflow: hidden;
+		border-bottom: 1px solid #eee;
+		height: 45px;
+		line-height: 42px;
+		li{
+			margin: 0 16px;
+			padding: 0 14px;
+			float: left;
+			color: #333;
+			&.active{
+				border-bottom: 2px solid #2692fb;
+			}
+		}
+	}
+	.tab-box{
+		.box-content{
+			overflow: hidden;
+			&.active{
+				display:block
+			}
+			.content-title{
+				line-height: 40px;
+				background: #eee;
+				padding-left: 10px;
+				font-weight: normal;
+				color: #333;
+				text-align: left;
+			}
+			.yesterday-business{
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				margin: 20px 0;
+				.common{
+					border: 1px solid #eee;
+					.item-name{
+						display: block;
+						margin-bottom: 20px;
+						line-height: 20px;
+					}
+					.item-num{
+						font-size: 50px;
+						display: inline-block;
+					}
+				}
+				.yesterday{
+					flex: 4;
+					.list{
+						.item{
+							width: 25%;
+							float: left;
+							padding: 20px;
+							text-align: center;
+						}
+						.clear{
+							clear:both;
+						}
+					}
+				}
+				.business{
+					flex: 1;
+					margin-left: 20px;
+					text-align: center;
+					.no-name{
+						margin-top: 60px;
+					}
+				}
+			}
+			.chart-show{
+				.chart-title{
+					line-height: 30px;
+					display: flex;
+					flex-direction: row;
+					margin-bottom: 10px;
+					select{ 
+						width: 100px;
+						margin-right: 20px;
+						outline: none;
+						font-size: 16px;
+						color: #333;
+						padding-left: 8px;
+						border-radius: 8px;
+					}
+					.chart-tab{
+						flex: 1;
+						display: flex;
+						flex-direction: row;
+						text-align: center;
+						li{
+							flex: 1;
+							border: 1px solid #eee;
+							margin-left: -1px;
+							cursor: pointer;
+							&.active{
+								background: #2692FB;
+								color: #fff;
+							}
+						}
+					}
+				}
+				.chart-content{
+					.chart{
+						height: 200px;
+						margin-bottom: 20px;
+						border: 1px solid #eee;
+					}
+				}
+				.chart-table{
+					.table-title{
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						a{
+							height: 30px;
+							line-height: 30px;
+							width: 80px;
+							text-align: center;
+							border: 1px solid #2692fb;
+							background: #2692fb;
+							color: #fff;
+							display: inline-block;
+							margin: 5px 10px 5px 0;
+							border-radius: 4px;
+							font-size: 14px;
+							cursor: pointer;
+						}
+					}
+					.table{
+						width: 100%;
+						text-align: center;
+						border-collapse: collapse;
+						th,td{
+							border: 1px solid #eee;
+							height:35px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
