@@ -92,14 +92,14 @@ class Analytics extends Component {
     let Account = (
       <div className={s.apply}>
         <input 
-          className={s.phone} 
+          className={s.phone s.common} 
           type="text" 
           ref="phone"
-          placeholder='请收入手机号' 
+          placeholder='请输入手机号' 
         />
-        <div>
+        <div className={s.code-getCodeBtn}>
           <input 
-            className={s.code} 
+            className={s.code s.common} 
             type="text" 
             ref="code"
             placeholder='请输入验证码' 
@@ -112,15 +112,15 @@ class Analytics extends Component {
             { allowGetCode ? '获取验证码' : allowGetCodeTime }
           </button>
         </div>
-        <button className={s.submit} onClick={::this.submitHandler}>获得商家测试账号</button>
+        <button className={s.submit s.common} onClick={::this.submitHandler}>获得商家测试账号</button>
       </div>
     );
 
     if(hasAccount) {
       Account = <div className={s.account}>
-        <span>商家测试账号</span>
-        <span>默认账号：{account.uname}</span>
-        <span>默认密码：{account.pwd}</span>
+        <span className={s.test}>商家测试账号</span>
+        <span className={s.common}>默认账号：<i>{account.uname}</i></span>
+        <span className={s.common}>默认密码：<i>{account.pwd}</i></span>
       </div>
     }
 
@@ -138,7 +138,7 @@ class Analytics extends Component {
             <ul>
               <li>1、每位开发者有且只有一个商家测试账号。</li>
               <li>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</li>
-              <li>3、下载开发者的Pad端，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
+              <li>3、下载<i>开发者的Pad端</i>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
             </ul>
           </div>
           { Account }

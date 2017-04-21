@@ -1,30 +1,34 @@
 .content{
 	margin-top: 16px;
  	width: 874px;
- 	padding: 24px 12px;
+ 	padding:0 12px 24px;
  	margin-left: 220px;
   	background: #fff;
- 	h1{
-		font-size: 14px;
-	    line-height: 30px;
-	    font-weight: normal;
-	    color: #333;
-	    background: #eee;
-	    padding-left: 10px;
-	    color: #666;
-	}
-	.tab{
-		overflow: hidden;
-		border-bottom: 1px solid #eee;
-		height: 45px;
-		line-height: 42px;
-		li{
-			margin: 0 16px;
-			padding: 0 14px;
-			float: left;
-			color: #333;
-			&.active{
-				border-bottom: 2px solid #2692fb;
+ 	.header{
+		line-height: 72px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		border-bottom: 1px solid #999999;
+		.return{
+			padding-left: 14px;
+			font-size: 16px;
+			color: #2692fb;
+			i{
+				vertical-align: middle;
+			}
+		}
+		.tab{
+			overflow: hidden;
+			display: none;
+			li{
+				margin: 0 16px;
+				padding: 0 14px;
+				float: left;
+				color: #333;
+				&.active{
+					border-bottom: 2px solid #2692fb;
+				}
 			}
 		}
 	}
@@ -34,29 +38,84 @@
 			&.active{
 				display:block
 			}
+			.detail-content{
+				display: flex;
+				padding: 20px 0 25px;
+				img{
+					width: 140px;
+					height: 140px;
+					margin-right: 24px;
+				}
+				.detail{
+					flex: 1;
+					dt{
+						font-size: 24px;
+						color: #000;
+					  line-height: 28px;
+					}
+					dd{
+						margin-top: 8px;
+					  font-size: 12px;
+					  line-height: 18px;
+					  color: #666;
+					  overflow: hidden;
+					  .user-img {
+							float: left;
+						    margin-right: 5px;
+						    width: 20px;
+						    height: 20px;
+						    border-radius: 50%;
+						    overflow: hidden;
+						    background: url(http://timg.ffan.com/convert/resize/url_T13TWTBXAy1RCvBVdK/tfs/1.png) no-repeat;
+						    background-size: 100% 100%;
+						    vertical-align: middle;
+						}
+						span{
+							width: 594px;
+						  float: left;
+						  padding-top: 2px;
+						}
+					}
+					.app-title{
+						margin-top: 30px;
+					  font-size: 18px;
+					  color: #000;
+					}
+					.app-text{
+						  margin-top: 4px;
+					    font-size: 14px;
+					    line-height: 24px;
+					    color: #000;
+					    word-break: break-all;
+					}
+				}
+			}
 			.content-title{
-				line-height: 40px;
+				line-height: 50px;
 				background: #eee;
-				padding-left: 10px;
+				padding-left: 20px;
 				font-weight: normal;
-				color: #333;
+				color: #666666;
 				text-align: left;
 			}
 			.yesterday-business{
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
-				margin: 20px 0;
+				margin-bottom: 20px;
 				.common{
-					border: 1px solid #eee;
 					.item-name{
 						display: block;
-						margin-bottom: 20px;
-						line-height: 20px;
+						margin-bottom: 15px;
+					  	font-size: 16px;
+					  	color: #aaaaaa;
 					}
 					.item-num{
-						font-size: 50px;
+						font-size: 25px;
+						color: #000000;
+						font-weight: bold;
 						display: inline-block;
+						word-break: break-all;
 					}
 				}
 				.yesterday{
@@ -65,51 +124,53 @@
 						.item{
 							width: 25%;
 							float: left;
-							padding: 20px;
+							padding: 20px 20px 28px;
 							text-align: center;
-						}
-						.clear{
-							clear:both;
 						}
 					}
 				}
 				.business{
 					flex: 1;
-					margin-left: 20px;
+					margin-left: 12px;
 					text-align: center;
+					border: 1px solid #eeeeee;
 					.no-name{
-						margin-top: 60px;
+						margin: 52px 0 20px;
 					}
 				}
 			}
 			.chart-show{
 				.chart-title{
 					line-height: 30px;
-					display: flex;
-					flex-direction: row;
-					margin-bottom: 10px;
-					select{ 
-						width: 100px;
-						margin-right: 20px;
-						outline: none;
-						font-size: 16px;
-						color: #333;
-						padding-left: 8px;
-						border-radius: 8px;
-					}
+					margin-bottom: 16px;
+					overflow: hidden;
 					.chart-tab{
-						flex: 1;
-						display: flex;
-						flex-direction: row;
+						float: left;
 						text-align: center;
+						margin-right: 10px;
 						li{
-							flex: 1;
-							border: 1px solid #eee;
+							width: 88px;
+							line-height: 25px;
+							font-size: 14px;
+							color: #666666;
+							float: left;
+							border: 1px solid #b5b5b5;;
 							margin-left: -1px;
 							cursor: pointer;
+							background: #eeeeee;
+							&:first-child{
+								border-radius: 5px 0 0 5px;
+							}
+							&:last-child{
+								border-radius: 0 5px 5px 0 ;
+							}
 							&.active{
 								background: #2692FB;
 								color: #fff;
+								border-color: #2692fb;
+								&+li{
+									border-left-color: #2692fb;
+								}
 							}
 						}
 					}
@@ -122,32 +183,23 @@
 					}
 				}
 				.chart-table{
-					.table-title{
-						display: flex;
-						flex-direction: row;
-						justify-content: space-between;
-						a{
-							height: 30px;
-							line-height: 30px;
-							width: 80px;
-							text-align: center;
-							border: 1px solid #2692fb;
-							background: #2692fb;
-							color: #fff;
-							display: inline-block;
-							margin: 5px 10px 5px 0;
-							border-radius: 4px;
-							font-size: 14px;
-							cursor: pointer;
-						}
-					}
 					.table{
 						width: 100%;
-						text-align: center;
 						border-collapse: collapse;
-						th,td{
-							border: 1px solid #eee;
+						line-height: 44px;
+						border: 1px solid #eeeeee;
+						text-align: left;
+						th{
 							height:35px;
+							font-size: 14px;
+							color: #000000;
+							padding-left: 10px;
+							background: rgba(238,238,238,0.35);
+						}
+						td{
+							border-bottom: 1px dashed #dbdbdb;
+							word-break: break-all;
+							padding-left: 10px;
 						}
 					}
 				}

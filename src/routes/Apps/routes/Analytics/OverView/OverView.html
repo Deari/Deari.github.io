@@ -1,60 +1,74 @@
-
-<h1 className="title"><i className="iconfont icon-fanhui"></i>应用数据统计/应用名称</h1>
-<ul className="tab">
-  <li data-to="1" className="active">概况</li>
-</ul>
-<div className="tab-box">
-  <div id="1" className='box-content active'>
-    <div className="yesterday-business">
-      <div className="yesterday common">
-        <h4 className="content-title">昨日关键指标</h4>
-        <div className="list">
-          <div className='item'>
-            <span className="item-name">新增商家</span>
-            <span className="item-num">0</span>
-          </div>
-          <div className='item'>
-            <span className="item-name">活跃商家</span>
-            <span className="item-num">0</span>
-          </div>
-          <div className='item'>
-            <span className="item-name">启动次数</span>
-            <span className="item-num">0</span>
-          </div>
-          <div className='item'>
-            <span className="item-name">下载次数</span>
-            <span className="item-num">0</span>
-          </div>
-          <div className="clear"></div>
-        </div>
-      </div>
-      <div className="business common">
-        <h4 className="content-title">累计商家</h4>
-        <span className="item-num no-name">0</span>
+<div class="header">
+  <span class="return"><i class="iconfont icon-leftarrow"></i>返回</span>
+  <ul class="tab">
+    <li data-to="1" class="active">概况</li>
+    <li data-to="2">版本分布</li>
+  </ul>
+</div>    
+<div class="tab-box">
+  <div id="1" class='box-content active'>
+    <div class="detail-content">
+      <img src="http://timg.ffan.com/convert/resize/url_T1kgDTBgYT1RCvBVdK/tfs/1.png" alt="" />
+      <div class="detail">
+        <dl>
+          <dt>会员管理</dt>
+          <dd>
+            <i class="user-img"></i>
+            <span>极速数据 (企业)</span>
+          </dd>
+        </dl>
+        <h3 class="app-title">内容提要</h3>
+        <p class="app-text">会员管理应用，广泛应用于餐饮、美容美发、美甲、足浴等服务行业门店。方便用户对客户进行有效管理和营销，并提供会员增长相关数据的统计分析。</p>
       </div>
     </div>
-    <div className="chart-show">
-      <div className='chart-title'>
-        <select name="" id="">
-          <option value="">最近30天</option>
-        </select>
-        <ul className="chart-tab">
-          <li className="active">新增商家</li>
+    <div class="yesterday-business">
+      <div class="yesterday common">
+        <h4 class="content-title">昨日关键指标</h4>
+        <div class="list">
+          <div class='item'>
+            <span class="item-name">新增商家</span>
+            <span class="item-num">0</span>
+          </div>
+          <div class='item'>
+            <span class="item-name">活跃商家</span>
+            <span class="item-num">0</span>
+          </div>
+          <div class='item'>
+            <span class="item-name">启动次数</span>
+            <span class="item-num">0</span>
+          </div>
+          <div class='item'>
+            <span class="item-name">下载次数</span>
+            <span class="item-num">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="business common">
+        <h4 class="content-title">累计商户</h4>
+        <span class="item-num no-name">0</span>
+      </div>
+    </div>
+    <div class="chart-show">
+      <div class='chart-title'>
+        <ul class="chart-tab">
+          <li class="active">最近30天</li>
+          <li>最近15天</li>
+          <li>最近7天</li>
+        </ul>
+        <ul class="chart-tab">
+          <li class="active">新增商家</li>
           <li>活跃商家</li>
           <li>启动次数</li>
           <li>下载次数</li>
         </ul>
       </div>
-      <div className="chart-content">
-        <h4 className="content-title">2017-04-06至2017-03-07</h4>
-        <div className="chart">这里是图表</div>
+      <div class="chart-content">
+        <h4 class="content-title">2017-03-07 至 2017-04-04</h4>
+        <div class="chart">这里是图表</div>
       </div>
-      <div className="chart-table">
-        <div className="table-title content-title">
-          <span>2017-04-06至2017-03-07</span>
-          <a href="#">下载表格</a>
-        </div>
-        <table className="table">
+      <div class="chart-table">
+        <div class="content-title">2017-04-06 至 2017-03-07 </div>
+        <table class="table">
           <thead>
             <tr>
               <th>时间</th>
