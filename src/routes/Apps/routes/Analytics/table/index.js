@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router'
 import s from './index-new.scss'
 
 const TabelItem = ({ data }) => {
   return ( 
     <tr>
-      <td className={s.imgWrap}><img src="x" alt="LOGO"/></td>
+      <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
         <span className={s.name}>{data.appName}</span>
         <span className={s.desc}>{data.appDesc}</span>
         <span className={s.link}>在 应用市场 中查看<i className="iconfont icon-look"></i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.new[0]}</i></span>
-        <span>昨：<i className={s.num}>{data.new[1]}</i></span>
+        <span>今：<i className={s.num}>{data.storeCountNew}</i></span>
+        <span>昨：<i className={s.num}>{data.storeCountNewYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.active[0]}</i></span>
-        <span>昨：<i className={s.num}>{data.active[1]}</i></span>
+        <span>今：<i className={s.num}>{data.activeStoreCount}</i></span>
+        <span>昨：<i className={s.num}>{data.activeStoreCountYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.launch[0]}</i></span>
-        <span>昨：<i className={s.num}>{data.launch[1]}</i></span>
+        <span>今：<i className={s.num}>{data.launchCount}</i></span>
+        <span>昨：<i className={s.num}>{data.launchCountYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.download[0]}</i></span>
-        <span>昨：<i className={s.num}>{data.download[1]}</i></span>
+        <span>今：<i className={s.num}>{data.downloadCount}</i></span>
+        <span>昨：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
       <td className={s.actions}>
-        <span className={s.btn}>查看</span>
+        <Link to={`/apps/analytics/${data.appId}`} className={s.btn}>查看</Link>
       </td>
     </tr>
   )
@@ -35,13 +36,10 @@ const TabelItem = ({ data }) => {
 
 TabelItem.defaultProps = {
   data: {
+    appLogo: '--',
     appName: '--',
     appDesc: '--',
-    aooId: '--',
-    new: [0,0],
-    launch: [0,0],
-    download: [0,0],
-    active: [0,0]
+    appId: '--'
   }
 }
 
@@ -66,7 +64,7 @@ class Table extends Component {
           </thead>
           <tbody>
             { Array.isArray(data) &&
-              data.map((item, index) => <TabelItem key={index} />) }
+              data.map((item, index) => <TabelItem key={index} data={item} />) }
           </tbody>
         </table>
       </div>

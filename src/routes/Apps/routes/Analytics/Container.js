@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SideBar from 'business/SideBar'
 import Search from 'components/Search'
 import Table from './table/'
+import Pagination from 'components/Pagination'
 import { getEnvDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
@@ -13,10 +14,11 @@ class Analytics extends Component {
       params: {
         page: 1,
         limit: 10,
-        appId: 1421,
+        // appId: 1421,
         appName: ''
       }
-    }
+    },
+    list: []
   }
 
 
@@ -26,8 +28,11 @@ class Analytics extends Component {
 
   getData(){
     const { api } = this.state
-    return fetchUtil.getJSON(api.uri, { ...api.params }).then(data=>{
+    return fetchUtil.getJSON(api.uri, { 
+      ...api.params 
+    }).then(data=>{
       console.log(data)
+      this.setState({ list: data.list })
     }).catch(e=>{
       console.warn(e)
     })
@@ -42,8 +47,9 @@ class Analytics extends Component {
       <div className={`container ${s.analytics}`} >
         <SideBar></SideBar>
         <div className={s.content}>
-          <Search onSearch={this.onSearch}></Search>
-          <Table data={[1,2]}></Table>
+          {/*<Search onSearch={this.onSearch}></Search>*/}
+          <Table data={this.state.list}></Table>
+          <Pagination ></Pagination>
         </div>
       </div>
     )

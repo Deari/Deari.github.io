@@ -1,98 +1,114 @@
 .content {
-  	margin-top: 16px;
-	width: 874px;
-	padding: 0 12px 24px;
-	margin-left: 220px;
-	background: #fff;
-	h1{
-	    font-size: 16px;
-	    line-height: 80px;
-	    font-weight: normal;
-	    color: #000000;
-	}
-	.status{
-		line-height: 30px;
-		font-size: 16px;
-		font-weight: bold;
-		padding: 35px 0 25px;
-		display: block;
-	}
-	.desc{
-		line-height: 28px;
-		border-bottom:1px solid #eee ;
-		font-size: 14px;
-		color: #999999;
-		padding-bottom: 16px;
-		i{
-			color: #2692fb;
-		}
-	}
-	.test{
-		line-height: 30px;
-		font-size: 16px;
-		font-weight: bold;
-		padding: 35px 0 25px;
-		display: block;
-		.common{
-			font-size: 4px;
-			color: #aaaaaa;
-			display: block;
-			margin-bottom: 15px;
-			i{
-				font-size: 16px;
-				color: #000000;
-				font-weight:bold;
-			}
-		}
-	}
-	.apply{
-		padding: 30px 0 0 20px;
-		input::-moz-placeholder{ color:#999;}
-      	input::-webkit-input-placeholder{ color:#999;}
-		input:-ms-input-placeholder{ color:#999;}
-		.common{
-			height: 30px;
-			line-height:30px;
-			border: 1px solid #313131;
-			margin-bottom: 16px;
-			padding-left: 10px;
-			color: #000;
-			outline:none;
-		}
-		.phone{
-			width: 215px;
-			font-size: 15px;
-		}
-		.code-getCodeBtn{
-			overflow: hidden;
-			.code{
-				width: 125px;
-				float: left;
-				font-size: 15px;
-			}
-			.getCodeBtn{
-				width: 87px;
-				height: 30px;
-				border: 1px solid #2692FB;
-				border-radius: 2px;
-				line-height: 30px;
-				text-align: center;
-				color: #2692fb;
-				background: #fff;
-				float: left;
-				margin-left: 5px;
-				outline: none;
-				cursor: pointer;
-			}
-		}
-		.submit{
-			width: 215px;
-			background: #2692FB;
-			color: #fff;
-			font-size: 16px;
-			border: 0;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-	}
+  margin-top: 10px;
+  margin-left: 220px;
+  padding: 20px;
+  background: #fff;
+  h1 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #000000;
+  }
+  .status {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin: 30px 0 10px;
+  }
+  .desc {
+    line-height: 28px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #999999;
+    padding-bottom: 16px;
+    i {
+      color: #2692fb;
+    }
+  }
+  .account {
+    .label {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 35px 0 25px;
+      display: block;
+    }
+    .item {
+      font-size: 14px;
+      color: #aaa;
+      display: block;
+      margin-bottom: 15px;
+      i {
+        font-size: 16px;
+        color: #333;
+        font-weight: bold;
+        font-style: normal;
+      }
+    }
+  }
+  .applyForm {
+    padding: 30px 0 0 20px;
+    .formAction,
+    .formItem {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+    input {
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #313131;
+      padding: 0 7px;
+      color: #000;
+      outline: none;
+      border-color: #aaa;
+      transition: all .5s ease;
+      &:focus {
+        border-color: #2692fb;
+        box-shadow: 0 0 0 2px rgba(16, 142, 233, .2)
+      }
+      &::-webkit-input-placeholder {
+        color: #999;
+      }
+    }
+    .phone {
+      width: 215px;
+    }
+    .code {
+      width: 125px;
+      vertical-align: top;
+    }
+    .getCodeBtn {
+      vertical-align: top;
+      width: 87px;
+      height: 30px;
+      border: 1px solid #2692FB;
+      border-radius: 2px;
+      text-align: center;
+      color: #2692fb;
+      background: #fff;
+      margin-left: 5px;
+      outline: none;
+      cursor: pointer;
+    }
+    .getCodeBtn[disabled] {
+      color: rgba(0, 0, 0, .25);
+      background-color: #f7f7f7;
+      border-color: #d9d9d9;
+      cursor: not-allowed;
+    }
+  }
+  .submit {
+    width: 215px;
+    padding: 5px;
+    background: #2692FB;
+    color: #fff;
+    font-size: 16px;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 16px;
+    padding-left: 10px;
+    outline: none;
+    &:hover {
+      background: #1389fb;
+    }
+  }
 }
