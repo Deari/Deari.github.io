@@ -1,8 +1,14 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Main from './components/Main'
-// import Main from './cs-new/Main'
+// import Main from './components/Main'
+import AppStore from 'business/AppStore/Container'
 
+class Main extends React.Component {
+  render () {
+    const tag = this.props.location.query.tagId || 'all';
+    return <AppStore type='apps' tag={tag}></AppStore>
+  }
+}
 export default (store) => ({
   path: 'apps',
   
