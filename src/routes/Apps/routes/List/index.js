@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
 import Pager from 'components/Pager'
+import Pagination from 'components/Pagination'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
@@ -11,6 +12,8 @@ import ListNav from 'components/ListNav'
 import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
 import 'styles/_base.scss'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class AppsList extends React.Component {
   state = {
@@ -26,7 +29,8 @@ class AppsList extends React.Component {
     pageIndexs:[],
     pageSum:0,
     limit:10,
-    searchValue:''
+    searchValue:'',
+    total: 0
   }
   handleChange(e){
     if(!e){
@@ -158,7 +162,14 @@ class AppsList extends React.Component {
             const newData = listData && this.formatListData(listData)
             const pageSum = resData.page.lastPage
             const pageIndexs = this.getPageIndexs(pageSum)
-            newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
+            const total = resData.page.totalCount
+
+            newData && this.setState({
+              listData: newData,
+              pageSum: pageSum,
+              pageIndexs: pageIndexs, 
+              total
+            })
           } else {
             debug.warn("登录失败")
           }
@@ -178,7 +189,7 @@ class AppsList extends React.Component {
     this.setState({currentPageIndex:e.target.value},this.upDate())
     
   }
-  changePage(e,index){
+  changePage(index){
     this.setState({currentPageIndex:index},this.upDate())
   }
   changeNextPage(){
@@ -209,7 +220,8 @@ class AppsList extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls} />
+        {/*<Slidebar urls={urls} />*/}
+        <SideBar pageLinks={getPageLinks('apps')} type='apps' />
         <div className="sub-container plf bg-white">
           <ListNav navData={navData} label='应用名称' searchValue={searchValue} handleSearch={this.handleChange.bind(this)} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
@@ -221,7 +233,11 @@ class AppsList extends React.Component {
             <li className="w112">操作</li>
           </ul>
           <List listData={listData} />
-          <Pager 
+          <Pagination 
+            onChange={this.changePage.bind(this)} 
+            total={this.state.total}
+          />
+          {/*<Pager 
             changePage={this.changePage.bind(this)} 
             changeNextPage={this.changeNextPage.bind(this)} 
             changePrevPage={this.changePrevPage.bind(this)}
@@ -231,7 +247,7 @@ class AppsList extends React.Component {
             pageSum={pageSum} 
             limitList={limitList}  
             currentPageIndex={currentPageIndex}      
-          />
+          />*/}
         </div>
       </div>
     )

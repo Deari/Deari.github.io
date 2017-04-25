@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import s from './index-new.scss'
 
-const TabelItem = ({ data }) => {
+const TabelItem = ({ data, type }) => {
+
   return ( 
     <tr>
       <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
         <span className={s.name}>{data.appName}</span>
         <span className={s.desc}>{data.appDesc}</span>
-        <span className={s.link}>在 应用市场 中查看<i className="iconfont icon-look"></i></span>
+        <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在 应用市场 中查看<i className="iconfont icon-look"></i></Link>
       </td>
       <td className={s.common}>
         <span>今：<i className={s.num}>{data.storeCountNew}</i></span>
@@ -28,7 +29,7 @@ const TabelItem = ({ data }) => {
         <span>昨：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
       <td className={s.actions}>
-        <Link to={`/apps/analytics/${data.appId}`} className={s.btn}>查看</Link>
+        <Link to={`/${type}/analytics/${data.appId}`} className={s.btn}>查看</Link>
       </td>
     </tr>
   )
@@ -46,15 +47,15 @@ TabelItem.defaultProps = {
 class Table extends Component {
   
   render() {
-    const { data, title } = this.props
+    const { data, type, typeText } = this.props
     return (
       <div className={s.root}>
-        <h2 className={s.title}><i className="iconfont icon-data-count"></i>{title}数据统计</h2>
+        <h2 className={s.title}><i className="iconfont icon-data-count"></i>{typeText}数据统计</h2>
         <table className={s.table} cellspacing="0" cellpadding="0">
           <thead>
             <tr>
               <th>Logo</th>
-              <th>{title}名称</th>
+              <th>{typeText}名称</th>
               <th>新增商家</th>
               <th>活跃商家</th>
               <th>启动次数</th>
@@ -64,7 +65,7 @@ class Table extends Component {
           </thead>
           <tbody>
             { Array.isArray(data) &&
-              data.map((item, index) => <TabelItem key={index} data={item} />) }
+              data.map((item, index) => <TabelItem key={index} type={type} data={item} />) }
           </tbody>
         </table>
       </div>

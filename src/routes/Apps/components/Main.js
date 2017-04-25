@@ -5,6 +5,8 @@ import debug from 'utils/debug'
 import Sidebar, {RenderTags} from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 import { scrollToTop } from 'components/ScrollToTop'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class Main extends React.Component {
   state = {
@@ -114,29 +116,32 @@ class Main extends React.Component {
 
   render () {
     const { listData, tags, urls, detailLink } = this.state
+    const _tags = tags.map(item => {
+      return {
+        label: item.tagName,
+        to: `/apps?tagId=${item.tagId}`,
+        icon: `sidebar${item.tagId}`
+      }
+    })
+
     return (
       <div className="container clx">
-        <Sidebar onTagChange={this.tagChange.bind(this)} tags={tags} urls={urls} bottomComponent={RenderTags} />
+        <SideBar 
+          pageLinks={getPageLinks('apps')}
+          type='apps'
+          tagLinks={_tags}
+        />
+
+        {/*<Sidebar 
+          onTagChange={this.tagChange.bind(this)} 
+          tags={tags} 
+          urls={urls} 
+          bottomComponent={RenderTags} 
+        />*/}
         <div className="sub-container">
           <div className="sub-container-banner"></div>
           <h2 className="open-content-nav">
             <i className="iconfont icon-hot-control"></i>热门应用
-            {/**<form>
-              <p>
-                <select>
-                  <option>默认排序</option>
-                  <option>默认1排序</option>
-                  <option>默认2排序</option>
-                </select>
-              </p>
-              <p>
-                <select>
-                  <option>价格排序</option>
-                  <option>价格1排序</option>
-                  <option>价格2排序</option>
-                </select>
-              </p>
-            </form>*/}
           </h2>
           <OpenList listData={listData} typeName="app" detailLink={detailLink} clickStar={this.clickStar.bind(this)} />
         </div>

@@ -14,8 +14,7 @@ class Pagination extends Component {
   static defaultProps = {
     currentPage: 1,
     total: 200,
-    defaultPageSize: 5,
-    pageSize: 5,
+    pageSize: 10,
     showPageSize: 5,
     pageSizeOptions: [],
     enableGoto: false, 
@@ -54,9 +53,8 @@ class Pagination extends Component {
 
   render () {
     const { current } = this.state
-    const { total, defaultPageSize, showPageSize, 
-      pageSizeOptions, pageSize, enableGoto } = this.props
-    const pageCount = Math.ceil(total/defaultPageSize)
+    const { total, showPageSize, pageSizeOptions, pageSize, enableGoto } = this.props
+    const pageCount = Math.ceil(total/pageSize)
     const pageList = []
     let i = 0;
     let pageElem;

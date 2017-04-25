@@ -4,6 +4,7 @@
   position: fixed;
   top: 77px;
   bottom: 0;
+  overflow: auto;
   width: 210px;
   padding: 0 10px;
   background: #fff;
@@ -29,13 +30,4 @@
     margin-right: 5px;
     vertical-align: middle;
   }
-}
-.pageLinks {
-  
-}
-.tagLinks {
-
-}
-.content {
-
 }

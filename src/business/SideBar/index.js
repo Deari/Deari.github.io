@@ -2,42 +2,17 @@ import React from 'react'
 import { Link } from 'react-router'
 import AnchorList from './AnchorList'
 import s from './index-new.scss'
+import { PageTypes } from 'config/index'
 
-const linkData = [{
-  to: '/',
-  label: '我的应用'
-},{
-  to: '/',
-  label: '应用数据统计'
-},{
-  to: '/',
-  label: '测试账号'
-},{
-  to: '/',
-  label: '开发者文档'
-}]
-
-const CreateBtn = ({ icon, label}) => {
-  return (
-    <button className={s.createBtn}>
-      <i className={icon}></i>
-      <span>{label}</span>
-    </button>
-  )
-}
-
-
-const SideBar = () => {
-  const BtnData = {
-    icon: 'iconfont icon-create',
-    label: '创建新组件'
-  }
-
+const SideBar = ({ pageLinks, tagLinks, type, onTagClick }) => {
   return (
     <div className={s.sideBar}>
-      <CreateBtn {...BtnData} />
-      <AnchorList data={linkData} />
-      <AnchorList data={linkData} style={{ marginTop: '30'}}/>
+      <button className={s.createBtn}>
+        <i className='iconfont icon-create'></i>
+        <span>{`创建新${PageTypes[type]}`}</span>
+      </button>
+      { pageLinks ? <AnchorList data={pageLinks} /> : null }
+      { tagLinks ? <AnchorList data={tagLinks} onTagClick={onTagClick} style={{ marginTop: '30'}}/> : null }
     </div>
   )
 }

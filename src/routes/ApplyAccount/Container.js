@@ -4,6 +4,7 @@ import SideBar from 'business/SideBar'
 import { getEnvDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class Analytics extends Component {
   state = {
@@ -21,7 +22,6 @@ class Analytics extends Component {
     const url = 'http://api.sit.ffan.net/bow/v1/account'
     
     return fetchUtil.getJSON(url, {
-      // mobile: 17376224832,
       clientType: 1
     })
   }
@@ -154,7 +154,7 @@ class Analytics extends Component {
 
     return (
       <div className={`container`} >
-        <SideBar></SideBar>
+        <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
         <div className={s.content}>
           <h1>测试账号</h1>
           <span className={s.status}>
