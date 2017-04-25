@@ -2,20 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import AnchorList from './AnchorList'
 import s from './index-new.scss'
-
-const linkData = [{
-  to: '/',
-  label: '我的应用'
-},{
-  to: '/',
-  label: '应用数据统计'
-},{
-  to: '/',
-  label: '测试账号'
-},{
-  to: '/',
-  label: '开发者文档'
-}]
+import { getPageLinks } from 'config/sidebar'
 
 const CreateBtn = ({ icon, label}) => {
   return (
@@ -27,17 +14,18 @@ const CreateBtn = ({ icon, label}) => {
 }
 
 
-const SideBar = () => {
+const SideBar = ({ showPageLinks, showTagLinks }) => {
   const BtnData = {
     icon: 'iconfont icon-create',
     label: '创建新组件'
   }
+  const pageLinks = getPageLinks()
 
   return (
     <div className={s.sideBar}>
       <CreateBtn {...BtnData} />
-      <AnchorList data={linkData} />
-      <AnchorList data={linkData} style={{ marginTop: '30'}}/>
+      { showPageLinks ? <AnchorList data={pageLinks} /> : null }
+      { showTagLinks ? <AnchorList data={[]} style={{ marginTop: '30'}}/> : null }
     </div>
   )
 }

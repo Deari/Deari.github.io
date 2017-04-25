@@ -1,14 +1,10 @@
 import React, { Component } from 'react'
-import SideBar from 'business/SideBar'
-import Search from 'components/Search'
-import Table from './table/'
-import Pagination from 'components/Pagination'
 import { getEnvDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
-import s from './index-new.scss'
 import TEST_DATA from './data'
+import List from '../Components/List'
 
-class Analytics extends Component {
+class ListContainer  extends Component {
   state = {
     api: {
       url: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/app',
@@ -22,7 +18,7 @@ class Analytics extends Component {
     list: [],
     total: 0
   }
-
+  
   componentDidMount() {
     this.loadData(1)
   }
@@ -49,27 +45,14 @@ class Analytics extends Component {
     this.loadData(page)
   }
 
-  onSearch (input) {
-    console.log(input)
-  }
-  
   render() {
-    const { list, total } = this.state;
-    return (
-      <div className={`container ${s.analytics}`} >
-        <SideBar></SideBar>
-        <div className={s.content}>
-          {/*<Search onSearch={this.onSearch}></Search>*/}
-          <Table data={list} title={this.props.pageTitle}/>
-          <Pagination 
-            style={{'textAlign': 'right'}} 
-            onChange={::this.onPage}
-            total={total}
-          />
-        </div>
-      </div>
-    )
+    return <List 
+      onPage={::this.onPage}
+      pageTitle={'应用'}
+      list={this.state.list}
+      total={this.state.total}
+    />
   }
 }
 
-export default Analytics
+export default ListContainer

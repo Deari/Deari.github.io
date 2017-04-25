@@ -21,7 +21,6 @@ class Analytics extends Component {
     const url = 'http://api.sit.ffan.net/bow/v1/account'
     
     return fetchUtil.getJSON(url, {
-      // mobile: 17376224832,
       clientType: 1
     })
   }
@@ -154,7 +153,7 @@ class Analytics extends Component {
 
     return (
       <div className={`container`} >
-        <SideBar></SideBar>
+        <SideBar showPageLinks={true}></SideBar>
         <div className={s.content}>
           <h1>测试账号</h1>
           <span className={s.status}>

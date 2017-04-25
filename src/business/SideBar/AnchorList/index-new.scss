@@ -5,20 +5,24 @@
   border-top: 1px solid #eee;
 }
 .item {
-  border-bottom: 1px solid #eee;
-  &.active {
-    border-color: $site-blue;
-    border-radius: 2px;
-    & > a {
-      color: #fff;
-    }
-  }
-  &:hover {
-    border-color: $site-blue;
-  }
   & > a {
     display: block;
     padding: 10px;
     font-size: 14px;
+    border-bottom: 1px solid #eee;
+    &:hover {
+      border-color: $site-blue;
+      color: $site-blue;
+    }
+    &.active {
+      border-radius: 2px;
+      border-color: $site-blue;
+      color: #fff;
+      background: $site-blue;
+    }
+    & > i {
+      margin-right: 10px;
+      vertical-align: middle;
+    }
   }
 } 

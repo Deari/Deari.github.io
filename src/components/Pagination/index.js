@@ -14,8 +14,8 @@ class Pagination extends Component {
   static defaultProps = {
     currentPage: 1,
     total: 200,
-    defaultPageSize: 5,
-    pageSize: 5,
+    defaultPageSize: 10,
+    pageSize: 10,
     showPageSize: 5,
     pageSizeOptions: [],
     enableGoto: false, 
