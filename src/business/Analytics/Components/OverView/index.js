@@ -12,7 +12,7 @@ const OverView = (props) => {
   const { basic, yesterday, chart } = props
   return (
     <div className={`container ${s.analytics}`} >
-      <SideBar showPageLinks={true}></SideBar>
+      <SideBar pageLinks={'app'}></SideBar>
       <div className={s.content}>
         {/*<div className={s.header}>
           <span className={s.back}><i className="iconfont icon-leftarrow"></i>返回</span>

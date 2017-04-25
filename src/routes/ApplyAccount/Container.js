@@ -153,7 +153,7 @@ class Analytics extends Component {
 
     return (
       <div className={`container`} >
-        <SideBar showPageLinks={true}></SideBar>
+        <SideBar pageLinks={'app'}></SideBar>
         <div className={s.content}>
           <h1>测试账号</h1>
           <span className={s.status}>

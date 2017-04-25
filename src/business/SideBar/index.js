@@ -14,18 +14,17 @@ const CreateBtn = ({ icon, label}) => {
 }
 
 
-const SideBar = ({ showPageLinks, showTagLinks }) => {
+const SideBar = ({ pageLinks, tagLinks, onTagClick }) => {
   const BtnData = {
     icon: 'iconfont icon-create',
     label: '创建新组件'
   }
-  const pageLinks = getPageLinks()
 
   return (
     <div className={s.sideBar}>
       <CreateBtn {...BtnData} />
-      { showPageLinks ? <AnchorList data={pageLinks} /> : null }
-      { showTagLinks ? <AnchorList data={[]} style={{ marginTop: '30'}}/> : null }
+      { pageLinks ? <AnchorList data={getPageLinks(pageLinks)} /> : null }
+      { tagLinks ? <AnchorList data={tagLinks} onTagClick={onTagClick} style={{ marginTop: '30'}}/> : null }
     </div>
   )
 }

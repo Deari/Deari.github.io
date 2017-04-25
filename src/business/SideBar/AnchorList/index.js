@@ -9,7 +9,9 @@ const PageLinks = ({ data, style, className }) => {
       {data.map((item, index)=>{
         return (
           <li key={index} className={s.item}>
-            <Link to={item.to} activeClassName={s.active} ><i className={`iconfont icon-${item.icon}`}></i>{item.label}</Link>
+            <Link to={item.to} activeClassName={s.active} >
+              <i className={`iconfont icon-${item.icon}`}></i>{item.label}
+            </Link>
           </li>
         )
       })}

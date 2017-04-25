@@ -2,6 +2,9 @@ import React from 'react'
 import { Link } from 'react-router'
 import List from 'components/List'
 import Pager from 'components/Pager'
+import Pagination from 'components/Pagination'
+import SideBar from 'business/SideBar'
+
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
@@ -26,7 +29,8 @@ class widgetsList extends React.Component {
     pageIndexs:[],
     pageSum:0,
     limit:10,
-    searchValue:''
+    searchValue:'',
+    total: 0
   }
   handleChange(e){
     if (!e) {
@@ -162,7 +166,15 @@ class widgetsList extends React.Component {
           const pageSum = resData.page.lastPage
           const pageIndexs = this.getPageIndexs(pageSum)
     
-          newData && this.setState({listData: newData,pageSum:pageSum,pageIndexs:pageIndexs})
+          const total = resData.page.totalCount
+
+          newData && this.setState({
+            listData: newData,
+            pageSum: pageSum,
+            pageIndexs: pageIndexs, 
+            total
+          })
+
         } else {
           debug.warn("登录失败")
         }
@@ -179,13 +191,8 @@ class widgetsList extends React.Component {
   changeNav(obj) {
     this.setState({...obj, currentPageIndex:1 }, this.upDate())
   }
-
-  changeSelect(e){
-    this.setState({currentPageIndex:e.target.value},this.upDate())
-    
-  }
   
-  changePage(e,index){
+  changePage(index){
     this.setState({currentPageIndex:index},this.upDate())
   }
 
@@ -221,7 +228,9 @@ class widgetsList extends React.Component {
 
     return (
       <div className="container clx">
-        <Slidebar urls={urls}  type="widget"/>
+        {/*<Slidebar urls={urls}  type="widget"/>*/}
+        <SideBar pageLinks={'widget'} />
+
         <div className="sub-container plf bg-white">
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} searchValue={searchValue} label='组件名称' handleSearch={this.handleChange.bind(this)}/>
           <ul className="list-title">
@@ -233,7 +242,11 @@ class widgetsList extends React.Component {
             <li className="w112">操作</li>
           </ul>
           <List listData={listData} />
-          <Pager 
+          <Pagination 
+            onChange={this.changePage.bind(this)} 
+            total={this.state.total}
+          />
+          {/*<Pager 
             changePage={this.changePage.bind(this)} 
             changeNextPage={this.changeNextPage.bind(this)} 
             changePrevPage={this.changePrevPage.bind(this)}
@@ -243,7 +256,7 @@ class widgetsList extends React.Component {
             pageSum={pageSum} 
             limitList={limitList}  
             currentPageIndex={currentPageIndex}      
-          />
+          />*/}
         </div>
       </div>
     )

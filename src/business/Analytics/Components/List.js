@@ -9,11 +9,11 @@ const List = (props) => {
   const { list, total, pageTitle, onPage } = props;
   return (
     <div className={`container ${s.analytics}`} >
-      <SideBar showPageLinks={true} />
+      <SideBar pageLinks={'app'} />
       <div className={s.content}>
         {/*<Search onSearch={()=>}></Search>*/}
         <Table data={list} title={pageTitle}/>
-        <Pagination style={{'textAlign': 'right'}} 
+        <Pagination 
           onChange={onPage} total={total}
         />
       </div>
