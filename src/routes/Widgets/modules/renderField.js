@@ -3,6 +3,7 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import DescribeIcon from 'components/DescribeIcon'
+import download from '../routes/Create/image/download.png'
 
 export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
@@ -146,8 +147,18 @@ export class renderImageUpload extends Component {
           <div className="img-container" style={{width: (h && currentSize == 'img2') ? '540px' : 'auto'}}>
             <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
             <div className="example-container" style={{display: (h && currentSize == 'img2') ? 'block' : 'none'}}>
-              <a className="example-img" href=""><img src="" alt="图片示例" className="img-thumbnail" /></a>
-              <div className="example-font">图片示列：请按图片标注尺寸，制作组件图片（ 圆形大小，居中，间距，文字颜色大小－单位 ）</div>
+              <div className="example-line"></div>
+              <div className="example-box">
+                <a className="example-img" href="">
+                  <div className="img-icon"></div>
+                  <div className="img-marker"></div>
+                  <span>下载模板</span>
+                </a>
+                <div className="example-font">
+                  <i></i><span className="font-title">图片示例</span>
+                  <span className="font-content">需包含：圆形图标 + 组件名称 点击左侧图片，下载模板文件制作组件图片</span>
+                </div>
+              </div>
             </div>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
