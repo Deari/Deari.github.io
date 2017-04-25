@@ -46,15 +46,15 @@ TabelItem.defaultProps = {
 class Table extends Component {
   
   render() {
-    const { data } = this.props
+    const { data, title } = this.props
     return (
-     <div className={s.panel}>
-        <h2 className={s.title}><i className="iconfont icon-data-count"></i>应用数据统计</h2>
+      <div className={s.root}>
+        <h2 className={s.title}><i className="iconfont icon-data-count"></i>{title}数据统计</h2>
         <table className={s.table} cellspacing="0" cellpadding="0">
           <thead>
             <tr>
               <th>Logo</th>
-              <th>应用名称</th>
+              <th>{title}名称</th>
               <th>新增商家</th>
               <th>活跃商家</th>
               <th>启动次数</th>

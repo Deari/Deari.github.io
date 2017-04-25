@@ -6,36 +6,47 @@ import Pagination from 'components/Pagination'
 import { getEnvDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
+import TEST_DATA from './data'
 
 class Analytics extends Component {
   state = {
     api: {
-      uri: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/app',
+      url: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/app',
       params: {
         page: 1,
         limit: 10,
-        // appId: 1421,
+        appId: '',
         appName: ''
       }
     },
-    list: []
+    list: [],
+    total: 0
   }
-
 
   componentDidMount() {
-    this.getData()
+    this.loadData(1)
   }
 
-  getData(){
-    const { api } = this.state
-    return fetchUtil.getJSON(api.uri, { 
-      ...api.params 
+  loadData(page, options){
+    const api = this.state.api;
+    
+    fetchUtil.getJSON(api.url, { 
+      ...api.params,
+      ...options,
+      page
     }).then(data=>{
-      console.log(data)
-      this.setState({ list: data.list })
+      this.setState({ list: data.list, total: data.page.totalCount })
     }).catch(e=>{
+      this.setState({ 
+        list: TEST_DATA.data.list,
+        total: TEST_DATA.data.page.totalCount
+      })
       console.warn(e)
     })
+  }
+
+  onPage (page) {
+    this.loadData(page)
   }
 
   onSearch (input) {
@@ -43,13 +54,18 @@ class Analytics extends Component {
   }
   
   render() {
+    const { list, total } = this.state;
     return (
       <div className={`container ${s.analytics}`} >
         <SideBar></SideBar>
         <div className={s.content}>
           {/*<Search onSearch={this.onSearch}></Search>*/}
-          <Table data={this.state.list}></Table>
-          <Pagination ></Pagination>
+          <Table data={list} title={this.props.pageTitle}/>
+          <Pagination 
+            style={{'textAlign': 'right'}} 
+            onChange={::this.onPage}
+            total={total}
+          />
         </div>
       </div>
     )

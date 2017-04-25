@@ -1,7 +1,6 @@
 .content {
-  margin-top: 16px;
-  width: 874px;
-  padding: 0 12px 24px;
+  margin-top: 10px;
+  padding: 0 10px;
   margin-left: 220px;
   background: #fff;
   .pageTitle {
@@ -13,10 +12,8 @@
     text-align: left;
   }
   .header {
-    line-height: 72px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    height: 70px;
+    line-height: 70px;
     border-bottom: 1px solid #dedede;
     .back {
       padding-left: 14px;
@@ -112,7 +109,6 @@
         .num {
           font-size: 25px;
           color: #000;
-          font-weight: bold;
           display: inline-block;
           word-break: break-all;
         }

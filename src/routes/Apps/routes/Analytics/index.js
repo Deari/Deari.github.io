@@ -2,7 +2,7 @@ export default {
   path: 'analytics',
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('./Container').default)
+      cb(null, require('./ListContainer').default)
     })
   }
 }
