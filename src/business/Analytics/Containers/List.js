@@ -5,18 +5,29 @@ import TEST_DATA from './data'
 import List from '../Components/List'
 
 class ListContainer  extends Component {
-  state = {
-    api: {
-      url: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/app',
-      params: {
-        page: 1,
-        limit: 10,
-        appId: '',
-        appName: ''
-      }
-    },
-    list: [],
-    total: 0
+  constructor(props) {
+    super(props);
+    const pathname = props.location.pathname
+    const result = pathname.match(/^\/(apps|widgets|hardware)\//)
+    let type;
+    if(result) {
+      type = result[1]
+    }
+    
+    this.state = {
+      type,
+      api: {
+        url: getEnvDomain()+'/app/v1/bo/v1/web/developer/statistics/'+type.slice(0, type.length-1),
+        params: {
+          page: 1,
+          limit: 10,
+          appId: '',
+          appName: ''
+        }
+      },
+      list: [],
+      total: 0
+    }
   }
   
   componentDidMount() {
@@ -46,11 +57,12 @@ class ListContainer  extends Component {
   }
 
   render() {
+    const { type, list, total } = this.state
     return <List 
       onPage={::this.onPage}
-      pageTitle={'应用'}
-      list={this.state.list}
-      total={this.state.total}
+      type={type}
+      list={list}
+      total={total}
     />
   }
 }

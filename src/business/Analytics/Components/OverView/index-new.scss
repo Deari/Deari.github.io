@@ -1,6 +1,6 @@
 .content {
   margin-top: 10px;
-  padding: 0 10px;
+  padding: 0 10px 20px;
   margin-left: 220px;
   background: #fff;
   .pageTitle {
@@ -172,7 +172,7 @@
           }
         }
         .chartCanvas {
-          height: 200px;
+          padding: 20px 0;
           margin-bottom: 20px;
           border: 1px solid #eee;
         }
@@ -181,7 +181,7 @@
           border-collapse: collapse;
           line-height: 44px;
           border: 1px solid #eeeeee;
-          text-align: left;
+          text-align: center;
           th {
             height: 35px;
             font-size: 14px;

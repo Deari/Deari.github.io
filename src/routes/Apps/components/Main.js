@@ -6,6 +6,7 @@ import Sidebar, {RenderTags} from 'components/Sidebar'
 import OpenList from 'components/OpenList'
 import { scrollToTop } from 'components/ScrollToTop'
 import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class Main extends React.Component {
   state = {
@@ -122,10 +123,12 @@ class Main extends React.Component {
         icon: `sidebar${item.tagId}`
       }
     })
+
     return (
       <div className="container clx">
         <SideBar 
-          pageLinks={'app'}
+          pageLinks={getPageLinks('apps')}
+          type='apps'
           tagLinks={_tags}
         />
 

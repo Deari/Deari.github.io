@@ -14,6 +14,7 @@ import ListNav from 'components/ListNav'
 import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
 import 'styles/_base.scss'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class widgetsList extends React.Component {
   state = {
@@ -229,7 +230,7 @@ class widgetsList extends React.Component {
     return (
       <div className="container clx">
         {/*<Slidebar urls={urls}  type="widget"/>*/}
-        <SideBar pageLinks={'widget'} />
+        <SideBar pageLinks={getPageLinks('widgets')} type='widgets' />
 
         <div className="sub-container plf bg-white">
           <ListNav navData={navData} onChange={this.changeNav.bind(this)} searchValue={searchValue} label='组件名称' handleSearch={this.handleChange.bind(this)}/>

@@ -6,7 +6,7 @@ import s from './index-new.scss'
 const PageLinks = ({ data, style, className }) => {
   return (
     <ul className={cx(s.root, className)} style={style}>
-      {data.map((item, index)=>{
+      {data && data.map((item, index)=>{
         return (
           <li key={index} className={s.item}>
             <Link to={item.to} activeClassName={s.active} >

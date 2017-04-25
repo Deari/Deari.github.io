@@ -4,18 +4,18 @@ import Search from 'components/Search'
 import Table from './ListTable'
 import Pagination from 'components/Pagination'
 import s from './list-new.scss'
+import { PageTypes, getPageLinks } from 'config/index'
 
 const List = (props) => {
-  const { list, total, pageTitle, onPage } = props;
+  const { list, total, onPage, type } = props;
+
   return (
     <div className={`container ${s.analytics}`} >
-      <SideBar pageLinks={'app'} />
+      <SideBar pageLinks={getPageLinks(type)} type={type} />
       <div className={s.content}>
         {/*<Search onSearch={()=>}></Search>*/}
-        <Table data={list} title={pageTitle}/>
-        <Pagination 
-          onChange={onPage} total={total}
-        />
+        <Table data={list} type={type} typeText={PageTypes[type]}/>
+        <Pagination onChange={onPage} total={total}/>
       </div>
     </div>
   )

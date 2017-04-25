@@ -13,6 +13,7 @@ import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
 import 'styles/_base.scss'
 import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 
 class AppsList extends React.Component {
   state = {
@@ -220,7 +221,7 @@ class AppsList extends React.Component {
     return (
       <div className="container clx">
         {/*<Slidebar urls={urls} />*/}
-        <SideBar pageLinks={'app'} />
+        <SideBar pageLinks={getPageLinks('apps')} type='apps' />
         <div className="sub-container plf bg-white">
           <ListNav navData={navData} label='应用名称' searchValue={searchValue} handleSearch={this.handleChange.bind(this)} onChange={this.changeNav.bind(this)} />
           <ul className="list-title">
