@@ -38,12 +38,12 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
   </div>
 )
 
-export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+export const renderSizeRadioBox = ({ input, sizeList, onChangeSize, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>尺寸</label>
   <div className="row-right size-width">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>
     {
-      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
+      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value); onChangeSize(item)}}>
         <span className={`${item.image} row-img`}></span>
         <div className="row-radio row-rotate">
           <input type="radio" name="radio" checked={input.value == item.value}/>
@@ -132,7 +132,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
+    const { input, label, describeId, describeContent, currentSize, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -143,8 +143,12 @@ export class renderImageUpload extends Component {
             <input type="button" value="选择文件"/>
             <input type="file" accept={h ? "image/*" : ".png"} onChange={::this.imageUpload}/>
           </span>
-          <div className="img-container">
+          <div className="img-container" style={{width: (h && currentSize == 'img2') ? '540px' : 'auto'}}>
             <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
+            <div className="example-container" style={{display: (h && currentSize == 'img2') ? 'block' : 'none'}}>
+              <a className="example-img" href=""><img src="" alt="图片示例" className="img-thumbnail" /></a>
+              <div className="example-font">图片示列：请按图片标注尺寸，制作组件图片（ 圆形大小，居中，间距，文字颜色大小－单位 ）</div>
+            </div>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>

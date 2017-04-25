@@ -198,6 +198,25 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         .label-message{
             margin-top: -20px;
         }
+        .img-container {
+          position: relative;
+          .example-container {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            .example-img {
+              display: block;
+              float: left;
+            }
+            .example-font {
+              float: right;
+              width: 120px;
+              font-size: 12px;
+              line-height: 20px;
+              color: #666;
+            }
+          }
+        }
         /*第二步应用文件样式start*/
         
         .file-name{
