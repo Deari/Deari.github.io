@@ -6,8 +6,8 @@ import DescribeIcon from 'components/DescribeIcon'
 
 class AssociationModule extends Component {
   state={
-    appActive:this.props.appActive,
-    widgetActive:this.props.widgetActive,
+    appActive:0,
+    widgetActive:0,
     hardwareActive:0
   }
   onchange(e){
@@ -41,6 +41,15 @@ class AssociationModule extends Component {
     this.props.handleLogochange(item.logo,'widget')
     this.props.handleIdchange(item.id,'widget')
     this.props.handleNamechange(item.name,'widget')
+  }
+  componentWillReceiveProps() {
+    const { appObj, weiObj } = this.props
+    if (Array.isArray(appObj)&&appObj.length!=0) {
+      this.setState({ appActive: 1 })
+    }
+    if (Array.isArray(weiObj)&&weiObj.length!==0) {
+      this.setState({ widgetActive: 1 })
+    }
   }
   render(){
     const { appActive, widgetActive , hardwareActive} = this.state
