@@ -198,6 +198,98 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         .label-message{
             margin-top: -20px;
         }
+        .img-container {
+          position: relative;
+          .example-container {
+            position: absolute;
+            top: 0px;
+            left: 110px;
+            .example-line {
+              background: url(../image/line.png) no-repeat;
+              width: 100px;
+              height: 13px;
+              float: left;
+              margin-top: 40px;
+            }
+            .example-box {
+              float: left;
+              background-color: #eee;
+              padding: 3px;
+              .example-img {
+                display: block;
+                float: left;
+                background-color: #fff;
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                position: relative;
+                .img-icon {
+                  background: url(../image/download.png) center center no-repeat;
+                  margin: 10px 0px 0px;
+                  width: 55px;
+                  height: 55px;
+                  display: inline-block;
+                }
+                .img-marker {
+                  background: url(../image/download-arrow.png) center center no-repeat;
+                  margin: 10px 0px 0px;
+                  width: 55px;
+                  height: 55px;
+                  display: none;
+                }
+                span {
+                  font-size: 14px;
+                  margin-top: 5px;
+                }
+                &:hover {
+                  background-color: #000;
+                  opacity: 0.7;
+                  .img-marker {
+                    display: inline-block;
+                    position: absolute;
+                    top: 0px;
+                    left: 22px;
+                  }
+                  .img-icon {
+                    opacity: 0.3;
+                  }
+                  span {
+                    color: #ccc;
+                  }
+                }
+              }
+              .example-font {
+                float: right;
+                width: 180px;
+                padding: 0px 10px 0px 15px;
+                position: relative;
+                i {
+                  width: 0; 
+                  height: 0; 
+                  font-size: 0;
+                  line-height: 0;
+                  position: absolute;
+                  top: 9px;
+                  left: 5px;
+                  border-bottom: 4px solid transparent; /* left arrow slant */
+                  border-top: 4px solid transparent; /* right arrow slant */
+                  border-right: 4px solid #999; /* bottom, add background color here */
+                }
+                .font-title {
+                  font-size: 14px;
+                  color: #000;
+                  margin: 6px 0px 8px;
+                  background: url(../image/arrow.png) no-repeat;
+                }
+                .font-content {
+                  font-size: 12px;
+                  line-height: 20px;
+                  color: #999;
+                }
+              }
+            }
+          }
+        }
         /*第二步应用文件样式start*/
         
         .file-name{

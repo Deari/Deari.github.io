@@ -3,6 +3,7 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import DescribeIcon from 'components/DescribeIcon'
+import download from '../routes/Create/image/download.png'
 
 export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
@@ -38,12 +39,12 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
   </div>
 )
 
-export const renderSizeRadioBox = ({ input, sizeList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+export const renderSizeRadioBox = ({ input, sizeList, onChangeSize, meta: { touched, dirty, error, warning } }) => <div className="form-row">
   <label>尺寸</label>
   <div className="row-right size-width">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>
     {
-      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value)}}>
+      sizeList.map(item => <div className="row-size" onClick={e => {input.onChange(item.value); onChangeSize(item)}}>
         <span className={`${item.image} row-img`}></span>
         <div className="row-radio row-rotate">
           <input type="radio" name="radio" checked={input.value == item.value}/>
@@ -132,7 +133,7 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
+    const { input, label, describeId, describeContent, currentSize, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -143,8 +144,22 @@ export class renderImageUpload extends Component {
             <input type="button" value="选择文件"/>
             <input type="file" accept={h ? "image/*" : ".png"} onChange={::this.imageUpload}/>
           </span>
-          <div className="img-container">
+          <div className="img-container" style={{width: (h && currentSize == 'img2') ? '540px' : 'auto'}}>
             <img src={input.value} alt="上传图片" className="img-thumbnail" style={styleObj?styleObj:{}}/>
+            <div className="example-container" style={{display: (h && currentSize == 'img2') ? 'block' : 'none'}}>
+              <div className="example-line"></div>
+              <div className="example-box">
+                <a className="example-img" href="">
+                  <div className="img-icon"></div>
+                  <div className="img-marker"></div>
+                  <span>下载模板</span>
+                </a>
+                <div className="example-font">
+                  <i></i><span className="font-title">图片示例</span>
+                  <span className="font-content">需包含：圆形图标 + 组件名称 点击左侧图片，下载模板文件制作组件图片</span>
+                </div>
+              </div>
+            </div>
           </div>
           {(dirty || touched) && ((error && <span>{error}</span>))}
         </div>

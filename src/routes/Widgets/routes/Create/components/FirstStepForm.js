@@ -16,9 +16,17 @@ import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
 import './firstStepForm.scss'
 
 class FirstStepForm extends Component {
+  state = {
+    currentSize: ''
+  }
+
+  changeSize(item) {
+    if (item && item.image) this.setState({currentSize: item.image})
+  }
 
   render() {
     const { handleSubmit, tags, cates, initialValues, sizeList } = this.props;
+    const { currentSize } = this.state;
     const imgDoc = '预览图用于商家在装修自己店面时，在操作区域展示的图片';
     const height = 200;
     return (
@@ -28,8 +36,10 @@ class FirstStepForm extends Component {
         </div>
         <Field label="组件名称" name="appName" type="text" component={renderField}
                describeId='appName' describeContent="您的 组件 在 组件市场 中显示的名称" />
-        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox} />
-        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} doc={imgDoc} h={height} />
+        <Field label="尺寸" name="size" sizeList={sizeList} component={renderSizeRadioBox} 
+               onChangeSize={this.changeSize.bind(this)} />
+        <Field label="预览图" name="appPreviewImage" type="text" component={renderImageUpload} 
+               doc={imgDoc} h={height} currentSize={currentSize} />
         <Field label="组件图片" name="appLogo" type="text" component={renderImageUpload}
                describeId='appLogo' describeContent="此图标将用于 组件市场，最低分辨率至少为 72 DPI，并采用 RGB 色彩空间。它不能包含图层或圆角。" />
         <Field label="组件简介" name="appDesc" placeholder="请输入组件简介。此内容将显示在组件列表页中。" component={renderTextArea}
