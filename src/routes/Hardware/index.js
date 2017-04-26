@@ -1,5 +1,15 @@
 import React from 'react'
-import Main from './components/Main'
+// import Main from './components/Main'
+
+import AppStore from 'business/AppStore/Container'
+
+class Main extends React.Component {
+  render () {
+    const tagId = this.props.location.query.tagId
+    const tag = tagId ? tagId : 0;
+    return <AppStore type='hardware' tag={tag}></AppStore>
+  }
+}
 
 export default (store) => ({
   path: 'hardware',

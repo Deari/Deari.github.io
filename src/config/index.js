@@ -1,7 +1,7 @@
 export const PageTypes = {
   'apps': '应用',
   'widgets':'组件',
-  'handware': '硬件'
+  'hardware': '硬件'
 }
 
 export const getPageLinks = (type) => {
@@ -12,7 +12,7 @@ export const getPageLinks = (type) => {
   },{
     to: `/${type}/analytics`,
     label: `${PageTypes[type]}数据统计`,
-    icon: 'application'
+    icon: 'sidebar3'
   },{
     to: `/applyAccount`,
     label: '申请测试账号',

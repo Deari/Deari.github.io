@@ -27,9 +27,10 @@ class Analytics extends Component {
   }
 
   componentDidMount() {
-    this.getAccount().then(amount => {
+    this.getAccount().then(account => {
       this.renderWithAccount(account)
     }).catch(e=>{
+      console.log(e)
       this.renderWithApplyAccount()
     })
   }
@@ -158,7 +159,7 @@ class Analytics extends Component {
         <div className={s.content}>
           <h1>测试账号</h1>
           <span className={s.status}>
-            您{hasAccount ? '已获得' : '还没有获得'}
+            您{hasAccount ? '已获得' : '还没有获得'}测试账号
           </span>
           <div className={s.desc}>
             <p>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。

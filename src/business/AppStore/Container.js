@@ -14,7 +14,7 @@ class Container extends React.Component {
       list: [],
       total: 0,
       tags: [],
-      detailLink: '/apps/detail/',
+      detailLink: `/${props.type}/detail/`,
       page: {
         tag: props.tag,
         limit: 15,
@@ -26,7 +26,7 @@ class Container extends React.Component {
   
   componentDidMount() {
     this.fetchTags();
-    this.fetchAppList()
+    this.fetchAppList({ skip: 0 })
   }
 
   componentWillReceiveProps (nextProps) {
@@ -47,10 +47,13 @@ class Container extends React.Component {
 
   fetchTags () {
     const { type } = this.state;
-    const url = getDomain(`public/common/tags?type=`+type.slice(0,-1))
+    let _type = type
+    if(type !== 'hardware') {
+      _type = type.slice(0,-1)
+    }
+    const url = getDomain(`public/common/tags?type=${_type}`)
     
     fetchUtil.getJSON(url).then(data => {
-      console.log("tags: ", data)
       const tags = data.map(item => {
         return {
           label: item.tagName,
@@ -58,6 +61,13 @@ class Container extends React.Component {
           icon: `sidebar${item.tagId}`
         }
       })
+
+      tags.unshift({
+        label: '所有'+PageTypes[type],
+        to: `/${type}?tagId=0`,
+        icon: `sidebar0`
+      })
+
       this.setState({ tags })
 
     }).catch(e => {
@@ -75,28 +85,50 @@ class Container extends React.Component {
     fetchUtil.getJSON(url, {
       ...rest
     }).then(data => {
-      this.setState({ list: data.list, total: data.page.totalCount })
-    }).catch(e => {
+      let { list, page, meta } = data
+      let total = page ? page.totalCount : meta.total
 
+      if(this.state.type == 'hardware') {
+        list = list.map((v)=>{
+          return {
+            hardwareFunction:v.productDesc,
+            hardwareLogo:v.image,
+            hardwareName:v.verboseName,
+            hardwarePrice:v.price,
+            hardwareId:v.id,
+            developerName:v.brand
+          }
+        })
+      }
+
+      this.setState({ list, total })
+
+    }).catch(e => {
+      console.log(e)
     })
   }
 
   onSelectPage (page) {
-    this.fetchAppList({ page })
+    this.fetchAppList({ page, skip: (page-1)*this.state.page.limit })
   }
 
   render () {
     const { list, total, tags, urls, detailLink, page, type } = this.state
+    let _type = type;
     
+    if(_type !== 'hardware') {
+      _type = 'app'
+    }
+
     return (
       <div className="container">
         <SideBar pageLinks={getPageLinks(type)} type={type} tagLinks={tags} />
         <div className="sub-container">
           <div className="sub-container-banner"></div>
           <h2 className="open-content-nav">
-            <i className="iconfont icon-hot-control"></i>热门应用
+            <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
           </h2>
-          <OpenList listData={list} typeName="app" detailLink={detailLink} />
+          <OpenList listData={list} typeName={_type} detailLink={detailLink} />
           <Pagination onChange={::this.onSelectPage} pageSize={page.limit} total={total}/>
         </div>
       </div>

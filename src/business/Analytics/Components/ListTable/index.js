@@ -50,7 +50,7 @@ class Table extends Component {
     const { data, type, typeText } = this.props
     return (
       <div className={s.root}>
-        <h2 className={s.title}><i className="iconfont icon-data-count"></i>{typeText}数据统计</h2>
+        <h2 className={s.title}><i className="iconfont icon-sidebar3"></i>{typeText}数据统计</h2>
         <table className={s.table} cellspacing="0" cellpadding="0">
           <thead>
             <tr>

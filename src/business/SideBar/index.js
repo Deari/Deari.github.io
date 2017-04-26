@@ -9,7 +9,7 @@ const SideBar = ({ pageLinks, tagLinks, type, onTagClick }) => {
     <div className={s.sideBar}>
       <button className={s.createBtn}>
         <i className='iconfont icon-create'></i>
-        <span>{`创建新${PageTypes[type]}`}</span>
+        <Link to={`/${type}/create`}>{`创建新${PageTypes[type]}`}</Link>
       </button>
       { pageLinks ? <AnchorList data={pageLinks} /> : null }
       { tagLinks ? <AnchorList data={tagLinks} onTagClick={onTagClick} style={{ marginTop: '30'}}/> : null }

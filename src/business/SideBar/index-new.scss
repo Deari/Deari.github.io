@@ -18,13 +18,19 @@
   border: 1px solid $site-blue;
   border-radius: 2px;
   font-size: 15px;
-  color: $site-blue;
   background: #fff;
   outline: none;
   cursor: pointer;
+  color: $site-blue;
+  & > a {
+    color: $site-blue;
+  }
   &:hover {
     color: #fff;
     background: $site-blue;
+    & > a {
+      color: #fff;
+    }
   }
   i {
     margin-right: 5px;
