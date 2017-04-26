@@ -23,10 +23,10 @@ class List extends React.Component {
               </Link>
               
               <div className="info-introduce">
-                <p>AppID：{item.id}</p>
-                <p>AppKEY：{item.appKey}</p>
+                <p>DeveloperKey: {item.developerKey}</p>
+                <p>DeveloperSecret: {item.developerSecret}</p>
               </div>
-              { item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> }
+              {/* item.showOpenLink && <Link className="info-link" to={item.marketUrl}>{item.marketUrlTxt}<i className="iconfont icon-categoryindi"></i></Link> */}
             </div>
             <div className="info-price w90">{item.price}</div>
             { item.status && <div className="w90 info-download"><div>{item.status}</div></div>}

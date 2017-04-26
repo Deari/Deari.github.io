@@ -112,6 +112,8 @@ class widgetsList extends React.Component {
         obj.marketUrl = `/widgets`
         obj.marketUrlTxt = '在组件市场中查看'
         obj.appKey = item.appkey
+        obj.developerKey = item.developerKey
+        obj.developerSecret = item.developerSecret
         obj.latestActiveColor = latestStatusObj.activeColor && latestStatusObj.activeColor || ''
         obj.latestCodeVersion = latestStatusObj.stateObj && latestStatusObj.stateObj.codeVersion || ''
         obj.latestStatusName = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatusName || ''
