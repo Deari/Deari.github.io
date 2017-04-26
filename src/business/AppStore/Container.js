@@ -65,7 +65,7 @@ class Container extends React.Component {
       })
 
       tags.unshift({
-        label: '所有'+PageTypes[type],
+        label: '全部'+PageTypes[type],
         to: `/${type}`,
         icon: `sidebar0`
       })
