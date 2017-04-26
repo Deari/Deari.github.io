@@ -147,9 +147,19 @@ class Analytics extends Component {
 
     if(hasAccount) {
       Account = <div className={s.account}>
-        <span className={s.label}>商家测试账号</span>
-        <span className={s.item}>默认账号：<i>{account.userName}</i></span>
-        <span className={s.item}>默认密码：<i>{account.password}</i></span>
+        <h3 className={s.title}>商家测试账号</h3>
+        <div className={s.item}>
+          <label>wid：</label>
+          <span>{account.wid}</span>
+        </div>
+        <div className={s.item}>
+          <label>默认账号：</label>
+          <span>{account.userName}</span>
+        </div>
+        <div className={s.item}>
+          <label>默认密码：</label>
+          <span>{account.password}</span>
+        </div>
       </div>
     }
 

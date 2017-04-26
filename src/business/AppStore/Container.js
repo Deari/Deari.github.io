@@ -5,6 +5,7 @@ import { PageTypes, getPageLinks } from 'config/index'
 import SideBar from 'business/SideBar'
 import OpenList from 'components/OpenList'
 import Pagination from 'components/Pagination'
+import { scrollToTop } from 'utils/scroll'
 
 class Container extends React.Component {
   constructor(props) {
@@ -82,7 +83,8 @@ class Container extends React.Component {
     }
     const { tag, ...rest } = _p;
     const url = getDomain(`web/market/tag/${tag}/${this.state.type}`)
-    fetchUtil.getJSON(url, {
+
+    return fetchUtil.getJSON(url, {
       ...rest
     }).then(data => {
       let { list, page, meta } = data
@@ -109,7 +111,7 @@ class Container extends React.Component {
   }
 
   onSelectPage (page) {
-    this.fetchAppList({ page, skip: (page-1)*this.state.page.limit })
+    this.fetchAppList({ page, skip: (page-1)*this.state.page.limit }).then(scrollToTop)
   }
 
   render () {

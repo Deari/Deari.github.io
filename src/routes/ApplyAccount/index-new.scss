@@ -3,39 +3,41 @@
   margin-left: 220px;
   padding: 20px;
   background: #fff;
+  color: #333;
   h1 {
     font-size: 16px;
     font-weight: normal;
     color: #000000;
   }
   .status {
-    font-size: 16px;
-    font-weight: bold;
+    color: #000;
     display: block;
+    font-size: 16px;
     margin: 30px 0 10px;
   }
   .desc {
     line-height: 28px;
     border-bottom: 1px solid #eee;
     font-size: 14px;
-    color: #999999;
     padding-bottom: 16px;
     i {
       color: #2692fb;
     }
   }
   .account {
-    .label {
+    & > h3 {
       font-size: 16px;
-      font-weight: bold;
       padding: 35px 0 25px;
-      display: block;
     }
     .item {
       font-size: 14px;
-      color: #aaa;
-      display: block;
+      color: #333;
       margin-bottom: 15px;
+      & > label {
+        display: inline-block;
+        width: 100px;
+        text-align: right;
+      }
       i {
         font-size: 16px;
         color: #333;

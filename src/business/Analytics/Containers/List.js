@@ -3,6 +3,7 @@ import { getEnvDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import TEST_DATA from './data'
 import List from '../Components/List'
+import { scrollToTop } from 'utils/scroll'
 
 class ListContainer  extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class ListContainer  extends Component {
   loadData(page, options){
     const api = this.state.api;
     
-    fetchUtil.getJSON(api.url, { 
+    return fetchUtil.getJSON(api.url, { 
       ...api.params,
       ...options,
       page
@@ -53,7 +54,7 @@ class ListContainer  extends Component {
   }
 
   onPage (page) {
-    this.loadData(page)
+    this.loadData(page).then(scrollToTop)
   }
 
   render() {
