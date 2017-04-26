@@ -117,6 +117,8 @@ class AppsList extends React.Component {
         obj.marketUrl = `/apps`
         obj.marketUrlTxt = '在应用市场中查看'
         obj.appKey = item.appkey
+        obj.developerKey = item.developerKey
+        obj.developerSecret = item.developerSecret
         obj.latestActiveColor = latestStatusObj.activeColor && latestStatusObj.activeColor || ''
         obj.latestCodeVersion = latestStatusObj.stateObj && latestStatusObj.stateObj.codeVersion || ''
         obj.latestStatusName = latestStatusObj.stateObj && latestStatusObj.stateObj.codeStatusName || ''
