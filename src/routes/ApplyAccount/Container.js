@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
 import { getEnvDomain } from 'utils/d'
+import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
@@ -18,8 +20,7 @@ class Analytics extends Component {
   }
 
   getAccount() {
-    // const url = getEnvDomain()+'/bow/v1/account'
-    const url = 'http://api.sit.ffan.net/bow/v1/account'
+    const url = getEnvDomain()+'/bow/v1/account'
     
     return fetchUtil.getJSON(url, {
       clientType: 1
@@ -27,12 +28,21 @@ class Analytics extends Component {
   }
 
   componentDidMount() {
-    this.getAccount().then(account => {
-      this.renderWithAccount(account)
-    }).catch(e=>{
-      console.log(e)
-      this.renderWithApplyAccount()
-    })
+    let sourceVal = getSourceVal()
+    let checkUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus( (status, data) => {
+      if (status) {
+        this.getAccount().then(account => {
+          this.renderWithAccount(account)
+        }).catch(e=>{
+          console.log(e)
+          this.renderWithApplyAccount()
+        })
+      }
+    }, checkUrl, loginUrl, callbackUrl)
   }
 
   renderWithAccount(account) {
@@ -64,6 +74,7 @@ class Analytics extends Component {
 
   getCode () {
     const phone = findDOMNode(this.refs.phone).value.trim()
+    const url = getEnvDomain()+'/bow/v1/verifycodes'
     if(!phone) {
       return alert('请填写手机号！！')
     }
@@ -73,7 +84,7 @@ class Analytics extends Component {
     this.setState({
       allowGetCode: false
     }, ()=>{
-      fetchUtil.postJSON('http://api.sit.ffan.net/bow/v1/verifycodes', {
+      fetchUtil.postJSON(url, {
         phone,
         clientType: 1
       }).then(data => {
@@ -91,11 +102,12 @@ class Analytics extends Component {
   submitHandler() {
     const phone = findDOMNode(this.refs.phone).value.trim()
     const code = findDOMNode(this.refs.code).value.trim()
+    const url = getEnvDomain()+'/bow/v1/testaccount'
     if(!phone || !code ) {
       return alert('填写手机号以及验证码')
     }
 
-    fetchUtil.postJSON('http://api.sit.ffan.net/bow/v1/testaccount', {
+    fetchUtil.postJSON(url, {
       phone, 
       verifycodes: code,
       clientType: 1

@@ -134,6 +134,7 @@ export class renderImageUpload extends Component {
 
   render() {
     const { input, label, describeId, describeContent, currentSize, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
+    const downloadUrl = `http://nres.ffan.com/newh5/2017426/b712af2abb20f1f88d1b8c46a1612bbdaea1c8b5.psd`
     return (
       <div className="form-row">
         <label>{label}</label>
@@ -149,7 +150,7 @@ export class renderImageUpload extends Component {
             <div className="example-container" style={{display: (h && currentSize == 'img2') ? 'block' : 'none'}}>
               <div className="example-line"></div>
               <div className="example-box">
-                <a className="example-img" href="">
+                <a className="example-img" href={downloadUrl}>
                   <div className="img-icon"></div>
                   <div className="img-marker"></div>
                   <span>下载模板</span>

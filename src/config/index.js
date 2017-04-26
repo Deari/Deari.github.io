@@ -12,11 +12,13 @@ export const getPageLinks = (type) => {
   },{
     to: `/${type}/analytics`,
     label: `${PageTypes[type]}数据统计`,
-    icon: 'sidebar3'
+    icon: 'sidebar3',
+    hide: (type == 'hardware') ? true : false
   },{
     to: `/applyAccount`,
     label: '申请测试账号',
-    icon: 'application'
+    icon: 'application',
+    hide: (type == 'hardware') ? true : false
   },{
     to: `/${type}/doc`,
     label: '开发者文档',
