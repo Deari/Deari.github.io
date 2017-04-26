@@ -1,6 +1,4 @@
 import React from 'react'
-// import Main from './components/Main'
-
 import AppStore from 'business/AppStore/Container'
 
 class Main extends React.Component {
