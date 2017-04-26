@@ -10,6 +10,7 @@ import { scrollToTop } from 'utils/scroll'
 class Container extends React.Component {
   constructor(props) {
     super(props)
+
     this.state = {
       type: props.type,
       list: [],
@@ -58,14 +59,14 @@ class Container extends React.Component {
       const tags = data.map(item => {
         return {
           label: item.tagName,
-          to: `/${type}?tagId=${item.tagId}`,
+          to: `/${type}/tag/${item.tagId}`,
           icon: `sidebar${item.tagId}`
         }
       })
 
       tags.unshift({
         label: '所有'+PageTypes[type],
-        to: `/${type}?tagId=0`,
+        to: `/${type}`,
         icon: `sidebar0`
       })
 

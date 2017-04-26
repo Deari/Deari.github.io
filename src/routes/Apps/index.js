@@ -1,23 +1,16 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import AppStore from 'business/AppStore/Container'
+import Store from './Containers/AppStore'
 
-class Main extends React.Component {
-  render () {
-    const tag = this.props.location.query.tagId || 'all';
-    return <AppStore type='apps' tag={tag}></AppStore>
-  }
-}
 export default (store) => ({
   path: 'apps',
-  
   indexRoute: {
-    component: Main
+    component: Store
   },
-
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
+        require('./routes/Store').default,
         require('./routes/Create')(store),
         require('./routes/Detail')(store),
         require('./routes/List')(store),
