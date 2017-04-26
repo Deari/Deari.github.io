@@ -8,7 +8,7 @@ const TabelItem = ({ data, type }) => {
     <tr>
       <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
-        <span className={s.name}>{data.appName}</span>
+        <span className={`${s.name} ${s.textOverflow}`}>{data.appName}</span>
         <span className={s.desc}>{data.appDesc}</span>
         <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在 应用市场 中查看<i className="iconfont icon-look"></i></Link>
       </td>

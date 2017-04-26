@@ -44,10 +44,16 @@
     &.appInfo {
       width: 242px;
       padding: 16px 13px;
+      .textOverflow {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .name {
         color: #000;
         display: block;
         margin-bottom: 10px;
+        width: 200px;
       }
       .desc {
         overflow: hidden;
