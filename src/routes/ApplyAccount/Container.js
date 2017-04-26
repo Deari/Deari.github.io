@@ -118,7 +118,7 @@ class Analytics extends Component {
             type="text" 
             ref="phone"
             maxLength="11"
-            defaultValue='17090073119'
+            defaultValue=''
             placeholder='请输入手机号' 
           />
         </div>
