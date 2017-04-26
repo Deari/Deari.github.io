@@ -1,6 +1,6 @@
 import React from 'react'
 import fetchUtil from 'utils/fetch'
-import { getDomain } from 'utils/domain'
+import { getEnvDomain } from 'utils/d'
 import { PageTypes, getPageLinks } from 'config/index'
 import SideBar from 'business/SideBar'
 import OpenList from 'components/OpenList'
@@ -52,7 +52,7 @@ class Container extends React.Component {
     if(type !== 'hardware') {
       _type = type.slice(0,-1)
     }
-    const url = getDomain(`public/common/tags?type=${_type}`)
+    const url = getEnvDomain()+`/app/v1/bo/v1/public/common/tags?type=${_type}`
     
     fetchUtil.getJSON(url).then(data => {
       const tags = data.map(item => {
@@ -82,7 +82,7 @@ class Container extends React.Component {
       ...params
     }
     const { tag, ...rest } = _p;
-    const url = getDomain(`web/market/tag/${tag}/${this.state.type}`)
+    const url = getEnvDomain()+`/app/v1/bo/v1/web/market/tag/${tag}/${this.state.type}`
 
     return fetchUtil.getJSON(url, {
       ...rest
@@ -122,11 +122,13 @@ class Container extends React.Component {
       _type = 'app'
     }
 
+    let pageLinks = getPageLinks(type).filter(( item ) => { return !item.hide })
+
     return (
       <div className="container">
-        <SideBar pageLinks={getPageLinks(type)} type={type} tagLinks={tags} />
+        <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
         <div className="sub-container">
-          <div className="sub-container-banner"></div>
+          <div className={`sub-container-banner-${type}`}></div>
           <h2 className="open-content-nav">
             <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
           </h2>

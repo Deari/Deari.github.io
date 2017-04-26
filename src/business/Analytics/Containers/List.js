@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { getEnvDomain } from 'utils/d'
+import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetch'
 import TEST_DATA from './data'
 import List from '../Components/List'
@@ -37,20 +39,28 @@ class ListContainer  extends Component {
 
   loadData(page, options){
     const api = this.state.api;
-    
-    return fetchUtil.getJSON(api.url, { 
-      ...api.params,
-      ...options,
-      page
-    }).then(data=>{
-      this.setState({ list: data.list, total: data.page.totalCount })
-    }).catch(e=>{
-      this.setState({ 
-        list: TEST_DATA.data.list,
-        total: TEST_DATA.data.page.totalCount
-      })
-      console.warn(e)
-    })
+    let sourceVal = getSourceVal()
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+
+    LoginSDK.getStatus( (status, data) => {
+      if (status) {
+        return fetchUtil.getJSON(api.url, { 
+          ...api.params,
+          ...options,
+          page
+        }).then(data=>{
+          this.setState({ list: data.list, total: data.page.totalCount })
+        }).catch(e=>{
+          this.setState({ 
+            list: TEST_DATA.data.list,
+            total: TEST_DATA.data.page.totalCount
+          })
+          console.warn(e)
+        })
+      }
+    }, url, loginUrl, callbackUrl)
   }
 
   onPage (page) {
