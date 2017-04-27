@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
 import { getEnvDomain } from 'utils/d'
-import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
@@ -28,21 +27,12 @@ class Analytics extends Component {
   }
 
   componentDidMount() {
-    let sourceVal = getSourceVal()
-    let checkUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
-    let callbackUrl = location.href
-
-    LoginSDK.getStatus( (status, data) => {
-      if (status) {
-        this.getAccount().then(account => {
-          this.renderWithAccount(account)
-        }).catch(e=>{
-          console.log(e)
-          this.renderWithApplyAccount()
-        })
-      }
-    }, checkUrl, loginUrl, callbackUrl)
+    this.getAccount().then(account => {
+      this.renderWithAccount(account)
+    }).catch(e=>{
+      console.log(e)
+      this.renderWithApplyAccount()
+    })
   }
 
   renderWithAccount(account) {
