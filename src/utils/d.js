@@ -32,3 +32,7 @@ export function getDomainEnv(url, isApi) {
 export function getEnvDomain() {
   return getDomainEnv() === 'pub' ? 'http://api.ffan.net' : 'http://api.sit.ffan.net'
 }
+
+export function getXapiComDomain () {
+  return getDomainEnv() === 'pub' ? 'http://api.ffan.com' : 'http://api.sit.ffan.com'
+}

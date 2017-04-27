@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
-import { getEnvDomain } from 'utils/d'
+import { getEnvDomain, getXapiComDomain } from 'utils/d'
 import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetch'
@@ -13,6 +13,7 @@ class Analytics extends Component {
     allowGetCode: true,
     allowGetCodeTime: 60,
     hasAccount: false,
+    downloadUrl: '',
     account: {
       userName: 'mock_username',
       password: 'mock_password'
@@ -34,6 +35,7 @@ class Analytics extends Component {
       console.log(e)
       this.renderWithApplyAccount()
     })
+    this.getDownloadUrl()
   }
 
   renderWithAccount(account) {
@@ -90,6 +92,22 @@ class Analytics extends Component {
     })
   }
 
+  getDownloadUrl () {
+    const url = getXapiComDomain()+'/oc/v1/version/latest?'
+    fetchUtil.getJSON(url, {
+      objectId: 1,
+      osType: 2
+    }, {
+      credentials: 'omit'
+    }).then(data => {
+      this.setState({
+        downloadUrl: data.downloadUrl
+      })
+    }).catch(e=>{
+      console.log(e)
+    })
+  }
+
   submitHandler() {
     const phone = findDOMNode(this.refs.phone).value.trim()
     const code = findDOMNode(this.refs.code).value.trim()
@@ -111,9 +129,8 @@ class Analytics extends Component {
     })
   }
 
-
   render() {
-    const { hasAccount, account, allowGetCode, allowGetCodeTime } = this.state
+    const { hasAccount, account, allowGetCode, allowGetCodeTime, downloadUrl } = this.state
     let Account = (
       <div className={s.applyForm}>
         <div className={s.formItem}>
@@ -148,7 +165,7 @@ class Analytics extends Component {
       </div>
     );
 
-    if(!hasAccount) {
+    if(hasAccount) {
       Account = <div className={s.account}>
         <h3 className={s.title}>商家测试账号</h3>
         <div className={s.item}>
@@ -180,7 +197,7 @@ class Analytics extends Component {
             <ul>
               <li>1、每位开发者有且只有一个商家测试账号。</li>
               <li>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</li>
-              <li>3、下载 <a className={s.downlinks} href="#">开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
+              <li>3、下载 <a className={s.downlinks} href={downloadUrl}>开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
             </ul>
           </div>
           { Account }
