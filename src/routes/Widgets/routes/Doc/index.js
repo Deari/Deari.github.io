@@ -21,9 +21,11 @@ class Doc extends React.Component {
   }
 
   componentDidMount() {
-    let hashName = location.hash.slice(1);
-    let element = document.getElementsByName(hashName);
-    element && element[0] && element[0].scrollIntoView();
+    let hashName = location.hash && decodeURI(location.hash);
+    let element = document.getElementsByName(hashName.slice(1));
+    setTimeout(() => {
+      element[0].scrollIntoView();
+    }, 1000)
   }
 
   render() {
