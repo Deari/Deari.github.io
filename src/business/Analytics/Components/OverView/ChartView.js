@@ -18,6 +18,8 @@ class ChartView extends React.Component {
   render () {
     const { data, loadData } = this.props
     const { days, selectDays } = this.state
+    const startDate = data[0] ? data[0].statisticsTime : '--'
+    const endDate = data[data.length-1] ? data[data.length-1].statisticsTime : '--'
 
     return (
       <div className={s.chart}>
@@ -28,15 +30,9 @@ class ChartView extends React.Component {
               onClick={this.showDaysData.bind(this, v)}>最近{v}天</li>
             })}
           </ul>
-          {/*<ul className={s.list}>
-            <li className={cx(s.active)}>新增商家</li>
-            <li>活跃商家</li>
-            <li>启动次数</li>
-            <li>下载次数</li>
-          </ul>*/}
         </div>
         <div className={s.charContent}>
-          <h4 className={s.pageTitle}>2017-03-07 至 2017-04-04</h4>
+          <h4 className={s.pageTitle}>{startDate} 至 {endDate}</h4>
           <div className={s.chartCanvas}>
             <LineChart width={800} height={320} data={ data }
               margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -54,7 +50,7 @@ class ChartView extends React.Component {
         </div>
 
         <div className={s.tableWrap}>
-          <div className={s.pageTitle}>2017-04-06 至 2017-03-07 </div>
+          <div className={s.pageTitle}>{startDate} 至 {endDate}</div>
           <table className={s.table}>
             <thead>
               <tr>
