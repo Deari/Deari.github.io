@@ -41,7 +41,15 @@ class ListContainer  extends Component {
       ...options,
       page
     }).then(data=>{
-      this.setState({ list: data.list, total: data.page.totalCount })
+      const list = data.list.map(item=> {
+        const  { statisticsTime='', yesterdayTime='' } = item
+        return {
+          ...item,
+          _time1: statisticsTime.split('-')[2],
+          _time2: yesterdayTime.split('-')[2],
+        }
+      })
+      this.setState({ list, total: data.page.totalCount })
     }).catch(e=>{
       console.warn(e)
     })

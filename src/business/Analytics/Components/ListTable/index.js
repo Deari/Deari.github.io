@@ -14,20 +14,20 @@ const TabelItem = ({ data, type }) => {
         <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.storeCountNew}</i></span>
-        <span>昨：<i className={s.num}>{data.storeCountNewYesterday}</i></span>
+        <span>{data._time1}日：<i className={s.num}>{data.storeCountNew}</i></span>
+        <span>{data._time2}日：<i className={s.num}>{data.storeCountNewYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.activeStoreCount}</i></span>
-        <span>昨：<i className={s.num}>{data.activeStoreCountYesterday}</i></span>
+        <span>{data._time1}日：<i className={s.num}>{data.activeStoreCount}</i></span>
+        <span>{data._time2}日：<i className={s.num}>{data.activeStoreCountYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.launchCount}</i></span>
-        <span>昨：<i className={s.num}>{data.launchCountYesterday}</i></span>
+        <span>{data._time1}日：<i className={s.num}>{data.launchCount}</i></span>
+        <span>{data._time2}日：<i className={s.num}>{data.launchCountYesterday}</i></span>
       </td>
       <td className={s.common}>
-        <span>今：<i className={s.num}>{data.downloadCount}</i></span>
-        <span>昨：<i className={s.num}>{data.downloadCountYesterday}</i></span>
+        <span>{data._time1}日：<i className={s.num}>{data.downloadCount}</i></span>
+        <span>{data._time2}日：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
       <td className={s.actions}>
         <Link to={`/${type}/analytics/${data.statisticsId}`} className={s.btn}>查看</Link>

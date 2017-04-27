@@ -30,7 +30,8 @@
     }
   }
   td {
-    padding: 10px;
+    padding: 5px;
+    border: 1px solid #dedede;
     &.imgWrap {
       width: 122px;
       text-align: center;
@@ -42,8 +43,7 @@
       }
     }
     &.appInfo {
-      width: 242px;
-      padding: 16px 13px;
+      width: 200px;
       .textOverflow {
         white-space: nowrap;
         overflow: hidden;
@@ -79,21 +79,15 @@
       }
     }
     &.common {
-      width: 92px;
       &>span {
-        display: flex;
-        color: #aaaaaa;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-        .num {
-          display: inline-block;
-          text-align: left;
-          width: 40px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          color: #000000;
+        color: #666;
+        display: block;
+        width: 90px;
+        text-align: left;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        & > i {
           font-style: normal;
         }
       }
