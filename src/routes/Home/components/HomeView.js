@@ -18,7 +18,10 @@ const SimpleSlider = React.createClass({
     let callbackUrl = `${location.origin}/${type}/create`
     try{
       LoginSDK.getStatus((status, data) => {
-        if (status) window.location.href = `/${type}/create`
+        if (status) {
+          let goCreate = (type == 'hardware') ? `http://iotdev.ffan.net/zh-cn/developer/product/create` : `/${type}/create`
+          window.location.href = goCreate
+        }
       }, url, loginUrl, callbackUrl)
     }catch(e){
       console.log(e)

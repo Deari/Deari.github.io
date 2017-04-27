@@ -4,6 +4,11 @@ export const PageTypes = {
   'hardware': '硬件'
 }
 
+export const DocLink = (type) => {
+  let docLink = (type == 'hardware') ? `http://iotdev.ffan.net/zh-cn/developer/document/1` : `/${type}/doc`
+  return docLink
+}
+
 export const getPageLinks = (type) => {
   return [{
     to: `/${type}/list`,
@@ -20,7 +25,7 @@ export const getPageLinks = (type) => {
     icon: 'application',
     hide: (type == 'hardware') ? true : false
   },{
-    to: `/${type}/doc`,
+    to: DocLink(type),
     label: '开发者文档',
     icon: 'file'
   }]
