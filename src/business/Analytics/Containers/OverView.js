@@ -38,7 +38,7 @@ class Container extends Component {
             ...item, 
             _day: item.statisticsTime.split('-')[2] 
           }
-        }).reverse()
+        })
       })
     }).catch(e=>{
       console.warn(e);
