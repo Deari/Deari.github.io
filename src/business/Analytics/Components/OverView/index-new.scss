@@ -3,6 +3,7 @@
   padding: 0 10px 20px;
   margin-left: 220px;
   background: #fff;
+  color: #333;
   .pageTitle {
     line-height: 50px;
     background: #eee;
@@ -48,53 +49,28 @@
         padding: 20px 0 25px;
         overflow: hidden;
         img {
-          width: 140px;
-          height: 140px;
-          margin-right: 24px;
+          width: 128px;
+          height: 128px;
+          margin-right: 10px;
           float: left;
         }
         .info {
           overflow: hidden;
           & > h2 {
-            font-size: 24px;
-            color: #000;
+            font-size: 22px;
             font-style: normal;
           }
 
-          .type {
-            margin-top: 8px;
-            font-size: 12px;
-            line-height: 18px;
-            color: #666;
-            overflow: hidden;
-            .img {
-              float: left;
-              margin-right: 5px;
-              width: 20px;
-              height: 20px;
-              border-radius: 50%;
-              overflow: hidden;
-              background: url(http://timg.ffan.com/convert/resize/url_T13TWTBXAy1RCvBVdK/tfs/1.png) no-repeat;
-              background-size: 100% 100%;
-              vertical-align: middle;
-            }
-            span {
-              width: 594px;
-              float: left;
-              padding-top: 2px;
-            }
-          }
           .title {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 18px;
-            color: #000;
           }
           .text {
             margin-top: 4px;
             font-size: 14px;
             line-height: 24px;
-            color: #000;
             word-break: break-all;
+            color: #666;
           }
         }
       }
@@ -105,7 +81,6 @@
           display: block;
           margin-bottom: 15px;
           font-size: 16px;
-          color: #aaa;
         }
         .num {
           font-size: 25px;

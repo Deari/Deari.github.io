@@ -50,7 +50,7 @@ export const BasicInfo = (props) => {
     <div className="detail-info">
       <dl className="detail-tittle">
         <dt>{data.mine&&latestVersion.publishStatus==0? data.changes&&data.changes.appName : data.appName }</dt>
-        <dd><i className="user-img"></i><span>{data.developerName}</span></dd>
+        {/*<dd><i className="user-img"></i><span>{data.developerName}</span></dd>*/}
       </dl>
       <h3 className="app-title">内容提要</h3>
       <p className="app-text">{ data.mine&&latestVersion.publishStatus==0?data.changes&&data.changes.appDesc:data.appDesc}</p>
