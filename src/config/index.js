@@ -27,6 +27,7 @@ export const getPageLinks = (type) => {
   },{
     to: DocLink(type),
     label: '开发者文档',
-    icon: 'file'
+    icon: 'file',
+    isExternal: (type == 'hardware') ? true : false
   }]
 }
