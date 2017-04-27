@@ -40,9 +40,9 @@ class Sidebar extends React.Component {
             </a>
           </li>
           <li>
-            <Link to={urls.doc.url} className={(urls.doc.active && 'active') || ''}> 
+            <a href={urls.doc.url} className={(urls.doc.active && 'active') || ''}> 
               {this.props.typeName?'':<i className="iconfont icon-file"></i>}开发者文档
-            </Link>
+            </a>
           </li>
         </ul>
 

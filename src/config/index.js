@@ -9,11 +9,17 @@ export const DocLink = (type) => {
   return docLink
 }
 
+export const MyLink = (type) => {
+  let myLink = (type == 'hardware') ? `http://iotdev.ffan.net/zh-cn/developer/product/all` : `/${type}/list`
+  return myLink
+}
+
 export const getPageLinks = (type) => {
   return [{
-    to: `/${type}/list`,
+    to: MyLink(type),
     label: `我的${PageTypes[type]}`,
-    icon: 'application'
+    icon: 'application',
+    isExternal: (type == 'hardware') ? true : false
   },{
     to: `/${type}/analytics`,
     label: `${PageTypes[type]}数据统计`,

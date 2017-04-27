@@ -87,7 +87,7 @@ class HardwareDetail extends React.Component {
     const urls = {
       create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '创建新硬件' },
       list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
-      doc: { url: `/hardware/doc` }
+      doc: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all` }
     }
     const navList=[{value:'商品介绍',type:'productDesc'},{value:'规格参数',type:'typeParam'},{value:'评论('+commentData.assessList[0].list.length+')',type:'comment'}];
     return (
