@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, IndexLink } from 'react-router'
+import { IndexLink } from 'react-router'
 import cx from 'classnames'
 import s from './index-new.scss'
 
@@ -9,9 +9,11 @@ const PageLinks = ({ data, style, className }) => {
       {data && data.map((item, index)=>{
         return (
           <li key={index} className={s.item}>
-            <IndexLink to={item.to} activeClassName={s.active} >
+            {!item.isExternal ? <IndexLink to={item.to} activeClassName={s.active} >
               <i className={`iconfont icon-${item.icon}`}></i>{item.label}
-            </IndexLink>
+            </IndexLink> : <a href={item.to}>
+              <i className={`iconfont icon-${item.icon}`}></i>{item.label}
+            </a> }
           </li>
         )
       })}

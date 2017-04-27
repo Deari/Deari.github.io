@@ -208,10 +208,6 @@ public class MyConfig extends DefaultConfig {
 ![Alt text](http://img1.ffan.com/T1lSETBbAg1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
 
-## 接口说明
-
-[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
-
 # HTML5开发者
 
 ## JSSDK使用文档
@@ -389,7 +385,7 @@ false|true
 
 ###  **`accessToken` 说明**
 
-- `accessToken` 是开放平台的全局唯一票据, 第三方组件调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
+- `accessToken` 是开放平台的全局唯一票据, 第三方应用调用各接口时都需使用 `accessToken`。开发者需要进行妥善保存
 
 - `accessToken` 的存储至少要保留 512 个字符空间
 
@@ -397,7 +393,7 @@ false|true
 
 **开放平台的API调用所需的 `accessToken` 的使用及生成方式说明**
 
-  * **中控服务器**. 为了保密 `appSecrect`, 第三方需要一个 `accessToken` 获取和刷新的中控服务器。而其他业务逻辑服务器所使用的 `accessToken` 均来自于该中控服务器, 不应该各自去刷新, 否则会造成 `accessToken` 覆盖而影响业务。
+  * **中控服务器**. 为了保密 `developerSecrect`, 第三方需要一个 `accessToken` 获取和刷新的中控服务器。而其他业务逻辑服务器所使用的 `accessToken` 均来自于该中控服务器, 不应该各自去刷新, 否则会造成 `accessToken` 覆盖而影响业务。
 
   * **刷新过程**. 目前 `accessToken` 的有效期通过返回的 `expiresIn` 来传达, 目前是 7200 秒。中控服务器需要根据这个有效时间提前去刷新新 `accessToken`。在刷新过程中, 中控服务器对外输出的依然是老 `accessToken`, 此时开放平台后台会保证在刷新短时间内, 新老 `accessToken` 都可用, 这保证了第三方业务的平滑过渡。
 
@@ -408,16 +404,16 @@ false|true
   - 请求样例
 
 ```bash
-curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f5256" http://api.ffan.com/oauth/v1/token
+curl -X POST -d "developerKey=bo8b4f85f3a794d99&developerSecret=cd02f64be56af9a6603c4ad6858f5256" http://api.ffan.com/oauth/v1/token
 ```
 
   - 接口调用频率: 2000 次 / 天（ 00:00:00 - 23:59:59 ）
 
   - 参数说明
 
-    * **appKey**: 第三方组件 `appKey`
+    * **developerKey**: 第三方应用 `developerKey`
 
-    * **appSecret**: 第三方组件的的密钥
+    * **developerSecret**: 第三方应用的的密钥
 
   - 返回值说明
 
@@ -446,15 +442,15 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 | 错误码 | 错误说明 |
 | :--- | :----- |
-| 4001 | appKey 参数错误 |
-| 4002 | appSecret 参数错误 |
+| 4001 | developerKey 参数错误 |
+| 4002 | developerSecret 参数错误 |
 | 5001 | 服务器存储错误 |
 
 ### **`accessToken` 的签名说明**
 
 **签名算法**
 
-- 参与签名的字段: `accessToken`（资源调用凭证）、`appKey`（第三方组件的 appKey）、`nonceStr`（随机字符串）、`ts`（当前时间戳）、`url`（调用 JS 接口页面的完整 URL, 不包含 # 及其后面部分）
+- 参与签名的字段: `accessToken`（资源调用凭证）、`developerKey`（第三方应用的 developerKey）、`nonceStr`（随机字符串）、`ts`（当前时间戳）、`url`（调用 JS 接口页面的完整 URL, 不包含 # 及其后面部分）
 
 - 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即 key1=value1&key2=value2…）拼接成字符串 `str1`
 
@@ -468,7 +464,7 @@ curl -X POST -d "appKey=bo8b4f85f3a794d99&appSecret=cd02f64be56af9a6603c4ad6858f
 
 ```javascript
 accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f
-appkey=3b997a1c75a61c26fd0576f814f51df6
+developerkey=3b997a1c75a61c26fd0576f814f51df6
 noncestr=abcdeaasdfasdf
 ts=1486351078
 url=http://m.ffan.com?a=b&c=d
@@ -477,7 +473,7 @@ url=http://m.ffan.com?a=b&c=d
   2\. 对所有待签名参数按照字段名的 `ASCII` 码从小到大排序（字典序）后, 使用URL键值对的格式（即key1=value1&key2=value2…）拼接成字符串 `string1`
 
 ```javascript
-accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
+accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&developerkey=3b997a1c75a61c26fd0576f814f51df6&noncestr=abcdeaasdfasdf&ts=1486351078&url=http://m.ffan.com?a=b&c=d
 ```
 
   3\. 对 `string1` 进行 `SHA256` 签名, 得到 `signature`
@@ -491,14 +487,14 @@ accesstoken=1f7f568afa4204326fede5cc17472b8a535ca39f&appkey=3b997a1c75a61c26fd05
 - 请求样例
 
 ```bash
-curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
+curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d99&ts=1484727098&nonceStr=asd1ada&signature=86f7e437faa5a7fce15d1ddcb9eaeaea377667b7&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd
 ```
 
 - 接口调用频率: 200000 次 / 天（00:00:00 - 23:59:59）
 
 - 参数说明
 
-  * **appKey**: 第三方组件 appKey
+  * **developerKey**: 第三方应用 developerKey
 
   * **ts**: 签名时使用的时间戳
 
@@ -530,7 +526,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 | 错误码 | 错误说明 |
 | :--- | :----- |
-| 4001 | appKey 参数错误 |
+| 4001 | developerKey 参数错误 |
 | 4004 | accessToken 参数错误 |
 | 4005 | nonceStr 参数错误 |
 | 4006 | url 参数错误 |
@@ -539,12 +535,12 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 **生成 `accessToken` 的签名接口说明**
 
-<p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方组件在自己的服务端实现签名逻辑</font></p>
+<p><font color=red>注意: 此接口仅仅是为了方便开发者调试签名, 实际业务中请第三方应用在自己的服务端实现签名逻辑</font></p>
 
 - 请求样例
 
   ```bash
-  curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&appKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.ffan.com/oauth/v1/token/sign
+  curl  -X POST -d "accessToken=86f7e437faa5a7fce15d1ddcb9eaeaea377667b8&developerKey=bo8b4f85f3a794d99&nonceStr=asd1ada&ts=1484727098&url=http%3A%2F%2Fm.ffan.com%3Fa%3Db%26c%3Dd" http://api.ffan.com/oauth/v1/token/sign
   ```
 
 - 接口调用频率: 200 次 / 天（00:00:00 - 23:59:59）
@@ -553,7 +549,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
   * `accessToken`: 资源接口的调用凭证
 
-  * `appKey`: 第三方组件 appKey
+  * `developerKey`: 第三方应用 developerKey
 
   * `ts`: 签名时使用的时间戳
 
@@ -586,7 +582,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?appKey=bo8b4f85f3a794d99&ts=
 
 | 错误码 | 错误说明 |
 | :--- | :----- |
-| 4001 | appKey 参数错误 |
+| 4001 | developerKey 参数错误 |
 | 4004 | accessToken 参数错误 |
 | 4005 | nonceStr 参数错误 |
 | 4006 | url 参数错误 |
