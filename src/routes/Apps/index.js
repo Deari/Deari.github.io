@@ -1,11 +1,18 @@
 import React from 'react'
 import { IndexLink, Link } from 'react-router'
-import Store from './Containers/AppStore'
+// import Store from './Containers/AppStore'
 
 export default (store) => ({
   path: 'apps',
   indexRoute: {
-    component: Store
+    getComponents(nextState, cb) {
+      require.ensure([], (require) => {
+        cb(null, {
+          children: require('./Containers/AppStore').default
+        })
+      })
+    }
+    // component: Store
   },
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
