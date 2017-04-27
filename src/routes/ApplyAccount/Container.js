@@ -3,7 +3,6 @@ import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
 import { getEnvDomain, getXapiComDomain } from 'utils/d'
 import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
-import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
@@ -93,7 +92,7 @@ class Analytics extends Component {
   }
 
   getDownloadUrl () {
-    const url = getXapiComDomain()+'/oc/v1/version/latest?'
+    const url = getXapiComDomain()+'/oc/v1/version/latest'
     fetchUtil.getJSON(url, {
       objectId: 1,
       osType: 2
