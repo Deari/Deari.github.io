@@ -16,7 +16,7 @@ export default (store) => ({
         require('./routes/Detail')(store),
         require('./routes/List')(store),
         require('./routes/Editor')(store),
-        require('./routes/Doc'),
+        require('./routes/Doc').default,
         require('./routes/Analytics/List').default,
         require('./routes/Analytics/OverView').default
       ])

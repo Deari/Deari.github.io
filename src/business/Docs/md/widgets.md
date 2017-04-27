@@ -1,4 +1,4 @@
-﻿# 开始前必读
+# 开始前必读
 
 ## 首页
 
@@ -30,9 +30,9 @@ Pad端的默认应用包括：会员管理、营销工具、商品管理、订�
 
  - 开发者注意
 
->1、蓝海开放平台开发是指为蓝海商家进行业务开发，为移动应用、PC端网站、硬件的开发。
+> 1、蓝海开放平台开发是指为蓝海商家进行业务开发，为移动应用、PC端网站、硬件的开发。
 
->2、在进行开发时，你可以先通过测试号申请系统，快速申请一个接口测试号，立即开始接口测试开发。
+> 2、在进行开发时，你可以先通过测试号申请系统，快速申请一个接口测试号，立即开始接口测试开发。
 
 
 
@@ -59,49 +59,43 @@ Pad端的默认应用包括：会员管理、营销工具、商品管理、订�
  请勿公开表达或暗示，您与蓝海开放平台之间存在合作关系，包括但不限于相互持股、商业往来或合作关系等，或声称蓝海开放平台对您的认可。
 
  完整的开发者规范和接口限制，请详见开发者接口文档，以及蓝海开放平台开发者协议。
-
+ 
 ## 开发流程概述
 
 ### 注册
 
 您需要打开开发者平台首页,点击右上角[注册][1]按钮,填写相关信息注册为开发者。
 
-### 创建新应用
+### 创建新组件
 
-- 点击页面左侧的[创建新应用][2]
-
-- 选择创建新应用的类型。应用类型包括FAP小程序、HTML5、APK。
+- 点击页面左侧的[创建新组件][2]
+- 选择创建新组件的类型。组件类型包括FAP小程序、HTML5。
 
 ### 开发、打包、调试
 
 #### Android开发者
-
-- 开发FAP小程序类型的应用
-
-- 开发APK类型的应用 
+- 开发FAP小程序类型的组件
 
 #### iOS开发者
-
-- 开发FAP小程序类型的应用
+- 开发FAP小程序类型的组件
 
 #### H5开发者
-
-- 开发HTML5类型的应用
+- 开发HTML5类型的组件
 
 ### 审核
 
- 1. 登录开发者平台首页,点击应用市场->我的应用->发布新版本,并上传应用文件（如:应用名.fap）或HTML5链接。
+ 1. 登录开发者平台首页,点击组件市场->我的组件->发布新版本,并上传组件文件（如:组件名.fap）或HTML5链接。
  2. 填写版本号, 版本号采用标准三段式, 如: 1.0.0。
  3. 填写版本简介, 字数请限制在 120 字内。
  4. 提交审核（审核规则待补充）。
 
 ### 发布
 
-1. 应用审核通过后, 可以在 我的应用->已审核 中查看。
-2. 点击发布, 会上架到应用市场。
+ 1. 组件审核通过后, 可以在 我的组件->已审核 中查看。
+ 2. 点击发布, 会上架到组件市场。
 
 [1]: http://apistore.intra.ffan.net/#/register
-[2]: http://open.ffan.net/apps/create
+[2]: http://open.ffan.net/widgets/create
 
 # Android开发者
 
@@ -110,9 +104,9 @@ Pad端的默认应用包括：会员管理、营销工具、商品管理、订�
 2. 下载安装[JDK](http://www.oracle.com/technetwork/java/javase/archive-139210.html)
 3. 安装Android SDK：
 打开Android Studio打开设置，如下图所示:
-![Alt text](http://img1.ffan.com/T1JwJTBvE_1RCvBVdK)
+![Alt text](http://img1.ffan.com/T18PWTBgDj1RCvBVdK)
 在设置选项中选择System Setting中的Android SDK选择下载安装
-![Alt text](http://img1.ffan.com/T1rPVTB5dX1RCvBVdK)
+![Alt text](http://img1.ffan.com/T1wPATB4ds1RCvBVdK)
 4. 安装React-Native环境[官方文档](http://facebook.github.io/react-native/docs/getting-started.html)
 ```bash
 # 1. 安装 brew
@@ -131,12 +125,10 @@ npm install -g react-native-cli
 ### 一、开发目录
 
 1. 目录结构图：
-![Alt text](http://img1.ffan.com/T18ThTBThv1RCvBVdK)
+![Alt text](http://img1.ffan.com/T1iPLTBQdQ1RCvBVdK)
 2. 配置文件说明：
-
 App Config 文件放在 app 的根目录下, 文件名为 config.json, 文件内容是一个 json 串。格式如下:
-
-```javascript
+```javascrpit
 {
   "index": "xxxxxx",
   "name": "xxxxxx",
@@ -159,7 +151,6 @@ App Config 文件放在 app 的根目录下, 文件名为 config.json, 文件内
 | version    |   app版本号 |  
 
 ### 二、配置
-
 > 在demo工程中的MyConfig Java类中对相应的配置进行修改
 
 ```java
@@ -184,11 +175,11 @@ public class MyConfig extends DefaultConfig {
     public String getChannelId() {
         return "3";
     }
-  //Android应用id
+  //Android组件id
     public String getAppId() {
         return "1";
     }
-  //Android应用版本
+  //Android组件版本
     public String getAppVersion() {
         return "1.0.0.0";
     }
@@ -210,11 +201,11 @@ public class MyConfig extends DefaultConfig {
 1.  修改Demo 工程的MyConfig类修改调试ffoap app类型
 2.  如果是FAP小程序类型，进入工程目录中的 js_module 目录, 运行 npm start 或者 react-native start, 开启服务，即可进行正常调试。
 3.  在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面。如下图：
-![Alt text](http://img1.ffan.com/T1wShTBvAv1RCvBVdK)
+![Alt text](http://img1.ffan.com/T1lSETBbAg1RCvBVdK)
 4.  进入开发选项，选择端口设置，查看电脑ip地址，设置为ip地址加8081端口。如下图：
-![Alt text](http://img1.ffan.com/T1jPLTB7LQ1RCvBVdK)![Alt text](http://img1.ffan.com/T14exTBXZT1RCvBVdK)
+![Alt text](http://img1.ffan.com/T1cGbTBKZs1RCvBVdK)![Alt text](http://img1.ffan.com/T1OPLTBmAQ1RCvBVdK)
 5.  电脑端安装chrome浏览器，在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面，选择start remote JS debuging，如图：
-![Alt text](http://img1.ffan.com/T1wShTBvAv1RCvBVdK)
+![Alt text](http://img1.ffan.com/T1lSETBbAg1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
 
 # HTML5开发者
@@ -242,7 +233,7 @@ public class MyConfig extends DefaultConfig {
 
 ```javascript
 ffanSDK.config({
-    developerKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用developerKey
+    appKey："66f6a62fa73ad8c961e121efe695fea2",  //第三方应用appKey
     ts："1486628893",  //签名时使用的时间戳
     nonceStr："XX4L3FX6vgorRFf3lklnP8Cp",  //用来生成签名的随机串
     signature："c3f94fa5ea84885eda0ab7c2cf350fa428cd2b3a",  //生成的签名
@@ -272,7 +263,7 @@ ffanSDK.error(function(res) {
 });
 ```
 
-## 接口调用说明
+## 接口调用说明: 
 
 以下示例代码中的`sdk` 实例对象可通过 `ffanSDK.ready` 函数获取到，或者当接口是在用户触发才调用时，也可以直接通过`ffanSDK` 对象来调用。
 
@@ -325,9 +316,11 @@ sdk.getEnvInfo().then(function(data){
 {
   "wid": "d0da5e64a7515694878fad2f906d5937", //店铺的唯一标识
   "storeName": "门店名称", //店铺的名称
-  "storeAddress": "北京市朝阳区", //店铺的地址
-  "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", //门店的logo
-  "org": "wanda" //信息来源的标识
+  "storeAddress": "北京市朝阳区", // 店铺的地址
+  "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", // 门店的logo
+  "org": "wanda", // 信息来源的标识
+  "plazaId": "1102755", //店铺所在广场的id, 可能为空
+  "selectedFloorName": "F2", // 店铺所在广场的楼层, 可能为空
 }
 ```
 **获取位置信息接口** 
@@ -353,9 +346,41 @@ sdk.getLocation().then(function(data) {
 
 ```javascript
 sdk.setTitle({ "title": "飞凡demo" })
+```
+**获取用户信息接口**
+```javascript
+sdk.getUserInfo().then(function (data){
+  // success
+}).catch(function (e) {
+  //fail
+})
 
 ```
+- 调用成功的返回值
 
+```json
+{
+  "nickName": "hhhh", // 用户昵称
+  "puid": "FA9A86E801054D23A15CEB04CAC847BD", // 用户id
+  "headPortrait": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", // 用户头像
+  "mobile": "13466729982" // 用户手机号
+}
+```
+
+**获取用户登录态接口**
+```javascript
+sdk.isLogin().then(function (data){
+  // success
+}).catch(function (e) {
+  //fail
+})
+
+```
+- 调用成功的返回值(布尔值)
+
+```json
+false|true
+```
 ## H5授权接口说明
 
 ###  **`accessToken` 说明**
@@ -569,7 +594,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d
 
 ### FFOAP ReactNative App 概述
 
-采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生应用体验。下文中ReactNative简称为FAP小程序。
+采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生组件体验。下文中ReactNative简称为FAP小程序。
 
 ### 搭建环境
 
@@ -578,6 +603,7 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d
 XCode下载：[点击下载Xcode](https://itunes.apple.com/cn/app/xcode/id497799835?mt=12)
 
 #### Mac FAP小程序开发环境
+
 1. 安装Homebrew:
 ``` 
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -606,21 +632,20 @@ gem install cocoapods 建议通过安装cocoapods MacApp 自动安装
 ```
 参考链接：https://cocoapods.org/
 6. 其它工具:
-
->Sublime Text，Deco，WebStorm， nuclide
+> Sublime Text，Deco，WebStorm， nuclide
 
 ### 项目集成
+
 #### 下载SDK（含Demo工程）
 
 通过以下链接下载SDK和Demo：
 [SDK下载](http://static.ffan.com/bo/iOS.ffoap-alpha.zip)
 
 #### iOS FFOAPSDK介绍
-
 ##### FFOAPSDK结构
 
 pod安装后效果如下：
-![](http://img1.ffan.com/T1eIbTBCbX1RCvBVdK)
+![](http://img1.ffan.com/T1TIWTB_xj1RCvBVdK)
 
 **按功能划分为以下几个部分**
 
@@ -649,14 +674,18 @@ pod安装后效果如下：
 | FFOAPSDKLib.podspec | 描述文件 | 描述FFOAPSDK库全部内容，供Podfile使用 |
 
 #### 接入SDK
+
 ##### 添加SDK文件
+
 将FFOAPSDK目录，node_modules目录，package.json，startServer拷贝到工程同级目录
-![](http://img1.ffan.com/T1NehTBsAv1RCvBVdK)
+![](http://img1.ffan.com/T1gwETBbAg1RCvBVdK)
 
 ##### 加载FAP小程序组件
+
 执行 `npm install`，加载ReactNative组件
 
 ##### 编写Podfile
+
 在同级目录下，创建纯文本文件Podfile内容如下：
 
 ``` objectivec
@@ -681,20 +710,23 @@ end
 ``` 
 
 ##### 安装Pod
+
 工程根目录下，命令行执行`pod install --no-repo-update`
 将FFOAPDemo与React和FFOAPSDK的依赖关系建立起来。
 安装成功后，工程结构如下：
-![](http://img1.ffan.com/T1fPVTBXYX1RCvBVdK)
+![](http://img1.ffan.com/T1sGLTBbZj1RCvBVdK)
 
 ##### 配置Info.plist
 如下图所示，修改Info.plist，配置定位权限，访问相册权限和自定义字体
-![](http://img1.ffan.com/T1tTxTBQYT1RCvBVdK)
+![](http://img1.ffan.com/T1wwJTBshg1RCvBVdK)
 
 ### 开发APP
+
 以zhihu为例
+
 1. 在工程同级目录下创建文件夹FFOAP/applications/zhihu
 2. 在zhihu中添加js代码，完成FAP小程序 App开发
-![](http://img1.ffan.com/T1IThTBTAv1RCvBVdK)
+![](http://img1.ffan.com/T1tvVTBgbs1RCvBVdK)
 
 3. 修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
 
@@ -717,22 +749,23 @@ NSMutableArray *array = @[].mutableCopy;
 4. 访问App内的开发菜单
 你可以通过摇晃设备或是选择iOS模拟器的"Hardware"菜单中的"Shake Gesture"选项来打开开发菜单。
 如果是在iOS模拟器中运行，还可以按下Command⌘ + Z 快捷键。如图所示：
-![](http://img1.ffan.com/T1_TJTBgh_1RCvBVdK)
-![](http://img1.ffan.com/T1AvVTByLX1RCvBVdK)
-
+![](http://img1.ffan.com/T1pPVTB4ZX1RCvBVdK)
+![](http://img1.ffan.com/T1ZShTBbb_1RCvBVdK)
 5. 刷新JavaScript
-传统的原生应用开发中，每一次修改都需要重新编译，但在FAP小程序中你只需要刷新一下JavaScript代码，就能立刻看到变化。具体的操作就是在开发菜单中点击"Reload"选项。也可以在iOS模拟器中按下Command⌘ + R。
+传统的原生组件开发中，每一次修改都需要重新编译，但在FAP小程序中你只需要刷新一下JavaScript代码，就能立刻看到变化。具体的操作就是在开发菜单中点击"Reload"选项。也可以在iOS模拟器中按下Command⌘ + R。
 如果在iOS模拟器中按下Command⌘ + R没啥感觉，则注意检查Hardware菜单中，Keyboard选项下的"Connect Hardware Keyboard"是否被选中。
+
 **自动刷新**
+
 选择开发菜单中的**Enable Live Reload**可以开启自动刷新，这样可以节省你开发中的时间。
 某些情况下hot reload并不能顺利实施。如果碰到任何界面刷新上的问题，请尝试手动完全刷新。
-但有些时候你必须要重新编译应用才能使修改生效：
+但有些时候你必须要重新编译组件才能使修改生效：
 增加了新的资源
 更改了任何的原生代码（objective-c/swift/java）
 
 ### 打包
-1. 下载打包工具mac版本：
 
+1. 下载打包工具mac版本：
 [mac版本](http://static.ffan.com/bo/bundlemac.app.zip)
 [windows版本](http://static.ffan.com/bo/bundlewindows.exe.zip)
 2. 在js源代码同级目录，添加打包配置文件config.json，内容如下
@@ -747,6 +780,7 @@ NSMutableArray *array = @[].mutableCopy;
   "icon": "http://img4.imgtn.bdimg.com/it/u=712933712,3452046272&fm=21&gp=0.jpg"
 }
 ```
+
 字段说明如下表所示:
 
 | 字段 | 描述 |
@@ -761,28 +795,26 @@ NSMutableArray *array = @[].mutableCopy;
 
 3. 开始打包：
  打开打包工具，填写源代码目录和代码包输出目录，点击开始打包。**zhihu201703011148.fap** 即为最终产品。
-![](http://img1.ffan.com/T1nvWTBQZj1RCvBVdK)
+![](http://img1.ffan.com/T14IVTBKds1RCvBVdK)
 
 ### 发布
-1. 打开BO开放平台应用市场首页：http://open.ffan.net/apps，注册账号，并确认邮件完成身份验证，成为开发者。
-![](http://img1.ffan.com/T1ivLTBbZj1RCvBVdK)
 
-2. 创建应用
-![](http://img1.ffan.com/T1KIVTBTYb1RCvBVdK)
-点击左上角**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
-
+1. 打开BO开放平台组件市场首页：http://open.ffan.net/widgets，注册账号，并确认邮件完成身份验证，成为开发者。
+![](http://img1.ffan.com/T14PVTB_As1RCvBVdK)
+2. 创建组件
+![](http://img1.ffan.com/T16exTBmAv1RCvBVdK)
+点击左上角**创建新组件**按钮，选择组件类型为**FAP小程序组件**，填写组件名称，组件尺寸、组件介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
 3. 审核
-应用提交后呈现待审核状态，如下图：
-![](http://img1.ffan.com/T1zeETBmdj1RCvBVdK)
+组件提交后呈现待审核状态，如下图：
+![](http://img1.ffan.com/T1GILTBgCj1RCvBVdK)
 待审核通过，即可供用户下载。
-
-4. 管理我的应用
-选择左侧**我的应用**按钮，可进行查看，编辑应用信息，发布新版本，下架在线应用等操作，管理我的应用。
+4. 管理我的组件
+选择左侧**我的组件**按钮，可进行查看，编辑组件信息，发布新版本，下架在线组件等操作，管理我的组件。
 
 ### 验证
 
-1. 获取应用ID
-待通过审核，应用上架后，点击应用图标，打开链接如下http://open.ffan.net/apps/detail/1101，应用ID即为：**app_1101**
+1. 获取组件ID
+待通过审核，组件上架后，点击组件图标，打开链接如下http://open.ffan.net/apps/detail/1101，组件ID即为：**app_1101**
 2.  修改native代码，在FFOAPRootViewController添加如下代码，配置demo列表数据源
 ``` objectivec
 {
@@ -793,22 +825,16 @@ NSMutableArray *array = @[].mutableCopy;
 3. 模拟器或真机运行Demo，点击列表对应项，即可下载app_1101对应的app，进行线上验证。
 
 ## Hybrid部分
-
 ### H5 APP 概述
-
-使用Webkit渲染，跨平台的web应用。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
-
+使用Webkit渲染，跨平台的web组件。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
 >iOS参考链接：https://github.com/marcuswestin/WebViewJavascriptBridge
-
 >Android参考链接：https://github.com/gzsll/WebViewJavascriptBridge
 
 ### Hybrid iOS SDK
-
 #### Hybrid iOS SDK简介
-
 Hybrid SDK 核心部分包括一个控制器FFHybridViewController，一个协议FFHybridWidget，以及一组实现FFHybridWidget协议的Widget，开发者也可以按需要实现自己的Widget。
 
-![](http://img1.ffan.com/T1peJTBjdg1RCvBVdK)
+![](http://img1.ffan.com/T1mTxTBXJT1RCvBVdK)
 
 #### Widgets
 
@@ -823,12 +849,10 @@ Widgets是native与h5的接口，各Widget实现独立接口
 | FFHybridRNAppWidget       | common.openLocalRNPage | 打开reactnative app |
 | FFHybridNavbarItemsWidget | common.setRightNavBarItem | 自定义navgationbar 右按钮 |
 
-
 #### FFHybridViewController的使用
 
-封装WKWebview和WebViewJavascriptBridge，用于接入h5应用，展示加载进度，返回和关闭按钮
+封装WKWebview和WebViewJavascriptBridge，用于接入h5组件，展示加载进度，返回和关闭按钮
 为定制Widgets，FFHybridViewController 需要子类实现，这里以FFOAPWebViewController为例
-
 ``` objectivec
 #import <UIKit/UIKit.h>
 #import "FFHybridViewController.h"
@@ -837,7 +861,6 @@ Widgets是native与h5的接口，各Widget实现独立接口
 
 @end
 ```
-
 ``` objectivec
 @implementation FFOAPWebViewController
 - (void)viewDidLoad
