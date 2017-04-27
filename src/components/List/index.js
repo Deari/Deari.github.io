@@ -23,6 +23,7 @@ class List extends React.Component {
               </Link>
               
               <div className="info-introduce">
+                <p>AppID: {item.id}</p>
                 <p>DeveloperKey: {item.developerKey}</p>
                 <p>DeveloperSecret: {item.developerSecret}</p>
               </div>
