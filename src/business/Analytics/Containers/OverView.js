@@ -23,7 +23,7 @@ class Container extends Component {
   }
 
   componentDidMount() {
-    this.loadData()
+    this.loadData(7)
   }
 
   loadData (day) {

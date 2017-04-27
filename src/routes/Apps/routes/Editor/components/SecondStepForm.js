@@ -134,6 +134,7 @@ const SecondStepForm = props => {
         handleLogochange={handleLogochange} 
         handleIdchange={handleIdchange}
         handleNamechange={handleNamechange}
+        toggleActive={props.toggleActive}
       />
       <Modal type={"alert"}
              text={active.type==="app"?"应用":active.type==="widget"?"组件":"硬件"}

@@ -1,6 +1,6 @@
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from 'store/reducers'
 
-export default (store) => ({
+module.exports = (store) => ({
   path : 'counter',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {

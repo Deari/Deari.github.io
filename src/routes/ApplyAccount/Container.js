@@ -142,12 +142,12 @@ class Analytics extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={s.submit} onClick={::this.submitHandler}>获得商家测试账号</button>
+          <button className={s.submit} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     );
 
-    if(hasAccount) {
+    if(!hasAccount) {
       Account = <div className={s.account}>
         <h3 className={s.title}>商家测试账号</h3>
         <div className={s.item}>
@@ -169,7 +169,7 @@ class Analytics extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
         <div className={s.content}>
-          <h1>测试账号</h1>
+          <h1>申请测试账号</h1>
           <span className={s.status}>
             您{hasAccount ? '已获得' : '还没有获得'}测试账号
           </span>
@@ -179,7 +179,7 @@ class Analytics extends Component {
             <ul>
               <li>1、每位开发者有且只有一个商家测试账号。</li>
               <li>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</li>
-              <li>3、下载<i>开发者的Pad端</i>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
+              <li>3、下载 <a className={s.downlinks} href="#">开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
             </ul>
           </div>
           { Account }

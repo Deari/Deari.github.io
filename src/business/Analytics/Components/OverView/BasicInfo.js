@@ -7,10 +7,7 @@ const BasicInfo = (props) => {
       <img src={props.appLogo} alt={props.appName} />
       <div className={s.info}>
         <h2>{props.appName}</h2>
-        <div className={s.type}>
-          <i className={s.img}></i>
-          <span>极速数据 (企业)</span>
-        </div>
+        
         <h3 className={s.title}>内容提要</h3>
         <p className={s.text}>
           {props.appDesc}

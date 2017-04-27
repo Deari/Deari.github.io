@@ -4,8 +4,6 @@ import "babel-polyfill"
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import Demo from './Demo'
-import Mobile from './Mobile'
-import Shop from './Shop'
 import Login from './Login'
 import Apps from './Apps'
 import Widgets from './Widgets'
@@ -13,18 +11,13 @@ import Hardware from './Hardware'
 import ApplyAccount from './ApplyAccount'
 import '../styles/_base.scss'
 
-/*  Note: Instead of using JSX, we recommend using react-router
- PlainRoute objects to build route definitions.   */
-
 export const createRoutes = (store) => ({
   path       : '/',
   component  : CoreLayout,
   indexRoute : Home,
   childRoutes: [
-    Mobile(store),
     Login(store),
     Demo(store),
-    Shop(store),
     Apps(store),
     Widgets(store),
     Hardware(store),
