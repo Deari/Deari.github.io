@@ -4,7 +4,8 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain'
 import debug from 'utils/debug'
 import moment from 'moment'
-import Slidebar from 'components/Sidebar'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 import { getCodeStatus } from 'components/Detail/header'
 import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
 import Detail from 'components/Detail'
@@ -155,16 +156,9 @@ class AppsDetail extends React.Component {
     const editUrl = `/apps/edit/${id}`
     const createUrl = `/apps/create`
 
-    const urls = {
-      create: { url: `/apps/create`, name: '创建新应用' },
-      list: { url: `/apps/list`, name: '我的应用' },
-      doc: { url: `/apps/doc` }
-    }
-
     return (
       <div className="container clx">
-        <Slidebar urls={urls} tags={tags} />
-
+        <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
                 onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
