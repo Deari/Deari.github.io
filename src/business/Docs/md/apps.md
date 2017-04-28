@@ -233,12 +233,10 @@ public class MyConfig extends DefaultConfig {
 ![Alt text](http://img1.ffan.com/T1wShTBvAv1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
 
-#### 接口说明
-[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
 
-##APK类型
+## APK类型
 
-###获取启动参数
+### 获取启动参数
 
 **APK类型应用启动时，可以通过BO开放平台的方法获取必要的启动参数，启动参数要在APK启动Activity中获取(AndroidManifest中声明为android.intent.category.LAUNCHER的Activity)**
 

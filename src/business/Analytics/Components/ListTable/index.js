@@ -65,8 +65,10 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            { Array.isArray(data) &&
-              data.map((item, index) => <TabelItem key={index} type={type} data={item} />) }
+            { Array.isArray(data) && data.length ?
+              data.map((item, index) => <TabelItem key={index} type={type} data={item} />) 
+              : <tr><td colSpan="7" style={{textAlign: 'center', padding: '30'}}>暂无数据</td></tr>
+            }
           </tbody>
         </table>
       </div>

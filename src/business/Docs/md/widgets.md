@@ -221,20 +221,6 @@ public class MyConfig extends DefaultConfig {
 ![Alt text](http://img1.ffan.com/T1lSETBbAg1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
 
-### 接口说明
-
-[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
-
-
-
-
-
-
-
-
-
-
-
 # HTML5开发者
 
 ## JSSDK使用文档
@@ -950,17 +936,9 @@ Widgets是native与h5的接口，各Widget实现独立接口
 ```
 
 
+# 蓝海会员授权登录
 
-
-
-
-
-
-
-
-#蓝海会员授权登录
-
-##H5页面接入流程
+## H5页面接入流程
 通过H5方式接入蓝海会员体系流程如下：
 
 1.  调用蓝海提供授权接口（见目录二），获取授权code。
@@ -971,17 +949,18 @@ Widgets是native与h5的接口，各Widget实现独立接口
   
 
 
-##授权接口
+## 授权接口
 URL: http://api.ffan.com/bo/v1/partnerUser/authorize
 请求方式: POST
-####请求参数说明：
+
+#### 请求参数说明：
 | 字段名     |是否必选|  类型| 说明|
 | ------------- |:-------------:| -----:|
 | developKey | 是| string |开发者Key，蓝海开放平台分配
 | signature | 是| string |   签名 |
 | ts        | 是| string |全局唯一数|
 
-####接口返回结果说明：
+#### 接口返回结果说明：
 ```php
 json
 {
@@ -998,7 +977,7 @@ status说明：
    8000 签名验证失败
   
 
-####签名算法描述：
+#### 签名算法描述：
   参与签名的参数包括：
     1. developerKey， 分配给开发者的开发者Key。
     2. developerSecret， 分配给合作方的秘钥。
@@ -1008,10 +987,12 @@ status说明：
   签名算法：
     对所有待签名参数按照字段名的 ASCII 码从小到大排序（字典序）后, 使用URL键值对的格式，例如：signature = sha1(developerKey=1000&developerSecret=3a45de2d6f96d2d08643957bfbe76a98&referer=https://h5.ffan.net&ts=1491980000)。
 
-##H5页面接入接口文档
+## H5页面接入接口文档
 
 URL: http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html
-####请求参数说明：
+
+#### 请求参数说明：
+
 | 字段名     |是否必选|  类型| 说明|
 | ------------- |:-------------:| -----:|
 |promotionName| 是|string|活动唯一标识，比如：2017金地广场kfc五一促销|
@@ -1025,18 +1006,19 @@ http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html?promotionName=KFC金地�
 
 登录成功之后，页面跳转的链接地址：backUrl带上ticket参数，如上述的举例，跳转链接为：http://www.test.com/feifan.html?ticket=**********
 
-##H5接入后使用文档
+## H5接入后使用文档
 H5页面完成注册登录流程之后，H5页面跳转到带入的backUrl页面，同时backUrl有带入参数ticket。ticket作为获取蓝海会员信息的唯一标识参数，有时间限制（15分钟）。
 根据ticket获取会员信息接口如下：
 URL：http://api.ffan.com/bo/v1/partnerUser/userBriefByTicket?ticket=761d6eea81f34433008d4c695a6d9d9e
 请求方式：GET
 
-####参数说明：
+#### 参数说明：
 | 字段名     |是否必选|  类型| 说明|
 | ------------- |:-------------:| -----:|
 |ticket| 是|string|登录成功后backUrl带的ticket票据参数|
 
-####返回说明
+#### 返回说明
+
 ```php
 json
 { 
@@ -1057,25 +1039,27 @@ status说明：
 
 
 # FAQ
-###1、上传失败
+### 1、上传失败
 请检查以下内容
 * 要使用打包工具打包
 * 必须指定文件夹打包
 * config.json文件是否存在
 * FAP小程序的包大小不能超过5M
-###2、提交失败
+
+### 2、提交失败
 请检查以下内容
 * rn包目录不允许有空格，否则导致找不到config.json，提交失败
 * 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
-###3、js语法错误，调试时不显示js错误行数，只是卡在99%不动
+### 3、js语法错误，调试时不显示js错误行数，只是卡在99%不动
 请升级nodejs到6.6版本以上
-###4、本地调试正常，远程打包应用报错
+
+### 4、本地调试正常，远程打包应用报错
 请检查入口类是否使用export default class导出默认类
 
-###5、iOS运行正常，安卓运行崩溃
+### 5、iOS运行正常，安卓运行崩溃
 请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
 
-###6、文本框iOS使用正常，安卓推出两次
+### 6、文本框iOS使用正常，安卓推出两次
 请按照下面例子的方式调用
 ```
 <TextInput
