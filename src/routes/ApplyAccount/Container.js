@@ -86,7 +86,7 @@ class Analytics extends Component {
         this.resetGetCode()
         const { status, message } = e;
         const _msg = message || '获取验证码失败，请重试！'
-        alert(`${status}|${_msg}`)
+        alert(`${_msg}(错误码：${status})`)
       })
     })
   }
