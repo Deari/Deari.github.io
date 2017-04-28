@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
 import { getEnvDomain } from 'utils/d'
-import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from 'utils/domain'
+import { getDomain, getUploaderDomain,getDownloadDomain} from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -188,7 +188,7 @@ export class renderAPKFile extends Component {
             const res = JSON.parse(xhr.responseText).data
             if (index === pressNum) {
               const fileObj = {
-                url: getDownloadDomain(`${this.state.filecode}`),
+                url: getDownloadDomain() + `/v2/file/${this.state.filecode}`,
                 name: file.name,
                 size: file.size
               }

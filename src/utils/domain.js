@@ -72,10 +72,10 @@ export function getHardwareDomain(url) {
   const domain =  (env === 'pub') ? 'http://api.ffan.net/' : 'http://api.sit.ffan.net/'
   return domain + url
 }
-export function getDownloadDomain(url) {
+export function getDownloadDomain() {
   const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://fdfs.intra.ffan.net/v1/file/' : 'http://fdfs.intra.sit.ffan.net/v1/file/'
-  return domain + url
+  const domain =  (env === 'pub') ? 'http://fdfs.ffan.net' : 'http://fdfs.intra.sit.ffan.net'
+  return domain
 }
 // 获取登录相关的接口地址
 export function getLoginDomain(url) {
@@ -89,12 +89,6 @@ export function getApiDomain(url) {
   const domainReg = new RegExp("^http:\/\/apistore\.intra\.(sit\.|test\.)?ffan\.net\/")
   const env = getDomainEnv()
   const domain =  (env === 'pub') ? 'http://apistore.ffan.net/' : 'http://apistore.intra.sit.ffan.net/'
-  return domain + url.replace(domainReg, "")
-}
-export function getDownLoadDomain(url) {
-  const domainReg = new RegExp("^http:\/\/storage\.intra\.(sit\.|test\.)?ffan\.net\/")
-  const env = getDomainEnv()
-  const domain =  (env === 'pub') ? 'http://storage.ffan.net/' : 'http://storage.intra.sit.ffan.net/'
   return domain + url.replace(domainReg, "")
 }
 
