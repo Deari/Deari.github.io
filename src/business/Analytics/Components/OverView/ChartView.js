@@ -34,7 +34,7 @@ class ChartView extends React.Component {
         <div className={s.charContent}>
           <h4 className={s.pageTitle}>{startDate} 至 {endDate}</h4>
           <div className={s.chartCanvas}>
-            <LineChart width={800} height={320} data={ data }
+            <LineChart width={840} height={320} data={ data }
               margin={{top: 5, right: 30, left: 20, bottom: 5}}>
               <XAxis dataKey="_day"/>
               <YAxis/>

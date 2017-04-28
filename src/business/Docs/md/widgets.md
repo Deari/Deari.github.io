@@ -12,6 +12,9 @@
 
 什么是蓝海商家？
 蓝海开放平台为商家提供的客户端，商家通过使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；通过使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；通过使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。市场中的应用、组件、硬件，均由开发者提供。
+![Alt text](http://timg.ffan.com/convert/resize/url_T1QMKTBKYv1RCvBVdK/tfs/cb36bc3ca763424b2700795b7436e473.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1un_TBmxv1RCvBVdK/tfs/11d11f6e8c8b23196537af4c8679e2e6.png)
+
 
 什么是蓝海顾客？
 蓝海开放平台为顾客提供的客户端，或者其他客户端嵌入蓝海开放平台的SDK，顾客可以使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
@@ -97,9 +100,19 @@ Pad端的默认应用包括：会员管理、营销工具、商品管理、订�
 [1]: http://apistore.intra.ffan.net/#/register
 [2]: http://open.ffan.net/widgets/create
 
-# Android开发者
 
-## 集成
+
+
+
+
+
+
+
+
+# Android开发者
+## FAP小程序类型
+
+### 集成
 1. 下载安装[Android Studio](https://developer.android.com/studio/index.html)
 2. 下载安装[JDK](http://www.oracle.com/technetwork/java/javase/archive-139210.html)
 3. 安装Android SDK：
@@ -120,9 +133,9 @@ npm install -g react-native-cli
 ```
 5. 下载[ffoap sdk](http://static.ffan.com/bo/ffoap_sdk_Android_v0.2.0.zip)并导入到Android Studio中
 
-## 开发简易说明
+### 开发简易说明
 
-### 一、开发目录
+#### 一、开发目录
 
 1. 目录结构图：
 ![Alt text](http://img1.ffan.com/T1iPLTBQdQ1RCvBVdK)
@@ -197,7 +210,7 @@ public class MyConfig extends DefaultConfig {
     }
 }
 ```
-### 三、调试
+#### 三、调试
 1.  修改Demo 工程的MyConfig类修改调试ffoap app类型
 2.  如果是FAP小程序类型，进入工程目录中的 js_module 目录, 运行 npm start 或者 react-native start, 开启服务，即可进行正常调试。
 3.  在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面。如下图：
@@ -207,6 +220,20 @@ public class MyConfig extends DefaultConfig {
 5.  电脑端安装chrome浏览器，在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面，选择start remote JS debuging，如图：
 ![Alt text](http://img1.ffan.com/T1lSETBbAg1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
+
+### 接口说明
+
+[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
+
+
+
+
+
+
+
+
+
+
 
 # HTML5开发者
 
@@ -588,13 +615,19 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 
+
+
+
+
+
+
+
+
+
 # iOS开发者
 
-## ReactNative部分
+## FAP小程序类型
 
-### FFOAP ReactNative App 概述
-
-采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生组件体验。下文中ReactNative简称为FAP小程序。
 
 ### 搭建环境
 
@@ -797,19 +830,6 @@ NSMutableArray *array = @[].mutableCopy;
  打开打包工具，填写源代码目录和代码包输出目录，点击开始打包。**zhihu201703011148.fap** 即为最终产品。
 ![](http://img1.ffan.com/T14IVTBKds1RCvBVdK)
 
-### 发布
-
-1. 打开BO开放平台组件市场首页：http://open.ffan.net/widgets，注册账号，并确认邮件完成身份验证，成为开发者。
-![](http://img1.ffan.com/T14PVTB_As1RCvBVdK)
-2. 创建组件
-![](http://img1.ffan.com/T16exTBmAv1RCvBVdK)
-点击左上角**创建新组件**按钮，选择组件类型为**FAP小程序组件**，填写组件名称，组件尺寸、组件介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
-3. 审核
-组件提交后呈现待审核状态，如下图：
-![](http://img1.ffan.com/T1GILTBgCj1RCvBVdK)
-待审核通过，即可供用户下载。
-4. 管理我的组件
-选择左侧**我的组件**按钮，可进行查看，编辑组件信息，发布新版本，下架在线组件等操作，管理我的组件。
 
 ### 验证
 
@@ -824,7 +844,7 @@ NSMutableArray *array = @[].mutableCopy;
 ```
 3. 模拟器或真机运行Demo，点击列表对应项，即可下载app_1101对应的app，进行线上验证。
 
-## Hybrid部分
+## H5类型
 ### H5 APP 概述
 使用Webkit渲染，跨平台的web组件。基于WebViewJavascriptBridge实现与native的交互，获取部分native能力。
 >iOS参考链接：https://github.com/marcuswestin/WebViewJavascriptBridge
@@ -929,26 +949,133 @@ Widgets是native与h5的接口，各Widget实现独立接口
 @end
 ```
 
+
+
+
+
+
+
+
+
+
+#蓝海会员授权登录
+
+##H5页面接入流程
+通过H5方式接入蓝海会员体系流程如下：
+
+1.  调用蓝海提供授权接口（见目录二），获取授权code。
+2.  带着code、backUrl和其他必传参数跳转到蓝海提供H5页面入口，H5接入完成后，H5跳转到backUrl页面，同时携带蓝海登录ticket。
+3.  H5跳转到backUrl之后，通过ticket调用接口四，获取蓝海会员信息。
+详细流程图如下：
+![Alt text](http://img1.ffan.com/T1OMDTB_L_1RCvBVdK)
+  
+
+
+##授权接口
+URL: http://api.ffan.com/bo/v1/partnerUser/authorize
+请求方式: POST
+####请求参数说明：
+| 字段名     |是否必选|  类型| 说明|
+| ------------- |:-------------:| -----:|
+| developKey | 是| string |开发者Key，蓝海开放平台分配
+| signature | 是| string |   签名 |
+| ts        | 是| string |全局唯一数|
+
+####接口返回结果说明：
+```php
+json
+{
+“status”: 200,
+“message”: "success",
+“data”: {
+    “code”:"a9e9c83779f9c28411f6ec70ad665a99"
+  }
+}
+```
+status说明：
+   200 表示成功
+   1000 开发者不存在，即developerKey错误
+   8000 签名验证失败
+  
+
+####签名算法描述：
+  参与签名的参数包括：
+    1. developerKey， 分配给开发者的开发者Key。
+    2. developerSecret， 分配给合作方的秘钥。
+    3. referer，调用授权接口的页面网址，比如：https://h5.ffan.net。
+    4. ts 全局随机唯一数。
+    注：传递参数里不需要2和3。
+  签名算法：
+    对所有待签名参数按照字段名的 ASCII 码从小到大排序（字典序）后, 使用URL键值对的格式，例如：signature = sha1(developerKey=1000&developerSecret=3a45de2d6f96d2d08643957bfbe76a98&referer=https://h5.ffan.net&ts=1491980000)。
+
+##H5页面接入接口文档
+
+URL: http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html
+####请求参数说明：
+| 字段名     |是否必选|  类型| 说明|
+| ------------- |:-------------:| -----:|
+|promotionName| 是|string|活动唯一标识，比如：2017金地广场kfc五一促销|
+| developerKey | 是| string |开发者Id|
+| wid       | 是| string | 店铺标识 |
+| backUrl       | 是| string |登录成功后的跳转链接，采用urlencode编码|
+|code|是|string|授权码（二授权接口返回数据）|
+
+调用举例：
+http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html?promotionName=KFC金地广场店2017儿童节促销&developerKey=1001&wid=842b6f34c052400a935f39400a7cab10&backurl=http%3a%2f%2fwww.test.com%2ffeifan.html&code=a9e9c83779f9c28411f6ec70ad665a99
+
+登录成功之后，页面跳转的链接地址：backUrl带上ticket参数，如上述的举例，跳转链接为：http://www.test.com/feifan.html?ticket=**********
+
+##H5接入后使用文档
+H5页面完成注册登录流程之后，H5页面跳转到带入的backUrl页面，同时backUrl有带入参数ticket。ticket作为获取蓝海会员信息的唯一标识参数，有时间限制（15分钟）。
+根据ticket获取会员信息接口如下：
+URL：http://api.ffan.com/bo/v1/partnerUser/userBriefByTicket?ticket=761d6eea81f34433008d4c695a6d9d9e
+请求方式：GET
+
+####参数说明：
+| 字段名     |是否必选|  类型| 说明|
+| ------------- |:-------------:| -----:|
+|ticket| 是|string|登录成功后backUrl带的ticket票据参数|
+
+####返回说明
+```php
+json
+{ 
+  "status": 200, 
+  "message": "成功"， 
+  "data"：{ 
+    "nickName"： //昵称 
+    "puid": //用户id 
+    "mobile"://用户手机号 
+    "headPortrait"：//用户头像，默认是蓝海logo 
+    } 
+}
+```
+status说明：
+   200 表示成功
+   8005 ticket不能为空
+   8006 ticket已经失效
+
+
 # FAQ
-##上传失败
+###1、上传失败
 请检查以下内容
 * 要使用打包工具打包
 * 必须指定文件夹打包
 * config.json文件是否存在
 * FAP小程序的包大小不能超过5M
-##提交失败
+###2、提交失败
 请检查以下内容
 * rn包目录不允许有空格，否则导致找不到config.json，提交失败
 * 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
-##js语法错误，调试时不显示js错误行数，只是卡在99%不动
+###3、js语法错误，调试时不显示js错误行数，只是卡在99%不动
 请升级nodejs到6.6版本以上
-##本地调试正常，远程打包应用报错
+###4、本地调试正常，远程打包应用报错
 请检查入口类是否使用export default class导出默认类
 
-##iOS运行正常，安卓运行崩溃
+###5、iOS运行正常，安卓运行崩溃
 请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
 
-##文本框iOS使用正常，安卓推出两次
+###6、文本框iOS使用正常，安卓推出两次
 请按照下面例子的方式调用
 ```
 <TextInput

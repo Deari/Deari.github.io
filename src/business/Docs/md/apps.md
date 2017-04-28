@@ -6,12 +6,18 @@
 
 蓝海开放平台是开发者通过应用、组件、硬件为蓝海商家和蓝海顾客，提供服务的平台，而蓝海开放平台API市场中的接口则是提供服务的基础，开发者在蓝海开放平台中获取API接口权限后，可以通过阅读本接口文档来帮助开发出蓝海商家需要的应用、组件、硬件。
 
+
 ### 服务人群
 
 开发者主要服务于两类人群，一类是蓝海商家，一类是蓝海顾客。
 
 什么是蓝海商家？
-蓝海开放平台为商家提供的客户端，商家通过使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；通过使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；通过使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。市场中的应用、组件、硬件，均由开发者提供。
+蓝海开放平台为商家提供的蓝海商家客户端，商家通过使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；通过使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；通过使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。市场中的应用、组件、硬件，均由开发者提供。
+![Alt text](http://timg.ffan.com/convert/resize/url_T1QMKTBKYv1RCvBVdK/tfs/cb36bc3ca763424b2700795b7436e473.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1un_TBmxv1RCvBVdK/tfs/11d11f6e8c8b23196537af4c8679e2e6.png)
+
+
+
 
 什么是蓝海顾客？
 蓝海开放平台为顾客提供的客户端，或者其他客户端嵌入蓝海开放平台的SDK，顾客可以使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
@@ -103,9 +109,19 @@ Pad端的默认应用包括：会员管理、营销工具、商品管理、订�
 [1]: http://apistore.intra.ffan.net/#/register
 [2]: http://open.ffan.net/apps/create
 
-# Android开发者
 
-## 集成
+
+
+
+
+
+
+
+
+# Android开发者
+## FAP小程序类型
+
+### 集成
 1. 下载安装[Android Studio](https://developer.android.com/studio/index.html)
 2. 下载安装[JDK](http://www.oracle.com/technetwork/java/javase/archive-139210.html)
 3. 安装Android SDK：
@@ -126,9 +142,9 @@ npm install -g react-native-cli
 ```
 5. 下载[ffoap sdk](http://static.ffan.com/bo/ffoap_sdk_Android_v0.2.0.zip)并导入到Android Studio中
 
-## 开发简易说明
+### 开发简易说明
 
-### 一、开发目录
+#### 一、开发目录
 
 1. 目录结构图：
 ![Alt text](http://img1.ffan.com/T18ThTBThv1RCvBVdK)
@@ -158,7 +174,7 @@ App Config 文件放在 app 的根目录下, 文件名为 config.json, 文件内
 | rnFrameworkVersion     |   ffoap框架版本号 |  
 | version    |   app版本号 |  
 
-### 二、配置
+#### 二、配置
 
 > 在demo工程中的MyConfig Java类中对相应的配置进行修改
 
@@ -206,7 +222,7 @@ public class MyConfig extends DefaultConfig {
     }
 }
 ```
-### 三、调试
+#### 三、调试
 1.  修改Demo 工程的MyConfig类修改调试ffoap app类型
 2.  如果是FAP小程序类型，进入工程目录中的 js_module 目录, 运行 npm start 或者 react-native start, 开启服务，即可进行正常调试。
 3.  在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面。如下图：
@@ -216,6 +232,48 @@ public class MyConfig extends DefaultConfig {
 5.  电脑端安装chrome浏览器，在手机FAP小程序界面中摇一摇或者按手机硬件menu键，启动FAP小程序调试界面，选择start remote JS debuging，如图：
 ![Alt text](http://img1.ffan.com/T1wShTBvAv1RCvBVdK)
 电脑端chrome会自动开启debug页面，选择开发者工具查看log信息等。开发者可以在手机FAP小程序开发者选项中开启enable live reload，这样一旦更改了JS端的代码就不用选择reload就可以实时看到界面的变化。
+
+#### 接口说明
+[接口说明](http://wiki.ffan.biz/pages/viewpage.action?pageId=14247674)
+
+##APK类型
+
+###获取启动参数
+
+**APK类型应用启动时，可以通过BO开放平台的方法获取必要的启动参数，启动参数要在APK启动Activity中获取(AndroidManifest中声明为android.intent.category.LAUNCHER的Activity)**
+
+
+	示例：
+	Intent intent = getIntent();
+	//获取启动参数(参数为json格式的字符串)
+	String launchParams = intent.getStringExtra("LaunchParams");
+    //解析获取参数
+    String wid = null;     //店铺唯一标识
+    String storeName = null;    //店铺名称
+    String storeAddress = null; //店铺地址
+    String storeLogo = null;    //店铺logo,以http链接形式提供
+    String org = null;      //标识来源，固定值"wanda"
+    String token = null;    //登录身份令牌
+    try {
+        JSONObject jsonObject = new JSONObject(launchParams);
+        wid = jsonObject.optString("wid");
+        storeName = jsonObject.optString("storeName");
+        storeAddress = jsonObject.optString("storeAddress");
+        storeLogo = jsonObject.optString("storeLogo");
+        org = jsonObject.optString("org");
+        token = jsonObject.optString("token");
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+
+
+
+
+
+
+
+
+
 
 # HTML5开发者
 
@@ -563,13 +621,19 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
 
+
+
+
+
+
+
+
+
+
 # iOS开发者
 
-## ReactNative部分
+## FAP小应用类型
 
-### FFOAP ReactNative App 概述
-
-采用ReactNative动态化方案，编写JavaScript代码，通过JavaScriptCore映射成原生组件。获得原生应用体验。下文中ReactNative简称为FAP小程序。
 
 ### 搭建环境
 
@@ -763,21 +827,6 @@ NSMutableArray *array = @[].mutableCopy;
  打开打包工具，填写源代码目录和代码包输出目录，点击开始打包。**zhihu201703011148.fap** 即为最终产品。
 ![](http://img1.ffan.com/T1nvWTBQZj1RCvBVdK)
 
-### 发布
-1. 打开BO开放平台应用市场首页：http://open.ffan.net/apps，注册账号，并确认邮件完成身份验证，成为开发者。
-![](http://img1.ffan.com/T1ivLTBbZj1RCvBVdK)
-
-2. 创建应用
-![](http://img1.ffan.com/T1KIVTBTYb1RCvBVdK)
-点击左上角**创建新应用**按钮，选择应用类型为**FAP小程序应用**，填写应用名称，应用介绍，标签，上传PNG格式400*400像素Icon，以及包文件（zhihu201703011148.fap），提交BO审核。
-
-3. 审核
-应用提交后呈现待审核状态，如下图：
-![](http://img1.ffan.com/T1zeETBmdj1RCvBVdK)
-待审核通过，即可供用户下载。
-
-4. 管理我的应用
-选择左侧**我的应用**按钮，可进行查看，编辑应用信息，发布新版本，下架在线应用等操作，管理我的应用。
 
 ### 验证
 
@@ -792,7 +841,7 @@ NSMutableArray *array = @[].mutableCopy;
 ```
 3. 模拟器或真机运行Demo，点击列表对应项，即可下载app_1101对应的app，进行线上验证。
 
-## Hybrid部分
+## H5类型
 
 ### H5 APP 概述
 
@@ -906,26 +955,27 @@ Widgets是native与h5的接口，各Widget实现独立接口
 @end
 ```
 
+
 # FAQ
-##上传失败
+###1、上传失败
 请检查以下内容
 * 要使用打包工具打包
 * 必须指定文件夹打包
 * config.json文件是否存在
 * FAP小程序的包大小不能超过5M
-##提交失败
+###2、提交失败
 请检查以下内容
 * rn包目录不允许有空格，否则导致找不到config.json，提交失败
 * 提交双平台时，config.json中要有rnframeworkVersionIOS和rnframeworkVersionAndroid字段
-##js语法错误，调试时不显示js错误行数，只是卡在99%不动
+###3、js语法错误，调试时不显示js错误行数，只是卡在99%不动
 请升级nodejs到6.6版本以上
-##本地调试正常，远程打包应用报错
+###4、本地调试正常，远程打包应用报错
 请检查入口类是否使用export default class导出默认类
 
-##iOS运行正常，安卓运行崩溃
+###5、iOS运行正常，安卓运行崩溃
 请检查使用的styles里面是不是重复写了属性，如(padding:10, padding:20)，这种情况iOS是可以覆盖而安卓会启动崩溃
 
-##文本框iOS使用正常，安卓推出两次
+###6、文本框iOS使用正常，安卓推出两次
 请按照下面例子的方式调用
 ```
 <TextInput
