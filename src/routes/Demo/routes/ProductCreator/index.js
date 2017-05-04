@@ -1,6 +1,4 @@
-import React from 'react'
-
-module.exports = store => ({
+export default {
   path: 'product/create',
 
   getComponent (nextState, cb) {
@@ -9,4 +7,4 @@ module.exports = store => ({
       cb(null, Creator)
     })
   }
-})
+}

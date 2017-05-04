@@ -4,8 +4,6 @@ import "babel-polyfill"
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import Demo from './Demo'
-import Mobile from './Mobile'
-import Shop from './Shop'
 import Login from './Login'
 import Apps from './Apps'
 import Widgets from './Widgets'
@@ -21,10 +19,8 @@ export const createRoutes = (store) => ({
   component  : CoreLayout,
   indexRoute : Home,
   childRoutes: [
-    Mobile(store),
     Login(store),
     Demo(store),
-    Shop(store),
     Apps(store),
     Widgets(store),
     Hardware(store)

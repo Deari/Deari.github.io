@@ -13,11 +13,6 @@ class A extends React.Component {
     return (
       <div style={{paddingTop: "77px"}}>
         <h4>这是 Deomo 的第1层级的A模块</h4>
-        {this.props.B||
-          <Link to='/1/1-2' activeClassName='route--active'>
-          /1/1-2
-          </Link>
-        }
       </div>
     )
   }
