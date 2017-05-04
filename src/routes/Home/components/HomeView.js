@@ -11,24 +11,6 @@ var Slider = require('react-slick');
 
 const SimpleSlider = React.createClass({
 
-  clickCreate: (type) => {
-    let sourceVal = getSourceVal(type)
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
-    let callbackUrl = `${location.origin}/${type}/create`
-    try{
-      LoginSDK.getStatus((status, data) => {
-        if (status) {
-          let goCreate = (type == 'hardware') ? `http://iotdev.ffan.net/zh-cn/developer/product/create` : `/${type}/create`
-          window.location.href = goCreate
-        }
-      }, url, loginUrl, callbackUrl)
-    }catch(e){
-      console.log(e)
-    }
-   
-  },
-
   render: function () {
     var settings = {
       dots: true,
@@ -39,9 +21,6 @@ const SimpleSlider = React.createClass({
       slidesToScroll: 1,
     };
 
-    const apiViewUrl = getApiDomain(`#/`)
-    const apiAddUrl = getApiDomain(`#/add`)
-
     return (
       <Slider {...settings}>
         <div className="banner1">
@@ -51,7 +30,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/apps">浏览应用</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'apps')}>创建应用</a>
+           <Link className="btn-right btn" to="/apps/create">创建应用</Link>
           </p>
           <div className="banner-img">
             <img width src="http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg" />
@@ -64,7 +43,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/widgets">浏览组件</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'widgets')}>创建组件</a>
+           <Link className="btn-right btn " to="/widgets/create">创建组件</Link>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/fd7753080ecf0b2ad2f18d5bfb1460da2586dcd2.jpg" />
@@ -76,8 +55,8 @@ const SimpleSlider = React.createClass({
             <dd>为开发者提供最全面，最权威的API服务</dd>
           </dl>
           <p>
-           <a className="btn-left btn btn-primary" href={apiViewUrl}>浏览API</a>
-           <a className="btn-right btn" href={apiAddUrl}>创建API</a>
+           <a className="btn-left btn btn-primary" href="http://apistore.ffan.net">浏览API</a>
+           <a className="btn-right btn" href="http://apistore.ffan.net/#/add">创建API</a>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/978419104ea4e5700f1f83012acecd4d78c3a635.jpg" />
@@ -90,7 +69,7 @@ const SimpleSlider = React.createClass({
           </dl>
           <p>
            <Link className="btn-left btn btn-primary" to="/hardware">浏览硬件</Link>
-           <a className="btn-right btn" onClick={this.clickCreate.bind(this, 'hardware')}>创建硬件</a>
+           <Link className="btn-right btn " to="/">创建硬件</Link>
           </p>
           <div className="banner-img">
             <img src="http://nres.ffan.com/newh5/201715/852f665fa0464d7187afc22c667d0d8bfbfc20d3.jpg" />

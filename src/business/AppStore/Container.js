@@ -4,6 +4,7 @@ import { getEnvDomain } from 'utils/d'
 import { PageTypes, getPageLinks } from 'config/index'
 import SideBar from 'business/SideBar'
 import OpenList from 'components/OpenList'
+import List from './List'
 import Pagination from 'components/Pagination'
 import { scrollToTop } from 'utils/scroll'
 
@@ -94,11 +95,11 @@ class Container extends React.Component {
       if(this.state.type == 'hardware') {
         list = list.map((v)=>{
           return {
-            hardwareFunction:v.productDesc,
-            hardwareLogo:v.image,
-            hardwareName:v.verboseName,
-            hardwarePrice:v.price,
-            hardwareId:v.id,
+            price: v.price,
+            appDesc:v.productDesc,
+            appLogo:v.image,
+            appName:v.verboseName,
+            appId:v.id,
             developerName:v.brand
           }
         })
@@ -117,13 +118,7 @@ class Container extends React.Component {
 
   render () {
     const { list, total, tags, urls, detailLink, page, type } = this.state
-    let _type = type;
-    
-    if(_type !== 'hardware') {
-      _type = 'app'
-    }
-
-    let pageLinks = getPageLinks(type).filter(( item ) => { return !item.hide })
+    const pageLinks = getPageLinks(type).filter(( item ) => { return !item.hide })
 
     return (
       <div className="container">
@@ -133,7 +128,7 @@ class Container extends React.Component {
           <h2 className="open-content-nav">
             <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
           </h2>
-          <OpenList listData={list} typeName={_type} detailLink={detailLink} />
+          <List data={list} type={type} ></List>
           <Pagination onChange={::this.onSelectPage} pageSize={page.limit} total={total}/>
         </div>
       </div>

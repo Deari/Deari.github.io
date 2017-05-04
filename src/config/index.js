@@ -29,7 +29,6 @@ export const getPageLinks = (type) => {
     to: `/applyAccount`,
     label: '申请测试账号',
     icon: 'application',
-    hide: (type == 'hardware') ? true : false
   },{
     to: DocLink(type),
     label: '开发者文档',
