@@ -12,7 +12,9 @@ class OpenList extends React.Component {
         listData.length !== 0 ?
         listData.map(( item, index ) => {
           const desc = item[`${typeName}Function`] || item[`${typeName}Desc`]
-          const price = item.hardwarePrice || '免费'
+          const price = item.hardwarePrice || 0
+          const download = item.downloadCount || 0
+          const likeCount = item.likeCount || 0
           const defaultLayout = item.defaultLayout
           return (
             <li>
@@ -32,17 +34,23 @@ class OpenList extends React.Component {
                 }
                 <span className="open-info-introduce" title={ desc }>{ desc }</span>
               </Link>
-              { 
-                typeName==='hardware'?
-                <div>
-                  <Link to={detailLink + item[`${typeName}Id`]}><p className="open-list-price">{price === '免费' ? price :  price} {price === '免费'?'':<i>元</i>}</p></Link>
-                  <p className="open-list-show">
-                    <a><i className="iconfont icon-sold"></i>已售251</a>
-                    {/**<a><i className="iconfont icon-star"></i>251</a>*/}
-                    <a><i className="iconfont icon-hands"></i>好评率100%</a>
+              <div>
+                <Link to={detailLink + item[`${typeName}Id`]}>
+                  <p className="open-list-price">
+                    { price == 0 ? '免费' : 
+                      typeName==='hardware' ? <span>{price} 元</span> :
+                      <span><i className="iconfont icon-rmb"></i>{price}</span> }
                   </p>
-                </div>:<p className="open-list-price"><Link to={detailLink + item[`${typeName}Id`]}>查看</Link></p>
-              }
+                </Link>
+                <p className="open-list-show">
+                  { typeName==='hardware' ? 
+                  <a><i className="iconfont icon-sold"></i>已售251</a> : 
+                  <a><i className="iconfont icon-team"></i> {download}</a> }
+                  { typeName==='hardware' ? 
+                  <a><i className="iconfont icon-hands"></i>好评率100%</a> : 
+                  <a><i className="iconfont icon-star"></i> {likeCount}</a> }
+                </p>
+              </div>
             </li>
           )
         }) :

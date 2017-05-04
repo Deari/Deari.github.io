@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getUploaderDomain, getDownLoadDomain,getDownloadDomain} from 'utils/domain'
+import { getEnvDomain } from 'utils/d'
+import { getDomain, getUploaderDomain,getDownloadDomain} from 'utils/domain'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -173,7 +174,7 @@ export class renderAPKFile extends Component {
     const xhr = new XMLHttpRequest();
     const fd = new FormData();
     const that = this;
-    const url = `http://api.ffan.net/app/v1/bo/sliceUpload`
+    const url = getEnvDomain() + `/app/v1/bo/sliceUpload`
     const readyChange = (that) => {
 
       if (xhr.readyState == 4) {
@@ -187,7 +188,7 @@ export class renderAPKFile extends Component {
             const res = JSON.parse(xhr.responseText).data
             if (index === pressNum) {
               const fileObj = {
-                url: getDownloadDomain(`${this.state.filecode}`),
+                url: getDownloadDomain() + `/v2/file/${this.state.filecode}`,
                 name: file.name,
                 size: file.size
               }

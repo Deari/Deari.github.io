@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form'
-
-import Sidebar from 'components/Sidebar'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 import ChoiceStep from '../components/ChoiceStep'
 import FirstStep from '../components/FirstStepForm'
 import SecondStep from '../components/SecondStepForm'
@@ -220,11 +220,7 @@ class CreateContainer extends Component {
   }
 
   render() {
-    const urls = {
-      create: { url: `/widgets/create`, name: '创建新组件' },
-      list: { url: `/widgets/list`, name: '我的组件' },
-      doc: { url: `/widgets/doc` }
-    }
+  
     const { page, form2 } =this.props.widgetCreate
 
     const appKind = form2 && form2.appKind || ''
@@ -232,8 +228,8 @@ class CreateContainer extends Component {
     let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     return (
-      <div className="container clx">
-        <Sidebar urls={urls}  type="widget"/>
+      <div className="container">
+        <SideBar pageLinks={getPageLinks('widgets')} type={'widgets'} />
         <div className="sub-container">
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />

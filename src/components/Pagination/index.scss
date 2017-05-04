@@ -1,0 +1,68 @@
+.ff-pagination {
+  text-align: right;
+  margin: 10px;
+  & > li {
+    display: inline-block;
+    vertical-align: middle;
+    min-width: 28px;
+    height: 28px;
+    line-height: 28px;
+    text-align: center;
+    font-size: 12px;
+    border: 1px solid #d9d9d9;
+    margin-right: 8px;
+    cursor: pointer;
+    &:hover,
+    &.active {
+      background-color: #108ee9;
+      border-color: #108ee9;
+      color: #fff;
+    }
+    &.prev-btn,
+    &.next-btn {
+      padding: 0 8px;
+      &.disabled {
+        border: 1px solid #d9d9d9;
+        background-color: #fff;
+        cursor: not-allowed;
+        color: rgba(0,0,0,.25);
+      }
+    }
+  }
+  .pagination-options {
+    display: inline-block;
+    .select-page {
+      display: inline-block;
+      margin-right: 10px;
+      select {
+        padding: 0 7px;
+        height: 28px;
+        line-height: 28px;
+        color: #333;
+        border-color: #dfdfdf;
+      }
+    }
+    .quick-jumper {
+      display: inline-block;
+      label {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      input {
+        padding: 4px 7px;
+        height: 28px;
+        cursor: text;
+        font-size: 12px;
+        line-height: 1.5;
+        color: rgba(0,0,0,.65);
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #d9d9d9;
+        border-radius: 4px;
+        transition: all .3s;
+        margin: 0 8px;
+        width: 50px;
+      }
+    }
+  }
+}

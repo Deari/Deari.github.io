@@ -4,7 +4,8 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/domain';
 import debug from 'utils/debug'
 import moment from 'moment'
-import Slidebar from 'components/Sidebar'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 import { getCodeStatus } from 'components/Detail/header'
 import { Versions, SaleRange, Unapprove, AdminUnshelved } from 'components/Detail/footer'
 import Detail from 'components/Detail'
@@ -154,15 +155,10 @@ class WidgetsDetail extends React.Component {
     const editUrl = `/widgets/edit/${id}`
     const createUrl = `/widgets/create`
 
-    const urls = {
-      create: { url: `/widgets/create`, name: '创建新组件' },
-      list: { url: `/widgets/list`, name: '我的组件' },
-      doc: { url: `/widgets/doc` }
-    }
+  
     return (
-      <div className="container clx">
-        <Slidebar urls={urls} tags={tags} />
-                
+      <div className="container">
+        <SideBar pageLinks={getPageLinks('widgets')} type={'widgets'} />                
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions} 
                 showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl} 
                 onChangeShowAll={this.changeShowAll.bind(this)} onChangeRange={this.changeRange.bind(this)} 
