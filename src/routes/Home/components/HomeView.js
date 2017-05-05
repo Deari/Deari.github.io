@@ -10,7 +10,6 @@ import '../assets/lib/slick-theme.css'
 var Slider = require('react-slick');
 
 const SimpleSlider = React.createClass({
-
   render: function () {
     var settings = {
       dots: true,
