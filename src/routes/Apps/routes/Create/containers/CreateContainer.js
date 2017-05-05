@@ -24,7 +24,7 @@ class CreateContainer extends Component {
   componentWillMount() {
     let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
     let callbackUrl = location.href
     try{
       LoginSDK.getStatus((status, data) => {
@@ -62,7 +62,7 @@ class CreateContainer extends Component {
 
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/apps/list`
     try{
          LoginSDK.getStatus((status, data) => {
@@ -125,7 +125,7 @@ class CreateContainer extends Component {
 
     let sourceVal = getSourceVal()
     let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}/apps/list`
     try{
     LoginSDK.getStatus((status, data) => {

@@ -157,7 +157,7 @@ class widgetsList extends React.Component {
   
     let sourceVal = getSourceVal()
     let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
     let callbackUrl = location.href
     try{
       LoginSDK.getStatus( async (status, data) => {

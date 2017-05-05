@@ -5,7 +5,7 @@ import LoginSDK from 'utils/loginSDK'
 export function login(callback) {
   let sourceVal = getSourceVal()
   let checkUrl = getLoginDomain(`passport/session-check.json`)
-  let loginUrl = getApiDomain(`#!/login?source=${sourceVal}`)
+  let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
   let callbackUrl = location.href
 
   LoginSDK.getStatus(function (status) {
