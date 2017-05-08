@@ -95,7 +95,8 @@ class Analytics extends Component {
     const url = getXapiComDomain()+'/oc/v1/version/latest'
     fetchUtil.getJSON(url, {
       objectId: 1,
-      osType: 2
+      osType: 2,
+      attachExt: 2
     }, {
       credentials: 'omit'
     }).then(data => {
