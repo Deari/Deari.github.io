@@ -35,6 +35,8 @@ class FetchUtil {
       params.debug = 1
     }
 
+    params.clientType = 1
+
     params = buildSearchParams(params)
     const { headers, ...rest } = options
 

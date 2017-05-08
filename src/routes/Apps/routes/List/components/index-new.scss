@@ -1,0 +1,26 @@
+@import 'src/styles/v/var';
+
+.content {
+  margin-left: 220px;
+  margin-top: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.statusBar {
+  padding: 10px;
+  border-bottom: 1px solid $site-border-gray;
+}
+.navFilters {
+  & > li {
+    display: inline-block;
+    padding: 15px;
+    margin: 0 10px;
+    cursor: pointer;
+    &:hover {
+      border-bottom: 2px solid $site-blue;
+    }
+  }
+  .active {
+    border-bottom: 2px solid $site-blue;
+  }
+}

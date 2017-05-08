@@ -6,13 +6,13 @@ class Pagination extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      current: 1,
+      current: props.defaultCurrent || 1,
       pageSize: props.pageSize
     }
   }
   
   static defaultProps = {
-    currentPage: 1,
+    defaultCurrent: 1,
     total: 200,
     pageSize: 10,
     showPageSize: 5,

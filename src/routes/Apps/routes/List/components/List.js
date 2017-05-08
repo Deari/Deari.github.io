@@ -1,24 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router'
 import Pagination from 'components/Pagination'
-import fetchUtil from 'utils/fetch'
 import SideBar from 'business/SideBar'
+import List from './Table'
+import TabFilters from './TabFilters'
 import { PageTypes, getPageLinks } from 'config/index'
 import s from './index-new.scss'
 
-
 export default class AppsList extends React.Component {
-
-  componentDidMount() {
-    console.log("did mount")
-  }
-
   render() {
+    const { filter, data, total, onPagination, onToggleFilter } = this.props;
+
     return (
       <div className="container">
         <SideBar pageLinks={getPageLinks('apps')} type='apps' />
         <div className={s.content}>
-          hello
+          <TabFilters filter={filter} onToggleFilter={onToggleFilter}/>
+          <List data={data} type="apps"/>
+          <Pagination onChange={onPagination} total={total}/>
         </div>
       </div>
     )
