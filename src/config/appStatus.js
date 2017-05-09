@@ -22,21 +22,21 @@ export default [
 ]
 
 const REVIEW_STATUS = [
-  { value: 0, status: 'waitSubmit', text: '准备提交', classname: 'waitSubmit' },
-  { value: 1, status: 'reviewing', text: '审核中', classname: 'reviewing'},
-  { value: 2, status: 'waitPublish', text: '等待开发者发布', classname: 'waitPublish'},
-  { value: 3, status: 'nopass', text: '审核不通过', classname: 'nopass'}
+  { value: 0, status: 'waitSubmit', text: '准备提交', style: { backgroundColor: '#10a010' } },
+  { value: 1, status: 'reviewing', text: '审核中', style: { backgroundColor: '#10a010' }},
+  { value: 2, status: 'waitPublish', text: '等待开发者发布', style: { backgroundColor: '#10a010' }},
+  { value: 3, status: 'nopass', text: '审核不通过', style: { backgroundColor: '#10a010' }}
 ]
 
 const PUBLISH_STATUS = {
   status: 'published',
   text: '已发布',
-  classname: 'published'
+  style: { backgroundColor: '#10a010' }
 }
 
 const UNSHELVED_STATUS = [
-  { status: 'adminUnshelved', text: '被管理员下架', classname: 'adminUnshelved'},
-  { status: 'devUnshelved', text: '被开发者下架', classname: 'devUnshelved'},
+  { status: 'adminUnshelved', text: '被管理员下架', style: { backgroundColor: '#10a010' }},
+  { status: 'devUnshelved', text: '被开发者下架', style: { backgroundColor: '#10a010' }},
 ]
 
 export function judgeAppStatus (app) {

@@ -1,10 +1,13 @@
-import List from './containers/ListContainer'
+import Main from './main'
+import { login } from 'utils/login'
 
 export default {
   path: 'list',
-  
+  onEnter: (nextState, replace, callback) => {
+    login(callback)
+  },
   indexRoute: {
-    component: List
+    component: Main
   },
   // getComponent (nextState, cb) {
   //   require.ensure([], (require) => {
@@ -13,7 +16,7 @@ export default {
   // },
 
   childRoutes: [
-    { path: ':type', component: List },
+    { path: ':type', component: Main },
     // { path: 'all', component: List },
     // { path: 'reviewed', component: List },
     // { path: 'wait_review', component: List },

@@ -188,9 +188,9 @@ class Analytics extends Component {
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
         <div className={s.content}>
           <h1>申请测试账号</h1>
-          <span className={s.status}>
-            您{hasAccount ? '已获得' : '还没有获得'}测试账号
-          </span>
+          { hasAccount ? <p className={s.success}>
+            您已获得商家测试账号
+          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
           <div className={s.desc}>
             <p>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
             但是，这里需要注意：</p>

@@ -16,6 +16,12 @@ class Search extends Component {
       this.setState({ clearBtn: true })
     }
   }
+  
+  onKeyUp (e) {
+    if(e.keyCode === 13) {
+      this.searchHandler()
+    }
+  }
 
   clear(){
     this.refs._input.value = ''
@@ -23,7 +29,7 @@ class Search extends Component {
 
   searchHandler () {
     const val = this.refs._input.value.trim()
-    val && this.props.onSearch(val)
+    this.props.onSearch(val)
   }
 
   render () {
@@ -40,6 +46,7 @@ class Search extends Component {
           type="text" 
           placeholder={placeholder} 
           ref='_input' 
+          onKeyUp={::this.onKeyUp}
           onChange={::this.changeHandler}
         />
         { clearBtn ? <i className="iconfont " 

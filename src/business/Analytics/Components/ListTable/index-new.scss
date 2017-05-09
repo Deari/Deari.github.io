@@ -52,8 +52,10 @@
       .name {
         color: #000;
         display: block;
-        margin-bottom: 10px;
         width: 200px;
+      }
+      & > i {
+        margin: 5px 0;
       }
       .desc {
         overflow: hidden;
@@ -84,7 +86,7 @@
         color: #666;
         display: block;
         width: 90px;
-        text-align: left;
+        text-align: center;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

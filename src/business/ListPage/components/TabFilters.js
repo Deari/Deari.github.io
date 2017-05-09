@@ -1,12 +1,14 @@
 import React from 'react'
-import s from './index-new.scss'
+import s from './TabFilters-new.scss'
 import cx from 'classnames'
-import APPS_FILTERS from '../config'
+import APPS_FILTERS from 'config/appStatus'
+
+import Search from 'components/Search'
 
 class Filters extends React.Component {
 
   render () {
-    const { filter, onToggleFilter } = this.props
+    const { filter, onToggleFilter, onSearch } = this.props
     return (
       <div className={s.statusBar}>
         <ul className={s.navFilters}>
@@ -16,6 +18,7 @@ class Filters extends React.Component {
             {item.text}
           </li>)}
         </ul> 
+        <Search onSearch={onSearch} placeholder='查找'></Search>
       </div>
     )
   }

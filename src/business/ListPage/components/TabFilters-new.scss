@@ -1,14 +1,12 @@
 @import 'src/styles/v/var';
 
-.content {
-  margin-left: 220px;
-  margin-top: 10px;
-  background: #fff;
-  overflow: hidden;
-}
 .statusBar {
   padding: 10px;
   border-bottom: 1px solid $site-border-gray;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .navFilters {
   & > li {

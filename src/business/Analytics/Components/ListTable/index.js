@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import s from './index-new.scss'
+import cx from 'classnames'
 import { PageTypes } from 'config/index'
+import { appType } from 'config/index'
 
 const TabelItem = ({ data, type }) => {
 
@@ -10,6 +12,7 @@ const TabelItem = ({ data, type }) => {
       <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
         <span className={`${s.name} ${s.textOverflow}`}>{data.appName}</span>
+        <i className={cx('iconfont', appType[data.appKind])}></i>
         <span className={s.desc}>{data.appDesc}</span>
         <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
       </td>

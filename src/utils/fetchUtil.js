@@ -21,8 +21,10 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
-
+    params.clientType = 1;
+    
     params = getURLByObj(params)
+
     options = {
       method: 'GET',
       credentials: 'include',
@@ -68,6 +70,7 @@ class FetchUtil {
     for (const p in params) {
       fromData.append(p, JSON.stringify(params[p]))
     }
+    fromData.append('clientType', 1)
 
     params = getURLByObj(params)
     const reqsOptions = {
@@ -114,6 +117,9 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
+
+    params.clientType = 1;
+
     const reqsOptions = {
       method: 'POST',
       // credentials: !options.credentials ? 'include' : '',
@@ -153,6 +159,8 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
+
+    params.clientType = 1;
 
     options = {
       method: method,

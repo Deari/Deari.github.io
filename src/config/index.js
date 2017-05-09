@@ -36,3 +36,9 @@ export const getPageLinks = (type) => {
     isExternal: (type == 'hardware') ? true : false
   }]
 }
+
+export const appType = {
+  '0': 'icon-rnpng',
+  '1': 'icon-hpng',
+  '2': 'icon-apkpng'
+}
