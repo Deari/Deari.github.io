@@ -30,6 +30,10 @@ export const getPageLinks = (type) => {
     label: '申请测试账号',
     icon: 'application',
   },{
+    to: `/devtools`,
+    label: '开发者工具',
+    icon: 'application',
+  },{
     to: DocLink(type),
     label: '开发者文档',
     icon: 'file',

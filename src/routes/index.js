@@ -6,6 +6,7 @@ import Home from './Home'
 import Demo from './Demo'
 import Login from './Login'
 import Apps from './Apps'
+import DevTools from './DevTools'
 import Widgets from './Widgets'
 import Hardware from './Hardware'
 import ApplyAccount from './ApplyAccount'
@@ -21,7 +22,8 @@ export const createRoutes = (store) => ({
     Apps(store),
     Widgets(store),
     Hardware(store),
-    ApplyAccount
+    ApplyAccount,
+    DevTools
   ]
 })
 
