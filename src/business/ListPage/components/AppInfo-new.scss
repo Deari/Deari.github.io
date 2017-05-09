@@ -1,0 +1,32 @@
+.devInfo{
+    margin: 10px;
+    border: 1px solid #eee;
+    border-top: 0;
+    .title{
+        height: 50px;
+        line-height: 50px;
+        background: #eee;
+        font-size: 16px;
+        color: #666;
+        padding-left: 22px;
+    }
+    .main{
+        margin: 0 40px;
+        line-height: 50px;
+        &:nth-of-type(1){
+            border-bottom: 1px solid #eee;
+        }
+        .name{
+            width: 165px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .text{
+            word-break: break-all;
+            word-wrap: break-word;
+            display: inline-block;
+            width: 610px;
+            vertical-align: top;
+        }
+    }
+}

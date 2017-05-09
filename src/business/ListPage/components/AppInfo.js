@@ -1,5 +1,5 @@
 import React from 'react'
-import s from './TabFilters-new.scss'
+import s from './AppInfo-new.scss'
 
 class AppInfo extends React.Component {
 
@@ -7,14 +7,14 @@ class AppInfo extends React.Component {
     const { devKey, devSecret  } = this.props
     return (
       <div className={s.devInfo}>
-        <h2>开发密钥</h2>
-        <div>
-          <label htmlFor="">DevelopKey：</label>
-          <span>{devKey}</span>
+        <h2 className={s.title}>开发密钥</h2>
+        <div className={s.main}>
+          <label htmlFor="" className={s.name}>DevelopKey：</label>
+          <span className={s.text}>{devKey}</span>
         </div>
-        <div>
-          <label htmlFor="">DevelopSecret: </label>
-          <span>{devSecret}</span>
+        <div className={s.main}>
+          <label htmlFor="" className={s.name}>DevelopSecret: </label>
+          <span className={s.text}>{devSecret}</span>
         </div>
       </div>
     )

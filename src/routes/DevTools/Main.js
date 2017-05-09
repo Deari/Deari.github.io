@@ -10,7 +10,7 @@ class DevTools extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
         <div className={s.content}>
-          <h2 className={s.title}>开发者工具</h2>
+          <h2 className={s.title}><i className="iconfont icon-tool"></i>开发者工具</h2>
           <div className={s.tool}>
           	<dl className={s.detail}>
 	            <dt className={s.img}></dt>
@@ -19,7 +19,7 @@ class DevTools extends Component {
 	                <p className={s.text}>说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</p>
 	            </dd>
 	          </dl>
-	          <div className={s.link}>
+	          <div className={s.btn}>
 	            <Link to="/devtools/account">开发者账户</Link>
 	            <Link to="/devtools/devinfo">开发密钥</Link>
 	          </div>
@@ -32,10 +32,10 @@ class DevTools extends Component {
 	                <p className={s.text}>开放平台测试账号的介绍，后续补充文案。开放平台测试账号的介绍，后续补充文案。</p>
 	            </dd>
 	          </dl>
-	          <div className={s.link}>
-	            <Link to="/devtools/account">开发者账户</Link>
-	            <Link to="/devtools/devinfo">开发密钥</Link>
+	          <div className={s.btn}>
+	            <button className={s.look}>查看</button>
 	          </div>
+	          <div className={s.key}></div>
           </div>
           <div className={s.tool}>
           	<dl className={s.detail}>
@@ -45,7 +45,7 @@ class DevTools extends Component {
 	                <p className={s.text}>说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</p>
 	            </dd>
 	          </dl>
-	          <div className={s.link}>
+	          <div className={s.btn}>
 	            <Link to="/devtools/account">开发者账户</Link>
 	            <Link to="/devtools/devinfo">开发密钥</Link>
 	          </div>

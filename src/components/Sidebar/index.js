@@ -36,7 +36,7 @@ class Sidebar extends React.Component {
         <ul className="help-menu">
           <li>
             <a className={(urls.list.active && 'active') || ''} onClick={this.clickBtn.bind(this, urls.list.url)}>
-              {this.props.typeName?'':<i className="iconfont icon-application"></i>}{urls.list.name ? urls.list.name : '我的列表'}
+              {this.props.typeName?'':<i className="iconfont icon-tool"></i>}{urls.list.name ? urls.list.name : '我的列表'}
             </a>
           </li>
           <li>

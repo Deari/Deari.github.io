@@ -1,21 +1,28 @@
 .content {
     margin-top: 10px;
     margin-left: 220px;
-    padding: 20px;
+    padding: 10px;
     background: #fff;
     color: #333;
     .title {
         font-size: 16px;
         font-weight: normal;
-        height: 74px;
-        line-height: 74px;
+        height: 70px;
+        line-height: 70px;
         border-bottom: 1px solid #eeeeee;
+        padding-left: 17px;
+        i{
+            font-size: 18px;
+            color: #2692fb;
+            margin-right: 4px;
+        }
     }
     .tool {
         display: flex;
+        flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-between;
-        margin: 32px 20px 64px;
+        margin: 32px 14px 64px;
         &:first-of-type{
             .img{
                 background: url("../../images/file.png") no-repeat;
@@ -45,7 +52,7 @@
             .name {
                 font-size: 20px;
                 color: #000000;
-                width: 620px;
+                width: 648px;
                 word-break: break-all;
                 word-wrap: break-word;
             }
@@ -53,14 +60,14 @@
                 font-size: 12px;
                 color: #666;
                 margin-top: 6px;
-                width: 620px;
+                width: 648px;
                 line-height: 18px;
                 word-break: break-all;
                 word-wrap: break-word;
             }
         }
-        .link{
-            a{
+        .btn{
+            a,.look{
                 padding: 8px 10px;
                 border-radius: 4px;
                 background: #2692fb;
@@ -75,6 +82,17 @@
                     background: #2a89dd;
                 }
             }
+            .look{
+                border: 0;
+                padding: 8px 28px;
+                cursor: pointer;
+            }
+        }
+        .key{
+            width: 648px;
+            border: 1px solid #ccc;
+            margin:4px 0 0 82px;
+            display: none;
         }
     }
 }

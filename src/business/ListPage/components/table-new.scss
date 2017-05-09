@@ -49,8 +49,9 @@
     }
     .vStatus{
         text-align: left;
+        margin-top: 14px;
         &:first-child{
-            margin-bottom: 14px;
+            margin-top: 0;
         }
         .version{
             display: block;
