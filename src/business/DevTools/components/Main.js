@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import SideBar from 'business/SideBar'
+import DevInfo from 'business/DevInfo'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
 
 class DevTools extends Component {
   render() {
+    const { type } = this.props;
     return (
       <div className={`container`} >
-        <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
+        <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
         <div className={s.content}>
           <h2 className={s.title}><i className="iconfont icon-tool"></i>开发者工具</h2>
           <div className={s.tool}>
@@ -16,12 +18,13 @@ class DevTools extends Component {
 	            <dt className={s.img}></dt>
 	            <dd>
 	                <h3 className={s.name}>开发者文档</h3>
-	                <p className={s.text}>说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字</p>
+	                <p className={s.text}>
+                    说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字说明文字
+                  </p>
 	            </dd>
 	          </dl>
 	          <div className={s.btn}>
-	            <Link to="/devtools/account">开发者账户</Link>
-	            <Link to="/devtools/devinfo">开发密钥</Link>
+	            <Link to={`/${type}/doc`}>点击进入</Link>
 	          </div>
           </div>
           <div className={s.tool}>
@@ -33,9 +36,9 @@ class DevTools extends Component {
 	            </dd>
 	          </dl>
 	          <div className={s.btn}>
-	            <button className={s.look}>查看</button>
+	            <Link className={s.look}>点击进入</Link>
 	          </div>
-	          <div className={s.key}></div>
+            <DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
           </div>
           <div className={s.tool}>
           	<dl className={s.detail}>
@@ -46,8 +49,7 @@ class DevTools extends Component {
 	            </dd>
 	          </dl>
 	          <div className={s.btn}>
-	            <Link to="/devtools/account">开发者账户</Link>
-	            <Link to="/devtools/devinfo">开发密钥</Link>
+	            <Link to={`/${type}/account`}>点击进入</Link>
 	          </div>
           </div>
         </div>

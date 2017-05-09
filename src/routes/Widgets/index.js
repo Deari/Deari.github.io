@@ -20,6 +20,8 @@ export default (store) => ({
         require('./routes/List').default,
         require('./routes/Editor')(store),
         require('./routes/Doc').default,
+        require('./routes/DevTools').default,
+        require('./routes/DevAccount').default,
         require('./routes/Analytics/List').default,
         require('./routes/Analytics/OverView').default
       ])

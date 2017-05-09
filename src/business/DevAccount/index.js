@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
 import { getEnvDomain, getXapiComDomain } from 'utils/d'
-import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
 
-class Analytics extends Component {
+class DevAccount extends Component {
+
   state = {
     allowGetCode: true,
     allowGetCodeTime: 60,
@@ -130,7 +130,9 @@ class Analytics extends Component {
   }
 
   render() {
+    const { type } = this.props;
     const { hasAccount, account, allowGetCode, allowGetCodeTime, downloadUrl } = this.state
+
     let Account = (
       <div className={s.applyForm}>
         <div className={s.formItem}>
@@ -185,10 +187,10 @@ class Analytics extends Component {
 
     return (
       <div className={`container`} >
-        <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
+        <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
         <div className={s.content}>
           <h2 className={s.title}><i className="iconfont icon-account"></i>申请测试账号</h2>
-          { hasAccount ? <p className={s.success}>
+          { !hasAccount ? <p className={s.success}>
             您已获得商家测试账号
           </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
           <div className={s.desc}>
@@ -207,4 +209,4 @@ class Analytics extends Component {
   }
 }
 
-export default Analytics
+export default DevAccount

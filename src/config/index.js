@@ -26,14 +26,14 @@ export const getPageLinks = (type) => {
     icon: 'sidebar3',
     hide: type === 'hardware'
   },{
-    to: `/devtools`,
-    label: '开发者工具',
-    icon: 'application',
-  },{
     to: DocLink(type),
     label: '开发者文档',
     icon: 'file',
     isExternal: type === 'hardware'
+  },{
+    to: `/${type}/devtools`,
+    label: '开发者工具',
+    icon: 'tool',
   }]
 }
 
