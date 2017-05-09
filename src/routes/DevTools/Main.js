@@ -21,6 +21,7 @@ class DevTools extends Component {
               <div>
                 <Link to="/devtools/account">开发者账户</Link>
                 <Link to="/devtools/devinfo">开发密钥</Link>
+                <Link to="/devtools/devinfo">开发者文档</Link>
               </div>
             </div>
           </div>
