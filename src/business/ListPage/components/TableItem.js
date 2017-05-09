@@ -44,9 +44,9 @@ const TabelItem = ({ data, type }) => {
         <span className={`${s.name} ${s.textOverflow}`}>{data.price || '免费'}</span>
       </td>
       <td className={s.status}>
-        {appStatus.map((v, index) => <div key={index}>
+        {appStatus.map((v, index) => <div key={index} className={s.vStatus}>
           <span className={s.version}><i className={s.round} style={v.style}></i>{ v.codeVersion}</span>
-          <span>{v.text}</span>
+          <span className={s.text}>{v.text}</span>
         </div>)}
       </td>
       

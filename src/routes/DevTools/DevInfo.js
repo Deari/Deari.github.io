@@ -1,6 +1,7 @@
+import s from './DevInfo.scss'
 const DevInfo = (props) => {
-  return <div>
-    <h1>查看developkey</h1>
+  return <div className={s.content}>
+    <h2 className={s.title}>查看developkey</h2>
     <div>
       <h2>开发密钥</h2>
       <ul>

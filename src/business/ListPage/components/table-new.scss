@@ -39,15 +39,32 @@
         width: 200px;
       }
     }
-    .round {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      margin: 0 5px;
-      background: green;
+    &.status{
+        padding:5px 15px;
     }
-  
+    .vStatus{
+        text-align: left;
+        &:first-child{
+            margin-bottom: 14px;
+        }
+        .version{
+            display: block;
+            margin-bottom: 2px;
+            .round {
+              display: inline-block;
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              margin: 0 5px;
+              background: green;
+            }
+        }
+        .text{
+            display: block;
+            padding-left: 18px;
+        }
+    }
+    
     &.actions {
       text-align: center;
       .btn {

@@ -187,7 +187,7 @@ class Analytics extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'}></SideBar>
         <div className={s.content}>
-          <h1>申请测试账号</h1>
+          <h2 className={s.title}><i className="iconfont icon-account"></i>申请测试账号</h2>
           { hasAccount ? <p className={s.success}>
             您已获得商家测试账号
           </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
