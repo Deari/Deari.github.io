@@ -32,11 +32,16 @@
     }
     &.appInfo {
       width: 200px;
+      text-align: left;
       .name {
         color: #000;
         display: block;
         margin-bottom: 10px;
         width: 200px;
+      }
+      .appId {
+        font-size: 12px;
+        margin-right: 10px;
       }
     }
     &.status{
