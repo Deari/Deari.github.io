@@ -4,7 +4,9 @@ import { login } from 'utils/login'
 export default {
   path: 'list',
   onEnter: (nextState, replace, callback) => {
-    login(callback)
+    login(()=>{
+      callback()
+    })
   },
   indexRoute: {
     component: Main
