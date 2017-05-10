@@ -8,9 +8,18 @@ export function login(callback) {
   let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
   let callbackUrl = location.href
 
-  LoginSDK.getStatus(function (status) {
+  LoginSDK.getStatus(function (status, data) {
     if(status) {
-      callback()
+      callback(data)
     }
   }, checkUrl, loginUrl, callbackUrl)
+}
+
+export function logout (callback) {
+  let quitUrl = getLoginDomain(`passport/session-remove.json`)
+  LoginSDK.quit((status) => {
+    if (status) {
+      callback()
+    }
+  }, quitUrl)
 }
