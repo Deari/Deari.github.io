@@ -34,6 +34,7 @@ export const getPageLinks = (type) => {
     to: `/${type}/devtools`,
     label: '开发者工具',
     icon: 'tool',
+    hide: type === 'hardware'
   }]
 }
 
