@@ -11,7 +11,7 @@ const TabelItem = ({ data, type }) => {
     <tr>
       <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
-        <span className={`${s.name} ${s.textOverflow}`}>{data.appName}</span>
+        <span className={`${s.name} ${s['text-overflow']}`}>{data.appName}</span>
         <i className={cx('iconfont', appType[data.appKind])}></i>
         <span className={s.desc}>{data.appDesc}</span>
         <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
@@ -54,7 +54,7 @@ class Table extends Component {
     const { data, type, typeText } = this.props
     return (
       <div className={s.root}>
-        <h2 className={s.title}><i className="iconfont icon-sidebar3"></i>{typeText}数据统计</h2>
+        <h2 className={`${s['content-header']} ${s['header-data']}`}><i className="iconfont icon-sidebar3"></i>{typeText}数据统计</h2>
         <table className={s.table} cellspacing="0" cellpadding="0">
           <thead>
             <tr>
