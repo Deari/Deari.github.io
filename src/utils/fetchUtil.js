@@ -117,8 +117,11 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
-
-    params.clientType = 1;
+    if(params && typeof params.append === 'function') {
+      params.append('clientType', 1)
+    } else {
+      params.clientType = 1;
+    }
 
     const reqsOptions = {
       method: 'POST',

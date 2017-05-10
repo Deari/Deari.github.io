@@ -83,7 +83,7 @@ class CreateContainer extends Component {
         }
 
         const url = getDomain(`web/developer/app`)
-        
+
         fetchUtil.postJSON(url, formData, { jsonStringify: false}).then(res=>{
             if(res.status == 200) {
               const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
