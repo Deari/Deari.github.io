@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react'
 import { login, logout } from 'utils/login'
 import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import './login.scss'
-
+import LoginSDK from 'utils/loginSDK'
 export default class Container extends Component {
   static propTypes = {
     authenticated: PropTypes.bool,
@@ -15,16 +15,22 @@ export default class Container extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      isLogin : props.authenticated,
+      isLogin: false,
       userInfo : {}
     }
   }
 
   componentDidMount () {
-    let url = getLoginDomain(`passport/session-check.json`)
-    login((data)=>{
-      this.setState({isLogin: true, userInfo: data})
-    })
+    let sourceVal = getSourceVal()
+    let checkUrl = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+    
+    LoginSDK.getStatus((status, data) => {
+      if(status) {
+        this.setState({isLogin: true, userInfo: data})
+      }
+    }, checkUrl)
   }
 
   handleLogin = ()=>{
@@ -50,12 +56,12 @@ export default class Container extends Component {
     return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
         <a href={register}><span>注册</span></a> 
-        <a><span onClick={this.handleLogin}>登录</span></a>
+        <a><span onClick={::this.handleLogin}>登录</span></a>
       </div>
     ) : (
       <div className="login-wrapper logined">
           <a href={centerUrl}><img src={userInfo.face} title={userInfo.nick} /></a>
-          <span onClick={this.handleLogout}>退出</span>
+          <span onClick={::this.handleLogout}>退出</span>
       </div>
     )
   }
