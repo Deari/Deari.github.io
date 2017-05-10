@@ -4,7 +4,9 @@ export default {
   path: 'account',
   
   onEnter: (nextState, replace, callback) => {
-    login(callback)
+    login(()=>{
+      callback()
+    })
   },
 
   getComponent (nextState, cb) {

@@ -3,7 +3,9 @@ import { login } from 'utils/login'
 export default {
   path: 'account',
   onEnter: (nextState, replace, callback) => {
-    login(callback)
+    login(()=>{
+      callback()
+    })
   },
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
