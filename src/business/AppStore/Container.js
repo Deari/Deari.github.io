@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import fetchUtil from 'utils/fetch'
 import { getEnvDomain } from 'utils/d'
 import { PageTypes, getPageLinks } from 'config/index'
@@ -8,55 +9,62 @@ import List from './List'
 import Pagination from 'components/Pagination'
 import { scrollToTop } from 'utils/scroll'
 
+import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
+
 class Container extends React.Component {
   constructor(props) {
     super(props)
+    
+    props.updateStore({
+      type: props.type 
+    })
 
     this.state = {
-      type: props.type,
-      list: [],
-      total: 0,
+      tag: props.tag,
       tags: [],
-      detailLink: `/${props.type}/detail/`,
-      page: {
-        tag: props.tag,
+      params: {
         limit: 15,
         page: 1
       }
     }
   }
-  
-  
+
   componentDidMount() {
+    const { params } = this.state;
+    const { type, tag } = this.props;
+    
     this.fetchTags();
-    this.fetchAppList({ skip: 0 })
+    
+    this.props.fetchAppList({
+      tag,
+      type,
+      params: { 
+        ...params,
+        skip: 0
+      }
+    })
   }
 
   componentWillReceiveProps (nextProps) {
-    const { page } = this.state;
-    const { tag } = nextProps;
-
-    if(tag !== page.tag) {
-      this.setState({ 
-        page: {
-          ...page,
-          tag
-        }
-      }, ()=>{
-        this.fetchAppList()
+    const { tag } = this.state;
+    if(nextProps.tag !== tag) {
+      this.setState({ tag: nextProps.tag }, ()=>{
+        this.props.fetchAppList({
+          tag: nextProps.tag,
+          type: this.props.type,
+          params: {
+            page: 1
+          }
+        })
       })
     }
   }
 
   fetchTags () {
-    const { type } = this.state;
-    let _type = type
-    if(type !== 'hardware') {
-      _type = type.slice(0,-1)
-    }
-    const url = getEnvDomain()+`/app/v1/bo/v1/public/common/tags?type=${_type}`
-    
-    fetchUtil.getJSON(url).then(data => {
+    const { type } = this.props;
+    fetchUtil.getJSON(`${getEnvDomain()}/app/v1/bo/v1/public/common/tags`, {
+      type: type !== 'hardware' ? type.slice(0,-1) : type
+    }).then(data => {
       const tags = data.map(item => {
         return {
           label: item.tagName,
@@ -64,62 +72,37 @@ class Container extends React.Component {
           icon: `sidebar${item.tagId}`
         }
       })
-
       tags.unshift({
         label: '全部'+PageTypes[type],
         to: `/${type}`,
         icon: `sidebar0`
       })
-
       this.setState({ tags })
-
     }).catch(e => {
 
-    })
-  }
-
-  fetchAppList (params) {
-    const _p = {
-      ...this.state.page,
-      ...params
-    }
-    const { tag, ...rest } = _p;
-    const url = getEnvDomain()+`/app/v1/bo/v1/web/market/tag/${tag}/${this.state.type}`
-
-    return fetchUtil.getJSON(url, {
-      ...rest
-    }).then(data => {
-      let { list, page, meta } = data
-      let total = page ? page.totalCount : meta.total
-
-      if(this.state.type == 'hardware') {
-        list = list.map((v)=>{
-          return {
-            price: v.price,
-            appDesc:v.productDesc,
-            appLogo:v.image,
-            appName:v.verboseName,
-            appId:v.id,
-            developerName:v.brand
-          }
-        })
-      }
-
-      this.setState({ list, total })
-
-    }).catch(e => {
-      console.log(e)
     })
   }
 
   onSelectPage (page) {
-    this.fetchAppList({ page, skip: (page-1)*this.state.page.limit }).then(scrollToTop)
+    const { params, tag } = this.state;
+    const { type } = this.props;
+
+    this.props.fetchAppList({
+      tag,
+      type,
+      params: {
+        ...params,
+        page,
+        skip: (page-1)*params.limit 
+      }
+    }).then(scrollToTop)
   }
 
   render () {
-    const { list, total, tags, urls, detailLink, page, type } = this.state
+    console.log(this.props)
+    const { list, total, type, params } = this.props;
+    const { tags } = this.state
     const pageLinks = getPageLinks(type).filter(( item ) => { return !item.hide })
-
     return (
       <div className="container">
         <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
@@ -129,11 +112,19 @@ class Container extends React.Component {
             <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
           </h2>
           <List data={list} type={type} ></List>
-          <Pagination onChange={::this.onSelectPage} pageSize={page.limit} total={total}/>
+          <Pagination onChange={::this.onSelectPage} pageSize={params.limit} total={total}/>
         </div>
       </div>
     )
   }
 }
 
-export default Container
+export default connect((state, props)=>{
+  return {
+    ...state.appStore,
+    type: props.type
+  }
+}, {
+  updateStore: Actions.update,
+  fetchAppList
+})(Container)

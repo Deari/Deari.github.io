@@ -1,10 +1,14 @@
 import React from 'react'
+import { IndexLink, Link } from 'react-router'
+import { injectReducer } from 'store/reducers'
+import appStoreReducer from 'reducers/appStore'
 
 export default (store) => ({
   path: 'widgets',
   indexRoute: {
     getComponents(nextState, cb) {
       require.ensure([], (require) => {
+        injectReducer(store, { key: 'appStore', reducer: appStoreReducer })
         cb(null, {
           children: require('./Containers/AppStore').default
         })
@@ -14,7 +18,7 @@ export default (store) => ({
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Store').default,
+        require('./routes/Store')(store),
         require('./routes/Create')(store),
         require('./routes/Detail')(store),
         require('./routes/List').default,

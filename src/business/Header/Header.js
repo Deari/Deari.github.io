@@ -1,9 +1,12 @@
 import React from "react"
 import { IndexLink, Link } from "react-router"
+import { connect } from 'react-redux'
+import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
 import Login from "components/Login"
+import Search from "components/Search"
 import "./index.scss"
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div className="header-wrapper">
       <div className="bg"></div>
@@ -42,10 +45,22 @@ const Header = () => {
               </Link>
             </li>
           </ul>
+          <div style={{'width': 100, 'marginRight': 20}}>
+            <Search style={{ 'width': '100%' }}
+             onSearch={(v)=>{ 
+              console.log(v); 
+              props.fetchAppList({  
+                tag: 0,
+                params: { appName: v } 
+              })
+            }}></Search>
+          </div>
           <Login></Login>
         </div>
       </div>
     </div>
   )
 }
-export default Header
+export default connect((state)=>({}), {
+  fetchAppList  
+})(Header)

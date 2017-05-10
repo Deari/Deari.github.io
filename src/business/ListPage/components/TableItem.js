@@ -54,10 +54,10 @@ const TabelItem = ({ data, type }) => {
       <td className={s.actions}>
         <Link to={`/${type}/detail/${data.appId}`} className={s.btn}>查看详情</Link>
         
-        { showEditBtn(appStatus[0].status) ? 
+        { showEditBtn(appStatus[0] && appStatus[0].status) ? 
           <Link to={`/${type}/edit/${data.appId}/1`} className={s.btn}>编辑基本信息</Link> : null }
 
-        { showEditBtn(appStatus[0].status) ? 
+        { showEditBtn(appStatus[0] && appStatus[0].status) ? 
           <Link to={`/${type}/edit/${data.appId}/3`} className={s.btn}>发布新版本</Link> : null }
       </td>
     </tr>

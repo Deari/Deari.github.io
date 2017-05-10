@@ -37,7 +37,7 @@ class Search extends Component {
     const { clearBtn } = this.state
 
     return (
-      <span style={{style}} className={s.searchWrap}>
+      <span style={style} className={s.searchWrap}>
         <i className='iconfont icon-search'
           onClick={::this.searchHandler}>
         </i>
