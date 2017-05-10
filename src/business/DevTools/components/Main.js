@@ -38,7 +38,7 @@ class DevTools extends Component {
 	          <div className={s.btn}>
 	            <Link to={`/${type}/list`} className={s.look}>点击进入</Link>
 	          </div>
-            {/*<DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>*/}
+            <DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
           </div>
           <div className={s.tool}>
           	<dl className={s.detail}>

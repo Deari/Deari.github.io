@@ -23,8 +23,10 @@ class Container extends React.Component {
       tag: props.tag,
       tags: [],
       params: {
+        appName: '',
         limit: 15,
-        page: 1
+        page: 1,
+        skip: 0   // 硬件分页需要
       }
     }
   }
@@ -38,23 +40,18 @@ class Container extends React.Component {
     this.props.fetchAppList({
       tag,
       type,
-      params: { 
-        ...params,
-        skip: 0
-      }
+      params
     })
   }
 
   componentWillReceiveProps (nextProps) {
-    const { tag } = this.state;
+    const { tag, params } = this.state;
     if(nextProps.tag !== tag) {
       this.setState({ tag: nextProps.tag }, ()=>{
         this.props.fetchAppList({
           tag: nextProps.tag,
           type: this.props.type,
-          params: {
-            page: 1
-          }
+          params
         })
       })
     }

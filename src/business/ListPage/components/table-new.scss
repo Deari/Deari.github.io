@@ -1,6 +1,7 @@
+@import 'src/styles/v/var.scss';
+
 .root {
   padding: 10px;
-  
 }
 
 .table {
@@ -49,6 +50,16 @@
         max-width: 142px;
         display: inline-block;
         vertical-align: middle;
+      }
+      .desc {
+        max-width: 200px;
+        max-height: 35px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #666666;
+        margin-top: 10px;
+        text-align: justify;
+        @include multiple-text-overflow;
       }
     }
     .vStatus{

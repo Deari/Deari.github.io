@@ -9,17 +9,18 @@ const update = (data) => ({
   data
 })
 
-
 export const fetchAppList = (option) => {
   return (dispatch, getState) => {
     const state = getState().appStore;
     const { type } = state;
     const { tag, params } = option;
     const url = getEnvDomain()+`/app/v1/bo/v1/web/market/tag/${tag}/${type}`;
-    return fetchUtil.getJSON(url, {
+    const _params = {
       ...state.params,
       ...params
-    }).then( data => {
+    };
+
+    return fetchUtil.getJSON(url, _params).then( data => {
       let { list, page, meta } = data
       let total = page ? page.totalCount : meta.total
       if(type == 'hardware') {
@@ -34,7 +35,7 @@ export const fetchAppList = (option) => {
           }
         })
       }
-      dispatch(update({ list, total, type }))
+      dispatch(update({ list, total, type, params: _params }))
     }).catch(e=>{
       
     })
@@ -55,8 +56,10 @@ const initialState = {
   total: 0,
   type: "",
   params: {
+    appName: '',
     limit: 15,
-    page: 1
+    page: 1,
+    skip: 0
   }
 }
 

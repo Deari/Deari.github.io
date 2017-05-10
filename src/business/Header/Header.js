@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
 import Login from "components/Login"
 import Search from "components/Search"
-import "./index.scss"
+import s from  "./index-new.scss"
 
 const Header = (props) => {
+  const showSearch = /^\/(apps|widgets)$/.test(props.location.pathname)
+
   return (
     <div className="header-wrapper">
       <div className="bg"></div>
@@ -45,16 +47,15 @@ const Header = (props) => {
               </Link>
             </li>
           </ul>
-          <div style={{'width': 100, 'marginRight': 20}}>
+          {showSearch ? <div className={s.search}>
             <Search style={{ 'width': '100%' }}
              onSearch={(v)=>{ 
-              console.log(v); 
               props.fetchAppList({  
                 tag: 0,
                 params: { appName: v } 
               })
             }}></Search>
-          </div>
+          </div>: null}
           <Login></Login>
         </div>
       </div>
@@ -62,5 +63,5 @@ const Header = (props) => {
   )
 }
 export default connect((state)=>({}), {
-  fetchAppList  
+  fetchAppList,
 })(Header)
