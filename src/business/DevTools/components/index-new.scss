@@ -1,20 +1,11 @@
+@import 'src/styles/v/var.scss';
 .content {
-  margin-top: 10px;
-  margin-left: 220px;
-  padding: 10px;
-  background: #fff;
-  color: #333;
-  .title {
-    font-size: 16px;
-    font-weight: normal;
-    height: 70px;
-    line-height: 70px;
-    border-bottom: 1px solid #eeeeee;
-    padding-left: 17px;
-    i {
-      font-size: 18px;
-      color: #2692fb;
-      margin-right: 4px;
+  .header-tool {
+    border-bottom: 1px solid $site-border-gray;
+    i{
+        color: $site-blue;
+        margin-right: 10px;
+        font-size: 18px;
     }
   }
   .tool {
@@ -22,7 +13,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    margin: 32px 14px 64px;
+    margin: 32px 14px 84px;
     &:first-of-type {
       .img {
         background: url("../../images/file.png") no-repeat;
@@ -49,36 +40,32 @@
         height: 52px;
         margin-right: 30px;
       }
-      .name {
-        font-size: 20px;
-        color: #000000;
-        width: 648px;
-        word-break: break-all;
-        word-wrap: break-word;
-      }
-      .text {
-        font-size: 12px;
-        color: #666;
-        margin-top: 6px;
-        width: 648px;
-        line-height: 18px;
-        word-break: break-all;
-        word-wrap: break-word;
+      .main{
+          width: 632px;
+          .name {
+            font-size: 20px;
+            color: #000000;
+            @include word-break;
+          }
+          .text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 8px;
+            line-height: 18px;
+            @include word-break;
+          }
       }
     }
     .btn {
-      a,
-      .look {
-        padding: 8px 10px;
+        margin-top: 8px;
+        cursor: pointer;
+      a{
+        padding: 11px 27px;
         border-radius: 4px;
         background: #2692fb;
         display: block;
         color: #fff;
         font-size: 12px;
-        text-align: center;
-        &:first-child {
-          margin-bottom: 4px;
-        }
         &:hover {
           background: #2a89dd;
         }

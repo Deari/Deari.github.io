@@ -169,7 +169,7 @@ class DevAccount extends Component {
 
     if(hasAccount) {
       Account = <div className={s.account}>
-        <h3 className={s.title}>商家测试账号</h3>
+        <h3 className={`${s['test-title']}`}>商家测试账号</h3>
         <div className={s.item}>
           <label>wid：</label>
           <span>{account.wid}</span>
@@ -189,7 +189,7 @@ class DevAccount extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
         <div className={s.content}>
-          <h2 className={s.title}><i className="iconfont icon-account"></i>申请测试账号</h2>
+          <h2 className={`${s['content-header']}`}><i className="iconfont icon-account"></i>申请测试账号</h2>
           { !hasAccount ? <p className={s.success}>
             您已获得商家测试账号
           </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}

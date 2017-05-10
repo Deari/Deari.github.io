@@ -29,3 +29,21 @@ $site-content-width: 1100px;
   background: url(../../images/apk.png) no-repeat;
   background-size: 100% 100%;   
 }
+@mixin word-break{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.content{
+    margin-top: 10px;
+    margin-left: 220px;
+    padding: 10px;
+    background: #fff;
+    color: #333;
+}
+.content-header{
+    height: 70px;
+    line-height: 70px;
+    font-size: 16px;
+    padding-left: 17px;
+    color: #000;
+}

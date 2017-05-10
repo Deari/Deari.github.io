@@ -1,7 +1,8 @@
+@import 'src/styles/v/var.scss';
 .devInfo{
+    width: 97.7%;
     margin: 10px;
-    border: 1px solid #eee;
-    border-top: 0;
+    border: 1px solid $site-border-gray;
     .title{
         height: 50px;
         line-height: 50px;
@@ -12,21 +13,20 @@
     }
     .main{
         margin: 0 40px;
-        line-height: 50px;
+        display: flex;
+        flex-wrap: nowrap;
         &:nth-of-type(1){
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid $site-border-gray;
         }
         .name{
             width: 165px;
-            display: inline-block;
-            vertical-align: top;
+            line-height: 50px;
         }
         .text{
-            word-break: break-all;
-            word-wrap: break-word;
-            display: inline-block;
-            width: 610px;
-            vertical-align: top;
+            flex: 1;
+            line-height: 22px;
+            @include word-break;
+            padding: 12px 0;
         }
     }
 }

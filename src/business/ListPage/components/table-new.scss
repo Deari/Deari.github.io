@@ -8,7 +8,6 @@
   font-size: 16px;
   border-collapse: collapse;
   width: 100%;
-  
   th {
     height: 50px;
     background: #eee;
@@ -33,6 +32,11 @@
     &.appInfo {
       width: 200px;
       text-align: left;
+      .textOverflow {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
       .name {
         color: #000;
         display: block;
@@ -42,19 +46,18 @@
       .appId {
         font-size: 12px;
         margin-right: 10px;
+        max-width: 142px;
+        display: inline-block;
+        vertical-align: middle;
       }
     }
-    &.status{
-        padding:5px 15px;
-    }
     .vStatus{
-        text-align: left;
         margin-top: 14px;
         &:first-child{
             margin-top: 0;
         }
         .version{
-            display: block;
+            display: inline-block;
             margin-bottom: 2px;
             .round {
               display: inline-block;
@@ -66,8 +69,7 @@
             }
         }
         .text{
-            display: block;
-            padding-left: 18px;
+            display: inline-block;
         }
     }
     
@@ -84,7 +86,6 @@
         cursor: pointer;
         font-size: 12px;
         color: #666;
-
         &:hover {
           background: #2692fb;
           color: #fff;
