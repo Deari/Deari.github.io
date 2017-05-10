@@ -9,11 +9,11 @@ class AppInfo extends React.Component {
       <div className={s.devInfo}>
         <h2 className={s.title}>开发密钥</h2>
         <div className={s.main}>
-          <label htmlFor="" className={s.name}>DevelopKey：</label>
+          <label htmlFor="" className={s.name}>DeveloperKey：</label>
           <span className={s.text}>{devKey}</span>
         </div>
         <div className={s.main}>
-          <label htmlFor="" className={s.name}>DevelopSecret: </label>
+          <label htmlFor="" className={s.name}>DeveloperSecret: </label>
           <span className={s.text}>{devSecret}</span>
         </div>
       </div>
