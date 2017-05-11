@@ -5,7 +5,7 @@ import 'styles/core.scss'
 
 export const CoreLayout = (props) => (
   <div>
-    <Header {...props} />
+    { props.location.pathname === '/login' ? '' : <Header {...props} /> }
     <div className='core-layout__viewport'>
       {props.children}
     </div>

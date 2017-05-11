@@ -4,6 +4,7 @@ import 'babel-polyfill'
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
 import Demo from './Demo'
+import Login from './Login/Login'
 import Apps from './Apps'
 import Widgets from './Widgets'
 import Hardware from './Hardware'
@@ -11,13 +12,47 @@ import '../styles/_base.scss'
 
 export const createRoutes = (store) => ({
   path       : '/',
+  onEnter: (nextState, replace, callback) => {
+
+    if(nextState.location.pathname == '/login') {
+      callback()
+      return;
+    }
+    const cookieArr = document.cookie.split(";")
+    const cookieObj = {
+      mix: false,
+      uid: false
+    }
+    cookieArr.map((item, index) => {
+      if(item) {
+        const arr = item.split("=")
+        const name = arr[0]
+        const value = arr[1]
+        
+        if (name == "WG-PPC-test1" && value) {
+          cookieObj.mix = true
+        }
+        if (name == "WG-PPC-test2" && value) {
+          cookieObj.uid = true
+        }
+      }
+     
+    })
+    if (cookieObj.mix && cookieObj.uid) {
+      callback()
+    } else {
+      replace('/login')
+      callback();
+    }
+  },
   component  : CoreLayout,
   indexRoute : Home,
   childRoutes: [
     Demo(store),
     Apps(store),
     Widgets(store),
-    Hardware(store)
+    Hardware(store),
+    Login(store)
   ]
 })
 
