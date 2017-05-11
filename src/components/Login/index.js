@@ -99,7 +99,7 @@ export default class Login extends Component {
 
     const register = getApiDomain(`#/register?source=${sourceVal}&callbackurl=${location.href}`)
 
-    const centerUrl = getApiDomain(`#/center/1`)
+    const centerUrl = getApiDomain(`#/center/userinfo`)
 
     return !this.state.isLogin ? (
       <div className="login-wrapper loginIn">
