@@ -304,7 +304,7 @@ export class renderFile extends Component {
         <label className="label-type">{label}<span>{genre}</span></label>
         <div className="row-right">
           { isMiniProgram ? <div className="mini-program-xx">
-            应用类型为“FAP小程序”，请您先试用打包工具(<a href="#">点击下载</a>)进行打包，请将打包完成后的应用进行上传。
+            应用类型为“FAP小程序”，请您先试用打包工具(<a href="http://fdfs.ffan.net/v2/file/nDjvYxof9gD9AjbH9o4al93o5T2mw9Yp?attachExt=2">Windows</a> | <a href="http://fdfs.ffan.net/v2/file/BgbBeXayRXw6H5h4aF3115Egr50dM6pr?attachExt=2">Mac</a>)进行打包，请将打包完成后的应用进行上传。
           </div> : null }
           <span className="right-upload">
             <input type="button" value="选择文件" />

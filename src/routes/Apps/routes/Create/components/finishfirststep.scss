@@ -63,6 +63,9 @@
   text-align: center;
   background: #1a8fff;
   border-radius: 2px;
+  &:hover {
+    color: #fff;
+  }
 }
 .finish-apps-doc{
   overflow: hidden;

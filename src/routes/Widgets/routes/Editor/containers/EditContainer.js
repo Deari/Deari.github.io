@@ -16,150 +16,96 @@ import debug from 'utils/debug'
 import { toggleStep, updateAppId, fetchTags, fetchCates, 
         getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
 class EditContainer extends Component {
-  
   componentWillMount() {
-    let sourceVal = getSourceVal()
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
-    let callbackUrl = location.href
-    try{
-      LoginSDK.getStatus((status, data) => {
-        if (status) {
-          const { params } = this.props;
-          const appId = parseInt(params.appId);
-          const step = parseInt(params.step)
-          if(step==3){
-            const versionurl = getDomain(`web/developer/widget/${appId}/code`)
-            const versionFormData = new FormData()
-            versionFormData.append("prepareVersion", "1")
-            fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
-              if (versionRes.status == 200) {
-                this.props.receiveCodeId(versionRes.data[0].codeId)
-              }
-            })
-          }
-          this.props.getAppInfo(appId);
-          this.props.fetchTags()
-          this.props.fetchCates()          
-          this.props.toggleStep(step)
-        } else {
-          debug.warn("登录失败")
+    const { params } = this.props;
+    const appId = parseInt(params.appId);
+    const step = parseInt(params.step)
+    if(step==3){
+      const versionurl = getDomain(`web/developer/widget/${appId}/code`)
+      const versionFormData = new FormData()
+      versionFormData.append("prepareVersion", "1")
+      fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+        if (versionRes.status == 200) {
+          this.props.receiveCodeId(versionRes.data[0].codeId)
         }
-      }, url, loginUrl, callbackUrl)
-    }catch(e){
-      console.log(e)
+      })
     }
+    this.props.getAppInfo(appId);
+    this.props.fetchTags()
+    this.props.fetchCates()
+    this.props.toggleStep(step)
   }
-  isLogin() {
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    try {
-      LoginSDK.getStatus((status, data) => {
-        if (!status) debug.warn('请先登录')
-      }, sessionUrl)
-    } catch (e){
-      console.log(e)
-    }
-
-  }
-
   submitFirst(values) {
 
-    this.isLogin()
+    const formData = new FormData();
 
-    let sourceVal = getSourceVal()
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
-    let callbackUrl = `${location.origin}/widgets/list`
-
-    try{
-      LoginSDK.getStatus((status, data) => {
-        if (status) {
-
-          const formData = new FormData();
-
-          for (let key in values) {
-            if (key == 'tags') {
-              for (let v of values[key]) {
-                formData.append('tags[]', v)
-              }
-            } else if (key == 'size') {
-              // const sizeObj = {
-              //   widgetW: values.size.w,
-              //   widgetH: values.size.h
-              // }
-              // for (let k in sizeObj) {
-              //   formData.append(k, sizeObj[k])
-              // }
-            } else if (key == 'categoryId') {
-              formData.append('categoryId', 8)
-            } else {
-              formData.append(key, values[key])
-            }
-          }
-
-          for (let key in values) {
-          }
-          const url = getDomain(`web/developer/widget/${values.appId}`)
-
-          fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
-            if (res.status == 200) {
-              // this.props.updateAppId(res.data.appId);
-              const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
-              const versionFormData = new FormData()
-              versionFormData.append("prepareVersion", "1")
-              fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
-                if (versionRes.status == 200) {
-                  this.props.receiveCodeId(versionRes.data[0].codeId)
-                }
-              })
-              this.props.updateFirstForm(values)
-              location.href = "/widgets/list"
-            } else {
-              const errMsg = debug.getErrStatus(res.status)
-              debug.warn(errMsg)
-            }
-          }).catch(e => {
-            console.log('网络错误', e)
-          })
-
-        } else {
-          debug.warn("请先登录")
+    for (let key in values) {
+      if (key == 'tags') {
+        for (let v of values[key]) {
+          formData.append('tags[]', v)
         }
-      }, sessionUrl, loginUrl, callbackUrl)
-    }catch(e){
-      console.log(e)
+      } else if (key == 'size') {
+        // const sizeObj = {
+        //   widgetW: values.size.w,
+        //   widgetH: values.size.h
+        // }
+        // for (let k in sizeObj) {
+        //   formData.append(k, sizeObj[k])
+        // }
+      } else if (key == 'categoryId') {
+        formData.append('categoryId', 8)
+      } else {
+        formData.append(key, values[key])
+      }
     }
+
+    for (let key in values) {
+    }
+    const url = getDomain(`web/developer/widget/${values.appId}`)
+
+    fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+      if (res.status == 200) {
+        // this.props.updateAppId(res.data.appId);
+        const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+        const versionFormData = new FormData()
+        versionFormData.append("prepareVersion", "1")
+        fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
+          if (versionRes.status == 200) {
+            this.props.receiveCodeId(versionRes.data[0].codeId)
+          }
+        })
+        this.props.updateFirstForm(values)
+        location.href = "/widgets/list"
+      } else {
+        const errMsg = debug.getErrStatus(res.status)
+        debug.warn(errMsg)
+      }
+    }).catch(e => {
+      console.log('网络错误', e)
+    })
   }
 
   submitSecond(values) {
-    this.isLogin()
-    let sourceVal = getSourceVal()
-    let sessionUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
-    let callbackUrl = `${location.origin}/widgets/list`
-    try{
-      LoginSDK.getStatus((status, data) => {
-        if (status) {
 
-          let codeDescCount = values.codeDescCount || 0
+    let codeDescCount = values.codeDescCount || 0
 
-          if (codeDescCount == 0) {
-            this.props.updateCodeDesc({ isDescErr: true })
-            return
-          } else {
-            this.props.updateCodeDesc({ isDescErr: false })
-          }
+    if (codeDescCount == 0) {
+      this.props.updateCodeDesc({ isDescErr: true })
+      return
+    } else {
+      this.props.updateCodeDesc({ isDescErr: false })
+    }
 
-          !values.appId && debug.warn('缺少appId')
+    !values.appId && debug.warn('缺少appId')
 
-          const url = getDomain(`web/developer/widget/${values.appId}/code`)
-          const formData = new FormData();
-          const file = values.file;
+    const url = getDomain(`web/developer/widget/${values.appId}/code`)
+    const formData = new FormData();
+    const file = values.file;
 
-          let params = {
-          ...values
-        };
-          
+    let params = {
+      ...values
+    };
+    
 
     if (file && values.appKind === 0) {
       Object.assign(params, file, {
@@ -205,14 +151,6 @@ class EditContainer extends Component {
     }).catch(e => {
       console.log('网络错误', e)
     })
-
-    } else {
-      debug.warn("请先登录")
-    }
-    }, sessionUrl, loginUrl, callbackUrl)
-    }catch(e){
-      console.log(e)
-    }
   }
   previous() {
     const appId = this.props.widgetCreate.form2.appId
