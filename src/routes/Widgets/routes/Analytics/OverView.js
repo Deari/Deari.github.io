@@ -3,7 +3,7 @@ import { login } from 'utils/login'
 export default {
   path: 'analytics/:id',
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   },

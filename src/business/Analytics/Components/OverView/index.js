@@ -18,7 +18,7 @@ const OverView = (props) => {
           <div className={`${s.panel} ${s.active}`}>
             <BasicInfo {...basic} />
             <YesterdayInfo {...yesterday} />
-            <ChartView data={chart} loadData={loadData}/>
+            <ChartView data={chart} loadData={loadData} />
           </div>
         </div>
       </div>

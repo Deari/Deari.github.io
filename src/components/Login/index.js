@@ -5,7 +5,7 @@ import './login.scss'
 import LoginSDK from 'utils/loginSDK'
 export default class Container extends Component {
   static propTypes = {
-    authenticated: PropTypes.bool,
+    authenticated: PropTypes.bool
   };
 
   static defaultProps = {
@@ -13,7 +13,7 @@ export default class Container extends Component {
   };
 
   constructor (props) {
-    super(props);
+    super(props)
     this.state = {
       isLogin: false,
       userInfo : {}
@@ -25,26 +25,25 @@ export default class Container extends Component {
     let checkUrl = getLoginDomain(`passport/session-check.json`)
     let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
     let callbackUrl = location.href
-    
+
     LoginSDK.getStatus((status, data) => {
-      if(status) {
-        this.setState({isLogin: true, userInfo: data})
+      if (status) {
+        this.setState({ isLogin: true, userInfo: data })
       }
     }, checkUrl)
   }
 
-  handleLogin = ()=>{
+  handleLogin = () => {
     login()
-  } 
+  }
 
-  handleLogout() {
-    logout(()=>{
-      this.setState({isLogin: false})
+  handleLogout () {
+    logout(() => {
+      this.setState({ isLogin: false })
     })
   }
 
-  render (){
-
+  render () {
     const { userInfo } = this.state
 
     const sourceVal = getSourceVal()
@@ -54,14 +53,14 @@ export default class Container extends Component {
     const centerUrl = getApiDomain(`#/center/userinfo`)
 
     return !this.state.isLogin ? (
-      <div className="login-wrapper loginIn">
-        <a href={register}><span>注册</span></a> 
+      <div className='login-wrapper loginIn'>
+        <a href={register}><span>注册</span></a>
         <a><span onClick={::this.handleLogin}>登录</span></a>
       </div>
     ) : (
-      <div className="login-wrapper logined">
-          <a href={centerUrl}><img src={userInfo.face} title={userInfo.nick} /></a>
-          <span onClick={::this.handleLogout}>退出</span>
+      <div className='login-wrapper logined'>
+        <a href={centerUrl}><img src={userInfo.face} title={userInfo.nick} /></a>
+        <span onClick={::this.handleLogout}>退出</span>
       </div>
     )
   }

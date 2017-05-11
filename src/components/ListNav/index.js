@@ -2,8 +2,8 @@ import React from 'react'
 import BasicNav from './nav'
 
 class ListNav extends React.Component {
-  
-  changeNav(value) {
+
+  changeNav (value) {
     const { onChange } = this.props
     const navData = this.props.navData || []
     navData.map((item, index) => {
@@ -12,20 +12,19 @@ class ListNav extends React.Component {
     onChange({ navData })
   }
 
-  render() {
-
-    const {navData, handleSearch, label, searchValue} = this.props
+  render () {
+    const { navData, handleSearch, label, searchValue } = this.props
     const str = ''
     return (
-      <div className="list-header-nav">
-        <div className="list-header-search">
-          {searchValue?<i className="iconfont icon-close" onClick={str=>{handleSearch(str)}}></i>:''}
-           <i className="iconfont icon-search"></i>
-          <input type="text" placeholder={label}  onChange={e=>{handleSearch(e)}} value={searchValue?searchValue:''}/>
+      <div className='list-header-nav'>
+        <div className='list-header-search'>
+          {searchValue ? <i className='iconfont icon-close' onClick={str => { handleSearch(str) }} /> : ''}
+          <i className='iconfont icon-search' />
+          <input type='text' placeholder={label} onChange={e => { handleSearch(e) }} value={searchValue ? searchValue : ''} />
         </div>
         <BasicNav navData={navData} onChange={this.changeNav.bind(this)} />
       </div>
-     
+
     )
   }
 }

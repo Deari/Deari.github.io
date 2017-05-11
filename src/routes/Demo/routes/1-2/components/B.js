@@ -10,7 +10,7 @@ export const B = (props) => (
     {props.C ||
       <Link to='/1/1-2/1-2-3' activeClassName='route--active'>
       /1/1-2/1-2-3
-      </Link>  
+      </Link>
     }
   </div>
 )

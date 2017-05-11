@@ -1,5 +1,5 @@
 import React, { PropTypes, PureComponent } from 'react'
-import { render, findDOMNode, unmountComponentAtNode, } from 'react-dom'
+import { render, findDOMNode, unmountComponentAtNode } from 'react-dom'
 const ReactCSSTransitionGroup = React.addons.CSSTransitionGroup
 import './Message.scss'
 
@@ -9,12 +9,12 @@ const compClassName = 'message'
 
 class CSSTransitionContainer extends PureComponent {
 
-  render() {
+  render () {
     const items = this.props.items.map((item, i) => React.cloneElement(item, { className: compClassName, key: item }))
     return (
       <ReactCSSTransitionGroup
         transitionName={compClassName}
-        transitionAppear={true}
+        transitionAppear
         transitionAppearTimeout={AppearTimeout}
         transitionLeaveTimeout={LeaveTimeout}>
         {items}
@@ -25,7 +25,7 @@ class CSSTransitionContainer extends PureComponent {
 
 export class Messages {
 
-  getContainer() {
+  getContainer () {
     if (!this._container) {
       const messagesContainer = document.createElement('div')
       messagesContainer.className = 'messages-container'
@@ -35,26 +35,25 @@ export class Messages {
     return this._container
   }
 
-  remove(messageContainer) {
-    render(<CSSTransitionContainer items={[]}/>, messageContainer, () => {
+  remove (messageContainer) {
+    render(<CSSTransitionContainer items={[]} />, messageContainer, () => {
       setTimeout(() => {
         unmountComponentAtNode(messageContainer)
         this.getContainer().removeChild(messageContainer)
       }, LeaveTimeout)
-
     })
   }
 
-  add(message, during) {
+  add (message, during) {
     const messageContainer = document.createElement('div')
     this.getContainer().appendChild(messageContainer)
-    render(<CSSTransitionContainer items={[ message ]}/>, messageContainer, () => {
-        if (during > 0) {
-          setTimeout(() => {
-            this.remove(messageContainer)
-          }, during)
-        }
+    render(<CSSTransitionContainer items={[ message ]} />, messageContainer, () => {
+      if (during > 0) {
+        setTimeout(() => {
+          this.remove(messageContainer)
+        }, during)
       }
+    }
     )
   }
 }

@@ -4,15 +4,15 @@ import { getEnvDomain } from 'utils/d'
 import OverView from '../Components/OverView'
 
 class Container extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     const pathname = props.location.pathname
     const result = pathname.match(/^\/(apps|widgets|hardware)\//)
-    let type;
-    if(result) {
+    let type
+    if (result) {
       type = result[1]
     }
-    
+
     this.state = {
       appId: props.params.id,
       type,
@@ -22,31 +22,31 @@ class Container extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.loadData(7)
   }
 
   loadData (day) {
     const { appId } = this.state
-    const url = getEnvDomain()+`/app/v1/bo/v1/web/developer/statistics/app/${appId}`
-    fetchUtil.getJSON(url, { day }).then(data=> {
+    const url = getEnvDomain() + `/app/v1/bo/v1/web/developer/statistics/app/${appId}`
+    fetchUtil.getJSON(url, { day }).then(data => {
       this.setState({
         basic: data.yesterday,
         yesterday: data.yesterday,
         chart: data.list.map(item => {
           return {
-            ...item, 
-            _day: item.statisticsTime.split('-')[2] 
+            ...item,
+            _day: item.statisticsTime.split('-')[2]
           }
         })
       })
-    }).catch(e=>{
-      console.warn(e);
+    }).catch(e => {
+      console.warn(e)
     })
   }
 
-  render() {
-    return <OverView {...this.state} loadData={::this.loadData}></OverView>
+  render () {
+    return <OverView {...this.state} loadData={::this.loadData} />
   }
 }
 

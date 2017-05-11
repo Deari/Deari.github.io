@@ -3,7 +3,7 @@
 export default {
   path : '1-2',
 
-  getChildRoutes(partialNextState, cb) {
+  getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/1-2-3').default
@@ -11,10 +11,10 @@ export default {
     })
   },
 
-  getComponents(nextState, cb) {
+  getComponents (nextState, cb) {
     require.ensure([], (require) => {
       cb(null, {
-        B: require('./components/B').default,
+        B: require('./components/B').default
       })
     })
   }

@@ -9,7 +9,7 @@ export class Accordion extends Component {
     activeIndex: 0
   }
 
-  getCollapses() {
+  getCollapses () {
     const { children } = this.props
     return Children.map(children, (child, index) => {
       invariant(child.type === Collapse, 'The children\'s type of Accordion ' +
@@ -18,13 +18,13 @@ export class Accordion extends Component {
         isActive: this.state.activeIndex === index,
         onSelect: () => {
           this.setState({ activeIndex: index })
-        },
+        }
       }
       return React.cloneElement(child, CollapseProps)
     })
   }
 
-  render() {
+  render () {
     return <div className={classnames('accordion', this.props.className)}>
       {::this.getCollapses()}
     </div>

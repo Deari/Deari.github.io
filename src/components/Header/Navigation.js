@@ -1,9 +1,9 @@
 import React from 'react'
-import { IndexLink, Link } from 'react-router' 
+import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 
-export const ShopNav = ()=>(
-  <div className="nav-list">
+export const ShopNav = () => (
+  <div className='nav-list'>
     <IndexLink to='/shop' activeClassName='active'>
       商家指南
     </IndexLink>
@@ -11,10 +11,10 @@ export const ShopNav = ()=>(
       店铺管理
     </Link>
   </div>
-);
+)
 
-export const DevNav = ()=>(
-  <div className="nav-list">
+export const DevNav = () => (
+  <div className='nav-list'>
     <Link to='/open/apps' activeClassName='active'>
       商家应用
     </Link>
@@ -28,11 +28,10 @@ export const DevNav = ()=>(
       开发硬件
     </Link>
   </div>
-);
+)
 
-
-export const OpenNav = ()=>(
-  <div className="nav-list">
+export const OpenNav = () => (
+  <div className='nav-list'>
     <Link to='/open/apps' activeClassName='active'>
       商家应用
     </Link>
@@ -43,4 +42,4 @@ export const OpenNav = ()=>(
       开发硬件
     </Link>
   </div>
-);
+)

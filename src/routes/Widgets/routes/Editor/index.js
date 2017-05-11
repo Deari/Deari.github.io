@@ -6,14 +6,14 @@ import { login } from 'utils/login'
 module.exports = (store) => ({
   path: 'edit/:appId/:step',
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   },
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const Create = require('./containers/EditContainer').default;
-      const editReducer = require('./modules/edit').default;
+      const Create = require('./containers/EditContainer').default
+      const editReducer = require('./modules/edit').default
 
       injectReducer(store, { key: 'form', reducer: formReducer })
       injectReducer(store, { key: 'widgetEdit', reducer: editReducer })
@@ -21,5 +21,5 @@ module.exports = (store) => ({
       cb(null, Create)
     })
   }
-  
+
 })

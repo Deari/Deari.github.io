@@ -12,13 +12,13 @@ class Filters extends React.Component {
     return (
       <div className={`${s.statusBar}`}>
         <ul className={s.navFilters}>
-          {APPS_FILTERS.map(item=> <li className={cx({ [s.active]: item.filter === filter })}
-            onClick={()=>{ onToggleFilter(item) }}
+          {APPS_FILTERS.map(item => <li className={cx({ [s.active]: item.filter === filter })}
+            onClick={() => { onToggleFilter(item) }}
           >
             {item.text}
           </li>)}
-        </ul> 
-        <Search onSearch={onSearch} placeholder='查找'></Search>
+        </ul>
+        <Search onSearch={onSearch} placeholder='查找' />
       </div>
     )
   }

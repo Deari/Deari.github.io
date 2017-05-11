@@ -19,24 +19,24 @@ export default class AppsList extends React.Component {
       review: ''
     }
   }
-  componentDidMount() {
-    console.log("did mount", this.props.params)
-    this.fetchAppsList();
+  componentDidMount () {
+    console.log('did mount', this.props.params)
+    this.fetchAppsList()
   }
 
-  fetchAppsList(params = {}) {
+  fetchAppsList (params = {}) {
     const apiUrl = `${getEnvDomain()}/app/v1/bo/v1/web/developer/${this.props.type}`
     const { filter, ...rest } = params
-    const _filter = filter || this.state.filter;
-    const { status: review } = APPS_FILTERS.find(function (t){ return t.filter === _filter })
+    const _filter = filter || this.state.filter
+    const { status: review } = APPS_FILTERS.find(function (t) { return t.filter === _filter })
 
-    return fetchUtil.getJSON(apiUrl, { 
+    return fetchUtil.getJSON(apiUrl, {
       review,
       ...this.state.pagination,
-      ...rest,
+      ...rest
     }).then(data => {
       this.setState({
-        list: data.list || [], 
+        list: data.list || [],
         total: data.page && data.page.totalCount,
         filter: _filter,
         pagination: {
@@ -49,20 +49,20 @@ export default class AppsList extends React.Component {
     })
   }
 
-  onToggleFilter(f) {
+  onToggleFilter (f) {
     this.fetchAppsList({ page: 1, appName: '', filter: f.filter })
   }
 
-  onPagination(page, size) {
+  onPagination (page, size) {
     this.fetchAppsList({ page }).then(scrollToTop)
   }
 
-  onSearch(v) {
+  onSearch (v) {
     this.fetchAppsList({ page: 1, appName: v })
   }
 
-  render() {
-    const { filter, list, total } = this.state;
+  render () {
+    const { filter, list, total } = this.state
     return <List filter={filter} data={list} total={total} type={this.props.type}
       onToggleFilter={::this.onToggleFilter}
       onSearch={::this.onSearch}

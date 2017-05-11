@@ -6,15 +6,14 @@ import { PageTypes } from 'config/index'
 import { appType } from 'config/index'
 
 const TabelItem = ({ data, type }) => {
-
-  return ( 
+  return (
     <tr>
-      <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
+      <td className={s.imgWrap}><img src={data.appLogo} alt='LOGO' /></td>
       <td className={s.appInfo}>
         <span className={s.name}>{data.appName}</span>
-        <i className={cx('iconfont', appType[data.appKind])}></i>
+        <i className={cx('iconfont', appType[data.appKind])} />
         <span className={s.desc}>{data.appDesc}</span>
-        <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
+        <Link className={s.link} to={`/${type}/detail/${data.appId}`}>在{PageTypes[type]}市场中查看<i className='iconfont icon-look' /></Link>
       </td>
       <td className={s.day}>
         <span>昨天：<i className={s.num}>{data.storeCountNew}</i></span>
@@ -49,13 +48,13 @@ TabelItem.defaultProps = {
 }
 
 class Table extends Component {
-  
-  render() {
+
+  render () {
     const { data, type, typeText } = this.props
     return (
       <div className={s.root}>
-        <h2 className={`${s['content-header']}`}><i className="iconfont icon-sidebar3"></i>{typeText}数据统计</h2>
-        <table className={s.table} cellspacing="0" cellpadding="0">
+        <h2 className={`${s['content-header']}`}><i className='iconfont icon-sidebar3' />{typeText}数据统计</h2>
+        <table className={s.table} cellSpacing='0' cellPadding='0'>
           <thead>
             <tr>
               <th>Logo</th>
@@ -69,8 +68,8 @@ class Table extends Component {
           </thead>
           <tbody>
             { Array.isArray(data) && data.length ?
-              data.map((item, index) => <TabelItem key={index} type={type} data={item} />) 
-              : <tr><td colSpan="7" style={{textAlign: 'center', padding: '30'}}>暂无数据</td></tr>
+              data.map((item, index) => <TabelItem key={index} type={type} data={item} />)
+              : <tr><td colSpan='7' style={{ textAlign: 'center', padding: '30' }}>暂无数据</td></tr>
             }
           </tbody>
         </table>

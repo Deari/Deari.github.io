@@ -6,7 +6,7 @@ import appStoreReducer from 'reducers/appStore'
 export default (store) => ({
   path: 'apps',
   indexRoute: {
-    getComponents(nextState, cb) {
+    getComponents (nextState, cb) {
       require.ensure([], (require) => {
         injectReducer(store, { key: 'appStore', reducer: appStoreReducer })
         cb(null, {
@@ -15,7 +15,7 @@ export default (store) => ({
       })
     }
   },
-  getChildRoutes(partialNextState, cb) {
+  getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Store')(store),

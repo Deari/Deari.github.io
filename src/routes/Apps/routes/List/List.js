@@ -17,12 +17,12 @@ export default class AppsList extends React.Component {
   state = {
     listData: [],
     navData: [
-      {name: "全部", value: 0, active: true},
-      {name: "已审核", value: 2},
-      {name: "待审核", value: 1},
-      {name: "待提交", value: 3}
+      { name: '全部', value: 0, active: true },
+      { name: '已审核', value: 2 },
+      { name: '待审核', value: 1 },
+      { name: '待提交', value: 3 }
     ],
-    limitList:[10,20,50],
+    limitList:[10, 20, 50],
     currentPageIndex:1,
     pageIndexs:[],
     pageSum:0,
@@ -30,78 +30,78 @@ export default class AppsList extends React.Component {
     searchValue:'',
     total: 0
   }
-  handleChange(e){
-    if(!e){
-       this.setState({searchValue:''},this.upDate())  
+  handleChange (e) {
+    if (!e) {
+      this.setState({ searchValue:'' }, this.upDate())
     }
-    this.setState({searchValue:e.target.value},this.upDate())
+    this.setState({ searchValue:e.target.value }, this.upDate())
   }
-  async getList(appName) {
-    const apiUrl = appName?getDomain(`web/developer/apps?appName=${appName}`):getDomain("web/developer/apps")
+  async getList (appName) {
+    const apiUrl = appName ? getDomain(`web/developer/apps?appName=${appName}`) : getDomain('web/developer/apps')
     const review = this.getReviewStatus()
-    const {limit, currentPageIndex,searchValue} = this.state
+    const { limit, currentPageIndex, searchValue } = this.state
     try {
-      let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex });
-      if(res.status == 200){
+      let res = await fetchUtil.getJSON(apiUrl, { review: review, limit: limit, page: currentPageIndex })
+      if (res.status == 200) {
         return res.data
       } else {
-        debug.warn("获取列表接口错误")
+        debug.warn('获取列表接口错误')
         return false
       }
     } catch (e) {
-      console.log("网络错误", e)
+      console.log('网络错误', e)
     }
   }
 
-  getReviewStatus() {
+  getReviewStatus () {
     const { navData } = this.state
     let reviewStatus = 0
     navData.map((item, index) => {
-      if (item && item.active) reviewStatus = item.value 
+      if (item && item.active) reviewStatus = item.value
     })
     return reviewStatus
   }
 
-  getStatus(listData, version) {
+  getStatus (listData, version) {
     let stateObj = getCodeStatus(listData, version) || {}
-    switch(stateObj.codeStatus) {
+    switch (stateObj.codeStatus) {
       case 1:
-        return { stateObj, showEdit: true, showNew: true, activeColor: "color-yellow", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: 'color-yellow' }
         break
       case 2:
-        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: 'color-yellow' }
         break
       case 3:
-        return { stateObj, showEdit: false, showNew: false, activeColor: "color-yellow", }
+        return { stateObj, showEdit: false, showNew: false, activeColor: 'color-yellow' }
         break
       case 4:
-        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: 'color-red' }
         break
       case 5:
-        return { stateObj, showEdit: true, showNew: true, activeColor: "color-green", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: 'color-green' }
         break
       case 6:
-        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: 'color-red' }
         break
       case 7:
-        return { stateObj, showEdit: true, showNew: true, activeColor: "color-red", }
+        return { stateObj, showEdit: true, showNew: true, activeColor: 'color-red' }
         break
       default:
         return ''
     }
   }
 
-  getPageIndexs(pageSum){
-    let newArray=[]
-    for(let i=0;i<pageSum;i++){
-      const obj = {};
-      obj.value = i+1; 
+  getPageIndexs (pageSum) {
+    let newArray = []
+    for (let i = 0; i < pageSum; i++) {
+      const obj = {}
+      obj.value = i + 1
       newArray.push(obj)
     }
     return newArray
   }
 
-  formatListData(listData) {
+  formatListData (listData) {
     let newData = []
     listData && listData.map((item, index) => {
       if (item) {
@@ -134,101 +134,98 @@ export default class AppsList extends React.Component {
         if (latestCodeStatus === prevCodeStatus) obj.prevCodeVersion = ''
 
         obj.showOpenLink = latestCodeStatus == 5 || prevCodeStatus == 5
-        
+
         const editUrl = `/apps/edit/${obj.id}/1`
         const versionEditUrl = `/apps/edit/${obj.id}/3`
         obj.btnData = [
-          {name: "编辑基本信息", url: editUrl, active: latestStatusObj.showEdit},
-          {name: "发布新版本", url: versionEditUrl, active: latestStatusObj.showNew}
+          { name: '编辑基本信息', url: editUrl, active: latestStatusObj.showEdit },
+          { name: '发布新版本', url: versionEditUrl, active: latestStatusObj.showNew }
         ]
-        
+
         newData.push(obj)
       }
     })
-    
+
     return newData
   }
-  upDate(currentPageIndex){
-  
-      let sourceVal = getSourceVal()
-      let url = getLoginDomain(`passport/session-check.json`)
-      let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
-      let callbackUrl = location.href
-      try{
-         LoginSDK.getStatus( async (status, data) => {
-          if (status) {
-            const resData = this.state.searchValue?await this.getList(this.state.searchValue):await this.getList()
-            const listData = resData.list
-            const newData = listData && this.formatListData(listData)
-            const pageSum = resData.page.lastPage
-            const pageIndexs = this.getPageIndexs(pageSum)
-            const total = resData.page.totalCount
+  upDate (currentPageIndex) {
+    let sourceVal = getSourceVal()
+    let url = getLoginDomain(`passport/session-check.json`)
+    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let callbackUrl = location.href
+    try {
+      LoginSDK.getStatus(async (status, data) => {
+        if (status) {
+          const resData = this.state.searchValue ? await this.getList(this.state.searchValue) : await this.getList()
+          const listData = resData.list
+          const newData = listData && this.formatListData(listData)
+          const pageSum = resData.page.lastPage
+          const pageIndexs = this.getPageIndexs(pageSum)
+          const total = resData.page.totalCount
 
-            newData && this.setState({
-              listData: newData,
-              pageSum: pageSum,
-              pageIndexs: pageIndexs, 
-              total
-            })
-          } else {
-            debug.warn("登录失败")
-          }
-        }, url, loginUrl, callbackUrl)
-      }catch(e){
-        console.log(e)
-      }
+          newData && this.setState({
+            listData: newData,
+            pageSum: pageSum,
+            pageIndexs: pageIndexs,
+            total
+          })
+        } else {
+          debug.warn('登录失败')
+        }
+      }, url, loginUrl, callbackUrl)
+    } catch (e) {
+      console.log(e)
+    }
   }
-  componentDidMount() {
+  componentDidMount () {
     this.upDate()
   }
 
-  changeNav(obj) {
-    this.setState({...obj, currentPageIndex:1 }, this.upDate())
+  changeNav (obj) {
+    this.setState({ ...obj, currentPageIndex:1 }, this.upDate())
   }
-  changeSelect(e){
-    this.setState({currentPageIndex:e.target.value},this.upDate())
-    
+  changeSelect (e) {
+    this.setState({ currentPageIndex:e.target.value }, this.upDate())
   }
-  changePage(index){
-    this.setState({currentPageIndex:index},this.upDate())
+  changePage (index) {
+    this.setState({ currentPageIndex:index }, this.upDate())
   }
-  changeNextPage(){
-    const {currentPageIndex,pageSum} = this.state
+  changeNextPage () {
+    const { currentPageIndex, pageSum } = this.state
     const index = this.state.currentPageIndex + 1
     if (index <= pageSum) {
-      this.setState({ currentPageIndex: index },this.upDate())
-    } 
-  }
-  changePrevPage(){
-    const {currentPageIndex} = this.state
-    const index = currentPageIndex - 1
-    if (index > 0) {
-      this.setState({ currentPageIndex: index },this.upDate())
+      this.setState({ currentPageIndex: index }, this.upDate())
     }
   }
-  changeLimit(e){
-    this.setState({limit:e.target.value,currentPageIndex:1},this.upDate())
+  changePrevPage () {
+    const { currentPageIndex } = this.state
+    const index = currentPageIndex - 1
+    if (index > 0) {
+      this.setState({ currentPageIndex: index }, this.upDate())
+    }
   }
-  render() {
-
-    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList, searchValue} = this.state
+  changeLimit (e) {
+    this.setState({ limit:e.target.value, currentPageIndex:1 }, this.upDate())
+  }
+  render () {
+    const { navData, listData, pageIndexs, pageSum, currentPageIndex, limitList, searchValue } = this.state
 
     return (
-      <div className="container clx">
+      <div className='container clx'>
         <SideBar pageLinks={getPageLinks('apps')} type='apps' />
-        <div className="sub-container plf bg-white">
+        <div className='sub-container plf bg-white'>
           <ListNav navData={navData} label='应用名称' searchValue={searchValue} handleSearch={this.handleChange.bind(this)} onChange={this.changeNav.bind(this)} />
-          <ul className="list-title">
-            <li className="w124">Logo</li>
-            <li className="w332">应用名称</li>
-            <li className="w90">价格</li>
-            <li className="w190">状态</li>
-            {/**<li className="w90">已下载</li>*/}
-            <li className="w112">操作</li>
+          <ul className='list-title'>
+            <li className='w124'>Logo</li>
+            <li className='w332'>应用名称</li>
+            <li className='w90'>价格</li>
+            <li className='w190'>状态</li>
+            {/** <li className="w90">已下载</li> */}
+            <li className='w112'>操作</li>
           </ul>
           <List listData={listData} />
-          <Pagination 
-            onChange={this.changePage.bind(this)} 
+          <Pagination
+            onChange={this.changePage.bind(this)}
             total={this.state.total}
           />
         </div>

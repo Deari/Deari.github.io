@@ -6,15 +6,14 @@ import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 
 const Main = (props) => {
+  const pageLinks = getPageLinks('apps').filter((item) => { return !item.hide })
 
-  const pageLinks = getPageLinks('apps').filter(( item ) => { return !item.hide })
-
-  return <div className="container">
-    <SideBar pageLinks={pageLinks} type={'apps'}  />
-    <div className="sub-container">
+  return <div className='container'>
+    <SideBar pageLinks={pageLinks} type={'apps'} />
+    <div className='sub-container'>
       {props.children}
     </div>
   </div>
 }
 
-export default Main;
+export default Main

@@ -36,7 +36,6 @@ const webpackCompiler = (webpackConfig) =>
   })
 
 const compile = async () => {
-
   try {
     const repo = await GitRepo.open('dist', { init: true })
     // By default deploy to the staging deployment slot
@@ -93,11 +92,11 @@ const compile = async () => {
 
 const getRemote = (slot) => {
   slot = slot ? slot + '.' : ''
-  const website  = `http://open.${slot}.ffan.net`;
+  const website = `http://open.${slot}.ffan.net`
   return {
     name: 'origin',
     url: 'git@10.77.144.192:sj-fe/colosseum-build.git',
-    website,
+    website
   }
 }
 

@@ -5,21 +5,20 @@ import s from './List-new.scss'
 class ListPanel extends React.Component {
 
   getDataTpl (downloadCount, likeCount) {
-    const { type } = this.props;
-    if(type == 'hardware') {
+    const { type } = this.props
+    if (type == 'hardware') {
       return <div className={s.data}>
-        <span><i className="iconfont icon-sold"></i>已售251</span>
-        <span><i className="iconfont icon-hands"></i>好评率100%</span>
+        <span><i className='iconfont icon-sold' />已售251</span>
+        <span><i className='iconfont icon-hands' />好评率100%</span>
       </div>
     }
     return <div className={s.data}>
-      <span><i className="iconfont icon-team"></i> {downloadCount}</span>
-      <span><i className="iconfont icon-star"></i> {likeCount}</span>
+      <span><i className='iconfont icon-team' /> {downloadCount}</span>
+      <span><i className='iconfont icon-star' /> {likeCount}</span>
     </div>
   }
 
-  getItem(item) {
-
+  getItem (item) {
     const {
       appId,
       appName,
@@ -28,11 +27,11 @@ class ListPanel extends React.Component {
       developerName,
       defaultLayout,
       price,
-      downloadCount, 
+      downloadCount,
       likeCount
-    } = item;
-    
-    const { type='apps' } = this.props;
+    } = item
+
+    const { type = 'apps' } = this.props
     const linkTo = `/${type}/detail/${appId}`
 
     return (
@@ -40,19 +39,19 @@ class ListPanel extends React.Component {
         <Link to={linkTo}>
           <h3 className={s.title}>{appName}</h3>
           <small className={s.small}>
-            <i className={s.uImg}></i>{developerName}
+            <i className={s.uImg} />{developerName}
           </small>
-          <img className={s.img} src={appLogo} alt="LOGO"/>
+          <img className={s.img} src={appLogo} alt='LOGO' />
           <div className={s.desc}>{appDesc}</div>
-          <div className={s.price}>{price ? price+'元' : '免费'}</div>
+          <div className={s.price}>{price ? price + '元' : '免费'}</div>
           { this.getDataTpl(downloadCount, likeCount) }
         </Link>
       </li>
     )
   }
 
-  render() {
-    const { data=[] } = this.props
+  render () {
+    const { data = [] } = this.props
 
     return (
       <ul className={s.appsList}>

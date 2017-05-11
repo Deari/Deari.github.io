@@ -3,17 +3,17 @@ import DevTools from 'business/DevTools/components/Main'
 import { login } from 'utils/login'
 
 const Container = (props) => {
-  return <DevTools type={'apps'}></DevTools>
+  return <DevTools type={'apps'} />
 }
 
 export default {
   path: 'devtools',
   component: Container,
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
-  },
+  }
   // indexRoute: {
   //   getComponent (nextState, cb) {
   //     require.ensure([], (require) => {

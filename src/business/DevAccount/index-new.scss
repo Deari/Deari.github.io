@@ -27,93 +27,82 @@
         border-bottom: 1px solid $site-border-gray;
         padding-bottom: 16px;
         .downlinks {
-            color: #2692FB;
+            color: $site-blue;
+            cursor:pointer; 
             &:hover {
                 text-decoration: underline;
             }
         }
     }
     .account {
-        & > .test-title {
-            font-size: 16px;
+        .account-title {
             color: #000;
-            padding: 35px 0 25px;
+            font-size: 16px;
+            padding: 20px 0 20px;
         }
         .item {
-            font-size: 14px;
             color: #666;
-            margin-bottom: 15px;
-            & > label {
-                display: inline-block;
+            font-size: 14px;
+            line-height: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            .key {
                 width: 100px;
                 text-align: right;
+            }
+            .value{
+                flex: 1;
+                @include word-break;
             }
         }
     }
     .applyForm {
-        padding: 30px 0 0 20px;
-        .formAction,
+        padding: 30px 0 0 12px;
+        font-size: 14px;
         .formItem {
             margin-bottom: 10px;
-            font-size: 14px;
         }
-        input {
+        .phone-number,
+        .code-number {
+            color: #333;
             height: 30px;
-            line-height: 30px;
-            border: 1px solid #313131;
+            line-height: 28px;
             padding: 0 7px;
-            color: #000;
-            outline: none;
-            border-color: #aaa;
-            transition: all 0.5s ease;
-            &:focus {
-                border-color: #2692fb;
-                box-shadow: 0 0 0 2px rgba(16, 142, 233, .2);
-            }
+            @include input;
             &::-webkit-input-placeholder {
-                color: #999;
+                color: #afafaf;
             }
         }
-        .phone {
-            width: 215px;
+        .phone-number{
+            width: 213px;
         }
-        .code {
-            width: 125px;
-            vertical-align: top;
+        .code-number{
+            width: 124px;
         }
         .getCodeBtn {
-            vertical-align: top;
-            width: 87px;
+            width: 84px;
             height: 30px;
-            border: 1px solid #2692FB;
+            vertical-align: top;
             border-radius: 2px;
-            text-align: center;
-            color: #2692fb;
+            color: $site-blue;
             background: #fff;
             margin-left: 5px;
+            border: 1px solid $site-blue;
             outline: none;
             cursor: pointer;
         }
         .getCodeBtn[disabled] {
-            color: rgba(0, 0, 0, .25);
-            background-color: #f7f7f7;
-            border-color: #d9d9d9;
+            color: #bbb;
+            background-color: rgba(193,193,193,0.6);
+            border-color: rgba(193,193,193,0.2);
             cursor: not-allowed;
         }
     }
-    .submit {
+    .btn-blue {
         width: 215px;
-        padding: 5px;
-        background: #2692FB;
-        color: #fff;
+        padding: 6px;
         font-size: 14px;
-        border: 0;
-        border-radius: 4px;
-        cursor: pointer;
         padding-left: 10px;
-        outline: none;
-        &:hover {
-            background: #1389fb;
-        }
     }
 }
