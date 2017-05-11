@@ -12,13 +12,16 @@ const update = (data) => ({
 export const fetchAppList = (option) => {
   return (dispatch, getState) => {
     const state = getState().appStore
-    const { type } = state
-    const { tag, params } = option
+
+    const tag = typeof option.tag !== 'undefined' ? option.tag : state.tag;
+    const { type } = state;
     const url = getEnvDomain() + `/app/v1/bo/v1/web/market/tag/${tag}/${type}`
     const _params = {
       ...state.params,
-      ...params
+      ...option.params
     }
+    // 兼容硬件翻页
+    _params.skip= (_params.page-1)*_params.limit 
 
     return fetchUtil.getJSON(url, _params).then(data => {
       let { list, page, meta } = data
@@ -35,7 +38,7 @@ export const fetchAppList = (option) => {
           }
         })
       }
-      dispatch(update({ list, total, type, params: _params }))
+      dispatch(update({ list, total, type, tag, params: _params }))
     }).catch(e => {
 
     })
@@ -54,7 +57,8 @@ const ACTION_HANDLERS = {
 const initialState = {
   list: [],
   total: 0,
-  type: '',
+  tag: 0,
+  type: 'apps',
   params: {
     appName: '',
     limit: 15,

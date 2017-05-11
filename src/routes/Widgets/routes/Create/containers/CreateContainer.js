@@ -140,7 +140,7 @@ class CreateContainer extends Component {
     const url = getDomain(`web/developer/widget/${values.appId}/code`)
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
-        this.props.toggleStep(3)
+        this.props.toggleStep(2);
       } else {
         const errMsg = debug.getErrStatus(res.status)
         debug.warn(errMsg)

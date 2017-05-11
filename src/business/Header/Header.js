@@ -5,9 +5,17 @@ import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
 import Login from 'components/Login'
 import Search from 'components/Search'
 import s from './index-new.scss'
+import { PageTypes } from 'config/index'
 
 const Header = (props) => {
-  const showSearch = /^\/(apps|widgets)$/.test(props.location.pathname)
+  const re = props.location.pathname.match(/^\/(apps|widgets)(\/tag\/\d+)?$/)
+  let showSearch = false;
+  let placeholder = '搜索'
+  
+  if(re) {
+    placeholder +=PageTypes[re[1]]
+    showSearch = true
+  }
 
   return (
     <div className='header-wrapper'>
@@ -48,7 +56,7 @@ const Header = (props) => {
             </li>
           </ul>
           {showSearch ? <div className={s.search}>
-            <Search style={{ 'width': '100%' }}
+            <Search style={{ 'width': '100%' }} placeholder={placeholder}
               onSearch={(v) => {
                 props.fetchAppList({
                   tag: 0,

@@ -8,7 +8,8 @@ import SecondStep from '../components/SecondStepForm'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import Sidebar from 'components/Sidebar'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks } from 'config/index'
 
 import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
@@ -31,7 +32,8 @@ class EditContainer extends Component {
     const { params } = this.props
     const appId = parseInt(params.appId)
     const step = parseInt(params.step)
-    if (step == 3) {
+
+    if(step==2 ){
       const versionurl = getDomain(`web/developer/app/${appId}/code`)
       const versionFormData = new FormData()
       versionFormData.append('prepareVersion', '1')
@@ -186,14 +188,11 @@ class EditContainer extends Component {
 
     let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
-    const urls = {
-      create: { url: `/apps/create`, name: '创建新应用' },
-      list: { url: `/apps/list`, name: '我的应用' },
-      doc: { url: `/apps/doc` }
-    }
+  
     return (
       <div className='container clx'>
-        <Sidebar urls={urls} />
+        <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
+        
         <div className='sub-container'>
           <Step page={page} title='编辑应用' appKindName={appKindName} />
           {
@@ -203,11 +202,6 @@ class EditContainer extends Component {
             page === 2 && <SecondStep onSubmit={::this.submitSecond}
               previous={::this.previous} />
           }
-          {
-            page === 3 && <SecondStep onSubmit={::this.submitSecond}
-              previous={::this.previous} />
-          }
-
           {
             page === 4 && <Complete />
           }

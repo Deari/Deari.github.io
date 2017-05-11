@@ -137,7 +137,7 @@ class DevAccount extends Component {
       <div className={s.applyForm}>
         <div className={s.formItem}>
           <input
-            className={`${s['phone-number']}`}
+            className={s['phone-number']}
             type='text'
             ref='phone'
             maxLength='11'
@@ -147,7 +147,7 @@ class DevAccount extends Component {
         </div>
         <div className={s.formItem}>
           <input
-            className={`${s['code-number']}`}
+            className={s['code-number']}
             type='text'
             ref='code'
             maxLength='6'
@@ -162,14 +162,14 @@ class DevAccount extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={`${s['btn-blue']}`} onClick={::this.submitHandler}>获取商家测试账号</button>
+          <button className={s['btn-blue']} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     )
 
-    if (!hasAccount) {
+    if (hasAccount) {
       Account = <div className={s.account}>
-        <h3 className={`${s['account-title']}`}>商家测试账号</h3>
+        <h3 className={s['account-title']}>商家测试账号</h3>
         <div className={s.item}>
           <label className={s.key}>wid：</label>
           <span className={s.value}>{account.wid}</span>
@@ -189,7 +189,7 @@ class DevAccount extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type} />
         <div className={s.content}>
-          <h2 className={`${s['content-header']}`}><i className='iconfont icon-account' />申请测试账号</h2>
+          <h2 className={s['content-header']}><i className='iconfont icon-account' />申请测试账号</h2>
           <div className={s.main}>
             {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号

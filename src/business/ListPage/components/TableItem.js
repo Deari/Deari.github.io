@@ -57,8 +57,8 @@ const TabelItem = ({ data, type }) => {
         { showEditBtn(appStatus[0] && appStatus[0].status) ?
           <Link to={`/${type}/edit/${data.appId}/1`} className={s.btn}>编辑基本信息</Link> : null }
 
-        { showEditBtn(appStatus[0] && appStatus[0].status) ?
-          <Link to={`/${type}/edit/${data.appId}/3`} className={s.btn}>发布新版本</Link> : null }
+        { showEditBtn(appStatus[0] && appStatus[0].status) ? 
+          <Link to={`/${type}/edit/${data.appId}/2`} className={s.btn}>发布新版本</Link> : null }
       </td>
     </tr>
   )

@@ -155,16 +155,16 @@ class CreateContainer extends Component {
       }
     }
 
-    fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
-      if (res.status == 200) {
-        this.props.toggleStep(3)
-      } else {
-        const errMsg = debug.getErrStatus(res.status)
-        debug.warn(errMsg)
-      }
-    }).catch(e => {
-      console.log('网络错误', e)
-    })
+      fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
+        if (res.status == 200) {
+          this.props.toggleStep(2)
+        } else {
+          const errMsg = debug.getErrStatus(res.status)
+          debug.warn(errMsg)
+        }
+      }).catch(e => {
+        console.log('网络错误', e)
+      })
   }
 
   previous () {

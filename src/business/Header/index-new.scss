@@ -106,5 +106,24 @@
 }
 .search {
   width: 120px;
+  // min-width: 70px;
   margin: 0 20px;
+  border-radius: 15px;
+  background: #dedede;
+  border: 0;
+  input {
+    // width: 120px!important;
+    // transition: all .5s ease;
+    // &:focus {
+    //   width: 120px!important;
+    // }
+    background: transparent;
+    border: 0!important;
+    outline: none;
+    &:focus {
+      border: 0!important;
+      outline: none;
+      box-shadow: none!important;
+    }
+  }
 }

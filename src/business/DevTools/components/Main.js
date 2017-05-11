@@ -23,7 +23,7 @@ class DevTools extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type} />
         <div className={s.content}>
-          <h2 className={`${s['content-header']}`}><i className='iconfont icon-tool' />开发者工具</h2>
+          <h2 className={s['content-header']}><i className='iconfont icon-tool' />开发者工具</h2>
           <div className={s.tool}>
             <dl className={s.detail}>
               <dt className={s.img} />
@@ -34,8 +34,8 @@ class DevTools extends Component {
                   </p>
               </dd>
             </dl>
-            <div className={`${s['tool-btn']}`}>
-              <Link to={`/${type}/doc`} className={`${s['btn-blue']}`}>点击进入</Link>
+            <div className={s['tool-btn']}>
+              <Link to={`/${type}/doc`} className={s['btn-blue']}>点击查看</Link>
             </div>
           </div>
           <div className={s.tool}>
@@ -46,8 +46,8 @@ class DevTools extends Component {
                 <p className={s.text}>后续补充文案。</p>
               </dd>
             </dl>
-            <div className={`${s['tool-btn']}`}>
-              <Link to={`/${type}/list`} className={`${s['btn-blue']}`}>点击进入</Link>
+            <div className={s['tool-btn']}>
+              <span onClick={::this.handleClick} className={s['btn-blue']}>点击{showDevInfo ? '收起':'查看'}</span>
             </div>
             <div className={cx(s.key, { [s.active]: showDevInfo })}>
               <DevInfo />
@@ -61,8 +61,8 @@ class DevTools extends Component {
                 <p className={s.text}>后续补充文案。</p>
               </dd>
             </dl>
-            <div className={`${s['tool-btn']}`}>
-              <Link to={`/${type}/account`} className={`${s['btn-blue']}`}>点击进入</Link>
+            <div className={s['tool-btn']}>
+              <Link to={`/${type}/account`} className={s['btn-blue']}>点击查看</Link>
             </div>
           </div>
         </div>

@@ -20,13 +20,13 @@
     padding: 4px 24px;
     @include input;
   }
-  i {
+  & > i {
     color: rgba(0,0,0,.65);
     top: 50%;
     position: absolute;
     transform: translateY(-50%);
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: 1px;
     &:first-child {
       left: 7px;
     }
