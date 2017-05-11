@@ -21,23 +21,9 @@ import { toggleStep, updateForm2, updateAppkind, getTags, getCates, updateCodeDe
 
 class CreateContainer extends Component {
   componentWillMount() {
-    const { params } = this.props
-    const appId = parseInt(params.appId)
-    const step = parseInt(params.step)
-    if(step==3){
-      const versionurl = getDomain(`web/developer/app/${appId}/code`)
-      const versionFormData = new FormData()
-      versionFormData.append("prepareVersion", "1")
-      fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
-        if (versionRes.status == 200) {
-          this.props.receiveCodeId(versionRes.data[0].codeId)
-        }
-      })
-    }
-    this.props.toggleStep(step)
     this.props.getTags()
     this.props.getCates()
-    this.props.getAppInfo(appId)
+    this.props.toggleStep(0)
   }
   
   submitChoice(values) {

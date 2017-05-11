@@ -85,7 +85,7 @@ class EditContainer extends Component {
     })
   }
 
-  submitSecond(values) {
+  submitSecond(values, commit) {
 
     let codeDescCount = values.codeDescCount || 0
 
@@ -141,9 +141,17 @@ class EditContainer extends Component {
         }
     }
 
+    if(commit === 1) {
+      formData.append('commit', 1);
+    }
+
     fetchUtil.postJSON(url, formData, { Stringify: false }).then(res => {
       if (res.status == 200) {
-        this.props.toggleStep(4);
+        if(commit === 1) {
+          this.props.toggleStep(4)
+        } else {
+          alert('保存成功！');
+        }
       } else {
         const errMsg = debug.getErrStatus(res.status)
         debug.warn(errMsg)
