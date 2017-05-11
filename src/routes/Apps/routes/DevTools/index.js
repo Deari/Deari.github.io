@@ -1,5 +1,6 @@
 import React from 'react'
 import DevTools from 'business/DevTools/components/Main'
+import { login } from 'utils/login'
 
 const Container = (props) => {
   return <DevTools type={'apps'}></DevTools>
@@ -7,7 +8,12 @@ const Container = (props) => {
 
 export default {
   path: 'devtools',
-  component: Container
+  component: Container,
+  onEnter: (nextState, replace, callback) => {
+    login(()=>{
+      callback()
+    })
+  },
   // indexRoute: {
   //   getComponent (nextState, cb) {
   //     require.ensure([], (require) => {

@@ -4,10 +4,22 @@ import SideBar from 'business/SideBar'
 import DevInfo from 'business/DevInfo'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
+import cx from 'classnames'
 
 class DevTools extends Component {
+  state = {
+    showDevInfo: false
+  }
+
+  handleClick () {
+    this.setState({ showDevInfo: !this.state.showDevInfo })
+  }
+
+  
   render() {
     const { type } = this.props;
+    const { showDevInfo } = this.state;
+
     return (
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
@@ -24,7 +36,7 @@ class DevTools extends Component {
 	            </dd>
 	          </dl>
 	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/doc`}>点击进入</Link>
+	            <Link to={`/${type}/doc`}>点击查看</Link>
 	          </div>
           </div>
           <div className={s.tool}>
@@ -36,10 +48,10 @@ class DevTools extends Component {
 	            </dd>
 	          </dl>
 	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/list`} className={s.look}>点击进入</Link>
+	            <span onClick={::this.handleClick} className={s.look}>点击{ showDevInfo ? '收起' : '查看' }</span>
 	          </div>
-            <div className={s.key}>
-            	<DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
+            <div className={cx(s.key, { [s.active]: showDevInfo }) }>
+            	<DevInfo></DevInfo>
             </div>
           </div>
           <div className={s.tool}>
@@ -51,7 +63,7 @@ class DevTools extends Component {
 	            </dd>
 	          </dl>
 	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/account`}>点击进入</Link>
+	            <Link to={`/${type}/account`}>点击查看</Link>
 	          </div>
           </div>
         </div>
