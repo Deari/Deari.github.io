@@ -5,9 +5,9 @@ import debug from 'utils/debug'
 import DescribeIcon from 'components/DescribeIcon'
 import download from '../routes/Create/image/download.png'
 
-export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
+export const renderField = ({ required, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label} <i className="iconfont icon-edit diff"></i></label>
+    <label>{ required ? <i className='require_field'>*</i> : '' }{label} <i className="iconfont icon-edit diff"></i></label>
     <div className="row-right">
       <input {...input} placeholder={placeholder || label} type={type}/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -16,9 +16,9 @@ export const renderField = ({ input, label, placeholder, type, describeId, descr
   </div>
 )
 
-export const renderTextArea = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
+export const renderTextArea = ({ required, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label}</label>
+    <label>{required ? <i className='require_field'>*</i> : ''}{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={placeholder || label}></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -40,7 +40,7 @@ export const renderSelect = ({ input, label, meta: { touched, dirty, error, warn
 )
 
 export const renderSizeRadioBox = ({ input, sizeList, onChangeSize, meta: { touched, dirty, error, warning } }) => <div className="form-row">
-  <label>尺寸</label>
+  <label><i className='require_field'>*</i>尺寸</label>
   <div className="row-right size-width">
     <p>请选择组件在手机屏幕中所占比例的尺寸</p>
     {
@@ -74,11 +74,11 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning } } = this.props
+    const { required, input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row describe-tags">
-        <label>{label}</label>
+        <label>{required ? <i className='require_field'>*</i> : ''}{label}</label>
         <div className="row-right max-width">
           <ul>
             {
@@ -133,11 +133,11 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, describeId, describeContent, currentSize, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
+    const { required, input, label, describeId, describeContent, currentSize, meta: { touched, dirty, error, warning } , doc , h ,styleObj} = this.props
     const downloadUrl = `http://nres.ffan.com/newh5/2017426/b712af2abb20f1f88d1b8c46a1612bbdaea1c8b5.psd`
     return (
       <div className="form-row">
-        <label>{label}</label>
+        <label>{ required ? <i className='require_field'>*</i> : '' }{label}</label>
         <div className="row-right">
           <p>{ doc ? doc :'请上传组件高清图片' }</p>
           <p>{h ? '' : '400*400像素，仅支持PNG格式，'}大小不超过300KB</p>
@@ -199,12 +199,15 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, genre, meta: { touched, dirty, error, warning } } = this.props
+    const { isMiniProgram, required, input, tags, label, genre, meta: { touched, dirty, error, warning } } = this.props
 
     return (
       <div className="form-row">
-        <label className="label-type">{label}<span>{genre}</span></label>
+        <label className="label-type">{required ? <i className='require_field'>*</i> : ''}{label}<span>{genre}</span></label>
         <div className="row-right">
+          { isMiniProgram ? <div className="mini-program-xx">
+            应用类型为“FAP小程序”，请您先试用打包工具(<a href="#">点击下载</a>)进行打包，请将打包完成后的应用进行上传。
+          </div> : null }
           <span className="right-upload">
             <input type="button" value="选择文件" />
             <input type="file" accept=".fap" onChange={::this.fileUpload} />
@@ -220,7 +223,7 @@ export class renderFile extends Component {
 
 export const versionTextArea = ({ input, label, placeholder, type, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label}</label>
+    <label><i className='require_field'>*</i>{label}</label>
     <div className="row-right">
       <p><i className="iconfont icon-miashu"></i>描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。</p>
       <textarea {...input} placeholder={placeholder || label}></textarea>
@@ -229,8 +232,8 @@ export const versionTextArea = ({ input, label, placeholder, type, meta: { touch
   </div>
 )
 
-export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
-  <label>{label}</label>
+export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => (<div className="form-row">
+  <label><i className='require_field'>*</i>{label}</label>
   <div className="row-right max-width">
     <p>
       在您的应用获得批准后，我们可以立即为您发布它。如果您要自己发布该应用。请选择一个日期或者在批准后的任何时刻手动发布它。
@@ -254,10 +257,10 @@ export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touch
     <span className="clearF"></span>
     {(dirty || touched) && ((error && <span className="errorM">{error}</span>))}
   </div>
-</div>
+</div>)
 
 export const renderCodeVersion = ({ input, label ,versionsList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
-  <label>{label}</label>
+  <label><i className='require_field'>*</i>{label}</label>
   <div className="row-right max-width">
     {
       versionsList.map(item => <div className="row-sizeB version">

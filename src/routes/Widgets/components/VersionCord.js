@@ -67,7 +67,7 @@ class VersionCordModule extends Component {
     let describeContent = `您要填入的 App 版本号。编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。`
     return(
       <div className="form-row version-module-container">
-        <label>版本号</label>
+        <label><i className='require_field'>*</i>版本号</label>
         <div className="row-right">
           <span className="message-info message-info-gray">
             {this.props.codeVersion&&`您的线上版本为：${this.props.codeVersion}。`}您要填入的版本号。编号应遵循软件版本规范。
