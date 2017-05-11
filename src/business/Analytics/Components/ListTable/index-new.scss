@@ -1,117 +1,83 @@
-@import 'src/styles/v/var.scss';
-.header-data {
-  i {
-    color: $site-blue;
-    margin-right: 10px;
-    font-size: 18px;
-  }
-}
+@import 'src/styles/v/base.scss';
 .table {
-  border: 1px solid $site-border-gray;
-  font-size: 16px;
-  border-collapse: collapse;
-  width: 100%;
-  
-  th {
-    height: 50px;
-    background: #eee;
-    border-right: 1px solid $site-border-gray;
-    color: #666;
-    font-weight: normal;
-    &:last-child {
-      border-right: 0;
-    }
-  }
-  td {
-    padding: 5px;
-    border: 1px solid $site-border-gray;
-    &.imgWrap {
-      width: 122px;
-      text-align: center;
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 8px;
-        vertical-align: middle;
-      }
-    }
-    &.appInfo {
-      width: 200px;
-      font-size: 0;
-      .name {
-        font-size: 16px;
-        color: #000;
-        display: inline-block;
-        vertical-align: top;
-        width: 136px;
-      }
-      & > i {
-        display: inline-block;
-        float: right;
-        vertical-align: 12px;
-      }
-      .desc {
-        max-height: 35px;
-        font-size: 12px;
-        line-height: 1.5;
-        color: #666666;
-        margin-top: 10px;
-        text-align: justify;
-        display: block;
-        overflow: hidden;
-        @include word-break; 
-      }
-      .link {
-        font-size: 12px;
-        color: #999;
-        margin-top: 10px;
-        display: block;
-        cursor: pointer;
-        i {
-          font-size: 13px;
-          vertical-align: -1px;
-        }
-      }
-    }
-    &.common {
-      &>span {
-        font-size: 12px;
-        color: #666;
-        display: block;
-        width: 90px;
+    color: #666;    
+    margin-top: 10px;
+    td {
         text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        & > i {
-          font-style: normal;
-          color: #333;
+        &.imgWrap {
+            width: 122px;
+            img {
+                width: 100px;
+                height: 100px;
+                display: block;
+                margin: auto;
+                overflow: hidden;
+                border-radius: 8px;
+            }
         }
-      }
-      .yes{
-          margin-top: 6px;
-      }
-    }
-    &.actions {
-      text-align: center;
-      .btn {
-        width: 85px;
-        height: 30px;
-        line-height: 28px;
-        border: 1px solid $site-border-gray;
-        border-radius: 4px;
-        display: block;
-        margin: 0 auto;
-        cursor: pointer;
-        font-size: 14px;
-        color: #666;
-        transition: background ease-in-out 0.15s,border-color ease-in-out 0.15s,color ease-in-out 0.15s;
-        &:hover {
-          background: #2692fb;
-          color: #fff;
-          border-color: #2692fb;
+        &.appInfo {
+            width: 200px;
+            text-align: left;
+            .name {
+                color: #000;
+                width: 152px;
+                display: inline-block;
+                vertical-align: middle;
+                @include text-overflow;
+            }
+            & > i {
+                display: inline-block;
+                vertical-align: middle;
+            }
+            .desc {
+                width: 200px;
+                max-height: 35px;
+                font-size: 12px;
+                line-height: 1.5;
+                margin-top: 10px;
+                text-align: justify;
+                @include multiple-text-overflow;
+            }
+            .link {
+                width: 200px;
+                color: #666;
+                font-size: 12px;
+                width: 200px;
+                margin-top: 10px;
+                display: block;
+                @include text-overflow;
+                i {
+                    color: #b3b3b3;
+                    font-size: 13px;
+                    vertical-align: -1px;
+                }
+            }
         }
-      }
+        &.day {
+            &>span {
+                width: 90px;
+                font-size: 12px;
+                display: block;
+                @include text-overflow;
+                & > i {
+                    font-style: normal;
+                    color: #000;
+                }
+            }
+            .yes {
+                margin-top: 8px;
+            }
+        }
+        &.actions {
+            .btn {
+                color: #666;
+                width: 85px;
+                height: 30px;
+                display: block;
+                font-size: 12px;
+                margin: 0 auto;
+                line-height: 28px;
+            }
+        }
     }
-  }
 }

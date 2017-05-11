@@ -2,7 +2,7 @@ import React from 'react'
 import { Markdown, transerMdToMarkdown, Toc } from 'components/Markdown'
 import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
-import 'src/styles/v/var.scss'
+import s from './developfile-new.scss'
 
 // Todo 从服务端获取 md 原文数据
 
@@ -28,7 +28,7 @@ export default class Doc extends React.Component {
     return (
       <div className="container">
         <SideBar pageLinks={getPageLinks(type)} type={type} content={Doc} />
-        <div className="content">
+        <div className={`${s['develop-file']}`}>
           <Markdown html={markdownData.html}/>
         </div>
       </div>

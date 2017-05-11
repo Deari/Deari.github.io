@@ -190,19 +190,21 @@ class DevAccount extends Component {
         <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
         <div className={s.content}>
           <h2 className={`${s['content-header']}`}><i className="iconfont icon-account"></i>申请测试账号</h2>
-          { hasAccount ? <p className={s.success}>
-            您已获得商家测试账号
-          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
-          <div className={s.desc}>
-            <p>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
-            但是，这里需要注意：</p>
-            <ul>
-              <li>1、每位开发者有且只有一个商家测试账号。</li>
-              <li>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</li>
-              <li>3、下载 <a className={s.downlinks} href={downloadUrl}>开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</li>
-            </ul>
+          <div className={s.main}>
+	          { hasAccount ? <p className={s.success}>
+	            您已获得商家测试账号
+	          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
+	          <div className={s.desc}>
+	          	<dl>
+	            	<dt>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
+	            但是，这里需要注意：</dt>
+	              <dd>1、每位开发者有且只有一个商家测试账号。</dd>
+	              <dd>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</dd>
+	              <dd>3、下载 <a className={s.downlinks} href={downloadUrl}>开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</dd>
+	            </dl>
+	          </div>
+	          { Account }
           </div>
-          { Account }
         </div>
       </div>
     )

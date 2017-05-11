@@ -1,109 +1,83 @@
-@import 'src/styles/v/var.scss';
-
+@import 'src/styles/v/base.scss';
 .root {
-  padding: 10px;
-}
-
-.table {
-  border: 1px solid #eee;
-  font-size: 16px;
-  border-collapse: collapse;
-  width: 100%;
-  th {
-    height: 50px;
-    background: #eee;
-    border: 1px solid #dedede;
-    color: #666;
-    font-weight: normal;
-  }
-  td {
-    padding: 5px;
-    border: 1px solid #dedede;
-    text-align: center;
-    &.imgWrap {
-      width: 122px;
-      text-align: center;
-      img {
-        width: 100px;
-        height: 100px;
-        border-radius: 8px;
-        vertical-align: middle;
-      }
-    }
-    &.appInfo {
-      width: 200px;
-      text-align: left;
-      color: #666666;
-      .textOverflow {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-      .name {
-        color: #000;
-        display: block;
-        margin-bottom: 10px;
-        width: 200px;
-      }
-      .appId {
-        font-size: 12px;
-        margin-right: 10px;
-        max-width: 142px;
-        display: inline-block;
-        vertical-align: middle;
-      }
-      .desc {
-        max-width: 200px;
-        max-height: 35px;
-        font-size: 12px;
-        line-height: 1.5;
-        margin-top: 10px;
-        text-align: justify;
-        @include multiple-text-overflow;
-      }
-    }
-    .vStatus{
-        margin-top: 14px;
-        &:first-child{
-            margin-top: 0;
-        }
-        .version{
-            display: inline-block;
-            margin-bottom: 2px;
-            .round {
-              display: inline-block;
-              width: 8px;
-              height: 8px;
-              border-radius: 50%;
-              margin: 0 5px;
-              background: green;
+    padding: 10px;
+    .table {
+        color: #666;
+        td {
+            text-align: center;
+            &.imgWrap {
+                width: 122px;
+                img {
+                    width: 100px;
+                    height: 100px;
+                    display: block;
+                    margin: auto;
+                    overflow: hidden;
+                    border-radius: 8px;
+                }
+            }
+            &.appInfo {
+                width: 200px;
+                text-align: left;
+                .name {
+                    color: #000;
+                    width: 152px;
+                    display: inline-block;
+                    vertical-align: middle;
+                    @include text-overflow;
+                }
+                & > i {
+                    display: inline-block;
+                    vertical-align: middle;
+                }
+                .desc {
+                    width: 200px;
+                    max-height: 35px;
+                    font-size: 12px;
+                    line-height: 1.5;
+                    margin-top: 10px;
+                    text-align: justify;
+                    @include multiple-text-overflow;
+                }
+                .appId {
+                    font-size: 12px;
+                    width: 200px;
+                    margin-top: 10px;
+                    display: block;
+                    @include text-overflow;
+                }
+            }
+            .vStatus {
+                margin-top: 8px;
+                &:first-child {
+                    margin-top: 0;
+                }
+                .version {
+                    display: inline-block;
+                    .round {
+                        width: 8px;
+                        height: 8px;
+                        margin: 0 5px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+                .text {
+                    display: inline-block;
+                }
+            }
+            &.actions {
+                .btn {
+                    color: #666;
+                    width: 85px;
+                    height: 30px;
+                    display: block;
+                    font-size: 12px;
+                    margin: 5px auto;
+                    line-height: 28px;
+                }
             }
         }
-        .text{
-            display: inline-block;
-        }
     }
-    
-    &.actions {
-      text-align: center;
-      .btn {
-        width: 85px;
-        height: 30px;
-        line-height: 30px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        display: block;
-        margin: 5px auto;
-        cursor: pointer;
-        font-size: 12px;
-        color: #666;
-        &:hover {
-          background: #2692fb;
-          color: #fff;
-          border-color: #2692fb;
-        }
-      }
-    }
-  }
 }
-

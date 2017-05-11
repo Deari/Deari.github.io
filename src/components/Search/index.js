@@ -38,7 +38,7 @@ class Search extends Component {
 
     return (
       <span style={style} className={s.searchWrap}>
-        <i className='iconfont icon-search'
+    		<i className='iconfont icon-search'
           onClick={::this.searchHandler}>
         </i>
         <input 
