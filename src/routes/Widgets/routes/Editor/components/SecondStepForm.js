@@ -119,12 +119,14 @@ class SecondStepForm extends React.Component {
             <p><i>WidgetKey：</i><span>{appKey}</span></p>
           </div>
         </div> */}
-         <div className='header-title'>
-          <h2 className="step-tittle">版本信息 </h2>
+        
+        <div className="header-title">
+          <a href='1' className="step-tittle">基本信息</a>
+          <a href='2' className="step-tittle active">版本信息</a>
         </div>
         <div>
           <div className="form-row code-desc">
-            <label>版本介绍</label>
+            <label><i className='require_field'>*</i>版本介绍</label>
             <div className="row-right">
               <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在组件详情页的版本信息中。"  value={codeDesc?codeDesc:''} onChange={this.onChangeDesc.bind(this)} onBlur={this.onChangeDesc.bind(this)} ></textarea>
               { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
@@ -150,7 +152,7 @@ class SecondStepForm extends React.Component {
         </div>
         {/** <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
         <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={this.props.toggleCodeVersion}/>
-        {appKind === 0 && <Field name="file" component={renderFile} label="组件文件" genre='(FAP小程序)' />}
+        {appKind === 0 && <Field required isMiniProgram={true}  name="file" component={renderFile} label="组件文件" genre='(FAP小程序)' />}
         {appKind === 0 && <ConfigTpl 
           configList={configList} 
           updateConfigArr={this.props.updateConfigArr}
@@ -163,8 +165,8 @@ class SecondStepForm extends React.Component {
           updateConfigAudioValue={this.props.updateConfigAudioValue}
           updateConfigAudioKey={this.props.updateConfigAudioKey}
           />}
-        {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
-        <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
+        {appKind === 1 && <Field required iname="fileLink" type="text" placeholder="请输入网址" component={renderField} label="组件网址" />}
+        <Field required label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
          <AssociationModule 
           appObj={appObj} 
           weiObj={weiObj} 

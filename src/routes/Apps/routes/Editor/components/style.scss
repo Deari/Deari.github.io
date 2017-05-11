@@ -12,10 +12,17 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
 .header-title {
   background-color: #fff;
   padding: 0 15px;
+  border-bottom: 1px solid #dedede;
   .step-tittle{
-    padding: 14px 0;
+    display: inline-block;
     font-size: 16px;
     font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    &.active {
+      color: #2692fb;
+      border-color: #2692fb;
+    }
   }
 }
 .form-row{
@@ -34,7 +41,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         padding-top: 0;
     }
     label{ 
-        width: $default-width - 22px; 
+      width: 100px; 
         font-size: $text-font-size - 4px; 
         color: $black-color; 
         padding-left: $default-padding-left - 29px; 
@@ -569,7 +576,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     }
 }
 .update-msg{
-  padding: 0 10px 40px 10px;
+  padding: 10px 40px;
   color:#fff;
   font-size: 14px;
   background: #fff;
@@ -584,4 +591,14 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       padding-right: 4px;
     }
   }
+}
+.mini-program-xx {
+  font-size: 13px;
+  line-height: 1.5;
+  width: 500px;
+  margin-bottom: 10px;
+}
+.require_field {
+  color: red;
+  margin-right: 5px;
 }

@@ -27,7 +27,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         padding-top: 0;
     }
     label{ 
-        width: $default-width - 22px; 
+      width: 100px;
         font-size: $text-font-size - 4px; 
         color: $black-color; 
         padding-left: $default-padding-left - 29px; 
@@ -776,4 +776,8 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       padding-right: 4px;
     }
   }
+}
+.require_field {
+  color: red;
+  margin-right: 5px;
 }

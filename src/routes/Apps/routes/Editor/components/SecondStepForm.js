@@ -96,11 +96,12 @@ const SecondStepForm = props => {
   return (
     <form onSubmit={handleSubmit}>
       <div className='header-title'>
-        <h2 className="step-tittle">版本信息 </h2>
+          <a href='1' className="step-tittle ">基本信息</a>
+          <a href='2' className="step-tittle active">版本信息</a>
       </div>
       <div>
         <div className="form-row code-desc">
-          <label>版本介绍</label>
+          <label> <i className='require_field'>*</i>版本介绍</label>
           <div className="row-right">
             <textarea maxLength={totalCount} placeholder="请输入版本介绍。此内容将显示在应用详情页的版本信息中。" value={codeDesc?codeDesc:''} onChange={onChangeDesc} onBlur={onChangeDesc}  className="use-textarea"></textarea>
             { isDescErr && <span><i className="message-info">请输入版本介绍</i></span> }
@@ -124,10 +125,10 @@ const SecondStepForm = props => {
       </div>
       {/**<Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
      <VersionCordModule codeVersion={lastVersion} toggleCodeVersion ={props.toggleCodeVersion}/>
-      {appKind === 0 && <Field name="file" component={renderFile} label="应用文件"  genre='(FAP小程序)'/>}
-      {appKind === 1 && <Field name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
-      {appKind === 2 && <Field name="fileObj" component={renderAPKFile} label="应用文件(APK)" />}
-      <Field label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
+      {appKind === 0 && <Field required name="file" isMiniProgram={true} component={renderFile} label="应用文件"  genre='(FAP小程序)' />}
+      {appKind === 1 && <Field required name="fileLink" type="text" placeholder="请输入网址" component={renderField} label="应用网址" />}
+      {appKind === 2 && <Field required name="fileObj" component={renderAPKFile} label="应用文件(APK)" />}
+      <Field required label="版本发布" name="autoPublish" publishList={publishList} component={renderPublishRadioBox} />
       <AssociationModule 
         appObj={appObj} 
         weiObj={weiObj}  

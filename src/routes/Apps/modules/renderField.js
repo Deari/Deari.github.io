@@ -7,9 +7,10 @@ import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
 import DescribeIcon from 'components/DescribeIcon'
 
-export const renderField = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
+export const renderField = ({ required, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label} <i className="iconfont icon-edit diff"></i></label>
+    <label> { required ? <i className='require_field'>*</i> : '' }
+      {label} <i className="iconfont icon-edit diff"></i></label>
     <div className="row-right">
       <input {...input} placeholder={placeholder || label} type={type} className="use-input"/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -18,9 +19,9 @@ export const renderField = ({ input, label, placeholder, type, describeId, descr
   </div>
 )
 
-export const renderTextArea = ({ input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
+export const renderTextArea = ({ required, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className="form-row">
-    <label>{label}</label>
+    <label>{required ? <i className='require_field'>*</i> : ''}{label}</label>
     <div className="row-right">
       <textarea {...input} placeholder={placeholder || label} className="use-textarea"></textarea>
       {(dirty || touched) && ((error && <span>{error}</span>))}
@@ -64,11 +65,11 @@ export class renderTags extends Component {
   }
 
   render() {
-    const { input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
+    const { required, input, tags, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
 
     return (
       <div className="form-row describe-tags">
-        <label>{label}</label>
+        <label>{required ? <i className='require_field'>*</i> : ''}{label}</label>
         <div className="row-right max-width">
         	<ul>
 	          {
@@ -122,11 +123,11 @@ export class renderImageUpload extends Component {
   }
 
   render() {
-    const { input, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
+    const { required, input, label, describeId, describeContent, meta: { touched, dirty, error, warning }} = this.props
     
     return (
       <div className="form-row">
-        <label>{label}</label>
+        <label> {required ? <i className='require_field'>*</i> : ''}{label}</label>
         <div className="row-right">
           <p>请上传应用高清图片</p>
           <p>400*400像素，仅支持PNG格式，大小不超过300KB</p>
@@ -232,7 +233,7 @@ export class renderAPKFile extends Component {
     return (newArr)
   }
   render() {
-    const { input, tags, label, meta: { touched, dirty, error, warning }} = this.props
+    const { required, input, tags, label, meta: { touched, dirty, error, warning }} = this.props
     const {pressNum, index} = this.state;
     const stokeStyle = {
       width: Math.round((1 / pressNum) * 420) + "px",
@@ -243,7 +244,7 @@ export class renderAPKFile extends Component {
     const pressArr = this.getArr(pressNum)
     return (
       <div className="form-row">
-        <label>{label}</label>
+        <label>{ required ? <i className='require_field'>*</i> : '' }{label}</label>
         <div className="row-right">
           <span className="right-upload">
             <input type="button" value="选择文件" />
@@ -296,12 +297,15 @@ export class renderFile extends Component {
   }
 
   render() {
-    const { input, tags, label, genre, meta: { touched, dirty, error, warning } } = this.props
+    const { isMiniProgram, input, tags, label, genre, meta: { touched, dirty, error, warning },describeId, describeContent } = this.props
 
     return (
       <div className="form-row">
         <label className="label-type">{label}<span>{genre}</span></label>
         <div className="row-right">
+          { isMiniProgram ? <div className="mini-program-xx">
+            应用类型为“FAP小程序”，请您先试用打包工具(<a href="#">点击下载</a>)进行打包，请将打包完成后的应用进行上传。
+          </div> : null }
           <span className="right-upload">
             <input type="button" value="选择文件" />
             <input type="file" accept=".fap" onChange={::this.fileUpload} />
@@ -314,8 +318,8 @@ export class renderFile extends Component {
   }
 }
 
-export const renderPublishRadioBox = ({ input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
-  <label>{label}</label>
+export const renderPublishRadioBox = ({ required, input, label ,publishList, meta: { touched, dirty, error, warning } }) => <div className="form-row">
+  <label>{ required ? <i className='require_field'>*</i> : '' }{label}</label>
   <div className="row-right max-width">
     <p>
       在您的应用获得批准后，我们可以立即为您发布它。如果您要自己发布该应用。请选择一个日期或者在批准后的任何时刻手动发布它。
