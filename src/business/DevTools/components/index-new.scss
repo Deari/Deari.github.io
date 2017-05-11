@@ -48,19 +48,13 @@
             }
         }
     }
-    .btn-blue {
+    .tool-btn {
         margin-top: 8px;
         cursor: pointer;
-        a {
-            color: #fff;
+        .btn-blue {
             font-size: 12px;
-            padding: 11px 27px;
-            border-radius: 4px;
-            background: $site-blue;
+            padding: 10px 27px;
             display: block;
-            &:hover {
-                background: #2a89dd;
-            }
         }
     }
     .key {

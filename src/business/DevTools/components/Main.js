@@ -23,8 +23,8 @@ class DevTools extends Component {
                   </p>
 	            </dd>
 	          </dl>
-	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/doc`}>点击进入</Link>
+	          <div className={`${s['tool-btn']}`}>
+	            <Link to={`/${type}/doc`} className={`${s['btn-blue']}`}>点击进入</Link>
 	          </div>
           </div>
           <div className={s.tool}>
@@ -35,8 +35,8 @@ class DevTools extends Component {
 	                <p className={s.text}>后续补充文案。</p>
 	            </dd>
 	          </dl>
-	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/list`} className={s.look}>点击进入</Link>
+	          <div className={`${s['tool-btn']}`}>
+	            <Link to={`/${type}/list`} className={`${s['btn-blue']}`}>点击进入</Link>
 	          </div>
             <div className={s.key}>
             	<DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
@@ -50,8 +50,8 @@ class DevTools extends Component {
 	                <p className={s.text}>后续补充文案。</p>
 	            </dd>
 	          </dl>
-	          <div className={`${s['btn-blue']}`}>
-	            <Link to={`/${type}/account`}>点击进入</Link>
+	          <div className={`${s['tool-btn']}`}>
+	            <Link to={`/${type}/account`} className={`${s['btn-blue']}`}>点击进入</Link>
 	          </div>
           </div>
         </div>

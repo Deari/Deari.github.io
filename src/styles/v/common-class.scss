@@ -16,5 +16,19 @@
         color: $site-blue;
         margin-right: 10px;
         font-size: 18px;
+        vertical-align: middle;
+    }
+}
+.navFilters{
+    &>li{
+        color: #000;
+        font-size: 16px;
+        margin: 0 10px;
+        cursor: pointer;
+        display: inline-block;
+        &:hover,
+        &.active {
+            border-bottom: 2px solid $site-blue;
+        }
     }
 }

@@ -137,7 +137,7 @@ class DevAccount extends Component {
       <div className={s.applyForm}>
         <div className={s.formItem}>
           <input 
-            className={`${s.phone}`}
+            className={`${s['phone-number']}`}
             type="text" 
             ref="phone"
             maxLength="11"
@@ -147,7 +147,7 @@ class DevAccount extends Component {
         </div>
         <div className={s.formItem}>
           <input 
-            className={s.code} 
+            className={`${s['code-number']}`} 
             type="text" 
             ref="code"
             maxLength="6"
@@ -162,25 +162,25 @@ class DevAccount extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={s.submit} onClick={::this.submitHandler}>获取商家测试账号</button>
+          <button className={`${s['btn-blue']}`} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     );
 
-    if(hasAccount) {
+    if(!hasAccount) {
       Account = <div className={s.account}>
-        <h3 className={`${s['test-title']}`}>商家测试账号</h3>
+        <h3 className={`${s['account-title']}`}>商家测试账号</h3>
         <div className={s.item}>
-          <label>wid：</label>
-          <span>{account.wid}</span>
+          <label className={s.key}>wid：</label>
+          <span className={s.value}>{account.wid}</span>
         </div>
         <div className={s.item}>
-          <label>默认账号：</label>
-          <span>{account.userName}</span>
+          <label className={s.key}>默认账号：</label>
+          <span className={s.value}>{account.userName}</span>
         </div>
         <div className={s.item}>
-          <label>默认密码：</label>
-          <span>{account.password}</span>
+          <label className={s.key}>默认密码：</label>
+          <span className={s.value}>{account.password}</span>
         </div>
       </div>
     }
@@ -191,7 +191,7 @@ class DevAccount extends Component {
         <div className={s.content}>
           <h2 className={`${s['content-header']}`}><i className="iconfont icon-account"></i>申请测试账号</h2>
           <div className={s.main}>
-	          { hasAccount ? <p className={s.success}>
+	          {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号
 	          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
 	          <div className={s.desc}>

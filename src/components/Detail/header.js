@@ -15,23 +15,19 @@ export const Header = (props) => {
                       (latestCodeStatus.codeStatus == 7 && preCodeStatus.codeStatus == 7)
 
   return data && data.mine === 1 && len > 0 && <div className="tab-nav">
-    <ul className="tab-list">
+    <ul className="navFilters">
       { (preCodeStatus.codeVersion && !hidePreCode) &&
           <li className={preCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''} 
               onClick={() => {onChangeVersion && onChangeVersion(preCodeStatus, preVersions)}}>
-            <a>
-              <div>{preCodeStatus.codeVersion}</div>
-              <div>{preCodeStatus.codeStatusName}</div>
-            </a>
+              <span className="text">{preCodeStatus.codeVersion}</span>
+              <span className="text">{preCodeStatus.codeStatusName}</span>
           </li>
       }
 
       <li className={latestCodeStatus.codeVersion == latestVersion.codeVersion && 'active' || ''}
           onClick={() => {onChangeVersion && onChangeVersion(latestCodeStatus, latestVersions)}}>
-        <a>
-          <div>{latestCodeStatus.codeVersion}</div>
-          <div>{latestCodeStatus.codeStatusName}</div>
-        </a>
+          <span className="text">{latestCodeStatus.codeVersion}</span>
+          <span className="text">{latestCodeStatus.codeStatusName}</span>
       </li>
       
     </ul>
