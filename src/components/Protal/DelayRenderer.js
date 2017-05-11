@@ -1,6 +1,6 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react'
 
-const DelayRendererFactory = (options = {delay: 500}) => (ActivableComponent) => {
+const DelayRendererFactory = (options = { delay: 500 }) => (ActivableComponent) => {
   return class DelayRenderer extends Component {
     static propTypes = {
       active  : PropTypes.bool.isRequired,
@@ -17,35 +17,35 @@ const DelayRendererFactory = (options = {delay: 500}) => (ActivableComponent) =>
       rendered: this.props.active
     };
 
-    componentWillReceiveProps(nextProps) {
-      if (nextProps.active && !this.props.active) this.renderAndActivate();
-      if (!nextProps.active && this.props.active) this.deactivateAndUnrender();
+    componentWillReceiveProps (nextProps) {
+      if (nextProps.active && !this.props.active) this.renderAndActivate()
+      if (!nextProps.active && this.props.active) this.deactivateAndUnrender()
     }
 
-    renderAndActivate() {
-      if (this.unrenderTimeout) clearTimeout(this.unrenderTimeout);
-      this.setState({rendered: true, active: false}, () => {
-        setTimeout(() => this.setState({active: true}), 20);
-      });
+    renderAndActivate () {
+      if (this.unrenderTimeout) clearTimeout(this.unrenderTimeout)
+      this.setState({ rendered: true, active: false }, () => {
+        setTimeout(() => this.setState({ active: true }), 20)
+      })
     }
 
-    deactivateAndUnrender() {
-      this.setState({rendered: true, active: false}, () => {
+    deactivateAndUnrender () {
+      this.setState({ rendered: true, active: false }, () => {
         this.unrenderTimeout = setTimeout(() => {
-          this.setState({rendered: false});
-          this.unrenderTimeout = null;
-        }, this.props.delay);
-      });
+          this.setState({ rendered: false })
+          this.unrenderTimeout = null
+        }, this.props.delay)
+      })
     }
 
-    render() {
-      const {delay, ...others} = this.props; // eslint-disable-line no-unused-vars
-      const {active, rendered} = this.state;
+    render () {
+      const { delay, ...others } = this.props // eslint-disable-line no-unused-vars
+      const { active, rendered } = this.state
       return rendered
-        ? <ActivableComponent {...others} active={active}/>
-        : null;
+        ? <ActivableComponent {...others} active={active} />
+        : null
     }
-  };
-};
+  }
+}
 
-export default DelayRendererFactory;
+export default DelayRendererFactory

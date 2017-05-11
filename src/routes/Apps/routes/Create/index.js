@@ -6,7 +6,7 @@ import { login } from 'utils/login'
 module.exports = (store) => ({
   path: 'create',
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   },
@@ -21,5 +21,5 @@ module.exports = (store) => ({
       cb(null, Create)
     })
   }
-  
+
 })

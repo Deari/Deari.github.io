@@ -9,34 +9,34 @@ class AppInfo extends React.Component {
     developerSecret: 'loading...'
   }
 
-  componentDidMount() {
-    fetchUtil.getJSON(`${getEnvDomain()}/app/v1/bo/v1/web/devDataById/self`).then(data=>{
-      console.log(data);
-      this.setState({ 
+  componentDidMount () {
+    fetchUtil.getJSON(`${getEnvDomain()}/app/v1/bo/v1/web/devDataById/self`).then(data => {
+      console.log(data)
+      this.setState({
         ...data
       })
-    }).catch(e=>{
+    }).catch(e => {
       alert(JSON.stringify(e))
     })
   }
 
   render () {
-    const { developerKey, developerSecret  } = this.state
+    const { developerKey, developerSecret } = this.state
     return (
-    	<div className={`${s['develop-key']}`}>
-	    	<div className={s.devInfo}>
-	        <h2 className={s.title}>开发密钥</h2>
-	        <div className={s.main}>
-	          <label htmlFor="" className={s.name}>DeveloperKey：</label>
-	          <span className={s.text}>{developerKey}</span>
-	        </div>
-	        <div className={s.main}>
-	          <label htmlFor="" className={s.name}>DeveloperSecret: </label>
-	          <span className={s.text}>{developerSecret}</span>
-	        </div>
-	      </div>
-    	</div>
-      
+      <div className={`${s['develop-key']}`}>
+        <div className={s.devInfo}>
+          <h2 className={s.title}>开发密钥</h2>
+          <div className={s.main}>
+            <label htmlFor='' className={s.name}>DeveloperKey：</label>
+            <span className={s.text}>{developerKey}</span>
+          </div>
+          <div className={s.main}>
+            <label htmlFor='' className={s.name}>DeveloperSecret: </label>
+            <span className={s.text}>{developerSecret}</span>
+          </div>
+        </div>
+      </div>
+
     )
   }
 }

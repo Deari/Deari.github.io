@@ -3,14 +3,14 @@ import DevTools from 'business/DevTools/components/Main'
 import { login } from 'utils/login'
 
 const Container = (props) => {
-  return <DevTools type={'widgets'}></DevTools>
+  return <DevTools type={'widgets'} />
 }
 
 export default {
   path: 'devtools',
   component: Container,
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   }

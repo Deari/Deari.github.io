@@ -5,37 +5,37 @@ class CommentTpl extends React.Component {
     list: this.props.assessList[0].list,
     active: 'all'
   }
-  hanglechange(value,list){
-    this.setState({active:value,list:list})
+  hanglechange (value, list) {
+    this.setState({ active:value, list:list })
   }
-  render() {
-   const {assessList,highPraise,tags} = this.props
-   const {active,list}=this.state
+  render () {
+    const { assessList, highPraise, tags } = this.props
+    const { active, list } = this.state
     return (
-      <div className="detail-table-content">
-        <h5 className="detail-title-evaluate">商品评价</h5>
-        <div className="detail-evaluate">
+      <div className='detail-table-content'>
+        <h5 className='detail-title-evaluate'>商品评价</h5>
+        <div className='detail-evaluate'>
           <dl>
             <dt>好评度</dt>
             <dd>{highPraise}</dd>
           </dl>
           <ul>
             {
-              tags.map((v,k)=>(
+              tags.map((v, k) => (
                 <li key={k}>{v}</li>
               ))
             }
           </ul>
         </div>
-        <ul className="detail-evaluate-nav">
+        <ul className='detail-evaluate-nav'>
           {
             assessList.map((item, index) => (
               <li key={index}>
-                <div className="row-radio">
-                  <input type="radio" name="radio" value={item.value} onChange={this.hanglechange.bind(this,item.value,item.list)} checked={item.value==active}/>
+                <div className='row-radio'>
+                  <input type='radio' name='radio' value={item.value} onChange={this.hanglechange.bind(this, item.value, item.list)} checked={item.value == active} />
                   <span>
-                    <i className="iconfont icon-radio1"></i>
-                    <i className="iconfont icon-radio2"></i>
+                    <i className='iconfont icon-radio1' />
+                    <i className='iconfont icon-radio2' />
                   </span>
                 </div>
                 <label>{item.title}{item.list.length}</label>
@@ -43,22 +43,22 @@ class CommentTpl extends React.Component {
             ))
           }
         </ul>
-        <div className="detail-evaluate-box">
+        <div className='detail-evaluate-box'>
           {
             list.map((v, k) => (
-              <div className="detail-evaluate-contaier" key={k}>
-                <dl className="detail-evaluate-user">
-                  <dt><img src="http://img1.ffan.com/T1SvWTBQKQ1RCvBVdK" /></dt>
-                  <dd className="detail-evaluate-name">用户名</dd>
-                  <dd className="detail-evaluate-star">
-                    <i className="iconfont icon-star"></i>
-                    <i className="iconfont icon-star"></i>
-                    <i className="iconfont icon-star"></i>
-                    <i className="iconfont icon-uncollected"></i>
-                    <i className="iconfont icon-uncollected"></i>
+              <div className='detail-evaluate-contaier' key={k}>
+                <dl className='detail-evaluate-user'>
+                  <dt><img src='http://img1.ffan.com/T1SvWTBQKQ1RCvBVdK' /></dt>
+                  <dd className='detail-evaluate-name'>用户名</dd>
+                  <dd className='detail-evaluate-star'>
+                    <i className='iconfont icon-star' />
+                    <i className='iconfont icon-star' />
+                    <i className='iconfont icon-star' />
+                    <i className='iconfont icon-uncollected' />
+                    <i className='iconfont icon-uncollected' />
                   </dd>
                 </dl>
-                <dl className="detail-evaluate-text">
+                <dl className='detail-evaluate-text'>
                   <dt>{v.txt}</dt>
                   <dd>{v.creatTime}</dd>
                 </dl>
@@ -69,5 +69,5 @@ class CommentTpl extends React.Component {
       </div>
     )
   }
-} 
-export default CommentTpl  
+}
+export default CommentTpl

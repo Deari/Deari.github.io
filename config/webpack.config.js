@@ -20,8 +20,8 @@ const webpackConfig = {
     root       : project.paths.client(),
     extensions : ['', '.js', '.jsx', '.json', 'scss', 'css'],
     alias: {
-      "src": project.paths.client(),
-      "styles" : path.join(project.paths.client(), 'styles/')
+      'src': project.paths.client(),
+      'styles' : path.join(project.paths.client(), 'styles/')
     }
   },
   module : {}
@@ -51,8 +51,8 @@ webpackConfig.output = {
 // Externals
 // ------------------------------------
 webpackConfig.externals = {
-   'react': 'React',
-   'react-dom': 'ReactDOM',
+  'react': 'React',
+  'react-dom': 'ReactDOM'
 }
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
 webpackConfig.externals['react/lib/ReactContext'] = true
@@ -136,21 +136,21 @@ webpackConfig.module.loaders = [ {
 }, {
   test: /\.json$/,
   loader: 'json'
-},
+}
 //  {
 //  test: /\.md$/,
 //  loader: 'markdown',
-//}
+// }
 ]
 
-//webpackConfig.markdownLoader = {
+// webpackConfig.markdownLoader = {
 //  gfm: true,
 //  breaks: true,
 //  sanitize: false,
 //  highlight: function (code) {
 //    return require("highlight.js").highlightAuto(code).value;
 //  }
-//}
+// }
 
 // ------------------------------------
 // Style Loaders

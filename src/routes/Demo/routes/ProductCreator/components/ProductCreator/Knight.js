@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 
 export default class Knight extends Component {
-  render() {
+  render () {
     return <span>A</span>
   }
 }
-
 

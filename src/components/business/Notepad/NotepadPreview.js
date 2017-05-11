@@ -8,29 +8,27 @@ export class ClockDetail extends Component {
   }
 
   onFontClick = fontFamily => {
-
     const { element, onChange } = this.props
     this.setState({ fontFamily })
     onChange(element, { fontFamily })
   }
 
-  render() {
-
+  render () {
     const fonts = [
-      { fontFamily: 'Helvetica', name: 'Helvetica', },
-      { fontFamily: 'Georgia', name: 'Georgia', },
-      { fontFamily: "Times New Roman", name: "Times New Roman", },
-      { fontFamily: "Verdana", name: "Verdana", },
-      { fontFamily: 'STSong', name: 'STSong', },
+      { fontFamily: 'Helvetica', name: 'Helvetica' },
+      { fontFamily: 'Georgia', name: 'Georgia' },
+      { fontFamily: 'Times New Roman', name: 'Times New Roman' },
+      { fontFamily: 'Verdana', name: 'Verdana' },
+      { fontFamily: 'STSong', name: 'STSong' }
     ]
 
-    return <div id="clock-detail-container">
+    return <div id='clock-detail-container'>
       <h3>字体：</h3>
-      <ul className="nav nav-pills">
+      <ul className='nav nav-pills'>
         {fonts.map(font =>
           <li className={`nav-item`}>
             <a className={`nav-link ${this.state.fontFamily === font.fontFamily ? 'active' : ''}`}
-               value={font.fontFamily} onClick={this.onFontClick.bind(this, font.fontFamily)}>
+              value={font.fontFamily} onClick={this.onFontClick.bind(this, font.fontFamily)}>
               {font.name}</a>
           </li>
         )}

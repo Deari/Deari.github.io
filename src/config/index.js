@@ -20,17 +20,17 @@ export const getPageLinks = (type) => {
     label: `我的${PageTypes[type]}`,
     icon: 'application',
     isExternal: type === 'hardware'
-  },{
+  }, {
     to: `/${type}/analytics`,
     label: `${PageTypes[type]}数据统计`,
     icon: 'sidebar3',
     hide: type === 'hardware'
-  },{
+  }, {
     to: DocLink(type),
     label: '开发者文档',
     icon: 'file',
     isExternal: type === 'hardware'
-  },{
+  }, {
     to: `/${type}/devtools`,
     label: '开发者工具',
     icon: 'tool',

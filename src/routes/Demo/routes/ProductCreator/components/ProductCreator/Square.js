@@ -6,7 +6,7 @@ export default class Square extends Component {
     black: PropTypes.bool
   }
 
-  render() {
+  render () {
     const { black } = this.props
     const fill = black ? '#EEE' : 'white'
     const stroke = black ? 'white' : 'black'
@@ -15,7 +15,7 @@ export default class Square extends Component {
       backgroundColor: fill,
       color: stroke,
       width: '100%',
-      height: '100%',
+      height: '100%'
     }}>
 
       {this.props.children}

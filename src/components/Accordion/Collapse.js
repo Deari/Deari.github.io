@@ -6,14 +6,14 @@ export class Collapse extends Component {
   static propTypes = {
     children: PropTypes.arrayOf(React.PropTypes.node).isRequired,
     isActive: PropTypes.bool,
-    onSelect: PropTypes.func.isRequired,
+    onSelect: PropTypes.func.isRequired
   }
 
   static defaultProps = {
     isActive: false
   }
 
-  render() {
+  render () {
     const children = this.props.children
     const title = children[ 0 ]
     const content = children[ 1 ]

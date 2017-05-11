@@ -13,31 +13,30 @@ import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
-import { toggleStep, updateAppId, fetchTags, fetchCates, 
-        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc} from '../modules/edit'
+import { toggleStep, updateAppId, fetchTags, fetchCates,
+        getAppInfo, updateFirstForm, receiveVersionsList, receiveCodeId, updateCodeDesc } from '../modules/edit'
 class EditContainer extends Component {
-  componentWillMount() {
-    const { params } = this.props;
-    const appId = parseInt(params.appId);
+  componentWillMount () {
+    const { params } = this.props
+    const appId = parseInt(params.appId)
     const step = parseInt(params.step)
-    if(step==3){
+    if (step == 3) {
       const versionurl = getDomain(`web/developer/widget/${appId}/code`)
       const versionFormData = new FormData()
-      versionFormData.append("prepareVersion", "1")
+      versionFormData.append('prepareVersion', '1')
       fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
         if (versionRes.status == 200) {
           this.props.receiveCodeId(versionRes.data[0].codeId)
         }
       })
     }
-    this.props.getAppInfo(appId);
+    this.props.getAppInfo(appId)
     this.props.fetchTags()
     this.props.fetchCates()
     this.props.toggleStep(step)
   }
-  submitFirst(values) {
-
-    const formData = new FormData();
+  submitFirst (values) {
+    const formData = new FormData()
 
     for (let key in values) {
       if (key == 'tags') {
@@ -68,14 +67,14 @@ class EditContainer extends Component {
         // this.props.updateAppId(res.data.appId);
         const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
         const versionFormData = new FormData()
-        versionFormData.append("prepareVersion", "1")
+        versionFormData.append('prepareVersion', '1')
         fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
           if (versionRes.status == 200) {
             this.props.receiveCodeId(versionRes.data[0].codeId)
           }
         })
         this.props.updateFirstForm(values)
-        location.href = "/widgets/list"
+        location.href = '/widgets/list'
       } else {
         const errMsg = debug.getErrStatus(res.status)
         debug.warn(errMsg)
@@ -85,8 +84,7 @@ class EditContainer extends Component {
     })
   }
 
-  submitSecond(values) {
-
+  submitSecond (values) {
     let codeDescCount = values.codeDescCount || 0
 
     if (codeDescCount == 0) {
@@ -99,13 +97,12 @@ class EditContainer extends Component {
     !values.appId && debug.warn('缺少appId')
 
     const url = getDomain(`web/developer/widget/${values.appId}/code`)
-    const formData = new FormData();
-    const file = values.file;
+    const formData = new FormData()
+    const file = values.file
 
     let params = {
       ...values
-    };
-    
+    }
 
     if (file && values.appKind === 0) {
       Object.assign(params, file, {
@@ -116,7 +113,7 @@ class EditContainer extends Component {
         'showUpdateMsg': Number(values.showUpdateMsg),
         'setting': JSON.stringify(values.configList),
         'relatedApps': values.idList,
-        'relatedWidgets': values.wIdList,
+        'relatedWidgets': values.wIdList
       })
       delete params.file
     } else if (values.appKind === 1) {
@@ -124,26 +121,26 @@ class EditContainer extends Component {
         'fileLink': values.fileLink,
         'showUpdateMsg': Number(values.showUpdateMsg),
         'relatedApps': values.idList,
-        'relatedWidgets': values.wIdList,
+        'relatedWidgets': values.wIdList
       })
     }
     for (let key in params) {
-        if (key == "relatedApps") {
-          for (let i = 0; i < params[key].length; i++) {
-            formData.append('relatedApps[]', params[key][i])
-          }
-        } else if (key == "relatedWidgets") {
-          for (let i = 0; i < params[key].length; i++) {
-            formData.append('relatedWidgets[]', params[key][i])
-          }
-        } else {
-          formData.append(key, params[key])
+      if (key == 'relatedApps') {
+        for (let i = 0; i < params[key].length; i++) {
+          formData.append('relatedApps[]', params[key][i])
         }
+      } else if (key == 'relatedWidgets') {
+        for (let i = 0; i < params[key].length; i++) {
+          formData.append('relatedWidgets[]', params[key][i])
+        }
+      } else {
+        formData.append(key, params[key])
+      }
     }
 
     fetchUtil.postJSON(url, formData, { Stringify: false }).then(res => {
       if (res.status == 200) {
-        this.props.toggleStep(4);
+        this.props.toggleStep(4)
       } else {
         const errMsg = debug.getErrStatus(res.status)
         debug.warn(errMsg)
@@ -152,12 +149,12 @@ class EditContainer extends Component {
       console.log('网络错误', e)
     })
   }
-  previous() {
+  previous () {
     const appId = this.props.widgetCreate.form2.appId
     window.location.href = '/widgets/edit/' + appId
   }
-  render() {
-    const { page, form2 } =this.props.widgetEdit;
+  render () {
+    const { page, form2 } = this.props.widgetEdit
 
     const appKind = form2 && form2.appKind || ''
 
@@ -168,11 +165,11 @@ class EditContainer extends Component {
       list: { url: `/widgets/list`, name: '我的组件' },
       doc: { url: `/widgets/doc` }
     }
-    
+
     return (
-      <div className="container clx">
-        <Sidebar urls={urls} type="widget"/>
-        <div className="sub-container">
+      <div className='container clx'>
+        <Sidebar urls={urls} type='widget' />
+        <div className='sub-container'>
           <Step page={page} title='编辑组件' appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
@@ -189,7 +186,7 @@ class EditContainer extends Component {
           }
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -204,9 +201,8 @@ const mapDispatchToProps = {
   updateCodeDesc
 }
 
-const mapStateToProps = ({widgetEdit}) => ({
-  widgetEdit,
+const mapStateToProps = ({ widgetEdit }) => ({
+  widgetEdit
 })
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditContainer)

@@ -2,9 +2,9 @@ import { login } from 'utils/login'
 
 export default {
   path: 'account',
-  
+
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   },

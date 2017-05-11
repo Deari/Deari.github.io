@@ -9,11 +9,11 @@ const SideBar = ({ pageLinks, tagLinks, type, content }) => {
   return (
     <div className={s.sideBar}>
       <button className={s.createBtn}>
-        <i className='iconfont icon-create'></i>
+        <i className='iconfont icon-create' />
         <a href={toCreate}>{`创建新${PageTypes[type]}`}</a>
       </button>
       { pageLinks ? <AnchorList data={pageLinks} /> : null }
-      { tagLinks ? <AnchorList data={tagLinks} style={{ marginTop: '30'}}/> : null }
+      { tagLinks ? <AnchorList data={tagLinks} style={{ marginTop: '30' }} /> : null }
       { content }
     </div>
   )

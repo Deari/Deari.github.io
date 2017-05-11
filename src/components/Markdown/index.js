@@ -41,9 +41,9 @@ export const transerMdToMarkdown = (md) => {
 }
 
 export const Toc = ({ tocList }) => {
-  return <ul className="document-list">
-    {tocList && tocList.map(toc => toc.level <= 2 && <li className={"level-"+toc.level} title={toc.text}>
-      <a href={`#${toc.text}`}><i className="icon"></i>{toc.text}</a>
+  return <ul className='document-list'>
+    {tocList && tocList.map(toc => toc.level <= 2 && <li className={'level-' + toc.level} title={toc.text}>
+      <a href={`#${toc.text}`}><i className='icon' />{toc.text}</a>
     </li>)}
   </ul>
 }
@@ -53,7 +53,7 @@ Toc.defaultProps = {
 }
 
 export const Markdown = ({ html }) => {
-  return <div id="github" dangerouslySetInnerHTML={{ __html: html || '' }}/>
+  return <div id='github' dangerouslySetInnerHTML={{ __html: html || '' }} />
 }
 
 Markdown.defaultProps = {

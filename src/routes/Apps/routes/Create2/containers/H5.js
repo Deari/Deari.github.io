@@ -6,8 +6,7 @@ import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 
 const Main = () => {
-
-  const pageLinks = getPageLinks('apps').filter(( item ) => { return !item.hide })
+  const pageLinks = getPageLinks('apps').filter((item) => { return !item.hide })
 
   return <div>hello h5creator.</div>
 }
@@ -15,4 +14,4 @@ const Main = () => {
 export default {
   path: 'h5',
   component: Main
-};
+}

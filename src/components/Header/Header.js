@@ -8,21 +8,21 @@ import '../../styles/_base.scss'
 
 const choose = (pathname) => {
   let searchTxt = ''
-  const hardwareReg= /\/hardware/
-  const widgetReg= /\/widgets/ 
-  const appReg= /\/apps/ 
-  if(hardwareReg.test(pathname)){
+  const hardwareReg = /\/hardware/
+  const widgetReg = /\/widgets/
+  const appReg = /\/apps/
+  if (hardwareReg.test(pathname)) {
     return searchTxt = '搜索硬件'
   }
-  if(widgetReg.test(pathname)){
+  if (widgetReg.test(pathname)) {
     return searchTxt = '搜索组件'
   }
-  if(appReg.test(pathname)){
+  if (appReg.test(pathname)) {
     return searchTxt = '搜索应用'
   }
 }
-const getTpl = ({searchTxt,pathname}) => {
-    return <div className="searchBox"></div>
+const getTpl = ({ searchTxt, pathname }) => {
+  return <div className='searchBox' />
   // if (pathname === '/') {
   //   return <div className="searchBox"></div>
   // } else {
@@ -44,20 +44,20 @@ export const Header = ({ location, hideHeader }) => {
   return (
     <div>
       <div className='header-wrapper'>
-        <div className='header-bg'></div>
+        <div className='header-bg' />
         <div className='g-header container '>
 
-          <h1 className="title pull-left ">
-            <Link to='/' className="logo">
-              <i className="icon"></i>
-              <span className="text">BO开放平台</span>
+          <h1 className='title pull-left '>
+            <Link to='/' className='logo'>
+              <i className='icon' />
+              <span className='text'>BO开放平台</span>
 
             </Link>
-            <small className="small-title">开发者平台</small>
+            <small className='small-title'>开发者平台</small>
           </h1>
-          <div className="pull-right">
-            <div className="nav">
-              <div className="nav-list">
+          <div className='pull-right'>
+            <div className='nav'>
+              <div className='nav-list'>
                 <Link to='/apps' activeClassName='active'>
                   应用市场
                 </Link>
@@ -72,12 +72,12 @@ export const Header = ({ location, hideHeader }) => {
                 </Link>
               </div>
             </div>
-            {getTpl({searchTxt,pathname})}
+            {getTpl({ searchTxt, pathname })}
             <Login />
           </div>
         </div>
       </div>
-      <div style={{height: 77}}></div>
+      <div style={{ height: 77 }} />
     </div>
   )
 }

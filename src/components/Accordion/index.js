@@ -4,5 +4,5 @@ import Accordion from './Accordion'
 
 module.exports = {
   Collapse,
-  Accordion,
+  Accordion
 }

@@ -3,7 +3,7 @@
 export default {
   path : '1-2-3',
 
-  getComponents(nextState, cb) {
+  getComponents (nextState, cb) {
     require.ensure([], (require) => {
       cb(null, {
         C: require('./components/C').default

@@ -6,14 +6,14 @@ import { login } from 'utils/login'
 module.exports = (store) => ({
   path: 'create',
   onEnter: (nextState, replace, callback) => {
-    login(()=>{
+    login(() => {
       callback()
     })
   },
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      const Create = require('./containers/CreateContainer').default;
-      const createReducer = require('./modules/create').default;
+      const Create = require('./containers/CreateContainer').default
+      const createReducer = require('./modules/create').default
 
       injectReducer(store, { key: 'form', reducer: formReducer })
       injectReducer(store, { key: 'widgetCreate', reducer: createReducer })
@@ -21,5 +21,5 @@ module.exports = (store) => ({
       cb(null, Create)
     })
   }
-  
+
 })

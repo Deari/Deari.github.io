@@ -1,15 +1,15 @@
 // 用来简单判断登录状态
 export default {
   // getStatus方法需传两个参数，第一个是回调方法，第二个是接口路径，第三个是登录地址，第四个是若未登录成功后跳转地址
-  
+
   // 接口路径 默认test
   // test: http://passport.intra.test.ffan.net/passport/session-check.json
   // sit: http://passport.intra.sit.ffan.net/passport/session-check.json
   // online: http://passport.ffan.net/passport/session-check.json
 
-  //  loginurl 登录页面的地址 
-  //  test: http://apistore.intra.test.ffan.net/#!/login/ 
-  //  sit: http://apistore.intra.sit.ffan.net/#!/login/  
+  //  loginurl 登录页面的地址
+  //  test: http://apistore.intra.test.ffan.net/#!/login/
+  //  sit: http://apistore.intra.sit.ffan.net/#!/login/
   //  online: http://apistore.ffan.net/#!/login/
 
   // callbackurl 若未登录，跳转登录页面登录成功后跳回的页面
@@ -37,9 +37,9 @@ export default {
       // 若读不到cookie，则认为用户未登录
       if (callback != undefined) {
         if (callbackurl != undefined && loginurl != undefined) {
-            window.location.href = loginurl + '&callbackurl=' + callbackurl
+          window.location.href = loginurl + '&callbackurl=' + callbackurl
         } else {
-          callback(false,null)
+          callback(false, null)
         }
       }
     } else {
@@ -47,33 +47,33 @@ export default {
         let postData = {}
         let myHeaders = new Headers()
         window.fetch(passportUrl, {
-                method: 'POST',
-                headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-                mode: 'cors',
-                cache: 'default',
-                credentials: 'include',
-                body: JSON.stringify(postData)
-        }).then(function(response){
+          method: 'POST',
+          headers: { 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+          mode: 'cors',
+          cache: 'default',
+          credentials: 'include',
+          body: JSON.stringify(postData)
+        }).then(function (response) {
           if (response.status == 200) {
-            response.json().then(function(rest){
+            response.json().then(function (rest) {
               if (rest.status == 200) {
                 // 若用户已登录，则储存用户信息
                 if (callback != undefined) {
-                  callback(true,rest.attachment)
+                  callback(true, rest.attachment)
                 }
               } else {
                 if (callback != undefined) {
                   if (url != undefined && loginurl != undefined) {
-                      window.location.href = loginurl + '&callbackurl=' + callbackurl
+                    window.location.href = loginurl + '&callbackurl=' + callbackurl
                   } else {
-                    callback(false,null)
+                    callback(false, null)
                   }
                 }
               }
             })
           } else {
             if (callback != undefined) {
-              callback(false,null)
+              callback(false, null)
             }
             window.alert('网络连接失败，请检查您的网络重试')
           }
@@ -82,9 +82,9 @@ export default {
         // 若读不到mix信息，则认为用户未登录
         if (callback != undefined) {
           if (url != undefined && loginurl != undefined) {
-              window.location.href = loginurl + '&callbackurl=' + callbackurl
+            window.location.href = loginurl + '&callbackurl=' + callbackurl
           } else {
-            callback(false,null)
+            callback(false, null)
           }
         }
       }
@@ -94,7 +94,7 @@ export default {
   // quit方法需传两个参数，第一个是回调方法，第二个是接口路径，接口路径不传默认是test环境http://passport.intra.test.ffan.net/passport/session-remove.json
   // http://passport.intra.sit.ffan.net/passport/session-remove.json
   // 正式环境http://passport.ffan.net/passport/session-remove.json
-  //callback的函数我会传入一个参数，退出成功为true，退出失败为false
+  // callback的函数我会传入一个参数，退出成功为true，退出失败为false
   // 例如  quit(function(status){
   // status 退出失败时false。退出成功时 true
   //  if(status){
@@ -113,20 +113,20 @@ export default {
       passportUrl = 'http://passport.intra.test.ffan.net/passport/session-remove.json'
     }
     window.fetch(passportUrl, {
-            method: 'POST',
-            headers: { "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"},
-            mode: 'cors',
-            cache: 'default',
-            credentials: 'include',
-            body: JSON.stringify(postData)
-    }).then(function(response){
+      method: 'POST',
+      headers: { 'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+      mode: 'cors',
+      cache: 'default',
+      credentials: 'include',
+      body: JSON.stringify(postData)
+    }).then(function (response) {
       if (response.status == 200) {
-        response.json().then(function(rest){
+        response.json().then(function (rest) {
           if (rest.status == 200) {
-           if (callback != undefined) {
-             callback(true)
-           }
-           window.alert('成功退出')
+            if (callback != undefined) {
+              callback(true)
+            }
+            window.alert('成功退出')
           } else {
             if (callback != undefined) {
               callback(false)

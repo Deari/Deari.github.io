@@ -6,12 +6,12 @@ class A extends React.Component {
   state={
     active : 0
   }
-  select(){
-     alert()
+  select () {
+    alert()
   }
-  render(){
+  render () {
     return (
-      <div style={{paddingTop: "77px"}}>
+      <div style={{ paddingTop: '77px' }}>
         <h4>这是 Deomo 的第1层级的A模块</h4>
       </div>
     )

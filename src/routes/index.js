@@ -1,5 +1,5 @@
 // We only need to import the modules necessary for initial render
-import "babel-polyfill"
+import 'babel-polyfill'
 
 import CoreLayout from '../layouts/CoreLayout/CoreLayout'
 import Home from './Home'
@@ -17,7 +17,7 @@ export const createRoutes = (store) => ({
     Demo(store),
     Apps(store),
     Widgets(store),
-    Hardware(store),
+    Hardware(store)
   ]
 })
 

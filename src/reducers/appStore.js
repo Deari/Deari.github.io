@@ -2,7 +2,7 @@ import fetchUtil from 'utils/fetch'
 import { getEnvDomain } from 'utils/d'
 
 const APPSTORE = 'APPSTORE'
-const APPSTORE_UPDATE = APPSTORE+'_UPDATE_LIST'
+const APPSTORE_UPDATE = APPSTORE + '_UPDATE_LIST'
 
 const update = (data) => ({
   type: APPSTORE_UPDATE,
@@ -11,20 +11,20 @@ const update = (data) => ({
 
 export const fetchAppList = (option) => {
   return (dispatch, getState) => {
-    const state = getState().appStore;
-    const { type } = state;
-    const { tag, params } = option;
-    const url = getEnvDomain()+`/app/v1/bo/v1/web/market/tag/${tag}/${type}`;
+    const state = getState().appStore
+    const { type } = state
+    const { tag, params } = option
+    const url = getEnvDomain() + `/app/v1/bo/v1/web/market/tag/${tag}/${type}`
     const _params = {
       ...state.params,
       ...params
-    };
+    }
 
-    return fetchUtil.getJSON(url, _params).then( data => {
+    return fetchUtil.getJSON(url, _params).then(data => {
       let { list, page, meta } = data
       let total = page ? page.totalCount : meta.total
-      if(type == 'hardware') {
-        list = list.map((v)=>{
+      if (type == 'hardware') {
+        list = list.map((v) => {
           return {
             price: v.price,
             appDesc:v.productDesc,
@@ -36,8 +36,8 @@ export const fetchAppList = (option) => {
         })
       }
       dispatch(update({ list, total, type, params: _params }))
-    }).catch(e=>{
-      
+    }).catch(e => {
+
     })
   }
 }
@@ -54,7 +54,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   list: [],
   total: 0,
-  type: "",
+  type: '',
   params: {
     appName: '',
     limit: 15,
@@ -63,9 +63,9 @@ const initialState = {
   }
 }
 
-export default function rootReducer(state = initialState, action) {
- const handler = ACTION_HANDLERS[ action.type ]
- return handler ? handler(state, action) : state
+export default function rootReducer (state = initialState, action) {
+  const handler = ACTION_HANDLERS[ action.type ]
+  return handler ? handler(state, action) : state
 }
 
 export const ActionCreaters = {

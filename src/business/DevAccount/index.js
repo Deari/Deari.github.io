@@ -19,43 +19,43 @@ class DevAccount extends Component {
     }
   }
 
-  getAccount() {
-    const url = getEnvDomain()+'/bow/v1/account'
-    
+  getAccount () {
+    const url = getEnvDomain() + '/bow/v1/account'
+
     return fetchUtil.getJSON(url, {
       clientType: 1
     })
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.getAccount().then(account => {
       this.renderWithAccount(account)
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e)
       this.renderWithApplyAccount()
     })
     this.getDownloadUrl()
   }
 
-  renderWithAccount(account) {
-    this.setState({ 
-      hasAccount: true, 
+  renderWithAccount (account) {
+    this.setState({
+      hasAccount: true,
       account
     })
   }
 
-  renderWithApplyAccount() {
+  renderWithApplyAccount () {
     this.setState({ hasAccount: false })
   }
-  
+
   resetGetCode () {
     this.setState({ allowGetCode: true })
   }
 
   setTimeoutForGetCode () {
-    let interval = setInterval(()=>{
-      let time = this.state.allowGetCodeTime;
-      if(time>0) {
+    let interval = setInterval(() => {
+      let time = this.state.allowGetCodeTime
+      if (time > 0) {
         this.setState({ allowGetCodeTime: --time })
       } else {
         clearInterval(interval)
@@ -66,25 +66,25 @@ class DevAccount extends Component {
 
   getCode () {
     const phone = findDOMNode(this.refs.phone).value.trim()
-    const url = getEnvDomain()+'/bow/v1/verifycodes'
-    if(!phone) {
+    const url = getEnvDomain() + '/bow/v1/verifycodes'
+    if (!phone) {
       return alert('请填写手机号！！')
     }
-    if(!this.state.allowGetCode) {
+    if (!this.state.allowGetCode) {
       return
     }
     this.setState({
       allowGetCode: false
-    }, ()=>{
+    }, () => {
       fetchUtil.postJSON(url, {
         phone,
         clientType: 1
       }).then(data => {
         alert('验证码已发送!')
         this.setTimeoutForGetCode()
-      }).catch(e=>{
+      }).catch(e => {
         this.resetGetCode()
-        const { status, message } = e;
+        const { status, message } = e
         const _msg = message || '获取验证码失败，请重试！'
         alert(`${_msg}(错误码：${status})`)
       })
@@ -92,7 +92,7 @@ class DevAccount extends Component {
   }
 
   getDownloadUrl () {
-    const url = getXapiComDomain()+'/oc/v1/version/latest'
+    const url = getXapiComDomain() + '/oc/v1/version/latest'
     fetchUtil.getJSON(url, {
       objectId: 1,
       osType: 2,
@@ -103,60 +103,60 @@ class DevAccount extends Component {
       this.setState({
         downloadUrl: data.downloadUrl
       })
-    }).catch(e=>{
+    }).catch(e => {
       console.log(e)
     })
   }
 
-  submitHandler() {
+  submitHandler () {
     const phone = findDOMNode(this.refs.phone).value.trim()
     const code = findDOMNode(this.refs.code).value.trim()
-    const url = getEnvDomain()+'/bow/v1/testaccount'
-    if(!phone || !code ) {
+    const url = getEnvDomain() + '/bow/v1/testaccount'
+    if (!phone || !code) {
       return alert('填写手机号以及验证码')
     }
 
     fetchUtil.postJSON(url, {
-      phone, 
+      phone,
       verifycodes: code,
       clientType: 1
     }).then(account => {
       this.renderWithAccount(account)
-    }).catch(e=>{
-      const { status, message } = e;
+    }).catch(e => {
+      const { status, message } = e
       const _msg = message || '获取商家测试账号失败，请重试!'
       alert(`${status}|${_msg}`)
     })
   }
 
-  render() {
-    const { type } = this.props;
+  render () {
+    const { type } = this.props
     const { hasAccount, account, allowGetCode, allowGetCodeTime, downloadUrl } = this.state
 
     let Account = (
       <div className={s.applyForm}>
         <div className={s.formItem}>
-          <input 
+          <input
             className={`${s['phone-number']}`}
-            type="text" 
-            ref="phone"
-            maxLength="11"
+            type='text'
+            ref='phone'
+            maxLength='11'
             defaultValue=''
-            placeholder='请输入手机号' 
+            placeholder='请输入手机号'
           />
         </div>
         <div className={s.formItem}>
-          <input 
-            className={`${s['code-number']}`} 
-            type="text" 
-            ref="code"
-            maxLength="6"
-            placeholder='请输入验证码' 
+          <input
+            className={`${s['code-number']}`}
+            type='text'
+            ref='code'
+            maxLength='6'
+            placeholder='请输入验证码'
           />
-          <button 
-            onClick={::this.getCode} 
+          <button
+            onClick={::this.getCode}
             disabled={!allowGetCode}
-            className={s.getCodeBtn} 
+            className={s.getCodeBtn}
           >
             { allowGetCode ? '获取验证码' : allowGetCodeTime }
           </button>
@@ -165,9 +165,9 @@ class DevAccount extends Component {
           <button className={`${s['btn-blue']}`} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
-    );
+    )
 
-    if(!hasAccount) {
+    if (!hasAccount) {
       Account = <div className={s.account}>
         <h3 className={`${s['account-title']}`}>商家测试账号</h3>
         <div className={s.item}>
@@ -187,23 +187,23 @@ class DevAccount extends Component {
 
     return (
       <div className={`container`} >
-        <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
+        <SideBar pageLinks={getPageLinks(type)} type={type} />
         <div className={s.content}>
-          <h2 className={`${s['content-header']}`}><i className="iconfont icon-account"></i>申请测试账号</h2>
+          <h2 className={`${s['content-header']}`}><i className='iconfont icon-account' />申请测试账号</h2>
           <div className={s.main}>
-	          {hasAccount ? <p className={s.success}>
+            {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号
 	          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
-	          <div className={s.desc}>
-	          	<dl>
-	            	<dt>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
+            <div className={s.desc}>
+              <dl>
+                <dt>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
 	            但是，这里需要注意：</dt>
-	              <dd>1、每位开发者有且只有一个商家测试账号。</dd>
-	              <dd>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</dd>
-	              <dd>3、下载 <a className={s.downlinks} href={downloadUrl}>开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</dd>
-	            </dl>
-	          </div>
-	          { Account }
+                <dd>1、每位开发者有且只有一个商家测试账号。</dd>
+                <dd>2、每位开发者获得属于自己的商家测试账号后，此账号不可分享给其他开发者使用。</dd>
+                <dd>3、下载 <a className={s.downlinks} href={downloadUrl}>开发者Pad端</a>，安装成功后，使用商家测试账号登录，可在应用市场浏览属于开发者自己开发的应用、组件，并进行调试。</dd>
+              </dl>
+            </div>
+            { Account }
           </div>
         </div>
       </div>

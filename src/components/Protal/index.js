@@ -1,73 +1,72 @@
-import React, {Component, PropTypes} from 'react';
+import React, { Component, PropTypes } from 'react'
 // https://github.com/facebook/react/blob/master/src/renderers/dom/client/ReactMount.js#L390-L401
-import {unmountComponentAtNode, findDOMNode, unstable_renderSubtreeIntoContainer as renderSubtreeIntoContainer} from 'react-dom'
+import { unmountComponentAtNode, findDOMNode, unstable_renderSubtreeIntoContainer as renderSubtreeIntoContainer } from 'react-dom'
 
-function getContainer() {
-  return document.body;
+function getContainer () {
+  return document.body
 }
 
 export default class Protal extends Component {
 
   static propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.any
   };
 
-  componentDidMount() {
-    this._updateOverlay();
+  componentDidMount () {
+    this._updateOverlay()
   }
 
-  componentDidUpdate() {
-    this._updateOverlay();
+  componentDidUpdate () {
+    this._updateOverlay()
   }
 
-  componentWillUnmount() {
-    this._unrenderOverlay();
+  componentWillUnmount () {
+    this._unrenderOverlay()
   }
 
-  _getOverlay() {
+  _getOverlay () {
     return this.props.children
       ? React.Children.only(this.props.children)
-      : null;
+      : null
   }
 
-  _getOverlayTarget() {
+  _getOverlayTarget () {
     if (this._overlayTarget) {
-      return this._overlayTarget;
+      return this._overlayTarget
     }
 
-    const overlayTarget = document.createElement('div');
-    getContainer().appendChild(overlayTarget);
-    return this._overlayTarget = findDOMNode(overlayTarget);
+    const overlayTarget = document.createElement('div')
+    getContainer().appendChild(overlayTarget)
+    return this._overlayTarget = findDOMNode(overlayTarget)
   }
 
-  _updateOverlay() {
-    const overlay = this._getOverlay();
+  _updateOverlay () {
+    const overlay = this._getOverlay()
 
     if (overlay === null) {
-      this._unrenderOverlay();
+      this._unrenderOverlay()
     } else {
-      this._renderOverlay();
+      this._renderOverlay()
     }
   }
 
-  _renderOverlay() {
+  _renderOverlay () {
     renderSubtreeIntoContainer(
       this, this._getOverlay(), this._getOverlayTarget()
-    );
+    )
   }
 
-  _unrenderOverlay() {
+  _unrenderOverlay () {
     if (this._overlayTarget) {
-      unmountComponentAtNode(this._overlayTarget);
-      getContainer().removeChild(this._overlayTarget);
-      this._overlayTarget = null;
+      unmountComponentAtNode(this._overlayTarget)
+      getContainer().removeChild(this._overlayTarget)
+      this._overlayTarget = null
     }
   }
 
-  render() {
-    return null;
+  render () {
+    return null
   }
 
 }
-
 
