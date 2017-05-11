@@ -1,0 +1,19 @@
+@mixin word-break{
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+@mixin multiple-text-overflow {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  @include word-break;
+}
+
+@mixin text-overflow{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

@@ -12,7 +12,7 @@ class DevTools extends Component {
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type}></SideBar>
         <div className={s.content}>
-          <h2 className={`${s['content-header']} ${s['header-tool']}`}><i className="iconfont icon-tool"></i>开发者工具</h2>
+          <h2 className={`${s['content-header']}`}><i className="iconfont icon-tool"></i>开发者工具</h2>
           <div className={s.tool}>
           	<dl className={s.detail}>
 	            <dt className={s.img}></dt>
@@ -23,7 +23,7 @@ class DevTools extends Component {
                   </p>
 	            </dd>
 	          </dl>
-	          <div className={s.btn}>
+	          <div className={`${s['btn-blue']}`}>
 	            <Link to={`/${type}/doc`}>点击进入</Link>
 	          </div>
           </div>
@@ -35,10 +35,12 @@ class DevTools extends Component {
 	                <p className={s.text}>后续补充文案。</p>
 	            </dd>
 	          </dl>
-	          <div className={s.btn}>
+	          <div className={`${s['btn-blue']}`}>
 	            <Link to={`/${type}/list`} className={s.look}>点击进入</Link>
 	          </div>
-            <DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
+            <div className={s.key}>
+            	<DevInfo devKe={'xxxxx'} devSecret={'xxxxxx'}></DevInfo>
+            </div>
           </div>
           <div className={s.tool}>
           	<dl className={s.detail}>
@@ -48,7 +50,7 @@ class DevTools extends Component {
 	                <p className={s.text}>后续补充文案。</p>
 	            </dd>
 	          </dl>
-	          <div className={s.btn}>
+	          <div className={`${s['btn-blue']}`}>
 	            <Link to={`/${type}/account`}>点击进入</Link>
 	          </div>
           </div>

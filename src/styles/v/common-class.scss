@@ -1,0 +1,20 @@
+.content {
+    margin-top: 10px;
+    margin-left: 220px;
+    padding: 10px;
+    background: #fff;
+    color: #333;
+}
+.content-header {
+    color: #000;
+    height: 70px;
+    font-size: 16px;
+    line-height: 70px;
+    padding-left: 17px;
+    border-bottom: 1px solid $site-border-gray;
+    i {
+        color: $site-blue;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+}

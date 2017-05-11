@@ -36,10 +36,10 @@ const TabelItem = ({ data, type }) => {
     <tr>
       <td className={s.imgWrap}><img src={data.appLogo} alt="LOGO"/></td>
       <td className={s.appInfo}>
-        <span className={`${s.name} ${s.textOverflow}`}>{data.appName}</span>
-        <span className={`${s.desc}`}>{data.appDesc}</span>
-        <span className={`${s.appId} ${s.textOverflow}`}>AppID: {data.appId}</span>
+        <span className={s.name}>{data.appName}</span>
         <i className={cx('iconfont', appType[data.appKind])}></i>
+        <span className={`${s.desc}`}>{data.appDesc}</span>
+        <span className={s.appId}>AppID: {data.appId}</span>
       </td>
 
       <td className={s.price}>

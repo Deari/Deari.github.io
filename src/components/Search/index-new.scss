@@ -1,39 +1,32 @@
-@import 'src/styles/v/var.scss';
+@import 'src/styles/v/base.scss';
 .searchWrap {
   display: inline-block;
   position: relative;
   width: 200px;
+  height: 28px;
   margin-right: 6px;
+  transition: all 0.2s ease-in-out;
+  &:hover{
+      .input{
+          border-color: $site-blue;
+      }
+  }
   .input {
-    vertical-align: middle;
-    padding: 4px 24px;
     width: 100%;
     height: 28px;
-    cursor: text;
+    color: #666;
     font-size: 12px;
     line-height: 1.5;
-    color: rgba(0, 0, 0, .65);
-    background-color: #fff;
-    border: 1px solid $site-border-gray;
-    border-radius: 4px;
-    outline: none;
-    -webkit-box-shadow : inset 0 1px 1px rgba(0, 0, 0, .075);
-    box-shadow         : inset 0 1px 1px rgba(0, 0, 0, .075);
-    -webkit-transition : border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition      : border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition         : border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    &:focus {
-          border-color       : #2692fb;
-          outline            : 0;
-          -webkit-box-shadow : inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(38, 146, 251, .6);
-          box-shadow         : inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(38, 146, 251, .6);
-    }
+    padding: 4px 24px;
+    @include input;
   }
   i {
-    position: absolute;
+    color: rgba(0,0,0,.65);
     top: 50%;
+    position: absolute;
     transform: translateY(-50%);
     cursor: pointer;
+    margin-top: 2px;
     &:first-child {
       left: 7px;
     }

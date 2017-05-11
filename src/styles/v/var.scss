@@ -2,6 +2,7 @@ $site-blue: #2692fb;
 $site-border-gray: #d7d7d7;
 $site-black: #333;
 $site-content-width: 1100px;
+$table-th-background:#eee;
 
 .text-overflow {
   text-overflow: ellipsis;
@@ -9,30 +10,3 @@ $site-content-width: 1100px;
   white-space: nowrap;
 }
 
-@mixin word-break{
-    word-break: break-all;
-    word-wrap: break-word;
-}
-
-@mixin multiple-text-overflow {
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  @include word-break;
-}
-
-.content{
-    margin-top: 10px;
-    margin-left: 220px;
-    padding: 10px;
-    background: #fff;
-    color: #333;
-}
-.content-header{
-  padding: 20px;
-  font-size: 16px;
-  padding-left: 17px;
-  color: #000;
-}

@@ -1,28 +1,24 @@
-@import 'src/styles/v/var.scss';
-
+@import 'src/styles/v/base.scss';
 .statusBar {
-  border-bottom: 1px solid $site-border-gray;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.navFilters {
-  line-height: 66px;
-  & > li {
-    color: #000;
-    display: inline-block;
-    padding: 0 15px;
-    margin: 0 10px;
-    cursor: pointer;
-    &:hover {
-      border-bottom: 2px solid $site-blue;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $site-border-gray;
+    .navFilters {
+        line-height: 66px;
+        & > li {
+            color: #000;
+            padding: 0 15px;
+            margin: 0 10px;
+            cursor: pointer;
+            display: inline-block;
+            &:hover {
+                border-bottom: 2px solid $site-blue;
+            }
+            &.active {
+                border-bottom: 2px solid $site-blue;
+            }
+        }
     }
-  }
-  .active {
-    border-bottom: 2px solid $site-blue;
-  }
-}
-.devInfo{
-    padding: 10px;
 }
