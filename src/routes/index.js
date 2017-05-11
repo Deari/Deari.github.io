@@ -16,7 +16,6 @@ export const createRoutes = (store) => ({
 
     if(nextState.location.pathname == '/login') {
       callback()
-      return;
     }
     const cookieArr = document.cookie.split(";")
     const cookieObj = {
@@ -26,9 +25,8 @@ export const createRoutes = (store) => ({
     cookieArr.map((item, index) => {
       if(item) {
         const arr = item.split("=")
-        const name = arr[0]
-        const value = arr[1]
-        
+        const name = arr[0] && arr[0].trim()
+        const value = arr[1] && arr[1].trim()
         if (name == "WG-PPC-test1" && value) {
           cookieObj.mix = true
         }
@@ -38,6 +36,7 @@ export const createRoutes = (store) => ({
       }
      
     })
+
     if (cookieObj.mix && cookieObj.uid) {
       callback()
     } else {
