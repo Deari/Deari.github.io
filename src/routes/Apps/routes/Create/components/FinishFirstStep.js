@@ -7,16 +7,18 @@ import './finishfirststep.scss'
 
 const FinishFirstStep = props => {
   const { initialValues } = props
-  const { developerKey, developerSecret, appLogo } = initialValues
+  const { developerKey, developerSecret, appLogo,appId, appName } = initialValues
   return (
     <div className="finish-first-step">
       <div className="finish-success">
         <p><i className="iconfont icon-finish"></i><span>成功创建应用</span></p>
       </div>
       <div className="finish-apps-box">
-        <h3 className="finish-apps">DeveloperKey 和 DeveloperSecret</h3>
+        {/*<h3 className="finish-apps">请查收您的 DeveloperKey 和 DeveloperSecret</h3>*/}
         <dl className="finish-apps-img">
           <dt><img src={appLogo} /></dt>
+          <dd>{appName}</dd>
+          <dd>AppID: {appId}</dd>
           <dd>DeveloperKey: {developerKey}</dd>
           <dd>DeveloperSecret: {developerSecret}</dd>
         </dl>

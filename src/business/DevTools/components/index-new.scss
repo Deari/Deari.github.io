@@ -58,7 +58,14 @@
         }
     }
     .key {
-        width: 642px;
-        margin: -6px 0 0 72px;
+      height: 0;
+      width: 642px;
+      margin-top: 20px;
+      margin-left: 70px;
+      transition: all .5s ease;
+      overflow: hidden;
+      &.active {
+        height: 175px;
+      }
     }
 }
