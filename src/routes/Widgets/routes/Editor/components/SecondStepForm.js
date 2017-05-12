@@ -197,7 +197,7 @@ class SecondStepForm extends React.Component {
         <div className='form-btn'>
           <div>
              <button type="submit" className="next" disabled={submitting}>保存</button>
-             <button onClick={handleSubmit((data)=>{ props.onSubmit(data, 1) })} className="next" disabled={submitting}>提交审核</button>
+             <button onClick={handleSubmit((data)=>{ this.props.onSubmit(data, 1) })} className="next" disabled={submitting}>提交审核</button>
           </div>
         </div>
       </form>
