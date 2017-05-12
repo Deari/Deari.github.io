@@ -11,11 +11,13 @@ const Header = (props) => {
   const re = props.location.pathname.match(/^\/(apps|widgets)(\/tag\/\d+)?$/)
   let showSearch = false;
   let placeholder = '搜索'
-  
+  const searchValue = '';
   if(re) {
     placeholder +=PageTypes[re[1]]
     showSearch = true
   }
+
+  console.log(111)
 
   return (
     <div className='header-wrapper'>
@@ -56,7 +58,7 @@ const Header = (props) => {
             </li>
           </ul>
           {showSearch ? <div className={s.search}>
-            <Search style={{ 'width': '100%' }} placeholder={placeholder}
+            <Search style={{ 'width': '100%' }} placeholder={placeholder} defaultValue={searchValue}
               onSearch={(v) => {
                 props.fetchAppList({
                   tag: 0,

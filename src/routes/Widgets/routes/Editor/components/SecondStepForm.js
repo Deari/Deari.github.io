@@ -119,7 +119,7 @@ class SecondStepForm extends React.Component {
           </div>
         </div> */}
 
-        <div className='header-title'>
+        <div className='edit-title'>
           <a href='1' className='step-tittle'>基本信息</a>
           <a href='2' className='step-tittle active'>版本信息</a>
         </div>
