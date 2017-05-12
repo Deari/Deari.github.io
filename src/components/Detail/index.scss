@@ -1,5 +1,4 @@
 @import "~layouts/CoreLayout/CoreLayout";
-@import 'src/styles/v/base.scss';
 /*Apps detail*/
 .detail-container{
   padding:28px 40px 0;
@@ -213,29 +212,36 @@
   }
 }
 .tab-nav{
-  height: 70px;
+  position:relative;
+  padding:13px 40px 0;
   border-bottom:1px solid #ccc;
-  .navFilters{
-    &>li{
-        color: #000;
-        height: 69px;
+  .tab-list{
+    position: relative;
+    top:1px;
+    overflow:hidden;
+    li{
+        float:left;
+        height:52px;
+        text-align:center;
         font-size: 16px;
-        margin: 0 10px;
         cursor:pointer;
-        text-align: center;
-        padding: 18px 15px 0;
-        display: inline-block;
-        &:hover,
-        &.active{
-            border-bottom:2px solid $blue-color;
-        }
-        .text{
-            display: block;
-            &:first-child{
-                margin-bottom: 2px;
-            }
+        a{
+          padding:7px 20px;
+          display:inline-block;
+          color: #000;
         }
     }
+    .active{
+          border-bottom:2px solid $blue-color;
+          a{
+            color:#666;
+          }
+        }
+  }
+  .btn-primary{
+    position:absolute;
+    top:20px;
+    right:15px;
   }
 }
 .radio-from{

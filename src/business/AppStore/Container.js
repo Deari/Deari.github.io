@@ -8,6 +8,7 @@ import OpenList from 'components/OpenList'
 import List from './List'
 import Pagination from 'components/Pagination'
 import { scrollToTop } from 'utils/scroll'
+import './Container-new.scss'
 
 import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
 
@@ -90,7 +91,7 @@ class Container extends React.Component {
     return (
       <div className="container">
         <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
-        <div className="sub-container">
+        <div className="main-content">
           <div className={`sub-container-banner-${type}`}></div>
           <h2 className="open-content-nav">
             <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
