@@ -36,7 +36,7 @@ class FirstStepForm extends Component {
     const hwString = w + '*' + h
     return (
       <form onSubmit={handleSubmit}>
-        <div className='header-title'>
+        <div className='edit-title'>
           <a href='1' className='step-tittle active'>基本信息</a>
           <a href='2' className='step-tittle'>版本信息</a>
         </div>

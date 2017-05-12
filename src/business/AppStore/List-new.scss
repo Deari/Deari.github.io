@@ -13,9 +13,6 @@
         &:hover {
             box-shadow: 1px 1px 8px rgba(187, 187, 187, 1);
         }
-//      &>a:hover {
-//          color: #333;
-//      }
         .title {
             color: #333;
             font-size: 18px;
@@ -40,8 +37,8 @@
         }
         .img {
             display: block;
-            width: 96px;
-            height: 96px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto;
             border-radius: 6px;
             overflow: hidden;
@@ -51,29 +48,27 @@
             color: #666;
             text-align: left;
             font-size: 14px;
-            margin: 10px;
+            margin: 20px 13px 8px;
             height: 60px;
             line-height: 20px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
+            @include multiple-text-overflow;
         }
         .price {
-            border-top: 1px solid #dedede;
-            padding: 15px;
+            height: 40px;
+            line-height: 40px;
+            border-top: 1px solid #dde1e7;
+            margin: 0 6px;
             color: $site-blue;
         }
         .data {
             display: flex;
-            &>span {
+            .number{
                 flex: 1;
-                font-size: 12px;
-                height: 38px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                font-size: 12px;
+                height: 36px;
                 background: #dde1e7;
                 border-right: 1px solid #eee;
                 border-color: #fff;

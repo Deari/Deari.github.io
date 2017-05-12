@@ -9,7 +9,7 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
   input[type="radio"]:checked + span i.icon-radio{display: inline-block; color: #2692fb;}
   input[type="radio"]:checked + span i.icon-radio1{display: none;}
 }
-.header-title {
+.edit-title {
   background-color: #fff;
   padding: 0 15px;
   border-bottom: 1px solid #dedede;
@@ -647,7 +647,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     }
 }
 .update-msg{
-  padding: 0 10px 40px 10px;
+  padding: 10px 10px 40px;
   color:#fff;
   font-size: 14px;
   background: #fff;

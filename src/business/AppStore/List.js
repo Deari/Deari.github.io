@@ -8,13 +8,13 @@ class ListPanel extends React.Component {
     const { type } = this.props
     if (type == 'hardware') {
       return <div className={s.data}>
-        <span><i className='iconfont icon-sold' />已售251</span>
-        <span><i className='iconfont icon-hands' />好评率100%</span>
+        <span className={s.number}><i className='iconfont icon-sold' />已售251</span>
+        <span className={s.number}><i className='iconfont icon-hands' />好评率100%</span>
       </div>
     }
     return <div className={s.data}>
-      <span><i className='iconfont icon-team' /> {downloadCount}</span>
-      <span><i className='iconfont icon-star' /> {likeCount}</span>
+      <span className={s.number}><i className='iconfont icon-team' /> {downloadCount}</span>
+      <span className={s.number}><i className='iconfont icon-star' /> {likeCount}</span>
     </div>
   }
 
