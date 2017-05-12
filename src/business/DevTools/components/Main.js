@@ -35,7 +35,7 @@ class DevTools extends Component {
               </dd>
             </dl>
             <div className={s['tool-btn']}>
-              <Link to={`/${type}/doc`} className={s['btn-blue']}>点击查看</Link>
+              <Link to={`/${type}/doc`} className={s['btn-primary']}>点击查看</Link>
             </div>
           </div>
           <div className={s.tool}>
@@ -47,7 +47,7 @@ class DevTools extends Component {
               </dd>
             </dl>
             <div className={s['tool-btn']}>
-              <span onClick={::this.handleClick} className={s['btn-blue']}>点击{showDevInfo ? '收起':'查看'}</span>
+              <span onClick={::this.handleClick} className={s['btn-primary']}>点击{showDevInfo ? '收起':'查看'}</span>
             </div>
             <div className={cx(s.key, { [s.active]: showDevInfo })}>
               <DevInfo />
@@ -62,7 +62,7 @@ class DevTools extends Component {
               </dd>
             </dl>
             <div className={s['tool-btn']}>
-              <Link to={`/${type}/account`} className={s['btn-blue']}>点击查看</Link>
+              <Link to={`/${type}/account`} className={s['btn-primary']}>点击查看</Link>
             </div>
           </div>
         </div>

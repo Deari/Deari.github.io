@@ -28,7 +28,7 @@ export default class Doc extends React.Component {
     return (
       <div className='container'>
         <SideBar pageLinks={getPageLinks(type)} type={type} content={Doc} />
-        <div className={`${s['develop-file']}`}>
+        <div className={s['develop-file']}>
           <Markdown html={markdownData.html} />
         </div>
       </div>

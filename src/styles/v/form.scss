@@ -1,23 +1,8 @@
-.table {
-  width: 100%;
-  max-width: 100%;
-  font-size: 16px;
-  border-collapse: collapse;
-  border: 1px solid $site-border-gray;
-  th {
-    height: 50px;
-    font-weight: normal;
-    background: $table-th-background;
-    border: 1px solid $site-border-gray;
-  }
-  td {
-    padding: 5px;
-    border: 1px solid $site-border-gray;
-  }
-}
-
-.btn {
+.btn-default {
   cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
   user-select: none;
   text-align: center;
   border-radius: 4px;
@@ -30,12 +15,15 @@
   }
 }
 
-.btn-blue {
+.btn-primary {
   color: #fff;
   cursor: pointer;
   user-select: none;
   text-align: center;
   border-radius: 4px;
+  display: inline-block;
+  white-space: nowrap;
+  vertical-align: middle;
   background: $site-blue;
   border: 1px solid $site-blue;
   transition: all 0.2s ease-in-out;

@@ -32,7 +32,7 @@ const TabelItem = ({ data, type }) => {
         <span className={s.yes}>前天：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
       <td className={s.actions}>
-        <Link to={`/${type}/analytics/${data.statisticsId}`} className={s.btn}>查看</Link>
+        <Link to={`/${type}/analytics/${data.statisticsId}`} className={s['btn-default']}>查看</Link>
       </td>
     </tr>
   )
@@ -53,8 +53,8 @@ class Table extends Component {
     const { data, type, typeText } = this.props
     return (
       <div className={s.root}>
-        <h2 className={`${s['content-header']}`}><i className='iconfont icon-sidebar3' />{typeText}数据统计</h2>
-        <table className={s.table} cellSpacing='0' cellPadding='0'>
+        <h2 className={s['content-header']}><i className='iconfont icon-sidebar3' />{typeText}数据统计</h2>
+        <table className={s['site-table']} cellSpacing='0' cellPadding='0'>
           <thead>
             <tr>
               <th>Logo</th>

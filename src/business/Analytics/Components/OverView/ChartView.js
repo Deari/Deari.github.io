@@ -51,7 +51,7 @@ class ChartView extends React.Component {
 
         <div className={s.tableWrap}>
           <div className={s.pageTitle}>{startDate} 至 {endDate}</div>
-          <table className={s.table}>
+          <table className={s['site-table']}>
             <thead>
               <tr>
                 <th>时间</th>

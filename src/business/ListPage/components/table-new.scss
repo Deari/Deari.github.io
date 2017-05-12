@@ -1,7 +1,7 @@
 @import 'src/styles/v/base.scss';
 .root {
     padding: 10px;
-    .table {
+    .site-table {
         color: #666;
         td {
             text-align: center;
@@ -68,7 +68,7 @@
                 }
             }
             &.actions {
-                .btn {
+                .btn-default {
                     color: #666;
                     width: 85px;
                     height: 30px;

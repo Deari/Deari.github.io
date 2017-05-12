@@ -5,7 +5,7 @@ const TableView = () => {
   return (
     < div className={s.tableWrap} >
       <div className={s.pageTitle}>2017-04-06 至 2017-03-07 </div>
-      <table className={s.table}>
+      <table className={s['site-table']}>
         <thead>
           <tr>
             <th>时间</th>

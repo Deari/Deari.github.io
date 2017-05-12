@@ -1,0 +1,18 @@
+@import './v/var.scss';
+.site-table {
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  border-collapse: collapse;
+  border: 1px solid $site-border-gray;
+  th {
+    height: 50px;
+    font-weight: normal;
+    background: $table-th-background;
+    border: 1px solid $site-border-gray;
+  }
+  td {
+    padding: 5px;
+    border: 1px solid $site-border-gray;
+  }
+}

@@ -37,12 +37,12 @@ const TabelItem = ({ data, type }) => {
       <td className={s.appInfo}>
         <span className={s.name}>{data.appName}</span>
         <i className={cx('iconfont', appType[data.appKind])} />
-        <span className={`${s.desc}`}>{data.appDesc}</span>
+        <span className={s.desc}>{data.appDesc}</span>
         <span className={s.appId}>AppID: {data.appId}</span>
       </td>
 
       <td className={s.price}>
-        <span className={`${s.name} ${s.textOverflow}`}>{data.price || '免费'}</span>
+        <span className={s.name}>{data.price || '免费'}</span>
       </td>
       <td className={s.status}>
         {appStatus.map((v, index) => <div key={index} className={s.vStatus}>
@@ -52,13 +52,13 @@ const TabelItem = ({ data, type }) => {
       </td>
 
       <td className={s.actions}>
-        <Link to={`/${type}/detail/${data.appId}`} className={s.btn}>查看详情</Link>
+        <Link to={`/${type}/detail/${data.appId}`} className={s['btn-default']}>查看详情</Link>
 
         { showEditBtn(appStatus[0] && appStatus[0].status) ?
-          <Link to={`/${type}/edit/${data.appId}/1`} className={s.btn}>编辑基本信息</Link> : null }
+          <Link to={`/${type}/edit/${data.appId}/1`} className={s['btn-default']}>编辑基本信息</Link> : null }
 
         { showEditBtn(appStatus[0] && appStatus[0].status) ? 
-          <Link to={`/${type}/edit/${data.appId}/2`} className={s.btn}>发布新版本</Link> : null }
+          <Link to={`/${type}/edit/${data.appId}/2`} className={s['btn-default']}>发布新版本</Link> : null }
       </td>
     </tr>
   )
