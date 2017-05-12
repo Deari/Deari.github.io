@@ -91,8 +91,8 @@ class Container extends React.Component {
     return (
       <div className="container">
         <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
-        <div className="sub-container">
-          <div className={`sub-container-banner banner-${type}`}></div>
+        <div className={s['sub-container']}>
+          <div className={`sub-container-banner-${type}`}></div>
           <div className={s.contentWrap}>
           	<h2 className={s.title}>
 	            <i className="iconfont icon-hot-control"></i><span className={s.name}>热门{ PageTypes[type] }</span>

@@ -30,24 +30,3 @@
         border-bottom: 2px solid $site-blue;
     }
 }
-.sub-container{
-  color: #333;
-  margin-top: 10px;
-  margin-left: 226px;
-  &-banner{
-      width: 100%;
-      height: 276px;
-  }
-}
-.banner-apps{
-  background: url(../../routes/Home/assets/sub-container-banner1.png) no-repeat;
-  background-size: 100%;
-}
-.banner-widgets{
-  background: url(../../routes/Home/assets/widgetsBanner.png) no-repeat;
-  background-size: 100%;
-}
-.banner-hardware{
-  background: url(../../routes/Home/assets/banner3.png) no-repeat;
-  background-size: 100%;
-}
