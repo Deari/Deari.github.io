@@ -95,7 +95,7 @@ const SecondStepForm = props => {
   }
   return (
     <form onSubmit={handleSubmit}>
-      <div className='header-title'>
+      <div className='edit-header'>
         <a href='1' className='step-tittle '>基本信息</a>
         <a href='2' className='step-tittle active'>版本信息</a>
       </div>
