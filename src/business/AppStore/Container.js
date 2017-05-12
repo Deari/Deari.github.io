@@ -8,7 +8,7 @@ import OpenList from 'components/OpenList'
 import List from './List'
 import Pagination from 'components/Pagination'
 import { scrollToTop } from 'utils/scroll'
-import './Container-new.scss'
+import s from './Container-new.scss'
 
 import { ActionCreaters as Actions, fetchAppList } from 'reducers/appStore'
 
@@ -91,12 +91,14 @@ class Container extends React.Component {
     return (
       <div className="container">
         <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
-        <div className="main-content">
-          <div className={`sub-container-banner-${type}`}></div>
-          <h2 className="open-content-nav">
-            <i className="iconfont icon-hot-control"></i> 热门{ PageTypes[type] }
-          </h2>
-          <List data={list} type={type} ></List>
+        <div className="mainContent">
+          <div className={`mainContent-banner banner-${type}`}></div>
+          <div className={s.contentWrap}>
+          	<h2 className={s.title}>
+	            <i className="iconfont icon-hot-control"></i><span className={s.name}>热门{ PageTypes[type] }</span>
+	          </h2>
+	          <List data={list} type={type} ></List>
+          </div>
           <Pagination onChange={::this.onSelectPage} pageSize={params.limit} total={total}/>
         </div>
       </div>

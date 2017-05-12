@@ -1,91 +1,90 @@
 @import 'src/styles/v/base.scss';
-.appItem {
-  display: inline-block;
-  width: 280px;
-  text-align: center;
-  border-radius: 3px;
-  overflow: hidden;
-  margin: 0 15px 15px 0;
-  background: #fff;
-  &:hover {
-    box-shadow: 1px 1px 8px rgba(187, 187, 187, 1);
-  }
-  &:nth-child(3n) {
-    margin-right: 0;
-  }
-  &>a:hover {
-    color: #333;
-  }
-  .title {
-    margin-top: 15px;
-    font-size: 18px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-  .small {
-    display: block;
-    margin: 5px;
-    color: #666;
-    font-size: 12px;
-    .uImg{
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 5px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: url(src/routes/Home/assets/data-logo.png) no-repeat;
-      background-size: 100% 100%;
-    }
-  }
-  .img {
-    display: block;
-    width: 96px;
-    height: 96px;
-    margin: 0 auto;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #eee;
-  }
-  
-  .desc {
-    color: #666;
-    text-align: left;
-    font-size: 14px;
-    margin: 10px;
-    height: 60px;
-    line-height: 20px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-  .price {
-    border-top: 1px solid #dedede;
-    padding: 15px;
-    color: $site-blue;
-  }
-  .data {
+.appsList {
     display: flex;
-    &>span {
-      flex: 1;
-      font-size: 12px;
-      height: 38px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #dde1e7;
-      border-right: 1px solid #eee;
-      border-color: #fff;
-      color: #999;
-      &:last-child {
-        border-right: 0;
-      }
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .appItem {
+        width: 280px;
+        overflow: hidden;
+        background: #fff;
+        text-align: center;
+        border-radius: 6px;
+        margin-bottom: 13px;
+        &:hover {
+            box-shadow: 1px 1px 8px rgba(187, 187, 187, 1);
+        }
+//      &>a:hover {
+//          color: #333;
+//      }
+        .title {
+            color: #333;
+            font-size: 18px;
+            margin-top: 15px;
+            @include text-overflow;
+        }
+        .small {
+            display: block;
+            margin: 8px 0 18px;
+            color: #666;
+            font-size: 12px;
+            .uImg {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: url("src/routes/Home/assets/data-logo.png") no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+        .img {
+            display: block;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #eee;
+        }
+        .desc {
+            color: #666;
+            text-align: left;
+            font-size: 14px;
+            margin: 10px;
+            height: 60px;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .price {
+            border-top: 1px solid #dedede;
+            padding: 15px;
+            color: $site-blue;
+        }
+        .data {
+            display: flex;
+            &>span {
+                flex: 1;
+                font-size: 12px;
+                height: 38px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #dde1e7;
+                border-right: 1px solid #eee;
+                border-color: #fff;
+                color: #999;
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+            i {
+                margin-right: 3px;
+            }
+        }
     }
-    i {
-      margin-right: 3px;
-    }
-  }
 }

@@ -37,7 +37,7 @@ class ListPanel extends React.Component {
     return (
       <li className={s.appItem}>
         <Link to={linkTo}>
-          <h3 className={s.title}>{appName}</h3>
+          <h4 className={s.title}>{appName}</h4>
           <small className={s.small}>
             <i className={s.uImg} />{developerName}
           </small>
