@@ -3,8 +3,13 @@ import { findDOMNode } from 'react-dom'
 import s from './index.scss'
 
 class Search extends Component {
-  state = {
-    clearBtn: false
+  constructor(props) {
+    super(props);
+    console.log("constructor")
+    this.state = {
+      clearBtn: false,
+      value: props.defaultValue
+    }
   }
 
   static defaultProps = {
@@ -13,9 +18,9 @@ class Search extends Component {
 
   changeHandler (e) {
     if (e.target && e.target.value && e.target.value.trim()) {
-      this.setState({ clearBtn: true })
+      this.setState({ clearBtn: true, value: e.target.value })
     } else {
-      this.setState({ clearBtn: false })
+      this.setState({ clearBtn: false, value: '' })
     }
   }
 
@@ -26,12 +31,18 @@ class Search extends Component {
   }
 
   clear () {
-    this.refs._input.value = ''
+    this.setState({ value: '', clearBtn: false })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps , this.state)
+    if(nextProps.defaultValue !== this.state.value) {
+      this.setState({ value: nextProps.defaultValue, clearBtn: false })
+    }
   }
 
   searchHandler () {
-    const val = this.refs._input.value.trim()
-    this.props.onSearch(val)
+    this.props.onSearch(this.state.value)
     this.clear();
   }
 
@@ -46,7 +57,7 @@ class Search extends Component {
         <input
           type='text'
           placeholder={placeholder}
-          ref='_input'
+          value={this.state.value}
           onKeyUp={::this.onKeyUp}
           onChange={::this.changeHandler}
         />
