@@ -616,14 +616,22 @@ export const getAppInfo = (appId) => {
           wLogoList.push(widgets[j].appLogo)
           wNameList.push(widgets[j].appName)
         }
-        let lastVersion = codeVersion
-        if (res.data && res.data.versions[0].reviewStatus == 0) {
-          if (!res.data.versions[1]) {
-            lastVersion = ''
-          } else {
-            lastVersion = res.data.versions[1].codeVersion
-          }
+        // let lastVersion = codeVersion
+        // if (res.data && res.data.versions[0].reviewStatus == 0) {
+        //   if (!res.data.versions[1]) {
+        //     lastVersion = ''
+        //   } else {
+        //     lastVersion = res.data.versions[1].codeVersion
+        //   }
+        // }
+               
+        const _versions = res.data.versions || [];
+        const _version = _versions.find((v)=>v.publishStatus===1)
+        let lastVersion = '';
+        if(_version) {
+          lastVersion = _version.codeVersion
         }
+
         const codeDescCount = codeDesc ? codeDesc.length : 0
         let setting = codeSetting ? codeSetting : res.data.versions[1] && res.data.versions[1].codeSetting
 
