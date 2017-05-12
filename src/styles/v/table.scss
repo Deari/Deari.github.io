@@ -4,15 +4,13 @@
   max-width: 100%;
   font-size: 16px;
   border-collapse: collapse;
-  border: 1px solid $site-border-gray;
+  border: 1px solid $table-gray;
   th {
     height: 50px;
     font-weight: normal;
-    background: $table-th-background;
-    border: 1px solid $site-border-gray;
+    background: $table-gray;
   }
   td {
     padding: 5px;
-    border: 1px solid $site-border-gray;
   }
 }

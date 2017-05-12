@@ -1,36 +1,34 @@
 @import 'src/styles/v/base.scss';
-.develop-key {
-    padding: 10px;
-    .devInfo {
-        width: 100%;
-        border: 1px solid $site-border-gray;
-        .title {
-            color: #666;
-            height: 50px;
-            line-height: 50px;
-            font-size: 16px;
-            padding-left: 22px;
-            background: $table-th-background;
+.devInfo {
+    width: 100%;
+    margin: 15px 0;
+    border: 1px solid $table-gray;
+    .title {
+        color: #666;
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        padding-left: 22px;
+        background: $table-gray;
+    }
+    .main {
+        margin: 0 40px;
+        font-size: 14px;
+        display: flex;
+        flex-wrap: nowrap;
+        border-bottom: 1px solid $table-gray;
+        &:last-of-type {
+            border-bottom: 0;
         }
-        .main {
-            margin: 0 40px;
-            font-size: 14px;
-            display: flex;
-            flex-wrap: nowrap;
-            border-bottom: 1px solid $site-border-gray;
-            &:last-of-type{
-                border-bottom: 0;
-            }
-            .name {
-                width: 165px;
-                line-height: 50px;
-            }
-            .text {
-                flex: 1;
-                padding: 12px 0;
-                line-height: 24px;
-                @include word-break;
-            }
+        .name {
+            width: 165px;
+            line-height: 50px;
+        }
+        .text {
+            flex: 1;
+            padding: 12px 0;
+            line-height: 24px;
+            @include word-break;
         }
     }
 }

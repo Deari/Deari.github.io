@@ -23,7 +23,6 @@ class AppInfo extends React.Component {
   render () {
     const { developerKey, developerSecret } = this.state
     return (
-      <div className={s['develop-key']}>
         <div className={s.devInfo}>
           <h2 className={s.title}>开发密钥</h2>
           <div className={s.main}>
@@ -35,8 +34,6 @@ class AppInfo extends React.Component {
             <span className={s.text}>{developerSecret}</span>
           </div>
         </div>
-      </div>
-
     )
   }
 }

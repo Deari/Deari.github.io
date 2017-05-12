@@ -7,8 +7,13 @@
     border-bottom: 1px solid $site-border-gray;
     .navFilters {
         line-height: 66px;
-        & > li {
+        .tabs{
             padding: 0 15px;
+            color: #666;
+            &:hover,
+            &.active{
+                color: #000;
+            }
         }
     }
 }
