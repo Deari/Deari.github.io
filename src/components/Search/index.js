@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import s from './index-new.scss'
+import s from './index.scss'
 
 class Search extends Component {
   state = {
@@ -14,6 +14,8 @@ class Search extends Component {
   changeHandler (e) {
     if (e.target && e.target.value && e.target.value.trim()) {
       this.setState({ clearBtn: true })
+    } else {
+      this.setState({ clearBtn: false })
     }
   }
 
@@ -30,6 +32,7 @@ class Search extends Component {
   searchHandler () {
     const val = this.refs._input.value.trim()
     this.props.onSearch(val)
+    this.clear();
   }
 
   render () {
@@ -37,11 +40,10 @@ class Search extends Component {
     const { clearBtn } = this.state
 
     return (
-      <span style={style} className={s.searchWrap}>
+      <span style={style} className="bo-search">
         <i className='iconfont icon-search'
           onClick={::this.searchHandler} />
         <input
-          className={s.input}
           type='text'
           placeholder={placeholder}
           ref='_input'
