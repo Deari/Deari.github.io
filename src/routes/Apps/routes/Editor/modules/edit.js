@@ -132,17 +132,27 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
-        const { categoryId, platform, appKind, appkey, fileName, fileLink, moduleName, setting } = res.data
+        const { categoryId, platform, appKind, appkey, moduleName, setting } = res.data
         const { appDesc, appLogo, appName, tags = '' } = res.data.changes
-        const { codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeVersion = '', codeId = -1 } = res.data && res.data.versions[0]
-        let lastVersion = codeVersion
-        if (res.data && res.data.versions[0].reviewStatus == 0) {
-          if (!res.data.versions[1]) {
-            lastVersion = ''
-          } else {
-            lastVersion = res.data.versions[1].codeVersion
-          }
+
+        const { codeDesc = '', codeVersion = '', fileName, fileLink } = res.data && res.data.versions[0]
+        // let lastVersion = codeVersion
+        // if (res.data && res.data.versions[0].reviewStatus == 0) {
+        //   if (!res.data.versions[1]) {
+        //     lastVersion = ''
+        //   } else {
+        //     lastVersion = res.data.versions[1].codeVersion
+        //   }
+        // }
+
+        const _versions = res.data.versions || [];
+        const _version = _versions.find((v)=>v.publishStatus===1)
+        let lastVersion = '';
+        if(_version) {
+          lastVersion = _version.codeVersion
         }
+
+        
         const codeDescCount = codeDesc && codeDesc.length
         const tagId = tags.map(v => v.tagId)
         // const tagId = tagList.split(",").map(Number)
