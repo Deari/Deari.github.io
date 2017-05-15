@@ -54,10 +54,7 @@ $default-height : 100px;
 }
 
 .core-layout__viewport {
-  top: 77px;
-  left: 0;
-  right: 0;
-  position: absolute;
+  margin-top: 87px;
   // 全局样式，慎重！
   //padding-top: 77px;
 }

@@ -87,11 +87,12 @@ class Container extends React.Component {
   render () {
     const { list, total, type, params={ limit: 10 } } = this.props;
     const { tags } = this.state;
-    const pageLinks = [{
+    const pageLinks = (type === 'hardware' ?  [{
       link: <a href={`${HardwareLinks.list}`}><i className={`iconfont icon-application`} />我的硬件</a>
     },{
       link: <a href={`${HardwareLinks.doc}`}><i className={`iconfont icon-file`} />开发者文档</a>
-    }]
+    }] : getPageLinks(type));
+    
     return (
       <div className="container">
         <SideBar pageLinks={pageLinks} tagLinks={tags} type={type}/>

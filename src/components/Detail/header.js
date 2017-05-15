@@ -62,7 +62,7 @@ export const getCodeStatus = (data, version) => {
     versionInfo.codeStatus = 5
     versionInfo.codeStatusName = '已发布'
     return versionInfo
-  } else if (version.reviewStatus === 0) {
+  } else if (version.reviewStatus === 0 || version.reviewStatus===4) {
     versionInfo.codeStatus = 1
     versionInfo.codeStatusName = '准备提交'
     return versionInfo
