@@ -9,8 +9,8 @@ const Main = () => {
   return <div>
     <h1>skdhksds</h1>
     <ul>
-      <li>Basic</li>
-      <li>Publish</li>
+      <li><Link to='Basic'>Basic</Link></li>
+      <li><Link to='Publish'>Publish</Link></li>
     </ul>
     <div>
       <Basic></Basic>
@@ -21,5 +21,17 @@ const Main = () => {
 
 export default {
   path: 'h5',
-  component: Basic
+  indexRoute: {
+    component: Basic
+  },
+  childRoutes: [
+    {
+      path: 'basic',
+      component: Basic
+    },
+    {
+      path: 'version',
+      component: Publish
+    }
+  ]
 }
