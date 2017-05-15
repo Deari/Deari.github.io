@@ -54,13 +54,13 @@ $default-height : 100px;
 }
 
 .core-layout__viewport {
-  margin-top: 87px;
+  margin-top: 77px;
   // 全局样式，慎重！
   //padding-top: 77px;
 }
 
 @mixin sub-container { //内容区域盒子
   @include float-right;
-  margin-top : 16px;
+  // margin-top : 16px;
   width      : $sub-container-width;
 }
