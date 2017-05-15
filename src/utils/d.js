@@ -1,31 +1,31 @@
-const domainReg = new RegExp('open\\.((test|sit)\\.)?ffan\\.net')
-const domainXapiReg = new RegExp('xapi\\.intra\\.((test|sit)\\.)?ffan\\.net')
-/**
- * 判断当前域名环境
- *
- *
- * getEnvDomain("http://open.test.ffan.net")
- * "test"
- * getEnvDomain("http://open.ffan.net")
- * "pub"
- * getEnvDomain("http://10")
- * "local"
- *
- * @param url
- * @returns {*}
- */
-export function getDomainEnv (url, isApi) {
-  const host = url || location.host
-  const domainTestResult = host.match(isApi ? domainXapiReg : domainReg)
-  if (!domainTestResult) {
-    return 'local'
-  }
+const commonReg = new RegExp('\\.((test|sit|uat)\\.)?(ffan\\.(net|com))$')
 
-  if (domainTestResult[ 2 ]) {
-    return domainTestResult[ 2 ]
-  } else {
-    return 'pub'
+export function getDomainEnv (url = location.host, reg = commonReg) {
+  const host = url || location.host
+  const domainTestResult = host.match(reg)
+  return domainTestResult ? (domainTestResult[2] ? domainTestResult[2] : 'pub') : 'local'
+}
+
+function getReplaced (match) {
+  switch (match) {
+    case 'local':
+      return 'sit.'
+    case 'sit':
+      return 'sit.'
+    case 'uat':
+      return 'uat.'
+    case 'test':
+      return 'test.'
+    case 'pub':
+      return ''
+    default:
+      throw new Error('not matched')
   }
+}
+
+export function getDomain(url = '', option = {}) {
+  const _opt = Object.assign({ suffix: 'net', host: location.host }, option)
+  return `http://api.${getReplaced(getDomainEnv(_opt.host))}ffan.${_opt.suffix}${url}`
 }
 
 export function getEnvDomain () {
