@@ -164,7 +164,7 @@ class SecondStepForm extends React.Component {
           updateConfigAudioValue={this.props.updateConfigAudioValue}
           updateConfigAudioKey={this.props.updateConfigAudioKey}
           />}
-        {appKind === 1 && <Field required iname='fileLink' type='text' placeholder='请输入网址' component={renderField} label='组件网址' />}
+        {appKind === 1 && <Field required name='fileLink' type='text' placeholder='请输入网址' component={renderField} label='组件网址' />}
         <Field required label='版本发布' name='autoPublish' publishList={publishList} component={renderPublishRadioBox} />
         <AssociationModule
           appObj={appObj}
