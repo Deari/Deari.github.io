@@ -1,3 +1,12 @@
 $site-blue: #2692fb;
-
+$site-blue-hover: #2a89dd;
+$site-border-gray: #d7d7d7;
+$site-black: #333;
 $site-content-width: 1100px;
+$table-gray:#eee;
+
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}

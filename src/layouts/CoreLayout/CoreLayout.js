@@ -1,12 +1,12 @@
 import React from 'react'
-import Header from '../../components/Header'
+import Header from 'business/Header'
 import './CoreLayout.scss'
-import '../../styles/core.scss'
+import 'styles/core.scss'
 
 export const CoreLayout = (props) => (
-  <div className=''>
-    <Header {...props}/>
-    <div className="core-layout__viewport">
+  <div>
+    { props.location.pathname === '/login' ? '' : <Header {...props} /> }
+    <div className='core-layout__viewport'>
       {props.children}
     </div>
   </div>

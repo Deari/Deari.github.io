@@ -11,14 +11,14 @@ export const buildSearchParams = (params) => Object.keys(params).map(key => {
 }).join('&').replace(/%20/g, '+')
 
 const defaultHeaders = {
-  'Accept': 'application/json',
+  'Accept': 'application/json'
   // 'Content-Type': 'application/x-www-form-urlencoded'
   // 'Cache-Control': 'no-cache'
 }
 
 const defaultOptions = {
   credentials: 'include',
-  mode: 'cors',
+  mode: 'cors'
 }
 
 class FetchUtil {
@@ -34,6 +34,8 @@ class FetchUtil {
     if (DEBUG_MODE) {
       params.debug = 1
     }
+
+    params.clientType = 1
 
     params = buildSearchParams(params)
     const { headers, ...rest } = options
@@ -121,7 +123,7 @@ class FetchUtil {
         if (1 * status === 200) {
           resolve(data)
         } else {
-          //alert(`${status}|${msg}`)
+          // alert(`${status}|${msg}`)
           console.log(`${status}|${msg || message}`)
           reject(json)
         }

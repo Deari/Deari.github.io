@@ -12,7 +12,7 @@
   color: $gray6-color;
   line-height: $text-line-height + 10;
   background: $graye-color;
-  @include border-top;
+  border-top : 1px solid #eee;
   li{
     @include float-left;
     text-align: center;

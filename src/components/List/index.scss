@@ -9,7 +9,7 @@
 }
 .sub-content-tab{
   @include clx;
-  @include border-bottom;
+  border-bottom : 1px solid $graye-color;
   li{
     float: left;
     margin: 0 16px;
@@ -34,7 +34,7 @@
   line-height: $text-line-height + 10;
   background: $graye-color;
   overflow: hidden;
-  @include border-top;
+  border-top : 1px solid $graye-color;
   li{
     @include float-left;
     text-align: center;
@@ -54,7 +54,7 @@
 .list-container {
   padding: 10px 0;
   @include clx;
-  @include border-bottom;
+  border-bottom : 1px solid $graye-color;
   .list-item-center {
     height: 50px;
     line-height: 50px;
@@ -81,7 +81,7 @@
       position: relative;
       font-size: $text-font-size - 4px;
       color: $black-color;
-      @include font-nowrap;
+      white-space:nowrap;
       @include font-hidden;
       span{
         display: block;

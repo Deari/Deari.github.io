@@ -1,0 +1,89 @@
+@import 'src/styles/v/base.scss';
+.appsList {
+    .appItem {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 17px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+        width: 280px;
+        overflow: hidden;
+        background: #fff;
+        text-align: center;
+        border-radius: 6px;
+        margin-bottom: 13px;
+        &:hover {
+            box-shadow: 1px 1px 8px rgba(187, 187, 187, 1);
+        }
+        .title {
+            color: #333;
+            font-size: 18px;
+            margin-top: 15px;
+            @include text-overflow;
+        }
+        .small {
+            display: block;
+            margin: 8px 0 18px;
+            color: #666;
+            font-size: 12px;
+            .uImg {
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 5px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: url("src/routes/Home/assets/data-logo.png") no-repeat;
+                background-size: 100% 100%;
+            }
+        }
+        .img {
+            display: block;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            border-radius: 6px;
+            overflow: hidden;
+            background: #eee;
+        }
+        .desc {
+            color: #666;
+            text-align: left;
+            font-size: 14px;
+            margin: 20px 13px 8px;
+            height: 60px;
+            line-height: 20px;
+            @include multiple-text-overflow;
+            -webkit-line-clamp: 3;
+        }
+        .price {
+            height: 40px;
+            line-height: 40px;
+            border-top: 1px solid #dde1e7;
+            margin: 0 6px;
+            color: $site-blue;
+        }
+        .data {
+            display: flex;
+            .number{
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 12px;
+                height: 36px;
+                background: #dde1e7;
+                border-right: 1px solid #eee;
+                border-color: #fff;
+                color: #999;
+                &:last-child {
+                    border-right: 0;
+                }
+            }
+            i {
+                margin-right: 3px;
+            }
+        }
+    }
+}

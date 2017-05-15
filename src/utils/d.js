@@ -14,7 +14,7 @@ const domainXapiReg = new RegExp('xapi\\.intra\\.((test|sit)\\.)?ffan\\.net')
  * @param url
  * @returns {*}
  */
-export function getDomainEnv(url, isApi) {
+export function getDomainEnv (url, isApi) {
   const host = url || location.host
   const domainTestResult = host.match(isApi ? domainXapiReg : domainReg)
   if (!domainTestResult) {
@@ -28,8 +28,7 @@ export function getDomainEnv(url, isApi) {
   }
 }
 
-
-export function getEnvDomain() {
+export function getEnvDomain () {
   return getDomainEnv() === 'pub' ? 'http://api.ffan.net' : 'http://api.sit.ffan.net'
 }
 

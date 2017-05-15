@@ -1,29 +1,47 @@
-import React, { Component }from 'react'
+import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
-import s from './index-new.scss'
+import s from './index.scss'
 
 class Search extends Component {
-  state = {
-    clearBtn: false
-  }
-
-  static defaultProps = {
-    onSearch: ()=> {}
-  };
-
-  changeHandler (e) {
-    if(e.target && e.target.value && e.target.value.trim()) {
-      this.setState({ clearBtn: true })
+  constructor(props) {
+    super(props);
+    this.state = {
+      clearBtn: false,
+      value: props.defaultValue
     }
   }
 
-  clear(){
-    this.refs._input.value = ''
+  static defaultProps = {
+    onSearch: () => {}
+  };
+
+  changeHandler (e) {
+    if (e.target && e.target.value && e.target.value.trim()) {
+      this.setState({ clearBtn: true, value: e.target.value })
+    } else {
+      this.setState({ clearBtn: false, value: '' })
+    }
+  }
+
+  onKeyUp (e) {
+    if (e.keyCode === 13) {
+      this.searchHandler()
+    }
+  }
+
+  clear () {
+    this.setState({ value: '', clearBtn: false })
+    this.props.onClear();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.defaultValue !== this.state.value) {
+      this.setState({ value: nextProps.defaultValue, clearBtn: false })
+    }
   }
 
   searchHandler () {
-    const val = this.refs._input.value.trim()
-    val && this.props.onSearch(val)
+    this.props.onSearch(this.state.value)
   }
 
   render () {
@@ -31,18 +49,17 @@ class Search extends Component {
     const { clearBtn } = this.state
 
     return (
-      <span style={{style}} className={s.searchWrap}>
+      <span style={style} className="bo-search">
         <i className='iconfont icon-search'
-          onClick={::this.searchHandler}>
-        </i>
-        <input 
-          className={s.input}
-          type="text" 
-          placeholder={placeholder} 
-          ref='_input' 
+          onClick={::this.searchHandler} />
+        <input
+          type='text'
+          placeholder={placeholder}
+          value={this.state.value}
+          onKeyUp={::this.onKeyUp}
           onChange={::this.changeHandler}
         />
-        { clearBtn ? <i className="iconfont " 
+        { clearBtn ? <i className='iconfont '
           onClick={::this.clear}
           >&times;</i> : null
         }

@@ -1,12 +1,11 @@
 import randomstring from 'randomstring'
 
-
 export const getRandomString = ({
   length = 7,
   charset = 'alphabetic',
-  capitalization = 'uppercase',
+  capitalization = 'uppercase'
 }) => randomstring.generate({
   length,
   charset,
-  capitalization,
+  capitalization
 })

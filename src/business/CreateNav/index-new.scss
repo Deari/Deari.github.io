@@ -1,0 +1,61 @@
+.createNew {
+  padding: 0 10px 200px;
+  background: #fff;
+  .createTitle {
+    padding: 10px;
+    font-size: 15px;
+    border-bottom: 1px solid #eee;
+  }
+  .title {
+    padding: 20px;
+    font-size: 20px;
+    color: #000;
+    text-align: center;
+  }
+  .links {
+    width: 591px;
+    margin: 0 auto;
+    display: flex;
+    .iconfont {
+      font-size: 30px;
+      vertical-align: middle;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 150px;
+      height: 145px;
+      margin: 0 25px;
+      font-size: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: 2px solid #eee;
+      background: #fff;
+      & > i {
+        margin-right: 5px;
+      }
+    }
+    .h5 {
+      color: #607d8b;
+      &:hover {
+        color: #fff;
+        background: #607d8b
+      }
+    }
+    .rn {
+      color: #2e8fff;
+      &:hover {
+        color: #fff;
+        background: #2e8fff
+      }
+    }
+    .apk {
+      color: #97c03d;
+      &:hover {
+        color: #fff;
+        background: #97c03d
+      }
+    }
+  }
+}

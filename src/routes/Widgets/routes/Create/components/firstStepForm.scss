@@ -27,7 +27,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         padding-top: 0;
     }
     label{ 
-        width: $default-width - 22px; 
+      width: 100px;
         font-size: $text-font-size - 4px; 
         color: $black-color; 
         padding-left: $default-padding-left - 29px; 
@@ -442,12 +442,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
 }
 /*create页面新添样式*/
 .create-choice-block{
-  position: fixed;
-  bottom: 0px;
-  top: 93px;
-  padding:0 10px;
-  width:874px;
-  background: #fff;
+  padding-bottom: 200px;
   .create-choice-title{
     padding: 10px;
     font-size: 15px;
@@ -761,7 +756,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
     }
 }
 .update-msg{
-  padding: 0 10px 40px 10px;
+  padding: 10px 10px 40px;
   color:#fff;
   font-size: 14px;
   background: #fff;
@@ -776,4 +771,8 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       padding-right: 4px;
     }
   }
+}
+.require_field {
+  color: red;
+  margin-right: 5px;
 }

@@ -1,7 +1,6 @@
 import fetch from '../../fetch'
 import debug from './debug'
 
-
 class FetchUtil {
 
   /**
@@ -11,18 +10,18 @@ class FetchUtil {
    * @param options object
    * @returns Promise
    */
-  static async getJSON(url, params = {}, options = {}) {
-
+  static async getJSON (url, params = {}, options = {}) {
     if (!url.trim()) {
       return reject(-101, 'URL is empty')
     }
 
-
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
+    params.clientType = 1
 
     params = getURLByObj(params)
+
     options = {
       method: 'GET',
       credentials: 'include',
@@ -37,8 +36,8 @@ class FetchUtil {
       fetch(getURL, options).then(async res => {
         if (res.ok) {
           try {
-            const resp = await res.json();
-            return resolve(resp);
+            const resp = await res.json()
+            return resolve(resp)
           } catch (e) {
             return reject(e)
           }
@@ -49,15 +48,12 @@ class FetchUtil {
         return reject(e)
       })
     })
-
   }
 
-  static async postForm(url, params = {}, options = {}) {
-
+  static async postForm (url, params = {}, options = {}) {
     if (!url.trim()) {
       return reject(-101, 'URL is empty')
     }
-
 
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
@@ -68,6 +64,7 @@ class FetchUtil {
     for (const p in params) {
       fromData.append(p, JSON.stringify(params[p]))
     }
+    fromData.append('clientType', 1)
 
     params = getURLByObj(params)
     const reqsOptions = {
@@ -82,8 +79,8 @@ class FetchUtil {
       fetch(url, reqsOptions).then(async res => {
         if (res.ok) {
           try {
-            const resp = await res.json();
-            return resolve(resp);
+            const resp = await res.json()
+            return resolve(resp)
           } catch (e) {
             return reject(e)
           }
@@ -94,9 +91,7 @@ class FetchUtil {
         return reject(e)
       })
     })
-
   }
-
 
   /**
 
@@ -106,7 +101,7 @@ class FetchUtil {
    * @param options
    * @returns Promise
    */
-  static async postJSON(url, params = {}, options = {}) {
+  static async postJSON (url, params = {}, options = {}) {
     if (!url.trim()) {
       return reject(-101, 'URL is empty')
     }
@@ -114,6 +109,12 @@ class FetchUtil {
     if (!isObject(params) || !isObject(options)) {
       return reject(-102, 'The type of params and options must be a Object')
     }
+    if (params && typeof params.append === 'function') {
+      params.append('clientType', 1)
+    } else {
+      params.clientType = 1
+    }
+
     const reqsOptions = {
       method: 'POST',
       // credentials: !options.credentials ? 'include' : '',
@@ -127,8 +128,8 @@ class FetchUtil {
       fetch(url, reqsOptions).then(async res => {
         if (res.ok) {
           try {
-            const resp = await res.json();
-            return resolve(resp);
+            const resp = await res.json()
+            return resolve(resp)
           } catch (e) {
             return reject(e)
           }
@@ -141,7 +142,7 @@ class FetchUtil {
     })
   }
 
-  static async request(method, url, params = {}, options = {}) {
+  static async request (method, url, params = {}, options = {}) {
     if (!method) {
       return reject(-100, 'method is empty')
     }
@@ -154,6 +155,8 @@ class FetchUtil {
       return reject(-102, 'The type of params and options must be a Object')
     }
 
+    params.clientType = 1
+
     options = {
       method: method,
       // ...jsonHeaders,
@@ -165,8 +168,8 @@ class FetchUtil {
       fetch(url, options).then(async res => {
         if (res.ok) {
           try {
-            const resp = await res.json();
-            return resolve(resp);
+            const resp = await res.json()
+            return resolve(resp)
           } catch (e) {
             return reject(e)
           }
@@ -180,26 +183,26 @@ class FetchUtil {
   }
 }
 
-export function isObject(x) {
-  return x != null && typeof x === 'object';
+export function isObject (x) {
+  return x != null && typeof x === 'object'
 }
 
-export function reject(status, message) {
+export function reject (status, message) {
   return Promise.reject({ status, message })
 }
 
-export function getURLByObj(params) {
+export function getURLByObj (params) {
   return Object.keys(params).map(function (prop) {
-    return [ prop, params[ prop ] ].map(encodeURIComponent).join('=');
-  }).join('&');
+    return [ prop, params[ prop ] ].map(encodeURIComponent).join('=')
+  }).join('&')
 }
 
 const jsonHeaders = {
   headers: {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "Cache-Control": "no-cache",
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+    'Cache-Control': 'no-cache'
   }
 }
 
-export default FetchUtil;
+export default FetchUtil
