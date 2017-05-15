@@ -19,7 +19,7 @@ export default (store) => ({
   getChildRoutes (partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/Store').default,
+        require('./routes/Store')(store),
         require('./routes/Detail')(store)
       ])
     })
