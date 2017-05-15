@@ -7,10 +7,10 @@ export default {
   // sit: http://passport.intra.sit.ffan.net/passport/session-check.json
   // online: http://passport.ffan.net/passport/session-check.json
 
-  //  loginurl 登录页面的地址
-  //  test: http://apistore.intra.test.ffan.net/#!/login/
-  //  sit: http://apistore.intra.sit.ffan.net/#!/login/
-  //  online: http://apistore.ffan.net/#!/login/
+  //  loginurl 登录页面的地址 
+  //  test: http://apistore.intra.test.ffan.net/#/login/ 
+  //  sit: http://apistore.intra.sit.ffan.net/#/login/  
+  //  online: http://apistore.ffan.net/#/login/
 
   // callbackurl 若未登录，跳转登录页面登录成功后跳回的页面
   // callback的函数我会传入一个参数，退出成功为true，退出失败为false
