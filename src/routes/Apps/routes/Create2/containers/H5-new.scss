@@ -13,7 +13,6 @@
 	.tabs-content {
 		color: #333;
 		font-size: 14px;
-		
 		.form-group {
 			display: flex;
 			flex-wrap: nowrap;
@@ -25,7 +24,7 @@
 				line-height: 30px;
 				margin-right: 34px;
 				text-align: right;
-				&:before{
+				&:before {
 					content: "*";
 					color: $site-red;
 					display: inline-block;
@@ -40,18 +39,6 @@
 					flex-wrap: nowrap;
 					justify-content: space-between;
 					align-items: center;
-					.item-rule {
-						display: flex;
-						align-items: flex-end;
-						.rule-text {
-							color: #999;
-							font-size: 12px;
-							line-height: 24px;
-						}
-						.form-info {
-							margin-bottom: 3px;
-						}
-					}
 					.item-iconfont {
 						flex: 1;
 						position: relative;
@@ -70,6 +57,18 @@
 							height: 30px;
 							width: 100%;
 							padding: 0 30px;
+						}
+					}
+					.item-rule {
+						display: flex;
+						align-items: flex-end;
+						.rule-text {
+							color: #999;
+							font-size: 12px;
+							line-height: 24px;
+						}
+						.form-info {
+							margin-bottom: 3px;
 						}
 					}
 					.upload-btn {
@@ -97,11 +96,11 @@
 						}
 					}
 				}
-				.item-upload{
+				.item-upload {
 					flex-direction: column;
 					align-items: flex-start;
 				}
-				.item-summary{
+				.item-summary {
 					align-items: flex-start;
 				}
 				.has-error {
@@ -111,29 +110,29 @@
 					line-height: 24px;
 					color: $site-red;
 				}
-				.img-item{
+				.img-item {
 					display: none;
 					display: flex;
-					flex-wrap:wrap;
+					flex-wrap: wrap;
 					margin-top: 24px;
-					.upload-img{
+					.upload-img {
 						width: 100px;
 						height: 100px;
 						margin: 0 10px 10px 0;
 						border: 1px solid $site-border-gray;
 					}
 				}
-				.item-textarea{
+				.item-textarea {
 					width: 100%;
 					min-height: 140px;
 					resize: none;
 					border: 1px solid $site-border-gray;
 				}
-				.item-tag{
+				.item-tag {
 					display: flex;
 					flex-wrap: wrap;
 					margin-top: -20px;
-					.tags{
+					.tags {
 						color: #999;
 						width: 74px;
 						height: 30px;
@@ -142,25 +141,25 @@
 						line-height: 28px;
 						text-align: center;
 						margin: 20px 20px 0 0;
-						&:nth-child(5n){
+						&:nth-child(5n) {
 							margin-right: 0;
 						}
 					}
 				}
 			}
 		}
-		.form-btn{
+		.form-btn {
 			width: 100%;
 			padding-top: 32px;
-			border-top:1px solid $site-border-gray;
+			border-top: 1px solid $site-border-gray;
 			display: flex;
 			justify-content: center;
-			.btn-primary{
+			.btn-primary {
 				width: 132px;
 				height: 35px;
 				line-height: 33px;
 				margin-right: 10px;
-				&:last-child{
+				&:last-child {
 					margin-right: 0;
 				}
 			}
