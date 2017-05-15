@@ -23,7 +23,7 @@ const APPLIST_FILTERS =  [
 
 const REVIEW_STATUS = [
   { value: 0, status: 'waitSubmit', text: '准备提交', style: { backgroundColor: '#fff028' } },
-  { value: 4, status: 'waitSubmit', text: '保存草稿', style: { backgroundColor: '#fff028' } },
+  { value: 4, status: 'waitSubmit', text: '准备提交', style: { backgroundColor: '#fff028' } },
   { value: 1, status: 'reviewing', text: '审核中', style: { backgroundColor: '#fff028' } },
   { value: 2, status: 'waitPublish', text: '等待开发者发布', style: { backgroundColor: '#fff028' } },
   { value: 3, status: 'nopass', text: '审核不通过', style: { backgroundColor: '#ff5628' } }

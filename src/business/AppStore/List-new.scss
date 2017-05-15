@@ -1,9 +1,12 @@
 @import 'src/styles/v/base.scss';
 .appsList {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
     .appItem {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 17px;
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
         width: 280px;
         overflow: hidden;
         background: #fff;

@@ -64,6 +64,11 @@ const Header = (props) => {
                   tag: 0,
                   params: { appName: v }
                 })
+              }} onClear={(v) => {
+                props.fetchAppList({
+                  tag: 0,
+                  params: { appName: '' }
+                })
               }} />
           </div> : null}
           <Login />

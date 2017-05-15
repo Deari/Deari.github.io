@@ -46,7 +46,7 @@ const TabelItem = ({ data, type }) => {
       </td>
       <td className={s.status}>
         {appStatus.map((v, index) => <div key={index} className={s.vStatus}>
-          <span className={s.version}><i className={s.round} style={v.style} />{ v.codeVersion}</span>
+          <span className={s.version}><i className={s.round} style={v.style}/>{v.codeVersion}</span>
           <span className={s.text}>{v.text}</span>
         </div>)}
       </td>

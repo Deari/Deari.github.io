@@ -32,6 +32,7 @@ class Search extends Component {
 
   clear () {
     this.setState({ value: '', clearBtn: false })
+    this.props.onClear();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,7 +44,6 @@ class Search extends Component {
 
   searchHandler () {
     this.props.onSearch(this.state.value)
-    this.clear();
   }
 
   render () {

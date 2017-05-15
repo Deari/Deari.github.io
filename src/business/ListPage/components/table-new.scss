@@ -71,19 +71,20 @@
                     &:first-child {
                         margin-top: 0;
                     }
-                    .version {
-                        display: inline-block;
-                        .round {
-                            width: 8px;
-                            height: 8px;
-                            margin: 0 5px;
-                            border-radius: 50%;
-                            display: inline-block;
-                            vertical-align: middle;
-                        }
+                    .version, .text {
+                      display: inline-block;
+                      vertical-align: middle;
                     }
-                    .text {
+                    .version {
+                      margin-right: 10px;
+                    }
+                    .round {
+                        width: 8px;
+                        height: 8px;
+                        margin: 0 5px;
+                        border-radius: 50%;
                         display: inline-block;
+                        vertical-align: middle;
                     }
                 }
                 &.actions {
