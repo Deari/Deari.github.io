@@ -10,9 +10,13 @@ class Main extends React.Component {
         创建新应用 ( H5 类型 )
       </h2>
       <ul className={s['tabs-item']}>
-        <li className={s.tabs}>基本信息</li>
+        <li className={`${s.tabs} ${s['tabs-border']}`}>基本信息</li>
       </ul>
       <div className={`${s['tabs-content']} ${s['tabs-status']}`}>
+      	<span className={s['basic-info']}>
+      		<i className="iconfont icon-zhuyi"></i>
+      		您的这次更新会在新的 应用 版本发布后，在 应用市场 上显示。
+      	</span>
         <form className={s['site-form']}>
           <div className={s['form-group']}>
             <label className={s['control-label']}>应用名称</label>
@@ -48,7 +52,7 @@ class Main extends React.Component {
                 </span>
               </div>
               <div className={s['has-error']}>请输入内容</div>
-              <ul className={s['img-item']}>
+              <ul className={`${s['img-item']} ${s.active}`}>
                 <li className={s['upload-img']}>
                   <img src=""/>
                 </li>

@@ -7,19 +7,12 @@ import Publish from '../components/Publish'
 
 const Main = () => {
   return <div>
-    <h1>skdhksds</h1>
-    <ul>
-      <li>Basic</li>
-      <li>Publish</li>
-    </ul>
-    <div>
       <Basic></Basic>
       <Publish></Publish>
-    </div>
   </div>
 }
 
 export default {
   path: 'h5',
-  component: Basic
+  component: Publish
 }

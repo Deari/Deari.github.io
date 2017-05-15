@@ -6,19 +6,54 @@
   width: 49px;
   height: 20px;
 }
-.icon-rnpng{
+
+.icon-rnpng {
   background: url(../../images/rn.png) no-repeat;
-  background-size: 100% 100%;   
+  background-size: 100% 100%;
 }
-.icon-hpng{
+
+.icon-hpng {
   background: url(../../images/h5.png) no-repeat;
-  background-size: 100% 100%;      
+  background-size: 100% 100%;
 }
-.icon-apkpng{
+
+.icon-apkpng {
   background: url(../../images/apk.png) no-repeat;
-  background-size: 100% 100%;   
+  background-size: 100% 100%;
 }
-.icon-fanhui{
+
+.icon-fanhui {
   margin-right: 8px;
   font-size: 14px;
+}
+
+.row-radio {
+  position: relative;
+  text-align: center;
+  i.icon-radio {
+    display: none;
+    font-size: 30px;
+    color: #cdd4dc;
+  }
+  i.icon-radio1 {
+    display: inline-block;
+    font-size: 30px;
+    color: #cdd4dc;
+  }
+  .input-radio {
+    position: absolute;
+    top: 5px;
+    left: 23px;
+    width: 26px;
+    height: 28px;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .input-radio:checked+ .radio-item i.icon-radio {
+    display: inline-block;
+  }
+  .input-radio:checked+ .radio-item i.icon-radio1 {
+    display: none;
+  }
 }
