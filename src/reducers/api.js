@@ -11,6 +11,11 @@ export const fetchCates = (params) => {
   return fetchUtil.getJSON(url, params)
 }
 
+export const getAppInfo = (params) => {
+  const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}`)
+  return fetchUtil.getJSON(url);
+}
+
 export const postAppBasicInfo = (params) => {
   const url = getDomain('/app/v1/bo/v1/web/developer/app')
   return fetchUtil.postJSON(url, params, { formDataType: true })

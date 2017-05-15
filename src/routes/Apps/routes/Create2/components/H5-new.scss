@@ -1,0 +1,185 @@
+@import 'src/styles/v/base.scss';
+.main-container {
+	.tabs {
+		color: #000;
+		&:hover,
+		&.active {
+			border-bottom: 0;
+		}
+		&-status {
+			display: block;
+		}
+	}
+	.tabs-content {
+		color: #333;
+		font-size: 14px;
+		
+		.form-group {
+			display: flex;
+			flex-wrap: nowrap;
+			max-width: 580px;
+			margin: 0 auto 45px;
+			.control-label {
+				width: 68px;
+				height: 30px;
+				line-height: 30px;
+				margin-right: 34px;
+				text-align: right;
+				&:before{
+					content: "*";
+					color: $site-red;
+					display: inline-block;
+					margin-right: 2px;
+					line-height: 1;
+				}
+			}
+			.form-item {
+				flex: 1;
+				.item-control {
+					display: flex;
+					flex-wrap: nowrap;
+					justify-content: space-between;
+					align-items: center;
+					.item-rule {
+						display: flex;
+						align-items: flex-end;
+						.rule-text {
+							color: #999;
+							font-size: 12px;
+							line-height: 24px;
+						}
+						.form-info {
+							margin-bottom: 3px;
+						}
+					}
+					.item-iconfont {
+						flex: 1;
+						position: relative;
+						&>i {
+							position: absolute;
+							top: 50%;
+							transform: translateY(-50%);
+							&:first-of-type {
+								left: 8px;
+							}
+							&:last-of-type {
+								right: 8px;
+							}
+						}
+						.form-control {
+							height: 30px;
+							width: 100%;
+							padding: 0 30px;
+						}
+					}
+					.upload-btn {
+						width: 200px;
+						height: 35px;
+						display: block;
+						margin-top: 20px;
+						overflow: hidden;
+						text-align: center;
+						line-height: 35px;
+						border-radius: 2px;
+						cursor: pointer;
+						.text {
+							width: 100%;
+							height: 100%;
+							border-radius: 2px;
+							border: 1px solid $site-border-gray;
+							&:hover {
+								border-color: $site-blue;
+								color: $site-blue;
+							}
+						}
+						.upload-file {
+							display: none;
+						}
+					}
+				}
+				.item-upload{
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				.item-summary{
+					align-items: flex-start;
+				}
+				.has-error {
+					height: 24px;
+					display: block;
+					font-size: 12px;
+					line-height: 24px;
+					color: $site-red;
+				}
+				.img-item{
+					display: none;
+					display: flex;
+					flex-wrap:wrap;
+					margin-top: 24px;
+					.upload-img{
+						width: 100px;
+						height: 100px;
+						margin: 0 10px 10px 0;
+						border: 1px solid $site-border-gray;
+					}
+				}
+				.item-textarea{
+					width: 100%;
+					min-height: 140px;
+					resize: none;
+					border: 1px solid $site-border-gray;
+				}
+				.item-tag{
+					display: flex;
+					flex-wrap: wrap;
+					margin-top: -20px;
+					.tags{
+						color: #999;
+						width: 74px;
+						height: 30px;
+						font-size: 12px;
+						border-radius: 2px;
+						line-height: 28px;
+						text-align: center;
+						margin: 20px 20px 0 0;
+						&:nth-child(5n){
+							margin-right: 0;
+						}
+					}
+				}
+			}
+		}
+		.form-btn{
+			width: 100%;
+			padding-top: 32px;
+			border-top:1px solid $site-border-gray;
+			display: flex;
+			justify-content: center;
+			.btn-primary{
+				width: 132px;
+				height: 35px;
+				line-height: 33px;
+				margin-right: 10px;
+				&:last-child{
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+.form-info {
+	margin-left: 10px;
+	position: relative;
+	cursor: pointer;
+	.info-content {
+		position: absolute;
+		left: 18px;
+		top: 0;
+		width: 120px;
+		padding: 5px;
+		color: #666;
+		line-height: 18px;
+		font-size: 12px;
+		background: #e1e1e1;
+	}
+}
