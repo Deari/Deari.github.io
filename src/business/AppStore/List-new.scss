@@ -55,6 +55,7 @@
             height: 60px;
             line-height: 20px;
             @include multiple-text-overflow;
+            -webkit-line-clamp: 3;
         }
         .price {
             height: 40px;
