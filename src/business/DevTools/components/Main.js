@@ -30,7 +30,7 @@ class DevTools extends Component {
               <dd className={s.main}>
                 <h3 className={s.name}>开发者文档</h3>
                 <p className={s.text}>
-                    后续补充文案。
+                    开发者在创建应用、组件后，可阅读开发者文档帮助完成接入及功能开发。
                   </p>
               </dd>
             </dl>
@@ -43,7 +43,7 @@ class DevTools extends Component {
               <dt className={s.img} />
               <dd className={s.main}>
                 <h3 className={s.name}>查看developerKey和developerSecret</h3>
-                <p className={s.text}>后续补充文案。</p>
+                <p className={s.text}>开发者在进行开发、调试时，需要DeveloperKey、DeveloperSecret，进行授权认证。</p>
               </dd>
             </dl>
             <div className={s['tool-btn']}>
@@ -58,7 +58,7 @@ class DevTools extends Component {
               <dt className={s.img} />
               <dd className={s.main}>
                 <h3 className={s.name}>查看开放平台测试账号</h3>
-                <p className={s.text}>后续补充文案。</p>
+                <p className={s.text}>申请商家的测试账号，可在测试账号中体验并测试开发者创建的应用、组件。</p>
               </dd>
             </dl>
             <div className={s['tool-btn']}>
