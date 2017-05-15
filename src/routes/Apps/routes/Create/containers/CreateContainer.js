@@ -180,9 +180,9 @@ class CreateContainer extends Component {
     let appKindName = appKind == 0 ? '( FAP小程序 类型 )' : appKind == 1 ? '( H5 类型 )' : appKind == 2 ? '( APK 类型 )' : ''
 
     return (
-      <div className='container clx'>
+      <div className='container'>
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
-        <div className='sub-container'>
+        <div className='content'>
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }

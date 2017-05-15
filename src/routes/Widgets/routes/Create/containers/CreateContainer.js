@@ -165,7 +165,7 @@ class CreateContainer extends Component {
     return (
       <div className='container'>
         <SideBar pageLinks={getPageLinks('widgets')} type={'widgets'} />
-        <div className='sub-container'>
+        <div className='content'>
           {
             page === 0 && <ChoiceStep onSubmit={::this.submitChoice} />
           }

@@ -541,12 +541,7 @@ input[type="checkbox"]:checked + span i.icon-radio1{display: none;}
       }
 /*create页面新添样式*/
 .create-choice-block{
-  position: fixed;
-  bottom: 0px;
-  top: 93px;
-  padding:0 10px;
-  width:874px;
-  background: #fff;
+  padding-bottom: 200px;
   .create-choice-title{
     padding: 10px;
     font-size: 15px;

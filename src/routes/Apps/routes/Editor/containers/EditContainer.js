@@ -193,7 +193,7 @@ class EditContainer extends Component {
       <div className='container clx'>
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
         
-        <div className='sub-container'>
+        <div className='content'>
           <Step page={page} title='编辑应用' appKindName={appKindName} />
           {
             page === 1 && <FirstStep onSubmit={::this.submitFirst} />
