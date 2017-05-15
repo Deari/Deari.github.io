@@ -11,7 +11,7 @@ const update = (data) => ({
 
 export const fetchAppList = (option) => {
   return (dispatch, getState) => {
-    const state = getState().appStore
+    const state = getState().appStore || {};
 
     const tag = typeof option.tag !== 'undefined' ? option.tag : state.tag;
     const { type } = state;

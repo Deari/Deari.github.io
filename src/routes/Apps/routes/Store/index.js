@@ -1,5 +1,6 @@
 import { injectReducer } from 'store/reducers'
 import appStoreReducer from 'reducers/appStore'
+
 module.exports = (store) => ({
   path: 'tag/:id',
   getComponent (nextState, cb) {

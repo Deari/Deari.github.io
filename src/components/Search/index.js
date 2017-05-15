@@ -5,7 +5,6 @@ import s from './index.scss'
 class Search extends Component {
   constructor(props) {
     super(props);
-    console.log("constructor")
     this.state = {
       clearBtn: false,
       value: props.defaultValue
@@ -36,7 +35,6 @@ class Search extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps , this.state)
     if(nextProps.defaultValue !== this.state.value) {
       this.setState({ value: nextProps.defaultValue, clearBtn: false })
     }

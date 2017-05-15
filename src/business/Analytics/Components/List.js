@@ -7,10 +7,9 @@ import { PageTypes, getPageLinks } from 'config/index'
 
 const List = (props) => {
   const { list, total, onPage, type } = props
-
   return (
     <div className={`container ${s.analytics}`} >
-      <SideBar pageLinks={getPageLinks(type)} type={type} />
+      <SideBar pageLinks={getPageLinks(type)} type={type}/>
       <div className={`${s.content}`}>
         <Table data={list} type={type} typeText={PageTypes[type]} />
         <Pagination onChange={onPage} total={total} />

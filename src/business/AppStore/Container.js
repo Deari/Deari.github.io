@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import fetchUtil from 'utils/fetch'
 import { getEnvDomain } from 'utils/d'
-import { PageTypes, getPageLinks } from 'config/index'
+import { PageTypes, getPageLinks, HardwareLinks } from 'config/index'
 import SideBar from 'business/SideBar'
 import OpenList from 'components/OpenList'
 import List from './List'
@@ -85,12 +85,16 @@ class Container extends React.Component {
   }
 
   render () {
-    const { list, total, type, params } = this.props;
-    const { tags } = this.state
-    const pageLinks = getPageLinks(type).filter(( item ) => { return !item.hide })
+    const { list, total, type, params={ limit: 10 } } = this.props;
+    const { tags } = this.state;
+    const pageLinks = [{
+      link: <a href={`${HardwareLinks.list}`}><i className={`iconfont icon-application`} />我的硬件</a>
+    },{
+      link: <a href={`${HardwareLinks.doc}`}><i className={`iconfont icon-file`} />开发者文档</a>
+    }]
     return (
       <div className="container">
-        <SideBar pageLinks={pageLinks} type={type} tagLinks={tags} />
+        <SideBar pageLinks={pageLinks} tagLinks={tags} type={type}/>
         <div className={s['sub-container']}>
           <div className={`sub-container-banner-${type}`}></div>
           <div className={s.contentWrap}>

@@ -17,8 +17,6 @@ const Header = (props) => {
     showSearch = true
   }
 
-  console.log(111)
-
   return (
     <div className='header-wrapper'>
       <div className='bg' />
