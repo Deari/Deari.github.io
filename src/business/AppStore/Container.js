@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import fetchUtil from 'utils/fetch'
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 import { PageTypes, getPageLinks, HardwareLinks } from 'config/index'
 import SideBar from 'business/SideBar'
 import OpenList from 'components/OpenList'
@@ -55,7 +55,7 @@ class Container extends React.Component {
 
   fetchTags () {
     const { type } = this.props;
-    fetchUtil.getJSON(`${getEnvDomain()}/app/v1/bo/v1/public/common/tags`, {
+    fetchUtil.getJSON(getDomain('/app/v1/bo/v1/public/common/tags'), {
       type: type !== 'hardware' ? type.slice(0,-1) : type
     }).then(data => {
       const tags = data.map(item => {
