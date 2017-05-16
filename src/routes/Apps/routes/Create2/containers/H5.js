@@ -22,7 +22,7 @@ const Main = () => {
 export default {
   path: 'h5',
   indexRoute: {
-    component: Basic
+    component: Publish
   },
   childRoutes: [
     {

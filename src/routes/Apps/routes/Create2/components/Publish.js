@@ -91,30 +91,27 @@ class Main extends React.Component {
             </div>
           </div>
           <div className={s['form-group']}>
-            <label className={s['control-label']}>配套使用</label>
+            <label className={`${s['control-label']} ${s['label-no']}`}>配套使用</label>
             <div className={s['form-item']}>
             	<div className={`${s['item-control']}${s['item-upload']}`}>
             		<p className={s['publish-text']}>应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。
 <br/>应用市场详情页的显示，如下图：</p>
 								<img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
+            		
             		<div className={s['apply-radio']}>
-            			<div className={s['radio-row']}>
             				<div className={s['row-radio']}>
-									    <input type="radio" name="radio" value="" className="input-radio"/>
+									    <input type="checkbox"  value="" className="input-radio"/>
 											<span className="radio-item">
 											    <i className="iconfont icon-radio1"></i>
 											    <i className="iconfont icon-radio"></i>
 											</span>
 										</div>
 									<span className={s.text}>组件</span>
-            			</div>
-									<ul className={s['use-item']}>
-										<li className={s['item-img']}></li>
-									</ul>
 								</div>
+								
 								<div className={s['apply-radio']}>
 									<div className={s['row-radio']}>
-								    <input type="radio" name="radio" value="" className="input-radio" />
+								    <input type="checkbox"  value="" className="input-radio" />
 										<span className="radio-item">
 										    <i className="iconfont icon-radio1"></i>
 										    <i className="iconfont icon-radio"></i>
@@ -122,9 +119,10 @@ class Main extends React.Component {
 									</div>
 									<span className={s.text}>硬件</span>
             		</div>
+            		
             		<div className={s['apply-radio']}>
             			<div className={s['row-radio']}>
-								    <input type="radio" name="radio" value="" className="input-radio"/>
+								    <input type="checkbox" value="" className="input-radio"/>
 										<span className="radio-item">
 										    <i className="iconfont icon-radio1"></i>
 										    <i className="iconfont icon-radio"></i>
