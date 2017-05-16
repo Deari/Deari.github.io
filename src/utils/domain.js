@@ -50,12 +50,12 @@ export function getDomainEnv (url) {
  * @returns {string}
  */
 // 移动端
-export function getMobileDomain (url) {
-  const domainReg = new RegExp('^http:\/\/xapi\.intra\.(sit\.|test\.)?ffan\.net\/app\/v1\/bo\/v1\/|^http:\/\/xapi\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/')
-  const env = getDomainEnv()
-  const domain = (env === 'pub') ? 'http://api.ffan.net/app/v1/bo/v1/' : 'http://xapi.intra.sit.ffan.net/app/v1/bo/v1/'
-  return domain + url.replace(domainReg, '')
-}
+// export function getMobileDomain (url) {
+//   const domainReg = new RegExp('^http:\/\/xapi\.intra\.(sit\.|test\.)?ffan\.net\/app\/v1\/bo\/v1\/|^http:\/\/xapi\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/')
+//   const env = getDomainEnv()
+//   const domain = (env === 'pub') ? 'http://api.ffan.net/app/v1/bo/v1/' : 'http://xapi.intra.sit.ffan.net/app/v1/bo/v1/'
+//   return domain + url.replace(domainReg, '')
+// }
 // 主站
 export function getDomain (url) {
   const domainReg = new RegExp('^http:\/\/api\.(sit\.|test\.)?ffan\.net\/app\/v1\/bo\/v1\/|^http:\/\/api\.(sit\.|test\.)?ffan\.com\/app\/v1\/bo\/v1\/')
@@ -64,11 +64,11 @@ export function getDomain (url) {
   return domain + url.replace(domainReg, '')
 }
 
-export function getHardwareDomain (url) {
-  const env = getDomainEnv()
-  const domain = (env === 'pub') ? 'http://api.ffan.net/' : 'http://api.sit.ffan.net/'
-  return domain + url
-}
+// export function getHardwareDomain (url) {
+//   const env = getDomainEnv()
+//   const domain = (env === 'pub') ? 'http://api.ffan.net/' : 'http://api.sit.ffan.net/'
+//   return domain + url
+// }
 export function getDownloadDomain () {
   const env = getDomainEnv()
   const domain = (env === 'pub') ? 'http://fdfs.ffan.net' : 'http://fdfs.intra.sit.ffan.net'
