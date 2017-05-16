@@ -2,9 +2,9 @@
 
 .breadcrumb {
   color: #333;
-  height: 42px;
+  height: 38px;
   font-size: 14px;
-  line-height: 42px;
+  line-height: 38px;
   border-bottom: 1px solid $site-border-gray;
   .site:after {
     content: "/";
@@ -13,7 +13,9 @@
 }
 .pageTitle {
   color: #000;
-  padding: 20px 0 20px 20px;
+  height: 51px;
+  line-height: 50px;
+	padding-left: 25px;
   font-size: 16px;
   border-bottom: 1px solid $site-border-gray;
 }
@@ -57,6 +59,7 @@
 	font-size: 12px;
 	color: #999;
 	line-height: 24px;
+	text-align: justify;
 }
 .text-con{
 	display: inline-block;

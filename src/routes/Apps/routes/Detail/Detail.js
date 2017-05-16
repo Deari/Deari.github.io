@@ -4,6 +4,7 @@ import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
+import Tags from './Tags'
 import s from './index-new.scss'
 
 // import Detail from 'components/Detail'
@@ -15,48 +16,41 @@ class AppsDetail extends React.Component {
       <div className='container'>
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
         <div className="content">
-          <div>
-            <img src="" alt=""/>
-            <div className="appInfo">
-              <h2 className="title">title</h2>
-              <div>
-                <label htmlFor="">内容提要</label>
-                <p>desc</p>
-              </div>
-              <div>
-                <label htmlFor="">信息</label>
-                <div>
-                  <label htmlFor="">标签</label>
-                  <ul>
-                    <li>数据分析</li>
-                    <li>数据分析</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+        	<Tags></Tags>
+          <div className={s.main}>
+          	<div className={s['detail-wrapper']}>
+				  		<img src="http://img1.ffan.com/T1ELYTBQWv1RCvBVdK" alt=""className={s.img}/>
+				  		<div className={s.appInfo}>
+				  			<h2 className={s.title}>h5数据测试516-01</h2>
+				  			<dl className={s['list-wrapper']}>
+				  				<dt className={s['list-title']}>内容提要</dt>
+				  				<dd className={s['con-wrapper']}>请上传应用高清图片400*400像素，仅支持PNG格式，大小不超过300KB</dd>
+				  			</dl>
+				  			<dl className={s['list-wrapper']}>
+				  				<dt className={s['list-title']}>信息</dt>
+				  				<dd className={s['con-wrapper']}>
+				  					<span className={s.list}>
+				  						<span className={s.item}>标签</span>
+				  						<span className={`${s.item} ${s.text}`}>数据分析</span>
+				  					</span>
+				  				</dd>
+				  			</dl>
+				  		</div>
+						</div>  
+						<div className={`${s['publish-wrapper']} ${s['list-wrapper']}`}>
+				  		<h3 className={s['list-title']}>版本信息</h3>
+			  			<ul className={s['con-wrapper']}>
+				  			<li className={s.list}>
+				  				<span className={s.item}>更新版本</span>
+				  				<span className={`${s.item} ${s.text}`}>2017-05-16 11:11:6</span>
+				  			</li>
+				  			<li className={s.list}>
+				  				<span className={s.item}>版本</span>
+				  				<span className={`${s.item} ${s.text}`}>0.0.1</span>
+				  			</li>
+				  		</ul>
+				  	</div>
           </div>
-
-          <div className="version">
-            <ul className>
-              <li>
-                <label htmlFor="">更新日期</label>
-                <div>xxxxx</div>
-              </li>
-              <li>
-                <label htmlFor="">版本</label>
-                <div>xxxxx</div>
-              </li>
-              <li>
-                <label htmlFor="">大小</label>
-                <div>xxxxx</div>
-              </li>
-              <li>
-                <label htmlFor="">版本介绍</label>
-                <div>xxxxx</div>
-              </li>
-            </ul>
-          </div>
-
         </div>
       </div>
     )
