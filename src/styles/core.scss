@@ -1,7 +1,9 @@
 @import '~normalize.css/normalize';
 @import './iconfont/iconfont.css';
 @import './v/iconfont.css';
-@import './v/common.css';
+@import './v/form.scss';
+@import './v/table.scss';
+@import './v/common.scss';
 *,
 *:before,
 *:after {

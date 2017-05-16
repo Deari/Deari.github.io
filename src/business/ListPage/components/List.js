@@ -14,7 +14,7 @@ export default class Main extends React.Component {
     return (
       <div className='container'>
         <SideBar pageLinks={getPageLinks(type)} type={type} />
-        <div className={s.content}>
+        <div className="content">
           <TabFilters filter={filter} type={type} onToggleFilter={onToggleFilter} onSearch={onSearch} />
           <DevInfo />
           <AppList data={data} type={type} />

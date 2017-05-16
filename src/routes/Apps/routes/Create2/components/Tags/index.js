@@ -11,13 +11,13 @@ const Tags = () => {
       <div className='form-item'>
         <div className="item-wrapper">
           <ul className={t['item-tag']}>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
-            <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
+            <li className={`${t.tags} defaultBtn`}>营销常用</li>
           </ul>
           <div className={s.helpMsg}>
             <i className="iconfont icon-miashu"></i>

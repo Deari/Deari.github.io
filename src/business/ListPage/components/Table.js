@@ -6,7 +6,7 @@ import TableItem from './TableItem'
 const Table = ({ data, type }) => {
   return (
     <div className={s.root}>
-      <table className={s['site-table']} cellSpacing='0' cellPadding='0'>
+      <table className={`site-table ${s['tableWrapper']}`} cellSpacing='0' cellPadding='0'>
         <thead>
           <tr>
             <th>Logo</th>

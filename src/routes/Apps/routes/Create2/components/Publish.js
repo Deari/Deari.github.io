@@ -104,8 +104,8 @@ class Main extends React.Component {
             </div>
           </div>
           <div className='form-actions'>
-            <button className={cx('btn-primary', s.saveBtn)}>保存</button>
-            <button className={cx('btn-primary', s.saveBtn)}>提交审核</button>
+            <button className={cx('primaryBtn', s.saveBtn)}>保存</button>
+            <button className={cx('primaryBtn', s.saveBtn)}>提交审核</button>
           </div>
       	</form>
      	</div>

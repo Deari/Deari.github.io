@@ -13,7 +13,7 @@ const OverView = (props) => {
   return (
     <div className={`container ${s.analytics}`} >
       <SideBar pageLinks={getPageLinks(type)} type={type} />
-      <div className={s.content}>
+      <div className="content">
         <div className={s.panels}>
           <div className={`${s.panel} ${s.active}`}>
             <BasicInfo {...basic} />

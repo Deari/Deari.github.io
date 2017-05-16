@@ -12,7 +12,7 @@ class Filters extends React.Component {
     return (
       <div className={s.statusBar}>
         <ul className={s.navFilters}>
-          {APPS_FILTERS.map(item => <li className={cx([s.tabs],{ [s.active]: item.filter === filter })}
+          {APPS_FILTERS.map(item => <li className={cx('tabs-item',{ 'active': item.filter === filter })}
             onClick={() => { onToggleFilter(item) }}
           >
             {item.text}

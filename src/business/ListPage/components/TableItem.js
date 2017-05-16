@@ -52,13 +52,13 @@ const TabelItem = ({ data, type }) => {
       </td>
 
       <td className={s.actions}>
-        <Link to={`/${type}/detail/${data.appId}`} className={s['btn-default']}>查看</Link>
+        <Link to={`/${type}/detail/${data.appId}`} className={`defaultBtn ${s.tableBtn}`}>查看</Link>
 
         { showEditBtn(appStatus[0] && appStatus[0].status) ?
-          <Link to={`/${type}/edit/${data.appId}/1`} className={s['btn-default']}>编辑</Link> : null }
+          <Link to={`/${type}/edit/${data.appId}/1`} className={`defaultBtn ${s.tableBtn}`}>编辑</Link> : null }
 
         { showEditBtn(appStatus[0] && appStatus[0].status) ? 
-          <Link to={`/${type}/edit/${data.appId}/2`} className={s['btn-default']}>发布新版本</Link> : null }
+          <Link to={`/${type}/edit/${data.appId}/2`} className={`defaultBtn ${s.tableBtn}`}>发布新版本</Link> : null }
       </td>
     </tr>
   )

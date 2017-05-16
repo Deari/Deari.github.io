@@ -164,7 +164,7 @@ class DevAccount extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={s['btn-primary']} onClick={::this.submitHandler}>获取商家测试账号</button>
+          <button className={`primaryBtn ${s.accountBtn}`} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     )
@@ -190,8 +190,8 @@ class DevAccount extends Component {
     return (
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type} />
-        <div className={s.content}>
-          <h2 className={s['content-header']}><i className='iconfont icon-account' />申请测试账号</h2>
+        <div className="content">
+          <h2 className="content-header"><i className='iconfont icon-account' />申请测试账号</h2>
           <div className={s.main}>
             {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号
