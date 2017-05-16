@@ -3,12 +3,11 @@ import SideBar from 'business/SideBar'
 import Table from './ListTable'
 import Pagination from 'components/Pagination'
 import { PageTypes, getPageLinks } from 'config/index'
-import s from './list-new.scss'
 
 const List = (props) => {
   const { list, total, onPage, type } = props
   return (
-    <div className={`container ${s.analytics}`} >
+    <div className="container">
       <SideBar pageLinks={getPageLinks(type)} type={type}/>
       <div className="content">
         <Table data={list} type={type} typeText={PageTypes[type]} />

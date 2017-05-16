@@ -5,7 +5,6 @@ import AppList from './Table'
 import DevInfo from 'business/DevInfo'
 import TabFilters from './TabFilters'
 import { PageTypes, getPageLinks } from 'config/index'
-import s from './index-new.scss'
 
 export default class Main extends React.Component {
   render () {
