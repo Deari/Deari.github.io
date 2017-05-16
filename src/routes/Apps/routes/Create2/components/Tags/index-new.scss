@@ -1,7 +1,8 @@
 .item-tag {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: -20px;
+	width: 94%;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -18px;
   .tags {
     color: #999;
     width: 74px;
@@ -10,7 +11,7 @@
     border-radius: 2px;
     line-height: 28px;
     text-align: center;
-    margin: 20px 20px 0 0;
+    margin: 18px 18px 0 0;
     &:nth-child(5n) {
       margin-right: 0;
     }

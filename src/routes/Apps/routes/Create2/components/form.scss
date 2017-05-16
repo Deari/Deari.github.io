@@ -1,5 +1,4 @@
 @import 'src/styles/v/base.scss';
-
 .form-group {
 	display: flex;
 	flex-wrap: nowrap;
@@ -19,48 +18,79 @@
 			line-height: 1;
 		}
 	}
-	.label-no{
-		&:before{
-			content: ""
+	.label-no {
+		&:before {
+			content: "";
 		}
 	}
 	.form-item {
 		flex: 1;
-		.item-wrapper {
-			display: flex;
-			flex-wrap: nowrap;
-			align-items: center;
+		.input-affix-wrapper {
+			width: 94%;
+			display: inline-block;
+			position: relative;
+			&>i {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				right: 8px;
+			}
+			.form-input {
+				height: 30px;
+				width: 100%;
+				padding: 0 30px 0 10px;
+				border-radius: 0;
+			}
 		}
-    .input-affix-wrapper {
-      flex: 1;
-      position: relative;
-      &>i {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 8px;
-      }
-      .form-input {
-        height: 30px;
-        width: 100%;
-        padding: 0 30px 0 10px;
-        border-radius: 0;
-      }
-    }
-    &-msg {
-      height: 24px;
-      display: block;
-      font-size: 12px;
-      line-height: 24px;
-      &.error {
-        color: $site-red;
-      }
-    }
+		.apply-radio {
+			margin: 14px 0;
+			.row-radio {
+				margin-right: 4px;
+				position: relative;
+				display: inline-block;
+				i.icon-radio {
+					display: none;
+					font-size: 23px;
+					color: #cdd4dc;
+				}
+				i.icon-radio1 {
+					display: inline-block;
+					font-size: 23px;
+					color: #cdd4dc;
+				}
+				.input-radio {
+					position: absolute;
+					top: -2px;
+					left: -3px;
+					width: 20px;
+					height: 28px;
+					opacity: 0;
+					cursor: pointer;
+					z-index: 1;
+				}
+				.input-radio:checked+ span i.icon-radio {
+					display: inline-block;
+					color: #2692fb;
+				}
+				.input-radio:checked+ span i.icon-radio1 {
+					display: none;
+				}
+			}
+		}
+		&-msg {
+			height: 24px;
+			display: block;
+			font-size: 12px;
+			line-height: 24px;
+			&.error {
+				color: $site-red;
+			}
+		}
 	}
 }
 .form-actions {
-  width: 100%;
-  padding-top: 32px;
-  border-top: 1px solid $site-border-gray;
-  text-align: center;
+	width: 100%;
+	padding-top: 32px;
+	border-top: 1px solid $site-border-gray;
+	text-align: center;
 }

@@ -8,7 +8,7 @@ const ImageUploader = () => {
     <div className="form-group">
       <label className="label">应用图片</label>
       <div className='form-item'>
-        <div className={cx("item-wrapper", s['item-upload'])}>
+        <div className={"item-wrapper"}>
           <div className={t['item-rule']}>
             <span className={t['rule-text']}>请上传应用高清图片<br/>400*400像素，仅支持PNG格式，大小不超过300KB</span>
             <div className={s.helpMsg}>
@@ -24,7 +24,7 @@ const ImageUploader = () => {
 
         <div className="form-item-msg error">请输入内容</div>
 
-        <ul className={`${t['img-item']} ${s.active}`}>
+        <ul className={`${t['img-item']} ${t.active}`}>
           <li className={t['upload-img']}>
             <img src=""/>
           </li>

@@ -6,7 +6,7 @@
   display: block;
   overflow: hidden;
   text-align: center;
-  line-height: 35px;
+  line-height: 33px;
   border-radius: 2px;
   cursor: pointer;
   .text {
@@ -23,33 +23,26 @@
     display: none;
   }
 }
-
 .item-rule {
-  display: flex;
-  align-items: flex-end;
   margin-bottom: 20px;
   .rule-text {
     color: #999;
     font-size: 12px;
     line-height: 24px;
-  }
-  .form-info {
-    margin-bottom: 3px;
+    display: inline-block;
   }
 }
 .img-item {
-  height: 0;
-  overflow: hidden;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 14px;
+  display: none;
   &.active {
-    height: auto;
+    display: block!important;
   }
   .upload-img {
     width: 100px;
     height: 100px;
-    margin: 0 10px 10px 0;
+    margin: 10px 10px 0 0;
+    display: inline-block;
     border: 1px solid $site-border-gray;
   }
 }

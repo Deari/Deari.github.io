@@ -8,7 +8,7 @@ const Tags = () => {
     <div className='form-group'>
       <label className='label'>应用简介</label>
       <div className='form-item'>
-        <div className={`item-wrapper ${s['item-summary']}`}>
+        <div className="item-wrapper">
           <textarea className={t['item-textarea']}></textarea>
           <div className={s.helpMsg}>
             <i className="iconfont icon-miashu"></i>

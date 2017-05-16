@@ -9,7 +9,7 @@ const Tags = () => {
     <div className="form-group">
       <label className='label'>标签</label>
       <div className='form-item'>
-        <div className={`item-wrapper ${s['item-summary']}`}>
+        <div className="item-wrapper">
           <ul className={t['item-tag']}>
             <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
             <li className={`${t.tags} ${s['btn-default']}`}>营销常用</li>
