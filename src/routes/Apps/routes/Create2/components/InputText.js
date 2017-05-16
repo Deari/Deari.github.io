@@ -2,13 +2,11 @@ import React from 'react'
 import s from './Basic-new.scss'
 const InputText = (props) => {
 	return <div className="form-group">
-    <label className="label">应用名称</label>
+    <label className="label">{props.label}</label>
     <div className="form-item">
       <div className="item-wrapper">
         <div className="input-affix-wrapper">
-          <input type="text" name={props.name} className="form-input"
-            value={props.value}
-            onChange={props.onChange}/>
+          <input type="text" className="form-input" {...props.input} />
           <i className="iconfont icon-edit"></i>
         </div>
         <div className={s.helpMsg}>

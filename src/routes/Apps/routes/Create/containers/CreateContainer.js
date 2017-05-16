@@ -32,6 +32,9 @@ class CreateContainer extends Component {
   }
 
   submitFirst (values) {
+    console.log(values);
+    return;
+    
     const formData = new FormData()
 
     for (let key in values) {

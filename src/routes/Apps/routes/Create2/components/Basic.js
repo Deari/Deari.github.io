@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {Field, reduxForm} from 'redux-form'
+
 import s from './Basic-new.scss'
 import './form.scss'
 import cx from 'classnames'
@@ -7,8 +10,6 @@ import InputText from './InputText'
 import ImageUploader from './Uploader/img'
 import Tags from './Tags'
 import AppDesc from './AppDesc'
-
-
 
 class Main extends React.Component {
   state={
@@ -30,11 +31,14 @@ class Main extends React.Component {
   }
 
   saveHandle () {
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   render () {
     const {form} = this.state;
+    
+    console.log(this.props)
+
     return <div className={s['create-container']}>
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
@@ -48,48 +52,49 @@ class Main extends React.Component {
           <i className="iconfont icon-zhuyi"></i>
           您的这次更新会在新的应用版本发布后，在应用市场上显示。
         </span>
-        <div className="site-form">
-          <InputText 
-            label='应用名称'
+        <form className="site-form" onSubmit={this.props.handleSubmit((v) => { console.log(v, "submit")  })}>
+          <Field
+            required 
+            label='应用名称' 
             name='appName' 
-            description='您的应用在应用市场中显示的名称'
-            onChange={(e)=>this.handleChange('appName', e.target.value) } 
-            value={form.appName}
+            description='您的应用在应用市场中显示的名称' 
+            component={InputText}
           />
-          <ImageUploader 
-            label='应用图片'
+
+          <Field
+            required 
+            label='应用图片' 
             name='appLogo'
             description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
-            onChange={(e)=>this.handleChange('appLogo', e.target.value) }
-            value={form.appLogo}
+            component={ImageUploader}
           />
-          <AppDesc
-            label='应用简介'
+
+          <Field
+            required 
+            label='应用简介' 
             name='appDesc'
             description='对您的应用的描述，用以详细说明特性和功能' 
-            onChange={(e)=>this.handleChange('appDesc', e.target.value) } 
-            value={form.appDesc}
+            component={AppDesc}
           />
-          <Tags
-            label='标签'
-            name='tags'
+
+          <Field
+            required 
+            label='标签' 
             dataSource={[ { value: 'test' } ]}
+            name='tags'
             description='一个或多个标签，用以描述您的应用' 
-            onChange={(e)=>this.handleChange('tags', e.target.value) } 
-            value={form.tags}
+            component={Tags}
           />
+
           <div className='form-actions'>
             <button className={cx('primaryBtn', s.saveBtn)} onClick={this.saveHandle}>保存</button>
           </div>
-        </div>
-      </div>
-      <div>
-        <pre>
-          {JSON.stringify(this.state, ' ', 4)}
-        </pre>
+        </form>
       </div>
     </div>
   }
 }
 
-export default Main;
+export default reduxForm({
+  form: 'create_apps'
+})(Main);
