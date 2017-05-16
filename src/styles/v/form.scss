@@ -35,7 +35,7 @@
   }
 }
 
-input,textarea {
+input[type="text"],textarea {
   border-radius: 4px;
   border: 1px solid $site-border-gray;
   outline: none;

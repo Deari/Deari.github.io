@@ -134,11 +134,6 @@
 							}
 						}
 					}
-					.publish-text {
-						font-size: 12px;
-						color: #999;
-						line-height: 24px;
-					}
 					.form-info {
 						margin-left: 10px;
 						position: relative;
@@ -204,5 +199,39 @@
 				}
 			}
 		}
+	}
+}
+.publish-text {
+	font-size: 12px;
+	color: #999;
+	line-height: 24px;
+}
+.img-use {
+	width: 300px;
+	height: 182px;
+	display: block;
+}
+.use-item{
+	display: block;
+	.item-img{
+		width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    margin: 7px;
+    position: relative;
+    text-align: center;
+    border: 1px solid $site-border-gray;
+	}
+}
+.apply-radio {
+	margin: 14px 0;
+	display: flex;
+	flex-direction: column;
+	.row-radio {
+		position: relative;
+		margin-right: 4px;
+	}
+	.text {
+		line-height: 23px;
 	}
 }

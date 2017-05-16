@@ -1,5 +1,6 @@
 import React from 'react'
 import s from './H5-new.scss'
+import InputText from '../components/InputText'
 
 class Main extends React.Component {
   render () {
@@ -18,23 +19,7 @@ class Main extends React.Component {
       		您的这次更新会在新的 应用 版本发布后，在 应用市场 上显示。
       	</span>
         <form className={s['site-form']}>
-          <div className={s['form-group']}>
-            <label className={s['control-label']}>应用名称</label>
-            <div className={s['form-item']}>
-              <div className={s['item-control']}>
-                <div className={s['item-iconfont']}>
-                  <i className="iconfont icon-edit"></i>
-                  <input type="text" className={s['form-control']}/>
-                  <i className="iconfont icon-edit"></i>
-                </div>
-                <div className={s['form-info']}>
-                  <i className="iconfont icon-miashu"></i>
-                  <p className={s['info-content']}>您的 应用 在 应用市场 中显示的名称</p>
-                </div>
-              </div>
-              <span className={s['has-error']}>请输入内容</span>
-            </div>
-          </div>
+					<InputText></InputText>
           <div className={s['form-group']}>
             <label className={s['control-label']}>应用图片</label>
             <div className={s['form-item']}>
