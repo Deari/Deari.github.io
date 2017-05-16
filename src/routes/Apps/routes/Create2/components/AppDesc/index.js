@@ -3,16 +3,18 @@ import s from '../Basic-new.scss'
 import t from './index-new.scss'
 import cx from 'classnames'
 
-const Tags = () => {
+const Tags = (props) => {
 	return (
     <div className='form-group'>
-      <label className='label'>应用简介</label>
+      <label className='label'>{props.label}</label>
       <div className='form-item'>
         <div className="item-wrapper">
-          <textarea className={t['item-textarea']}></textarea>
+          <textarea name={props.name} className={t['item-textarea']}
+            onChange={props.onChange}
+            value={props.value}></textarea>
           <div className={s.helpMsg}>
             <i className="iconfont icon-miashu"></i>
-            <p className={s.cont}>对您的 应用 的描述，用以详细说明特性和功能</p>
+            <p className={s.cont}>{props.description}</p>
           </div>
         </div>
         <div className="form-item-msg error">请输入内容</div>
