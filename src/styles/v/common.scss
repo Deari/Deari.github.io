@@ -29,6 +29,9 @@
 	display: inline-block;
 	&:hover,
 	&.active {
+		a{
+			color: #000;
+		}
 		color: #000;
 		border-bottom: 2px solid $site-blue;
 	}

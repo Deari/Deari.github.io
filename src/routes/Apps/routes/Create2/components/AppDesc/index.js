@@ -9,7 +9,7 @@ const Tags = (props) => {
       <label className='label'>{props.label}</label>
       <div className='form-item'>
         <div className="item-wrapper">
-          <textarea name={props.name} className={t['item-textarea']}
+          <textarea name={props.name} placeholder="请输入应用简介。此内容将显示在应用列表页中。" className={t['item-textarea']}
             onChange={props.onChange}
             value={props.value}></textarea>
           <div className={s.helpMsg}>

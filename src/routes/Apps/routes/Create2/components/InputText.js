@@ -6,7 +6,7 @@ const InputText = (props) => {
     <div className="form-item">
       <div className="item-wrapper">
         <div className="input-affix-wrapper">
-          <input type="text" name={props.name} className="form-input"
+          <input type="text" name={props.name} placeholder="应用名称" className="form-input"
             value={props.value}
             onChange={props.onChange}/>
           <i className="iconfont icon-edit"></i>

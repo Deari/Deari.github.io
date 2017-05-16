@@ -17,10 +17,10 @@ class Main extends React.Component {
         <span className={s.site}>我的应用</span>
         创建新应用 ( H5 类型 )
       </h2>
-      <div className={t.tab}>
-      	<ul className={t['tab-titles']}>
-	        <li className={t['tab-item']}><Link to='/apps/create2/h5/basic'>基本信息</Link></li>
-	        <li className={cx([t['tab-item']],[t.active])}><Link to='/apps/create2/h5/version'>版本信息</Link></li>
+      <div className={t.tabs}>
+      	<ul className={t['tabs-titles']}>
+	        <li className="tabs-item"><Link className={t.address} to='/apps/create2/h5/basic'>基本信息</Link></li>
+	        <li className={cx("tabs-item","active")}><Link className={t.address} to='/apps/create2/h5/version'>版本信息</Link></li>
 	      </ul>
       </div>
       

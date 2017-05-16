@@ -8,7 +8,7 @@ import Publish from '../components/Publish'
 export default {
   path: 'h5',
   indexRoute: {
-    component: Basic
+    component: Publish
   },
   childRoutes: [
     {

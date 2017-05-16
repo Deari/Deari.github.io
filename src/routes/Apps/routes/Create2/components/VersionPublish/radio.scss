@@ -4,16 +4,6 @@
 		margin-right: 4px;
 		position: relative;
 		display: inline-block;
-		i.icon-radio {
-			display: none;
-			font-size: 23px;
-			color: #cdd4dc;
-		}
-		i.icon-radio1 {
-			display: inline-block;
-			font-size: 23px;
-			color: #cdd4dc;
-		}
 		.input-radio {
 			position: absolute;
 			top: -2px;
@@ -23,6 +13,16 @@
 			opacity: 0;
 			cursor: pointer;
 			z-index: 1;
+		}
+		i.icon-radio {
+			display: none;
+			font-size: 23px;
+			color: #cdd4dc;
+		}
+		i.icon-radio1 {
+			display: inline-block;
+			font-size: 23px;
+			color: #cdd4dc;
 		}
 		.input-radio:checked+ span i.icon-radio {
 			display: inline-block;

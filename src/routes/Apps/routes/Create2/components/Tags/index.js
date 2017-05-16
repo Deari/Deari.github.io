@@ -12,7 +12,7 @@ const Tags = (props) => {
         <div className="item-wrapper">
           <ul className={t['item-tag']}>
             {props.dataSource.map((item) => {
-              return <li className={`${t.tags} ${s['defaultBtn']}`}>{item.value}</li>
+              return <li className={`${t.tags} defaultBtn`}>{item.value}</li>
             })}
           </ul>
           <div className={s.helpMsg}>
