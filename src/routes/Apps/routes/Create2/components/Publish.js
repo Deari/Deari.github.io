@@ -19,8 +19,8 @@ class Main extends React.Component {
       </h2>
       <div className={t.tab}>
       	<ul className={t['tab-titles']}>
-	        <li className={cx([t['tab-item']],[t.active])}><Link to='/apps/create2/h5/basic'>基本信息</Link></li>
-	        <li className={t['tab-item']}><Link to='/apps/create2/h5/version'>版本信息</Link></li>
+	        <li className={t['tab-item']}><Link to='/apps/create2/h5/basic'>基本信息</Link></li>
+	        <li className={cx([t['tab-item']],[t.active])}><Link to='/apps/create2/h5/version'>版本信息</Link></li>
 	      </ul>
       </div>
       

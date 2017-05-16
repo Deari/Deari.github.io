@@ -1,6 +1,5 @@
 import React from 'react'
 import s from '../Basic-new.scss'
-import t from './index-new.scss'
 import './radio.scss'
 
 const VersionPublish = () => {
@@ -18,7 +17,7 @@ const VersionPublish = () => {
 							    <i className="iconfont icon-radio"></i>
 							</span>
 						</div>
-						<span className={t['text-con']}>手动发布此版本</span>
+						<span className={s['text-con']}>手动发布此版本</span>
 					</div>
 					<div className="apply-radio">
 						<div className="row-radio">
@@ -28,7 +27,7 @@ const VersionPublish = () => {
 							    <i className="iconfont icon-radio"></i>
 							</span>
 						</div>
-						<span className={t['text-con']}>自动发布此版本</span>
+						<span className={s['text-con']}>自动发布此版本</span>
       		</div>
       	</div>
       </div>
