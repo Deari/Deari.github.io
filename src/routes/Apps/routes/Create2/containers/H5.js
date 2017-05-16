@@ -15,14 +15,14 @@ const Main = () => {
     <div>
       <Basic></Basic>
       <Publish></Publish>
-    </div>
+  </div>
   </div>
 }
 
 export default {
   path: 'h5',
   indexRoute: {
-    component: Basic
+    component: Publish
   },
   childRoutes: [
     {

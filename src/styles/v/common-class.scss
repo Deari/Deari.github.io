@@ -20,7 +20,7 @@
 		}
 	}
 }
-.tabs-item{
+.tabs-item {
 	height: 50px;
 	line-height: 50px;
 }
@@ -34,14 +34,37 @@
 		border-bottom: 2px solid $site-blue;
 	}
 }
-.current-location {
-	color: #333;
-	height: 42px;
-	font-size: 14px;
-	line-height: 42px;
-	border-bottom: 1px solid $site-border-gray;
-	.site:after {
-		content: "/";
-		margin: 0 4px;
+.form-group {
+	display: flex;
+	flex-wrap: nowrap;
+	max-width: 580px;
+	margin: 0 auto 45px;
+	.control-label {
+		width: 68px;
+		height: 30px;
+		line-height: 30px;
+		margin-right: 34px;
+		text-align: right;
+		&:before {
+			content: "*";
+			color: $site-red;
+			display: inline-block;
+			margin-right: 2px;
+			line-height: 1;
+		}
+	}
+	.label-no{
+		&:before{
+			content:""
+		}
+	}
+	.form-item {
+		flex: 1;
+		.item-control {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+			align-items: center;
+		}
 	}
 }
