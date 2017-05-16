@@ -1,5 +1,5 @@
 import fetchUtil from 'utils/fetch'
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 
 const APPSTORE = 'APPSTORE'
 const APPSTORE_UPDATE = APPSTORE + '_UPDATE_LIST'
@@ -15,7 +15,7 @@ export const fetchAppList = (option) => {
 
     const tag = typeof option.tag !== 'undefined' ? option.tag : state.tag;
     const { type } = state;
-    const url = getEnvDomain() + `/app/v1/bo/v1/web/market/tag/${tag}/${type}`
+    const url = getDomain(`/app/v1/bo/v1/web/market/tag/${tag}/${type}`);
     const _params = {
       ...state.params,
       ...option.params

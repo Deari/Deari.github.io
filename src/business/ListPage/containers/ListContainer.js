@@ -2,7 +2,7 @@ import React from 'react'
 import fetchUtil from 'utils/fetch'
 import List from '../components/List'
 
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 import { PageTypes, getPageLinks } from 'config/index'
 import APPS_FILTERS from 'config/appStatus'
 import { scrollToTop } from 'utils/scroll'
@@ -20,12 +20,11 @@ export default class AppsList extends React.Component {
     }
   }
   componentDidMount () {
-    console.log('did mount', this.props.params)
     this.fetchAppsList()
   }
 
   fetchAppsList (params = {}) {
-    const apiUrl = `${getEnvDomain()}/app/v1/bo/v1/web/developer/${this.props.type}`
+    const apiUrl = getDomain(`/app/v1/bo/v1/web/developer/${this.props.type}`)
     const { filter, ...rest } = params
     const _filter = filter || this.state.filter
     const { status: review } = APPS_FILTERS.find(function (t) { return t.filter === _filter })

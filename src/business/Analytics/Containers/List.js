@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import List from '../Components/List'
 import { scrollToTop } from 'utils/scroll'
@@ -14,10 +14,13 @@ class ListContainer extends Component {
       type = result[1]
     }
 
+    const _t = type.slice(0, type.length - 1);
+    const url = getDomain(`/app/v1/bo/v1/web/developer/statistics/${_t}`);
+    
     this.state = {
       type,
       api: {
-        url: getEnvDomain() + '/app/v1/bo/v1/web/developer/statistics/' + type.slice(0, type.length - 1),
+        url,
         params: {
           page: 1,
           limit: 10,
