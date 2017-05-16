@@ -1,0 +1,11 @@
+@import 'src/styles/v/base.scss';
+
+.item-textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: none;
+  border-radius: 0;
+  padding: 10px;
+  line-height: 24px;
+  border: 1px solid $site-border-gray;
+}

@@ -1,0 +1,14 @@
+@import 'src/styles/v/base.scss';
+
+.tab {
+  color: #000;
+  &-titles {
+    padding: 20px 0;
+    border-bottom: 1px solid $site-border-gray;
+    &-item {}
+  }
+  &-content {
+    color: #333;
+    font-size: 14px;
+  }
+}

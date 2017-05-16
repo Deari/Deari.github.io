@@ -1,22 +1,20 @@
 import React from 'react'
-import s from './H5-new.scss'
-
+import s from './Basic-new.scss'
 const InputText = () => {
-	return <div className={s['form-group']}>
-    <label className={s['control-label']}>应用名称</label>
-    <div className={s['form-item']}>
-      <div className={s['item-control']}>
-        <div className={s['item-iconfont']}>
-          <i className="iconfont icon-edit"></i>
-          <input type="text" className={s['form-control']}/>
+	return <div className="form-group">
+    <label className="label">应用名称</label>
+    <div className="form-item">
+      <div className="item-wrapper">
+        <div className="input-affix-wrapper">
+          <input type="text" className="form-input"/>
           <i className="iconfont icon-edit"></i>
         </div>
-        <div className={s['form-info']}>
+        <div className={s.helpMsg}>
           <i className="iconfont icon-miashu"></i>
-          <p className={s['info-content']}>您的 应用 在 应用市场 中显示的名称</p>
+          <p className={s.cont}>您的 应用 在 应用市场 中显示的名称</p>
         </div>
       </div>
-      <span className={s['has-error']}>请输入内容</span>
+      <div className="form-item-msg error">请输入内容</div>
     </div>
   </div>
 }
