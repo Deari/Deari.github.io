@@ -1,0 +1,12 @@
+@import 'src/styles/v/base.scss';
+.tabs{
+	border-bottom: 1px solid $site-border-gray;
+  .tabNav{
+  	padding: 16px 15px 15px;
+  	.tabs-content{
+			line-height: 18px;
+			display: block;
+			text-align: center;
+		}
+  }
+}
