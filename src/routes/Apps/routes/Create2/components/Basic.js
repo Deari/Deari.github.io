@@ -46,9 +46,15 @@ class Main extends React.Component {
             description='您的应用在应用市场中显示的名称' 
             component={InputText}
           />
-					
-					<ScreenSize></ScreenSize>
-					
+
+          <Field
+            type="checkbox"
+            required 
+            label='适配屏幕尺寸' 
+            name='appSize[]' 
+            component={ScreenSize}
+          />
+
           <Field
             required 
             label='应用图片' 
