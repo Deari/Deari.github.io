@@ -3,27 +3,66 @@ import s from '../Basic-new.scss'
 import t from './index-new.scss'
 import cx from 'classnames'
 
-const Tags = (props) => {
+class Tags extends React.Component {
+  constructor (props) {
+    super(props);
 
-	return (
-    <div className="form-group">
-      <label className='label'>{props.label}</label>
-      <div className='form-item'>
-        <div className="item-wrapper">
-          <ul className={t['item-tag']}>
-            {props.dataSource.map((item) => {
-              return <li className={cx('defaultBtn', t.tags)}>{item.value}</li>
-            })}
-          </ul>
-          <div className={s.helpMsg}>
-            <i className="iconfont icon-miashu"></i>
-            <p className={s.cont}>{props.description}</p>
+    const selected = {}
+    
+    if(Array.isArray(props.input.value)) {
+      props.input.value.map(v => {
+        selected[v] = true
+      })
+    }
+
+    this.state={
+      dataSource: props.dataSource,
+      selected
+    }
+  }
+
+  handleClick (tag) {
+    const { dataSource, selected } = this.state;
+    const _selected = {
+      ...selected,
+      [tag.tagId]: !selected[tag.tagId]
+    }
+
+    const newValues = dataSource.filter(v=> _selected[v.tagId])
+
+    this.setState({ selected: _selected }, ()=>{
+      this.props.input.onChange(newValues)
+    })
+  }
+
+  render () {
+    const { selected } = this.state;
+    const props = this.props;
+    const { meta: { touched, dirty, error, warning } } = props;
+
+    return (
+      <div className="form-group">
+        <label className='label'>{props.label}</label>
+        <div className='form-item'>
+          <div className="item-wrapper">
+            <ul className={t['item-tag']}>
+              {props.dataSource.map((v) => {
+                return <li className={cx('defaultBtn', t.tags, {
+                  [t.active]: selected[v.tagId]
+                })} onClick={this.handleClick.bind(this, v)}>{v.tagName}</li>
+              })}
+            </ul>
+            <div className={s.helpMsg}>
+              <i className="iconfont icon-miashu"></i>
+              <p className={s.cont}>{props.description}</p>
+            </div>
           </div>
+
+          {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
         </div>
-        <div className="form-item-msg error">请输入内容</div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default Tags;

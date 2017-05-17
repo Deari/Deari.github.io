@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import {getFormValues, Field, reduxForm} from 'redux-form'
+import { validate } from './validate'
 
 import s from './Basic-new.scss'
 import './form.scss'
@@ -15,6 +16,7 @@ class Main extends React.Component {
   render () {
     const { handleSubmit, formValues } = this.props;
     console.log(formValues, '==')
+    
     return <div className={s['create-container']}>
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
@@ -56,7 +58,7 @@ class Main extends React.Component {
           <Field
             required 
             label='标签' 
-            dataSource={[ { value: 'test' } ]}
+            dataSource={[ { tagId: 1, tagName: 'test' } ]}
             name='tags'
             description='一个或多个标签，用以描述您的应用' 
             component={Tags}
@@ -77,5 +79,6 @@ export default connect((state)=>{
   }
 })(reduxForm({
   form: 'create_apps',
-  initialValues: { appName: 'http://img1.ffan.com/T1MLATBgEv1RCvBVdK' }
+  initialValues: { appName1: 'http://img1.ffan.com/T1MLATBgEv1RCvBVdK' },
+  validate
 })(Main))
