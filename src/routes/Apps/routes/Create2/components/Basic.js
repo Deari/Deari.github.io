@@ -15,8 +15,6 @@ import AppDesc from './AppDesc'
 class Main extends React.Component {
   render () {
     const { handleSubmit, formValues } = this.props;
-    console.log(formValues, '==')
-    
     return <div className={s['create-container']}>
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>

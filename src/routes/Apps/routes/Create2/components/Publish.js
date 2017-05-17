@@ -1,4 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {getFormValues, Field, reduxForm} from 'redux-form'
+import { validate } from './validate'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from './Basic-new.scss'
@@ -26,9 +29,22 @@ class Main extends React.Component {
       
       <div className={s.main}>
       	<form className={s['site-form']}>
-          <AppDesc></AppDesc>
+          <Field
+            required 
+            label='应用简介' 
+            name='appDesc'
+            description='对您的应用的描述，用以详细说明特性和功能' 
+            component={AppDesc}
+          />
+
           {/*<span className={s['rule-text']}>您的线上版本为：10.1.1。您要填入的版本号。编号应遵循软件版本规范。</span>*/}
-          <InputText></InputText>
+          <Field
+            required 
+            label='应用名称' 
+            name='appName' 
+            description='您的应用在应用市场中显示的名称' 
+            component={InputText}
+          />
       		{/*<div className={s['form-group']}>
             <label className={s['label']}>版本介绍</label>
             <div className={s['form-item']}>
@@ -42,7 +58,14 @@ class Main extends React.Component {
               <div className={s['has-error']}>请输入内容</div>
             </div>
           </div>*/}
-          <ImageUploader></ImageUploader>
+
+          <Field
+            required 
+            label='应用图片' 
+            name='appLogo'
+            description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
+            component={ImageUploader}
+          />
           {/*<div className={s['form-group']}>
             <label className={s['label']}>应用文件<br/>(APK)</label>
             <div className={s['form-item']}>
@@ -113,4 +136,12 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+export default connect((state)=>{
+  return {
+    formValues: getFormValues('create_apps_2')(state) || {}
+  }
+})(reduxForm({
+  form: 'create_apps_2',
+  initialValues: { appName1: 'http://img1.ffan.com/T1MLATBgEv1RCvBVdK' },
+  validate
+})(Main))
