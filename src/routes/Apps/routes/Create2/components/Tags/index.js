@@ -47,7 +47,7 @@ class Tags extends React.Component {
           <div className="item-wrapper">
             <ul className={t['item-tag']}>
               {props.dataSource.map((v) => {
-                return <li className={cx('defaultBtn', t.tags, {
+                return <li className={cx(t.tags, {
                   [t.active]: selected[v.tagId]
                 })} onClick={this.handleClick.bind(this, v)}>{v.tagName}</li>
               })}

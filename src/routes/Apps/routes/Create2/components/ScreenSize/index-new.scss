@@ -1,8 +1,7 @@
 .title {
 	color: #999;
 	font-size: 12px;
-	line-height: 24px;
-	display: inline-block;
+	line-height: 30px;
 }
 .list {
 	display: flex;
@@ -12,6 +11,8 @@
 		.img {
 			width: 103px;
 			height: 90px;
+			display: block;
+			cursor: pointer;
 			margin: 40px 0 30px;
 			&-small{
 				background: url("../../../../../../images/small.png") no-repeat center center;
