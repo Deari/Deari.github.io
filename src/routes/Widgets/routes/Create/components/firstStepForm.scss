@@ -39,7 +39,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
         .diff{
             position: absolute;
             top: 1px;
-            left: 534px;
+            left: 560px;
         }
     }
     .label-type{
@@ -57,7 +57,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
             font-size: $text-font-size - 5px; 
             color: $text-color; 
             border: 1px solid $border-color; 
-            padding: 0 30px 0 $default-padding-left - 31px;
+            padding: 0 26px 0 $default-padding-left - 31px;
             outline: none;
         }
         input[type="text"]::selection{
