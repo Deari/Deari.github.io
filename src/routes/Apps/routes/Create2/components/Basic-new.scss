@@ -10,6 +10,9 @@
     content: "/";
     margin: 0 4px;
   }
+  .noNext:after{
+  	display: none;
+  }
 }
 .pageTitle {
   color: #000;
