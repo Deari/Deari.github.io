@@ -18,7 +18,7 @@ const ScreenSize = (props) => {
 	          		<span className={s.advice}>手机 (建议5英寸)</span>
 	          	</div>
 	      			<div className={`row-radio ${s.radioBtn}`}>
-						    <input type="checkbox" value="" id="small" className={`input-radio ${s.screenRadio}`}/>
+						    <input type="checkbox" value="" id="small" className="input-radio"/>
 								<span className="radio-item">
 								    <i className="iconfont icon-checkbox"></i>
 								    <i className="iconfont icon-checkbox1"></i>

@@ -8,6 +8,7 @@
 	justify-content: space-between;
 	.item {
 		display: inline-block;
+		text-align: center;
 		.img {
 			width: 103px;
 			height: 90px;
@@ -28,7 +29,6 @@
 			}
 		}
 		.size-text {
-			text-align: center;
 			font-size: 12px;
 			.screen {
 				display: block;
@@ -40,12 +40,7 @@
 			}
 		}
 		.radioBtn {
-			display: block;
-			text-align: center;
 			margin-top: 12px;
-			.screenRadio {
-				left: 37px;
-			}
 		}
 	}
 }
