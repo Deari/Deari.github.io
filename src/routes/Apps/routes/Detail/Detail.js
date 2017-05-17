@@ -4,7 +4,7 @@ import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
-import Tags from './Tags'
+import Tabs from './Tabs'
 import s from './index-new.scss'
 
 // import Detail from 'components/Detail'
@@ -16,7 +16,7 @@ class AppsDetail extends React.Component {
       <div className='container'>
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
         <div className="content">
-        	<Tags></Tags>
+        	<Tabs></Tabs>
           <div className={s.main}>
           	<div className={s['detail-wrapper']}>
 				  		<img src="http://img1.ffan.com/T1ELYTBQWv1RCvBVdK" alt=""className={s.img}/>
@@ -42,11 +42,11 @@ class AppsDetail extends React.Component {
 			  			<ul className={s['con-wrapper']}>
 				  			<li className={s.list}>
 				  				<span className={s.item}>更新版本</span>
-				  				<span className={`${s.item} ${s.text}`}>2017-05-16 11:11:6</span>
+				  				<span className={`${s.item} ${s['publish-text']}`}>2017-05-16 11:11:6</span>
 				  			</li>
 				  			<li className={s.list}>
 				  				<span className={s.item}>版本</span>
-				  				<span className={`${s.item} ${s.text}`}>0.0.1</span>
+				  				<span className={`${s.item} ${s['publish-text']}`}>0.0.1</span>
 				  			</li>
 				  		</ul>
 				  	</div>

@@ -2,7 +2,7 @@ import React from 'react'
 import s from './index-new.scss'
 import cx from 'classnames'
 
-const Tags = () => {
+const Tabs = () => {
 
 	return (
 		<div className={s.tabs}>
@@ -20,4 +20,4 @@ const Tags = () => {
   )
 }
 
-export default Tags;
+export default Tabs;
