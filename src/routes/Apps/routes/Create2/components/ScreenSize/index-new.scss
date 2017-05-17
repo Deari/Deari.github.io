@@ -5,8 +5,8 @@
 }
 .list {
 	display: flex;
-	justify-content: space-between;
 	.item {
+		flex: 1;
 		display: inline-block;
 		text-align: center;
 		.img {
@@ -14,7 +14,7 @@
 			height: 90px;
 			display: block;
 			cursor: pointer;
-			margin: 40px 0 30px;
+			margin: 40px auto 30px;
 			&-small{
 				background: url("../../../../../../images/small.png") no-repeat center center;
 				background-size: auto 100%;
