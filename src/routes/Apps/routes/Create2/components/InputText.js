@@ -1,6 +1,8 @@
 import React from 'react'
 import s from './Basic-new.scss'
 const InputText = (props) => {
+  const { meta: { touched, dirty, error, warning } } = props;
+
 	return <div className="form-group">
     <label className="label">{props.label}</label>
     <div className="form-item">
@@ -14,7 +16,7 @@ const InputText = (props) => {
           <p className={s.cont}>{props.description}</p>
         </div>
       </div>
-      <div className="form-item-msg error">请输入内容</div>
+      {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
     </div>
   </div>
 }

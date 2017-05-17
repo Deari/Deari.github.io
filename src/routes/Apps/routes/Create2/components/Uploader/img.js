@@ -45,7 +45,8 @@ class ImageUploader extends React.Component {
 
   render () {
     const props = this.props;
-    console.log(props.input.value)
+    const { meta: { touched, dirty, error, warning } } = props;
+
     return (
       <div className="form-group">
         <label className="label">{props.label}</label>
@@ -65,8 +66,7 @@ class ImageUploader extends React.Component {
             </span>
           </div>
 
-          <div className="form-item-msg error">请输入内容</div>
-
+          {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
           <ul className={`${t['img-item']} ${t.active}`}>
           <li className={t['upload-img']}>
                 <img src="https://www.baidu.com/img/bd_logo1.png"/>
