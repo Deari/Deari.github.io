@@ -18,7 +18,7 @@ const ScreenSize = (props) => {
 	          		<span className={s.advice}>手机 (建议5英寸)</span>
 	          	</div>
 	      			<div className={`row-radio ${s.radioBtn}`}>
-						    <input type="checkbox" value="" id="small" className="input-radio"/>
+						    <input type="checkbox" value="" id="small" className={`input-radio`}/>
 								<span className="radio-item">
 								    <i className="iconfont icon-checkbox"></i>
 								    <i className="iconfont icon-checkbox1"></i>
@@ -32,7 +32,7 @@ const ScreenSize = (props) => {
 	          		<span className={s.advice}>平板 (建议8英寸)</span>
 	          	</div>
 	      			<div className={`row-radio ${s.radioBtn}`}>
-						    <input type="checkbox" value="" id="middle" className="input-radio"/>
+						    <input type="checkbox" value="" id="middle" className={`input-radio`}/>
 								<span className="radio-item">
 								    <i className="iconfont icon-checkbox"></i>
 								    <i className="iconfont icon-checkbox1"></i>
@@ -46,7 +46,7 @@ const ScreenSize = (props) => {
 	          		<span className={s.advice}>桌面 (≥1440px)</span>
 	          	</div>
 	      			<div className={`row-radio ${s.radioBtn}`}>
-						    <input type="checkbox" value="" id="large" className="input-radio"/>
+						    <input type="checkbox" value="" id="large" className={`input-radio`}/>
 								<span className="radio-item">
 								    <i className="iconfont icon-checkbox"></i>
 								    <i className="iconfont icon-checkbox1"></i>
