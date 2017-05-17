@@ -1,16 +1,42 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import {getFormValues, Field, reduxForm} from 'redux-form'
+
 import {
-  postAppBasicInfo
+  postAppBasicInfo,
+  fetchTags
 } from 'reducers/api'
 import Basic from '../components/Basic'
 
-const onSubmit = (values) => {
-  console.log(values);
-  // postAppBasicInfo()
+
+class Container extends React.Component {
+
+  state = {
+    tags: [ { tagId: 1, tagName: 'test' } ]
+  }
+
+  componentWillMount() {
+    fetchTags().then(data=>{
+      this.setState({
+        tags: data
+      })
+    })
+  }
+
+  onSubmit (values) {
+    console.log(values);
+    postAppBasicInfo()
+  }
+
+  render () {
+    console.log(this.props.formValues)
+
+    return <Basic tags={this.state.tags} onSubmit={::this.onSubmit}></Basic>
+  }
 }
 
-const Container = () => {
-  return <Basic onSubmit={onSubmit}></Basic>
-}
-
-export default Container
+export default connect((state)=>{
+  return {
+    formValues: getFormValues('create_apps')(state) || {},
+  }
+})(Container)

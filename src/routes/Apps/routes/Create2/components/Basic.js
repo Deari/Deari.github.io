@@ -17,7 +17,8 @@ import ScreenSize from './ScreenSize'
 
 class Main extends React.Component {
   render () {
-    const { handleSubmit, formValues } = this.props;
+    const { handleSubmit } = this.props;
+
     return <div className={s['create-container']}>
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
@@ -48,10 +49,9 @@ class Main extends React.Component {
           />
 
           <Field
-            type="checkbox"
             required 
             label='适配屏幕尺寸' 
-            name='appSize[]' 
+            name='screenSize' 
             component={ScreenSize}
           />
 
@@ -74,7 +74,7 @@ class Main extends React.Component {
           <Field
             required 
             label='标签' 
-            dataSource={[ { tagId: 1, tagName: 'test' } ]}
+            dataSource={this.props.tags}
             name='tags'
             description='一个或多个标签，用以描述您的应用' 
             component={Tags}
@@ -89,12 +89,8 @@ class Main extends React.Component {
   }
 }
 
-export default connect((state)=>{
-  return {
-    formValues: getFormValues('create_apps')(state) || {}
-  }
-})(reduxForm({
+export default reduxForm({
   form: 'create_apps',
-  initialValues: { appName1: 'http://img1.ffan.com/T1MLATBgEv1RCvBVdK' },
+  initialValues: { },
   validate
-})(Main))
+})(Main)

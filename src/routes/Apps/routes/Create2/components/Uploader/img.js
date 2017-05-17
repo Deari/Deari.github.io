@@ -4,6 +4,7 @@ import s from '../Basic-new.scss'
 import t from './img-new.scss'
 import cx from 'classnames'
 import { uploadImage } from 'reducers/api'
+import Tips from '../Tips'
 
 class ImageUploader extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class ImageUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { meta: { touched, dirty, error, warning } } = props;
+    const { description, meta: { touched, dirty, error, warning } } = props;
 
     return (
       <div className="form-group">
@@ -54,10 +55,7 @@ class ImageUploader extends React.Component {
           <div className={"item-wrapper"}>
             <div className={t['item-rule']}>
               <span className={t['rule-text']}>请上传应用高清图片<br/>400*400像素，仅支持PNG格式，大小不超过300KB</span>
-              <div className={s.helpMsg}>
-                <i className="iconfont icon-miashu"></i>
-                <p className={s.cont}>{props.description}</p>
-              </div>
+              { description && <Tips content={description}></Tips> }
             </div>
             <span className={t['upload-btn']}>
               <input type='file' ref="file" className={t['upload-file']} 

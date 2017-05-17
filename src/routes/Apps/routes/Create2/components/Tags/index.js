@@ -2,6 +2,7 @@ import React from 'react'
 import s from '../Basic-new.scss'
 import t from './index-new.scss'
 import cx from 'classnames'
+import Tips from '../Tips'
 
 class Tags extends React.Component {
   constructor (props) {
@@ -38,7 +39,7 @@ class Tags extends React.Component {
   render () {
     const { selected } = this.state;
     const props = this.props;
-    const { meta: { touched, dirty, error, warning } } = props;
+    const { description, meta: { touched, dirty, error, warning } } = props;
 
     return (
       <div className="form-group">
@@ -52,10 +53,7 @@ class Tags extends React.Component {
                 })} onClick={this.handleClick.bind(this, v)}>{v.tagName}</li>
               })}
             </ul>
-            <div className={s.helpMsg}>
-              <i className="iconfont icon-miashu"></i>
-              <p className={s.cont}>{props.description}</p>
-            </div>
+            { description && <Tips content={description}></Tips> }
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}

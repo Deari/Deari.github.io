@@ -4,6 +4,7 @@ import cx from 'classnames'
 import { PageTypes, getPageLinks } from 'config/index'
 import BasicContainer from './BasicContainer'
 import Publish from '../components/Publish'
+import Complete from '../components/Complete'
 
 
 export default {
@@ -19,6 +20,10 @@ export default {
     {
       path: 'version',
       component: Publish
+    },
+    {
+      path: 'complete',
+      component: Complete
     }
   ]
 }
