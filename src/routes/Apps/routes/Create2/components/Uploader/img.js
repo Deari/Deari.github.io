@@ -68,6 +68,9 @@ class ImageUploader extends React.Component {
           <div className="form-item-msg error">请输入内容</div>
 
           <ul className={`${t['img-item']} ${t.active}`}>
+          <li className={t['upload-img']}>
+                <img src="https://www.baidu.com/img/bd_logo1.png"/>
+              </li>
             {this.state.fileList.map((item) => {
               return <li className={t['upload-img']}>
                 <img src={item}/>

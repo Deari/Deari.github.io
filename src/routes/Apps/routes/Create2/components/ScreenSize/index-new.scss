@@ -1,0 +1,50 @@
+.title {
+	color: #999;
+	font-size: 12px;
+	line-height: 24px;
+	display: inline-block;
+}
+.list {
+	display: flex;
+	justify-content: space-between;
+	.item {
+		display: inline-block;
+		.img {
+			width: 103px;
+			height: 90px;
+			margin: 40px 0 30px;
+			&-small{
+				background: url("../../../../../../images/small.png") no-repeat center center;
+				background-size: auto 100%;
+			}
+			&-middle{
+				background: url("../../../../../../images/middle.png") no-repeat center center;
+				background-size: 100% auto;
+			}
+			&-large{
+				background: url("../../../../../../images/large.png") no-repeat center center;
+				background-size: 100%;
+			}
+		}
+		.size-text {
+			text-align: center;
+			font-size: 12px;
+			.screen {
+				display: block;
+			}
+			.advice {
+				color: #999;
+				margin-top: 6px;
+				display: block;
+			}
+		}
+		.radioBtn {
+			display: block;
+			text-align: center;
+			margin-top: 12px;
+			.screenRadio {
+				left: 37px;
+			}
+		}
+	}
+}
