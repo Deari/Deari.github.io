@@ -91,37 +91,37 @@ class Main extends React.Component {
             		<p className={s.text}>应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。
 <br/>应用市场详情页的显示，如下图：</p>
 								<img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
-            		<div className="apply-radio">
+            		<div className={s['apply-radio']}>
             				<div className="row-radio">
-									    <input type="checkbox"  value="" className="input-radio"/>
+									    <input type="checkbox"  value="" id="widgets" className="input-radio"/>
 											<span className="radio-item">
 											    <i className="iconfont icon-radio1"></i>
 											    <i className="iconfont icon-radio"></i>
 											</span>
 										</div>
-									<span className={s['text-con']}>组件</span>
+									<label htmlFor="widgets" className={s['text-con']}>组件</label>
 								</div>
 								
-								<div className="apply-radio">
+								<div className={s['apply-radio']}>
 									<div className="row-radio">
-								    <input type="checkbox"  value="" className="input-radio" />
+								    <input type="checkbox"  value="" id="hardware" className="input-radio" />
 										<span className="radio-item">
 										    <i className="iconfont icon-radio1"></i>
 										    <i className="iconfont icon-radio"></i>
 										</span>
 									</div>
-									<span className={s['text-con']}>硬件</span>
+									<label htmlFor="hardware" className={s['text-con']}>硬件</label>
             		</div>
             		
-            		<div className="apply-radio">
+            		<div className={s['apply-radio']}>
             			<div className="row-radio">
-								    <input type="checkbox" value="" className="input-radio"/>
+								    <input type="checkbox" value="" id="app" className="input-radio"/>
 										<span className="radio-item">
 										    <i className="iconfont icon-radio1"></i>
 										    <i className="iconfont icon-radio"></i>
 										</span>
 									</div>
-									<span className={s['text-con']}>应用</span>
+									<label htmlFor="app" className={s['text-con']}>应用</label>
 								</div>
             	</div>
             </div>
