@@ -2,8 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {getFormValues, Field, reduxForm} from 'redux-form'
 import { validate } from './validate'
+import { Link } from 'react-router'
 
 import s from './Basic-new.scss'
+import t from './Version-new.scss'
 import './form.scss'
 import cx from 'classnames'
 
@@ -22,6 +24,13 @@ class Main extends React.Component {
         <span className={s.site}>我的应用</span>
         创建新应用 ( H5 类型 )
       </h2>
+
+      <div className={t.tabs}>
+      	<ul className={t['tabs-titles']}>
+	        <li className="tabs-item"><Link className={t.address} to='/apps/create2/h5/basic'>基本信息</Link></li>
+	        <li className={cx("tabs-item","active")}><Link className={t.address} to='/apps/create2/h5/version'>版本信息</Link></li>
+	      </ul>
+      </div>
       
       <h2 className={s.pageTitle}>基本信息</h2>
       <div className={s.main}>
