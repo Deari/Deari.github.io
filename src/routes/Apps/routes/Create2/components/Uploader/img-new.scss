@@ -44,5 +44,9 @@
     margin: 0 10px 10px 0;
     display: inline-block;
     border: 1px solid $site-border-gray;
+    & > img{
+    	width: 98px;
+    	height: 98px;
+    }
   }
 }

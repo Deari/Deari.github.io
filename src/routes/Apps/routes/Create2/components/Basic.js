@@ -11,6 +11,7 @@ import InputText from './InputText'
 import ImageUploader from './Uploader/img'
 import Tags from './Tags'
 import AppDesc from './AppDesc'
+import ScreenSize from './ScreenSize'
 
 class Main extends React.Component {
   render () {
@@ -36,7 +37,9 @@ class Main extends React.Component {
             description='您的应用在应用市场中显示的名称' 
             component={InputText}
           />
-
+					
+					<ScreenSize></ScreenSize>
+					
           <Field
             required 
             label='应用图片' 

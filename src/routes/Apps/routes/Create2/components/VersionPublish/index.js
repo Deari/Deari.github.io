@@ -1,6 +1,5 @@
 import React from 'react'
 import s from '../Basic-new.scss'
-import './radio.scss'
 
 const VersionPublish = () => {
 	return (
