@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {Field, reduxForm} from 'redux-form'
+import {getFormValues, Field, reduxForm} from 'redux-form'
 
 import s from './Basic-new.scss'
 import './form.scss'
@@ -12,33 +12,9 @@ import Tags from './Tags'
 import AppDesc from './AppDesc'
 
 class Main extends React.Component {
-  state={
-    form: {
-      appName: '',
-      appLogo: '',
-      appDesc: '',
-      tags: []
-    }
-  }
-
-  handleChange(key, value) {
-    this.setState({
-      form: {
-        ...this.state.form,
-        [key]: value
-      }
-    })
-  }
-
-  saveHandle () {
-    // console.log(this.state)
-  }
-
   render () {
-    const {form} = this.state;
-    
-    console.log(this.props)
-
+    const { handleSubmit, formValues } = this.props;
+    console.log(formValues, '==')
     return <div className={s['create-container']}>
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
@@ -52,7 +28,7 @@ class Main extends React.Component {
           <i className="iconfont icon-zhuyi"></i>
           您的这次更新会在新的应用版本发布后，在应用市场上显示。
         </span>
-        <form className="site-form" onSubmit={this.props.handleSubmit((v) => { console.log(v, "submit")  })}>
+        <form className="site-form" onSubmit={ handleSubmit }>
           <Field
             required 
             label='应用名称' 
@@ -87,7 +63,7 @@ class Main extends React.Component {
           />
 
           <div className='form-actions'>
-            <button className={cx('primaryBtn', s.saveBtn)} onClick={this.saveHandle}>保存</button>
+            <button type="submit" className={cx('primaryBtn', s.saveBtn)}>保存</button>
           </div>
         </form>
       </div>
@@ -95,6 +71,11 @@ class Main extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'create_apps'
-})(Main);
+export default connect((state)=>{
+  return {
+    formValues: getFormValues('create_apps')(state) || {}
+  }
+})(reduxForm({
+  form: 'create_apps',
+  initialValues: { appName: 'http://img1.ffan.com/T1MLATBgEv1RCvBVdK' }
+})(Main))

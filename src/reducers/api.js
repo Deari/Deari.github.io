@@ -1,6 +1,11 @@
 import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 
+export const uploadImage = (params) => {
+  const url = getDomain('/app/v1/bo/v1/web/photo/upload')
+  return fetchUtil.postJSON(url, params, { formDataType: 'file' })
+}
+
 export const fetchTags = (params) => {
   const url = getDomain('/app/v1/bo/v1/public/app/tags')
   return fetchUtil.getJSON(url, params)
@@ -18,7 +23,7 @@ export const getAppInfo = (params) => {
 
 export const postAppBasicInfo = (params) => {
   const url = getDomain('/app/v1/bo/v1/web/developer/app')
-  return fetchUtil.postJSON(url, params, { formDataType: true })
+  return fetchUtil.postJSON(url, params, { formDataType: 'FormData' })
 }
 
 export const postAppVersionInfo = (params) => {

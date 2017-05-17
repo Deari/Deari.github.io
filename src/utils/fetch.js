@@ -95,7 +95,7 @@ class FetchUtil {
         break
       case 'FormData':
         const data = new FormData()
-        for (const p in params) {
+        for (let p in params) {
           data.append(p, JSON.stringify(params[p]))
         }
         body = data
