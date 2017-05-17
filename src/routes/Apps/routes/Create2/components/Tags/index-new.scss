@@ -17,6 +17,7 @@
     display: inline-block;
     margin: 14px 18px 0 0;
     border: 1px solid $site-border-gray;
+    transition: all 0.2s ease-in-out;
     &:nth-child(5n) {
       margin-right: 0;
     }

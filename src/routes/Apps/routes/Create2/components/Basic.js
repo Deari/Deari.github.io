@@ -23,7 +23,7 @@ class Main extends React.Component {
       <h2 className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
         <span className={s.site}>我的应用</span>
-        创建新应用 ( H5 类型 )
+        <span className={`${s.site} ${s.noNext}`}>创建新应用 ( H5 类型 )</span>
       </h2>
 
       <div className={t.tabs}>
