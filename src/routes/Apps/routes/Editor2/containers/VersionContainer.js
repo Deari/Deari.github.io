@@ -6,12 +6,17 @@ import {
   postAppVersionInfo,
   getAppInfo
 } from 'reducers/api'
-import Version from 'business/AppCreate/Version'
+import Version from '../components/Version'
+// import Version from 'business/AppCreate/Version'
+import { AppTypes } from 'config/AppType'
 
 class Container extends React.Component {
   constructor(props) {
     super(props);
+    const { type } = this.props.params;
+    const appType = AppTypes[type]
     this.state = {
+      appType,
       onlineVersion: '',
       initialValues: {
         autoPublish: 0
@@ -53,8 +58,12 @@ class Container extends React.Component {
   }
 
   render () {
-    const { onlineVersion, initialValues } = this.state;
+    const { id, type } = this.props.params; 
+    const { onlineVersion, initialValues, appType } = this.state;
     return <Version 
+      type={type}
+      id={id}
+      appType={appType.text}
       initialValues={initialValues} 
       onSubmit={::this.onSubmit} 
       onlineVersion={onlineVersion}

@@ -4,13 +4,13 @@ import { getFormValues, Field, reduxForm } from 'redux-form'
 
 import {
   postAppBasicInfo,
+  getAppInfo,
   fetchTags
 } from 'reducers/api'
 
 import Basic from '../components/Basic'
 
 // import Basic from 'business/AppCreate/Basic'
-
 import { AppTypes } from 'config/AppType'
 
 class Container extends React.Component {
@@ -24,38 +24,49 @@ class Container extends React.Component {
     }
   }
 
-  componentDidMount() {
-  }
+  
   componentWillMount() {
     fetchTags().then(data=>{
       this.setState({
         tags: data
       })
     })
+
+    getAppInfo({ appId: this.props.params.id }).then(data=>{
+      const { appId, screenSize, appKind, appLogo, appDesc, appName, tags, categoryId, platform } = data;
+      this.setState({
+        initialValues: {
+          appId, appKind, appLogo, screenSize, appDesc, appName, categoryId, platform,
+          tags: tags.map(v=>v.tagId)
+        }
+      })
+
+    }).then(e=>{
+
+    })
   }
 
   onSubmit (values) {
-    const { appType } = this.state;
-    const { tags, ...rest } = values;
     postAppBasicInfo({
       ...values,
-      appKind: appType.value,
-      platform: appType.platform,
-      categoryId: 8
     }).then(data=>{
-      console.log('操作成功：', data)
-      this.props.router.replace(`/apps/create2/h5/complete/${data.appId}`)
+      alert('保存成功！');
+      this.props.router.push(`/apps/list`)
     }).catch(e=>{
       alert(`操作失败(错误码：${e.status})`)
     })
   }
 
   render () {
-    const { appType, step } = this.state;
-    
+    const { appType, initialValues } = this.state;
+    const { id, type } = this.props.params; 
+
     if(appType) {
-      return <Basic type={'apps'}
+      return <Basic
+        type={type}
+        id={id}
         appType={appType.text}
+        initialValues={initialValues}
         tagSource={this.state.tags} 
         onSubmit={::this.onSubmit} 
       />

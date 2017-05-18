@@ -1,6 +1,8 @@
 import React from 'react'
 import { injectReducer } from 'store/reducers'
 import { reducer as formReducer } from 'redux-form'
+import BasicContainer from './containers/BasicContainer'
+import VersionContainer from './containers/VersionContainer'
 
 module.exports = (store) => ({
   path: 'edit2/:type/:id',
@@ -15,19 +17,24 @@ module.exports = (store) => ({
   indexRoute : {
     getComponent(partialNextState, cb) {
       require.ensure([], (require) => {
-        cb(null, require('../Create2/containers/BasicContainer').default)
+        cb(null, BasicContainer)
       })
     }
   },
 
-  // getChildRoutes (partialNextState, cb) {
-  //   require.ensure([], (require) => {
-  //     cb(null, [
-  //       require('./containers/H5').default,
-  //       require('./containers/MiniProgram').default,
-  //       require('./containers/Apk').default
-  //     ])
-  //   })
-  // }
+  getChildRoutes (partialNextState, cb) {
+    require.ensure([], (require) => {
+      cb(null, [
+        {
+          path: 'basic',
+          component: BasicContainer
+        },
+        {
+          path: 'version',
+          component: VersionContainer
+        }
+      ])
+    })
+  }
 
 })

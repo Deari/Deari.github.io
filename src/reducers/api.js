@@ -22,7 +22,7 @@ export const getAppInfo = (params) => {
 }
 
 export const postAppBasicInfo = (params) => {
-  const url = getDomain('/app/v1/bo/v1/web/developer/app')
+  const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}`)
   return fetchUtil.postJSON(url, params )
 }
 

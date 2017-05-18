@@ -22,6 +22,24 @@ class ScreenSize extends React.Component {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    const v = newProps.input.value || 1;
+    this.setState({ 
+      small: {
+        value: 1,
+        selected: v & 1,
+      },
+      middle: {
+        value: 2,
+        selected: v & 2
+      },
+      large: {
+        value: 4,
+        selected: v & 4
+      }
+    })
+  }
+
   componentDidMount() {
     this.notify()
   }

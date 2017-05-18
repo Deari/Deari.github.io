@@ -22,21 +22,31 @@ class Tags extends React.Component {
     }
   }
 
+  componentWillReceiveProps (newProps) {
+    if(Array.isArray(newProps.input.value)) {
+      const selected = {}
+      newProps.input.value.map(v => {
+        selected[v] = true
+      })
+
+      this.setState({ selected })
+    }
+  }
+
   handleClick (tag) {
     const { selected } = this.state;
     const _selected = {
       ...selected,
       [tag.tagId]: !selected[tag.tagId]
     }
-
     const newValues = this.props.dataSource.filter(v=> _selected[v.tagId]).map(v=>v.tagId)
-
     this.setState({ selected: _selected }, ()=>{
       this.props.input.onChange(newValues)
     })
   }
 
   render () {
+
     const { selected } = this.state;
     const props = this.props;
     const { description, meta: { touched, dirty, error, warning } } = props;
