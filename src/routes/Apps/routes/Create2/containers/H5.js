@@ -6,6 +6,7 @@ import BasicContainer from './BasicContainer'
 import VersionContainer from './VersionContainer'
 import Complete from '../components/Complete'
 import Submit from '../components/Submit'
+import Alert from '../components/Alert'
 
 export default {
   path: ':type',
@@ -24,6 +25,10 @@ export default {
     {
       path: 'submit',
       component: Submit
+    },
+    {
+      path: 'alert',
+      component: Alert
     }
   ]
 }

@@ -61,36 +61,66 @@ class Main extends React.Component {
                   <br/>应用市场详情页的显示，如下图：</p>
 								<img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
             		<div className={s['apply-radio']}>
-            				<div className="row-radio">
+          				<div>
+          					<div className="row-radio">
 									    <input type="checkbox"  value="" id="widgets" className="input-radio"/>
 											<span className="radio-item">
 											    <i className="iconfont icon-radio1"></i>
 											    <i className="iconfont icon-radio"></i>
 											</span>
 										</div>
-									<label htmlFor="widgets" className={s['text-con']}>组件</label>
+										<label htmlFor="widgets" className={s['text-con']}>组件</label>
+          				</div>
+									<ul className={cx(s.list,s.active)}>
+										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
+										<li className={s.item}>
+											<img src="http://temp.im/100x100" className={s.img}/>
+											<i className={cx('iconfont icon-del',s.del)}></i>
+											<span className={s.name}>h5组件数据测试516-01</span>
+										</li>
+									</ul>
 								</div>
 								
 								<div className={s['apply-radio']}>
-									<div className="row-radio">
-								    <input type="checkbox"  value="" id="hardware" className="input-radio" />
-										<span className="radio-item">
-										    <i className="iconfont icon-radio1"></i>
-										    <i className="iconfont icon-radio"></i>
-										</span>
+									<div>
+										<div className="row-radio">
+									    <input type="checkbox"  value="" id="hardware" className="input-radio" />
+											<span className="radio-item">
+											    <i className="iconfont icon-radio1"></i>
+											    <i className="iconfont icon-radio"></i>
+											</span>
+										</div>
+										<label htmlFor="hardware" className={s['text-con']}>硬件</label>
 									</div>
-									<label htmlFor="hardware" className={s['text-con']}>硬件</label>
+									<ul className={cx(s.list,s.active)}>
+										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
+										<li className={s.item}>
+											<img src="http://temp.im/100x100" className={s.img}/>
+											<i className={cx('iconfont icon-del',s.del)}></i>
+											<span className={s.name}>h5组件数据测试516-01</span>
+										</li>
+									</ul>
             		</div>
             		
             		<div className={s['apply-radio']}>
-            			<div className="row-radio">
-								    <input type="checkbox" value="" id="app" className="input-radio"/>
-										<span className="radio-item">
-										    <i className="iconfont icon-radio1"></i>
-										    <i className="iconfont icon-radio"></i>
-										</span>
-									</div>
-									<label htmlFor="app" className={s['text-con']}>应用</label>
+            			<div>
+            				<div className="row-radio">
+									    <input type="checkbox" value="" id="app" className="input-radio"/>
+											<span className="radio-item">
+											    <i className="iconfont icon-radio1"></i>
+											    <i className="iconfont icon-radio"></i>
+											</span>
+										</div>
+										<label htmlFor="app" className={s['text-con']}>应用</label>
+            			</div>
+									<ul className={cx(s.list,s.active)}>
+										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
+										<li className={s.item}>
+											<img src="http://temp.im/100x100" className={s.img}/>
+											<i className={cx('iconfont icon-del',s.del)}></i>
+											<span className={s.name}>h5组件数据测试516-01</span>
+										</li>
+									</ul>
 								</div>
             	</div>
             </div>
