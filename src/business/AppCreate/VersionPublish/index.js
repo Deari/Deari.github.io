@@ -2,17 +2,27 @@ import React from 'react'
 import s from '../Basic-new.scss'
 
 class VersionPublish extends React.Component {
-  state = {
-    current: this.props.input.value || 0,
-    checkboxs: [{
-      id: 'hand',
-      text: '手动发布此版本',
-      value: 0
-    }, {
-      id: 'auto',
-      text: '自动发布此版本',
-      value: 1
-    }]
+  constructor(props) {
+    super(props)
+    let current;
+    if(typeof props.input.value === 'undefined') {
+      current = 0
+    } else {
+      current = props.input.value
+    }
+
+    this.state = {
+      current,
+      checkboxs: [{
+        id: 'hand',
+        text: '手动发布此版本',
+        value: 0
+      }, {
+        id: 'auto',
+        text: '自动发布此版本',
+        value: 1
+      }]
+    }
   }
   
   handleChange(e) {
@@ -20,7 +30,7 @@ class VersionPublish extends React.Component {
     this.setState({
       current: e.target.value
     })
-    this.props.input.onChange(e.target.value)
+    this.props.input.onChange(+e.target.value)
   }
 
   render(){

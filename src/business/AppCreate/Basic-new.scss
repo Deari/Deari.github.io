@@ -55,34 +55,3 @@
 		margin-right: 0;
 	}
 }
-.success-wrapper {
-	font-size: 14px;
-	padding: 0 20px 40px;
-	.success {
-		height: 150px;
-		font-size: 18px;
-		line-height: 150px;
-		text-align: center;
-		.img {
-			width: 60px;
-			height: 60px;
-			margin-right: 20px;
-			display: inline-block;
-			vertical-align: middle;
-			background: url("http://timg.ffan.com/convert/resize/url_T1x_ATB5x_1RCvBVdK/tfs/1.png") no-repeat;
-			background-size: 100%;
-		}
-	}
-	.success-text {
-		color: #666;
-		display: block;
-		line-height: 20px;
-		margin-bottom: 18px;
-		word-break: break-all;
-	}
-	.return-apply {
-		width: 132px;
-		height: 35px;
-		display: block;
-	}
-}

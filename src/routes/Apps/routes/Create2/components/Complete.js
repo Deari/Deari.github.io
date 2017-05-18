@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router'
-import t from './Basic-new.scss'
 import s from './Complete-new.scss'
 import cx from 'classnames'
-import BreadCrumb from './BreadCrumb'
+import BreadCrumb from 'business/AppCreate/BreadCrumb'
 import { getAppInfo } from 'reducers/api'
 
 class Complete extends React.Component {
@@ -34,8 +33,8 @@ class Complete extends React.Component {
       <div className={s.wrapper}>
         <BreadCrumb></BreadCrumb>
         <div className={`${t['success-wrapper']} ${s['complete-wrapper']}`}>
-          <div className={t.success}>
-            <span className={t.img}></span>
+          <div className={s.success}>
+            <span className={s.img}></span>
             成功创建应用
           </div>
           

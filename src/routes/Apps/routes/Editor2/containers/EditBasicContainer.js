@@ -1,14 +1,31 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getFormValues, Field, reduxForm } from 'redux-form'
+import {getFormValues, Field, reduxForm} from 'redux-form'
 
 import {
   postAppBasicInfo,
   fetchTags
 } from 'reducers/api'
 
-import Basic from 'business/AppCreate/Basic'
-import { AppTypes } from 'config/AppType'
+import Basic from '../../create2/components/Basic'
+
+const AppTypes = {
+  h5: {
+    text: 'H5',
+    value: 1,
+    platform: 0,
+  },
+  apk: {
+    text: 'APK',
+    value: 2,
+    platform: 0,
+  },
+  mini_program: {
+    text: 'FAP小程序',
+    value: 0,
+    platform: 3
+  }
+}
 
 class Container extends React.Component {
   constructor(props) {
@@ -17,7 +34,8 @@ class Container extends React.Component {
     const appType = AppTypes[type]
     this.state = {
       appType,
-      tags: []
+      tags: [],
+      step: 'create'
     }
   }
 
@@ -51,16 +69,16 @@ class Container extends React.Component {
 
   render () {
     const { appType, step } = this.state;
-    
+
     if(appType) {
-      return <Basic type={'apps'}
-        appType={appType}
-        tagSource={this.state.tags} 
-        onSubmit={::this.onSubmit} 
-      />
+      return <Basic appType={appType} tagSource={this.state.tags} onSubmit={::this.onSubmit}></Basic>
     }
     return null;
   }
 }
 
-export default connect()(Container)
+export default connect((state)=>{
+  return {
+    formValues: getFormValues('create_apps')(state) || {},
+  }
+})(Container)

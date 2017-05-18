@@ -25,6 +25,7 @@ export default (store) => ({
         require('./routes/Detail')(store),
         require('./routes/List').default,
         require('./routes/Editor')(store),
+        require('./routes/Editor2')(store),
         require('./routes/Doc').default,
         require('./routes/DevTools').default,
         require('./routes/DevAccount').default,

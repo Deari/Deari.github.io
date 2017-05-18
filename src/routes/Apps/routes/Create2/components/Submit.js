@@ -1,16 +1,12 @@
 import React from 'react'
-import t from './Basic-new.scss'
+import s from './Complete-new.scss'
 import cx from 'classnames'
+import BreadCrumb from 'business/AppCreate/BreadCrumb'
 
 const Submit = () => {
     return (
     	<div>
-				<h2 className={t.breadcrumb}>
-	        <a className="iconfont icon-fanhui" href="/apps/list"></a>
-	        <span className={t.site}>我的应用</span>
-	        <span className={`${t.site} ${t.noNext}`}>创建新应用 ( H5 类型 )</span>
-	      </h2>
-	      
+				<BreadCrumb></BreadCrumb>
 				<div className={t['success-wrapper']}>
 					<div className={t.success}>
 						<span className={t.img}></span>

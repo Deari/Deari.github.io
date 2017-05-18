@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {getFormValues, Field, reduxForm} from 'redux-form'
+import { getFormValues, Field, reduxForm } from 'redux-form'
 
 import {
-  postAppBasicInfo,
+  postAppVersionInfo,
   getAppInfo
 } from 'reducers/api'
-import Version from '../components/Version'
+import Version from 'business/AppCreate/Version'
 
 class Container extends React.Component {
   constructor(props) {
@@ -14,22 +14,26 @@ class Container extends React.Component {
     this.state = {
       onlineVersion: '',
       initialValues: {
-        codeDesc: 1111222
+        autoPublish: 0
       },
-      data: { 
-        versions: []
-      }
+      data: { }
     }
   }
 
-  componentDidMount() {
-     getAppInfo({ appId: this.props.params.id }).then(data=>{
-      
+  componentWillMount() {
+    getAppInfo({ appId: this.props.params.id }).then(data=>{
       console.log(data)
-      const { versions } = data;
+      const { versions, appId, appKind } = data;
       const _version = versions.find((v)=>+v.publishStatus ===1)
+      const { codeId, codeDesc, codeVersion, fileLink, autoPublish, showUpdateMsg } = versions[0]
       this.setState({
-        initialValues: versions[0],
+        data,
+        initialValues: {
+          ...this.state.initialValues,
+          ...versions[0],
+          appId,
+          appKind
+        },
         onlineVersion: (_version && _version.codeVersion) || ''
       })
 
@@ -38,13 +42,14 @@ class Container extends React.Component {
     })
   }
 
-  componentWillMount() {
-   
-  }
-
   onSubmit (values) {
     console.log(values);
-
+    postAppVersionInfo(values).then(data=>{
+      console.log('操作成功：', data)
+      // this.props.router.replace(`/apps/create2/h5/complete/${data.appId}`)
+    }).catch(e=>{
+      alert(`操作失败(错误码：${e.status})`)
+    })
   }
 
   render () {
