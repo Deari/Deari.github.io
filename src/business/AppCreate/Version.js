@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {getFormValues, Field, reduxForm} from 'redux-form'
+import { getFormValues, Field, reduxForm } from 'redux-form'
 import { validate } from './validate'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from './Basic-new.scss'
 import './form.scss'
+
 import AppDesc from './AppDesc'
 import TextInput from './TextInput'
 import ImageUploader from './Uploader/img'
@@ -15,14 +16,14 @@ import Tabs from './Tabs'
 
 class Main extends React.Component {
   render () {
-    const { onlineVersion } = this.props;
+    const { onlineVersion, handleSubmit } = this.props;
 
   	return <div className={s['edit-container']}>
       <BreadCrumb ></BreadCrumb>
       <Tabs></Tabs>
      
       <div className={s.main}>
-      	<form className={s['site-form']}>
+      	<form className={s['site-form']} onSubmit={handleSubmit}>
           <Field
             required 
             label='版本介绍' 
@@ -53,7 +54,7 @@ class Main extends React.Component {
             component={VersionPublish}
           />
           
-          <div className="form-group">
+          {/*<div className="form-group">
             <label className="label label-no">配套使用</label>
             <div className="form-item">
             	<div className="item-wrapper">
@@ -124,9 +125,9 @@ class Main extends React.Component {
 								</div>
             	</div>
             </div>
-          </div>
+          </div>*/}
           <div className='form-actions'>
-            <button className={cx('primaryBtn', s.saveBtn)}>保存</button>
+            <button type='submit' className={cx('primaryBtn', s.saveBtn)}>保存</button>
             <button className={cx('primaryBtn', s.saveBtn)}>提交审核</button>
           </div>
       	</form>
