@@ -4,7 +4,8 @@ import DescribeIcon from 'components/DescribeIcon'
 class VersionCordModule extends Component {
   state={
     errTxt:'',
-    isErr:0
+    isErr:0,
+    value: this.props.input.value
   }
   compareVersion (versionArr, lastCodeVersionArr) {
     const a1 = parseInt(versionArr[0])
@@ -26,6 +27,18 @@ class VersionCordModule extends Component {
     }
     return false
   }
+
+  componentWillReceiveProps (newProps) {
+  
+    this.setState({ value: newProps.input.value })
+    
+  }
+  handleChange(e) {
+    this.setState({
+      value: e.target.value.trim()
+    })
+  }
+
   handleBlur (e) {
     this.setState({ isErr:0, errTxt:'' })
     const codeVersion = this.props.codeVersion
@@ -35,17 +48,14 @@ class VersionCordModule extends Component {
     const a3 = parseInt(versionArr[2])
     if (a1 === 0 && a2 === 0 && a3 === 0) {
       this.setState({ isErr:1, errTxt:'您输入的版本格式有误' })
-      this.props.toggleCodeVersion(-1)
       return
     }
     if (!e.target.value) {
       this.setState({ isErr:1, errTxt:'请输入版本号' })
-      this.props.toggleCodeVersion(-1)
       return
     }
     if (!/^(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)$/.test(e.target.value)) {
       this.setState({ isErr:1, errTxt:'您输入的版本格式有误' })
-      this.props.toggleCodeVersion(-1)
       return
     }
 
@@ -53,11 +63,10 @@ class VersionCordModule extends Component {
 		  const lastCodeVersionArr = codeVersion.split('.')
       if (!this.compareVersion(versionArr, lastCodeVersionArr)) {
         this.setState({ isErr:1, errTxt:'您输入的版本不可小于老版本' })
-        this.props.toggleCodeVersion(-1)
         return
       }
     }
-    this.props.toggleCodeVersion(e.target.value)
+    this.props.input.onChange(e.target.value.trim())
   }
   render () {
     const { errTxt, isErr } = this.state
@@ -69,7 +78,7 @@ class VersionCordModule extends Component {
           <span className='message-info message-info-gray'>
             {this.props.codeVersion && `您的线上版本为：${this.props.codeVersion}。`}您要填入的版本号。编号应遵循软件版本规范。
           </span>
-          <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)} className='use-input' />
+          <input placeholder='请输入版本号' type='text' value={this.state.value} onChange={::this.handleChange} onBlur={this.handleBlur.bind(this)} className='use-input' />
           {isErr ? <span className='message-info'>{errTxt}</span> : ''}
         </div>
         <DescribeIcon describeId='codeVersion' describeContent={describeContent} />

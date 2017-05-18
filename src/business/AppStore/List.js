@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import s from './List-new.scss'
+import { appType } from 'config/index'
 
 class ListPanel extends React.Component {
 
@@ -22,6 +23,7 @@ class ListPanel extends React.Component {
     const {
       appId,
       appName,
+      appKind,
       appLogo,
       appDesc,
       developerName,
@@ -39,7 +41,8 @@ class ListPanel extends React.Component {
         <Link to={linkTo}>
           <h4 className={s.title}>{appName}</h4>
           <small className={s.small}>
-            <i className={s.uImg} />{developerName}
+            <i className={`iconfont ${appType[appKind]}`} />
+            {/*<i className={s.uImg} />{developerName}*/}
           </small>
           <img className={s.img} src={appLogo} alt='LOGO' />
           <div className={s.desc}>{appDesc}</div>

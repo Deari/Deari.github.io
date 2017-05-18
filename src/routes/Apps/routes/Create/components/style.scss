@@ -21,7 +21,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
     width: $sub-container-width;
     padding: $default-margin-top - 12px 80px $default-margin-bottom + 5px 80px; 
     @include clx;
-    overflow: hidden;
+    // overflow: hidden;
     background: $white-color;
     &:not(:first-child){
         padding-top: 0;

@@ -68,7 +68,7 @@ class ScreenSize extends React.Component {
     const { meta: { touched, dirty, error, warning } } = props;
     const { small, middle, large } = this.state;
     return (
-      <div className="form-group">
+      <div className="form-row">
         <label className='label'>{props.label}</label>
         <div className='form-item'>
           <div className="item-wrapper">

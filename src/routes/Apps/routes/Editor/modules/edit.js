@@ -132,7 +132,7 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
-        const { categoryId, platform, appKind, appkey, moduleName, setting } = res.data
+        const { categoryId, platform, appKind, appkey, moduleName, setting, screenSize } = res.data
         const { appDesc, appLogo, appName, tags = '' } = res.data.changes
 
         const { codeDesc = '', codeVersion = '', fileName, fileLink } = res.data && res.data.versions[0]
@@ -174,16 +174,22 @@ export const getAppInfo = (appId) => {
           wNameList.push(widgets[j].appName)
         }
         dispatch(updateForm1({
-          appId, appName, appLogo, appDesc, categoryId, platform, appKind,
+          appId, appName, appLogo, appDesc, categoryId, platform, appKind, screenSize,
           tags: tagId
         }))
-
+        console.log(codeVersion)
         dispatch(updateForm2({
-          appId, appName, appLogo,
+          appId, appName, appLogo, codeVersion,
           platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,
-          appKey:appkey
+          appKey:appkey,
+          file: {
+            fileName, fileLink, moduleName,
+          },
+          fileObj: {
+            fileName, fileLink, moduleName
+          }
         }))
       } else {
         debug.warn('获取应用详情失败')

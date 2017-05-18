@@ -29,7 +29,7 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
     width: $sub-container-width;
     padding: $default-margin-top - 12px 80px $default-margin-bottom + 5px 80px;
     @include clx;
-    overflow: hidden;
+    // overflow: hidden;
     background: $white-color;
     &.version-module-container {
       overflow: visible;

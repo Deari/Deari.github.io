@@ -18,7 +18,7 @@ class Filters extends React.Component {
             {item.text}
           </li>)}
         </ul>
-        <Search onSearch={onSearch} placeholder='查找' />
+        <Search onSearch={onSearch} placeholder='搜索' />
       </div>
     )
   }

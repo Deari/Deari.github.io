@@ -107,15 +107,19 @@ class EditContainer extends Component {
     }
     if (file && values.appKind === 0) {
       Object.assign(params, file, {
-        'fileName': file.originalName,
-        'fileLink': file.url,
-        'fileSize': file.fileSize,
-        'platform': file.platform,
-
         'showUpdateMsg':Number(values.showUpdateMsg),
         'relatedApps':values.idList,
         'relatedWidgets':values.wIdList
       })
+
+      if(file.url && file.originalName) {
+        Object.assign(params, {
+          'fileName': file.originalName,
+          'fileLink': file.url,
+          'fileSize': file.fileSize,
+          'platform': file.platform,
+        })
+      }
       delete params.file
     } else if (values.appKind === 1) {
       Object.assign(params, {
@@ -126,14 +130,18 @@ class EditContainer extends Component {
       })
     } else {
       Object.assign(params, fileObj, {
-        'fileName': fileObj.name,
-        'fileLink': fileObj.url,
-        'fileSize': fileObj.size,
-
         'showUpdateMsg':Number(values.showUpdateMsg),
         'relatedApps':values.idList,
         'relatedWidgets':values.wIdList
       })
+      if(fileObj.url && fileObj.name) {
+        Object.assign(params, {
+          'fileName': fileObj.name,
+          'fileLink': fileObj.url,
+          'fileSize': fileObj.size,
+        })
+      }
+
       delete params.file
       delete params.codeDescCount
       delete params.isDescErr
