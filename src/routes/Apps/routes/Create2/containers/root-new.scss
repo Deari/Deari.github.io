@@ -1,0 +1,16 @@
+@import 'src/styles/v/base.scss';
+
+.breadcrumb {
+	color: #333;
+	height: 38px;
+	font-size: 14px;
+	line-height: 38px;
+	border-bottom: 1px solid $site-border-gray;
+	.site:after {
+		content: "/";
+		margin: 0 4px;
+	}
+	.noNext:after {
+		display: none;
+	}
+}

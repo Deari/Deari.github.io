@@ -1,18 +1,5 @@
 @import 'src/styles/v/base.scss';
-.breadcrumb {
-	color: #333;
-	height: 38px;
-	font-size: 14px;
-	line-height: 38px;
-	border-bottom: 1px solid $site-border-gray;
-	.site:after {
-		content: "/";
-		margin: 0 4px;
-	}
-	.noNext:after {
-		display: none;
-	}
-}
+
 .pageTitle {
 	color: #000;
 	height: 51px;
@@ -39,23 +26,7 @@
 		margin-right: 4px;
 	}
 }
-.helpMsg {
-	display: inline-block;
-	margin-left: 10px;
-	position: relative;
-	cursor: pointer;
-	.cont {
-		position: absolute;
-		left: 18px;
-		top: 0;
-		width: 120px;
-		padding: 5px;
-		color: #666;
-		line-height: 18px;
-		font-size: 12px;
-		background: #e1e1e1;
-	}
-}
+
 .text {
 	font-size: 12px;
 	color: #999;

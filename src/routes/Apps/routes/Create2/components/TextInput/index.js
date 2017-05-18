@@ -1,6 +1,6 @@
 import React from 'react'
-import s from './Basic-new.scss'
-import Tips from './Tips'
+import Tips from '../Tips'
+
 const InputText = (props) => {
   const { description, meta: { touched, dirty, error, warning } } = props;
 

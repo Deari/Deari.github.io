@@ -29,7 +29,7 @@ class Tags extends React.Component {
       [tag.tagId]: !selected[tag.tagId]
     }
 
-    const newValues = this.props.dataSource.filter(v=> _selected[v.tagId])
+    const newValues = this.props.dataSource.filter(v=> _selected[v.tagId]).map(v=>v.tagId)
 
     this.setState({ selected: _selected }, ()=>{
       this.props.input.onChange(newValues)

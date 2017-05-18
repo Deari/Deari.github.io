@@ -3,28 +3,22 @@ import { Link } from 'react-router'
 import cx from 'classnames'
 import { PageTypes, getPageLinks } from 'config/index'
 import BasicContainer from './BasicContainer'
-import Publish from '../components/Publish'
+import VersionContainer from './VersionContainer'
 import Complete from '../components/Complete'
 import Submit from '../components/Submit'
 
-const Comp = () => <div>hello world</div>
-
 export default {
-  path: 'h5',
+  path: ':type',
   indexRoute: {
     component: BasicContainer
   },
   childRoutes: [
     {
-      path: 'basic',
-      component: BasicContainer
+      path: 'version/:id',
+      component: VersionContainer
     },
     {
-      path: 'version',
-      component: Publish
-    },
-    {
-      path: 'complete',
+      path: 'complete/:id',
       component: Complete
     },
     {

@@ -7,6 +7,9 @@ export const isObject = x => x && typeof x === 'object'
 export const makeReject = (status, message) => Promise.reject({ status, message })
 
 export const buildSearchParams = (params) => Object.keys(params).map(key => {
+  if(Array.isArray(params[key])) {
+    return params[key].map(v=>(encodeURIComponent(key)+'[]='+encodeURIComponent(v) )).join('&')
+  }
   return [key, params[key]].map(encodeURIComponent).join('=')
 }).join('&').replace(/%20/g, '+')
 

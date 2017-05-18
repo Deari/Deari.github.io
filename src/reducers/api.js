@@ -23,7 +23,7 @@ export const getAppInfo = (params) => {
 
 export const postAppBasicInfo = (params) => {
   const url = getDomain('/app/v1/bo/v1/web/developer/app')
-  return fetchUtil.postJSON(url, params, { formDataType: 'FormData' })
+  return fetchUtil.postJSON(url, params )
 }
 
 export const postAppVersionInfo = (params) => {
