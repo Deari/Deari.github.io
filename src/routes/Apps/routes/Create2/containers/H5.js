@@ -5,6 +5,7 @@ import { PageTypes, getPageLinks } from 'config/index'
 import BasicContainer from './BasicContainer'
 import Publish from '../components/Publish'
 import Complete from '../components/Complete'
+import Submit from '../components/Submit'
 
 
 export default {
@@ -24,6 +25,10 @@ export default {
     {
       path: 'complete',
       component: Complete
+    },
+    {
+      path: 'submit',
+      component: Submit
     }
   ]
 }

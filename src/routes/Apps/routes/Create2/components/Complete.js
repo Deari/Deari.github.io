@@ -12,31 +12,30 @@ const Complete = () => {
 	        <span className={`${t.site} ${t.noNext}`}>创建新应用 ( H5 类型 )</span>
 	      </h2>
 	      
-				<div className={s['complete-wrapper']}>
-					<div className={s.success}>
-						<span className={s.img}></span>
+				<div className={`${t['success-wrapper']} ${s['complete-wrapper']}`}>
+					<div className={t.success}>
+						<span className={t.img}></span>
 						成功创建应用
 					</div>
 					
-					<div className={s.check}>
-						<h2 className={s.title}>请查收您的DeveloperKey和DeveloperSecrect：</h2>
-						<div className={s.content}>
-							<img src="http://img1.ffan.com/T1Fh_TB7DQ1RCvBVdK" alt=""/>
-							<div className={s.show}>
-								<span className={s.text}>DeveloperKey：199880</span>
-								<span className={s.text}>DeveloperSecrect：87908xdfsousoduf8sfasf08ufd</span>
+					<div className={s.content}>
+							<img src="http://temp.im/110x110" alt=""/>
+							<div className={s.list}>
+								<h2 className={s.item}>应用关联测试关联测试关联测试</h2>
+								<span className={s.item}>AppID: 2009</span>
+								<span className={s.item}>DeveloperKey：199880</span>
+								<span className={s.item}>DeveloperSecrect：87908xdfsousoduf8sfasf08ufd</span>
 							</div>
-						</div>
 					</div>
 					
-					<dl className={s.text}>
+					<dl className={t['success-text']}>
 						<dt>接下来你要做什么？</dt>
 						<dd>1、你可以通过查看开发者文档，进行开发、调试，并将新版本准备好。(注：开发、调试时，需要上面的AppID和AppKEY)</dd>
 						<dd>2、新版本准备好之后，你可以在我的应用中发布新版本。</dd>
 					</dl>
-					<span className={s.text}>返回我的应用，发布新版本。</span>
+					<span className={t['success-text']}>返回我的应用，发布新版本。</span>
 					
-					<button className={`primaryBtn ${s.apply}`}>查看我的应用</button>
+					<button className={`primaryBtn ${t['return-apply']}`}>查看我的应用</button>
 				</div>
 				
 				<ul className={s['doc-wrapper']}>
