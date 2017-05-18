@@ -5,6 +5,7 @@ import { PageTypes, getPageLinks } from 'config/index'
 import BasicContainer from './BasicContainer'
 import Publish from '../components/Publish'
 import Complete from '../components/Complete'
+import Submit from '../components/Submit'
 
 const Comp = () => <div>hello world</div>
 
@@ -28,7 +29,7 @@ export default {
     },
     {
       path: 'submit',
-      component: Complete
+      component: Submit
     }
   ]
 }

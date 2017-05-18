@@ -1,93 +1,64 @@
 @import 'src/styles/v/base.scss';
 .complete-wrapper {
-	color: #333;
-	font-size: 14px;
-	padding: 0 20px 40px 20px;
 	border-bottom: 1px solid $site-border-gray;
-	.success {
-		height: 150px;
-		font-size: 18px;
-		line-height: 150px;
-		text-align: center;
-		.img {
-			width: 66px;
-			height: 66px;
+	.content {
+		padding: 30px;
+		margin: 8px 0 30px;
+		border: 1px solid $site-border-gray;
+		display: flex;
+		& > img {
+			width: 110px;
+			height: 110px;
+			display: block;
 			margin-right: 20px;
-			display: inline-block;
-			vertical-align: middle;
-			background: url("../../../../../images/success.png") no-repeat;
-			background-size: 100%;
 		}
-	}
-	.check{
-		.title{
-			color: #000;
-			font-size: 20px;
-		}
-		.content{
-			padding: 20px;
-			margin: 8px 0 30px;
-			border: 1px solid $site-border-gray;
-			display: flex;
-			align-items: flex-end;
-			& > img{
-				width: 110px;
-				height: 110px;
+		.list {
+			flex: 1;
+			.item {
+				color: #666;
 				display: block;
-				margin-right: 20px;
-			}
-			.show{
-				flex: 1;
-				.text{
-					color: #666;
-					display: block;
-					margin-bottom: 10px;
-					word-break: break-all;
+				font-size: 14px;
+				line-height: 20px;
+				margin-bottom: 10px;
+				word-break: break-all;
+				&:last-child {
+					margin-bottom: 0;
 				}
 			}
 		}
 	}
-	.text{
-		color: #666;
-		display: block;
-		line-height: 20px;
-		margin-bottom: 18px;
-		word-break: break-all;
-	}
-	.apply{
-		width: 132px;
-		height: 35px;
-		display: block;
-	}
 }
-.doc-wrapper{
+.doc-wrapper {
 	padding: 0 20px 20px;
-	.item{
+	.item {
 		width: 50%;
 		display: inline-block;
 		vertical-align: top;
 		margin-top: 40px;
-		.img{
+		.img {
 			width: 51px;
 			height: 51px;
 			display: block;
 			float: left;
 			margin-right: 10px;
-			background: url("../../../../../images/file.png") no-repeat;
+			background: url("http://timg.ffan.com/convert/resize/url_T1TDbTBmWj1RCvBVdK/tfs/1.png") no-repeat;
 			background-size: 100%;
 		}
-		.link{
+		.link {
 			overflow: hidden;
-			.title{
-				color: #000;
-				font-size: 20px;
+			.title {
+				font-size: 16px;
 			}
-			.address{
+			.address {
 				color: $site-blue;
 				font-size: 12px;
-				margin-top: 10px;
+				margin-top: 15px;
 				display: block;
 				text-decoration: underline;
+				transition: all 0.2s ease-in-out;
+				&:hover {
+					color: $site-blue-hover;
+				}
 			}
 		}
 	}
