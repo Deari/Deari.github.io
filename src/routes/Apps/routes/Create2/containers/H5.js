@@ -6,6 +6,7 @@ import BasicContainer from './BasicContainer'
 import Publish from '../components/Publish'
 import Complete from '../components/Complete'
 
+const Comp = () => <div>hello world</div>
 
 export default {
   path: 'h5',
@@ -23,6 +24,10 @@ export default {
     },
     {
       path: 'complete',
+      component: Complete
+    },
+    {
+      path: 'submit',
       component: Complete
     }
   ]

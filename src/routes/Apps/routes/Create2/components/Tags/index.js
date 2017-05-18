@@ -23,13 +23,13 @@ class Tags extends React.Component {
   }
 
   handleClick (tag) {
-    const { dataSource, selected } = this.state;
+    const { selected } = this.state;
     const _selected = {
       ...selected,
       [tag.tagId]: !selected[tag.tagId]
     }
 
-    const newValues = dataSource.filter(v=> _selected[v.tagId])
+    const newValues = this.props.dataSource.filter(v=> _selected[v.tagId])
 
     this.setState({ selected: _selected }, ()=>{
       this.props.input.onChange(newValues)

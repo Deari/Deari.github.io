@@ -4,8 +4,49 @@ import { appType } from 'config/index'
 import { judgeAppStatus } from 'config/appStatus'
 import s from './table-new.scss'
 import cx from 'classnames'
+import { getDomain } from 'utils/d'
+import fetchUtil from 'utils/fetch'
 
 class TabelItem extends React.Component {
+  state = {
+    data: this.props.data
+  }
+
+  publish(appId) {
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app/${appId}/publish`)
+    fetchUtil.postJSON(url, { onLine: 1 }).then(data => {
+      console.log("发布成功", data)
+      alert("发布成功！")
+      const _v = this.state.data.versions[0]
+      _v.publishStatus = 1
+
+      this.setState({
+        data: {
+          ...this.state.data,
+          versions: [_v]
+        }
+      })
+    }).catch(e => {
+      alert(`发布失败（错误码：${e.status}）`)
+    })
+  }
+
+  shelve (appId) {
+    const url = getDomain(`/app/v1/bo/v1/web/developer/shelveApp/${appId}`)
+    fetchUtil.getJSON(url, { operation: 'shelve' }).then(data => {
+      console.log("上架成功", data)
+      alert("上架成功！")
+      this.setState({
+        data: {
+          ...this.state.data,
+          devUnshelved: 0
+        }
+      })
+    }).catch(e => {
+      alert(`上架成功（错误码：${e.status}）`)
+    })
+  }
+
   getAppStatus (app) {
     const { versions, adminUnshelved, devUnshelved } = app
     return versions.slice(0, 2).map((v) => {
@@ -34,7 +75,8 @@ class TabelItem extends React.Component {
   }
   
   render () {
-    const { data, type } = this.props;
+    const { data } = this.state;
+    const { type } = this.props;
     const appStatus = this.getAppStatus(data)
     if (appStatus.length > 1 && appStatus[0].status === appStatus[1].status) {
       appStatus.pop()
@@ -67,23 +109,15 @@ class TabelItem extends React.Component {
             <Link to={`/${type}/edit/${data.appId}/1`} className={`defaultBtn ${s.tableBtn}`}>编  辑</Link> : null }
 
           {this.showPublishBtn(appStatus[0] && appStatus[0].status) ? 
-            <span className={`defaultBtn ${s.tableBtn}`}>发布到线上</span> : null }
+            <span className={`defaultBtn ${s.tableBtn}`} onClick={()=>this.publish(data.appId)}>发布到线上</span> : null }
 
           { this.showUpBtn(appStatus[0] && appStatus[0].status) ? 
-          <span className={`defaultBtn ${s.tableBtn}`}>上  架</span> : null }
+          <span className={`defaultBtn ${s.tableBtn}`} onClick={()=>this.shelve(data.appId)}>上  架</span> : null }
         </td>
       </tr>
     )
   }
 }
 
-TabelItem.defaultProps = {
-  data: {
-    appLogo: '--',
-    appName: '--',
-    appDesc: '--',
-    appId: '--'
-  }
-}
 
 export default TabelItem

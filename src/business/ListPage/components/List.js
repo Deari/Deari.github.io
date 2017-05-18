@@ -1,7 +1,7 @@
 import React from 'react'
 import Pagination from 'components/Pagination'
 import SideBar from 'business/SideBar'
-import AppList from './Table'
+import Table from './Table'
 import DevInfo from 'business/DevInfo'
 import TabFilters from './TabFilters'
 import { PageTypes, getPageLinks } from 'config/index'
@@ -16,7 +16,7 @@ export default class Main extends React.Component {
         <div className="content">
           <TabFilters filter={filter} type={type} onToggleFilter={onToggleFilter} onSearch={onSearch} />
           <DevInfo />
-          <AppList data={data} type={type} />
+          <Table data={data} type={type} />
           <Pagination onChange={onPagination} total={total} />
         </div>
       </div>

@@ -25,13 +25,14 @@ class Container extends React.Component {
 
   onSubmit (values) {
     console.log(values);
-    postAppBasicInfo()
+    // postAppBasicInfo()
+    this.props.router.replace('/apps/create2/h5/complete')
   }
 
   render () {
     console.log(this.props.formValues)
 
-    return <Basic tags={this.state.tags} onSubmit={::this.onSubmit}></Basic>
+    return <Basic tagSource={this.state.tags} onSubmit={::this.onSubmit}></Basic>
   }
 }
 

@@ -7,7 +7,7 @@ import { PageTypes, getPageLinks } from 'config/index'
 import APPS_FILTERS from 'config/appStatus'
 import { scrollToTop } from 'utils/scroll'
 
-export default class AppsList extends React.Component {
+export default class Container extends React.Component {
   state = {
     filter: 'ALL',
     list: [],

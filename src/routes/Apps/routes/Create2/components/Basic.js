@@ -74,7 +74,7 @@ class Main extends React.Component {
           <Field
             required 
             label='标签' 
-            dataSource={this.props.tags}
+            dataSource={this.props.tagSource}
             name='tags'
             description='一个或多个标签，用以描述您的应用' 
             component={Tags}
