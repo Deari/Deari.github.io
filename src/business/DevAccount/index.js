@@ -96,7 +96,8 @@ class DevAccount extends Component {
     fetchUtil.getJSON(url, {
       objectId: 1,
       osType: 2,
-      attachExt: 2
+      attachExt: 2,
+      p5: 100001
     }, {
       credentials: 'omit'
     }).then(data => {
