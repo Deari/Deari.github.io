@@ -1,0 +1,18 @@
+@import 'src/styles/v/base.scss';
+
+.tabs {
+  font-size: 16px;
+  &-titles {
+    border-bottom: 1px solid $site-border-gray;
+    	.address{
+    		color: #666;
+    		display: block;
+    		line-height: 48px;
+    	}
+  }
+  
+  &-content {
+    color: #333;
+    font-size: 14px;
+  }
+}

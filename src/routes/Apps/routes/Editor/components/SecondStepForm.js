@@ -93,6 +93,7 @@ const SecondStepForm = props => {
     let isErr = (len == 0) ? true : false
     props.updateCodeDesc({ codeDescCount: len, codeDesc: value, isDescErr: isErr })
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <div className='edit-header'>
@@ -124,7 +125,13 @@ const SecondStepForm = props => {
         </div> */}
       </div>
       {/** <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
-      <VersionCordModule codeVersion={lastVersion} toggleCodeVersion={props.toggleCodeVersion} />
+      <Field
+        required 
+        name='codeVersion' 
+        component={VersionCordModule}
+        codeVersion={lastVersion}
+      />
+      {/*<VersionCordModule value={ initialValues && initialValues.codeVersion } codeVersion={lastVersion} toggleCodeVersion={props.toggleCodeVersion} />*/}
       {appKind === 0 && <Field required name='file' isMiniProgram component={renderFile} label='应用文件' genre='(FAP小程序)' />}
       {appKind === 1 && <Field required name='fileLink' type='text' placeholder='请输入网址' component={renderField} label='应用网址' />}
       {appKind === 2 && <Field required name='fileObj' component={renderAPKFile} label='应用文件(APK)' />}

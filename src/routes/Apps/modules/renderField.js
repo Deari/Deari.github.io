@@ -12,7 +12,7 @@ export const renderField = ({ required, input, label, placeholder, type, describ
     <label> { required ? <i className='require_field'>*</i> : '' }
       {label} <i className='iconfont icon-edit diff' /></label>
     <div className='row-right'>
-      <input {...input} placeholder={placeholder || label} type={type} className='use-input' />
+      <input {...input} placeholder={placeholder || label} type={type}/>
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
     <DescribeIcon describeId={describeId} describeContent={describeContent} />

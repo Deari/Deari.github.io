@@ -29,7 +29,7 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
     width: $sub-container-width;
     padding: $default-margin-top - 12px 80px $default-margin-bottom + 5px 80px;
     @include clx;
-    overflow: hidden;
+    // overflow: hidden;
     background: $white-color;
     &.version-module-container {
       overflow: visible;
@@ -44,7 +44,7 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
         width: 100px;
         font-size: $text-font-size - 4px;
         color: $black-color;
-        padding-left: $default-padding-left - 29px;
+        padding-left: 0 30px 0 $default-padding-left - 31px;
         margin-right: 31px;
         line-height: $text-line-height - 10px;
         @include float-left;
@@ -53,7 +53,7 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
         .diff{
             position: absolute;
             top: 1px;
-            left: 534px;
+            left: 560px;
             z-index: 2;
         }
     }
@@ -72,8 +72,11 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
             font-size: $text-font-size - 5px;
             color: $text-color;
             border: 1px solid $border-color;
-            padding-left: $default-padding-left - 31px;
+            padding: 0 26px 0 $default-padding-left - 31px;
             outline: none;
+            &.use-input{
+            	padding: 0 $default-padding-left - 31px;
+            }
         }
         input[type="text"]::selection{
             background: #ace4fe;

@@ -32,6 +32,8 @@ class CreateContainer extends Component {
   }
 
   submitFirst (values) {
+    // return;
+    
     const formData = new FormData()
 
     for (let key in values) {
@@ -45,8 +47,8 @@ class CreateContainer extends Component {
         formData.append(key, values[key])
       }
     }
-
     const url = getDomain(`web/developer/app`)
+    console.log(values, formData);
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {

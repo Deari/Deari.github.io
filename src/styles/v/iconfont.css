@@ -6,15 +6,24 @@
   width: 49px;
   height: 20px;
 }
-.icon-rnpng{
-  background: url(../../images/rn.png) no-repeat;
-  background-size: 100% 100%;   
+
+.icon-rnpng {
+  background: url("http://timg.ffan.com/convert/resize/url_T1_DKTBCEb1RCvBVdK/tfs/1.png") no-repeat;
+  background-size: 100% 100%;
 }
-.icon-hpng{
-  background: url(../../images/h5.png) no-repeat;
-  background-size: 100% 100%;      
+
+.icon-hpng {
+  background: url("http://timg.ffan.com/convert/resize/url_T1IDLTB_Zv1RCvBVdK/tfs/1.png") no-repeat;
+  background-size: 100% 100%;
 }
-.icon-apkpng{
-  background: url(../../images/apk.png) no-repeat;
-  background-size: 100% 100%;   
+
+.icon-apkpng {
+  background: url("http://timg.ffan.com/convert/resize/url_T1RhVTBXCj1RCvBVdK/tfs/1.png") no-repeat;
+  background-size: 100% 100%;
 }
+
+.icon-fanhui {
+  margin-right: 8px;
+  font-size: 14px;
+}
+

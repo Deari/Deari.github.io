@@ -1,5 +1,5 @@
 @import 'src/styles/v/base.scss';
-.site-table {
+.tableWrapper {
     color: #000;
     th {
         color: #666;
@@ -88,7 +88,7 @@
                     }
                 }
                 &.actions {
-                    .btn-default {
+                    .tableBtn {
                         color: #666;
                         width: 85px;
                         height: 30px;

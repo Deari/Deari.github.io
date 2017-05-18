@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { findDOMNode } from 'react-dom'
 import SideBar from 'business/SideBar'
-import { getEnvDomain, getXapiComDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
@@ -20,7 +20,7 @@ class DevAccount extends Component {
   }
 
   getAccount () {
-    const url = getEnvDomain() + '/bow/v1/account'
+    const url = getDomain('/bow/v1/account')
 
     return fetchUtil.getJSON(url, {
       clientType: 1
@@ -66,7 +66,7 @@ class DevAccount extends Component {
 
   getCode () {
     const phone = findDOMNode(this.refs.phone).value.trim()
-    const url = getEnvDomain() + '/bow/v1/verifycodes'
+    const url = getDomain('/bow/v1/verifycodes')
     if (!phone) {
       return alert('请填写手机号！！')
     }
@@ -92,7 +92,9 @@ class DevAccount extends Component {
   }
 
   getDownloadUrl () {
-    const url = getXapiComDomain() + '/oc/v1/version/latest'
+    const url = getDomain('/oc/v1/version/latest', {
+      suffix: 'com'
+    })
     fetchUtil.getJSON(url, {
       objectId: 1,
       osType: 2,
@@ -112,7 +114,7 @@ class DevAccount extends Component {
   submitHandler () {
     const phone = findDOMNode(this.refs.phone).value.trim()
     const code = findDOMNode(this.refs.code).value.trim()
-    const url = getEnvDomain() + '/bow/v1/testaccount'
+    const url = getDomain('/bow/v1/testaccount')
     if (!phone || !code) {
       return alert('填写手机号以及验证码')
     }
@@ -163,7 +165,7 @@ class DevAccount extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={s['btn-primary']} onClick={::this.submitHandler}>获取商家测试账号</button>
+          <button className={`primaryBtn ${s.accountBtn}`} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     )
@@ -189,8 +191,8 @@ class DevAccount extends Component {
     return (
       <div className={`container`} >
         <SideBar pageLinks={getPageLinks(type)} type={type} />
-        <div className={s.content}>
-          <h2 className={s['content-header']}><i className='iconfont icon-account' />申请测试账号</h2>
+        <div className="content">
+          <h2 className="content-header"><i className='iconfont icon-account' />申请测试账号</h2>
           <div className={s.main}>
             {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号

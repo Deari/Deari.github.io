@@ -1,0 +1,31 @@
+@import 'src/styles/v/base.scss';
+
+.item-tag {
+	width: 94%;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: -14px;
+  .tags {
+    color: #999;
+    width: 74px;
+    height: 30px;
+    font-size: 12px;
+    cursor: pointer;
+    border-radius: 2px;
+    line-height: 28px;
+    text-align: center;
+    display: inline-block;
+    margin: 14px 18px 0 0;
+    border: 1px solid $site-border-gray;
+    transition: all 0.2s ease-in-out;
+    &:nth-child(5n) {
+      margin-right: 0;
+    }
+    &:hover,
+    &.active{
+    	color: #fff;
+    	background: rgba(38,146,251,0.6);
+    	border-color: transparent;
+    }
+  }
+}

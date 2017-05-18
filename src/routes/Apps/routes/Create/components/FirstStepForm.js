@@ -11,6 +11,7 @@ import {
 } from '../../../modules/renderField'
 
 import { validate, asyncValidate, repeatCheck } from '../../../modules/validate'
+import ScreenSize from 'business/AppCreate/ScreenSize2'
 
 import './style.scss'
 
@@ -23,6 +24,12 @@ const FirstStepForm = props => {
       </div>
       <Field label='应用名称' required name='appName' type='text' component={renderField}
         describeId='appName' describeContent='您的 应用 在 应用市场 中显示的名称' />
+      <Field
+        required 
+        label='适配屏幕尺寸' 
+        name='screenSize' 
+        component={ScreenSize}
+      />
       <Field label='应用图片' required name='appLogo' type='text' component={renderImageUpload}
         describeId='appLogo' describeContent='此图标将用于 应用市场，最低分辨率至少为 72 DPI，并采用 RGB 色彩空间。它不能包含图层或圆角。' />
       <Field label='应用简介' required name='appDesc' placeholder='请输入应用简介。此内容将显示在应用列表页中。' component={renderTextArea}

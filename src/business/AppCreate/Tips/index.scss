@@ -1,0 +1,25 @@
+.g-popover {
+	display: inline-block;
+  margin-left: 10px;
+  position: relative;
+  cursor: pointer;
+  &-content {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    padding: 7px;
+    border-radius: 5px;
+    width: 120px;
+    overflow: hidden;
+    color: #666;
+    font-size: 12px;
+    background: #e1e1e1;
+    transition: all .3s ease-in;
+    transform: translate(20px, 30px);
+    &.show {
+      transform: translate(20px, 0px);
+      opacity: 1;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import fetchUtil from 'utils/fetch'
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 import OverView from '../Components/OverView'
 
 class Container extends Component {
@@ -28,7 +28,7 @@ class Container extends Component {
 
   loadData (day) {
     const { appId } = this.state
-    const url = getEnvDomain() + `/app/v1/bo/v1/web/developer/statistics/app/${appId}`
+    const url = getDomain(`/app/v1/bo/v1/web/developer/statistics/app/${appId}`)
     fetchUtil.getJSON(url, { day }).then(data => {
       this.setState({
         basic: data.yesterday,

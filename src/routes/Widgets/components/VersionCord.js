@@ -70,7 +70,7 @@ class VersionCordModule extends Component {
           <span className='message-info message-info-gray'>
             {this.props.codeVersion && `您的线上版本为：${this.props.codeVersion}。`}您要填入的版本号。编号应遵循软件版本规范。
           </span>
-          <input placeholder='请输入版本号' type='text' onBlur={this.handleBlur.bind(this)} className='use-input' />
+          <input placeholder='请输入版本号' className="use-input" type='text' onBlur={this.handleBlur.bind(this)} className='use-input' />
           {isErr ? <span className='message-info'>{errTxt}</span> : ''}
         </div>
         <DescribeIcon describeId='codeVersion' describeContent={describeContent} />

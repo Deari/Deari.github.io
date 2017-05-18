@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './AppInfo-new.scss'
 import fetchUtil from 'utils/fetch'
-import { getEnvDomain } from 'utils/d'
+import { getDomain } from 'utils/d'
 
 class AppInfo extends React.Component {
   state = {
@@ -10,8 +10,7 @@ class AppInfo extends React.Component {
   }
 
   componentDidMount () {
-    fetchUtil.getJSON(`${getEnvDomain()}/app/v1/bo/v1/web/devDataById/self`).then(data => {
-      console.log(data)
+    fetchUtil.getJSON(getDomain('/app/v1/bo/v1/web/devDataById/self')).then(data => {
       this.setState({
         ...data
       })
