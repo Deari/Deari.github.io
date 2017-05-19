@@ -43,8 +43,8 @@ class Complete extends React.Component {
               <div className={s.list}>
                 <h2 className={s.item}>{data.appName}</h2>
                 <span className={s.item}>AppID: <span className={s.number}>{data.appId}</span></span>
-                <span className={s.item}>DeveloperKey：<span className={s.number}>{data.appName}</span></span>
-                <span className={s.item}>DeveloperSecrect：<span className={s.number}>{data.appName}</span></span>
+               {/*<span className={s.item}>DeveloperKey：<span className={s.number}>{data.appName}</span></span>*/}
+               {/*<span className={s.item}>DeveloperSecrect：<span className={s.number}>{data.appName}</span></span>*/}
               </div>
           </div>
           
