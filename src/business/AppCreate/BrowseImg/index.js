@@ -22,7 +22,7 @@ const BrowseImg = () => {
 	          		<img src="http://temp.im/98x98"/>
 	          	</li>
 	          </ul>
-	          <div className={s.example}>
+	          <div className={`${s.example} ${s.hide}`}>
 	          	<img src="http://timg.ffan.com/convert/resize/url_T1YfJTBsDv1RCvBVdK/tfs/1.png" className={s.line}/>
 							<div className={s.content}>
 								<a className={s['example-img']}>
