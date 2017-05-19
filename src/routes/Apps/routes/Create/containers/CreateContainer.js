@@ -190,7 +190,7 @@ class CreateContainer extends Component {
           }
           { page > 0 && <Step page={page} appKindName={appKindName} /> }
           {
-            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1 && <FirstStep appKind={appKind} onSubmit={::this.submitFirst} />
           }
           {
             page === 2 && <FinishFirstStep />
