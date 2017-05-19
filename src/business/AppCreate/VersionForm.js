@@ -29,7 +29,7 @@ class Main extends React.Component {
           component={AppDesc}
         />
 
-        { onlineVersion && <span className={s['rule-text']}>您的线上版本为：{onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。</span>}
+        { onlineVersion && <span className={s['version-rule']}>您的线上版本为：{onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。</span>}
         <Field
           required 
           label='版本号' 

@@ -19,6 +19,7 @@
 	line-height: 50px;
 	padding-left: 25px;
 	font-size: 16px;
+	margin-bottom: 20px;
 	border-bottom: 1px solid $site-border-gray;
 }
 .main {
@@ -44,7 +45,6 @@
 		margin-right: 4px;
 	}
 }
-
 .tabs {
   font-size: 16px;
   &-titles {
@@ -62,6 +62,12 @@
   }
 }
 
+.version-rule{
+	color: #999;
+  font-size: 12px;
+  line-height: 24px;
+	margin-left: 258px;
+}
 .text {
 	font-size: 12px;
 	color: #999;
@@ -80,6 +86,86 @@
 }
 .apply-radio {
 	margin: 14px 0;
+	.list {
+		overflow: hidden;
+		&.active {
+			display: block;
+		}
+		.item {
+			color: #666;
+			margin: 8px;
+			float: left;
+			cursor: pointer;
+			text-align: center;
+			border-radius: 4px;
+			transition: all 0.05s ease-in-out;
+			position: relative;
+			&:before{
+				content:"";
+				background: #fff;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				position: absolute;
+				left: -7px;
+				top: -7px;
+			}
+			&:hover{
+				& > img{
+					border-color: rgba(38,146,251,0.6);
+				}
+			}
+			img {
+				width: 98px;
+				height: 98px;
+				display: block;
+				border-radius: 4px;
+				border: 1px solid $site-border-gray;
+			}
+			.del {
+				position: absolute;
+				left: -7px;
+				top: -7px;
+				font-size: 20px;
+				color: $site-red;
+				cursor: pointer;
+				z-index: 2;
+			}
+			.name{
+				height: 24px;
+				width: 100px;
+				color: #666;
+				display: block;
+				line-height: 24px;
+				@include text-overflow;
+			}
+		}
+		.item-add{
+			width: 100px;
+			height: 100px;
+			border: 1px solid $site-border-gray;
+			&:before{
+				display: none;
+			}
+			.add{
+				display: block;
+				line-height: 98px;
+					& > i {
+					color: #999;
+				}
+			}
+			&:hover {
+				color: #fff;
+				.add{
+					& > i{
+					color: #fff;
+					}
+				}
+				background: rgba(38,146,251,0.6);
+				border-color: transparent;
+			}
+		}
+	}
 }
 .saveBtn {
 	width: 132px;

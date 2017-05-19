@@ -12,6 +12,12 @@ class TabelItem extends React.Component {
     data: this.props.data
   }
 
+  componentWillReceiveProps (newProps) {
+    this.setState({
+      data: newProps.data
+    })
+  }
+  
   publish(appId) {
     const url = getDomain(`/app/v1/bo/v1/web/developer/app/${appId}/publish`)
     fetchUtil.postJSON(url, { onLine: 1 }).then(data => {
