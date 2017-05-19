@@ -5,7 +5,7 @@ import BasicForm from '../containers/BasicFormContainer'
 import s from 'business/AppCreate/Basic-new.scss'
 import { Link } from 'react-router'
 import cx from 'classnames'
-import HOC from '../../../hoc/create'
+import BasicHOC from '../../../hoc/create'
 import Header from './Header'
 import { APP_TYPES } from 'config/appTypes'
 
@@ -27,4 +27,4 @@ const Basic = (props) => {
   </div>
 }
 
-export default HOC(Basic);
+export default BasicHOC(Basic);

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Field } from 'redux-form'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
@@ -96,8 +97,4 @@ class Main extends React.Component {
   }
 }
 
-export default reduxForm({
-  form: 'apps_version_info',
-  enableReinitialize: true,
-  validate
-})(Main)
+export default Main

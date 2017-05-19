@@ -1,7 +1,7 @@
 import React from 'react'
-import BasicForm from '../containers/FormContainer'
+import BasicForm from '../containers/BasicFormContainer'
 import s from 'business/AppCreate/Basic-new.scss'
-import HOC from '../../../Hoc/create'
+import BasicHOC from '../../../hoc/create'
 
 const Basic = (props) => {
   const { appType } = props;
@@ -18,4 +18,4 @@ const Basic = (props) => {
   </div>
 }
 
-export default HOC(Basic);
+export default BasicHOC(Basic);

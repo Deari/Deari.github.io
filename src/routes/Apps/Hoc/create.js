@@ -7,7 +7,7 @@ import {
   fetchTags
 } from 'reducers/api'
 
-const HOC = (Wrapper) => class Container extends React.Component {
+const BasicFormHOC = (Wrapper) => class Container extends React.Component {
   state ={
     tags: []
   }
@@ -27,4 +27,4 @@ const HOC = (Wrapper) => class Container extends React.Component {
   }
 }
 
-export default HOC
+export default BasicFormHOC
