@@ -33,7 +33,7 @@ class Main extends React.Component {
             component={AppDesc}
           />
 
-          { onlineVersion && <span className={s['rule-text']}>您的线上版本为：{onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。</span>}
+          { onlineVersion && <span className={s['version-rule']}>您的线上版本为：{onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。</span>}
           <Field
             required 
             label='版本号' 
@@ -75,7 +75,7 @@ class Main extends React.Component {
 									<ul className={cx(s.list,s.active)}>
 										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
 										<li className={s.item}>
-											<img src="http://temp.im/100x100" className={s.img}/>
+											<img src="http://temp.im/98x98" className={s.img}/>
 											<i className={cx('iconfont icon-del',s.del)}></i>
 											<span className={s.name}>h5组件数据测试516-01</span>
 										</li>
@@ -96,7 +96,7 @@ class Main extends React.Component {
 									<ul className={cx(s.list,s.active)}>
 										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
 										<li className={s.item}>
-											<img src="http://temp.im/100x100" className={s.img}/>
+											<img src="http://temp.im/98x98" className={s.img}/>
 											<i className={cx('iconfont icon-del',s.del)}></i>
 											<span className={s.name}>h5组件数据测试516-01</span>
 										</li>
@@ -117,7 +117,7 @@ class Main extends React.Component {
 									<ul className={cx(s.list,s.active)}>
 										<li className={cx(s.item,s['item-add'])}><span className={s.add}><i className="iconfont icon-add"></i>选择</span></li>
 										<li className={s.item}>
-											<img src="http://temp.im/100x100" className={s.img}/>
+											<img src="http://temp.im/98x98" className={s.img}/>
 											<i className={cx('iconfont icon-del',s.del)}></i>
 											<span className={s.name}>h5组件数据测试516-01</span>
 										</li>
@@ -125,7 +125,7 @@ class Main extends React.Component {
 								</div>
             	</div>
             </div>
-          </div>*/}
+         </div>*/}
           <div className='form-actions'>
             <button type='submit' className={cx('primaryBtn', s.saveBtn)}>保存</button>
             <button className={cx('primaryBtn', s.saveBtn)}>提交审核</button>

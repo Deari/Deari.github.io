@@ -2,6 +2,7 @@
 .tableWrapper {
     color: #666;
     margin-top: 15px;
+    border: 1px solid $table-gray;
     th {
         border-right: 1px solid #fff;
         &:last-child {

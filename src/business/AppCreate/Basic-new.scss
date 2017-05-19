@@ -5,6 +5,7 @@
 	line-height: 50px;
 	padding-left: 25px;
 	font-size: 16px;
+	margin-bottom: 20px;
 	border-bottom: 1px solid $site-border-gray;
 }
 .main {
@@ -17,13 +18,19 @@
 	padding: 0 6px;
 	height: 30px;
 	line-height: 28px;
-	margin: 10px 10px 40px;
+	margin: -10px 10px 40px;
 	background: #78909c;
 	border: 1px solid #546e7a;
 	&>i {
 		font-size: 13px;
 		margin-right: 4px;
 	}
+}
+.version-rule{
+	color: #999;
+  font-size: 12px;
+  line-height: 24px;
+	margin-left: 258px;
 }
 .text {
 	font-size: 12px;
