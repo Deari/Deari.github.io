@@ -20,7 +20,7 @@ export default (store) => ({
       cb(null, [
         require('./routes/Store')(store),
         require('./routes/Create')(store),
-        require('./routes/Create2')(store),
+        // require('./routes/Create2')(store),
         require('./routes/Detail')(store),
         require('./routes/List').default,
         require('./routes/Editor')(store),

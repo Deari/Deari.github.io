@@ -1,5 +1,4 @@
 import React from 'react'
-import s from '../Basic-new.scss'
 import t from './index-new.scss'
 import cx from 'classnames'
 import Tips from '../Tips'

@@ -13,10 +13,7 @@ import { APP_TYPES } from 'config/appTypes'
 class Container extends React.Component {
   constructor(props) {
     super(props);
-    const { type } = this.props.params;
-    const appType = APP_TYPES[type]
     this.state = {
-      appType,
       onlineVersion: '',
       initialValues: {
         autoPublish: 0
@@ -26,7 +23,7 @@ class Container extends React.Component {
   }
 
   componentWillMount() {
-    getAppInfo({ appId: this.props.params.id }).then(data=>{
+    getAppInfo(this.props.params.id).then(data=>{
       console.log(data)
       const { versions, appId, appKind } = data;
       const _version = versions.find((v)=>+v.publishStatus ===1)
@@ -58,12 +55,9 @@ class Container extends React.Component {
   }
 
   render () {
-    const { id, type } = this.props.params; 
-    const { onlineVersion, initialValues, appType } = this.state;
-    return <Version 
-      type={type}
-      id={id}
-      appType={appType.text}
+    const { onlineVersion, initialValues } = this.state;
+    return <Version pageType={'apps'}
+      params={ this.props.params }
       initialValues={initialValues} 
       onSubmit={::this.onSubmit} 
       onlineVersion={onlineVersion}

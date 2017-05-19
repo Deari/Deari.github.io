@@ -1,6 +1,5 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
-import s from '../Basic-new.scss'
 import t from './img-new.scss'
 import cx from 'classnames'
 import { uploadImage } from 'reducers/api'
@@ -9,9 +8,8 @@ import Tips from '../Tips'
 class ImageUploader extends React.Component {
   constructor(props) {
     super(props)
-    const {value} = props.input
     this.state={
-      fileList:  value ? (Array.isArray(value) ? value : [value]) : []
+      value:  props.input.value
     }
   }
 
@@ -32,14 +30,16 @@ class ImageUploader extends React.Component {
     }
     uploadImage(formData).then(data=>{
       this.setState({
-        fileList: this.state.fileList.concat([ data.url])
+        value: data.url
       })
       this.props.input.onChange(data.url)
     }).catch(e => {
       console.log('上传失败', e)
     })
   }
-
+  componentWillReceiveProps(newProps) {
+    this.setState({ value: newProps.input.value })
+  }
   selectFile () {
     findDOMNode(this.refs.file).click()
   }
@@ -66,11 +66,9 @@ class ImageUploader extends React.Component {
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
           <ul className={`${t['img-item']} ${t.active}`}>
-            {this.state.fileList.map((item) => {
-              return <li className={t['upload-img']}>
-                <img src={item}/>
-              </li>
-            })}
+            <li className={t['upload-img']}>
+              <img src={this.state.value}/>
+            </li>
           </ul>
         </div>
       </div>

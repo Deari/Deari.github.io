@@ -1,25 +1,20 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { getFormValues, Field, reduxForm } from 'redux-form'
-import { validate } from './validate'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from './Basic-new.scss'
 import './form.scss'
 
-import AppDesc from './AppDesc'
-import TextInput from './TextInput'
-import ImageUploader from './Uploader/img'
-import VersionPublish from './VersionPublish'
-import BreadCrumb from './BreadCrumb'
-import Tabs from './Tabs'
+import AppDesc from 'business/AppCreate/AppDesc'
+import TextInput from 'business/AppCreate/TextInput'
+import ImageUploader from 'business/AppCreate/Uploader/img'
+import VersionPublish from 'business/AppCreate/VersionPublish'
 
 class Main extends React.Component {
   render () {
     const { onlineVersion, handleSubmit } = this.props;
 
   	return (
-      <form className={s['site-form']} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <Field
           required 
           label='版本介绍' 

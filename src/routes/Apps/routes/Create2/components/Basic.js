@@ -1,8 +1,7 @@
 import React from 'react'
-import BreadCrumb from 'business/AppCreate/BreadCrumb'
 import BasicForm from '../containers/FormContainer'
-import s from 'business/AppCreate/Basic-new.scss'
-import HOC from 'business/AppCreate/hoc/create'
+import s from '../../../components2/Basic-new.scss'
+import HOC from '../../../Hoc/create'
 
 const Basic = (props) => {
   const { appType } = props;

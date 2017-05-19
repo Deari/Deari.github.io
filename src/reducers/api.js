@@ -16,17 +16,26 @@ export const fetchCates = (params) => {
   return fetchUtil.getJSON(url, params)
 }
 
-export const getAppInfo = (params) => {
-  const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}`)
+export const getAppInfo = (id) => {
+  const url = getDomain(`/app/v1/bo/v1/web/developer/app/${id}`)
   return fetchUtil.getJSON(url);
 }
 
 export const postAppBasicInfo = (params) => {
-  const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}`)
-  return fetchUtil.postJSON(url, params )
+  let url = `/app/v1/bo/v1/web/developer/app`;
+  if(params.appId) {
+    url = `${url}/${params.appId}`
+  }
+  return fetchUtil.postJSON(getDomain(url), params )
 }
 
 export const postAppVersionInfo = (params) => {
   const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}/code`)
   return fetchUtil.postJSON(url, params)
 }
+
+
+export const getDevInfo = (params) => {
+  return fetchUtil.getJSON(getDomain('/app/v1/bo/v1/web/devDataById/self'))
+}
+

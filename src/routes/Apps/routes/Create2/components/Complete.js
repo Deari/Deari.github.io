@@ -3,32 +3,38 @@ import { Link } from 'react-router'
 import s from './Complete-new.scss'
 import cx from 'classnames'
 import BreadCrumb from 'business/AppCreate/BreadCrumb'
-import { getAppInfo } from 'reducers/api'
+import { getAppInfo, getDevInfo, postAppVersionInfo } from 'reducers/api'
 
 class Complete extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      data: {}
+      appInfo: {},
+      devInfo: {}
     }
   }
 
   componentWillMount() {
-    getAppInfo({
-      appId: this.props.params.id
-    }).then(data=>{
-      this.setState({ data })
+    getAppInfo(this.props.params.id).then(data=>{
+      this.setState({ appInfo: data })
     }).catch(e=>{
       alert(`拉取数据失败(错误码：${e.status})`)
     })
+
+    getDevInfo().then(data=>{
+      this.setState({ devInfo: data })
+    })
+
+    postAppVersionInfo({ appId: this.props.params.id, prepareVersion: 1})
+    
   }
 
   handleView () {
-    this.props.router.replace(`/apps/detail/${this.state.data.appId}`)
+    this.props.router.replace(`/apps/detail/${this.props.params.id}`)
   }
 
   render() {
-    const { data } = this.state;
+    const { appInfo, devInfo } = this.state;
     return (
       <div className={s.wrapper}>
         <BreadCrumb></BreadCrumb>
@@ -39,18 +45,18 @@ class Complete extends React.Component {
           </div>
           
           <div className={s.content}>
-              <img src={data.appLogo} alt=""/>
+              <img src={appInfo.appLogo} alt=""/>
               <div className={s.list}>
-                <h2 className={s.item}>{data.appName}</h2>
-                <span className={s.item}>AppID: <span className={s.number}>{data.appId}</span></span>
-               {/*<span className={s.item}>DeveloperKey：<span className={s.number}>{data.appName}</span></span>*/}
-               {/*<span className={s.item}>DeveloperSecrect：<span className={s.number}>{data.appName}</span></span>*/}
+                <h2 className={s.item}>{appInfo.appName}</h2>
+                <span className={s.item}>AppID: <span className={s.number}>{appInfo.appId}</span></span>
+               <span className={s.item}>DeveloperKey：<span className={s.number}>{devInfo.developerKey}</span></span>
+               <span className={s.item}>DeveloperSecret：<span className={s.number}>{devInfo.developerSecret}</span></span>
               </div>
           </div>
           
           <dl className={s['success-text']}>
             <dt>接下来你要做什么？</dt>
-            <dd>1、你可以通过查看开发者文档，进行开发、调试，并将新版本准备好。(注：开发、调试时，需要上面的AppID和AppKEY)</dd>
+            <dd>1、你可以通过查看开发者文档，进行开发、调试，并将新版本准备好。(注：开发、调试时，需要上面的DeveloperKey和DeveloperSecret)</dd>
             <dd>2、新版本准备好之后，你可以在我的应用中发布新版本。</dd>
           </dl>
           <span className={s['success-text']}>返回我的应用，发布新版本。</span>

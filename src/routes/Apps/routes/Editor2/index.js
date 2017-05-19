@@ -5,7 +5,7 @@ import BasicContainer from './containers/BasicContainer'
 import VersionContainer from './containers/VersionContainer'
 
 module.exports = (store) => ({
-  path: 'edit2/:type/:id',
+  path: 'edit2/:id',
   getComponent(partialNextState, cb) {
     const Main = require('./Main').default;
     injectReducer(store, { key: 'form', reducer: formReducer })
