@@ -34,7 +34,7 @@ class FirstStepForm extends Component {
         <div className='header-title'>
           <h2 className='step-tittle'>基本信息</h2>
         </div>
-        <Field required label='组件名称' name='appName' type='text' component={renderField}
+        <Field required maxLength={50} label='组件名称' name='appName' type='text' component={renderField}
           describeId='appName' describeContent='您的 组件 在 组件市场 中显示的名称' />
         <Field required label='尺寸' name='size' sizeList={sizeList} component={renderSizeRadioBox}
           onChangeSize={this.changeSize.bind(this)} />

@@ -28,7 +28,7 @@ const FirstStepForm = props => {
       <div className='update-msg'>
         <p><i className='iconfont icon-zhuyi' />您的这次更新会在新的 应用 版本发布后，在 应用市场 上显示。</p>
       </div>
-      <Field required label='应用名称' name='appName' type='text' component={renderField}
+      <Field required label='应用名称' maxLength={50} name='appName' type='text' component={renderField}
         describeId='appName' describeContent='您的 应用 在 应用市场 中显示的名称' />
       <Field
         required 
