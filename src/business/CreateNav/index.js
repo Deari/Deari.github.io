@@ -17,10 +17,10 @@ const Nav = ({ type }) => {
         <i className='iconfont icon-html5' />
         <span>HTML5</span>
       </Link>
-      <Link to={`/${type}/create2/apk`} className={cx(s.item, s.apk)} >
+      { type === 'apps' && <Link to={`/${type}/create2/apk`} className={cx(s.item, s.apk)} >
         <i className='iconfont icon-android' />
         <span>APK</span>
-      </Link>
+      </Link> }
     </div>
   </div>
 }

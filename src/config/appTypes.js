@@ -1,4 +1,4 @@
-export const AppTypes = {
+export const APP_TYPES = {
   h5: {
     text: 'H5',
     value: 1,

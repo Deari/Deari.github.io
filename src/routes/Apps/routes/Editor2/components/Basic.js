@@ -1,19 +1,21 @@
 import React from 'react'
 import BreadCrumb from 'business/AppCreate/BreadCrumb'
 import Tabs from 'business/AppCreate/Tabs'
-import BasicForm from 'business/AppCreate/Form'
+import BasicForm from '../containers/FormContainer'
 import s from 'business/AppCreate/Basic-new.scss'
 import { Link } from 'react-router'
 import cx from 'classnames'
+import HOC from 'business/AppCreate/hoc/create'
 
 const Basic = (props) => {
-  const { type, id, appType } = props;
-
+  const { appType } = props;
+  const { id, type } = props.params;
+  
   return <div>
     <div className={s.breadcrumb}>
       <a className="iconfont icon-fanhui" href="/apps/list"></a>
       <span className={s.site}>我的应用</span>
-      <span className={`${s.site} ${s.noNext}`}>编辑应用 ( {appType} 类型 )</span>
+      <span className={`${s.site} ${s.noNext}`}>编辑应用 ( {appType.text} 类型 )</span>
     </div>
     <div className={s.tabs}>
       <ul className={s['tabs-titles']}>
@@ -31,4 +33,4 @@ const Basic = (props) => {
   </div>
 }
 
-export default Basic;
+export default HOC(Basic);

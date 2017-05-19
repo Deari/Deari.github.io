@@ -6,7 +6,7 @@ import { PageTypes, getPageLinks } from 'config/index'
 
 const Main = (props) => {
   return <div className='container'>
-    <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
+    <SideBar pageLinks={getPageLinks('widgets')} type={'widgets'} />
     <div className='content'>
       {props.children}
     </div>

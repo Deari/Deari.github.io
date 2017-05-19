@@ -17,23 +17,15 @@ const Form = (props) => {
     <form className="site-form" onSubmit={ handleSubmit }>
       <Field
         required 
-        label='应用名称' 
+        label='组件名称' 
         name='appName' 
         description='您的应用在应用市场中显示的名称' 
         component={TextInput}
       />
-      { appType.value === APP_TYPES.h5.value && 
-      <Field
-        required 
-        label='适配屏幕尺寸' 
-        name='screenSize' 
-        component={ScreenSize}
-      />
-      }
 
       <Field
         required 
-        label='应用图片' 
+        label='组件图片' 
         name='appLogo'
         description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
         component={ImageUploader}

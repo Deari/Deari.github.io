@@ -8,13 +8,13 @@ import {
 } from 'reducers/api'
 import Version from '../components/Version'
 // import Version from 'business/AppCreate/Version'
-import { AppTypes } from 'config/AppType'
+import { APP_TYPES } from 'config/appTypes'
 
 class Container extends React.Component {
   constructor(props) {
     super(props);
     const { type } = this.props.params;
-    const appType = AppTypes[type]
+    const appType = APP_TYPES[type]
     this.state = {
       appType,
       onlineVersion: '',

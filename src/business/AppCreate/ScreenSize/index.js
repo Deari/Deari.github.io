@@ -2,42 +2,31 @@ import React from 'react'
 import s from './index-new.scss'
 import cx from 'classnames'
 
+const getInitState = (v) => {
+  return {
+    small: {
+      value: 1,
+      selected: v & 1,
+    },
+    middle: {
+      value: 2,
+      selected: v & 2
+    },
+    large: {
+      value: 4,
+      selected: v & 4
+    }
+  }
+}
+
 class ScreenSize extends React.Component {
   constructor(props) {
     super(props)
-    const v = props.input.value;
-    this.state = {
-      small: {
-        value: 1,
-        selected: v & 1,
-      },
-      middle: {
-        value: 2,
-        selected: v & 2
-      },
-      large: {
-        value: 4,
-        selected: v & 4
-      }
-    }
+    this.state = getInitState(props.input.value)
   }
 
   componentWillReceiveProps (newProps) {
-    const v = newProps.input.value;
-    this.setState({ 
-      small: {
-        value: 1,
-        selected: v & 1,
-      },
-      middle: {
-        value: 2,
-        selected: v & 2
-      },
-      large: {
-        value: 4,
-        selected: v & 4
-      }
-    })
+    this.setState(getInitState(newProps.input.value))
   }
 
   notify() {

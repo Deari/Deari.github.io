@@ -7,7 +7,7 @@
     border-bottom: 1px solid #eee;
   }
   .title {
-    padding: 20px;
+    padding: 40px 0;
     font-size: 20px;
     color: #000;
     text-align: center;
@@ -16,6 +16,7 @@
     width: 591px;
     margin: 0 auto;
     display: flex;
+    justify-content: center;
     .iconfont {
       font-size: 30px;
       vertical-align: middle;
@@ -32,6 +33,7 @@
       border-radius: 4px;
       border: 2px solid #eee;
       background: #fff;
+      transition: all .5s ease;
       & > i {
         margin-right: 5px;
       }
@@ -40,21 +42,26 @@
       color: #607d8b;
       &:hover {
         color: #fff;
-        background: #607d8b
+        background: #607d8b;
+        border-color: #607d8b;
       }
     }
     .rn {
       color: #2e8fff;
       &:hover {
         color: #fff;
-        background: #2e8fff
+        background: #2e8fff;
+        border-color: #2e8fff;
+        
       }
     }
     .apk {
       color: #97c03d;
       &:hover {
         color: #fff;
-        background: #97c03d
+        background: #97c03d;
+        border-color: #97c03d;
+        
       }
     }
   }

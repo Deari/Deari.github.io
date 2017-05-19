@@ -128,7 +128,7 @@ class DevAccount extends Component {
     }).catch(e => {
       const { status, message } = e
       const _msg = message || '获取商家测试账号失败，请重试!'
-      alert(`${status}|${_msg}`)
+      alert(`${_msg}(错误码：${status})`)
     })
   }
 
