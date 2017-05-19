@@ -15,13 +15,15 @@ const FinishFirstStep = props => {
       </div>
       <div className='finish-apps-box'>
         {/* <h3 className="finish-apps">请查收您的 DeveloperKey 和 DeveloperSecret</h3> */}
-        <dl className='finish-apps-img'>
-          <dt><img src={appLogo} /></dt>
-          <dd>{appName}</dd>
-          <dd>AppID: {appId}</dd>
-          <dd>DeveloperKey: {developerKey}</dd>
-          <dd>DeveloperSecret: {developerSecret}</dd>
-        </dl>
+        <div className='finish-apps-img'>
+          <div className="apps-img"><img src={appLogo} /></div>
+          <div className="apps-list">
+          	<span className="apps-item">{appName}</span>
+	          <span className="apps-item">AppID: {appId}</span>
+	          <span className="apps-item">DeveloperKey: {developerKey}</span>
+	          <span className="apps-item">DeveloperSecret: {developerSecret}</span>
+          </div>
+        </div>
         <dl className='finish-apps-text'>
           <dt>接下来你要做什么？</dt>
           <dd>1、你可以通过查看开发者文档，进行开发、调试，并将新版本准备好。(注：开发、调试时，需要上面的DeveloperKey和DeveloperSecret)</dd>
