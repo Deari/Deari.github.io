@@ -69,7 +69,7 @@ class ScreenSize extends React.Component {
     const { small, middle, large } = this.state;
     return (
       <div className="form-row">
-        <label className='label'>{props.label}</label>
+        <label className='label'><i className='require_field'>*</i>{props.label}</label>
         <div className='form-item'>
           <div className="item-wrapper">
             <h3 className={s.title}>请选择要适配的屏幕尺寸</h3>

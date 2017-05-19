@@ -15,10 +15,10 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0px 1000px white inset;}
   border-bottom: 1px solid #dedede;
   .step-tittle{
     display: inline-block;
+    padding: 20px 10px;
+    margin-right: 20px;
     font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 10px;
+    border-bottom: 2px solid transparent;
     &.active {
       color: #2692fb;
       border-color: #2692fb;

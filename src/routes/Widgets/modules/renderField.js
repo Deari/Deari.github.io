@@ -5,11 +5,11 @@ import debug from 'utils/debug'
 import DescribeIcon from 'components/DescribeIcon'
 import download from '../routes/Create/image/download.png'
 
-export const renderField = ({ required, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
+export const renderField = ({ required, maxLength, input, label, placeholder, type, describeId, describeContent, meta: { touched, dirty, error, warning } }) => (
   <div className='form-row'>
     <label>{ required ? <i className='require_field'>*</i> : '' }{label} <i className='iconfont icon-edit diff' /></label>
     <div className='row-right'>
-      <input {...input} placeholder={placeholder || label} type={type} />
+      <input {...input} maxLength={maxLength} placeholder={placeholder || label} type={type} />
       {(dirty || touched) && ((error && <span>{error}</span>))}
     </div>
     <DescribeIcon describeId={describeId} describeContent={describeContent} />

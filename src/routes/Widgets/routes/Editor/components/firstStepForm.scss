@@ -15,10 +15,10 @@ i.icon-radio1{display:inline-block;font-size:32px;color:#cdd4dc;}
   border-bottom: 1px solid #dedede;
   .step-tittle{
     display: inline-block;
+    padding: 20px 10px;
+    margin-right: 20px;
     font-size: 16px;
-    font-weight: bold;
-    margin: 10px 0;
-    padding: 10px;
+    border-bottom: 2px solid transparent;
     &.active {
       color: #2692fb;
       border-color: #2692fb;

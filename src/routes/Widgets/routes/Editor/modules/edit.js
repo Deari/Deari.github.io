@@ -596,9 +596,9 @@ export const getAppInfo = (appId) => {
       if (res.status == 200) {
         const { appThumb, categoryId, platform, appKind, appkey,
           defaultLayout: size,
-          fileName, fileLink, moduleName } = res.data
+           moduleName } = res.data
         const { appDesc, appLogo, appName, tags = '', appPreviewImage } = res.data.changes
-        const { codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting = '', codeVersion = '' } = res.data && res.data.versions[0]
+        const { fileName, fileLink, codeDesc = '', autoPublish = 1, showUpdateMsg = 0, codeSetting = '', codeVersion = '' } = res.data && res.data.versions[0]
         const { apps, widgets } = res.data && res.data.relations
         let idList = []
         let logoList = []
@@ -641,8 +641,10 @@ export const getAppInfo = (appId) => {
           appName, appLogo, appThumb, appPreviewImage, appDesc, categoryId, platform, appKind, size,
           tags: tagId
         }))
+                console.log(fileLink)
+
         dispatch(updateForm2({
-          appId, appName, appLogo,
+          appId, appName, appLogo, codeVersion,
           platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,

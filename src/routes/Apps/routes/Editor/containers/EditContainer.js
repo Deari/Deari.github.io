@@ -204,7 +204,7 @@ class EditContainer extends Component {
         <div className='content'>
           <Step page={page} title='编辑应用' appKindName={appKindName} />
           {
-            page === 1 && <FirstStep onSubmit={::this.submitFirst} />
+            page === 1 && <FirstStep appKind={appKind} onSubmit={::this.submitFirst} />
           }
           {
             page === 2 && <SecondStep onSubmit={::this.submitSecond}

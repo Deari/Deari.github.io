@@ -43,7 +43,7 @@ import ConfigTpl from '../../../components/WidgetConfig'
 import AssociationModule from '../../../components/Association.js'
 import Modal from 'components/Modal'
 import ModalList from '../../../components/ModalList'
-import VersionCordModule from '../../../components/VersionCord'
+import VersionCordModule from '../../../../Apps/components/VersionCord'
 
 const compose = (arr1, arr2, arr3) => {
   const newArray = []
@@ -150,7 +150,13 @@ class SecondStepForm extends React.Component {
            */}
         </div>
         {/** <Field label="版本号" name="codeVersion" component={renderCodeVersion} versionsList={versionsList} /> */}
-        <VersionCordModule codeVersion={lastVersion} toggleCodeVersion={this.props.toggleCodeVersion} />
+        <Field
+          required 
+          name='codeVersion'
+          component={VersionCordModule}
+          codeVersion={lastVersion}
+        />
+        {/*<VersionCordModule codeVersion={lastVersion} toggleCodeVersion={this.props.toggleCodeVersion} />*/}
         {appKind === 0 && <Field required isMiniProgram name='file' component={renderFile} label='组件文件' genre='(FAP小程序)' />}
         {appKind === 0 && <ConfigTpl
           configList={configList}

@@ -43,7 +43,7 @@ class FirstStepForm extends Component {
         <div className='update-msg'>
           <p><i className='iconfont icon-zhuyi' />您的这次更新会在新的 组件 版本发布后，在 组件市场 上显示。</p>
         </div>
-        <Field required label='组件名称' name='appName' type='text' component={renderField}
+        <Field required maxLength={50} label='组件名称' name='appName' type='text' component={renderField}
           describeId='appName' describeContent='您的 组件 在 组件市场 中显示的名称' />
         <div required className='form-row'>
           <label> <i className='require_field'>*</i>尺寸</label>

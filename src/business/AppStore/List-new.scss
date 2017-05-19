@@ -20,7 +20,17 @@
             color: #333;
             font-size: 18px;
             margin-top: 15px;
+            position: relative;
+            padding-right: 55px;
+            padding-left: 20px;
             @include text-overflow;
+            & > i {
+              position: absolute;
+              right: 10px;
+              top: 2px;
+              width: 34px;
+              height: 15px;
+            }
         }
         .small {
             display: block;
