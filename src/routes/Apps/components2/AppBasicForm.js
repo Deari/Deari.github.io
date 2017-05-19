@@ -8,7 +8,7 @@ import ScreenSize from 'business/AppCreate/ScreenSize'
 
 import cx from 'classnames'
 import './form.scss'
-import s from './Basic-new.scss'
+import s from 'business/AppCreate/Basic-new.scss'
 import { APP_TYPES } from 'config/appTypes'
 
 const Form = (props) => {

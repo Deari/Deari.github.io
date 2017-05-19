@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import cx from 'classnames'
-import s from './Basic-new.scss'
+import s from 'business/AppCreate/Basic-new.scss'
 import './form.scss'
 
 import AppDesc from 'business/AppCreate/AppDesc'

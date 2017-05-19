@@ -1,6 +1,6 @@
 import React from 'react'
 import BasicForm from '../containers/FormContainer'
-import s from '../../../components2/Basic-new.scss'
+import s from 'business/AppCreate/Basic-new.scss'
 import HOC from '../../../Hoc/create'
 
 const Basic = (props) => {

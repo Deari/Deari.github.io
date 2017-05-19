@@ -1,6 +1,6 @@
 import React from 'react'
 import VersionForm from '../containers/VersionFormContainer'
-import s from '../../../components2/Basic-new.scss'
+import s from 'business/AppCreate/Basic-new.scss'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import Header from './Header'
