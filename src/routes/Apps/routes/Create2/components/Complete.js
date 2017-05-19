@@ -32,7 +32,7 @@ class Complete extends React.Component {
     return (
       <div className={s.wrapper}>
         <BreadCrumb></BreadCrumb>
-        <div className={`${t['success-wrapper']} ${s['complete-wrapper']}`}>
+        <div className={`${s['success-wrapper']} ${s['complete-wrapper']}`}>
           <div className={s.success}>
             <span className={s.img}></span>
             成功创建应用
@@ -42,19 +42,19 @@ class Complete extends React.Component {
               <img src={data.appLogo} alt=""/>
               <div className={s.list}>
                 <h2 className={s.item}>{data.appName}</h2>
-                <span className={s.item}>AppID: {data.appId}</span>
-                {/*<span className={s.item}>DeveloperKey：{data.appName}</span>*/}
-                {/*<span className={s.item}>DeveloperSecrect：{data.appName}</span>*/}
+                <span className={s.item}>AppID: <span className={s.number}>{data.appId}</span></span>
+                <span className={s.item}>DeveloperKey：<span className={s.number}>{data.appName}</span></span>
+                <span className={s.item}>DeveloperSecrect：<span className={s.number}>{data.appName}</span></span>
               </div>
           </div>
           
-          <dl className={t['success-text']}>
+          <dl className={s['success-text']}>
             <dt>接下来你要做什么？</dt>
             <dd>1、你可以通过查看开发者文档，进行开发、调试，并将新版本准备好。(注：开发、调试时，需要上面的AppID和AppKEY)</dd>
             <dd>2、新版本准备好之后，你可以在我的应用中发布新版本。</dd>
           </dl>
-          <span className={t['success-text']}>返回我的应用，发布新版本。</span>
-          <button onClick={::this.handleView} className={`primaryBtn ${t['return-apply']}`}>查看我的应用</button>
+          <span className={s['success-text']}>返回我的应用，发布新版本。</span>
+          <button onClick={::this.handleView} className={`primaryBtn ${s['return-apply']}`}>查看我的应用</button>
         </div>
         
         <ul className={s['doc-wrapper']}>
