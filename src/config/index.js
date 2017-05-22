@@ -19,13 +19,13 @@ export const getPageLinks = (type) => [{
   label: `${PageTypes[type]}数据统计`,
   icon: 'sidebar3'
 }, {
-  to: `/${type}/doc`,
-  label: '开发者文档',
-  icon: 'file',
-}, {
   to: `/${type}/devtools`,
   label: '开发者工具',
   icon: 'tool',
+}, {
+  to: `/${type}/doc`,
+  label: '开发者文档',
+  icon: 'file',
 }]
 
 export const appType = {

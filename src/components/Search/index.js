@@ -19,7 +19,6 @@ class Search extends Component {
     if (e.target && e.target.value && e.target.value.trim()) {
       this.setState({ clearBtn: true, value: e.target.value })
     } else {
-    console.log(2222)
       this.setState({ clearBtn: false, value: '' })
     }
   }
@@ -31,7 +30,6 @@ class Search extends Component {
   }
 
   clear () {
-    console.log(11111)
     this.setState({ value: '', clearBtn: false })
     this.props.onClear();
   }

@@ -135,7 +135,7 @@ export const getAppInfo = (appId) => {
         const { categoryId, platform, appKind, appkey, moduleName, setting  } = res.data
         const { appDesc, appLogo, appName, tags = '', screenSize } = res.data.changes
 
-        const { codeDesc = '', codeVersion = '', fileName, fileLink } = res.data && res.data.versions[0]
+        const { codeDesc = '', codeVersion = '', fileName, fileLink, autoPublish } = res.data && res.data.versions[0]
         // let lastVersion = codeVersion
         // if (res.data && res.data.versions[0].reviewStatus == 0) {
         //   if (!res.data.versions[1]) {
@@ -178,7 +178,7 @@ export const getAppInfo = (appId) => {
           tags: tagId
         }))
         dispatch(updateForm2({
-          appId, appName, appLogo, codeVersion,
+          appId, appName, appLogo, codeVersion, autoPublish,
           platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName, setting,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,

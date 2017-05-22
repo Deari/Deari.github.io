@@ -6,7 +6,14 @@ import { PageTypes } from 'config/index'
 import Search from 'components/Search'
 
 class Filters extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    if(nextProps.filter === this.props.filter) {
+      return false;
+    }
+  }
   render () {
+    console.log("rerender")
+
     const { filter, onToggleFilter, onSearch, type } = this.props
     return (
       <div className={s.statusBar}>
