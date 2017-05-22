@@ -89,12 +89,38 @@ const bundleSizeFixed = (bundleSize) => {
   }
 }
 export const LatestVersion = (props) => {
-  const { latestVersion, showSize, data, versionsAll = [] } = props
+
+  console.log(props);
+  const { latestVersion, showSize, data={}, versionsAll = [] } = props
   const defaultLayout = data.defaultLayout || {}
   const styleObj = {
     width:defaultLayout.w * 50 + 'px',
     height:defaultLayout.h * 50 + 'px'
   }
+  const appType = {
+    '0': 'FAP小程序',
+    '1': 'HTML5',
+    '2': 'APK'
+  }
+  const { changes = {}} = data
+  const screenSize = {
+    '1': '小屏幕(手机)',
+    '2': '中等屏幕(Pad)',
+    '4': '大屏幕(桌面)'
+  }
+
+  const screenSizeText = [];
+
+  if(+data.appKind === 1){
+    for(let k in screenSize) {
+      if(changes.screenSize & +k) {
+        screenSizeText.push(screenSize[k])
+      }
+    }
+  }
+
+  console.log(screenSizeText)
+
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = latestVersion && latestVersion.publishStatus ? latestVersion : versionsAll[1]
   const publishVersionBundleSize = data.appKind == 2 ?
@@ -125,8 +151,17 @@ export const LatestVersion = (props) => {
         }
         <div className='cell'>
           <p className='title'>版本介绍</p>
-          <p className='text'>{!data.mine ? publishVersion && publishVersion.codeDesc : latestVersion.codeDesc}</p>
+          <p className='text'>{!data.mine ? ((publishVersion && publishVersion.codeDesc)||'暂无') : (latestVersion.codeDesc||'暂无')}</p>
         </div>
+        <div className='cell'>
+          <p className='title'>应用类型</p>
+          <p className='text'>{appType[data.appKind]}</p>
+        </div>
+         { +data.appKind === 1 && <div className='cell'>
+          <p className='title'>应用尺寸</p>
+          <p className='text'>{screenSizeText.join('、')}</p>
+        </div>}
+
         { !showSize &&
           <div className='cell'>
             <p className='title'>组件尺寸</p>
