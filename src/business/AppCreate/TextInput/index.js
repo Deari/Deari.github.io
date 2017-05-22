@@ -7,6 +7,7 @@ const InputText = (props) => {
 	return <div className="form-group">
     <label className="label">{props.label}</label>
     <div className="form-item">
+    	<h2 className="site-title site-title-none">您的线上版本为：0.2.4。您要填入的版本号。编号应遵循软件版本规范。</h2>
       <div className="item-wrapper">
         <div className="input-affix-wrapper">
           <input type="text" className="form-input" {...props.input} />

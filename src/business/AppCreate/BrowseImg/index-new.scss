@@ -1,0 +1,151 @@
+@import 'src/styles/v/base.scss';
+.rule-text {
+	color: #999;
+	font-size: 12px;
+	line-height: 24px;
+	margin-bottom: 20px;
+	display: block;
+}
+.upload-btn {
+	width: 200px;
+	height: 35px;
+	display: block;
+	overflow: hidden;
+	text-align: center;
+	line-height: 33px;
+	border-radius: 2px;
+	cursor: pointer;
+	.text {
+		width: 100%;
+		height: 100%;
+		border-radius: 2px;
+		border: 1px solid $site-border-gray;
+		&:hover {
+			border-color: $site-blue;
+			color: $site-blue;
+		}
+	}
+	.upload-file {
+		display: none;
+	}
+}
+.show {
+	position: relative;
+	.img-item {
+		margin-top: 14px;
+		display: none;
+		&.active {
+			display: block!important;
+		}
+		.upload-img {
+			width: 100px;
+			height: 100px;
+			margin: 0 10px 10px 0;
+			display: inline-block;
+			border: 1px solid $site-border-gray;
+			& > img {
+				width: 98px;
+				height: 98px;
+			}
+		}
+	}
+	.example {
+		width: 380px;
+		display: inline-block;
+		vertical-align: top;
+		position: absolute;
+		left: 110px;
+		top: 0;
+		.line {
+			width: 96px;
+			height: 12px;
+			display: inline-block;
+			vertical-align: top;
+			margin-top: 40px;
+		}
+		.content {
+			display: inline-block;
+			vertical-align: top;
+			background: #eee;
+			padding: 3px;
+			position: relative;
+			.content-img{
+				font-size: 0;
+				display:inline-block;
+				vertical-align: top;
+				&:hover{
+					.example-hover{
+						display: block;
+					}
+				}
+				.example-img {
+					width: 94px;
+					height: 94px;
+					background: #FFFFFF;
+					text-align: center;
+					display: inline-block;
+					overflow: hidden;
+					cursor: pointer;
+					.img {
+						width: 50px;
+						height: 50px;
+						display: block;
+						margin: 11px auto 8px;
+					}
+					.name {
+						font-size: 12px;
+						display: block;
+						color: $site-blue;
+					}
+				}
+				.example-hover{
+					width: 94px;
+					height: 94px;
+					display: none;
+					position: absolute;
+					left: 3px;
+					top: 3px;
+					z-index: 2;
+					background: rgba(0,0,0,0.6);
+					.name{
+						color: #fff;
+					}
+				}
+			}
+			.example-text {
+				width: 180px;
+				padding: 0 10px 0 15px;
+				display: inline-block;
+				vertical-align: top;
+				.title {
+					font-size: 12px;
+					margin: 6px 0;
+					position:relative; 
+					&:before{
+						content: "";
+						    width: 0;
+						    height: 0;
+						    font-size: 0;
+						    line-height: 0;
+						    position: absolute;
+						    top: 50%;
+						    transform: translateY(-50%);
+						    left: -10px;
+						    border-bottom: 4px solid transparent;
+						    border-top: 4px solid transparent;
+						    border-right: 4px solid #999;
+					}
+				}
+				.con {
+					font-size: 12px;
+					line-height: 20px;
+					color: #999;
+					word-break: break-all;
+				}
+			}
+		}
+	}
+	.hide{
+//		display: none;
+	}
+}

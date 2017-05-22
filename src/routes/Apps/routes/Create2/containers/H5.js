@@ -3,7 +3,8 @@ import BasicContainer from './BasicContainer'
 import VersionContainer from './VersionContainer'
 import Complete from '../components/Complete'
 import Alert from '../components/Alert'
-
+import PhoneSize from 'business/AppCreate/PhoneSize'
+import BrowseImg from 'business/AppCreate/BrowseImg'
 export default {
   path: ':type',
   indexRoute: {
@@ -21,6 +22,14 @@ export default {
     {
       path: 'alert/:id',
       component: Alert
+    },
+    {
+      path: 'size/:id',
+      component: PhoneSize
+    },
+    {
+      path: 'img/:id',
+      component: BrowseImg
     }
   ]
 }
