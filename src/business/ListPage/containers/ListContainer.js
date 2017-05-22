@@ -13,7 +13,7 @@ export default class Container extends React.Component {
     list: [],
     total: 0,
     request_params: {
-      limit: 5,
+      limit: 10,
       page: 1,
       appName: '',
       review: ''
@@ -30,9 +30,9 @@ export default class Container extends React.Component {
     const { status: review } = APPS_FILTERS.find(function (t) { return t.filter === _filter })
 
     return fetchUtil.getJSON(apiUrl, {
-      review,
       ...this.state.request_params,
-      ...rest
+      ...rest,
+      review
     }).then(data => {
       this.setState({
         list: data.list || [],

@@ -644,7 +644,7 @@ export const getAppInfo = (appId) => {
                 console.log(fileLink)
 
         dispatch(updateForm2({
-          appId, appName, appLogo, codeVersion,
+          appId, appName, appLogo, codeVersion,autoPublish,
           platform, appKind, codeDesc, codeDescCount, fileName, fileLink, moduleName,
           idList, logoList, nameList, wLogoList, wIdList, wNameList,
           lastVersion:lastVersion,

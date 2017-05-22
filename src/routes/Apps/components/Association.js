@@ -5,10 +5,13 @@ import { validate } from '../modules/validate'
 import DescribeIcon from 'components/DescribeIcon'
 
 class AssociationModule extends Component {
-  state={
-    appActive:0,
-    widgetActive:0,
-    hardwareActive:0
+  constructor(props) {
+    super(props)
+    const { appObj, weiObj } = props
+    this.state = {
+      appActive: Array.isArray(appObj) && appObj.length,
+      widgetActive: Array.isArray(weiObj) && weiObj.length
+    }
   }
   onchange (e) {
     if (e.target.name === 'app') {
@@ -41,15 +44,15 @@ class AssociationModule extends Component {
     this.props.handleIdchange(item.id, 'widget')
     this.props.handleNamechange(item.name, 'widget')
   }
+
   componentWillReceiveProps () {
     const { appObj, weiObj } = this.props
-    if (Array.isArray(appObj) && appObj.length != 0) {
-      this.setState({ appActive: 1 })
-    }
-    if (Array.isArray(weiObj) && weiObj.length !== 0) {
-      this.setState({ widgetActive: 1 })
-    }
+    this.setState({
+      appActive: Array.isArray(appObj) && appObj.length,
+      widgetActive: Array.isArray(weiObj) && weiObj.length
+    })
   }
+
   render () {
     const { appActive, widgetActive, hardwareActive } = this.state
     const { appObj, weiObj } = this.props
@@ -87,7 +90,7 @@ class AssociationModule extends Component {
                 </li>
               </ul>
             </div>
-            <div>
+            {/*<div>
               <div className='row-radio'>
                 <input id='hardware' type='checkbox' name='hardware' onChange={this.onchange.bind(this)} />
                 <span>
@@ -101,7 +104,7 @@ class AssociationModule extends Component {
                   <span><i className='iconfont icon-add' />选择</span>
                 </li>
               </ul>
-            </div>
+            </div>*/}
             <div>
               <div className='row-radio'>
                 <input id='app' type='checkbox' name='app' onChange={this.onchange.bind(this)} checked={this.state.appActive} />
