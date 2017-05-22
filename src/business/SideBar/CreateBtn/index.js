@@ -8,7 +8,7 @@ const CreateBtn = ({ type })=> (
     <button className={s.createBtn}>
       <i className='iconfont icon-create' />
       { type ==='hardware' ? <a href={`${HardwareLinks.create}`}>创建新硬件</a>
-        : <Link to={`/${type}/create2`}>{`创建新${PageTypes[type]}`}</Link> }
+        : <a href={`/${type}/create`}>{`创建新${PageTypes[type]}`}</a> }
     </button>
     {/*<button className={s.createBtn}>
       <i className='iconfont icon-create' />
