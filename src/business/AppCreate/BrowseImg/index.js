@@ -25,11 +25,17 @@ const BrowseImg = () => {
 	          <div className={`${s.example} ${s.hide}`}>
 	          	<img src="http://timg.ffan.com/convert/resize/url_T1YfJTBsDv1RCvBVdK/tfs/1.png" className={s.line}/>
 							<div className={s.content}>
-								<a className={s['example-img']}>
-									<img className={s.img} src="http://timg.ffan.com/convert/resize/url_T1MDVTByhb1RCvBVdK/tfs/1.png"/>
-									<span className={s.name}>下载模板</span>
-									<img src="http://timg.ffan.com/convert/resize/url_T12QJTBbhv1RCvBVdK/tfs/1.png" className={s['img-hover']}/>
-								</a>
+								<div className={s['content-img']}>
+									<a className={s['example-img']}>
+										<img className={s.img} src="http://timg.ffan.com/convert/resize/url_T1MDVTByhb1RCvBVdK/tfs/1.png"/>
+										<span className={s.name}>下载模板</span>
+									</a>
+									<a className={`${s['example-img']} ${s['example-hover']}`}>
+										<img className={s.img} src="http://timg.ffan.com/convert/resize/url_T12QJTBbhv1RCvBVdK/tfs/1.png"/>
+										<span className={s.name}>下载模板</span>
+									</a>
+								</div>
+								
 								<div className={s['example-text']}>
 									<h3 className={s.title}>图片示例</h3>
 									<p className={s.con}>需包含：圆形图标 + 组件名称 点击左侧图片，下载模板文件制作组件图片</p>

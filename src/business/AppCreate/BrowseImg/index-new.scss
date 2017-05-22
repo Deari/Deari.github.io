@@ -68,41 +68,48 @@
 			vertical-align: top;
 			background: #eee;
 			padding: 3px;
-			.example-img {
-				width: 94px;
-				height: 94px;
-				background: #FFFFFF;
-				text-align: center;
-				display: inline-block;
+			position: relative;
+			.content-img{
+				font-size: 0;
+				display:inline-block;
 				vertical-align: top;
-				overflow: hidden;
-				position: relative;
-				cursor: pointer;
-				.img-hover{
-					display: none;
-				}
 				&:hover{
-					.img-hover{
-						width: 94px;
-						height: 94px;
+					.example-hover{
 						display: block;
-						position: absolute;
-						left: 0;
-						top: 0;
-						background: url("http://timg.ffan.com/convert/resize/url_T12QJTBbhv1RCvBVdK/tfs/1.png") no-repeat rgba(0,0,0,0.8);
-						background-size: 100%;
-						z-index: 2;
 					}
 				}
-				.img {
-					width: 50px;
-					height: 50px;
-					display: block;
-					margin: 11px auto 8px;
+				.example-img {
+					width: 94px;
+					height: 94px;
+					background: #FFFFFF;
+					text-align: center;
+					display: inline-block;
+					overflow: hidden;
+					cursor: pointer;
+					.img {
+						width: 50px;
+						height: 50px;
+						display: block;
+						margin: 11px auto 8px;
+					}
+					.name {
+						font-size: 12px;
+						display: block;
+						color: $site-blue;
+					}
 				}
-				.name {
-					font-size: 12px;
-					display: block;
+				.example-hover{
+					width: 94px;
+					height: 94px;
+					display: none;
+					position: absolute;
+					left: 3px;
+					top: 3px;
+					z-index: 2;
+					background: rgba(0,0,0,0.6);
+					.name{
+						color: #fff;
+					}
 				}
 			}
 			.example-text {
@@ -139,6 +146,6 @@
 		}
 	}
 	.hide{
-		display: none;
+//		display: none;
 	}
 }
