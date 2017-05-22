@@ -31,15 +31,15 @@ export default class Container extends React.Component {
 
     return fetchUtil.getJSON(apiUrl, {
       review,
-      ...this.state.pagination,
+      ...this.state.request_params,
       ...rest
     }).then(data => {
       this.setState({
         list: data.list || [],
         total: data.page && data.page.totalCount,
         filter: _filter,
-        pagination: {
-          ...this.state.pagination,
+        request_params: {
+          ...this.state.request_params,
           ...rest
         }
       })
@@ -56,15 +56,29 @@ export default class Container extends React.Component {
     this.fetchAppsList({ page }).then(scrollToTop)
   }
 
-  onSearch (v) {
+  onSearch (v = '') {
+    this.setState({
+      request_params: {
+        ...this.setState.request_params,
+        appName: v
+      }
+    })
     this.fetchAppsList({ page: 1, appName: v })
   }
 
   render () {
-    const { filter, list, total } = this.state
-    return <List filter={filter} data={list} total={total} type={this.props.type}
-      onToggleFilter={::this.onToggleFilter}
-      onSearch={::this.onSearch}
-      onPagination={::this.onPagination} />
+    const { filter, list, total, request_params } = this.state
+    return (
+      <List 
+        filter={filter} 
+        data={list} 
+        total={total} 
+        type={this.props.type}
+        onToggleFilter={::this.onToggleFilter}
+        searchText={request_params.appName}
+        onSearch={::this.onSearch}
+        onPagination={::this.onPagination} 
+      />
+    )
   }
 }

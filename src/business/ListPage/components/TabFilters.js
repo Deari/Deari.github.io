@@ -6,15 +6,8 @@ import { PageTypes } from 'config/index'
 import Search from 'components/Search'
 
 class Filters extends React.Component {
-  shouldComponentUpdate(nextProps) {
-    if(nextProps.filter === this.props.filter) {
-      return false;
-    }
-  }
   render () {
-    console.log("rerender")
-
-    const { filter, onToggleFilter, onSearch, type } = this.props
+    const { filter, onToggleFilter, onSearch, type, searchText } = this.props
     return (
       <div className={s.statusBar}>
         <ul className={s.navFilters}>
@@ -24,7 +17,7 @@ class Filters extends React.Component {
             {item.text}
           </li>)}
         </ul>
-        <Search onSearch={onSearch} placeholder={`搜索我的${PageTypes[type]}`} />
+        <Search defaultValue={searchText} onClear={onSearch} onSearch={onSearch} placeholder={`搜索我的${PageTypes[type]}`} />
       </div>
     )
   }
