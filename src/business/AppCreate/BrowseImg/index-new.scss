@@ -50,66 +50,67 @@
 		}
 	}
 	.example {
-		width: 380px;
-		display: inline-block;
-		vertical-align: top;
+		width: 280px;
 		position: absolute;
-		left: 110px;
+		left: 206px;
 		top: 0;
-		.line {
+		&:before {
+			content: "";
 			width: 96px;
 			height: 12px;
-			display: inline-block;
-			vertical-align: top;
-			margin-top: 40px;
+			position: absolute;
+			left: -96px;
+			top: 40px;
+			background: url("http://timg.ffan.com/convert/resize/url_T1YfJTBsDv1RCvBVdK/tfs/1.png") no-repeat;
+			background-size: 100%;
 		}
 		.content {
-			display: inline-block;
-			vertical-align: top;
 			background: #eee;
 			padding: 3px;
+			font-size: 12px;
 			position: relative;
-			.content-img{
-				font-size: 0;
-				display:inline-block;
+			.example-img {
+				width: 94px;
+				height: 94px;
+				background: #FFFFFF;
+				text-align: center;
+				display: inline-block;
 				vertical-align: top;
-				&:hover{
-					.example-hover{
-						display: block;
-					}
-				}
-				.example-img {
-					width: 94px;
-					height: 94px;
-					background: #FFFFFF;
-					text-align: center;
-					display: inline-block;
-					overflow: hidden;
-					cursor: pointer;
+				cursor: pointer;
+				position: relative;
+				&:hover {
+					background: rgba(0,0,0,0.6);
 					.img {
-						width: 50px;
-						height: 50px;
-						display: block;
-						margin: 11px auto 8px;
+						opacity: 0.3;
+						&-hover {
+							opacity: 1;
+							display: block;
+						}
 					}
 					.name {
-						font-size: 12px;
-						display: block;
-						color: $site-blue;
-					}
-				}
-				.example-hover{
-					width: 94px;
-					height: 94px;
-					display: none;
-					position: absolute;
-					left: 3px;
-					top: 3px;
-					z-index: 2;
-					background: rgba(0,0,0,0.6);
-					.name{
 						color: #fff;
 					}
+				}
+				.img {
+					width: 50px;
+					height: 50px;
+					display: block;
+					margin: 11px auto 8px;
+					background: url("http://timg.ffan.com/convert/resize/url_T1MDVTByhb1RCvBVdK/tfs/1.png") no-repeat;
+					background-size: 100%;
+					&-hover {
+						position: absolute;
+						left: 50%;
+						top: 0;
+						transform: translateX(-50%);
+						background: url("http://timg.ffan.com/convert/resize/url_T12QJTBbhv1RCvBVdK/tfs/1.png") no-repeat;
+						background-size: 100%;
+						display: none;
+					}
+				}
+				.name {
+					display: block;
+					color: $site-blue;
 				}
 			}
 			.example-text {
@@ -118,26 +119,25 @@
 				display: inline-block;
 				vertical-align: top;
 				.title {
-					font-size: 12px;
+					font-size: 12px;					
 					margin: 6px 0;
-					position:relative; 
-					&:before{
+					position: relative;
+					&:before {
 						content: "";
-						    width: 0;
-						    height: 0;
-						    font-size: 0;
-						    line-height: 0;
-						    position: absolute;
-						    top: 50%;
-						    transform: translateY(-50%);
-						    left: -10px;
-						    border-bottom: 4px solid transparent;
-						    border-top: 4px solid transparent;
-						    border-right: 4px solid #999;
+						width: 0;
+						height: 0;
+						font-size: 0;
+						line-height: 0;
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						left: -10px;
+						border-bottom: 4px solid transparent;
+						border-top: 4px solid transparent;
+						border-right: 4px solid #999;
 					}
 				}
 				.con {
-					font-size: 12px;
 					line-height: 20px;
 					color: #999;
 					word-break: break-all;
@@ -145,7 +145,7 @@
 			}
 		}
 	}
-	.hide{
-//		display: none;
+	.hide {
+		//		display: none;
 	}
 }
