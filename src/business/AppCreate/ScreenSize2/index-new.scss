@@ -1,3 +1,20 @@
+.item-wrapper {
+	.list {
+		width: 450px;
+		.item {
+			line-height: 23px!important;
+			color: #333;
+			width: 103px;
+			height: 230px;
+			line-height: 25px;
+			border: 0;
+			border-radius: 0;
+			float: none;
+			cursor: pointer;
+			margin: 0;
+		}
+	}
+}
 .title {
 	color: #999;
 	font-size: 12px;
@@ -9,27 +26,38 @@
 	.item {
 		display: inline-block;
 		text-align: center;
+		&.active,
+		&:hover {
+			background-color: #fff!important;
+			border-color: #fff!important;
+			.screen{
+				color: #333;
+			}
+		}
 		.img {
 			width: 103px;
 			height: 90px;
 			display: block;
 			cursor: pointer;
 			margin: 40px 0 30px;
-			&-small{
+			padding: 0;
+			float: none;
+			&-small {
 				background: url("http://timg.ffan.com/convert/resize/url_T1TDVTBmdg1RCvBVdK/tfs/1.png") no-repeat center center;
 				background-size: auto 100%;
 			}
-			&-middle{
+			&-middle {
 				background: url("http://timg.ffan.com/convert/resize/url_T1fh_TB5CQ1RCvBVdK/tfs/1.png") no-repeat center center;
 				background-size: 100% auto;
 			}
-			&-large{
+			&-large {
 				background: url("http://timg.ffan.com/convert/resize/url_T1F_LTB4L_1RCvBVdK/tfs/1.png") no-repeat center center;
 				background-size: 100%;
 			}
 		}
 		.size-text {
 			font-size: 12px;
+			line-height: 1.15;
 			.screen {
 				display: block;
 			}
@@ -41,6 +69,7 @@
 		}
 		.radioBtn {
 			margin-top: 12px;
+			margin-right: 0;
 		}
 	}
 }
