@@ -118,7 +118,7 @@ class ScreenSize extends React.Component {
               </li>
             </ul>
           </div>
-          {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
+          {(dirty || touched) && ((error && <div style={{marginLeft: 130, marginTop: 20}} className="form-item-msg error">{error}</div>))}
         </div>
       </div>
     )

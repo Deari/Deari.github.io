@@ -29,9 +29,13 @@ export const validate = values => {
   if (!values.codeDesc) {
     errors.codeDesc = <i className='message-info'>请输入文字介绍</i>
   }
-  if (!values.file && values.appKind === 0) {
-    errors.file = <i className='message-info'>请选择组件文件</i>
+  
+  if (values.appKind === 0) {
+    if(values.file && !values.file.fileLink && !values.file.url) {
+      errors.file = <i className='message-info'>请上传fap组件文件</i>
+    }
   }
+
   if (values.appKind === 1) {
     let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
     if (!values.fileLink) {

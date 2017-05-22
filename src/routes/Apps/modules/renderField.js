@@ -295,11 +295,11 @@ export class renderFile extends Component {
   }
 
   render () {
-    const { isMiniProgram, input, tags, label, genre, meta: { touched, dirty, error, warning }, describeId, describeContent } = this.props
+    const { required, isMiniProgram, input, tags, label, genre, meta: { touched, dirty, error, warning }, describeId, describeContent } = this.props
 
     return (
       <div className='form-row'>
-        <label className='label-type'>{label}<span>{genre}</span></label>
+        <label className='label-type'>{ required ? <i className='require_field'>*</i> : '' }{label}<span>{genre}</span></label>
         <div className='row-right'>
           { isMiniProgram ? <div className='mini-program-xx'>
             应用类型为“FAP小程序”，请您先试用打包工具(<a href='http://fdfs.ffan.net/v2/file/nDjvYxof9gD9AjbH9o4al93o5T2mw9Yp?attachExt=2'>Windows</a> | <a href='http://fdfs.ffan.net/v2/file/BgbBeXayRXw6H5h4aF3115Egr50dM6pr?attachExt=2'>Mac</a>)进行打包，请将打包完成后的应用进行上传。

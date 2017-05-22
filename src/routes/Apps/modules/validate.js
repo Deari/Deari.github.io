@@ -23,11 +23,18 @@ export const validate = values => {
   if (values.tags && values.tags.length == 0) {
     errors.tags = <i className='message-info'>请选择标签</i>
   }
+  
   if (!values.codeDesc) {
     errors.codeDesc = <i className='message-info'>请输入版本介绍</i>
   }
-  if (!values.file && values.appKind === 0) {
-    errors.file = <i className='message-info'>请选择应用的文件</i>
+  if (values.codeDesc && values.codeDesc.length > 4000) {
+    errors.codeDesc = <i className='message-info'>版本介绍内容长度不能大于4000字</i>
+  }
+
+  if (values.appKind === 0) {
+    if(values.file && !values.file.fileLink && !values.file.url) {
+      errors.file = <i className='message-info'>请上传fap应用文件</i>
+    }
   }
   if (values.appKind === 1) {
     let regExp = new RegExp(/(http|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
@@ -37,6 +44,16 @@ export const validate = values => {
       errors.fileLink = <i className='message-info'>请输入正确的网址，以（http:// 或 https://）开头</i>
     }
   }
+  if (values.appKind === 2) {
+    if(values.fileObj && !values.fileObj.fileLink && !values.fileObj.url) {
+      errors.fileObj = <i className='message-info'>请上传APK文件</i>
+    }
+  }
+
+  if(!values.screenSize) {
+    errors.screenSize = <i className='message-info'>请选择要适配的屏幕</i>
+  }
+
   return errors
 }
 

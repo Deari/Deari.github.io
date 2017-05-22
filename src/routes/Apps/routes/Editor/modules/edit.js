@@ -132,8 +132,8 @@ export const getAppInfo = (appId) => {
     const url = getDomain(`web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
-        const { categoryId, platform, appKind, appkey, moduleName, setting, screenSize } = res.data
-        const { appDesc, appLogo, appName, tags = '' } = res.data.changes
+        const { categoryId, platform, appKind, appkey, moduleName, setting  } = res.data
+        const { appDesc, appLogo, appName, tags = '', screenSize } = res.data.changes
 
         const { codeDesc = '', codeVersion = '', fileName, fileLink } = res.data && res.data.versions[0]
         // let lastVersion = codeVersion
@@ -184,10 +184,10 @@ export const getAppInfo = (appId) => {
           lastVersion:lastVersion,
           appKey:appkey,
           file: {
-            fileName, fileLink, moduleName,
+            fileLink
           },
           fileObj: {
-            fileName, fileLink, moduleName
+            fileLink
           }
         }))
       } else {

@@ -40,16 +40,24 @@ class EditContainer extends Component {
       fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
         if (versionRes.status == 200) {
           this.props.receiveCodeId(versionRes.data[0].codeId)
+          this.props.getAppInfo(appId).then(()=>{
+            this.props.toggleStep(step)
+          })
         }
       })
+    } else {
+      this.props.getAppInfo(appId).then(()=>{
+        this.props.toggleStep(step)
+      })
     }
-    this.props.toggleStep(step)
+    
     this.props.getTags()
     this.props.getCates()
-    this.props.getAppInfo(appId)
   }
 
   submitFirst (values) {
+
+    console.log(values)
     const formData = new FormData()
 
     for (let key in values) {
@@ -88,14 +96,10 @@ class EditContainer extends Component {
   }
 
   submitSecond (values, commit) {
-    let codeDescCount = values.codeDescCount || 0
+    console.log(values);
+    // return; 
 
-    if (codeDescCount == 0) {
-      this.props.updateCodeDesc({ isDescErr: true })
-      return
-    } else {
-      this.props.updateCodeDesc({ isDescErr: false })
-    }
+    let codeDescCount = values.codeDescCount || 0
 
     !values.appId && debug.warn('缺少appId')
 

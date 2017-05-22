@@ -29,13 +29,18 @@ class EditContainer extends Component {
       fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
         if (versionRes.status == 200) {
           this.props.receiveCodeId(versionRes.data[0].codeId)
+          this.props.getAppInfo(appId).then(()=>{
+            this.props.toggleStep(step)
+          })
         }
       })
+    } else {
+      this.props.getAppInfo(appId).then(()=>{
+        this.props.toggleStep(step)
+      })
     }
-    this.props.getAppInfo(appId)
     this.props.fetchTags()
     this.props.fetchCates()
-    this.props.toggleStep(step)
   }
   submitFirst (values) {
     const formData = new FormData()

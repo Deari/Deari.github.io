@@ -22,6 +22,7 @@ import {
 } from '../modules/edit'
 
 import {
+  renderTextArea,
     renderField,
     renderFile,
     renderSelect,
@@ -101,15 +102,11 @@ const SecondStepForm = props => {
         <a href='2' className='step-tittle active'>版本信息</a>
       </div>
       <div>
-        <div className='form-row code-desc'>
-          <label> <i className='require_field'>*</i>版本介绍</label>
-          <div className='row-right'>
-            <textarea maxLength={totalCount} placeholder='请输入版本介绍。此内容将显示在应用详情页的版本信息中。' value={codeDesc ? codeDesc : ''} onChange={onChangeDesc} onBlur={onChangeDesc} className='use-textarea' />
-            { isDescErr && <span><i className='message-info'>请输入版本介绍</i></span> }
-          </div>
-          <DescribeIcon describeId='codeDesc' describeContent='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' />
-          {/* <span className="font-count">{count} / {totalCount}</span> */}
-        </div>
+        <Field required label='版本介绍' name='codeDesc' 
+          placeholder='请输入版本介绍。此内容将显示在应用详情页的版本信息中。' 
+          component={renderTextArea}
+          describeId='appDesc' describeContent='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' />
+
         {/* <div className="form-row form-rowM">
         	<label className="labelH"></label>
         	<div className="row-right">
