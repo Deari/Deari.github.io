@@ -9,7 +9,7 @@ export default {
   },
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('business/Analytics/Containers/OverView').default)
+      cb(null, require('business/Analytics/containers/OverView').default)
     })
   }
 }

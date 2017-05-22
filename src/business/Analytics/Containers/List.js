@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
-import List from '../Components/List'
+import List from '../components/List'
 import { scrollToTop } from 'utils/scroll'
 
 class ListContainer extends Component {
