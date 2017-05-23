@@ -14,7 +14,7 @@ import { APP_TYPES } from 'config/appTypes'
 
 const Form = (props) => {
   const { handleSubmit, tagSource, appKind } = props;
-  const showScreenSizeField = appKind === APP_TYPES.h5.value;
+  const showScreenSizeField = +appKind === +APP_TYPES.h5.value;
 
   return (
     <form className="site-form" onSubmit={ handleSubmit }>

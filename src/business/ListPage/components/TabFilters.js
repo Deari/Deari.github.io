@@ -9,8 +9,8 @@ class Filters extends React.Component {
   render () {
     const { filter, onToggleFilter, onSearch, type, searchText } = this.props
     return (
-      <div className={s.statusBar}>
-        <ul className={s.navFilters}>
+      <div className={`tabs ${s.statusBar}`}>
+        <ul className={`tabs-titles ${s.navFilters}`}>
           {APPS_FILTERS.map(item => <li className={cx('tabs-item',{ 'active': item.filter === filter })}
             onClick={() => { onToggleFilter(item) }}
           >
