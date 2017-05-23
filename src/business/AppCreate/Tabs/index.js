@@ -5,8 +5,8 @@ import cx from 'classnames'
 
 const Tags = ({ appType={} }) => {
 	return (
-    <div className={t.tabs}>
-      <ul className={t['tabs-titles']}>
+    <div className={`tabs ${s.statusBar}`}>
+      <ul className='tabs-titles'>
         <li className="tabs-item"><Link className={t.address} to='/apps/edit2/h5/basic'>基本信息</Link></li>
         <li className={cx("tabs-item")}><Link className={t.address} to='/apps/edit2/h5/version'>版本信息</Link></li>
       </ul>

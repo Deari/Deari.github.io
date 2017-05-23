@@ -20,20 +20,21 @@
 		}
 	}
 }
-
-.tabs-item {
-	color: #666;
-	font-size: 16px;
-	padding: 0 15px;
-	margin: 0 10px;
-	cursor: pointer;
-	display: inline-block;
-	&:hover,
-	&.active {
-		a{
-			color: #000;
+.tabs {
+	&-titles {
+		border-bottom: 1px solid $site-border-gray;
+		.tabs-item {
+			color: #666;
+			font-size: 16px;
+			padding: 0 15px;
+			margin: 0 10px;
+			cursor: pointer;
+			display: inline-block;
+			&:hover,
+			&.active {
+				color: #000;
+				border-bottom: 2px solid $site-blue;
+			}
 		}
-		color: #000;
-		border-bottom: 2px solid $site-blue;
 	}
 }
