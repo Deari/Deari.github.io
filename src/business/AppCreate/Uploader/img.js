@@ -65,11 +65,11 @@ class ImageUploader extends React.Component {
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
-          <ul className={`${t['img-item']} ${t.active}`}>
+          { this.state.value && <ul className={`${t['img-item']} ${t.active}`}>
             <li className={t['upload-img']}>
               <img src={this.state.value}/>
             </li>
-          </ul>
+          </ul> }
         </div>
       </div>
     )

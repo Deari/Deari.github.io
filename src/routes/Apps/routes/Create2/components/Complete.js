@@ -37,7 +37,6 @@ class Complete extends React.Component {
     const { appInfo, devInfo } = this.state;
     return (
       <div className={s.wrapper}>
-        <BreadCrumb></BreadCrumb>
         <div className={`${s['success-wrapper']} ${s['complete-wrapper']}`}>
           <div className={s.success}>
             <span className={s.img}></span>

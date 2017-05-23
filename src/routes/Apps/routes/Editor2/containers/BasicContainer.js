@@ -41,11 +41,14 @@ class Container extends React.Component {
 
   render () {
     const { initialValues } = this.state;
-
-    return <Basic pageType={'apps'} onSubmit={::this.onSubmit}
-      params={ this.props.params }
-      initialValues={initialValues}
-    />
+    return (
+      <Basic 
+        pageType={'apps'} 
+        onSubmit={::this.onSubmit}
+        params={this.props.params}
+        initialValues={initialValues}
+      />
+    )
   }
 }
 

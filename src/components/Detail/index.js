@@ -102,6 +102,10 @@ export const LatestVersion = (props) => {
     '1': 'HTML5',
     '2': 'APK'
   }
+  const appTypeText = {
+    '1': '应用',
+    '2': '组件'
+  }
   const { changes = {}} = data
   const screenSize = {
     '1': '小屏幕(手机)',
@@ -154,10 +158,10 @@ export const LatestVersion = (props) => {
           <p className='text'>{!data.mine ? ((publishVersion && publishVersion.codeDesc)||'暂无') : (latestVersion.codeDesc||'暂无')}</p>
         </div>
         <div className='cell'>
-          <p className='title'>应用类型</p>
+          <p className='title'>{appTypeText[data.appType]}类型</p>
           <p className='text'>{appType[data.appKind]}</p>
         </div>
-         { +data.appKind === 1 && <div className='cell'>
+         { +data.appKind === 1 && +data.appType === 1 && <div className='cell'>
           <p className='title'>应用尺寸</p>
           <p className='text'>{screenSizeText.join('、')}</p>
         </div>}
