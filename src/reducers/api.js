@@ -6,6 +6,11 @@ export const uploadImage = (params) => {
   return fetchUtil.postJSON(url, params, { formDataType: 'file' })
 }
 
+export const uploadFile = (params) => {
+  const url = getDomain('/app/v1/bo/v1/web/file/upload')
+  return fetchUtil.postJSON(url, params, { formDataType: 'file' })
+}
+
 export const fetchTags = (params) => {
   const url = getDomain('/app/v1/bo/v1/public/app/tags')
   return fetchUtil.getJSON(url, params)

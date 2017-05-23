@@ -32,8 +32,9 @@ class Container extends React.Component {
     postAppBasicInfo({
       ...values,
     }).then(data=>{
-      alert('保存成功！');
-      // this.props.router.push(`/apps/list`)
+      postAppVersionInfo({ appId: data.appId, prepareVersion: 1 }).then(()=>{
+        this.props.router.push(`/apps/list`)
+      })
     }).catch(e=>{
       alert(`保存失败(错误码：${e.status})`)
     })

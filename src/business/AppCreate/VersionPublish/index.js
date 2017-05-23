@@ -4,15 +4,8 @@ import s from '../Basic-new.scss'
 class VersionPublish extends React.Component {
   constructor(props) {
     super(props)
-    let current;
-    if(typeof props.input.value === 'undefined') {
-      current = 0
-    } else {
-      current = props.input.value
-    }
-
     this.state = {
-      current,
+      current: +props.input.value,
       checkboxs: [{
         id: 'hand',
         text: '手动发布此版本',
@@ -24,6 +17,10 @@ class VersionPublish extends React.Component {
       }]
     }
   }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({ current: +newProps.input.value })
+  }
   
   handleChange(e) {
     console.log(e.target.value)
@@ -34,6 +31,7 @@ class VersionPublish extends React.Component {
   }
 
   render(){
+    const { value } = this.props.input
     const { checkboxs, current } = this.state;
     return (
       <div className="form-group">
