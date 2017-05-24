@@ -51,7 +51,7 @@ export const validate = values => {
   }
 
   if(!values.screenSize) {
-    errors.screenSize = <i className='message-info'>请选择要适配的屏幕</i>
+    errors.screenSize = <i className='message-info'>请选择使用场景</i>
   }
 
   return errors

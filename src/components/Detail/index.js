@@ -108,22 +108,10 @@ export const LatestVersion = (props) => {
   }
   const { changes = {}} = data
   const screenSize = {
-    '1': '小屏幕(手机)',
-    '2': '中等屏幕(Pad)',
-    '4': '大屏幕(桌面)'
+    '1': '手机端',
+    '2': 'Pad端',
+    '4': 'PC端'
   }
-
-  const screenSizeText = [];
-
-  if(+data.appKind === 1){
-    for(let k in screenSize) {
-      if(changes.screenSize & +k) {
-        screenSizeText.push(screenSize[k])
-      }
-    }
-  }
-
-  console.log(screenSizeText)
 
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = latestVersion && latestVersion.publishStatus ? latestVersion : versionsAll[1]
@@ -162,8 +150,8 @@ export const LatestVersion = (props) => {
           <p className='text'>{appType[data.appKind]}</p>
         </div>
          { +data.appKind === 1 && +data.appType === 1 && <div className='cell'>
-          <p className='title'>应用尺寸</p>
-          <p className='text'>{screenSizeText.join('、')}</p>
+          <p className='title'>使用场景</p>
+          <p className='text'>{screenSize[changes.screenSize]}</p>
         </div>}
 
         { !showSize &&

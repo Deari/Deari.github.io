@@ -297,6 +297,7 @@ const getInitialState = () => {
     }],
 
     form: {
+      screenSize: 2,
       appName: '',
       appLogo: '',
       appDesc: '',
