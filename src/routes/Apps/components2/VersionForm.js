@@ -54,10 +54,10 @@ class Main extends React.Component {
                 <br/>应用市场详情页的显示，如下图：</p>
               <img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
               <div className={s['apply-radio']}>
-                  <div className="row-radio">
-                    <input type="checkbox"  value="" id="widgets" className="input-radio"/>
-                    <span className="radio-item">
-                        <i className="iconfont icon-radio1"></i>
+                  <div className="checked-wrapper">
+                    <input type="checkbox"  value="" id="widgets" className="checked-input"/>
+                    <span className="checked-item">
+                        <i className="iconfont icon-radio1 active"></i>
                         <i className="iconfont icon-radio"></i>
                     </span>
                   </div>
@@ -65,22 +65,22 @@ class Main extends React.Component {
               </div>
               
               <div className={s['apply-radio']}>
-                <div className="row-radio">
-                  <input type="checkbox"  value="" id="hardware" className="input-radio" />
-                  <span className="radio-item">
+                <div className="checked-wrapper">
+                  <input type="checkbox"  value="" id="hardware" className="checked-input" />
+                  <span className="checked-item">
                       <i className="iconfont icon-radio1"></i>
-                      <i className="iconfont icon-radio"></i>
+                      <i className="iconfont icon-radio active"></i>
                   </span>
                 </div>
                 <label htmlFor="hardware" className={s['text-con']}>硬件</label>
               </div>
               
               <div className={s['apply-radio']}>
-                <div className="row-radio">
-                  <input type="checkbox" value="" id="app" className="input-radio"/>
-                  <span className="radio-item">
+                <div className="checked-wrapper">
+                  <input type="checkbox" value="" id="app" className="checked-input"/>
+                  <span className="checked-item">
                       <i className="iconfont icon-radio1"></i>
-                      <i className="iconfont icon-radio"></i>
+                      <i className="iconfont icon-radio active"></i>
                   </span>
                 </div>
                 <label htmlFor="app" className={s['text-con']}>应用</label>

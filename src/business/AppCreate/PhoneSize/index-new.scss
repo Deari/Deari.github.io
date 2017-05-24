@@ -10,11 +10,11 @@
 		display: inline-block;
 		text-align: center;
 		margin-top: 15px;
+		cursor: pointer;
 		.img {
 			width: 78px;
 			height: 150px;
 			display: block;
-			cursor: pointer;
 			margin-bottom: 8px;
 			&-one{
 				background: url("http://timg.ffan.com/convert/resize/url_T1x_bTB5KQ1RCvBVdK/tfs/1.png") no-repeat;
@@ -36,7 +36,7 @@
 		.size-text {
 			display: block;
 		}
-		.radioBtn {
+		.checkedBtn {
 			margin-right: 0;
 		}
 	}

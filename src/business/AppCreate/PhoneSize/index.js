@@ -11,46 +11,46 @@ const PhoneSize = () => {
             <h3 className={s.title}>请选择要适配的屏幕尺寸</h3>
             <ul className={s.list}>
               <li className={s.item}>
-                <label htmlFor="one" className={`${s.img} ${s['img-one']}`}></label>
+                <div className={`${s.img} ${s['img-one']}`}></div>
                 <span className={s['size-text']}>4*2</span>
-                <div className={`row-radio ${s.radioBtn}`}>
-                  <input type="checkbox"  id="one" className={`input-radio`}/>
-                  <span className="radio-item">
-                    <i className="iconfont icon-radio"></i>
+                <div className={`checked-wrapper ${s.checkedBtn}`}>
+                  <input type="radio" name="phoneSize" className="checked-input"/>
+                  <span className="checked-item">
+                    <i className="iconfont icon-radio active"></i>
                     <i className="iconfont icon-radio1"></i>
                   </span>
                 </div>
               </li>
               <li className={s.item}>
-                <label htmlFor="two" className={`${s.img} ${s['img-two']}`}></label>
+                <div className={`${s.img} ${s['img-two']}`}></div>
                 <span className={s['size-text']}>1*1</span>
-                <div className={`row-radio ${s.radioBtn}`}>
-                  <input type="checkbox"  id="two" className={`input-radio`}/>
-                  <span className="radio-item">
+                <div className={`checked-wrapper ${s.checkedBtn}`}>
+                  <input type="radio" name="phoneSize" className="checked-input"/>
+                  <span className="checked-item">
                     <i className="iconfont icon-radio"></i>
-                    <i className="iconfont icon-radio1"></i>
+                    <i className="iconfont icon-radio1 active"></i>
                   </span>
                 </div>
               </li>
               <li className={s.item}>
-                <label htmlFor="three" className={`${s.img} ${s['img-three']}`}></label>
+                <div className={`${s.img} ${s['img-three']}`}></div>
                 <span className={s['size-text']}>4*4</span>
-                <div className={`row-radio ${s.radioBtn}`}>
-                  <input type="checkbox" id="three" className={`input-radio`}/>
-                  <span className="radio-item">
+                <div className={`checked-wrapper ${s.checkedBtn}`}>
+                  <input type="radio" name="phoneSize" className="checked-input"/>
+                  <span className="checked-item">
                     <i className="iconfont icon-radio"></i>
-                    <i className="iconfont icon-radio1"></i>
+                    <i className="iconfont icon-radio1 active"></i>
                   </span>
                 </div>
               </li>
               <li className={s.item}>
-                <label htmlFor="four" className={`${s.img} ${s['img-four']}`}></label>
+                <div className={`${s.img} ${s['img-four']}`}></div>
                 <span className={s['size-text']}>4*1</span>
-                <div className={`row-radio ${s.radioBtn}`}>
-                  <input type="checkbox" id="four" className={`input-radio`}/>
-                  <span className="radio-item">
+                <div className={`checked-wrapper ${s.checkedBtn}`}>
+                  <input type="radio" name="phoneSize" className="checked-input"/>
+                  <span className="checked-item">
                     <i className="iconfont icon-radio"></i>
-                    <i className="iconfont icon-radio1"></i>
+                    <i className="iconfont icon-radio1 active"></i>
                   </span>
                 </div>
               </li>
