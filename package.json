@@ -18,6 +18,7 @@
     "test:dev": "npm run test -- --watch",
     "deploy": "better-npm-run deploy",
     "deploy:sit": "better-npm-run deploy:sit",
+    "deploy:uat": "better-npm-run deploy:uat",
     "deploy:prod": "better-npm-run deploy:prod",
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
@@ -46,6 +47,15 @@
       "env": {
         "NODE_ENV": "production",
         "SIT": 1,
+        "DEBUG": "app:*"
+      }
+    },
+    "deploy:uat": {
+      "command": "npm run deploy",
+      "env": {
+        "NODE_ENV": "production",
+        "UAT": 1,
+        "BRANCH": "uat",
         "DEBUG": "app:*"
       }
     },

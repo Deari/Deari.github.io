@@ -11,7 +11,7 @@ import Step from '../../../components/Step'
 import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
@@ -34,7 +34,7 @@ class EditContainer extends Component {
     const step = parseInt(params.step)
 
     if(step==2 ){
-      const versionurl = getDomain(`web/developer/app/${appId}/code`)
+      const versionurl = getDomain(`/app/v1/bo/v1/web/developer/app/${appId}/code`)
       const versionFormData = new FormData()
       versionFormData.append('prepareVersion', '1')
       fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
@@ -72,11 +72,11 @@ class EditContainer extends Component {
       }
     }
 
-    const url = getDomain(`web/developer/app/${values.appId}`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app/${values.appId}`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
-        const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+        const versionurl = getDomain(`/app/v1/bo/v1/web/developer/app/${res.data.appId}/code`)
         const versionFormData = new FormData()
         versionFormData.append('prepareVersion', '1')
         fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
@@ -170,7 +170,7 @@ class EditContainer extends Component {
       formData.append('commit', 1)
     }
 
-    const url = getDomain(`web/developer/app/${values.appId}/code`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app/${values.appId}/code`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {

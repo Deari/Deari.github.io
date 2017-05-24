@@ -3,7 +3,9 @@ import { Link } from 'react-router'
 import List from 'components/List'
 import Pagination from 'components/Pagination'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/d'
+import { getLoginDomain, getApiStoreDomain, getSourceVal } from 'utils/d'
+
 import LoginSDK from 'utils/loginSDK'
 import debug from 'utils/debug'
 import ListNav from 'components/ListNav'
@@ -37,7 +39,7 @@ export default class AppsList extends React.Component {
     this.setState({ searchValue:e.target.value }, this.upDate())
   }
   async getList (appName) {
-    const apiUrl = appName ? getDomain(`web/developer/apps?appName=${appName}`) : getDomain('web/developer/apps')
+    const apiUrl = appName ? getDomain(`/app/v1/bo/v1/web/developer/apps?appName=${appName}`) : getDomain('/app/v1/bo/v1/web/developer/apps')
     const review = this.getReviewStatus()
     const { limit, currentPageIndex, searchValue } = this.state
     try {
@@ -150,8 +152,8 @@ export default class AppsList extends React.Component {
   }
   upDate (currentPageIndex) {
     let sourceVal = getSourceVal()
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let url = getLoginDomain(`/passport/session-check.json`)
+    let loginUrl = getApiStoreDomain(`/login?source=${sourceVal}`)
     let callbackUrl = location.href
     try {
       LoginSDK.getStatus(async (status, data) => {

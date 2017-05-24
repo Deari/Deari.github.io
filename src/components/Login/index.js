@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { login, logout } from 'utils/login'
-import { getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getLoginDomain, getApiStoreDomain, getSourceVal } from 'utils/d'
 import './login.scss'
 import LoginSDK from 'utils/loginSDK'
 export default class Container extends Component {
@@ -22,8 +22,8 @@ export default class Container extends Component {
 
   componentDidMount () {
     let sourceVal = getSourceVal()
-    let checkUrl = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let checkUrl = getLoginDomain(`/passport/session-check.json`)
+    let loginUrl = getApiStoreDomain(`/login?source=${sourceVal}`)
     let callbackUrl = location.href
 
     LoginSDK.getStatus((status, data) => {
@@ -48,9 +48,9 @@ export default class Container extends Component {
 
     const sourceVal = getSourceVal()
 
-    const register = getApiDomain(`#/register?source=${sourceVal}&callbackurl=${location.href}`)
+    const register = getApiStoreDomain(`/register?source=${sourceVal}&callbackurl=${location.href}`)
 
-    const centerUrl = getApiDomain(`#/center/userinfo`)
+    const centerUrl = getApiStoreDomain(`/center/userinfo`)
 
     return !this.state.isLogin ? (
       <div className='login-wrapper loginIn'>

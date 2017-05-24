@@ -1,4 +1,4 @@
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
 
@@ -98,7 +98,7 @@ export const updateCodeDesc = (data) => ({
 
 export const getTags = () => {
   return (dispatch) => {
-    const url = getDomain('public/app/tags')
+    const url = getDomain('/app/v1/bo/v1/public/app/tags')
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
         dispatch(receiveTags(res.data))
@@ -111,7 +111,7 @@ export const getTags = () => {
 
 export const getCates = () => {
   return (dispatch) => {
-    const url = getDomain('public/app/categories')
+    const url = getDomain('/app/v1/bo/v1/public/app/categories')
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
         dispatch(receiveCates(res.data && res.data.list))

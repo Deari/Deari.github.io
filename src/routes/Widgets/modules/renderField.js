@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 import DescribeIcon from 'components/DescribeIcon'
 import download from '../routes/Create/image/download.png'
@@ -108,7 +108,7 @@ export class renderImageUpload extends Component {
   imageUpload (e) {
     if (!e.target.files[0]) return
 
-    const url = getDomain('web/photo/upload')
+    const url = getDomain('/app/v1/bo/v1/web/photo/upload')
     const formData = new FormData()
     formData.append('fileName', e.target.files[ 0 ])
     if (!this.props.h) {
@@ -177,7 +177,7 @@ export class renderFile extends Component {
   fileUpload (e) {
     if (!e.target.files[0]) return
 
-    const url = getDomain('web/file/upload')
+    const url = getDomain('/app/v1/bo/v1/web/file/upload')
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])

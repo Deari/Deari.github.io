@@ -1,7 +1,8 @@
 import React from 'react'
 import DuckImage from '../assets/Duck.jpg'
 import { IndexLink, Link, withRouter, browserHistory } from 'react-router'
-import { getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
+import { getApiStoreDomain, getSourceVal } from 'utils/d'
+
 // import LoginSDK from 'utils/loginSDK'
 import './HomeView.scss'
 import '../assets/lib/slick.css'
@@ -117,7 +118,7 @@ export const HomeView = () => (
             </Link>
           </li>
           <li>
-            <a className='a-bg3' href={getApiDomain(`#/`)}>
+            <a className='a-bg3' href={getApiStoreDomain('/')}>
               <p className='market-tittle'>API市场</p>
               <i className='iconfont icon-api' />
               <span className='market-text'>提供实体服务商/开发者所需的各种服务接口</span>

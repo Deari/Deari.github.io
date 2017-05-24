@@ -6,16 +6,17 @@ export function getDomainEnv (url = location.host, reg = commonReg) {
   return domainTestResult ? (domainTestResult[2] ? domainTestResult[2] : 'pub') : 'local'
 }
 
-function getReplaced (match) {
+function getReplaced (match, intra=false) {
+
   switch (match) {
     case 'local':
-      return 'sit.'
+      return intra ? 'intra.sit.' : 'sit.'
     case 'sit':
-      return 'sit.'
+      return intra ? 'intra.sit.' : 'sit.'
     case 'uat':
-      return 'uat.'
+      return intra ? 'intra.uat.' : 'uat.'
     case 'test':
-      return 'test.'
+      return intra ? 'intra.test.' : 'test.'
     case 'pub':
       return ''
     default:
@@ -24,30 +25,35 @@ function getReplaced (match) {
 }
 
 export function getDomain(url = '', option = {}) {
-  const _opt = Object.assign({ suffix: 'net', host: location.host }, option)
-  return `http://api.${getReplaced(getDomainEnv(_opt.host))}ffan.${_opt.suffix}${url}`
+  const _opt = Object.assign({ prefix: 'api', suffix: 'net', intra: false, host: location.host }, option)
+  const env = getReplaced(getDomainEnv(_opt.host), _opt.intra);
+  return `http://${_opt.prefix}.${env}ffan.${_opt.suffix}${url}`
 }
 
 export function getApiStoreDomain (url) {
-  let env = getReplaced(getDomainEnv())
-  if(env) {
-    env = 'intra.'+env;
-  }
-  return `http://apistore.${env}ffan.net${url}`
+  return getDomain('/#'+url, {
+    prefix: 'apistore', suffix: 'net', intra: true
+  })
 }
 
 export function getLoginDomain (url) {
-  let env = getReplaced(getDomainEnv())
-  if(env) {
-    env = 'intra.'+env;
-  }
-  return `http://passport.${env}ffan.net${url}`
+  return getDomain(url, {
+    prefix: 'passport', suffix: 'net', intra: true
+  })
 }
 
-export function getEnvDomain () {
-  return getDomainEnv() === 'pub' ? 'http://api.ffan.net' : 'http://api.sit.ffan.net'
+export function getSourceVal (name) {
+  const pathName = name || location.pathname
+
+  if (pathName.search(/apps/) != -1) return 1
+  if (pathName.search(/widgets/) != -1) return 2
+  if (pathName.search(/hardware/) != -1) return 4
+
+  return 5
 }
 
-export function getXapiComDomain () {
-  return getDomainEnv() === 'pub' ? 'http://api.ffan.com' : 'http://api.sit.ffan.com'
+export function getDownloadDomain () {
+  return getDomain(url, {
+    prefix: 'fdfs', suffix: 'net', intra: true
+  })
 }
