@@ -38,8 +38,7 @@ class FetchUtil {
       params.debug = 1
     }
 
-    params.clientType = 1
-
+    params = Object.assign({}, { clientType: 1 }, params)
     params = buildSearchParams(params)
     const { headers, ...rest } = options
 
@@ -85,6 +84,7 @@ class FetchUtil {
     if (DEBUG_MODE) {
       params.debug = 1
     }
+    params = Object.assign({}, { clientType: 1 }, params)
 
     let { headers, formDataType, ...rest } = options
     let body

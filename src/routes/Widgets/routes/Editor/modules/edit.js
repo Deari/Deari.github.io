@@ -1,5 +1,5 @@
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 
 const TOGGLE_STEP = 'TOGGLE_STEP'
@@ -558,7 +558,7 @@ export default function createReducer (state = initialState, action) {
 
 export const fetchTags = () => {
   return (dispatch) => {
-    const url = getDomain('public/common/tags?type=widget')
+    const url = getDomain('/app/v1/bo/v1/public/common/tags?type=widget')
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
         dispatch(getTags(res.data))
@@ -575,7 +575,7 @@ export const fetchTags = () => {
 export const fetchCates = () => {
   return (dispatch) => {
     // 拉取 select 列表数据
-    const url = getDomain('public/app/categories')
+    const url = getDomain('/app/v1/bo/v1/public/app/categories')
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
         dispatch(getCates(res.data && res.data.list))
@@ -591,7 +591,7 @@ export const fetchCates = () => {
 
 export const getAppInfo = (appId) => {
   return (dispatch) => {
-    const url = getDomain(`web/developer/app/${appId}`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app/${appId}`)
     return fetchUtil.getJSON(url).then(res => {
       if (res.status == 200) {
         const { appThumb, categoryId, platform, appKind, appkey,

@@ -32,7 +32,7 @@ const FirstStepForm = props => {
         describeId='appName' describeContent='您的应用在应用市场中显示的名称' />
       { +appKind ===1 && <Field
         required 
-        label='适配屏幕' 
+        label='使用场景' 
         name='screenSize' 
         component={ScreenSize}
       />}

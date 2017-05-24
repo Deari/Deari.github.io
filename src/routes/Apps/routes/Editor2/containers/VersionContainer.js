@@ -1,13 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { getFormValues, Field, reduxForm } from 'redux-form'
-
 import {
   postAppVersionInfo,
   getAppInfo
 } from 'reducers/api'
 import Version from '../components/Version'
-// import Version from 'business/AppCreate/Version'
 import { APP_TYPES } from 'config/appTypes'
 
 class Container extends React.Component {
@@ -23,18 +19,29 @@ class Container extends React.Component {
   }
 
   componentWillMount() {
+    postAppVersionInfo({
+      appId: this.props.params.id,
+      prepareVersion: 1
+    })
+
     getAppInfo(this.props.params.id).then(data=>{
       console.log(data)
       const { versions, appId, appKind } = data;
       const _version = versions.find((v)=>+v.publishStatus ===1)
-      const { codeId, codeDesc, codeVersion, fileLink, autoPublish, showUpdateMsg } = versions[0]
+      const { codeId, codeDesc, codeVersion, fileLink, autoPublish } = versions[0]
+      let _files = null;
+      if(+appKind !== 1) {
+        _files = { fileLink };
+      }
+      
       this.setState({
         data,
         initialValues: {
           ...this.state.initialValues,
           ...versions[0],
           appId,
-          appKind
+          appKind,
+          _files
         },
         onlineVersion: (_version && _version.codeVersion) || ''
       })
@@ -46,9 +53,17 @@ class Container extends React.Component {
 
   onSubmit (values) {
     console.log(values);
-    postAppVersionInfo(values).then(data=>{
+    // return
+    const { _files, ...rest } = values;
+    let params = { ...rest };
+    if(_files) {
+      params = {
+        ...rest,
+        ..._files
+      }
+    }
+    postAppVersionInfo(params).then(data=>{
       console.log('操作成功：', data)
-      // this.props.router.replace(`/apps/create2/h5/complete/${data.appId}`)
     }).catch(e=>{
       alert(`操作失败(错误码：${e.status})`)
     })
@@ -65,4 +80,4 @@ class Container extends React.Component {
   }
 }
 
-export default connect()(Container)
+export default Container

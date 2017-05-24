@@ -3,7 +3,6 @@ import { login } from 'utils/login'
 export default {
   path: 'analytics',
   onEnter: (nextState, replace, callback) => {
-    console.log(11112222);
     login(() => {
       callback()
     })

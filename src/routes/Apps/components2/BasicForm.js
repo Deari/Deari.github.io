@@ -6,13 +6,16 @@ import Tags from 'business/AppCreate/Tags'
 import AppDesc from 'business/AppCreate/AppDesc'
 import ScreenSize from 'business/AppCreate/ScreenSize'
 
-import cx from 'classnames'
 import './form.scss'
+import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
+
 import { APP_TYPES } from 'config/appTypes'
 
 const Form = (props) => {
   const { handleSubmit, tagSource, appKind } = props;
+  const showScreenSizeField = +appKind === +APP_TYPES.h5.value;
+
   return (
     <form className="site-form" onSubmit={ handleSubmit }>
       <Field
@@ -22,13 +25,14 @@ const Form = (props) => {
         description='您的应用在应用市场中显示的名称' 
         component={TextInput}
       />
-      { appKind === APP_TYPES.h5.value && 
-      <Field
-        required 
-        label='适配屏幕尺寸' 
-        name='screenSize' 
-        component={ScreenSize}
-      />
+
+      { showScreenSizeField && 
+        <Field
+          required 
+          label='适配屏幕尺寸' 
+          name='screenSize' 
+          component={ScreenSize}
+        />
       }
 
       <Field

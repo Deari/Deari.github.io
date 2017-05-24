@@ -19,3 +19,29 @@ export const validate = values => {
   }
   return errors
 }
+
+export const validateVersionForm = values => {
+  const errors = {}
+  if (!values.codeDesc) {
+    errors.codeDesc = '版本介绍不能为空'
+  }
+  if (!values.codeVersion) {
+    errors.codeVersion = '版本号不能为空'
+  }
+  if (typeof values.autoPublish === undefined) {
+    errors.autoPublish = '请选择版本发布方式'
+  }
+  
+  if(+values.appKind === 1) {
+    if (!values.fileLink) {
+      errors.fileLink = '请输入应用网址'
+    }
+  }
+
+  if(+values.appKind === 0 || +values.appKind === 2) {
+    if(values._files && !values._files.fileLink) {
+      errors._files = '请上传符合规范的应用文件包'
+    }
+  }
+  return errors
+}

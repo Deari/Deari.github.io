@@ -4,9 +4,10 @@ import List from 'components/List'
 import Pager from 'components/Pager'
 import Pagination from 'components/Pagination'
 import SideBar from 'business/SideBar'
+import { getLoginDomain, getApiStoreDomain, getSourceVal } from 'utils/d'
 
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import LoginSDK from 'utils/loginSDK'
 import debug from 'utils/debug'
 import Slidebar from 'components/Sidebar'
@@ -40,7 +41,7 @@ class widgetsList extends React.Component {
     this.setState({ searchValue:e.target.value }, this.upDate())
   }
   async getList (appName) {
-    const apiUrl = appName ? getDomain(`web/developer/widgets?appName=${appName}`) : getDomain('web/developer/widgets')
+    const apiUrl = appName ? getDomain(`/app/v1/bo/v1/web/developer/widgets?appName=${appName}`) : getDomain('/app/v1/bo/v1/web/developer/widgets')
     const review = this.getReviewStatus()
     const { limit, currentPageIndex } = this.state
     try {
@@ -155,8 +156,8 @@ class widgetsList extends React.Component {
 
   upDate () {
     let sourceVal = getSourceVal()
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let url = getLoginDomain(`/passport/session-check.json`)
+    let loginUrl = getApiStoreDomain(`/login?source=${sourceVal}`)
     let callbackUrl = location.href
     try {
       LoginSDK.getStatus(async (status, data) => {

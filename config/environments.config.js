@@ -15,15 +15,24 @@ module.exports = {
   // ======================================================
   // Overrides when NODE_ENV === 'production'
   // ======================================================
-  production : (config) => ({
-    compiler_public_path     : process.env.SIT ? 'http://open.sit.ffan.net/' : 'http://open.ffan.net/',
-    compiler_fail_on_warning : false,
-    compiler_hash_type       : 'chunkhash',
-    compiler_devtool         : null,
-    compiler_stats           : {
-      chunks       : true,
-      chunkModules : true,
-      colors       : true
+  production : (config) => {
+    let env = ''
+    if (process.env.SIT) {
+      env = 'sit.'
+    } else if (process.env.UAT) {
+      env = 'uat.'
     }
-  })
+
+    return {
+      compiler_public_path     : `http://open.${env}ffan.net/`,
+      compiler_fail_on_warning : false,
+      compiler_hash_type       : 'chunkhash',
+      compiler_devtool         : null,
+      compiler_stats           : {
+        chunks       : true,
+        chunkModules : true,
+        colors       : true
+      }
+    }
+  }
 }

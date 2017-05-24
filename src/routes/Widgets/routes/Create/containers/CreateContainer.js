@@ -10,7 +10,8 @@ import FinishFirstStep from '../components/FinishFirstStep'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/d'
+import { getSourceVal } from 'utils/d'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
@@ -45,11 +46,11 @@ class CreateContainer extends Component {
       }
     }
 
-    const url = getDomain(`web/developer/widget`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/widget`)
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
         console.info('提交成功: ', res.data)
-        const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+        const versionurl = getDomain(`/app/v1/bo/v1/web/developer/widget/${res.data.appId}/code`)
         const versionFormData = new FormData()
         versionFormData.append('prepareVersion', '1')
         this.props.updateForm2({
@@ -137,7 +138,7 @@ class CreateContainer extends Component {
         formData.append(key, params[key])
       }
     }
-    const url = getDomain(`web/developer/widget/${values.appId}/code`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/widget/${values.appId}/code`)
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
         this.props.toggleStep(2);

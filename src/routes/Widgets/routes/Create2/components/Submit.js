@@ -1,12 +1,10 @@
 import React from 'react'
 import s from './Complete-new.scss'
 import cx from 'classnames'
-import BreadCrumb from 'business/AppCreate/BreadCrumb'
 
 const Submit = () => {
     return (
     	<div>
-				<BreadCrumb></BreadCrumb>
 				<div className={t['success-wrapper']}>
 					<div className={t.success}>
 						<span className={t.img}></span>

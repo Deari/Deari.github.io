@@ -7,12 +7,56 @@ import './form.scss'
 
 import AppDesc from 'business/AppCreate/AppDesc'
 import TextInput from 'business/AppCreate/TextInput'
-import ImageUploader from 'business/AppCreate/Uploader/img'
+import FileUploader from 'business/AppCreate/Uploader/file'
 import VersionPublish from 'business/AppCreate/VersionPublish'
+
+import { APP_TYPES } from 'config/appTypes'
 
 class Main extends React.Component {
   render () {
-    const { onlineVersion, handleSubmit } = this.props;
+    const { onlineVersion, handleSubmit, initialValues } = this.props;
+    const { appKind } = initialValues;
+    const miniProgramInfo = (
+      <span style={{ lineHeight: 1.5, color: '#666', fontSize: 12 }}>
+        应用类型为“FAP小程序”，请您先试用打包工具(
+        <a href='http://fdfs.ffan.net/v2/file/nDjvYxof9gD9AjbH9o4al93o5T2mw9Yp?attachExt=2'>Windows</a> | 
+        <a href='http://fdfs.ffan.net/v2/file/BgbBeXayRXw6H5h4aF3115Egr50dM6pr?attachExt=2'>Mac</a>)
+        进行打包，请将打包完成后的应用进行上传。
+      </span>
+    );
+
+    let fileField;
+   
+    switch(appKind) {
+      case APP_TYPES.mini_program.value: 
+        fileField = <Field
+          required 
+          label='应用文件(FAP)' 
+          name='_files'
+          accept=".fap"
+          title={miniProgramInfo}
+          description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
+          component={FileUploader}
+        />;
+        break;
+      case APP_TYPES.apk.value: 
+        fileField = <Field
+          required 
+          label='应用文件(APK)' 
+          name='_files'
+          accept=".apk"
+          description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
+          component={FileUploader}
+        />;
+        break;
+      case APP_TYPES.h5.value: 
+        fileField = <Field
+          required 
+          label='应用网址' 
+          name='fileLink' 
+          component={TextInput}
+        />;
+    }
 
   	return (
       <form onSubmit={handleSubmit}>
@@ -25,20 +69,17 @@ class Main extends React.Component {
           component={AppDesc}
         />
 
-        { onlineVersion && <span className={s['version-rule']}>您的线上版本为：{onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。</span>}
         <Field
           required 
           label='版本号' 
           name='codeVersion' 
+          title={onlineVersion && `您的线上版本为：${onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。`}
           description='您要填入的 App 版本号。编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。' 
           component={TextInput}
         />
-        <Field
-          required 
-          label='应用网址' 
-          name='fileLink' 
-          component={TextInput}
-        />
+        
+        {fileField}
+
         <Field
           required 
           label='版本发布'

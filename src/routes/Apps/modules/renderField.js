@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import fetchUtil from 'utils/fetchUtil'
-import { getEnvDomain } from 'utils/d'
-import { getDomain, getUploaderDomain, getDownloadDomain } from 'utils/domain'
+import { getDomain, getDownloadDomain } from 'utils/d'
 import debug from 'utils/debug'
 import classnames from 'classnames'
 import { updateSecondForm } from '../routes/Editor/modules/edit'
@@ -100,7 +99,7 @@ export class renderImageUpload extends Component {
   imageUpload (e) {
     if (!e.target.files[0]) return
 
-    const url = getDomain('web/photo/upload')
+    const url = getDomain('/app/v1/bo/v1/web/photo/upload')
     const formData = new FormData()
     formData.append('fileName', e.target.files[0])
     formData.append('width', 400)
@@ -175,7 +174,7 @@ export class renderAPKFile extends Component {
     const xhr = new XMLHttpRequest()
     const fd = new FormData()
     const that = this
-    const url = getEnvDomain() + `/app/v1/bo/sliceUpload`
+    const url = getDomain(`/app/v1/bo/sliceUpload`)
     const readyChange = (that) => {
       if (xhr.readyState == 4) {
         if (xhr.status >= 200 && xhr.status < 300) {
@@ -188,7 +187,7 @@ export class renderAPKFile extends Component {
             const res = JSON.parse(xhr.responseText).data
             if (index === pressNum) {
               const fileObj = {
-                url: getDownloadDomain() + `/v2/file/${this.state.filecode}`,
+                url: getDownloadDomain(`/v2/file/${this.state.filecode}`),
                 name: file.name,
                 size: file.size
               }
@@ -274,7 +273,7 @@ export class renderFile extends Component {
   fileUpload (e) {
     if (!e.target.files[0]) return
 
-    const url = getDomain('web/file/upload')
+    const url = getDomain('/app/v1/bo/v1/web/file/upload')
     const formData = new FormData()
 
     formData.append('fileName', e.target.files[ 0 ])

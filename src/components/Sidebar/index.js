@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import LoginSDK from 'utils/loginSDK'
-import { getApiDomain, getLoginDomain, getSourceVal } from 'utils/domain'
+import { getLoginDomain, getApiStoreDomain, getSourceVal } from 'utils/d'
 import 'styles/_base.scss'
 import './Sidebar.scss'
 
@@ -9,8 +9,8 @@ class Sidebar extends React.Component {
 
   clickBtn (href) {
     let sourceVal = getSourceVal()
-    let url = getLoginDomain(`passport/session-check.json`)
-    let loginUrl = getApiDomain(`#/login?source=${sourceVal}`)
+    let url = getLoginDomain(`/passport/session-check.json`)
+    let loginUrl = getApiStoreDomain(`/login?source=${sourceVal}`)
     let callbackUrl = `${location.origin}${href}`
 
     LoginSDK.getStatus((status, data) => {

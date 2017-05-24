@@ -12,7 +12,7 @@ import FinishFirstStep from '../components/FinishFirstStep'
 import Complete from '../../../components/Complete'
 import Step from '../../../components/Step'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
@@ -47,12 +47,12 @@ class CreateContainer extends Component {
         formData.append(key, values[key])
       }
     }
-    const url = getDomain(`web/developer/app`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app`)
     console.log(values, formData);
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
-        const versionurl = getDomain(`web/developer/app/${res.data.appId}/code`)
+        const versionurl = getDomain(`/app/v1/bo/v1/web/developer/app/${res.data.appId}/code`)
         const versionFormData = new FormData()
         versionFormData.append('prepareVersion', '1')
         this.props.updateForm2({
@@ -92,7 +92,7 @@ class CreateContainer extends Component {
 
     !values.appId && debug.warn('缺少appId')
 
-    const url = getDomain(`web/developer/app/${values.appId}/code`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/app/${values.appId}/code`)
     const formData = new FormData()
     const file = values.file
     const fileObj = values.fileObj

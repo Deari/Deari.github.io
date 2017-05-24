@@ -9,7 +9,7 @@ import Step from '../../../components/Step'
 import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
@@ -23,7 +23,7 @@ class EditContainer extends Component {
     const step = parseInt(params.step)
 
     if(step==2){
-      const versionurl = getDomain(`web/developer/widget/${appId}/code`)
+      const versionurl = getDomain(`/app/v1/bo/v1/web/developer/widget/${appId}/code`)
       const versionFormData = new FormData()
       versionFormData.append('prepareVersion', '1')
       fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
@@ -67,12 +67,12 @@ class EditContainer extends Component {
 
     for (let key in values) {
     }
-    const url = getDomain(`web/developer/widget/${values.appId}`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/widget/${values.appId}`)
 
     fetchUtil.postJSON(url, formData, { jsonStringify: false }).then(res => {
       if (res.status == 200) {
         // this.props.updateAppId(res.data.appId);
-        const versionurl = getDomain(`web/developer/widget/${res.data.appId}/code`)
+        const versionurl = getDomain(`/app/v1/bo/v1/web/developer/widget/${res.data.appId}/code`)
         const versionFormData = new FormData()
         versionFormData.append('prepareVersion', '1')
         fetchUtil.postJSON(versionurl, versionFormData, { jsonStringify: false }).then(versionRes => {
@@ -104,7 +104,7 @@ class EditContainer extends Component {
 
     !values.appId && debug.warn('缺少appId')
 
-    const url = getDomain(`web/developer/widget/${values.appId}/code`)
+    const url = getDomain(`/app/v1/bo/v1/web/developer/widget/${values.appId}/code`)
     const formData = new FormData()
     const file = values.file
 

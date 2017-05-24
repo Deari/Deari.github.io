@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 import moment from 'moment'
 import SideBar from 'business/SideBar'
@@ -26,7 +26,7 @@ class AppsDetail extends React.Component {
 
   async getInfo () {
     let id = this.props.params.id
-    let apiUrl = getDomain(`web/developer/app/${id}`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/web/developer/app/${id}`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res && res.status === 200) {
@@ -40,7 +40,7 @@ class AppsDetail extends React.Component {
   }
 
   async getTags () {
-    let apiUrl = getDomain(`public/common/tags?type=app`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/public/common/tags?type=app`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
@@ -103,7 +103,7 @@ class AppsDetail extends React.Component {
     if ((activeCodeStatus === 5 && operation == 'shelve') ||
        (activeCodeStatus === 7 && operation == 'unshelve')) return
     let id = this.props.params.id
-    let apiUrl = getDomain(`web/developer/shelveApp/${id}?operation=${operation}`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/web/developer/shelveApp/${id}?operation=${operation}`)
     fetchUtil.getJSON(apiUrl).then((res) => {
       if (res && res.status === 200) {
         debug.warn('操作成功')
@@ -131,7 +131,7 @@ class AppsDetail extends React.Component {
     const formData = new FormData()
     formData.append('onLine', 1)
 
-    let apiUrl = getDomain(`web/developer/app/${appId}/publish`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/web/developer/app/${appId}/publish`)
     fetchUtil.postJSON(apiUrl, formData, { jsonStringify: false }).then(res => {
       if (res.status === 200) {
         debug.warn('发布成功')

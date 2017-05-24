@@ -1,6 +1,7 @@
 import React from 'react'
 import {
   postAppBasicInfo,
+  postAppVersionInfo,
   getAppInfo,
 } from 'reducers/api'
 
@@ -32,10 +33,13 @@ class Container extends React.Component {
     postAppBasicInfo({
       ...values,
     }).then(data=>{
-      alert('保存成功！');
-      // this.props.router.push(`/apps/list`)
+      console.log('保存成功！', data);
+      postAppVersionInfo({ appId: data.appId, prepareVersion: 1 }).then(()=>{
+        this.props.router.push(`/apps/list`)
+      })
     }).catch(e=>{
       alert(`保存失败(错误码：${e.status})`)
+      console.log(e);
     })
   }
 
@@ -44,6 +48,7 @@ class Container extends React.Component {
     return (
       <Basic 
         pageType={'apps'} 
+        appKind={initialValues.appKind}
         onSubmit={::this.onSubmit}
         params={this.props.params}
         initialValues={initialValues}

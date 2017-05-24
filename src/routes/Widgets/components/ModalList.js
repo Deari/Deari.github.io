@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetchUtil'
 import { Link } from 'react-router'
 class ModalList extends Component {
@@ -88,7 +88,7 @@ class ModalList extends Component {
 
   async componentDidMount () {
     if (this.props.type === 'app') {
-      const apiUrl = getDomain('web/developer/apps')
+      const apiUrl = getDomain('/app/v1/bo/v1/web/developer/apps')
       try {
         const res = await fetchUtil.getJSON(apiUrl, { limit:5000 })
         if (res.status == 200) {
@@ -102,7 +102,7 @@ class ModalList extends Component {
         console.log('网络错误', e)
       }
     } else if (this.props.type === 'widget') {
-      const apiUrl = getDomain('web/developer/widgets')
+      const apiUrl = getDomain('/app/v1/bo/v1/web/developer/widgets')
       try {
         const res = await fetchUtil.getJSON(apiUrl, { limit:5000 })
         if (res.status == 200) {

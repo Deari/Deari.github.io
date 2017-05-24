@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router'
 import s from './Complete-new.scss'
 import cx from 'classnames'
-import BreadCrumb from 'business/AppCreate/BreadCrumb'
 import { getAppInfo } from 'reducers/api'
 
 class Complete extends React.Component {
@@ -31,7 +30,6 @@ class Complete extends React.Component {
     const { data } = this.state;
     return (
       <div className={s.wrapper}>
-        <BreadCrumb></BreadCrumb>
         <div className={`${s['success-wrapper']} ${s['complete-wrapper']}`}>
           <div className={s.success}>
             <span className={s.img}></span>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import fetchUtil from 'utils/fetchUtil'
-import { getDomain } from 'utils/domain'
+import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
@@ -25,7 +25,7 @@ class HardwareDetail extends React.Component {
 
   async getInfo (e) {
     let id = this.props.params.id
-    let apiUrl = getDomain(`web/hardware/getHardwareInfo/${id}`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/web/hardware/getHardwareInfo/${id}`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res && res.status === 200) {
@@ -48,7 +48,7 @@ class HardwareDetail extends React.Component {
   }
 
   async getTags (e) {
-    let apiUrl = getDomain(`public/common/tags?type=hardware`)
+    let apiUrl = getDomain(`/app/v1/bo/v1/public/common/tags?type=hardware`)
     try {
       let res = await fetchUtil.getJSON(apiUrl)
       if (res.status === 200) {
