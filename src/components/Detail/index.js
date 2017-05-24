@@ -151,7 +151,7 @@ export const LatestVersion = (props) => {
         </div>
          { +data.appKind === 1 && +data.appType === 1 && <div className='cell'>
           <p className='title'>使用场景</p>
-          <p className='text'>{screenSize[changes.screenSize]}</p>
+          <p className='text'>{screenSize[latestVersion._screenSize]}</p>
         </div>}
 
         { !showSize &&

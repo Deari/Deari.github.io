@@ -3,7 +3,10 @@ import { Link } from 'react-router'
 export const Header = (props) => {
   const { data, editUrl, onChangeVersion, latestVersion } = props
   const latestVersions = data && data.versions && data.versions[0] || {}
+  latestVersion._screenSize = data.changes.screenSize
   const preVersions = data && data.versions && data.versions[1] || {}
+  preVersions._screenSize = data.screenSize
+  
   const len = data && data.versions && data.versions.length
 
   const latestCodeStatus = latestVersions && getCodeStatus(data, latestVersions)

@@ -29,7 +29,7 @@ const Form = (props) => {
       { showScreenSizeField && 
         <Field
           required 
-          label='适配屏幕尺寸' 
+          label='使用场景' 
           name='screenSize' 
           component={ScreenSize}
         />

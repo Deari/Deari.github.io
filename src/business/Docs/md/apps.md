@@ -265,11 +265,445 @@ public class MyConfig extends DefaultConfig {
     }
 
 
+## 飞凡云POS接入
+
+### 一、简介
+
+为了便于外部商户开发者更方便的接入飞凡云POS支付系统，我们提供了PosHelper类来帮助实现相关业务，里面已经封装好相关调用方法及回传参数，开发者只需要将其代码类复制到自己的工程中即可。调用方式写法可参看demo中例子。商户开发者也可以自行组装相关数据调用相应方法。具体可参数PosHelper类来实现相关业务功能。
+
+### 二、接口
+
+#### 1、支付
+
+飞凡云POS是涵盖聚合支付功能，对外提供聚合支付功能，包括：现金、银行卡、飞凡通、快钱、微信等支付方式。
+
+**PosHelper.pay** 聚合支付：
+```java
+public static boolean pay(Activity activity, String orderNo, String account, 
+            long amount, int payType, List<Product> products, int requestCode)
+```
+
+- 参数说明
+
+  * `activity`: Activity
+
+  * `orderNo`: 使用方自己的订单号
+
+  * `account`: 使用方自己的账号
+
+  * `amount`: 支付金额，以分为单位，如100.01元传递10001
+
+  * `products`: 使用方自己的商品信息
+   
+  * `requestCode`: 对应 Activity的startActivityForResult(Intent, int) 中的requestCode参数
+
+聚合支付示例：
+
+```java
+List<PosHelper.Product> products = new ArrayList<PosHelper.Product>();
+products.add(new PosHelper.Product("abc000001", "护肤水", 2, 3000));
+products.add(new PosHelper.Product("abc000002", "洗面奶", 1, 4000));
+
+PosHelper.pay(PayActivity.this, "10000123", "linqingxuan001", amount, FFResult
+            .PAY_TYPE_CASH, products, 100);
+```
+
+支付结果：
+
+```java
+public static FFResult.PayResult getPayResult(Intent data)
+```
+
+**FFResult.PayResult** 聚合支付结果：
+
+```java
+/**
+ * 支付结果 0成功{@link #RESULT_SUCCESS} 1失败{@link #RESULT_FAILURE} 2关闭{@link #RESULT_CLOSE}
+ */
+public final int mResult;
+/**
+ * 使用方自己支付时订单号
+ */
+public final String mOrderNo;
+/**
+ * POS账号
+ */
+public final String mPosAccount;
+/**
+ * POS支付单号
+ */
+public final String mPayOrderNo;
+/**
+ * POS支付类型 参考对应支付类型数据
+ */
+public final int mPayType;
+/**
+ * POS支付金额 以分为单位，如100.01元，则应返回10001
+ */
+public final long mAmount;
+```
+
+聚合支付结果示例：
+
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  if (resultCode == Activity.RESULT_OK) {
+    FFResult.PayResult payResult = PosHelper.getPayResult(data);
+  } else if (resultCode == Activity.RESULT_CANCELED) {
+  }
+}
+```
+
+#### 2、退款
+
+退款是基于飞凡POS支付的订单号，整单全部金额退款，暂不支持部分金额退款。
+
+**PosHelper.refund** 退款：
+```java
+public static boolean refund(Activity activity, String orderNo, String account, 
+            List<Product> products, int requestCode) {
+```
+
+- 参数说明
+
+  * `activity`: Activity
+
+  * `orderNo`: POS支付单号
+
+  * `account`: 使用方自己的账号
+
+  * `amount`: 退款金额，以分为单位，如100.01元传递10001
+
+  * `products`: 使用方自己的商品信息
+   
+  * `requestCode`: 对应 Activity的startActivityForResult(Intent, int) 中的requestCode参数
+
+退款示例：
+
+```java
+List<PosHelper.Product> products = new ArrayList<PosHelper.Product>();
+products.add(new PosHelper.Product("abc000001", "护肤水", 2, 3000));
+
+PosHelper.refund(RefundActivity.this, orderNo, "linqingxuan001", products, 100);
+
+```
+
+退款结果：
+
+```java
+public static FFResult.RefundResult getRefundResult(Intent data)
+```
+
+**FFResult.RefundResult** 退款结果：
+
+```java
+/**
+ * POS账号
+ */
+public final String mPosAccount;
+/**
+ * POS支付单号
+ */
+public final String mPayOrderNo;
+/**
+ * POS退款单号
+ */
+public final String mRefundOrderNo;
+/**
+ * POS退款金额（有可能与原订单支付不一致，以该返回金额为实际退款金额） 以分为单位，如100.01元，则应返回10001
+ */
+public final long mAmount;
+```
+
+退款结果示例：
+
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  if (resultCode == Activity.RESULT_OK) {
+    FFResult.RefundResult refundResult = PosHelper.getRefundResult(data);
+  } else if (resultCode == Activity.RESULT_CANCELED) {
+  }
+}
+```
+
+#### 3、进入飞凡云POS设置界面
+
+调用PosHelper的setting方法进入飞凡云POS设置界面
+
+```java
+public static boolean setting(Activity activity)
+```
+- 参数说明
+
+  * `activity`: Activity
 
 
+进入设置界面示例：
+
+```java
+PosHelper.setting(EntranceActivity.this);
+```
+
+#### 4、查询订单详情
+订单查询是基于飞凡POS支付的订单号。调用PosHelper的queryTrade方法。
+```java
+public static boolean queryTrade(Activity activity, String orderNo, 
+    String account, String payOrderNo, List<Product> products, int requestCode)
+```
+
+- 参数说明
+
+  * `activity`: Activity
+
+  * `orderNo`: 使用方自己的订单号
+
+  * `account`: 使用方自己的账号
+
+  * `payOrderNo`: POS支付单号
+
+  * `products`: 使用方自己的商品信息
+   
+  * `requestCode`: 对应 Activity的startActivityForResult(Intent, int) 中的requestCode参数
+
+查询订单详情示例：
+
+```java
+List<PosHelper.Product> products = new ArrayList<PosHelper.Product>();
+products.add(new PosHelper.Product("abc000001", "护肤水", 2, 3000));
+PosHelper.queryTrade(TradeQueryActivity.this, "123456789", "linqingxuan001", payOrderNo,
+                products, 100);
+```
+
+**FFResult.TradeQueryResult** 查询订单详情结果：
+
+```java
+/**
+ * 0查询失败{@link #TRADE_QUERY_STATU_FAIL}，1查询成功{@link #TRADE_QUERY_STATU_SUCCESS}；
+ */
+public final int mStatus;
+/**
+ * 交易类型
+ * 0支付{@link #TRADE_TYPE_PAY}，1退款{@link #TRADE_TYPE_REFUND}，默认-1{@link #TRADE_TYPE_UNKNOWN}；
+ */
+public final int mTradeType;
+/**
+ * 支付结果 如果交易类型为1，则该值为null，否则为支付结果数据；如果查询失败则为null
+ */
+public final PayResult mPayResult;
+/**
+ * 退款结果 如果交易类型为0，则该值为null，否则为退款结果数据；如果查询失败则为null
+ */
+public final RefundResult mRefundResult;
+```
+
+查询订单详情结果示例：
+
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  if (resultCode == Activity.RESULT_OK) {
+    FFResult.TradeQueryResult queryResult = PosHelper.getTradeQueryResult(data);
+    if (queryResult.mStatus == FFResult.TRADE_QUERY_STATU_SUCCESS) {
+      if (queryResult.mTradeType == FFResult.TRADE_TYPE_PAY) {
+        FFResult.PayResult payResult = queryResult.mPayResult;
+      } else if (queryResult.mTradeType == FFResult.TRADE_TYPE_REFUND) {
+        FFResult.RefundResult refundResult = queryResult.mRefundResult;
+      }
+    } else {
+    }
+  }
+}
+```
+
+#### 5、核销
+核销功能，现在仅支持对飞凡方提供的兑换劵或者提货码进行核销。调用PosHelper的exchange方法。
+```java
+public static boolean exchange(Activity activity, String code, int requestCode)
+```
+
+- 参数说明
+
+  * `activity`: Activity
+
+  * `code`: 核销码(可以不传递)
+   
+  * `requestCode`: 对应 Activity的startActivityForResult(Intent, int) 中的requestCode参数
+
+核销示例：
+
+```java
+PosHelper.exchange(ExchangeActivity.this, code, 100);
+```
+
+**FFResult.ExchangeResult** 核销结果：
+
+```java
+/**
+ * 优惠劵
+ */
+public static final int EXCHANGE_TYPE_COUPON = 1;
+/**
+ * 提货码
+ */
+public static final int EXCHANGE_TYPE_PRODUCT = 2;
+/**
+ * POS账号
+ */
+public final String mPosAccount;
+/**
+ * 核销码
+ */
+public final String mCode;
+/**
+ * 核销类型
+ */
+public final int mType;
+/**
+ * 商品编码
+ */
+public final String mProductNo;
+/**
+ * 商品名称
+ */
+public final String mProductName;
+```
+
+核销结果示例：
+
+```java
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  if (resultCode == Activity.RESULT_OK) {
+    FFResult.ExchangeResult exchangeResult = PosHelper.getExchangeResult(data);
+  } else if (resultCode == Activity.RESULT_CANCELED) {
+  }
+}
+```
+
+#### 6、钱箱
+飞凡云POS可以通过外接钱箱方式，打开钱箱。
+
+```java
+public static void openCashBox(Context context)
+```
+- 参数说明
+
+  * `Context`: Context
+
+打开钱箱示例：
+
+```java
+PosHelper.openCashBox(EntranceActivity.this);
+```
+
+#### 7、打印机
+飞凡云POS内置打印机，可打印58mm宽度小票。
+
+```java
+public static void print(Context context, Data data)
+```
+- 参数说明
+
+  * `Context`: Context
+ 
+  * `Data`: 打印数据
+
+此外，飞凡云POS还提供几种常用打印样式，涉及打印文字，二维码，条形码等。具体如下：
+
+##### 文字打印
+```java
+public TextItem(String data, int fontSizeFlag, int alignment)
+```
+- 参数说明
+
+  * `data`: 打印的文字内容
+ 
+  * `fontSizeFlag`: 打印字体大小，可选择FONT_SIZE_FLAG_NORMAL（普通字体）或者FONT_SIZE_FLAG_BIG（大字体）
+  
+  * `alignment`: 对齐方式，可选择ALIGNMENT_LEFT（靠左对齐，默认值），ALIGNMENT_CENTER（居中对齐）或者ALIGNMENT_RIGHT（靠右对齐）
+
+##### 带分割线的文字打印
+```java
+public MarkTextItem(String data, String mark, int fontSizeFlag)
+```
+- 参数说明
+
+  * `data`: 打印的文字内容
+ 
+  * `mark`: 分割线打印的内容
+  
+  * `fontSizeFlag`: 打印字体大小，可选择FONT_SIZE_FLAG_NORMAL（普通字体）或者FONT_SIZE_FLAG_BIG（大字体）
+ 
+##### 列表类文字打印
+```java
+public ColumnsTextItem(int fontSizeFlag, String... data)
+```
+- 参数说明
+
+  * `fontSizeFlag`: 打印字体大小，可选择FONT_SIZE_FLAG_NORMAL（普通字体）或者FONT_SIZE_FLAG_BIG（大字体）
+ 
+  * `data`: 打印的文字内容
+  
+##### 条码打印
+```java
+public BarcodeItem(String data)
+```
+- 参数说明
+ 
+  * `data`: 打印的条码内容
+  
+##### 二维码打印
+```java
+public QRCodeItem(String data)
+```
+- 参数说明
+ 
+  * `data`: 打印的条码内容
+
+##### 走纸
+```java
+public FeedPaperItem(int lineCnt)
+```
+- 参数说明
+ 
+  * `lineCnt`: 走纸行数
+
+调用打印机整体示例：
+
+```java
+List<PrintItem> itemList = new ArrayList<>();
+itemList.add(new BarcodeItem("123123"));
+itemList.add(new TextItem("销售单"));
+itemList.add(new MarkTextItem("商户联", "="));
+itemList.add(new ColumnsTextItem("订单编号", "abc123"));
+itemList.add(new FeedPaperItem(1));
+itemList.add(new QRCodeItem("www.wanda.com"));
+
+PosHelper.print(PrinterActivity.this, new Data().addPage(itemList));
+```
+
+### 三、附录
+
+#### 支付类型数值对照表
 
 
+| 对象名称        | 对应值           | 支付类型  |
+| ------------- |:-------------:| -----:|
+| PAY_TYPE_METRO_CARD   | 2002  | 公交卡 | 
+| PAY_TYPE_FEIFAN_CARD  | 2004  | 飞凡卡 | 
+| PAY_TYPE_BANK_CARD  | 2005  | 银行卡 | 
+| PAY_TYPE_POINT  | 2006  | 积分 | 
+| PAY_TYPE_WECHAT | 1404  | 微信 | 
+| PAY_TYPE_KUAIQIAN | 1802  | 快钱 | 
+| PAY_ TYPE_FEIFAN  | 1101  | 飞凡付款码 | 
 
+#### 核销类型数值对照表
+| 对象名称        | 对应值           | 支付类型  |
+| ------------- |:-------------:| -----:|
+| EXCHANGE_TYPE_COUPON  | 1 | 优惠劵| 
+| EXCHANGE_TYPE_VOUCHER | 2 | 提货码| 
 
 
 
@@ -618,14 +1052,6 @@ curl -X GET http://api.ffan.com/oauth/v1/token/sign?developerKey=bo8b4f85f3a794d
 | 4005 | nonceStr 参数错误 |
 | 4006 | url 参数错误 |
 | 4007 | ts 参数错误 |
-
-
-
-
-
-
-
-
 
 
 # iOS开发者
