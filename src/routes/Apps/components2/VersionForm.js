@@ -96,39 +96,39 @@ class Main extends React.Component {
               <img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
               <div className={s['apply-radio']}>
                   <div className="checked-wrapper">
-                    <input type="checkbox"  value="" id="widgets" className="checked-input"/>
+                    <input type="checkbox"  value="" className="checked-input"/>
                     <span className="checked-item">
                         <i className="iconfont icon-radio1 active"></i>
                         <i className="iconfont icon-radio"></i>
                     </span>
                   </div>
-                <label htmlFor="widgets" className={s['text-con']}>组件</label>
+                <span className={s['text-con']}>组件</span>
               </div>
               
               <div className={s['apply-radio']}>
                 <div className="checked-wrapper">
-                  <input type="checkbox"  value="" id="hardware" className="checked-input" />
+                  <input type="checkbox"  value="" className="checked-input" />
                   <span className="checked-item">
                       <i className="iconfont icon-radio1"></i>
                       <i className="iconfont icon-radio active"></i>
                   </span>
                 </div>
-                <label htmlFor="hardware" className={s['text-con']}>硬件</label>
+                <span className={s['text-con']}>硬件</span>
               </div>
               
               <div className={s['apply-radio']}>
                 <div className="checked-wrapper">
-                  <input type="checkbox" value="" id="app" className="checked-input"/>
+                  <input type="checkbox" value="" className="checked-input"/>
                   <span className="checked-item">
                       <i className="iconfont icon-radio1"></i>
                       <i className="iconfont icon-radio active"></i>
                   </span>
                 </div>
-                <label htmlFor="app" className={s['text-con']}>应用</label>
+                <span className={s['text-con']}>应用</span>
               </div>
             </div>
           </div>
-        </div>*/}
+       </div>*/}
         <div className='form-actions'>
           <button type='submit' className={cx('primaryBtn', s.saveBtn)}>保存</button>
           <button className={cx('primaryBtn', s.saveBtn)}>提交审核</button>
