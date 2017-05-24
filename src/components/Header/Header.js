@@ -3,7 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 import Login from '../Login'
 import { ShopNav, DevNav, OpenNav } from './Navigation'
-import { getApiDomain } from 'utils/domain'
+import { getApiStoreDomain } from 'utils/d'
 import '../../styles/_base.scss'
 
 const choose = (pathname) => {
@@ -40,7 +40,7 @@ export const Header = ({ location, hideHeader }) => {
   }
   const pathname = location.pathname
   const searchTxt = choose(pathname)
-  const apiViewUrl = getApiDomain(`#/`)
+  const apiViewUrl = getApiStoreDomain('/#/')
   return (
     <div>
       <div className='header-wrapper'>

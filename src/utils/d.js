@@ -28,6 +28,22 @@ export function getDomain(url = '', option = {}) {
   return `http://api.${getReplaced(getDomainEnv(_opt.host))}ffan.${_opt.suffix}${url}`
 }
 
+export function getApiStoreDomain (url) {
+  let env = getReplaced(getDomainEnv())
+  if(env) {
+    env = 'intra.'+env;
+  }
+  return `http://apistore.${env}ffan.net${url}`
+}
+
+export function getLoginDomain (url) {
+  let env = getReplaced(getDomainEnv())
+  if(env) {
+    env = 'intra.'+env;
+  }
+  return `http://passport.${env}ffan.net${url}`
+}
+
 export function getEnvDomain () {
   return getDomainEnv() === 'pub' ? 'http://api.ffan.net' : 'http://api.sit.ffan.net'
 }

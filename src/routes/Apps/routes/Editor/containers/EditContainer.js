@@ -11,7 +11,7 @@ import Step from '../../../components/Step'
 import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 
-import { getDomain, getLoginDomain, getApiDomain, getSourceVal } from 'utils/domain'
+import { getDomain } from 'utils/domain'
 import LoginSDK from 'utils/loginSDK'
 import fetchUtil from 'utils/fetchUtil'
 import debug from 'utils/debug'
