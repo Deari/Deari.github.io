@@ -24,7 +24,7 @@ module.exports = {
     }
 
     return {
-      compiler_public_path     : `http://open.${env}ffan.net/merchant/`,
+      compiler_public_path     : `http://open.${env}ffan.net/`,
       compiler_fail_on_warning : false,
       compiler_hash_type       : 'chunkhash',
       compiler_devtool         : null,
