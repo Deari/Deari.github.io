@@ -38,3 +38,31 @@
 		display: none;
 	}
 }
+.checked-wrapper {
+	margin-right: 4px;
+	display: inline-block;
+	vertical-align: middle;
+	cursor: pointer;
+	.checked-input {
+		display: none;
+	}
+	.checked-item {
+		display: block;
+		& > i{
+			display: none;
+			font-size: 23px;
+		}
+		& > i.icon-radio.active,
+		& > i.icon-checkbox1.active
+		{
+			display: block;
+			color: #2692fb;
+		}
+		& > i.icon-radio1.active,
+		& > i.icon-checkbox.active
+		{
+			display: block;
+			color: #cdd4dc;
+		}
+	}
+}
