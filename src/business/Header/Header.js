@@ -55,8 +55,8 @@ const Header = (props) => {
               </Link>
             </li>
           </ul>
-          {showSearch ? <div className={s.search}>
-            <Search style={{ 'width': '100%' }} placeholder={placeholder} defaultValue={searchValue}
+          <div className={s.search}>
+            {showSearch && <Search style={{ 'width': '100%' }} placeholder={placeholder} defaultValue={searchValue}
               onSearch={(v) => {
                 props.fetchAppList({
                   tag: 0,
@@ -67,8 +67,8 @@ const Header = (props) => {
                   tag: 0,
                   params: { appName: '' }
                 })
-              }} />
-          </div> : null}
+              }} /> }
+          </div>
           <Login />
         </div>
       </div>

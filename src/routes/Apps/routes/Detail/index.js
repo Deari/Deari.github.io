@@ -65,11 +65,11 @@ class AppsDetail extends React.Component {
   }
 
   formatData (data) {
-    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format('YYYY-MM-DD H:m:s')
-    data.createTime = data.createTime && moment(data.createTime * 1000).format('YYYY-MM-DD H:m:s')
+    data.updateTime = data.updateTime && moment(data.updateTime * 1000).format('YYYY-MM-DD HH:mm:ss')
+    data.createTime = data.createTime && moment(data.createTime * 1000).format('YYYY-MM-DD HH:mm:ss')
 
     data.versions.map((v, index) => {
-      v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
+      v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD HH:mm:ss')
       v._screenSize = data.screenSize;
     })
 
