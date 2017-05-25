@@ -90,7 +90,6 @@ const bundleSizeFixed = (bundleSize) => {
 }
 export const LatestVersion = (props) => {
 
-  console.log(props);
   const { latestVersion, showSize, data={}, versionsAll = [] } = props
   const defaultLayout = data.defaultLayout || {}
   const styleObj = {
@@ -113,6 +112,7 @@ export const LatestVersion = (props) => {
     '4': 'PC端'
   }
 
+console.log(latestVersion)
   const size = `${defaultLayout.w} * ${defaultLayout.h}`
   const publishVersion = latestVersion && latestVersion.publishStatus ? latestVersion : versionsAll[1]
   const publishVersionBundleSize = data.appKind == 2 ?

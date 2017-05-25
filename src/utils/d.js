@@ -52,7 +52,7 @@ export function getSourceVal (name) {
   return 5
 }
 
-export function getDownloadDomain () {
+export function getDownloadDomain (url) {
   return getDomain(url, {
     prefix: 'fdfs', suffix: 'net', intra: true
   })

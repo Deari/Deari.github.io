@@ -62,5 +62,6 @@ $default-height : 100px;
 @mixin sub-container { //内容区域盒子
   @include float-right;
   // margin-top : 16px;
+  margin-top: 10px;
   width      : $sub-container-width;
 }

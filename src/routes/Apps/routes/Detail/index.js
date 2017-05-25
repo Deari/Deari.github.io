@@ -70,7 +70,12 @@ class AppsDetail extends React.Component {
 
     data.versions.map((v, index) => {
       v.codeUpdateTime = v.codeUpdateTime && moment(v.codeUpdateTime * 1000).format('YYYY-MM-DD H:m:s')
+      v._screenSize = data.screenSize;
     })
+
+    if(data.changes._screenSize) {
+      data.versions[0]._screenSize = data.changes._screenSize
+    }
 
     const { currentCode } = this.state
     const activeCode = data.versions[0]
