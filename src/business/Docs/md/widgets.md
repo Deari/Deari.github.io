@@ -1004,7 +1004,7 @@ URL: http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html
 |code|是|string|授权码（二授权接口返回数据）|
 
 调用举例：
-http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html?promotionName=KFC金地广场店2017儿童节促销&developerKey=1001&wid=842b6f34c052400a935f39400a7cab10&backurl=http%3a%2f%2fwww.test.com%2ffeifan.html&code=a9e9c83779f9c28411f6ec70ad665a99
+http://h5.ffan.com/fe/fe/sea-parking/html/bo_login.html?promotionName=KFC金地广场店2017儿童节促销&developerKey=1001&wid=842b6f34c052400a935f39400a7cab10&backUrl=http%3a%2f%2fwww.test.com%2ffeifan.html&code=a9e9c83779f9c28411f6ec70ad665a99
 
 登录成功之后，页面跳转的链接地址：backUrl带上ticket参数，如上述的举例，跳转链接为：http://www.test.com/feifan.html?ticket=**********
 
