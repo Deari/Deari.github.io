@@ -13,10 +13,10 @@
 什么是蓝海商家？
 蓝海开放平台为商家提供的客户端，商家通过使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；通过使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；通过使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。市场中的应用、组件、硬件，均由开发者提供。
 
-![Alt text](http://timg.ffan.com/convert/resize/url_T1tudTBQAj1RCvBVdK/tfs/ead251e029d178dce98489c3320e4570.png)
-![Alt text](http://timg.ffan.com/convert/resize/url_T1qihTBbYb1RCvBVdK/tfs/1248e3fbde800dcf07ae9262fade529b.png)
-![Alt text](http://timg.ffan.com/convert/resize/url_T1vuCTBXd_1RCvBVdK/tfs/258878fc95b456d865a06fea22ba4724.png)
-![Alt text](http://timg.ffan.com/convert/resize/url_T1EfdTBvVQ1RCvBVdK/tfs/0e5ffa2860bffbb198e8284b7d595b7d.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1wiKTB7xg1RCvBVdK/tfs/29f10b0f3c03b930c244a92c3e5e5f7f.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1cfbTBmLv1RCvBVdK/tfs/79af5256129bcd3c4e51ad705b699d4e.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1bfCTB7Vj1RCvBVdK/tfs/a67271b16c3790692c7c5cc151c3e7f0.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1.fVTBTAT1RCvBVdK/tfs/cc2d5f50aaf5f566eb2fec4a76e5994b.png)
 
 什么是蓝海顾客？
 蓝海开放平台为顾客提供的客户端，或者其他客户端嵌入蓝海开放平台的SDK，顾客可以使用蓝海商家在【店铺装修】中配置的组件。如领取会员卡、进行抽奖。
@@ -240,7 +240,7 @@ public class MyConfig extends DefaultConfig {
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/umd/ffan-bo-jssdk-0.0.4.min.js
+> http://nres.ffan.com/newactivity/umd/ffan-bo-jssdk-0.0.5.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
