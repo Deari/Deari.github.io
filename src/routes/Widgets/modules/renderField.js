@@ -81,7 +81,7 @@ export class renderTags extends Component {
         <div className='row-right max-width'>
           <ul>
             {
-              tags.map((item) => (
+              Array.isArray(tags) && tags.map((item) => (
                 <li
                   className={
                     ((tagId) => {

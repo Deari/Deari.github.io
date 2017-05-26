@@ -3,8 +3,8 @@ import s from './index-new.scss'
 import cx from 'classnames'
 
 class ScreenSize extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+    super(props)
     this.state = {
       current: props.input.value,
       list: [{
@@ -30,12 +30,11 @@ class ScreenSize extends React.Component {
     this.setState({ current: newProps.input.value })
   }
 
-  handleChange (e) {
-    const v = e.target.value;
+  handleClick(value) {
     this.setState({
-      current: v
+      current: value
     }, ()=>{
-      this.props.input.onChange(v)
+      this.props.input.onChange(value)
     })
   }
 
@@ -53,8 +52,8 @@ class ScreenSize extends React.Component {
             <ul className={s.list}>
               {
                 list.map(v=>{
-                  return <li className={s.item}>
-                    <label htmlFor={v.id} className={cx(s.img, s[v.classname])}></label>
+                  return <li className={s.item} onClick={()=>this.handleClick(v.value)}>
+                    <label  className={cx(s.img, s[v.classname])}></label>
                     <div className={s['size-text']}>
                       <span className={s.screen}>{v.text}</span>
                       {/*<span className={s.advice}>手机 (建议5英寸)</span>*/}
@@ -62,12 +61,12 @@ class ScreenSize extends React.Component {
                     <div className={`row-radio ${s.radioBtn}`}>
                       <input type="radio" name="screenSize" 
                         checked={v.value == current} 
-                        onChange={::this.handleChange} 
+                        hidden
                         value={v.value} 
                         id={v.id} 
                         className={`input-radio`}
                       />
-                      <span className="radio-item">
+                      <span className="radio-item" >
                         <i className="iconfont icon-radio"></i>
                         <i className="iconfont icon-radio1"></i>
                       </span>
