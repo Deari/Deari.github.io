@@ -47,6 +47,7 @@
       "env": {
         "NODE_ENV": "production",
         "SIT": 1,
+        "BRANCH": "sit",
         "DEBUG": "app:*"
       }
     },
@@ -62,6 +63,7 @@
     "deploy:prod": {
       "command": "npm run deploy",
       "env": {
+        "BRANCH": "master",
         "NODE_ENV": "production",
         "DEBUG": "app:*"
       }
