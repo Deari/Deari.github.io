@@ -301,7 +301,7 @@ export class renderFile extends Component {
         <label className='label-type'>{ required ? <i className='require_field'>*</i> : '' }{label}<span>{genre}</span></label>
         <div className='row-right'>
           { isMiniProgram ? <div className='mini-program-xx'>
-            应用类型为“FAP小程序”，请您先试用打包工具(
+            应用类型为“FAP小程序”，请您先使用打包工具(
               <a style={{color: '#2692fb', textDecoration: 'underline'}} href='http://fdfs.ffan.net/v2/file/nDjvYxof9gD9AjbH9o4al93o5T2mw9Yp?attachExt=2'>Windows</a> 
               | <a  style={{color: '#2692fb', textDecoration: 'underline'}} href='http://fdfs.ffan.net/v2/file/BgbBeXayRXw6H5h4aF3115Egr50dM6pr?attachExt=2'>Mac</a>
               )进行打包，请将打包完成后的应用进行上传。
