@@ -58,14 +58,15 @@
       margin: 0 10px;
       cursor: pointer;
       display: inline-block;
-      & > a {
+      &>a {
         color: #666;
-      	padding: 0 15px;
+        padding: 0 15px;
+        border-bottom: 2px solid transparent;
         &:hover,
         &.active {
-	        color: #000;
-	        border-bottom: 2px solid $site-blue;
-	      }
+          color: #000;
+          border-bottom: 2px solid $site-blue;
+        }
       }
     }
     .address {
@@ -97,7 +98,7 @@
 .text-con {
   cursor: pointer;
   display: inline-block;
-  vertical-align: 1px;
+  vertical-align: middle;
 }
 
 .img-use {
@@ -106,85 +107,70 @@
   display: block;
 }
 
-.apply-radio {
-  margin: 14px 0;
-  .list {
-    overflow: hidden;
-    &.active {
-      display: block;
-    }
-    .item {
-      color: #666;
-      margin: 8px;
-      float: left;
-      cursor: pointer;
-      text-align: center;
-      border-radius: 4px;
-      transition: all 0.05s ease-in-out;
-      position: relative;
-      &:before {
-        content: "";
-        background: #fff;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        position: absolute;
-        left: -7px;
-        top: -7px;
-      }
-      &:hover {
-        &>img {
-          border-color: rgba(38, 146, 251, 0.6);
-        }
-      }
-      img {
-        width: 98px;
-        height: 98px;
+.checkboxList {
+  .item {
+    .relative-list {
+      display: none;
+      margin-top: 15px;
+      &.active {
         display: block;
-        border-radius: 4px;
-        border: 1px solid $site-border-gray;
       }
-      .del {
-        position: absolute;
-        left: -7px;
-        top: -7px;
-        font-size: 20px;
-        color: $site-red;
-        cursor: pointer;
-        z-index: 2;
-      }
-      .name {
-        height: 24px;
-        width: 100px;
+      .item {
+        width: 64px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+        display: inline-block;
+        vertical-align: top;
         color: #666;
-        display: block;
-        line-height: 24px;
-        @include text-overflow;
-      }
-    }
-    .item-add {
-      width: 100px;
-      height: 100px;
-      border: 1px solid $site-border-gray;
-      &:before {
-        display: none;
-      }
-      .add {
-        display: block;
-        line-height: 98px;
-        &>i {
-          color: #999;
+        border-radius: 4px;
+        position: relative;
+        img {
+          width: 64px;
+          height: 64px;
+          border-radius: 4px;
+          border: 1px solid #dedede;
+        }
+        .delBtn {
+          position: absolute;
+          z-index: 10;
+          display: block;
+          text-align: center;
+          left: -7px;
+          top: -7px;
+          font-size: 16px;
+          color: #ff5628;
+          cursor: pointer;
+          background: #fff;
+        }
+        .name {
+          display: block;
+          max-width: 100%;
+          color: #666;
+          @include text-overflow;
         }
       }
-      &:hover {
-        color: #fff;
-        .add {
-          &>i {
-            color: #fff;
+      .addBtn {
+        display: inline-block;
+        vertical-align: top;
+        color: #666;
+        margin-right: 10px;
+        border-radius: 4px;
+        width: 64px;
+        height: 64px;
+        line-height: 64px;
+        text-align: center;
+        border: 1px solid #dedede;
+        cursor: pointer;
+        &:hover {
+          color: #fff;
+          .add {
+            &>i {
+              color: #fff;
+            }
           }
+          background: rgba(38, 146, 251, 0.6);
+          border-color: transparent;
         }
-        background: rgba(38, 146, 251, 0.6);
-        border-color: transparent;
       }
     }
   }

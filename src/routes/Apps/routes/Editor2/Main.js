@@ -8,7 +8,12 @@ import s from 'business/AppCreate/Basic-new.scss'
 
 const Main = (props) => {
   const { id, type } = props.params;
-  const { text } = APP_TYPES[type] || {};
+  const _type = APP_TYPES[type];
+  
+  let text;
+  if(_type) {
+    text = `(${type.text}类型)`;
+  }
 
   return <div className='container'>
     <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
@@ -16,15 +21,15 @@ const Main = (props) => {
       <div className={s.breadcrumb}>
         <a className="iconfont icon-fanhui" href="/apps/list"></a>
         <span className={s.site}>我的应用</span>
-        <span className={`${s.site} ${s.noNext}`}>编辑应用 ( {text} 类型 )</span>
+        <span className={`${s.site} ${s.noNext}`}>编辑应用 {text}</span>
       </div>
       <div className={s.tabs}>
         <ul className={s.list}>
           <li className={s.item}>
-            <IndexLink className={s.address}  activeClassName={s.active} to={`/apps/edit2/${id}`}>基本信息</IndexLink>
+            <IndexLink className={s.address}  activeClassName={s.active} to={`/apps/edit/${id}`}>基本信息</IndexLink>
           </li>
           <li className={s.item} activeClassName='active'>
-            <Link className={s.address}  activeClassName={s.active} to={`/apps/edit2/${id}/version`}>版本信息</Link>
+            <Link className={s.address}  activeClassName={s.active} to={`/apps/edit/${id}/version`}>版本信息</Link>
           </li>
         </ul>
       </div>

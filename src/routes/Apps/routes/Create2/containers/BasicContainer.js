@@ -16,9 +16,8 @@ class Container extends React.Component {
     })
 
     postAppBasicInfo(params).then(data=>{
-      console.log('创建成功：', data)
       const { type } = this.props.params;
-      this.props.router.replace(`/apps/create2/${type}/complete/${data.appId}`)
+      this.props.router.replace(`/apps/create/${type}/complete/${data.appId}`)
     }).catch(e=>{
       alert(`创建失败(错误码：${e.status})`)
     })

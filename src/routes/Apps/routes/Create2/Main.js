@@ -8,13 +8,18 @@ import { APP_TYPES } from 'config/appTypes'
 
 const Main = (props) => {
   const type = APP_TYPES[props.params.type];
+  let text;
+  if(type) {
+    text = `(${type.text}类型)`;
+  }
+
   return <div className='container'>
     <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
     <div className='content'>
       <div className={s.breadcrumb}>
-        <a className="iconfont icon-fanhui" href="/apps/list"></a>
+        <Link className="iconfont icon-fanhui" to="/apps/list"></Link>
         <span className={s.site}>我的应用</span>
-        <span className={`${s.site} ${s.noNext}`}>创建新应用 ( {type && type.text}类型 )</span>
+        <span className={`${s.site} ${s.noNext}`}>创建新应用 {text}</span>
       </div>
       {props.children}
     </div>

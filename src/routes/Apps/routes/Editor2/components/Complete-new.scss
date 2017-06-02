@@ -16,11 +16,15 @@
 			flex: 1;
 			.item {
 				color: #666;
-				display: block;
 				font-size: 14px;
 				line-height: 20px;
 				margin-bottom: 10px;
 				word-break: break-all;
+				display: flex;
+				.number{
+					flex: 1;
+					margin-left: 4px;
+				}
 				&:last-child {
 					margin-bottom: 0;
 				}

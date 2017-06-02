@@ -5,7 +5,7 @@ import BasicContainer from './containers/BasicContainer'
 import Complete from './components/Complete'
 
 module.exports = (store) => ({
-  path: 'create2',
+  path: 'create',
   getComponent(partialNextState, cb) {
     const Main = require('./Main').default;
     

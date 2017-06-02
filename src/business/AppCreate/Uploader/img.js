@@ -17,6 +17,7 @@ class ImageUploader extends React.Component {
     if(!e.target.files.length) {
       return
     }
+    // return console.log(e.target.files)
     const conf = {
       fileName: e.target.files[0],
       width: 400,

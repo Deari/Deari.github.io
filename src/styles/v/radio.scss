@@ -1,3 +1,4 @@
+/*将要废弃 start*/
 .row-radio {
 	margin-right: 4px;
 	position: relative;
@@ -38,31 +39,29 @@
 		display: none;
 	}
 }
-.checked-wrapper {
-	margin-right: 4px;
-	display: inline-block;
-	vertical-align: middle;
-	cursor: pointer;
-	.checked-input {
-		display: none;
-	}
-	.checked-item {
-		display: block;
-		& > i{
-			display: none;
-			font-size: 23px;
-		}
-		& > i.icon-radio.active,
-		& > i.icon-checkbox1.active
-		{
-			display: block;
-			color: #2692fb;
-		}
-		& > i.icon-radio1.active,
-		& > i.icon-checkbox.active
-		{
-			display: block;
-			color: #cdd4dc;
-		}
-	}
+/*将要废弃 end*/
+
+.checkbox-item {
+  display: inline-block;
+  cursor: pointer;
+  padding-top: 5px;
+  & > label {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  & > i {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .icon-radio, .icon-checkbox
+  {
+    color: #2692fb;
+  }
+  .icon-radio1,.icon-checkbox1
+  {
+    color: #cdd4dc;
+  }
 }

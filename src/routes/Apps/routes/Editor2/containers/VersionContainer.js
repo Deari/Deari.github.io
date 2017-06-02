@@ -22,13 +22,18 @@ class Container extends React.Component {
     postAppVersionInfo({
       appId: this.props.params.id,
       prepareVersion: 1
+    }).then(()=>{
+      return this.initInfo()
+    }).catch(e=>{
+      console.log(e);
     })
+  }
 
-    getAppInfo(this.props.params.id).then(data=>{
-      console.log(data)
-      const { versions, appId, appKind } = data;
+  initInfo() {
+    return getAppInfo(this.props.params.id).then(data=>{
+      const { versions, appId, appKind, relations, moduleName } = data;
       const _version = versions.find((v)=>+v.publishStatus ===1)
-      const { codeId, codeDesc, codeVersion, fileLink, autoPublish } = versions[0]
+      const { codeId, codeDesc, codeVersion, showUpdateMsg, fileName, fileLink, autoPublish } = versions[0]
       let _files = null;
       if(+appKind !== 1) {
         _files = { fileLink };
@@ -39,22 +44,27 @@ class Container extends React.Component {
         initialValues: {
           ...this.state.initialValues,
           ...versions[0],
+          moduleName,
           appId,
           appKind,
+          relations,
           _files
         },
         onlineVersion: (_version && _version.codeVersion) || ''
       })
-
-    }).then(e=>{
-
     })
   }
 
-  onSubmit (values) {
-    console.log(values);
-    // return
-    const { _files, ...rest } = values;
+  save(values) {
+    this.onSubmit(values)
+  }
+
+  publish(values) {
+    this.onSubmit(values, 1)
+  }
+
+  onSubmit (values, commit) {
+    const { _files, relations, ...rest } = values;
     let params = { ...rest };
     if(_files) {
       params = {
@@ -62,8 +72,18 @@ class Container extends React.Component {
         ..._files
       }
     }
+    Object.assign(params, {
+      relatedApps: relations.apps.map(v=>v.appId),
+      relatedWidgets: relations.widgets.map(v=>v.appId),
+      commit: commit || ''
+    })
+
     postAppVersionInfo(params).then(data=>{
-      console.log('操作成功：', data)
+      if(commit) {
+        this.props.router.push(`/apps/edit/${this.props.params.id}/complete`)
+      } else {
+        alert('保存成功！');
+      }
     }).catch(e=>{
       alert(`操作失败(错误码：${e.status})`)
     })
@@ -74,7 +94,8 @@ class Container extends React.Component {
     return <Version pageType={'apps'}
       params={ this.props.params }
       initialValues={initialValues} 
-      onSubmit={::this.onSubmit} 
+      save={::this.save} 
+      publish={::this.publish}
       onlineVersion={onlineVersion}
     />
   }
