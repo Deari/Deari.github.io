@@ -1,5 +1,4 @@
 @import 'src/styles/v/base.scss';
-
 .upload-btn {
   text-align: center;
   border-radius: 2px;
@@ -24,9 +23,11 @@
     display: none;
   }
 }
+
 .item-rule {
   margin-bottom: 20px;
 }
+
 .img-item {
   margin-top: 14px;
   display: none;
@@ -39,9 +40,43 @@
     margin: 0 10px 10px 0;
     display: inline-block;
     border: 1px solid $site-border-gray;
-    & > img{
-    	width: 98px;
-    	height: 98px;
+    &>img {
+      width: 98px;
+      height: 98px;
+    }
+  }
+}
+
+.progress {
+  display: block;
+  width: 380px;
+  // width: 574px;
+  margin-top: 10px;
+  .num {
+    font-weight: normal;
+    font-size: 12px;
+    color: #999;
+    float: right;
+    margin-top: 4px;
+  }
+  .stoke {
+    position: relative;
+    display: inline-block;
+    height: 6px;
+    border: 1px solid #eee;
+    .fill {
+      position: absolute;
+      left: 1;
+      background: #fff;
+      display: inline-block;
+      height: 4px;
+    }
+    .filled {
+      position: absolute;
+      left: 1;
+      background: -webkit-linear-gradient(#57acff, #2692fb);
+      display: inline-block;
+      height: 4px;
     }
   }
 }

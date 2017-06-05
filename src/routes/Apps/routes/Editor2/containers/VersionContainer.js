@@ -19,6 +19,7 @@ class Container extends React.Component {
   }
 
   componentWillMount() {
+    console.log(this.props)
     postAppVersionInfo({
       appId: this.props.params.id,
       prepareVersion: 1
@@ -36,7 +37,7 @@ class Container extends React.Component {
       const { codeId, codeDesc, codeVersion, showUpdateMsg, fileName, fileLink, autoPublish } = versions[0]
       let _files = null;
       if(+appKind !== 1) {
-        _files = { fileLink };
+        _files = { fileLink, fileName };
       }
       
       this.setState({
@@ -52,6 +53,8 @@ class Container extends React.Component {
         },
         onlineVersion: (_version && _version.codeVersion) || ''
       })
+    }).catch(e=>{
+      console.log("11", e);
     })
   }
 

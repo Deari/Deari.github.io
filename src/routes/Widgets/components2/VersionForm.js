@@ -28,6 +28,7 @@ class Main extends React.Component {
     );
 
     let fileField;
+    let configField;
    
     switch(appKind) {
       case APP_TYPES.mini_program.value: 
@@ -39,6 +40,12 @@ class Main extends React.Component {
           title={miniProgramInfo}
           component={FileUploader}
         />;
+        configField = <Field
+          required 
+          label='组件配置'
+          name='codeSetting' 
+          component={CodeSetting}
+        />
         break;
       
       case APP_TYPES.h5.value: 
@@ -71,14 +78,7 @@ class Main extends React.Component {
         />
         
         {fileField}
-
-        <Field
-          required 
-          label='组件配置'
-          name='codeSetting' 
-          component={CodeSetting}
-        />
-
+        {configField}
         <Field
           required 
           label='版本发布'

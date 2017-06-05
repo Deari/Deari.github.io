@@ -8,6 +8,7 @@ import './form.scss'
 import AppDesc from 'business/AppCreate/AppDesc'
 import TextInput from 'business/AppCreate/TextInput'
 import FileUploader from 'business/AppCreate/Uploader/file'
+import FileSplitUploader from 'business/AppCreate/Uploader/fileSplit'
 import VersionPublish from 'business/AppCreate/VersionPublish'
 import Relative from 'business/AppCreate/Relative'
 
@@ -45,7 +46,7 @@ class Main extends React.Component {
           label='应用文件(APK)' 
           name='_files'
           accept=".apk"
-          component={FileUploader}
+          component={FileSplitUploader}
         />;
         break;
       case APP_TYPES.h5.value: 
