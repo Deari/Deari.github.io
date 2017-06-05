@@ -87,8 +87,14 @@ class Relative extends React.Component {
   }
 
   onChange() {
-    const { apps, widgets } = this.state.value;
-    this.props.input.onChange(this.state.value)
+    const {value, list} = this.state;
+    const { apps, widgets } = value;
+
+    const v = {
+      apps: list.apps.unfold ? apps : [],
+      widgets: list.widgets.unfold ? widgets : []
+    }
+    this.props.input.onChange(v)
   }
 
   add(type, data) {

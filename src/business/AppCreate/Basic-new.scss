@@ -47,7 +47,12 @@
     margin-right: 4px;
   }
 }
-
+.rule-text {
+  color: #999;
+  font-size: 12px;
+  line-height: 24px;
+  display: inline-block;
+}
 .tabs {
   font-size: 16px;
   .list {
@@ -185,3 +190,88 @@
     margin-right: 0;
   }
 }
+
+.example {
+		width: 280px;
+    margin-top: 20px;
+		.content {
+			background: #eee;
+			padding: 3px;
+			font-size: 12px;
+			position: relative;
+			.example-img {
+				width: 94px;
+				height: 94px;
+				background: #FFFFFF;
+				text-align: center;
+				display: inline-block;
+				vertical-align: top;
+				cursor: pointer;
+				position: relative;
+				&:hover {
+					background: rgba(0,0,0,0.6);
+					.img {
+						opacity: 0.3;
+						&-hover {
+							opacity: 1;
+							display: block;
+						}
+					}
+					.name {
+						color: #fff;
+					}
+				}
+				.img {
+					width: 50px;
+					height: 50px;
+					display: block;
+					margin: 11px auto 8px;
+					background: url("http://timg.ffan.com/convert/resize/url_T1MDVTByhb1RCvBVdK/tfs/1.png") no-repeat;
+					background-size: 100%;
+					&-hover {
+						position: absolute;
+						left: 50%;
+						top: 0;
+						transform: translateX(-50%);
+						background: url("http://timg.ffan.com/convert/resize/url_T12QJTBbhv1RCvBVdK/tfs/1.png") no-repeat;
+						background-size: 100%;
+						display: none;
+					}
+				}
+				.name {
+					display: block;
+					color: $site-blue;
+				}
+			}
+			.example-text {
+				width: 180px;
+				padding: 0 10px 0 15px;
+				display: inline-block;
+				vertical-align: top;
+				.title {
+					font-size: 12px;					
+					margin: 6px 0;
+					position: relative;
+					&:before {
+						content: "";
+						width: 0;
+						height: 0;
+						font-size: 0;
+						line-height: 0;
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						left: -10px;
+						border-bottom: 4px solid transparent;
+						border-top: 4px solid transparent;
+						border-right: 4px solid #999;
+					}
+				}
+				.con {
+					line-height: 20px;
+					color: #999;
+					word-break: break-all;
+				}
+			}
+		}
+	}
