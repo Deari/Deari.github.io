@@ -49,6 +49,7 @@ class FileUploader extends React.Component {
   render () {
     const props = this.props;
     const { title, accept, description, meta: { touched, dirty, error, warning } } = props;
+    const { fileLink, fileName } = this.state.value;
 
     return (
       <div className="form-group">
@@ -60,13 +61,14 @@ class FileUploader extends React.Component {
               { description && <Tips content={description}></Tips> }
             </div>
             <span className={t['upload-btn']}>
-              <input type='file' ref="file" accept={accept} className={t['upload-file']} onChange={::this.upload} />
-              <div className={t.text} onClick={::this.selectFile}>选择文件</div>
+              <input type='file' ref="file" accept={accept} hidden
+                className={t['upload-file']} onChange={::this.upload} />
+              <span className={t.btn} onClick={::this.selectFile}>选择文件</span>
+              <span className={t.exist}>{fileName || ''}</span>
             </span>
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
-          { this.state.value.fileLink }
         </div>
       </div>
     )

@@ -2,7 +2,7 @@ import React from 'react'
 import Tips from '../Tips'
 
 const InputText = (props) => {
-  const { title, description, meta: { touched, dirty, error, warning } } = props;
+  const { title, maxLength, description, meta: { touched, dirty, error, warning } } = props;
 
 	return <div className="form-group">
     <label className="label">{props.label}</label>
@@ -10,7 +10,7 @@ const InputText = (props) => {
     	{ title && <h2 className="site-title">{title}</h2>}
       <div className="item-wrapper">
         <div className="input-affix-wrapper">
-          <input type="text" className="form-input" {...props.input} />
+          <input type="text" maxLength={maxLength} className="form-input" {...props.input} />
           <i className="iconfont icon-edit"></i>
         </div>
         { description && <Tips content={description}></Tips> }

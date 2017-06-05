@@ -36,9 +36,10 @@ class Container extends React.Component {
       const { codeId, codeDesc, codeVersion, showUpdateMsg, fileName, fileLink, autoPublish } = versions[0]
       let _files = null;
       if(+appKind !== 1) {
-        _files = { fileLink };
+        _files = { fileLink, fileName };
       }
-      
+      console.log(versions[0].codeSetting, JSON.parse(versions[0].codeSetting));
+
       this.setState({
         data,
         initialValues: {
@@ -64,16 +65,17 @@ class Container extends React.Component {
   }
 
   onSubmit (values, commit) {
-    console.log(values);
     
-    const { _files, relations, ...rest } = values;
+    const { _files, codeSetting=[], relations, ...rest } = values;
     let params = { ...rest };
     if(_files) {
       params = {
         ...rest,
-        ..._files
+        ..._files,
+        setting: codeSetting
       }
     }
+    
     Object.assign(params, {
       relatedApps: relations.apps.map(v=>v.appId),
       relatedWidgets: relations.widgets.map(v=>v.appId),

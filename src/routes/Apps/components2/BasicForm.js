@@ -21,6 +21,7 @@ const Form = (props) => {
       <Field
         required 
         label='应用名称' 
+        maxLength={50}
         name='appName' 
         description='您的应用在应用市场中显示的名称' 
         component={TextInput}

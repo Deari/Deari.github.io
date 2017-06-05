@@ -10,6 +10,7 @@ import TextInput from 'business/AppCreate/TextInput'
 import FileUploader from 'business/AppCreate/Uploader/file'
 import VersionPublish from 'business/AppCreate/VersionPublish'
 import Relative from 'business/AppCreate/Relative'
+import CodeSetting from 'business/AppCreate/CodeSetting'
 
 import { APP_TYPES } from 'config/appTypes'
 
@@ -70,6 +71,13 @@ class Main extends React.Component {
         />
         
         {fileField}
+
+        <Field
+          required 
+          label='组件配置'
+          name='codeSetting' 
+          component={CodeSetting}
+        />
 
         <Field
           required 

@@ -37,6 +37,7 @@ const Form = (props) => {
     <form className="site-form" onSubmit={ handleSubmit }>
       <Field
         required 
+        maxLength={50}
         label='组件名称' 
         name='appName' 
         description='您的组件在组件市场中显示的名称' 
