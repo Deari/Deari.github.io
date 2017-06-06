@@ -48,12 +48,12 @@ class FileUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { title, accept, description, meta: { touched, dirty, error, warning } } = props;
+    const { required, title, accept, description, meta: { touched, dirty, error, warning } } = props;
     const { fileLink, fileName } = this.state.value;
 
     return (
       <div className="form-group">
-        <label className="label">{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className={"item-wrapper"}>
             <div className={t['item-rule']}>

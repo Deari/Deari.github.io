@@ -1,11 +1,12 @@
 import React from 'react'
 import Tips from '../Tips'
+import cx from 'classnames'
 
 const InputText = (props) => {
-  const { title, maxLength, description, meta: { touched, dirty, error, warning } } = props;
+  const { title, required,  maxLength, description, meta: { touched, dirty, error, warning } } = props;
 
 	return <div className="form-group">
-    <label className="label">{props.label}</label>
+    <label className={ cx("label", { "required": required })} >{props.label}</label>
     <div className="form-item">
     	{ title && <h2 className="site-title">{title}</h2>}
       <div className="item-wrapper">

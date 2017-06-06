@@ -15,7 +15,6 @@ class Container extends React.Component {
   componentDidMount() {
     const { id: appId } = this.props.params;
     getAppInfo(appId).then(data=>{
-      console.log("data:", data)
       const { appKind, categoryId, platform, changes, defaultLayout } = data;
       const { appLogo, appDesc, appPreviewImage, appName, tags } = changes
       this.setState({
@@ -32,6 +31,7 @@ class Container extends React.Component {
   }
 
   onSubmit (values, gotoNext) {
+    const { id: appId } = this.props.params;
     const { defaultLayout, ...rest } = values;
     postWidgetBasicInfo(rest).then(data=>{
       if(gotoNext == 1) {

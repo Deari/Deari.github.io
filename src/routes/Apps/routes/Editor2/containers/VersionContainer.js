@@ -83,7 +83,7 @@ class Container extends React.Component {
 
     postAppVersionInfo(params).then(data=>{
       if(commit) {
-        this.props.router.push(`/apps/edit/${this.props.params.id}/complete`)
+        this.props.router.replace(`/apps/edit/${this.props.params.id}/complete`)
       } else {
         alert('保存成功！');
       }

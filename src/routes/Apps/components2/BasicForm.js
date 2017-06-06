@@ -5,8 +5,6 @@ import ImageUploader from 'business/AppCreate/Uploader/img'
 import Tags from 'business/AppCreate/Tags'
 import AppDesc from 'business/AppCreate/AppDesc'
 import ScreenSize from 'business/AppCreate/ScreenSize'
-
-import './form.scss'
 import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
 

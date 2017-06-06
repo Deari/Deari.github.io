@@ -84,14 +84,14 @@ class fileSplitUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { title, description, input, accept, meta: { touched, dirty, error, warning } } = props
+    const { required, title, description, input, accept, meta: { touched, dirty, error, warning } } = props
     const { pressNum, index, progress } = this.state
     const { fileName } = input.value;
    
     
     return (
       <div className="form-group">
-        <label className="label">{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className={"item-wrapper"}>
             <div className={t['item-rule']}>

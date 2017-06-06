@@ -55,12 +55,12 @@ class PhoneSize extends React.Component {
   }
 
   render() {
-    const { meta: { touched, dirty, error, warning }, isEditMode } = this.props;
+    const { required, meta: { touched, dirty, error, warning }, isEditMode } = this.props;
     const { list, current } = this.state;
 
     return (
       <div className="form-group">
-        <label className='label'>尺寸</label>
+        <label className={ cx("label", { "required": required })}>尺寸</label>
         <div className='form-item'>
           <div className="item-wrapper">
             <h3 className={s.title}>组件在手机屏幕中所占比例的尺寸</h3>

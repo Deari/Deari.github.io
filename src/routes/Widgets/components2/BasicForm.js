@@ -5,15 +5,13 @@ import ImageUploader from 'business/AppCreate/Uploader/img'
 import Tags from 'business/AppCreate/Tags'
 import AppDesc from 'business/AppCreate/AppDesc'
 import PhoneSize from 'business/AppCreate/PhoneSize'
-
-import './form.scss'
 import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
 
 import { APP_TYPES } from 'config/appTypes'
 
 const Form = (props) => {
-  const { handleSubmit, tagSource, appKind, defaultLayout={} } = props;
+  const { handleSubmit, tagSource, appKind, defaultLayout={}, onSubmit } = props;
   const { w, h } = defaultLayout
   const isEditMode = !!props.editMode;
 

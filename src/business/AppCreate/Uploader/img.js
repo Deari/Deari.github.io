@@ -48,11 +48,11 @@ class ImageUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { description, example, title, meta: { touched, dirty, error, warning } } = props;
+    const { required, description, example, title, meta: { touched, dirty, error, warning } } = props;
 
     return (
       <div className="form-group">
-        <label className="label">{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className={"item-wrapper"}>
             <div className={s['item-rule']}>

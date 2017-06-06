@@ -122,13 +122,13 @@ class Relative extends React.Component {
   }
 
   render () {
-    const { meta: { touched, dirty, error, warning } } = this.props;
+    const { required, meta: { touched, dirty, error, warning } } = this.props;
     const { list, value } = this.state;
     const selected = value;
 
     return (
       <div className="form-group">
-        <label className="label label-no">配套使用</label>
+        <label className={ cx("label", { "required": required })}>配套使用</label>
         <div className="form-item">
           <div className="item-wrapper">
             <div className={s.info}>

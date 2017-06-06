@@ -23,23 +23,7 @@ const Main = (props) => {
         <span className={s.site}>我的组件</span>
         <span className={`${s.site} ${s.noNext}`}>编辑组件 {text}</span>
       </div>
-      <div className={s.tabs}>
-        <ul className={s.list}>
-          <li className={s.item}>
-            <IndexLink className={s.address}  activeClassName={s.active} to={`/widgets/edit/${id}`}>基本信息</IndexLink>
-          </li>
-          <li className={s.item} activeClassName='active'>
-            <Link className={s.address}  activeClassName={s.active} to={`/widgets/edit/${id}/version`}>版本信息</Link>
-          </li>
-        </ul>
-      </div>
-      <div className={s.main}>
-        <span className={s.tips}>
-          <i className="iconfont icon-zhuyi"></i>
-          您的这次更新会在新的组件版本发布后，在组件市场上显示。
-        </span>
-        {props.children}
-      </div>
+      {props.children}
     </div>
   </div>
 }

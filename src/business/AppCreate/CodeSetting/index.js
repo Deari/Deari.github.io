@@ -80,24 +80,36 @@ class Multiple extends Component {
 class CodeSetting extends Component {
   constructor(props) {
     super(props);
-    const value = JSON.parse(props.input.value);
+
+    let value;
+    try {
+      value = v && typeof v ===  'string' ? JSON.parse(props.input.value) : [];
+    } catch(e) {
+      value = []
+    }
+
+    // {
+    //   __uuid: 'xx',
+    //   id: '',
+    //   label: '',
+    //   type: 'input',
+    //   value: '',
+    //   valueList: [],
+    //   enableEdit: true,
+    //   desc: ''
+    // }
+
     this.state = {
-      value: Array.isArray(value) ? value : [
-        // {
-        //   __uuid: 'xx',
-        //   id: '',
-        //   label: '',
-        //   type: 'input',
-        //   value: '',
-        //   valueList: [],
-        //   enableEdit: true,
-        //   desc: ''
-        // }
-      ]
+      value: Array.isArray(value) ? value : []
     }
   }
   componentWillReceiveProps(newProps) {
-    const value = JSON.parse(newProps.input.value);
+    let value;
+    try {
+      value = v && typeof v ===  'string' ? JSON.parse(newProps.input.value) : [];
+    } catch(e) {
+      value = []
+    }
     
     this.setState({
       value: Array.isArray(value) ? value : [] 

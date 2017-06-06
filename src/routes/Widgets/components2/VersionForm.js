@@ -3,8 +3,6 @@ import { Field } from 'redux-form'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
-import './form.scss'
-
 import AppDesc from 'business/AppCreate/AppDesc'
 import TextInput from 'business/AppCreate/TextInput'
 import FileUploader from 'business/AppCreate/Uploader/file'
@@ -41,7 +39,6 @@ class Main extends React.Component {
           component={FileUploader}
         />;
         configField = <Field
-          required 
           label='组件配置'
           name='codeSetting' 
           component={CodeSetting}
@@ -87,7 +84,6 @@ class Main extends React.Component {
         />
         
         <Field
-          required 
           label='配套使用'
           name='relations' 
           component={Relative}

@@ -4,11 +4,11 @@ import cx from 'classnames'
 import Tips from '../Tips'
 
 const Tags = (props) => {
-  const {description, meta: { touched, dirty, error, warning } } = props;
+  const { required, description, meta: { touched, dirty, error, warning } } = props;
 
 	return (
     <div className='form-group'>
-      <label className='label'>{props.label}</label>
+      <label className={ cx("label", { "required": required })}>{props.label}</label>
       <div className='form-item'>
         <div className="item-wrapper">
           <textarea {...props.input} className={t['item-textarea']}></textarea>
