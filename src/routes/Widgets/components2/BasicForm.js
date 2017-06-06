@@ -15,7 +15,7 @@ import { APP_TYPES } from 'config/appTypes'
 const Form = (props) => {
   const { handleSubmit, tagSource, appKind, defaultLayout={} } = props;
   const { w, h } = defaultLayout
-  const isEditMode = !!props.edit;
+  const isEditMode = !!props.editMode;
 
   let example = ( w == 1 && h == 1 ?
     <div className={`${s.example}`}>
@@ -88,6 +88,10 @@ const Form = (props) => {
 
       <div className='form-actions'>
         <button type="submit" className={cx('primaryBtn', s.saveBtn)}>保存</button>
+        { isEditMode ? <button onClick={ handleSubmit((values)=>{
+            onSubmit(values, 1)
+          }) } className={cx('primaryBtn', s.saveBtn)}>保存并编辑版本信息</button> : null
+        }
       </div>
     </form>
   )

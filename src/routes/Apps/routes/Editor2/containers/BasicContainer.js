@@ -15,7 +15,7 @@ class Container extends React.Component {
   componentDidMount() {
     const { id: appId } = this.props.params;
     getAppInfo(appId).then(data=>{
-      console.log("data:", data)
+      
       const { appKind, categoryId, platform, changes } = data;
       const { screenSize, appLogo, appDesc, appName, tags } = changes
       this.setState({
@@ -29,14 +29,18 @@ class Container extends React.Component {
     })
   }
 
-  onSubmit (values) {
+  onSubmit (values, gotoNext) {
     postAppBasicInfo({
       ...values,
     }).then(data=>{
       console.log('保存成功！', data);
-      postAppVersionInfo({ appId: data.appId, prepareVersion: 1 }).then(()=>{
-        this.props.router.push(`/apps/list`)
-      })
+      const { id: appId } = this.props.params;
+      
+      if(gotoNext == 1) {
+        this.props.router.push(`/apps/edit/${appId}/version`)
+      } else {
+        alert('保存成功！')
+      }
     }).catch(e=>{
       alert(`保存失败(错误码：${e.status})`)
       console.log(e);
@@ -51,6 +55,7 @@ class Container extends React.Component {
         appKind={initialValues.appKind}
         onSubmit={::this.onSubmit}
         params={this.props.params}
+        editMode={true}
         initialValues={initialValues}
       />
     )

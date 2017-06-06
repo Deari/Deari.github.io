@@ -1,4 +1,4 @@
-export const validate = values => {
+export const validate = (values, props) => {
   const errors = {}
   if (!values.appName) {
     errors.appName = '请输入组件名称'
@@ -24,14 +24,40 @@ export const validate = values => {
   return errors
 }
 
-export const validateVersionForm = values => {
+function compareVersion(v1=[], v2=[]) {
+  for(let i=0; i<v1.length; i++) {
+    if(v1[i] == v2[i]){
+      continue;
+    }
+    return v1[i] > v2[i];
+  }
+}
+
+export const validateVersionForm = (values, props) => {
   const errors = {}
   if (!values.codeDesc) {
     errors.codeDesc = '版本介绍不能为空'
+  } else if (values.codeDesc.length > 4000) {
+    errors.codeDesc = 版本介绍内容长度不能大于4000字
   }
+
   if (!values.codeVersion) {
     errors.codeVersion = '版本号不能为空'
+  } else {
+    const _version = values.codeVersion.trim();
+    if (!/^\d+\.\d+\.\d+$/.test(_version)) {
+      errors.codeVersion = '您输入的版本格式有误';
+    }
+    if(props.onlineVersion) {
+      const _t = props.onlineVersion.split('.');
+      const _s = _version.split('.');
+      
+      if(!compareVersion(_s, _t)){
+        errors.codeVersion = '新版本须大于老版本';
+      }
+    }
   }
+
   if (typeof values.autoPublish === undefined) {
     errors.autoPublish = '请选择版本发布方式'
   }
@@ -39,6 +65,9 @@ export const validateVersionForm = values => {
   if(+values.appKind === 1) {
     if (!values.fileLink) {
       errors.fileLink = '请输入组件网址'
+    }
+    if(!/^https?:\/\/\S+\.\S+/.test(values.fileLink.trim())) {
+      errors.fileLink = '请输入正确的网址，以（http:// 或 https://）开头'
     }
   }
 

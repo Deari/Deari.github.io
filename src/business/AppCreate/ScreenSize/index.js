@@ -7,22 +7,7 @@ class ScreenSize extends React.Component {
     super(props)
     this.state = {
       current: props.input.value,
-      list: [{
-        id: 'mobile',
-        classname: 'img-small',
-        text: '手机端',
-        value: 1
-      }, {
-        id: 'pad',
-        classname: 'img-middle',
-        text: 'Pad端',
-        value: 2
-      }, {
-        id: 'pc',
-        classname: 'img-large',
-        text: 'PC端',
-        value: 4
-      }]
+      list: props.list || []
     }
   }
 

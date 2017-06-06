@@ -13,8 +13,32 @@ import s from 'business/AppCreate/Basic-new.scss'
 import { APP_TYPES } from 'config/appTypes'
 
 const Form = (props) => {
-  const { handleSubmit, tagSource, appKind } = props;
-  const showScreenSizeField = +appKind === +APP_TYPES.h5.value;
+  const { handleSubmit, tagSource, appKind, onSubmit } = props;
+  const isH5 = +appKind === +APP_TYPES.h5.value;
+  const isEditMode = !!props.editMode;
+  
+  let useList = [{
+    id: 'mobile',
+    classname: 'img-small',
+    text: '手机端',
+    value: 1
+  }, {
+    id: 'pad',
+    classname: 'img-middle',
+    text: 'Pad端',
+    value: 2
+  }]
+
+  if(isH5) {
+    useList = useList.concat([
+      {
+        id: 'pc',
+        classname: 'img-large',
+        text: 'PC端',
+        value: 4
+      }
+    ])
+  }
 
   return (
     <form className="site-form" onSubmit={ handleSubmit }>
@@ -27,14 +51,14 @@ const Form = (props) => {
         component={TextInput}
       />
 
-      { showScreenSizeField && 
-        <Field
-          required 
-          label='使用场景' 
-          name='screenSize' 
-          component={ScreenSize}
-        />
-      }
+      
+      <Field
+        required 
+        label='使用场景' 
+        list={useList}
+        name='screenSize' 
+        component={ScreenSize}
+      />
 
       <Field
         required 
@@ -64,6 +88,10 @@ const Form = (props) => {
 
       <div className='form-actions'>
         <button type="submit" className={cx('primaryBtn', s.saveBtn)}>保存</button>
+        { isEditMode ? <button onClick={ handleSubmit((values)=>{
+            onSubmit(values, 1)
+          }) } className={cx('primaryBtn', s.saveBtn)}>保存并编辑版本信息</button> : null
+        }
       </div>
     </form>
   )

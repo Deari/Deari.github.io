@@ -6,7 +6,7 @@ class PhoneSize extends React.Component {
     constructor(props) {
     super(props)
     this.state = {
-      current: {
+      current: props.input.value || {
         w: 4,
         h: 2
       },

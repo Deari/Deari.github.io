@@ -4,7 +4,7 @@ import t from './img-new.scss'
 import cx from 'classnames'
 import { uploadFile } from 'reducers/api'
 import Tips from '../Tips'
-import { getDownloadDomain } from 'utils/d'
+import { getDownloadDomain, getDomain } from 'utils/d'
 
 class fileSplitUploader extends React.Component {
   state = {
@@ -15,22 +15,22 @@ class fileSplitUploader extends React.Component {
     txt: '',
     index: 0,
     pressNum: 0,
-    resp: ''
+    resp: '',
+    progress: 0
   }
-  fileUpload (e) {
+  fileUpload(e) {
     if (!e.target.files[0]) return
     const fileValue = e.target.files[0]
-    // const name = file.name;
     const size = fileValue.size
     const shardSize = 1 * 1024 * 1024
     const pressNum = Math.ceil(size / shardSize)
     this.setState({ index: 0, filecode: 0, start: 0, end: shardSize, shardSize: shardSize, txt: '上传中...', pressNum: pressNum }, () => { this.upload(fileValue) })
   }
-  selectFile () {
+  selectFile() {
     findDOMNode(this.refs.file).click()
   }
 
-  upload (file) {
+  upload(file) {
     const { start, end, shardSize, filecode, index, pressNum } = this.state
     const xhr = new XMLHttpRequest()
     const fd = new FormData()
@@ -55,7 +55,7 @@ class fileSplitUploader extends React.Component {
               return
             }
             const newIndex = index + 1
-            that.setState({ start: end, end: changeEnd, filecode: res.fileCode, index: newIndex })
+            that.setState({ progress: Math.ceil(end/file.size*100), start: end, end: changeEnd, filecode: res.fileCode, index: newIndex })
             that.upload(file)
           }
         }
@@ -81,25 +81,14 @@ class fileSplitUploader extends React.Component {
     }
     xhr.send(fd)
   }
-  getArr (pressNum) {
-    if (pressNum <= 0) return
-    const newArr = []
-    for (let i = 1; i <= pressNum; i++) {
-      newArr.push(i)
-    }
-    return (newArr)
-  }
+
   render () {
     const props = this.props;
     const { title, description, input, accept, meta: { touched, dirty, error, warning } } = props
-    const { pressNum, index } = this.state
-    const stokeStyle = {
-      width: Math.round((1 / pressNum) * 420) + 'px'
-    }
-    const fillStyle = {
-      width: Math.round((1 / pressNum) * 420) - 2 + 'px'
-    }
-    const pressArr = this.getArr(pressNum)
+    const { pressNum, index, progress } = this.state
+    const { fileName } = input.value;
+   
+    
     return (
       <div className="form-group">
         <label className="label">{props.label}</label>
@@ -109,26 +98,16 @@ class fileSplitUploader extends React.Component {
               { title }
               { description && <Tips content={description}></Tips> }
             </div>
-            <span className={t['upload-btn']}>
+            <span className={t.uploader}>
               <input type='file' ref="file" accept={accept} hidden
-                className={t['upload-file']} onChange={::this.upload} />
+                onChange={::this.fileUpload} />
               <span className={t.btn} onClick={::this.selectFile}>选择文件</span>
-              {/*<span className={t.exist}>{fileName || ''}</span>*/}
+              <span className={t.exist}>{fileName || ''}</span>
             </span>
-            {index && pressNum && index < pressNum ? this.state.txt : input.value.name}
-            <span className={t.progress}>
-              {
-                Array.isArray(pressArr) && pressArr.map((item, key) => {
-                  return (
-                    <b key={key} className={t.stoke} style={stokeStyle}>
-                      <i className={item <= index ? t.filled : t.fill} style={fillStyle} />
-                    </b>
-                  )
-                })
-              }
-              {index && pressNum ? <b className={t.num}>{index}MB/共{pressNum}MB</b> : ''}
-
-            </span>
+            { progress ? <span className={t.progress}>
+              <i className={t.fillstyle} style={{ 'width': `${progress}%`}}></i>
+            </span> : null }
+            {index && pressNum ? <b className={t.num}>{index}MB/共{pressNum}MB</b> : ''}
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}

@@ -60,9 +60,8 @@ class FileUploader extends React.Component {
               { title }
               { description && <Tips content={description}></Tips> }
             </div>
-            <span className={t['upload-btn']}>
-              <input type='file' ref="file" accept={accept} hidden
-                className={t['upload-file']} onChange={::this.upload} />
+            <span className={t.uploader}>
+              <input type='file' ref="file" accept={accept} hidden onChange={::this.upload} />
               <span className={t.btn} onClick={::this.selectFile}>选择文件</span>
               <span className={t.exist}>{fileName || ''}</span>
             </span>

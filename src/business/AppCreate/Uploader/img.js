@@ -59,10 +59,10 @@ class ImageUploader extends React.Component {
               { title }
               { description && <Tips content={description}></Tips> }
             </div>
-            <span className={s['upload-btn']}>
-              <input type='file' ref="file" className={s['upload-file']} 
+            <span className={s.uploader}>
+              <input type='file' ref="file" hidden 
                 accept='.png' onChange={::this.upload} />
-              <div className={s.text} onClick={::this.selectFile}>选择文件</div>
+              <div className={s.btn} onClick={::this.selectFile}>选择文件</div>
             </span>
           </div>
 

@@ -38,8 +38,6 @@ class Container extends React.Component {
       if(+appKind !== 1) {
         _files = { fileLink, fileName };
       }
-      console.log(versions[0].codeSetting, JSON.parse(versions[0].codeSetting));
-
       this.setState({
         data,
         initialValues: {

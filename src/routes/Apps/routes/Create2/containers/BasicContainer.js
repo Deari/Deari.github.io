@@ -25,7 +25,7 @@ class Container extends React.Component {
 
   render () {
     const { appType } = this.state;
-    return appType ? <Basic pageType={'apps'} onSubmit={::this.onSubmit} appKind={appType.value} /> : null;
+    return appType ? <Basic onSubmit={::this.onSubmit} appKind={appType.value} /> : null;
   }
 }
 

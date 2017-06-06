@@ -31,13 +31,14 @@ class Container extends React.Component {
     })
   }
 
-  onSubmit (values) {
-    console.log(values)
+  onSubmit (values, gotoNext) {
     const { defaultLayout, ...rest } = values;
     postWidgetBasicInfo(rest).then(data=>{
-      console.log('保存成功！', data);
-      this.props.router.push(`/widgets/edit/${data.appId}/version`)
-      
+      if(gotoNext == 1) {
+        this.props.router.push(`/widgets/edit/${appId}/version`)
+      } else {
+        alert('保存成功！')
+      }
     }).catch(e=>{
       alert(`保存失败(错误码：${e.status})`)
       console.log(e);
@@ -52,7 +53,7 @@ class Container extends React.Component {
         appKind={initialValues.appKind}
         onSubmit={::this.onSubmit}
         params={this.props.params}
-        isEditMode={true}
+        editMode={true}
         initialValues={initialValues}
       />
     )
