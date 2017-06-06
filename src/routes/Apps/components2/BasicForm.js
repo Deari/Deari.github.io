@@ -10,6 +10,13 @@ import s from 'business/AppCreate/Basic-new.scss'
 
 import { APP_TYPES } from 'config/appTypes'
 
+const ImageLimit = {
+  width: 400,
+  height: 400,
+  fileType: JSON.stringify(['png']),
+  fileSize: 1024 * 300,
+};
+
 const Form = (props) => {
   const { handleSubmit, tagSource, appKind, onSubmit } = props;
   const isH5 = +appKind === +APP_TYPES.h5.value;
@@ -61,6 +68,7 @@ const Form = (props) => {
       <Field
         required 
         label='应用图片' 
+        limit={ImageLimit}
         title={ <span className={s['rule-text']}>请上传应用高清图片<br/>400*400像素，仅支持PNG格式，大小不超过300KB </span>}
         name='appLogo'
         description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'

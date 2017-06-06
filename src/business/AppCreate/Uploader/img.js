@@ -18,14 +18,13 @@ class ImageUploader extends React.Component {
       return
     }
     // return console.log(e.target.files)
+    const { limit={} } = this.props;
     const conf = {
       fileName: e.target.files[0],
-      width: 400,
-      height: 400,
-      fileType: JSON.stringify(['png']),
-      fileSize: 1024 * 300,
       clientType: 1
     }
+    Object.assign(conf, limit);
+    
     const formData = new FormData()
     for(let k in conf ) {
       formData.append(k, conf[k])
