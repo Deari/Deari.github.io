@@ -75,6 +75,7 @@ class Container extends React.Component {
         ..._files
       }
     }
+
     Object.assign(params, {
       relatedApps: relations.apps.map(v=>v.appId),
       relatedWidgets: relations.widgets.map(v=>v.appId),

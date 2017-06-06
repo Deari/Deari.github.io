@@ -25,11 +25,10 @@ class FileUploader extends React.Component {
       formData.append(k, conf[k])
     }
     uploadFile(formData).then(data=>{
-      console.log("upload:", data)
       this.setState({
         value: data.url
       })
-      const { url, originalName, rest } = data;
+      const { url, originalName, ...rest } = data;
       this.props.input.onChange({
         ...rest,
         fileLink: url,

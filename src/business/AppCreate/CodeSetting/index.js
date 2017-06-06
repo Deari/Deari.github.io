@@ -80,10 +80,10 @@ class Multiple extends Component {
 class CodeSetting extends Component {
   constructor(props) {
     super(props);
-
+    const v = props.input.value;
     let value;
     try {
-      value = v && typeof v ===  'string' ? JSON.parse(props.input.value) : [];
+      value = (v && typeof v ===  'string' ? JSON.parse(v) : []);
     } catch(e) {
       value = []
     }
@@ -105,8 +105,9 @@ class CodeSetting extends Component {
   }
   componentWillReceiveProps(newProps) {
     let value;
+    const v = newProps.input.value;
     try {
-      value = v && typeof v ===  'string' ? JSON.parse(newProps.input.value) : [];
+      value = (v && typeof v ===  'string' ? JSON.parse(v) : []);
     } catch(e) {
       value = []
     }
