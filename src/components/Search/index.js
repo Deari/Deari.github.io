@@ -35,8 +35,12 @@ class Search extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const clearBtn = nextProps.defaultValue && nextProps.defaultValue.trim();
-    this.setState({ value: nextProps.defaultValue || '', clearBtn })
+    const { defaultValue } = nextProps;
+    if(typeof defaultValue === 'undefined') {
+      this.setState({ clearBtn: !!this.state.value })
+    } else {
+      this.setState({ value: defaultValue, clearBtn: defaultValue !== '' })
+    }
   }
 
   searchHandler () {

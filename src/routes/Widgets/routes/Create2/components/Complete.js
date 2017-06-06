@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
-import s from './Complete-new.scss'
+import s from 'business/AppCreate/Complete-new.scss'
+
 import cx from 'classnames'
 import { getAppInfo, getDevInfo, postWidgetVersionInfo } from 'reducers/api'
 
@@ -28,12 +29,10 @@ class Complete extends React.Component {
     
   }
 
-  handleView () {
-    this.props.router.replace(`/widgets/detail/${this.props.params.id}`)
-  }
-
   render() {
     const { appInfo, devInfo } = this.state;
+    const { params } = this.props;
+
     return (
       <div className={s.wrapper}>
         <div className={`${s['success-wrapper']} ${s['complete-wrapper']}`}>
@@ -58,7 +57,8 @@ class Complete extends React.Component {
             <dd>2、新版本准备好之后，你可以在我的组件中发布新版本。</dd>
           </dl>
           <span className={s['success-text']}>返回我的组件，发布新版本。</span>
-          <button onClick={::this.handleView} className={`primaryBtn ${s['return-apply']}`}>查看我的组件</button>
+          <Link to={`/widgets/detail/${params.id}`} className={`primaryBtn ${s.viewBtn}`}>查看我的组件</Link>
+
         </div>
         
         <ul className={s['doc-wrapper']}>

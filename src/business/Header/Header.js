@@ -26,7 +26,8 @@ const Header = (props) => {
             <i className='site-logo' />
             <span className='text'>BO开放平台</span>
           </Link>
-          <small className='small'>开发者平台</small>
+          <small className='small dev'>开发者平台</small>
+          <small className='small merchant'>商家平台</small>
         </h1>
         <div className='nav-wrapper'>
           <ul className='site-nav'>

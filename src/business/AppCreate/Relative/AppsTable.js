@@ -1,10 +1,9 @@
 import React from 'react'
-import t from 'business/AppCreate/Basic-new.scss'
 import s from './list-new.scss'
 import fetchUtil from 'utils/fetch'
 import { getDomain } from 'utils/d'
 import APPS_FILTERS from 'config/appStatus'
-import { appType } from 'config/index'
+import { appType, PageTypes } from 'config/index'
 import { judgeAppStatus } from 'config/appStatus'
 import Item from './AppItem'
 import Search from 'components/Search'
@@ -94,17 +93,20 @@ class AppsTable extends React.Component {
   }
 
   render() {
+    const { type } = this.props;
+
     return(
       <div className={s.content}>
         <div className={s.search}>
-          <Search onSearch={::this.onSearch} placeholder={`请输入组件名称进行搜索`} />
+          <Search onSearch={::this.onSearch}
+            onClear={::this.onSearch} placeholder={`输入${PageTypes[type]}名称搜索`} />
         </div>
         <div className={s.tableWrapper}>
           <table className={`site-table ${s.table}`} cellSpacing='0' cellPadding='0'>
             <thead>
               <tr>
                 <th>Logo</th>
-                <th>应用名称</th>
+                <th>{PageTypes[type]}名称</th>
                 <th>价格</th>
                 <th>状态</th>
                 <th>操作</th>

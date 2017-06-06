@@ -53,10 +53,13 @@
       font-size: 26px;
       margin: 0 10px;
       padding-right: 10px;
-      border-right: 1px solid $site-border-gray;
     }
     .small {
       font-size: 16px;
+      padding: 0 10px;
+      &.dev {
+        border-right: 1px solid $site-border-gray;
+      }
     }
   }
 
