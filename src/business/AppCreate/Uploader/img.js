@@ -58,6 +58,7 @@ class ImageUploader extends React.Component {
               { title }
               { description && <Tips content={description}></Tips> }
             </div>
+            { example }
             <span className={s.uploader}>
               <input type='file' ref="file" hidden 
                 accept='.png' onChange={::this.upload} />
@@ -71,7 +72,7 @@ class ImageUploader extends React.Component {
               <img src={this.state.value}/>
             </li>
           </ul> }
-          { example }
+          
         </div>
       </div>
     )

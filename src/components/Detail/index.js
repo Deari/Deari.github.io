@@ -135,7 +135,7 @@ console.log(latestVersion)
           <p className='title'>版本</p>
           <p className='text'>{!data.mine ? publishVersion && publishVersion.codeVersion : latestVersion.codeVersion}</p>
         </div>
-        { showSize && +data.appKind !== 1 && +data.appType !== 1 ? <div className='cell'>
+        { showSize && +data.appKind !== 1 && +data.appType === 1 ? <div className='cell'>
             <p className='title'>大小</p>
             <p className='text'>{!data.mine ? publishVersion && publishVersionBundleSize : latestVersionBundleSize }</p>
           </div> : null

@@ -7,8 +7,8 @@ class PhoneSize extends React.Component {
     super(props)
     this.state = {
       current: props.input.value || {
-        w: 4,
-        h: 2
+        // w: 4,
+        // h: 2
       },
       list: [{
         id: '4_2',

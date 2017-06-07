@@ -22,12 +22,18 @@ const Header = (props) => {
       <div className='bg' />
       <div className='site-header'>
         <h1 className='site-title'>
-          <Link to='/' className='home-link'>
-            <i className='site-logo' />
-            <span className='text'>BO开放平台</span>
-          </Link>
-          <small className='small dev'>开发者平台</small>
-          <small className='small merchant'>商家平台</small>
+          <i className='site-logo'></i>
+          <div className='title'>
+            <div className='text'>BO开放平台</div>
+            <div className='small'>
+              <Link to='/' className='dev'>
+                开发者平台
+              </Link>
+              <Link to='/store/home' className='merchant'>
+                商家平台
+              </Link>
+            </div>
+          </div>
         </h1>
         <div className='nav-wrapper'>
           <ul className='site-nav'>
