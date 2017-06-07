@@ -3,7 +3,7 @@ import Tips from '../Tips'
 import cx from 'classnames'
 
 const InputText = (props) => {
-  const { title, required,  maxLength, description, meta: { touched, dirty, error, warning } } = props;
+  const { title, required, placeholder, maxLength, description, meta: { touched, dirty, error, warning } } = props;
 
 	return <div className="form-group">
     <label className={ cx("label", { "required": required })} >{props.label}</label>
@@ -11,7 +11,7 @@ const InputText = (props) => {
     	{ title && <h2 className="site-title">{title}</h2>}
       <div className="item-wrapper">
         <div className="input-affix-wrapper">
-          <input type="text" maxLength={maxLength} className="form-input" {...props.input} />
+          <input type="text" maxLength={maxLength} placeholder={placeholder} className="form-input" {...props.input} />
           <i className="iconfont icon-edit"></i>
         </div>
         { description && <Tips content={description}></Tips> }

@@ -7,7 +7,7 @@ const BasicFormHOC = (Wrapper) => class Container extends React.Component {
   }
 
   componentDidMount() {
-    fetchTags().then(data=>{
+    fetchTags({ type: 'widget'}).then(data=>{
       this.setState({
         tags: data
       })

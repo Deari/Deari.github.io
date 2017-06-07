@@ -1,8 +1,10 @@
 import React from 'react'
 import s from '../Basic-new.scss'
+import t from './index-new.scss'
 import cx from 'classnames'
 import Modal from 'components/Modal'
 import AppsTable from './AppsTable'
+import Tips from '../Tips'
 
 class Relative extends React.Component {
     constructor(props) {
@@ -122,7 +124,7 @@ class Relative extends React.Component {
   }
 
   render () {
-    const { required, meta: { touched, dirty, error, warning } } = this.props;
+    const { appId, required, description, meta: { touched, dirty, error, warning } } = this.props;
     const { list, value } = this.state;
     const selected = value;
 
@@ -137,8 +139,13 @@ class Relative extends React.Component {
                 只有当它们全部是已发布状态，才会显示在市场中展示。
                 <br/>应用市场详情页的显示，如下图：
               </p>
-              <img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
+              <div>
+                <img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png"
+                  className={t.exampleImage}/>
+                { description && <Tips content={description}></Tips> }
+              </div>
             </div>
+            
             <div className={s.checkboxList}>
               {Object.values(list).map(v=>(
               <div key={v.id} className={s.item}>
@@ -170,6 +177,7 @@ class Relative extends React.Component {
 
             <Modal
               title={`选择应用`}
+              appId={appId}
               active={list.apps.modal} 
               onClose={this.closeModal.bind(this, 'apps')}>
               <AppsTable type={'apps'} selected={selected['apps']}

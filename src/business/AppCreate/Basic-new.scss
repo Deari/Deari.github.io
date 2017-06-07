@@ -111,12 +111,6 @@
   vertical-align: middle;
 }
 
-.img-use {
-  width: 300px;
-  height: 182px;
-  display: block;
-}
-
 .checkboxList {
   .item {
     .relative-list {
@@ -195,6 +189,16 @@
   }
 }
 
+.pkgTools {
+  line-height: 1.5;
+  color: #666;
+  font-size: 12;
+  .download {
+    margin: 0 5px;
+    color: #2692fb;
+    text-decoration: underline;
+  }
+}
 
 .example {
 		width: 280px;

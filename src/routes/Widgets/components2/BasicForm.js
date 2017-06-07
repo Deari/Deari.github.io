@@ -48,6 +48,7 @@ const Form = (props) => {
         required 
         maxLength={50}
         label='组件名称' 
+        placeholder='请输入组件名称'
         name='appName' 
         description='您的组件在组件市场中显示的名称' 
         component={TextInput}
@@ -84,6 +85,7 @@ const Form = (props) => {
         required 
         label='组件简介' 
         name='appDesc'
+        placeholder='请输入组件简介，此内容将显示在组件列表页中'
         description='对您的组件的描述，用以详细说明特性和功能' 
         component={AppDesc}
       />

@@ -2,6 +2,7 @@ import React from 'react'
 import Basic from '../components/Basic'
 import { postAppBasicInfo } from 'reducers/api'
 import { APP_TYPES } from 'config/appTypes'
+import ErrorManager from 'config/error'
 
 class Container extends React.Component {
   state = {
@@ -19,7 +20,8 @@ class Container extends React.Component {
       const { type } = this.props.params;
       this.props.router.replace(`/apps/create/${type}/complete/${data.appId}`)
     }).catch(e=>{
-      alert(`创建失败(错误码：${e.status})`)
+      const msg = ErrorManager[e.status] || '创建失败';
+      alert(`${msg}(错误码：${e.status})`)
     })
   }
 

@@ -27,7 +27,7 @@ function getAppStatus (app) {
 
 class AppsTable extends React.Component {
   state = {
-    filter: 'ALL',
+    filter: 'REVIEWED',
     list: [],
     total: 0,
     request_params: {
@@ -46,7 +46,7 @@ class AppsTable extends React.Component {
     const { filter, ...rest } = params
     const _filter = filter || this.state.filter
     const { status: review } = APPS_FILTERS.find(function (t) { return t.filter === _filter })
-
+    
     return fetchUtil.getJSON(apiUrl, {
       ...this.state.request_params,
       ...rest,
@@ -63,10 +63,17 @@ class AppsTable extends React.Component {
           _appKindClassName: appType[v.appKind]
         }
       })
+      .filter(v=> {
+        if(+v.appId === +this.props.appId) {
+          return false
+        }
+        return true;
+        // return v._appStatus.some(item=> item.status === 'published')
+      })
 
       this.setState({
         list: _list || [],
-        total: data.page && data.page.totalCount,
+        total: data.page && data.page.totalCount - 1,
         filter: _filter,
         request_params: {
           ...this.state.request_params,

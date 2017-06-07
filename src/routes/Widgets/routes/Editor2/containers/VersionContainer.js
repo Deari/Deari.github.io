@@ -5,6 +5,7 @@ import {
 } from 'reducers/api'
 import Version from '../components/Version'
 import { APP_TYPES } from 'config/appTypes'
+import ErrorManager from 'config/error'
 
 class Container extends React.Component {
   constructor(props) {
@@ -82,12 +83,13 @@ class Container extends React.Component {
 
     postWidgetVersionInfo(params).then(data=>{
       if(commit) {
-        this.props.router.push(`/apps/edit/${this.props.params.id}/complete`)
+        this.props.router.push(`/widgets/edit/${this.props.params.id}/complete`)
       } else {
         alert('保存成功！');
       }
     }).catch(e=>{
-      alert(`操作失败(错误码：${e.status})`)
+      const msg = ErrorManager[e.status] || '操作失败';
+      alert(`${msg}(错误码：${e.status})`)
     })
   }
 

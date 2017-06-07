@@ -12,7 +12,10 @@ class ScreenSize extends React.Component {
   }
 
   componentWillReceiveProps (newProps) {
-    this.setState({ current: newProps.input.value })
+    this.setState({ 
+      current: newProps.input.value,
+      list: newProps.list
+    })
   }
 
   handleClick(value) {

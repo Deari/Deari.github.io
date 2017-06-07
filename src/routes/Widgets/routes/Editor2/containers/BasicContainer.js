@@ -6,6 +6,7 @@ import {
 } from 'reducers/api'
 
 import Basic from '../components/Basic'
+import ErrorManager from 'config/error'
 
 class Container extends React.Component {
   state = {
@@ -40,8 +41,9 @@ class Container extends React.Component {
         alert('保存成功！')
       }
     }).catch(e=>{
-      alert(`保存失败(错误码：${e.status})`)
       console.log(e);
+      const msg = ErrorManager[e.status] || '操作失败';
+      alert(`${msg}(错误码：${e.status})`)
     })
   }
 

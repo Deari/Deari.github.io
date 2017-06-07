@@ -12,7 +12,7 @@ export const uploadFile = (params) => {
 }
 
 export const fetchTags = (params) => {
-  const url = getDomain('/app/v1/bo/v1/public/app/tags')
+  const url = getDomain(`/app/v1/bo/v1/public/${params.type}/tags`)
   return fetchUtil.getJSON(url, params)
 }
 

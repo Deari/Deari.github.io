@@ -14,13 +14,14 @@ import { APP_TYPES } from 'config/appTypes'
 
 class Main extends React.Component {
   render () {
-    const { onlineVersion, handleSubmit, initialValues } = this.props;
+    const { params, onlineVersion, handleSubmit, initialValues } = this.props;
     const { appKind } = initialValues;
     const miniProgramInfo = (
-      <span style={{ lineHeight: 1.5, color: '#666', fontSize: 12 }}>
+      <span className={s.pkgTools}>
         应用类型为“FAP小程序”，请您先使用打包工具(
-        <a href='http://fdfs.ffan.net/v2/file/3l8v0ztIcPI9vBB18g614JF370J47byY?attachExt=2'>Windows</a> | 
-        <a href='http://fdfs.ffan.net/v2/file/ZnFWmHtPYah2Fq2a8nuGhVW1NCT9OTMV?attachExt=2'>Mac</a>)
+        <a className={s.download} href='http://fdfs.ffan.net/v2/file/3l8v0ztIcPI9vBB18g614JF370J47byY?attachExt=2'>Windows</a>
+        | 
+        <a className={s.download} href='http://fdfs.ffan.net/v2/file/ZnFWmHtPYah2Fq2a8nuGhVW1NCT9OTMV?attachExt=2'>Mac</a>)
         进行打包，请将打包完成后的应用进行上传。
       </span>
     );
@@ -31,7 +32,7 @@ class Main extends React.Component {
       case APP_TYPES.mini_program.value: 
         fileField = <Field
           required 
-          label='应用文件(FAP)' 
+          label='应用文件(FAP小程序)' 
           name='_files'
           accept=".fap"
           title={miniProgramInfo}
@@ -51,6 +52,7 @@ class Main extends React.Component {
         fileField = <Field
           required 
           label='应用网址' 
+          placeholder='请输入网址'
           name='fileLink' 
           component={TextInput}
         />;
@@ -62,7 +64,7 @@ class Main extends React.Component {
           required 
           label='版本介绍' 
           name='codeDesc'
-          placeholder='请输入版本介绍。此内容将显示在应用详情页的版本信息中。'
+          placeholder='请输入版本介绍，此内容将显示在详情页的版本信息中'
           description='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' 
           component={AppDesc}
         />
@@ -71,8 +73,9 @@ class Main extends React.Component {
           required 
           label='版本号' 
           name='codeVersion' 
-          title={onlineVersion && `您的线上版本为：${onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。`}
-          description='您要填入的 App 版本号。编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。' 
+          placeholder='请输入版本号'
+          title={(onlineVersion ? `您的线上版本为：${onlineVersion}` : '')+'您要填入的版本号，编号应遵循软件版本规范。'}
+          description='您要填入的 App 版本号，编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。' 
           component={TextInput}
         />
         
@@ -87,7 +90,9 @@ class Main extends React.Component {
         
         <Field
           label='配套使用'
+          appId={params.id}
           name='relations' 
+          description='商家在使用应用时，必须配套使用一下关联的组件、硬件、应用。因为勾选以下组件、硬件、应用后，代表商家无法单独使用此应用，必须与勾选项配套使用。商家在下载应用时，应用详情页中，会展示配套使用的组件、硬件、应用。'
           component={Relative}
         />
 

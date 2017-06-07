@@ -50,12 +50,12 @@ const Form = (props) => {
       <Field
         required 
         label='应用名称' 
+        placeholder='请输入应用名称'
         maxLength={50}
         name='appName' 
         description='您的应用在应用市场中显示的名称' 
         component={TextInput}
       />
-
       
       <Field
         required 
@@ -79,6 +79,7 @@ const Form = (props) => {
         required 
         label='应用简介' 
         name='appDesc'
+        placeholder='请输入应用简介，此内容将显示在应用列表页中'
         description='对您的应用的描述，用以详细说明特性和功能' 
         component={AppDesc}
       />

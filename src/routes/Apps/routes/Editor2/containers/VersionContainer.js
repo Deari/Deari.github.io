@@ -5,6 +5,7 @@ import {
 } from 'reducers/api'
 import Version from '../components/Version'
 import { APP_TYPES } from 'config/appTypes'
+import ErrorManager from 'config/error'
 
 class Container extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class Container extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.props)
     postAppVersionInfo({
       appId: this.props.params.id,
       prepareVersion: 1
@@ -27,6 +27,8 @@ class Container extends React.Component {
       return this.initInfo()
     }).catch(e=>{
       console.log(e);
+      const msg = ErrorManager[e.status] || '操作失败';
+      alert(`${msg}(错误码：${e.status})`)
     })
   }
 
@@ -54,7 +56,7 @@ class Container extends React.Component {
         onlineVersion: (_version && _version.codeVersion) || ''
       })
     }).catch(e=>{
-      console.log("11", e);
+      console.log(e);
     })
   }
 
@@ -89,7 +91,8 @@ class Container extends React.Component {
         alert('保存成功！');
       }
     }).catch(e=>{
-      alert(`操作失败(错误码：${e.status})`)
+      const msg = ErrorManager[e.status] || '创建失败';
+      alert(`${msg}(错误码：${e.status})`)
     })
   }
 
@@ -98,6 +101,7 @@ class Container extends React.Component {
     return <Version pageType={'apps'}
       params={ this.props.params }
       initialValues={initialValues} 
+      appId={this.props.params.id}
       save={::this.save} 
       publish={::this.publish}
       onlineVersion={onlineVersion}
