@@ -5,7 +5,7 @@ import s from './index-new.scss'
 const Single = ({ id, label, value, desc, onChange}) => {
   return ( 
     <div className={s.inputsBox}>
-      <input name='id' type="text" placeholder="唯一ID" value={id} 
+      <input name='id' type="text" placeholder="id" value={id} 
         onChange={onChange}/>
       <input name='label' type="text" placeholder="字段名称" value={label}
         onChange={onChange}/>
@@ -42,12 +42,15 @@ class Multiple extends Component {
   }
 
   render () {
-    const { id, valueList, onChange } = this.props;
+    const { id, value, valueList, onChange } = this.props;
 
     return (
       <div className={s.inputsBox}>
-        <input type="text" name='id' placeholder="唯一ID" value={id} onChange={(e)=>{
+        <input type="text" name='id' placeholder="id" value={id} onChange={(e)=>{
           onChange('id', e.target.value && e.target.value.trim())
+        }}/>
+        <input type="text" name='value' placeholder="默认值" value={value} onChange={(e)=>{
+          onChange('value', e.target.value && e.target.value.trim())
         }}/>
         <div className={s.inputsList}>
           {

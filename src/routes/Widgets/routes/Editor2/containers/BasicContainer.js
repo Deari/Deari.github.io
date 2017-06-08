@@ -52,7 +52,6 @@ class Container extends React.Component {
     return (
       <Basic 
         pageType={'apps'} 
-        appKind={initialValues.appKind}
         onSubmit={::this.onSubmit}
         params={this.props.params}
         editMode={true}

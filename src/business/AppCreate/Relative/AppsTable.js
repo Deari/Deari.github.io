@@ -27,7 +27,7 @@ function getAppStatus (app) {
 
 class AppsTable extends React.Component {
   state = {
-    filter: 'REVIEWED',
+    filter: 'ALL',
     list: [],
     total: 0,
     request_params: {
@@ -67,8 +67,8 @@ class AppsTable extends React.Component {
         if(+v.appId === +this.props.appId) {
           return false
         }
-        return true;
-        // return v._appStatus.some(item=> item.status === 'published')
+        // return true;
+        return v._appStatus.some(item=> item.status === 'published')
       })
 
       this.setState({
@@ -126,7 +126,7 @@ class AppsTable extends React.Component {
             </tbody>
           </table>
         </div>
-        <Pagination onChange={::this.onPagination} total={this.state.total} />
+        {/*<Pagination onChange={::this.onPagination} total={this.state.total} />*/}
       </div>
     )
   }
