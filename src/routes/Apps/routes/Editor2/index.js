@@ -1,12 +1,16 @@
 import React from 'react'
 import { injectReducer } from 'store/reducers'
 import { reducer as formReducer } from 'redux-form'
-import BasicContainer from './containers/BasicContainer'
-import VersionContainer from './containers/VersionContainer'
-import Complete from './components/Complete'
+import { login } from 'utils/login'
 
 module.exports = (store) => ({
   path: 'edit/:id',
+  onEnter: (nextState, replace, callback) => {
+    login(() => {
+      callback()
+    })
+  },
+
   getComponent(partialNextState, cb) {
     const Main = require('./Main').default;
     injectReducer(store, { key: 'form', reducer: formReducer })
@@ -18,7 +22,7 @@ module.exports = (store) => ({
   indexRoute : {
     getComponent(partialNextState, cb) {
       require.ensure([], (require) => {
-        cb(null, BasicContainer)
+        cb(null, require('./containers/BasicContainer').default)
       })
     }
   },
@@ -28,15 +32,15 @@ module.exports = (store) => ({
       cb(null, [
         {
           path: 'basic',
-          component: BasicContainer
+          component: require('./containers/BasicContainer').default
         },
         {
           path: 'version',
-          component: VersionContainer
+          component: require('./containers/VersionContainer').default
         },
         {
           path: 'complete',
-          component: Complete
+          component: require('./components/Complete').default
         }
       ])
     })

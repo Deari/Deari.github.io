@@ -1,11 +1,15 @@
 import React from 'react'
 import { injectReducer } from 'store/reducers'
 import { reducer as formReducer } from 'redux-form'
-import BasicContainer from './containers/BasicContainer'
-import Complete from './components/Complete'
+import { login } from 'utils/login'
 
 module.exports = (store) => ({
   path: 'create',
+  onEnter: (nextState, replace, callback) => {
+    login(() => {
+      callback()
+    })
+  },
   getComponent(partialNextState, cb) {
     const Main = require('./Main').default;
     
@@ -31,12 +35,12 @@ module.exports = (store) => ({
         {
           path: ':type',
           indexRoute: {
-            component: BasicContainer
+            component: require('./containers/BasicContainer').default
           },
           childRoutes: [
             {
               path: 'complete/:id',
-              component: Complete
+              component: require('./components/Complete').default
             }
           ]
         }
