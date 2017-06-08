@@ -5,6 +5,7 @@ import cx from 'classnames'
 import { uploadFile } from 'reducers/api'
 import Tips from '../Tips'
 import { getDownloadDomain, getDomain } from 'utils/d'
+import ErrorManager from 'config/error'
 
 class fileSplitUploader extends React.Component {
   state = {
@@ -39,8 +40,11 @@ class fileSplitUploader extends React.Component {
     const readyChange = (that) => {
       if (xhr.readyState == 4) {
         if (xhr.status >= 200 && xhr.status < 300) {
-          if (JSON.parse(xhr.responseText).status == 500 || JSON.parse(xhr.responseText).status == 404) {
-            return console.log("error");
+          const { status } = JSON.parse(xhr.responseText);
+          if (status == 500 || status == 404) {
+            const msg = ErrorManager[e.status] || '上传失败';
+            alert(`上传失败(错误码：${status})`)
+            return;
           } else {
             const changeEnd = end + shardSize > file.size ? file.size : end + shardSize
             const res = JSON.parse(xhr.responseText).data

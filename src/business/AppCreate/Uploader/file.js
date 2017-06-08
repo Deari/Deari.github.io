@@ -4,6 +4,7 @@ import t from './img-new.scss'
 import cx from 'classnames'
 import { uploadFile } from 'reducers/api'
 import Tips from '../Tips'
+import ErrorManager from 'config/error'
 
 class FileUploader extends React.Component {
   constructor(props) {
@@ -35,6 +36,8 @@ class FileUploader extends React.Component {
         fileName: originalName
       })
     }).catch(e => {
+      const msg = ErrorManager[e.status] || '上传失败';
+      alert(`${msg}(错误码：${e.status})`)
       console.log('上传失败', e)
     })
   }
