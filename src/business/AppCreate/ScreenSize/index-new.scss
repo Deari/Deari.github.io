@@ -5,14 +5,16 @@
 }
 .list {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	.item {
 		display: inline-block;
+    vertical-align: top;
 		text-align: center;
+    width: 150px;
 		.img {
 			width: 103px;
 			height: 90px;
-			display: block;
+			display: inline-block;
 			cursor: pointer;
 			margin: 40px 0 30px;
 			&-small{

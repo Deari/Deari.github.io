@@ -19,12 +19,12 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Store')(store),
-        require('./routes/Create')(store),
+        // require('./routes/Create')(store),
         require('./routes/Create2')(store),
         // require('./routes/Detail/new').default,
         require('./routes/Detail')(store),
         require('./routes/List').default,
-        require('./routes/Editor')(store),
+        // require('./routes/Editor')(store),
         require('./routes/Editor2')(store),
         require('./routes/Doc').default,
         require('./routes/DevTools').default,

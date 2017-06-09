@@ -8,7 +8,8 @@ import { PageTypes, getPageLinks } from 'config/index'
 
 export default class Main extends React.Component {
   render () {
-    const { filter, data, type, total, onPagination, onToggleFilter, onSearch, searchText } = this.props
+    const { filter, data, type, total, onPagination, onToggleFilter, 
+      onSearch, searchText, dataLoading } = this.props
     return (
       <div className='container'>
         <SideBar pageLinks={getPageLinks(type)} type={type} />
@@ -16,7 +17,7 @@ export default class Main extends React.Component {
           <TabFilters filter={filter} searchText={searchText} 
             type={type} onToggleFilter={onToggleFilter} onSearch={onSearch} />
           <DevInfo />
-          <Table data={data} type={type} />
+          <Table data={data} type={type} dataLoading={dataLoading}/>
           <Pagination onChange={onPagination} total={total} />
         </div>
       </div>

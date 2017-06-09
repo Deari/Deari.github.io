@@ -172,7 +172,9 @@ class DevAccount extends Component {
 
     if (hasAccount) {
       Account = <div className={s.account}>
-        <h3 className={s['account-title']}>商家测试账号</h3>
+        <h3 className={s['account-title']}>商家测试账号 
+          { +account.userType === 2 ? <span className={s.deprecated}>已废弃</span> : null }
+        </h3>
         <div className={s.item}>
           <label className={s.key}>wid：</label>
           <span className={s.value}>{account.wid}</span>

@@ -1,19 +1,24 @@
 @import 'src/styles/v/base.scss';
 .main {
     padding: 20px 17px;
+    .deprecated,
     .success,
     .fail {
         height: 28px;
         font-size: 16px;
         line-height: 26px;
         margin-bottom: 10px;
-        padding-left: 12px;
+        padding: 0 15px;
         border: 1px solid $site-border-gray;
     }
+    .deprecated,
     .fail {
         background: #ffe4e2;
         border-color: #ffb9b4;
         color: #ff3a2c;
+    }
+    .deprecated {
+      margin: 0 10px;
     }
     .success {
         background: #e4efc9;

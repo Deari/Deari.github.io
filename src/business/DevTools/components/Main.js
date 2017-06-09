@@ -43,7 +43,7 @@ class DevTools extends Component {
               <dt className={s.img} />
               <dd className={s.main}>
                 <h3 className={s.name}>查看developerKey和developerSecret</h3>
-                <p className={s.text}>开发者在进行开发、调试时，需要DeveloperKey、DeveloperSecret，进行授权认证。</p>
+                <p className={s.text}>开发者在进行开发、调试时，需要developerKey、developerSecret，进行授权认证。</p>
               </dd>
             </dl>
             <div className={s['tool-btn']}>

@@ -32,15 +32,14 @@
   }
 
   .site-title {
-    .home-link,
-    .small {
+    .title {
       display: inline-block;
-      vertical-align: middle;
     }
-    .site-logo,
-    .text {
+ 
+    .site-logo, .title {
       display: inline-block;
       vertical-align: middle;
+      padding-left: 10px;
     }
     .site-logo {
       height: 45px;
@@ -51,12 +50,22 @@
     .text {
       color: $site-blue;
       font-size: 26px;
-      margin: 0 10px;
-      padding-right: 10px;
-      border-right: 1px solid $site-border-gray;
     }
     .small {
+      margin-top: 5px;
       font-size: 16px;
+      & > a {
+        display: inline-block;
+        vertical-align: top;
+      }
+      .dev {
+        color: $site-blue;
+        padding-right: 10px;
+        border-right: 1px solid $site-border-gray;
+      }
+      .merchant {
+        padding-left: 10px;
+      }
     }
   }
 

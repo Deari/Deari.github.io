@@ -7,27 +7,15 @@ class ScreenSize extends React.Component {
     super(props)
     this.state = {
       current: props.input.value,
-      list: [{
-        id: 'mobile',
-        classname: 'img-small',
-        text: '手机端',
-        value: 1
-      }, {
-        id: 'pad',
-        classname: 'img-middle',
-        text: 'Pad端',
-        value: 2
-      }, {
-        id: 'pc',
-        classname: 'img-large',
-        text: 'PC端',
-        value: 4
-      }]
+      list: props.list || []
     }
   }
 
   componentWillReceiveProps (newProps) {
-    this.setState({ current: newProps.input.value })
+    this.setState({ 
+      current: newProps.input.value,
+      list: newProps.list
+    })
   }
 
   handleClick(value) {
@@ -40,12 +28,12 @@ class ScreenSize extends React.Component {
 
   render () {
     const props = this.props;
-    const { meta: { touched, dirty, error, warning } } = props;
+    const { required, meta: { touched, dirty, error, warning } } = props;
     const { list, current } = this.state;
 
     return (
       <div className="form-group">
-        <label className='label'>{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className="item-wrapper">
             {/*<h3 className={s.title}>请选择要适配的屏幕尺寸</h3>*/}
