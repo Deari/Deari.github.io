@@ -14,8 +14,9 @@ import { APP_TYPES } from 'config/appTypes'
 
 class Main extends React.Component {
   render () {
-    const { onlineVersion, handleSubmit, initialValues } = this.props;
+    const { onlineVersion, handleSubmit, initialValues, params } = this.props;
     const { appKind } = initialValues;
+
     const miniProgramInfo = (
       <span className={s.pkgTools} style={{ lineHeight: 1.5, color: '#666', fontSize: 12 }}>
         应用类型为“FAP小程序”，请您先使用打包工具(
@@ -88,6 +89,7 @@ class Main extends React.Component {
         
         <Field
           label='配套使用'
+          appId={params.id}
           name='relations' 
           description='商家在使用组件时，必须配套使用一下关联的组件、硬件、应用。因为勾选以下组件、硬件、应用后，代表商家无法单独使用此组件，必须与勾选项配套使用。商家在下载组件时，应用详情页中，会展示配套使用的组件、硬件、应用。'
           component={Relative}
