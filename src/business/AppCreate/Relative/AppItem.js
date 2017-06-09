@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import s from './list-new.scss'
+import { appType, PageTypes } from 'config/index'
 
 class TabelItem extends React.Component {
 
@@ -16,7 +17,7 @@ class TabelItem extends React.Component {
           <i className={`iconfont ${_appKindClassName}`} />
           <span className={s.desc}>{appDesc}</span>
           {/*<span className={s.appId}>AppID: {appId}</span>*/}
-          <a className={s.link}>在组件市场中查看<i className="iconfont icon-look"></i></a>
+          <Link className={s.link} to={`/${type}/detail/${appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
         </td>
 
         <td className={s.price}>

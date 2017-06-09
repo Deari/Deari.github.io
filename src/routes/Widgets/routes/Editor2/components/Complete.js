@@ -5,7 +5,7 @@ import s from 'business/AppCreate/Complete-new.scss'
 
 const Submit = ({ params }) => {
     return (
-    	<div>
+    	<div className="content">
 				<div className={s['success-wrapper']}>
 					<div className={s.success}>
 						<span className={s.img}></span>

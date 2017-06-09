@@ -29,9 +29,9 @@ const Header = (props) => {
               <Link to='/' className='dev'>
                 开发者平台
               </Link>
-              <Link to='/store/home' className='merchant'>
+              <a href='/store/home' target="_blank" className='merchant'>
                 商家平台
-              </Link>
+              </a>
             </div>
           </div>
         </h1>

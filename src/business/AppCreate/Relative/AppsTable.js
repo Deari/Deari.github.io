@@ -31,7 +31,7 @@ class AppsTable extends React.Component {
     list: [],
     total: 0,
     request_params: {
-      limit: 10,
+      limit: 1000,
       page: 1,
       appName: '',
       review: ''

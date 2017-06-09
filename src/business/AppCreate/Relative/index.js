@@ -177,10 +177,10 @@ class Relative extends React.Component {
 
             <Modal
               title={`选择应用`}
-              appId={appId}
               active={list.apps.modal} 
               onClose={this.closeModal.bind(this, 'apps')}>
               <AppsTable type={'apps'} selected={selected['apps']}
+                appId={appId}
                 add={this.add.bind(this, 'apps')}
                 del={this.del.bind(this, 'apps')}
                 ></AppsTable>
@@ -191,6 +191,7 @@ class Relative extends React.Component {
               active={list.widgets.modal} 
               onClose={this.closeModal.bind(this, 'widgets')}>
               <AppsTable type={'widgets'} selected={selected['widgets']}
+                appId={appId}
                 add={this.add.bind(this, 'widgets')}
                 del={this.del.bind(this, 'widgets')}
                 ></AppsTable>
