@@ -32,12 +32,13 @@ const REVIEW_STATUS = [
 const PUBLISH_STATUS = {
   status: 'published',
   text: '已发布',
-  style: { backgroundColor: '#91e43c' }
+  style: { backgroundColor: '#91e43c' },
+  value:5
 }
 
 const UNSHELVED_STATUS = [
-  { status: 'adminUnshelved', text: '被管理员下架', style: { backgroundColor: '#ff5628' } },
-  { status: 'devUnshelved', text: '被开发者下架', style: { backgroundColor: '#ff5628' } }
+  { status: 'adminUnshelved', text: '被管理员下架', style: { backgroundColor: '#ff5628' },value:6 },
+  { status: 'devUnshelved', text: '被开发者下架', style: { backgroundColor: '#ff5628' },value:7 }
 ]
 
 export function judgeAppStatus (app) {
