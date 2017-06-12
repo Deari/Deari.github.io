@@ -50,7 +50,7 @@ class fileSplitUploader extends React.Component {
             const res = JSON.parse(xhr.responseText).data
             if (index === pressNum) {
               const fileObj = {
-                fileLink: getDownloadDomain(`/v2/file/${this.state.filecode}`),
+                fileLink: getDownloadDomain(`/file/${this.state.filecode}`),
                 fileName: file.name,
                 fileSize: file.size
               }
