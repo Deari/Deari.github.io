@@ -16,11 +16,15 @@
 			flex: 1;
 			.item {
 				color: #666;
-				display: block;
 				font-size: 14px;
 				line-height: 20px;
 				margin-bottom: 10px;
 				word-break: break-all;
+				display: flex;
+				.number{
+					flex: 1;
+					margin-left: 4px;
+				}
 				&:last-child {
 					margin-bottom: 0;
 				}
@@ -88,9 +92,9 @@
 		margin-bottom: 18px;
 		word-break: break-all;
 	}
-	.return-apply {
-		width: 132px;
+	.viewBtn {
+		width: 150px;
 		height: 35px;
-		display: block;
+		line-height: 35px;
 	}
 }

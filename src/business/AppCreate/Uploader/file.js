@@ -4,6 +4,7 @@ import t from './img-new.scss'
 import cx from 'classnames'
 import { uploadFile } from 'reducers/api'
 import Tips from '../Tips'
+import ErrorManager from 'config/error'
 
 class FileUploader extends React.Component {
   constructor(props) {
@@ -25,17 +26,18 @@ class FileUploader extends React.Component {
       formData.append(k, conf[k])
     }
     uploadFile(formData).then(data=>{
-      console.log("upload:", data)
       this.setState({
         value: data.url
       })
-      const { url, originalName, rest } = data;
+      const { url, originalName, ...rest } = data;
       this.props.input.onChange({
         ...rest,
         fileLink: url,
         fileName: originalName
       })
     }).catch(e => {
+      const msg = ErrorManager[e.status] || '上传失败';
+      alert(`${msg}(错误码：${e.status})`)
       console.log('上传失败', e)
     })
   }
@@ -48,25 +50,26 @@ class FileUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { title, accept, description, meta: { touched, dirty, error, warning } } = props;
+    const { required, title, accept, description, meta: { touched, dirty, error, warning } } = props;
+    const { fileLink, fileName } = this.state.value;
 
     return (
       <div className="form-group">
-        <label className="label">{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className={"item-wrapper"}>
             <div className={t['item-rule']}>
               { title }
               { description && <Tips content={description}></Tips> }
             </div>
-            <span className={t['upload-btn']}>
-              <input type='file' ref="file" accept={accept} className={t['upload-file']} onChange={::this.upload} />
-              <div className={t.text} onClick={::this.selectFile}>选择文件</div>
+            <span className={t.uploader}>
+              <input type='file' ref="file" accept={accept} hidden onChange={::this.upload} />
+              <span className={t.btn} onClick={::this.selectFile}>选择文件</span>
+              <span className={t.exist}>{fileName || ''}</span>
             </span>
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
-          { this.state.value.fileLink }
         </div>
       </div>
     )

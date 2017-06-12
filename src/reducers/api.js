@@ -12,7 +12,7 @@ export const uploadFile = (params) => {
 }
 
 export const fetchTags = (params) => {
-  const url = getDomain('/app/v1/bo/v1/public/app/tags')
+  const url = getDomain(`/app/v1/bo/v1/public/${params.type}/tags`)
   return fetchUtil.getJSON(url, params)
 }
 
@@ -36,6 +36,19 @@ export const postAppBasicInfo = (params) => {
 
 export const postAppVersionInfo = (params) => {
   const url = getDomain(`/app/v1/bo/v1/web/developer/app/${params.appId}/code`)
+  return fetchUtil.postJSON(url, params)
+}
+
+export const postWidgetBasicInfo = (params) => {
+  let url = `/app/v1/bo/v1/web/developer/widget`;
+  if(params.appId) {
+    url = `${url}/${params.appId}`
+  }
+  return fetchUtil.postJSON(getDomain(url), params )
+}
+
+export const postWidgetVersionInfo = (params) => {
+  const url = getDomain(`/app/v1/bo/v1/web/developer/widget/${params.appId}/code`)
   return fetchUtil.postJSON(url, params)
 }
 

@@ -1,4 +1,5 @@
 import { login } from 'utils/login'
+import { withTheme } from 'business/HOCs/theme'
 
 export default {
   path: 'analytics',
@@ -9,7 +10,8 @@ export default {
   },
   getComponent (nextState, cb) {
     require.ensure([], (require) => {
-      cb(null, require('business/Analytics/containers/List').default)
+      const List = require('business/Analytics/containers/List').default;
+      cb(null, withTheme('widgets')(List))
     })
   }
 }

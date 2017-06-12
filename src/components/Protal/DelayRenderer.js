@@ -41,9 +41,10 @@ const DelayRendererFactory = (options = { delay: 500 }) => (ActivableComponent) 
     render () {
       const { delay, ...others } = this.props // eslint-disable-line no-unused-vars
       const { active, rendered } = this.state
+
       return rendered
         ? <ActivableComponent {...others} active={active} />
-        : null
+        : <ActivableComponent {...others} active={active} styles={{ display: ( !rendered ? 'none': 'block') }} />
     }
   }
 }

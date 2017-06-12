@@ -13,8 +13,8 @@
 
 什么是蓝海商家？
 蓝海开放平台为商家提供的蓝海商家客户端，商家通过使用蓝海开放平台【应用市场】中的应用，管理自己的会员、营销、交易、商品、对账等数据；通过使用【组件市场】中的组件，为自己的网上店铺进行装修，组件是店铺中的一个一个的展示单位，配置组件信息，保存并发布后，蓝海顾客可以看到相应的信息；通过使用【硬件市场】中的硬件，完成自己的线下业务，如收银POS机、打印机、WiFi探针等。市场中的应用、组件、硬件，均由开发者提供。
-![Alt text](http://timg.ffan.com/convert/resize/url_T1QMKTBKYv1RCvBVdK/tfs/cb36bc3ca763424b2700795b7436e473.png)
-![Alt text](http://timg.ffan.com/convert/resize/url_T1un_TBmxv1RCvBVdK/tfs/11d11f6e8c8b23196537af4c8679e2e6.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1BQATB4dT1RCvBVdK/tfs/0bfff836a6088c7f7db341cabf0f369d.png)
+![Alt text](http://timg.ffan.com/convert/resize/url_T1IudTB4CX1RCvBVdK/tfs/3318870ce9818294629d56d21a56da40.png)
 
 
 
@@ -724,7 +724,7 @@ PosHelper.print(PrinterActivity.this, new Data().addPage(itemList));
 ### 步骤一: 引入JS文件
 
 在需要调用JS接口的页面引入JS文件，（支持https）：
-> http://nres.ffan.com/newactivity/umd/ffan-bo-jssdk-0.0.4.min.js
+> http://nres.ffan.com/newactivity/umd/ffan-bo-jssdk-0.0.5.min.js
 
 ### 步骤二: 通过 `config` 接口注入权限验证配置
 
@@ -818,6 +818,8 @@ sdk.getEnvInfo().then(function(data){
   "storeAddress": "北京市朝阳区", //店铺的地址
   "storeLogo": "http://img1.ffan.com/T1GPbTByCy1RCvBVdK", //门店的logo
   "org": "wanda" //信息来源的标识
+  "userId":""     //商户登陆账号ID
+  "userType": "1"  //角色，1-店长、2-店员、3-商户
 }
 ```
 **获取位置信息接口** 

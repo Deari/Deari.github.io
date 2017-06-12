@@ -1,51 +1,48 @@
-/*@import '../oneVariables.css';*/
-.overlay-container{
+.overlay-container {
   .modal {
-    position: fixed;
-    transform: translate3d(-50%, -50%, 0);
-    top: 300%;
-    left: 50%;
     .modalInner {
-      display: block;
       min-width: 540px;
-      background-color : white;
-      border-radius: 10px;
-      .modalText{
-        width: 100%;
-        padding: 20px;
-        font-size: 30px;
-        line-height: 1.5;
-
-        .center  {
-          text-align: center;
+      background-color: white;
+      .modalHead {
+        display: flex;
+        padding: 0 15px;
+        border-bottom: 1px solid #dedede;
+        .popup-title {
+          flex: 1;
+          height: 50px;
+          line-height: 50px;
+        }
+        .icon-turnoff {
+          height: 50px;
+          line-height: 50px;
+          cursor: pointer;
+          font-style: normal;
+          right: 0;
+          top: 0;
         }
       }
-      .modalButtons {
-        display: flex;
-        .btn {
-          flex: 1;
-          height: 80px;
-          line-height: 80px;
+      .modalBody {
+        padding: 15px;
+      }
+      .modalFoot {
+        text-align: center;
+        border-top: 1px solid #dedede;
+        padding: 10px;
+        .button {
+          font-size: 14px;
+          display: inline-block;
+          padding: 7px 15px;
           text-align: center;
-          font-size: 30px;
-          color: #0894ec;
-          border-top: 1px solid #cccccc;/*no*/
-        }
-        .btn:nth-child(2n){
-          border-left: 1px solid #cccccc;/*no*/
+          color: #fff;
+          background: #0894ec;
+          border: 1px solid #0894ec;
+          cursor: pointer;
+          border-radius: 5px;
+          &:hover {
+            background:#0688da;
+          }
         }
       }
     }
   }
-  .modal.active {
-    top: 45%;
-  }
 }
-
-
-
-
-
-
-
-

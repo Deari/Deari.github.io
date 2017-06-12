@@ -135,11 +135,10 @@ console.log(latestVersion)
           <p className='title'>版本</p>
           <p className='text'>{!data.mine ? publishVersion && publishVersion.codeVersion : latestVersion.codeVersion}</p>
         </div>
-        { showSize &&
-          <div className='cell'>
+        { showSize && +data.appKind !== 1 && +data.appType === 1 ? <div className='cell'>
             <p className='title'>大小</p>
             <p className='text'>{!data.mine ? publishVersion && publishVersionBundleSize : latestVersionBundleSize }</p>
-          </div>
+          </div> : null
         }
         <div className='cell'>
           <p className='title'>版本介绍</p>
@@ -149,10 +148,10 @@ console.log(latestVersion)
           <p className='title'>{appTypeText[data.appType]}类型</p>
           <p className='text'>{appType[data.appKind]}</p>
         </div>
-         { +data.appKind === 1 && +data.appType === 1 && <div className='cell'>
+        { +data.appType === 1 ? <div className='cell'>
           <p className='title'>使用场景</p>
           <p className='text'>{screenSize[latestVersion._screenSize]}</p>
-        </div>}
+        </div> : null }
 
         { !showSize &&
           <div className='cell'>

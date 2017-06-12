@@ -12,6 +12,7 @@ export default class Container extends React.Component {
     filter: 'ALL',
     list: [],
     total: 0,
+    dataLoading: true,
     request_params: {
       limit: 10,
       page: 1,
@@ -38,6 +39,7 @@ export default class Container extends React.Component {
         list: data.list || [],
         total: data.page && data.page.totalCount,
         filter: _filter,
+        dataLoading: false,
         request_params: {
           ...this.state.request_params,
           ...rest
@@ -67,13 +69,14 @@ export default class Container extends React.Component {
   }
 
   render () {
-    const { filter, list, total, request_params } = this.state
+    const { filter, list, total, request_params, dataLoading } = this.state
     return (
       <List 
         filter={filter} 
         data={list} 
         total={total} 
         type={this.props.type}
+        dataLoading={dataLoading}
         onToggleFilter={::this.onToggleFilter}
         searchText={request_params.appName}
         onSearch={::this.onSearch}

@@ -13,7 +13,7 @@ const BasicFormHOC = (Wrapper) => class Container extends React.Component {
   }
 
   componentDidMount() {
-    fetchTags().then(data=>{
+    fetchTags({ type: 'app'}).then(data=>{
       this.setState({
         tags: data
       })

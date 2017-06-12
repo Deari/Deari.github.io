@@ -84,7 +84,6 @@ class FetchUtil {
     if (DEBUG_MODE) {
       params.debug = 1
     }
-    params = Object.assign({}, { clientType: 1 }, params)
 
     let { headers, formDataType, ...rest } = options
     let body
@@ -94,10 +93,12 @@ class FetchUtil {
     switch (formDataType) {
       case 'json':
         headers['Content-Type'] = 'application/json'
+        params = Object.assign({}, { clientType: 1 }, params)
         body = JSON.stringify(params)
         break
       case 'FormData':
         const data = new FormData()
+        params = Object.assign({}, { clientType: 1 }, params)
         for (let p in params) {
           data.append(p, JSON.stringify(params[p]))
         }
@@ -108,6 +109,7 @@ class FetchUtil {
         break
       case 'urlencode':
       default:
+        params = Object.assign({}, { clientType: 1 }, params)
         headers['Content-Type'] = 'application/x-www-form-urlencoded'
         body = buildSearchParams(params)
     }

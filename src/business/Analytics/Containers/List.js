@@ -1,36 +1,20 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { getDomain } from 'utils/d'
 import fetchUtil from 'utils/fetch'
-import List from '../components/List'
+import List from '../components/List/'
 import { scrollToTop } from 'utils/scroll'
+import { getTheme } from 'business/HOCs/theme'
 
 class ListContainer extends Component {
-  constructor (props) {
-    super(props)
-    const pathname = props.location.pathname
-    const result = pathname.match(/^\/(apps|widgets|hardware)\//)
-    let type
-    if (result) {
-      type = result[1]
-    }
-
-    const _t = type.slice(0, type.length - 1);
-    const url = getDomain(`/app/v1/bo/v1/web/developer/statistics/${_t}`);
-    
-    this.state = {
-      type,
-      api: {
-        url,
-        params: {
-          page: 1,
-          limit: 10,
-          appId: '',
-          appName: ''
-        }
-      },
-      list: [],
-      total: 0
-    }
+  state = {
+    params: {
+      page: 1,
+      limit: 10,
+      appId: '',
+      appName: ''
+    },
+    list: [],
+    total: 0
   }
 
   componentDidMount () {
@@ -38,9 +22,10 @@ class ListContainer extends Component {
   }
 
   loadData (page, options) {
-    const api = this.state.api
-    return fetchUtil.getJSON(api.url, {
-      ...api.params,
+    const { type } = this.props.theme
+    const _t = type.slice(0, type.length - 1);
+    return fetchUtil.getJSON(getDomain(`/app/v1/bo/v1/web/developer/statistics/${_t}`), {
+      ...this.state.params,
       ...options,
       page
     }).then(data => {
@@ -50,19 +35,19 @@ class ListContainer extends Component {
     })
   }
 
-  onPage (page) {
+  handlePage (page) {
     this.loadData(page).then(scrollToTop)
   }
 
   render () {
-    const { type, list, total } = this.state
+    const { list, total } = this.state
     return <List
-      onPage={::this.onPage}
-      type={type}
+      onPage={::this.handlePage}
+      type={this.props.theme.type}
       list={list}
       total={total}
     />
   }
 }
 
-export default ListContainer
+export default getTheme(ListContainer)

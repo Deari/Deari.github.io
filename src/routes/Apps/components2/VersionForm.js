@@ -3,24 +3,25 @@ import { Field } from 'redux-form'
 import { Link } from 'react-router'
 import cx from 'classnames'
 import s from 'business/AppCreate/Basic-new.scss'
-import './form.scss'
-
 import AppDesc from 'business/AppCreate/AppDesc'
 import TextInput from 'business/AppCreate/TextInput'
 import FileUploader from 'business/AppCreate/Uploader/file'
+import FileSplitUploader from 'business/AppCreate/Uploader/fileSplit'
 import VersionPublish from 'business/AppCreate/VersionPublish'
+import Relative from 'business/AppCreate/Relative'
 
 import { APP_TYPES } from 'config/appTypes'
 
 class Main extends React.Component {
   render () {
-    const { onlineVersion, handleSubmit, initialValues } = this.props;
+    const { params, onlineVersion, handleSubmit, initialValues } = this.props;
     const { appKind } = initialValues;
     const miniProgramInfo = (
-      <span style={{ lineHeight: 1.5, color: '#666', fontSize: 12 }}>
-        应用类型为“FAP小程序”，请您先试用打包工具(
-        <a href='http://fdfs.ffan.net/v2/file/nDjvYxof9gD9AjbH9o4al93o5T2mw9Yp?attachExt=2'>Windows</a> | 
-        <a href='http://fdfs.ffan.net/v2/file/BgbBeXayRXw6H5h4aF3115Egr50dM6pr?attachExt=2'>Mac</a>)
+      <span className={s.pkgTools}>
+        应用类型为“FAP小程序”，请您先使用打包工具(
+        <a className={s.download} href='http://fdfs.ffan.net/v2/file/3l8v0ztIcPI9vBB18g614JF370J47byY?attachExt=2'>Windows</a>
+        | 
+        <a className={s.download} href='http://fdfs.ffan.net/v2/file/ZnFWmHtPYah2Fq2a8nuGhVW1NCT9OTMV?attachExt=2'>Mac</a>)
         进行打包，请将打包完成后的应用进行上传。
       </span>
     );
@@ -31,11 +32,10 @@ class Main extends React.Component {
       case APP_TYPES.mini_program.value: 
         fileField = <Field
           required 
-          label='应用文件(FAP)' 
+          label='应用文件(FAP小程序)' 
           name='_files'
           accept=".fap"
           title={miniProgramInfo}
-          description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
           component={FileUploader}
         />;
         break;
@@ -45,26 +45,26 @@ class Main extends React.Component {
           label='应用文件(APK)' 
           name='_files'
           accept=".apk"
-          description='此图标将用于应用市场，最低分辨率至少为72DPI，并采用RGB色彩空间。它不能包含图层或圆角。'
-          component={FileUploader}
+          component={FileSplitUploader}
         />;
         break;
       case APP_TYPES.h5.value: 
         fileField = <Field
           required 
           label='应用网址' 
+          placeholder='请输入网址'
           name='fileLink' 
           component={TextInput}
         />;
     }
 
   	return (
-      <form onSubmit={handleSubmit}>
+      <form>
         <Field
           required 
           label='版本介绍' 
           name='codeDesc'
-          placeholder='请输入版本介绍。此内容将显示在应用详情页的版本信息中。'
+          placeholder='请输入版本介绍，此内容将显示在详情页的版本信息中'
           description='描述此版本的新增内容，例如增添了何种新功能，有何改进之处以及修正了哪些错误。' 
           component={AppDesc}
         />
@@ -73,8 +73,9 @@ class Main extends React.Component {
           required 
           label='版本号' 
           name='codeVersion' 
-          title={onlineVersion && `您的线上版本为：${onlineVersion}。您要填入的版本号。编号应遵循软件版本规范。`}
-          description='您要填入的 App 版本号。编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。' 
+          placeholder='请输入版本号'
+          title={(onlineVersion ? `您的线上版本为：${onlineVersion}` : '')+'您要填入的版本号，编号应遵循软件版本规范。'}
+          description='您要填入的 App 版本号，编号应遵循软件版本规范。比如：1.0.0，即为大版本，代表核心框架调整。1.1.0，即为小版本，代表核心功能调整。1.1.1，即为子版本，代表优化或修复bug。' 
           component={TextInput}
         />
         
@@ -87,51 +88,17 @@ class Main extends React.Component {
           component={VersionPublish}
         />
         
-        {/*<div className="form-group">
-          <label className="label label-no">配套使用</label>
-          <div className="form-item">
-            <div className="item-wrapper">
-              <p className={s.text}>应用在创建的配套使用的组件、硬件、应用后，只有当它们全部是已发布状态，才会显示在市场中展示。
-                <br/>应用市场详情页的显示，如下图：</p>
-              <img src="http://open.ffan.net/bf2a12dbd3de591e34788366d7085dc0.png" className={s['img-use']}/>
-              <div className={s['apply-radio']}>
-                  <div className="checked-wrapper">
-                    <input type="checkbox"  value="" className="checked-input"/>
-                    <span className="checked-item">
-                        <i className="iconfont icon-radio1 active"></i>
-                        <i className="iconfont icon-radio"></i>
-                    </span>
-                  </div>
-                <span className={s['text-con']}>组件</span>
-              </div>
-              
-              <div className={s['apply-radio']}>
-                <div className="checked-wrapper">
-                  <input type="checkbox"  value="" className="checked-input" />
-                  <span className="checked-item">
-                      <i className="iconfont icon-radio1"></i>
-                      <i className="iconfont icon-radio active"></i>
-                  </span>
-                </div>
-                <span className={s['text-con']}>硬件</span>
-              </div>
-              
-              <div className={s['apply-radio']}>
-                <div className="checked-wrapper">
-                  <input type="checkbox" value="" className="checked-input"/>
-                  <span className="checked-item">
-                      <i className="iconfont icon-radio1"></i>
-                      <i className="iconfont icon-radio active"></i>
-                  </span>
-                </div>
-                <span className={s['text-con']}>应用</span>
-              </div>
-            </div>
-          </div>
-       </div>*/}
+        <Field
+          label='配套使用'
+          appId={params.id}
+          name='relations' 
+          description='商家在使用应用时，必须配套使用一下关联的组件、硬件、应用。因为勾选以下组件、硬件、应用后，代表商家无法单独使用此应用，必须与勾选项配套使用。商家在下载应用时，应用详情页中，会展示配套使用的组件、硬件、应用。'
+          component={Relative}
+        />
+
         <div className='form-actions'>
-          <button type='submit' className={cx('primaryBtn', s.saveBtn)}>保存</button>
-          <button className={cx('primaryBtn', s.saveBtn)}>提交审核</button>
+          <button onClick={ handleSubmit(this.props.save)} className={cx('primaryBtn', s.saveBtn)}>保存</button>
+          <button onClick={ handleSubmit(this.props.publish)} className={cx('primaryBtn', s.saveBtn)}>提交审核</button>
         </div>
       </form>
     )

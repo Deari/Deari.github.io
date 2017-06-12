@@ -31,7 +31,7 @@ export function getDomain(url = '', option = {}) {
 }
 
 export function getApiStoreDomain (url) {
-  return getDomain('/#'+url, {
+  return getDomain(url, {
     prefix: 'apistore', suffix: 'net', intra: true
   })
 }

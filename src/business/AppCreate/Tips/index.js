@@ -20,10 +20,10 @@ class Tips extends React.Component {
 
   render () {
     return (
-      <div className="g-popover" 
-        onMouseEnter={this.onMouseEnter.bind(this)}
-        onMouseLeave={this.onMouseLeave.bind(this)}>
-        <i className="iconfont icon-miashu"></i>
+      <div className="g-popover">
+        <i className="iconfont icon-miashu" 
+          onMouseLeave={this.onMouseLeave.bind(this)} 
+          onMouseEnter={this.onMouseEnter.bind(this)}></i>
         <p ref='cont' className={cx('g-popover-content', {
           show: this.state.show })}>{this.props.content}</p>
       </div>

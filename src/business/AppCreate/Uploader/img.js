@@ -1,9 +1,10 @@
 import React from 'react'
 import { findDOMNode } from 'react-dom'
-import t from './img-new.scss'
+import s from './img-new.scss'
 import cx from 'classnames'
 import { uploadImage } from 'reducers/api'
 import Tips from '../Tips'
+import ErrorManager from 'config/error'
 
 class ImageUploader extends React.Component {
   constructor(props) {
@@ -17,13 +18,14 @@ class ImageUploader extends React.Component {
     if(!e.target.files.length) {
       return
     }
+    // return console.log(e.target.files)
+    const { limit={} } = this.props;
     const conf = {
       fileName: e.target.files[0],
-      width: 400,
-      height: 400,
-      fileType: JSON.stringify(['png']),
-      fileSize: 1024 * 300
+      clientType: 1
     }
+    Object.assign(conf, limit);
+    
     const formData = new FormData()
     for(let k in conf ) {
       formData.append(k, conf[k])
@@ -34,6 +36,8 @@ class ImageUploader extends React.Component {
       })
       this.props.input.onChange(data.url)
     }).catch(e => {
+      const msg = ErrorManager[e.status] || '上传失败';
+      alert(`${msg}(错误码：${e.status})`)
       console.log('上传失败', e)
     })
   }
@@ -46,30 +50,32 @@ class ImageUploader extends React.Component {
 
   render () {
     const props = this.props;
-    const { description, meta: { touched, dirty, error, warning } } = props;
+    const { required, description, example, title, meta: { touched, dirty, error, warning } } = props;
 
     return (
       <div className="form-group">
-        <label className="label">{props.label}</label>
+        <label className={ cx("label", { "required": required })}>{props.label}</label>
         <div className='form-item'>
           <div className={"item-wrapper"}>
-            <div className={t['item-rule']}>
-              <span className={t['rule-text']}>请上传应用高清图片<br/>400*400像素，仅支持PNG格式，大小不超过300KB</span>
+            <div className={s['item-rule']}>
+              { title }
               { description && <Tips content={description}></Tips> }
             </div>
-            <span className={t['upload-btn']}>
-              <input type='file' ref="file" className={t['upload-file']} 
+            { example }
+            <span className={s.uploader}>
+              <input type='file' ref="file" hidden 
                 accept='.png' onChange={::this.upload} />
-              <div className={t.text} onClick={::this.selectFile}>选择文件</div>
+              <div className={s.btn} onClick={::this.selectFile}>选择文件</div>
             </span>
           </div>
 
           {(dirty || touched) && ((error && <div className="form-item-msg error">{error}</div>))}
-          { this.state.value && <ul className={`${t['img-item']} ${t.active}`}>
-            <li className={t['upload-img']}>
+          { this.state.value && <ul className={`${s['img-item']} ${s.active}`}>
+            <li className={s['upload-img']}>
               <img src={this.state.value}/>
             </li>
           </ul> }
+          
         </div>
       </div>
     )
