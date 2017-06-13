@@ -1,4 +1,3 @@
-@import "../../layouts/CoreLayout/CoreLayout";
 .login-wrapper {
   display: inline-block;
   vertical-align: middle;
@@ -11,38 +10,38 @@
   a {
     display: inline-block;
     vertical-align: middle;
-    width: $default-width - 40;
-    height: $default-height - 70;
-    font-size: $text-font-size - 5;
+    width: 60px;
+    height: 30px;
+    font-size: 15px;
     text-align: center;
-    line-height: $text-line-height - 10;
+    line-height: 30px;
     border-radius: 2px;
     cursor: pointer;
     &:first-child {
-      border: 1px solid $blue-color;
-      color: $blue-color;
-      background: $white-color;
+      border: 1px solid #2692fb;
+      color: #2692fb;
+      background: #fff;
     }
     &:last-child {
-      color: $white-color;
-      background: $blue-color;
+      color: #fff;
+      background: #2692fb;
       margin-left: 11px;
     }
   }
 }
 
 .logined {
-  color: $gray9-color;
+  color: #999;
   font-size: 0;
   img {
-    width: $default-width - 60;
-    height: $default-height - 60;
+    width: 40px;
+    height: 40px;
   }
   span {
     font-size: 14px;
     margin-left: 7px;
     padding-left: 7px;
-    border-left: 1px solid $gray9-color;
+    border-left: 1px solid #999;
     vertical-align: bottom;
     cursor: pointer;
   }

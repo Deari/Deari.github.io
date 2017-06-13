@@ -89,9 +89,9 @@ export const HomeView = () => (
     <div className='home-reminder'>
       <div className='container'>
         <span>
-          <i className='iconfont icon-laba' />
+          <i className='iconfont icon-laba'></i>
           系统公告：热烈庆祝蓝海开放平台入驻服务商1000家！
-          <i />
+          <i></i>
         </span>
         <a>查看更多</a>
       </div>
@@ -100,7 +100,7 @@ export const HomeView = () => (
       <div className='container'>
         <h3>为超过<span>1,764,600</span>客户服务</h3>
         <p className='market-info'>数据由飞凡提供</p>
-        <ul className='clx'>
+        <ul>
           <li>
             <Link className='a-bg1' to='/apps'>
               <p className='market-tittle'>应用市场</p>

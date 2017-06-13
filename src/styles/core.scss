@@ -1,11 +1,12 @@
+@import './v/common.scss';
 @import '~normalize.css/normalize';
 @import './iconfont/iconfont.css';
 @import './v/iconfont.css';
 @import './v/form.scss';
 @import './v/form2.scss';
-@import './v/table.scss';
-@import './v/common.scss';
 @import './v/radio.scss';
+@import './v/table.scss';
+
 *,
 *:before,
 *:after {

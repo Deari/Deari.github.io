@@ -1,4 +1,3 @@
-@import "../../layouts/CoreLayout/CoreLayout";
 
 $header-grayd7-color:#d7d7d7;
 //header new style begin
@@ -26,8 +25,8 @@ $header-height:70px;
     z-index: $zindex - 1;
     @include absolute;
     @include position-direction;
-    background: $white-color;
-    border-top: 2px solid $blue-color;
+    background: #fff;
+    border-top: 2px solid #2692fb;
     height: 77px;
     border-bottom: 1px solid $header-grayd7-color;
   }
@@ -47,9 +46,9 @@ $header-height:70px;
         float: left;
         padding-top: 10px;
         font-size: 16px;
-        color: $gray6-color;
+        color: #666;
         & > a {
-          color: $gray6-color;
+          color: #666;
         }
       }
   
@@ -59,7 +58,7 @@ $header-height:70px;
       }
 
       .login-text {
-        color: $blue-color;
+        color: #2692fb;
         font-size: 26px;
         padding-right:6px;
         border-right: 1px solid #cacaca;
@@ -67,8 +66,8 @@ $header-height:70px;
 
       .login-icon {
         margin-right: 8px;
-        width: $default-width - 57;
-        height: $default-height - 56;
+        width: 43px;
+        height: 44px;
         background: url("../Home/assets/nav_logo.png") no-repeat;
         background-size: 100%;
       }     
@@ -81,7 +80,7 @@ $header-height:70px;
   min-height: 650px;
   margin: 20px auto;
   .login-center {
-    background: $white-color;
+    background: #fff;
     min-height: 600px;
     h3 {
       height: 60px;

@@ -11,7 +11,6 @@ import debug from 'utils/debug'
 import ListNav from 'components/ListNav'
 import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
-import 'styles/_base.scss'
 import SideBar from 'business/SideBar'
 import { PageTypes, getPageLinks } from 'config/index'
 

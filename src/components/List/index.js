@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
 import './index.scss'
-import 'styles/_base.scss'
 
 class List extends React.Component {
   render () {

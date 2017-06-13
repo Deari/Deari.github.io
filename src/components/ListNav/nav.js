@@ -1,5 +1,5 @@
 import React from 'react'
-import 'styles/_base.scss'
+//import 'styles/_base.scss'
 
 class BasicNav extends React.Component {
   render () {

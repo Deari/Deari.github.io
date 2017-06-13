@@ -14,7 +14,6 @@ import Slidebar from 'components/Sidebar'
 import ListNav from 'components/ListNav'
 import { getCodeStatus } from 'components/Detail/header'
 import './index.scss'
-import 'styles/_base.scss'
 import { PageTypes, getPageLinks } from 'config/index'
 
 class widgetsList extends React.Component {

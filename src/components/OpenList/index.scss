@@ -1,10 +1,10 @@
-@import "../../layouts/CoreLayout/CoreLayout";
-
 .sub-container{
-  @include sub-container;
+  width: 874px;
+  float: right;
+  margin-top: 10px;
 }
 .open-content-list{
-  @include clx;
+  overflow: hidden;
   li{
     float: left;
     margin-right: 17px;
@@ -12,7 +12,7 @@
     margin-bottom: 14px;
     width: 279px;
     text-align: center;
-    background: $white-color;
+    background: #fff;
     border-radius: 3px;
     overflow: hidden;
     &:hover{
@@ -37,16 +37,20 @@
       padding: 13px 34px 0px;
       height: 38px;
       font-size: 18px;
-      color: $black-color;
-      @include font-hidden;
+      color: #333;
+      text-overflow: ellipsis;
+			overflow: hidden;
+			word-break: break-all;
       white-space:nowrap;
   }
   .open-user-name{
     display: block;
     padding: 0 14px;
     font-size: 12px;
-    color: $gray6-color;
-    @include font-hidden;
+    color: #666;
+    text-overflow: ellipsis;
+		overflow: hidden;
+		word-break: break-all;
     white-space:nowrap;
     .user-img {
       display: inline-block;
@@ -67,11 +71,13 @@
     text-align: left;
     font-size: 13px;
     line-height: 20px;
-    color: $gray6-color;
+    color: #666;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    @include font-hidden;
+    text-overflow: ellipsis;
+		overflow: hidden;
+		word-break: break-all;
   }
 }
 .open-list-show{
@@ -80,11 +86,11 @@
     width: 50%;
     text-align: center;
     font-size: 13px;
-    color: $gray9-color;
+    color: #999;
     line-height: 38px;
     background: #dde1e7;
-    border-right : 1px solid $graye-color;
-    border-color: $white-color;
+    border-right : 1px solid #eee;
+    border-color: #fff;
     cursor: default;
     }
   a:last-of-type{
@@ -112,17 +118,17 @@
 }
 .open-content-nav{
   padding-left: 5px;
-  @include clx;
+  overflow: hidden;
   font-size: 16px;
   height: 60px;
   line-height: 60px;
-  color: $black-color;
+  color: #333;
   form{
-    @include float-right;
+    float: right;
     font-size: 14px;
-    color: $gray9-color;
+    color: #999;
     p{
-      @include float-left;
+      float: left;
       padding: 0 4px;
     }
     select{
@@ -130,11 +136,11 @@
       padding-left: 9px;
       width: 94px;
       height: 29px;
-      color: $gray9-color;
+      color: #999;
       font-size: 14px;
       background: #fff url(../../routes/Home/assets/arrD.png) no-repeat right center;
       background-size: 21px 6px;
-      border: 1px solid $gray9-color;
+      border: 1px solid #999;
       border-radius: 4px;
       appearance:none;
       -moz-appearance:none;
@@ -146,16 +152,16 @@
 .icon-hot-control{
   font-size: 16px;
   margin-right: 2px;
-  color: $gray6-color;
+  color: #666;
 }
 .open-list-price{
   display: block;
   margin: 8px 6px 0 6px;
   font-size: 18px;
-  color: $blue-color;
+  color: #2692fb;
   font-weight: bold;
   line-height: 40px;
-  border-top : 1px solid $graye-color;
+  border-top : 1px solid #eee;
   i{
     font-size: 16px;
     font-style: normal;
@@ -186,7 +192,7 @@
 }
 .icon-uncollected1{
   color: #d2d2d2;
-  background: $white-color;
+  background: #fff;
   &:hover{
     opacity: 0;
   }
