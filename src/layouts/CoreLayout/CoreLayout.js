@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from 'business/Header'
-// import './CoreLayout.scss'
 import 'styles/core.scss'
 
 export const CoreLayout = (props) => (

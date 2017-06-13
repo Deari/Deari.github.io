@@ -1,10 +1,18 @@
 @import './var.scss';
+.core-layout__viewport {
+	margin-top: 77px;
+	.container{
+	  width: 1100px;
+	  margin: 0 auto;
+	  overflow: hidden;
+	  box-sizing: content-box;
+	}
+}
 .content {
 	margin-top: 10px;
 	margin-left: 220px;
 	padding: 10px;
 	background: #fff;
-	color: #333;
 	&-header {
 		color: #000;
 		height: 70px;

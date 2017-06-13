@@ -57,7 +57,7 @@ class Complete extends React.Component {
             <dd>2、新版本准备好之后，你可以在我的应用中发布新版本。</dd>
           </dl>
           <span className={s['success-text']}>返回我的应用，发布新版本。</span>
-          <Link to={`/apps/list`} className={`primaryBtn ${s.viewBtn}`}>查看我的应用</Link>
+          <Link to={`/apps/list`} className={`btn-primary ${s.viewBtn}`}>查看我的应用</Link>
         </div>
         
         <ul className={s['doc-wrapper']}>

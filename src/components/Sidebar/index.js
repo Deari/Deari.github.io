@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import LoginSDK from 'utils/loginSDK'
 import { getLoginDomain, getApiStoreDomain, getSourceVal } from 'utils/d'
-import 'styles/_base.scss'
+//import 'styles/_base.scss'
 import './Sidebar.scss'
 
 class Sidebar extends React.Component {

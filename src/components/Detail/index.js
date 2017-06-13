@@ -9,7 +9,7 @@ class AppsDetail extends React.Component {
     const { data, activeCodeStatus, editUrl, onChangeRange, onClickPublish } = this.props
     const len = data && data.versions && data.versions.length
     return (
-      <div className='sub-container bg-white'>
+      <div className='content'>
         { data && data.mine == 1 && len > 0 && Header(this.props) }
         { BasicInfo(this.props) }
         { LatestVersion(this.props) }

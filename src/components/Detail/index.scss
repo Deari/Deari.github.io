@@ -1,10 +1,7 @@
-@import "~layouts/CoreLayout/CoreLayout";
 /*Apps detail*/
 .detail-container{
-  padding:28px 40px 0;
-  @include clx;
   .detail-download{
-    @include float-left;
+		float: left;
     width: 145px;
     .appImg{
       width: 145px;
@@ -24,25 +21,23 @@
     }
   }
   .detail-info{
-    @include float-right;
+    float: right;
     width: 620px;
     .detail-tittle{
       font-size: 24px;
-      color: $black-color;
       word-break:break-all;
       dt{
         font-size: 24px;
-        color: #000000;
         line-height: 28px;
       }
       dd{
         margin-top: 8px;
         font-size: 12px;
         line-height:18px;
-        color: $gray6-color;
+        color: #666;
         overflow: hidden;
         i{
-          margin-right: $default-margin-right - 35;
+          margin-right: 5px;
           float: left;
         }
         span{
@@ -56,13 +51,12 @@
       margin-top:4px;
       font-size:14px;
       line-height:23px;
-      color:$black-color;
       word-break:break-all;
     }
     .infomation-list{
       margin-top:4px;
       font-size:14px;
-      color:$gray9-color;
+      color:#999;
       td{
         padding:3px 0;
         &:first-child{
@@ -71,25 +65,25 @@
         }
         &:last-child{
           padding-left:20px;
-          color:$black-color;
+          color:#333;
           word-break:break-all;
           float: left;
           width:586px;
         }
       }
       .tag{
-        color:$blue-color;
+        color:#2629fb;
       }
     }
     .info-list{
-      margin-top: $default-margin-top - 5;
-      font-size: $text-font-size - 4;
-      color: $black-color;
+      margin-top: 35px;
+      font-size: 16px;
+      color: #333;
       dt{
-        margin-bottom: $default-margin-top - 15;
+        margin-bottom: 25px;
       }
       .text-blue-color{
-        color: $blue-color;
+        color: #2692fb;
       }
     }
   }
@@ -97,17 +91,17 @@
 .app-title{
   margin-top:30px;
   font-size:18px;
-  color: $black-color;
+  color: #333;
 }
 .table-info{
   position:relative;
-  padding:0 40px;
+  padding:0 30px;
   font-size:15px;
   .detail-table{
     margin-top:10px;
     font-size:14px;
     line-height:23px;
-    color:$black-color;
+    color:#333;
     .title,.text{
       padding: 5px 0;
       vertical-align:top;
@@ -115,10 +109,10 @@
     .title{
       width:125px;
       padding-right:20px;
-      color:$gray9-color;
+      color:#999;
     }
     .text{
-      color:$black-color;
+      color:#333;
       word-break:break-all;
       width:752px;
       .img-block{
@@ -151,7 +145,7 @@
     margin-top:10px;
     font-size:14px;
     line-height:23px;
-    color:$black-color;
+    color:#333;
     .item{
       margin-bottom:20px;
     }
@@ -164,7 +158,7 @@
         float:left;
         width:80px;
         padding-right:20px;
-        color:$gray9-color;
+        color:#999;
       }
       .text{
         float:right;
@@ -207,7 +201,7 @@
     right:40px;
     bottom:0px;
     font-size:14px;
-    color: $blue-color;
+    color: #2692fb;
     cursor: pointer;
   }
 }
@@ -232,7 +226,7 @@
         }
     }
     .active{
-          border-bottom:2px solid $blue-color;
+          border-bottom:2px solid #2692fb;
           a{
             color:#666;
           }
@@ -250,7 +244,7 @@
     display:block;
     padding-bottom:15px;
     font-size:14px;
-    color:$black-color;
+    color:#333;
     cursor:pointer;
     input[type=radio]{
       position: static;
@@ -263,6 +257,10 @@
       z-index: 1;
       vertical-align: middle;
     }
+  }
+  .btn{
+  	padding: 6px 12px;
+  	font-size: 14px;
   }
 }
 .text-field{
@@ -277,4 +275,8 @@
 }
 .mar{
   padding:0 0 15px 38px;
+  .btn{
+  	padding: 6px 12px;
+  	font-size: 14px;
+  }
 }

@@ -1,9 +1,9 @@
-@import 'src/styles/v/base.scss';
+@import './var.scss';
 .form-group {
 	display: flex;
 	flex-wrap: nowrap;
 	max-width: 612px;
-	margin: 0 auto 45px;
+	margin: 0 auto 15px;
 	.label {
 		width: 100px;
 		height: 30px;

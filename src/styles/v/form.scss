@@ -1,5 +1,5 @@
 @import './var.scss';
-.defaultBtn {
+.btn-default {
   cursor: pointer;
   display: inline-block;
   white-space: nowrap;
@@ -16,7 +16,7 @@
   }
 }
 
-.primaryBtn {
+.btn-primary {
   color: #fff;
   cursor: pointer;
   user-select: none;

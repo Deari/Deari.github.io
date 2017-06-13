@@ -1,6 +1,6 @@
 @import 'src/styles/v/base.scss';
 .tableWrapper {
-	border: 1px solid $table-gray;
+	border: 1px solid #eee;
     color: #000;
     th {
         color: #666;
@@ -11,7 +11,7 @@
     }
     tbody {
         tr {
-            border-bottom: 1px solid $table-gray;
+            border-bottom: 1px solid #eee;
             td {
                 text-align: center;
                 &.imgWrap {

@@ -8,7 +8,6 @@ import Login from './Login/Login'
 import Apps from './Apps'
 import Widgets from './Widgets'
 import Hardware from './Hardware'
-import '../styles/_base.scss'
 
 export const createRoutes = (store) => ({
   path       : '/',

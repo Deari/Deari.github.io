@@ -32,7 +32,7 @@ const TabelItem = ({ data, type }) => {
         <span className={s.yes}>前天：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
       <td className={s.actions}>
-        <Link to={`/${type}/analytics/${data.statisticsId}`} className={`defaultBtn ${s.tableBtn}`}>查看</Link>
+        <Link to={`/${type}/analytics/${data.statisticsId}`} className={`btn-default ${s.tableBtn}`}>查看</Link>
       </td>
     </tr>
   )

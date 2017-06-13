@@ -29,8 +29,8 @@ const SimpleSlider = React.createClass({
             <dd>为实体门店提供经营所需的各项管理工具</dd>
           </dl>
           <p>
-            <Link className='btn-left btn btn-primary' to='/apps'>浏览应用</Link>
-            <Link className='btn-right btn' to='/apps/create'>创建应用</Link>
+            <Link className='btn-left btn-primary' to='/apps'>浏览应用</Link>
+            <Link className='btn-right' to='/apps/create'>创建应用</Link>
           </p>
           <div className='banner-img'>
             <img width src='http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg' />
@@ -89,9 +89,9 @@ export const HomeView = () => (
     <div className='home-reminder'>
       <div className='container'>
         <span>
-          <i className='iconfont icon-laba' />
+          <i className='iconfont icon-laba'></i>
           系统公告：热烈庆祝蓝海开放平台入驻服务商1000家！
-          <i />
+          <i></i>
         </span>
         <a>查看更多</a>
       </div>
@@ -100,7 +100,7 @@ export const HomeView = () => (
       <div className='container'>
         <h3>为超过<span>1,764,600</span>客户服务</h3>
         <p className='market-info'>数据由飞凡提供</p>
-        <ul className='clx'>
+        <ul>
           <li>
             <Link className='a-bg1' to='/apps'>
               <p className='market-tittle'>应用市场</p>

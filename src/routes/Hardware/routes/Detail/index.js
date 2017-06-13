@@ -5,7 +5,6 @@ import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 import moment from 'moment'
 import Slidebar from 'components/Sidebar'
-import 'styles/_base.scss'
 import './index.scss'
 import CommentTpl from './Comment.js'
 import ParamTpl from './Param.js'
@@ -91,10 +90,10 @@ class HardwareDetail extends React.Component {
     }
     const navList = [{ value:'商品介绍', type:'productDesc' }, { value:'规格参数', type:'typeParam' }, { value:'评论(' + commentData.assessList[0].list.length + ')', type:'comment' }]
     return (
-      <div className='container clx'>
+      <div className='container'>
         <Slidebar urls={urls} tags={tags} />
-        <div className='sub-container'>
-          <div className='detail-container bg-white'>
+        <div className='content'>
+          <div className='detail-container'>
             <div className='detail-returnnav'>
               <p onClick={() => { window.history.go(-1) }}>返回</p>
             </div>
@@ -127,7 +126,7 @@ class HardwareDetail extends React.Component {
               </h5>
             </div>
           </div>
-          <div className='detail-table-box bg-white'>
+          <div className='detail-table-box'>
             <ul className='detail-table-nav'>
               {
                navList.map((v, k) => (
