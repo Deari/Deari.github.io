@@ -1,11 +1,8 @@
 import fetchUtil from 'utils/fetch'
 import { getDomain } from 'utils/d'
 
-const APPSTORE = 'APPSTORE'
-const APPSTORE_UPDATE = APPSTORE + '_UPDATE_LIST'
-
 const update = (data) => ({
-  type: APPSTORE_UPDATE,
+  type: 'appstore/list/update',
   data
 })
 
@@ -46,7 +43,7 @@ export const fetchAppList = (option) => {
 }
 
 const ACTION_HANDLERS = {
-  [APPSTORE_UPDATE]: function (state, action) {
+  ['appstore/list/update']: function (state, action) {
     return {
       ...state,
       ...action.data
