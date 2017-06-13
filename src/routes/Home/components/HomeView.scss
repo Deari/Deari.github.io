@@ -38,15 +38,20 @@
     margin: 0 auto;
   }
   .btn-left,.btn-right{
-    margin: 0 10px;
     height: 45px;
     width: 140px;
+    margin: 0 10px;
     font-size: 22px;
-    color: $white-color;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    display: inline-block;
+    vertical-align: middle;
     box-shadow: 0 1px 4px rgba(20,137,74,0.5);
   }
   .btn-right{
     color: #fff;
+    border: none;
+    border-radius: 4px;
     background: rgba(255,255,255,0.3);
     &:hover{
       background: rgba(255,255,255,0.4);

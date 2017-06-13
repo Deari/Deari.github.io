@@ -29,8 +29,8 @@ const SimpleSlider = React.createClass({
             <dd>为实体门店提供经营所需的各项管理工具</dd>
           </dl>
           <p>
-            <Link className='btn-left btn btn-primary' to='/apps'>浏览应用</Link>
-            <Link className='btn-right btn' to='/apps/create'>创建应用</Link>
+            <Link className='btn-left btn-primary' to='/apps'>浏览应用</Link>
+            <Link className='btn-right' to='/apps/create'>创建应用</Link>
           </p>
           <div className='banner-img'>
             <img width src='http://nres.ffan.com/newh5/201715/2ec9843614eb7c0be49b4b4430c3247b3cef78ab.jpg' />
