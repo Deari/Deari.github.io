@@ -109,16 +109,16 @@ class TabelItem extends React.Component {
         </td>
 
         <td className={s.actions}>
-          <Link to={`/${type}/detail/${data.appId}`} className={`defaultBtn ${s.tableBtn}`}>查看</Link>
+          <Link to={`/${type}/detail/${data.appId}`} className={`btn-default ${s.tableBtn}`}>查看</Link>
 
           { this.showEditBtn(appStatus[0] && appStatus[0].status) ?
-            <Link to={`/${type}/edit/${data.appId}`} className={`defaultBtn ${s.tableBtn}`}>编辑新版本</Link> : null }
+            <Link to={`/${type}/edit/${data.appId}`} className={`btn-default ${s.tableBtn}`}>编辑新版本</Link> : null }
 
           {this.showPublishBtn(appStatus[0] && appStatus[0].status) ? 
-            <span className={`defaultBtn ${s.tableBtn}`} onClick={()=>this.publish(data.appId)}>发布到线上</span> : null }
+            <span className={`btn-default ${s.tableBtn}`} onClick={()=>this.publish(data.appId)}>发布到线上</span> : null }
 
           { this.showUpBtn(appStatus[0] && appStatus[0].status) ? 
-          <span className={`defaultBtn ${s.tableBtn}`} onClick={()=>this.shelve(data.appId)}>上  架</span> : null }
+          <span className={`btn-default ${s.tableBtn}`} onClick={()=>this.shelve(data.appId)}>上  架</span> : null }
         </td>
       </tr>
     )

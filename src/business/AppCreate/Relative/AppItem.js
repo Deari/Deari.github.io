@@ -31,11 +31,11 @@ class TabelItem extends React.Component {
         </td>
 
         <td className={s.actions}>
-          {!this.props.selected.find(v=> v.appId == appId) ? <a className={`defaultBtn ${s.tableBtn}`}
+          {!this.props.selected.find(v=> v.appId == appId) ? <a className={`btn-default ${s.tableBtn}`}
             onClick={()=>add({
               appId, appLogo, appName
             })}>选择</a> : 
-          <a className={`defaultBtn ${s.tableBtn}`}
+          <a className={`btn-default ${s.tableBtn}`}
             onClick={()=>del({
               appId
             })}>取消选择</a>}

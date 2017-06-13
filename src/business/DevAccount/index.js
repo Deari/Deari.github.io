@@ -165,7 +165,7 @@ class DevAccount extends Component {
           </button>
         </div>
         <div className={s.formAction}>
-          <button className={`primaryBtn ${s.accountBtn}`} onClick={::this.submitHandler}>获取商家测试账号</button>
+          <button className={`btn-primary ${s.accountBtn}`} onClick={::this.submitHandler}>获取商家测试账号</button>
         </div>
       </div>
     )

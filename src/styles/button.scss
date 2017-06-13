@@ -1,74 +1,74 @@
-@import '../layouts/CoreLayout/CoreLayout';
-
-@mixin btn{
-  display: inline-block;
-  padding: 6px 12px;
-  margin-bottom: 0;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-  touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  background-image: none;
-  background: $white-color;
-  border-radius: 4px;
-  border: none;
-}
-.btn{
-  @include btn;
-}
-@mixin btn-lg{
-  padding: 10px 16px;
-  font-size: 20px;
-  line-height: 24px;
-}
-.btn-lg{
-  @include btn-lg;
-}
-@mixin btn-sm{
-  padding: 5px 10px;
-  font-size: 14px;
-  line-height: 20px;
-}
-.btn-sm{
-  @include btn-sm;
-}
-@mixin btn-xs{
-  padding: 3px 5px;
-  font-size: 12px;
-  line-height: 18px;
-}
-.btn-xs{
-  @include btn-xs;
-}
-@mixin btn-default{
-  color: $black-color;
-  background-color: $white-color;
-  border: 1px solid $black-color;
-  &:hover{
-    color: $blue-color;
-    border: 1px solid $blue-color;
-  }
-}
-.btn-default{
-  @include btn-default;
-}
-@mixin btn-primary{
-  color: $white-color;
-  background-color: $blue-color;
-  &:hover {
-    color: $white-color;
-    background-color: $bluedark-color;
-  }
-}
-.btn-primary{
-  @include btn-primary;
-}
+//@import '../layouts/CoreLayout/CoreLayout';
+//
+//@mixin btn{
+//display: inline-block;
+//padding: 6px 12px;
+//margin-bottom: 0;
+//font-size: 14px;
+//font-weight: 400;
+//line-height: 1.42857143;
+//text-align: center;
+//white-space: nowrap;
+//vertical-align: middle;
+//-ms-touch-action: manipulation;
+//touch-action: manipulation;
+//cursor: pointer;
+//-webkit-user-select: none;
+//-moz-user-select: none;
+//-ms-user-select: none;
+//user-select: none;
+//background-image: none;
+//background: $white-color;
+//border-radius: 4px;
+//border: none;
+//}
+//.btn{
+//@include btn;
+//}
+//@mixin btn-lg{
+//padding: 10px 16px;
+//font-size: 20px;
+//line-height: 24px;
+//}
+//.btn-lg{
+//@include btn-lg;
+//}
+//@mixin btn-sm{
+//padding: 5px 10px;
+//font-size: 14px;
+//line-height: 20px;
+//}
+//.btn-sm{
+//@include btn-sm;
+//}
+//@mixin btn-xs{
+//padding: 3px 5px;
+//font-size: 12px;
+//line-height: 18px;
+//}
+//.btn-xs{
+//@include btn-xs;
+//}
+//@mixin btn-default{
+//color: $black-color;
+//background-color: $white-color;
+//border: 1px solid $black-color;
+//&:hover{
+//  color: $blue-color;
+//  border: 1px solid $blue-color;
+//}
+//}
+//.btn-default{
+//@include btn-default;
+//}
+//@mixin btn-primary{
+//color: $white-color;
+//background-color: $blue-color;
+//&:hover {
+//  color: $white-color;
+//  background-color: $bluedark-color;
+//}
+//}
+//.btn-primary{
+//@include btn-primary;
+//}
