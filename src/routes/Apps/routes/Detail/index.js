@@ -160,7 +160,7 @@ class AppsDetail extends React.Component {
     const createUrl = `/apps/create`
 
     return (
-      <div className='container clx'>
+      <div className='container'>
         <SideBar pageLinks={getPageLinks('apps')} type={'apps'} />
         <Detail data={data} latestVersion={latestVersion} infoTags={infoTags} versions={versions}
           showAll={showAll} showSize={showSize} editUrl={editUrl} createUrl={createUrl}
