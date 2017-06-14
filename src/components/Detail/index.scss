@@ -1,8 +1,10 @@
 /*Apps detail*/
 .detail-container{
+	padding: 17px 30px;
   .detail-download{
 		float: left;
     width: 145px;
+    margin-right: 30px;
     .appImg{
       width: 145px;
       height: 145px;
@@ -21,8 +23,7 @@
     }
   }
   .detail-info{
-    float: right;
-    width: 620px;
+		overflow: hidden;
     .detail-tittle{
       font-size: 24px;
       word-break:break-all;
