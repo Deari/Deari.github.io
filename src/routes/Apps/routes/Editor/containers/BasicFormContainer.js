@@ -1,7 +1,7 @@
 import React from 'react'
 import { reduxForm } from 'redux-form'
-import { validate } from '../../../components2/validate'
-import BasicForm from '../../../components2/BasicForm'
+import { validate } from '../../../components/validate'
+import BasicForm from '../../../components/BasicForm'
 
 export default reduxForm({
   form: 'edit_apps_basic',

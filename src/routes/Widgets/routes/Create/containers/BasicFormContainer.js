@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reduxForm, formValueSelector } from 'redux-form'
-import { validate } from '../../../components2/validate'
-import BasicForm from '../../../components2/BasicForm'
+import { validate } from '../../../components/validate'
+import BasicForm from '../../../components/BasicForm'
 
 let BasicFormContainer = reduxForm({
   form: 'create_widgets_basic',

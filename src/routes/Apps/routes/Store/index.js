@@ -6,7 +6,7 @@ module.exports = (store) => ({
   getComponent (nextState, cb) {
     injectReducer(store, { key: 'appStore', reducer: appStoreReducer })
     require.ensure([], (require) => {
-      cb(null, require('../../Containers/AppStore').default)
+      cb(null, require('../../containers/AppStore').default)
     })
   }
 })
