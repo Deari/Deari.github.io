@@ -202,8 +202,8 @@ webpackConfig.postcss = [
   cssnano({
     autoprefixer : {
       add      : true,
-      remove   : false,
-      browsers : ['chrome >= 42', 'safari >= 8']
+      remove   : true,
+      browsers : ['chrome >= 42', 'safari >= 6']
     },
     discardComments : {
       removeAll : true
