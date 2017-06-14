@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react'
-import fetchUtil from 'utils/fetchUtil'
-import debug from 'utils/debug'
 import './login.scss'
 
 export class Login extends Component {

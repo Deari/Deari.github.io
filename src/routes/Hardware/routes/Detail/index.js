@@ -4,7 +4,9 @@ import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from 'utils/d'
 import debug from 'utils/debug'
 import moment from 'moment'
-import Slidebar from 'components/Sidebar'
+import SideBar from 'business/SideBar'
+import { PageTypes, getPageLinks, HardwareLinks } from 'config/index'
+
 import './index.scss'
 import CommentTpl from './Comment.js'
 import ParamTpl from './Param.js'
@@ -83,15 +85,18 @@ class HardwareDetail extends React.Component {
     let { data, tags, active } = this.state
     const infoTags = data.hardwareTags || []
     const len = infoTags.length
-    const urls = {
-      create: { url: `http://iotdev.ffan.net/zh-cn/developer/product/create`, name: '创建新硬件' },
-      list: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all`, name: '我的硬件' },
-      doc: { url: `http://iotdev.ffan.net/zh-cn/developer/product/all` }
-    }
+
     const navList = [{ value:'商品介绍', type:'productDesc' }, { value:'规格参数', type:'typeParam' }, { value:'评论(' + commentData.assessList[0].list.length + ')', type:'comment' }]
+    
+    const pageLinks = [{
+      link: <a href={`${HardwareLinks.list}`}><i className={`iconfont icon-application`} />我的硬件</a>
+    },{
+      link: <a href={`${HardwareLinks.doc}`}><i className={`iconfont icon-file`} />开发者文档</a>
+    }]
+
     return (
       <div className='container'>
-        <Slidebar urls={urls} tags={tags} />
+        <SideBar pageLinks={pageLinks} type="hardware"/>
         <div className='content'>
           <div className='detail-container'>
             <div className='detail-returnnav'>
