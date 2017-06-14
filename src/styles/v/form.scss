@@ -1,38 +1,76 @@
 @import './var.scss';
-.btn-default {
-  cursor: pointer;
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: middle;
-  user-select: none;
-  text-align: center;
-  border-radius: 4px;
-  border: 1px solid $site-border-gray;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background: $site-blue;
-    border-color: $site-blue;
-    color: #fff!important;
-  }
+.form-group {
+	display: flex;
+	flex-wrap: nowrap;
+	max-width: 612px;
+	margin: 0 auto 15px;
+	.label {
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		margin-right: 34px;
+		text-align: right;
+		&:before {
+      content: "";
+			
+		}
+	}
+	.required {
+		&:before {
+      content: "*";
+			color: $site-red;
+			display: inline-block;
+			margin-right: 2px;
+			line-height: 1;
+		}
+	}
+	.form-item {
+		flex: 1;
+		.site-title{
+			color: #999;
+			font-size: 12px;
+			line-height: 30px;
+			&-none{
+				display: none;
+			}
+		}
+		.input-affix-wrapper {
+			width: 94%;
+			display: inline-block;
+			position: relative;
+			&>i {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				right: 8px;
+			}
+			.form-input {
+				height: 30px;
+				width: 100%;
+				padding-right: 30px;
+				&::selection{
+					background: #ace4fe;
+				}
+			}
+		}
+		
+		&-msg {
+			height: 24px;
+			display: block;
+			font-size: 12px;
+			line-height: 24px;
+			&.error {
+				color: $site-red;
+			}
+		}
+	}
 }
-
-.btn-primary {
-  color: #fff;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  border-radius: 4px;
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: middle;
-  background: $site-blue;
-  border: 1px solid $site-blue;
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    background: $site-blue-hover;
-    border-color: $site-blue-hover;
-    color: #fff;
-  }
+.form-actions {
+	width: 100%;
+  margin-top: 20px;
+	padding-top: 30px;
+	border-top: 1px solid $site-border-gray;
+	text-align: center;
 }
 @mixin effect{
 	border: 1px solid $site-border-gray;
@@ -53,7 +91,4 @@ textarea {
 	padding: 8px;
   resize: none;
   @include effect;
-}
-button {
-  outline: none;
 }
