@@ -51,9 +51,10 @@
     .tool-btn {
         margin-top: 8px;
         cursor: pointer;
-        .toolBtn {
-            font-size: 12px;
-            padding: 10px 26px;
+        .action {
+						width: 102px;
+						height: 35px;
+						line-height: 1.8;
             display: block;
         }
     }

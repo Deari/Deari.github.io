@@ -30,12 +30,12 @@ class TabelItem extends React.Component {
           </div>)}
         </td>
 
-        <td className={s.actions}>
-          {!this.props.selected.find(v=> v.appId == appId) ? <a className={`btn-default ${s.tableBtn}`}
+        <td className={s['btn-group']}>
+          {!this.props.selected.find(v=> v.appId == appId) ? <a className={`btn-default ${s.action}`}
             onClick={()=>add({
               appId, appLogo, appName
             })}>选择</a> : 
-          <a className={`btn-default ${s.tableBtn}`}
+          <a className={`btn-default ${s.action}`}
             onClick={()=>del({
               appId
             })}>取消选择</a>}

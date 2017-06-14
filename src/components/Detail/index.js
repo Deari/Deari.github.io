@@ -15,7 +15,7 @@ class AppsDetail extends React.Component {
         { LatestVersion(this.props) }
 
         { data.mine == 1 && activeCodeStatus === 0 && Versions(this.props) }
-        { data.mine == 1 && activeCodeStatus === 3 && <div className='mar'><button type='button' className='btn btn-primary' onClick={() => { onClickPublish() }}>确认发布</button></div> }
+        { data.mine == 1 && activeCodeStatus === 3 && <div className='mar'><button type='button' className='confirm-publish btn-primary' onClick={() => { onClickPublish() }}>确认发布</button></div> }
         { data.mine == 1 && activeCodeStatus === 4 && Unapprove(this.props) }
         { data.mine == 1 && activeCodeStatus === 5 && <SaleRange onChangeRange={onChangeRange} activeCodeStatus={activeCodeStatus} /> }
         { data.mine == 1 && activeCodeStatus === 6 && AdminUnshelved(this.props) }

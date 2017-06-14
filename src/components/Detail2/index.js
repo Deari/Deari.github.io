@@ -26,7 +26,7 @@ class AppsDetail extends React.Component {
     const map = {
       // 1:<div className="table-info radio-from"><Link to={editUrl}><button type="button" className="btn btn-primary">编辑</button></Link></div>,
       2: <div className='mar'>
-           <button type='button' className='btn btn-primary' onClick={() => { onClickPublish() }}>确认发布</button>
+           <button type='button' className='confirm-publish btn-primary' onClick={() => { onClickPublish() }}>确认发布</button>
          </div>,
       4: Versions(this.props),
       3: Unapprove(this.props),

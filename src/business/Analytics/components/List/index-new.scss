@@ -81,15 +81,13 @@
                         margin-top: 8px;
                     }
                 }
-                &.actions {
-                    .tableBtn {
+                &.btn-group {
+                    .action {
                         color: #666;
                         width: 85px;
                         height: 30px;
                         display: block;
-                        font-size: 12px;
                         margin: 0 auto;
-                        line-height: 28px;
                     }
                 }
             }

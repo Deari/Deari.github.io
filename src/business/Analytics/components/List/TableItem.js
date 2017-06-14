@@ -31,8 +31,8 @@ const TabelItem = ({ data, type }) => {
         <span>昨天：<i className={s.num}>{data.downloadCount}</i></span>
         <span className={s.yes}>前天：<i className={s.num}>{data.downloadCountYesterday}</i></span>
       </td>
-      <td className={s.actions}>
-        <Link to={`/${type}/analytics/${data.statisticsId}`} className={`btn-default ${s.tableBtn}`}>查看</Link>
+      <td className={s['btn-group']}>
+        <Link to={`/${type}/analytics/${data.statisticsId}`} className={`btn-default ${s.action}`}>查看</Link>
       </td>
     </tr>
   )

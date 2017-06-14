@@ -101,7 +101,7 @@ export class SaleRange extends React.Component {
           <input type='radio' name='aaa' value={'unshelve'} checked={operation === 'unshelve'}
             onChange={this.changeRange.bind(this)} /> 下架
         </label>
-        <button className='btn btn-primary' type='submit'>保存</button>
+        <button className='btn-primary' type='submit'>保存</button>
       </form>
     </div>
   }

@@ -61,7 +61,7 @@
 				text-decoration: underline;
 				transition: all 0.2s ease-in-out;
 				&:hover {
-					color: $site-blue-hover;
+					color: #2a89dd;
 				}
 			}
 		}
@@ -95,6 +95,6 @@
 	.viewBtn {
 		width: 150px;
 		height: 35px;
-		line-height: 35px;
+		line-height: 1.8;
 	}
 }

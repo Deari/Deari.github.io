@@ -21,31 +21,58 @@ button {
 }
 .btn-default {
 	@include btn;
-  border-color: $site-border-gray;
+	background: #fff;
+  border-color: #d7d7d7;
   transition: all 0.2s ease-in-out;
   &:hover {
-    background: $site-blue;
-    border-color: $site-blue;
+    background: #2692fb;
+    border-color: #2692fb;
     color: #fff!important;
   }
 }
 
 .btn-primary {
-  color: #fff;
-  cursor: pointer;
-  user-select: none;
-  text-align: center;
-  border-radius: 4px;
-  display: inline-block;
-  white-space: nowrap;
-  vertical-align: middle;
-  background: $site-blue;
-  border: 1px solid $site-blue;
+	@include btn;
+	color: #fff;
+  background: #2692fb;
+  border-color: #2692fb;
   transition: all 0.2s ease-in-out;
   &:hover {
-    background: $site-blue-hover;
-    border-color: $site-blue-hover;
     color: #fff;
+    background: #2a89dd;
+    border-color: #2a89dd;
   }
 }
-
+.btn-success{
+	@include btn;
+	color: #fff;
+	background: #5cb85c;
+	border-color: #5cb85c;
+	&:hover{
+		color: #fff;
+		background: #449d44;
+		border-color: #449d44;
+	}
+}
+.btn-warning{
+	@include btn;
+	color: #fff;
+	background: #f0ad4e;
+	border-color: #f0ad4e;
+	&:hover{
+		color: #fff;
+		background: #ec971f;
+		border-color: #ec971f;
+	}
+}
+.btn-danger{
+	@include btn;
+	color: #fff;
+	background: #d9534f;
+	border-color: #d9534f;
+	&:hover{
+		color: #fff;
+		background: #c9302c;
+		border-color: #c9302c;
+	}
+}
