@@ -140,7 +140,7 @@ class Relative extends React.Component {
                 <br/>应用市场详情页的显示，如下图：
               </p>
               <div>
-                <img src={require("./use-img.png")}
+                <img src="http://timg.ffan.com/convert/resize/url_T1s3ZTB7xj1RCvBVdK/tfs/1.png"
                   className={t.exampleImage}/>
                 { description && <Tips content={description}></Tips> }
               </div>
