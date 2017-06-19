@@ -2,23 +2,28 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import SideBar from 'business/SideBar'
 import DevInfo from 'business/DevInfo'
-import SDKDownload from 'business/SDKDownload'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
 import cx from 'classnames'
+import SDKDownload from '../SDkDownload/index'
 
 class DevTools extends Component {
   state = {
-    showDevInfo: false
+    showDevInfo: false,
+    showSDKInfo:false
   }
 
-  handleClick () {
-    this.setState({ showDevInfo: !this.state.showDevInfo })
+  handleClick (index) {
+    if(index){
+      this.setState({ showDevInfo: !this.state.showDevInfo })
+    }else {
+      this.setState({ showSDKInfo: !this.state.showSDKInfo })
+    }
   }
 
   render () {
     const { type } = this.props
-    const { showDevInfo } = this.state
+    const { showDevInfo, showSDKInfo } = this.state
 
     return (
       <div className={`container`} >
@@ -36,9 +41,9 @@ class DevTools extends Component {
               </dd>
             </dl>
             <div className={s['tool-btn']}>
-              <span className={`btn-primary ${s.action}`}>点击{showDevInfo ? '收起':'查看'}</span>
+              <span className={`btn-primary ${s.action}`} onClick={() => ::this.handleClick(0)}>点击{showSDKInfo ? '收起':'查看'}</span>
             </div>
-            <div className={cx(s.key, s.SDkActive)}>
+            <div className={cx(s.key, { [s.SDkActive]: showSDKInfo })}>
               <SDKDownload />
             </div>
           </div>
@@ -65,7 +70,7 @@ class DevTools extends Component {
               </dd>
             </dl>
             <div className={s['tool-btn']}>
-              <span onClick={::this.handleClick} className={`btn-primary ${s.action}`}>点击{showDevInfo ? '收起':'查看'}</span>
+              <span onClick={() => ::this.handleClick(1)} className={`btn-primary ${s.action}`}>点击{showDevInfo ? '收起':'查看'}</span>
             </div>
             <div className={cx(s.key, { [s.InfoActive]: showDevInfo })}>
               <DevInfo />
