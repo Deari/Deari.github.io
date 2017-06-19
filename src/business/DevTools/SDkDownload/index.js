@@ -4,75 +4,110 @@ import cx from 'classnames'
 import fetchUtil from 'utils/fetchUtil'
 import { getDomain } from '../../../utils/d'
 
-class SDKDownload extends React.Component{
-  constructor (){
+class SDKDownload extends React.Component {
+  constructor () {
     super()
     this.state = {
-      AndroidOrIOS:true,
-      switchList:[true, false, false],
-      address:'',
-      showAddress:false
+      AndroidOrIOS: true,
+      switchList: {
+        'FAP': {
+          switch: true,
+          value: 0
+        },
+        'HTML5': {
+          switch: true,
+          value: 1
+        },
+        'APK': {
+          switch: true,
+          value: 2
+        }
+      },
+      address: '',
+      showAddress: false
     }
   }
+
   handleClick (index) {
-    if(this.state.AndroidOrIOS && index){
-      this.setState({
-        AndroidOrIOS:!this.state.AndroidOrIOS
-      })
-    }else if(!this.state.AndroidOrIOS && !index){
-      this.setState({
-        AndroidOrIOS:!this.state.AndroidOrIOS
-      })
+    let AndroidOrIOS = this.state.AndroidOrIOS
+    if ((this.state.AndroidOrIOS && index) || (!this.state.AndroidOrIOS && !index)) {
+      AndroidOrIOS = !AndroidOrIOS
     }
     this.setState({
-      switchList:[true, false, false]
+      AndroidOrIOS: AndroidOrIOS,
+      switchList: {
+        'FAP': {
+          switch: true,
+          value: 0
+        },
+        'HTML5': {
+          switch: true,
+          value: 1
+        },
+        'APK': {
+          switch: true,
+          value: 2
+        }
+      }
     })
   }
 
   getUrl (state) {
     let appKind = '',
-      appList = !state.AndroidOrIOS?state.switchList.slice(0,2):state.switchList;
-    appList.map((item, index) => {
-      appKind += item?index + ',':''
-    })
-    this.setState({address:''})
-    let apiUrl = getDomain('/app/v1/bo/v1/public/sdk/address?platform='+ (state.AndroidOrIOS?'1':'2') +'&appKind=' + appKind.substr(0,appKind.length - 1));
-    fetchUtil.getJSON(apiUrl).then(data => {
-      if(!this.state.showAddress){
-        this.setState({
-          showAddress:true
-        })
+      switchList = this.state.switchList;
+    for (let item in switchList) {
+      appKind += switchList[item].switch?switchList[item].value + ',':'';
+      if(!this.state.AndroidOrIOS && item === "HTML5") {
+        break
       }
-      this.setState({address:data.data.address})
+    }
+    this.setState({address:''})
+    let apiUrl = getDomain('/app/v1/bo/v1/public/sdk/address');
+    fetchUtil.getJSON(
+      apiUrl, {
+        'platform':(state.AndroidOrIOS?'1':'2'),
+        'appKind':appKind.substr(0,appKind.length - 1)
+      }).then(data => {
+      this.setState({
+        address:data.data.address,
+        showAddress:true
+      })
     });
   }
 
   switchType (index) {
-    let switcheList = this.state.switchList;
-    if(switcheList.indexOf(true) !== switcheList.lastIndexOf(true)){
-      switcheList[index] = !switcheList[index];
-    }else {
-      switcheList[index] = true;
+    let switcheList = this.state.switchList,
+      onlyOne = 0;
+    switcheList[index].switch = !switcheList[index].switch;
+    for(let item in switcheList){
+      switcheList[item].switch?onlyOne++:null
+    }
+    if(onlyOne === 0){
+      switcheList[index].switch = true;
     }
     this.setState({
-      switchList:switcheList
+      switchList: switcheList
     })
   }
 
   onCopy (address) {
-    this.refs.address.select();
-    document.execCommand("Copy");
+    this.refs.address.select()
+    document.execCommand('Copy')
   }
 
   render () {
 
-    const { AndroidOrIOS, switchList, address, showAddress } = this.state;
+    const {AndroidOrIOS, switchList, address, showAddress} = this.state
 
-    return(
+    return (
       <div className={`tabs ${s.SDkDownload}`}>
         <ul className={`tabs-titles ${s.tabFilters}`}>
-          <li className={cx(`tabs-item ${s.tabsStatus}`,{[s.active]:AndroidOrIOS})} onClick={() => this.handleClick(0)}>Android</li>
-          <li className={cx(`tabs-item ${s.tabsStatus}`,{[s.active]:!AndroidOrIOS})} onClick={() => this.handleClick(1)}>ios</li>
+          <li className={cx(`tabs-item ${s.tabsStatus}`, {[s.active]: AndroidOrIOS})}
+              onClick={() => this.handleClick(0)}>Android
+          </li>
+          <li className={cx(`tabs-item ${s.tabsStatus}`, {[s.active]: !AndroidOrIOS})}
+              onClick={() => this.handleClick(1)}>ios
+          </li>
         </ul>
         <div className={s.content}>
           <div className={s.download}>
@@ -84,30 +119,30 @@ class SDKDownload extends React.Component{
             <ul className={s.list}>
               <li className={s.item}>
                 <img src="http://timg.ffan.com/convert/resize/url_T1jBhTBvCb1RCvBVdK/tfs/1.png" className={s.typeImg}/>
-                <div className="checkbox-item" onClick={() => this.switchType(0)}>
-                  <i className={cx('iconfont', switchList[0]?'icon-radio':'icon-radio1')}/>
+                <div className="checkbox-item" onClick={() => this.switchType('FAP')}>
+                  <i className={cx('iconfont', switchList['FAP'].switch ? 'icon-radio' : 'icon-radio1')}/>
                   <span className={s.name}>FAP小程序</span>
                 </div>
               </li>
               <li className={s.item}>
                 <img src="http://timg.ffan.com/convert/resize/url_T1uBDTBsC_1RCvBVdK/tfs/1.png" className={s.typeImg}/>
-                <div className="checkbox-item" onClick={() => this.switchType(1)}>
-                  <i className={cx('iconfont', switchList[1]?'icon-radio':'icon-radio1')}/>
+                <div className="checkbox-item" onClick={() => this.switchType('HTML5')}>
+                  <i className={cx('iconfont', switchList['HTML5'].switch ? 'icon-radio' : 'icon-radio1')}/>
                   <span className={s.name}>HTML5</span>
                 </div>
               </li>
-              <li className={s.item} style={{'display':AndroidOrIOS?'block':'none'}}>
+              <li className={s.item} style={{'display': AndroidOrIOS ? 'block' : 'none'}}>
                 <img src="http://timg.ffan.com/convert/resize/url_T1.sCTBbZT1RCvBVdK/tfs/1.png" className={s.typeImg}/>
-                <div className="checkbox-item" onClick={() => this.switchType(2)}>
-                  <i className={cx('iconfont', switchList[2]?'icon-radio':'icon-radio1')}/>
+                <div className="checkbox-item" onClick={() => this.switchType('APK')}>
+                  <i className={cx('iconfont', switchList['APK'].switch ? 'icon-radio' : 'icon-radio1')}/>
                   <span className={s.name}>APK</span>
                 </div>
               </li>
             </ul>
             <span className={`btn-primary ${s.action}`} onClick={() => this.getUrl(this.state)}>点击获取</span>
-            <div className={cx(`${s.copyLink}`,{[s.active]:showAddress})}>
+            <div className={cx(`${s.copyLink}`, {[s.active]: showAddress})}>
               <input type="text" className={s.link} value={address} ref="address"/>
-              <span className={s.copy} onClick={()=>this.onCopy(address)}>复制</span>
+              <span className={s.copy} onClick={() => this.onCopy(address)}>复制</span>
             </div>
           </div>
         </div>
@@ -116,4 +151,4 @@ class SDKDownload extends React.Component{
   }
 }
 
-export default SDKDownload;
+export default SDKDownload
