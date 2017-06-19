@@ -35,24 +35,12 @@ class SDKDownload extends React.Component {
     }
     this.setState({
       AndroidOrIOS: AndroidOrIOS,
-      switchList: {
-        'FAP': {
-          switch: true,
-          value: 0
-        },
-        'HTML5': {
-          switch: true,
-          value: 1
-        },
-        'APK': {
-          switch: true,
-          value: 2
-        }
-      }
+      showAddress: false,
+      switchList: {'FAP': {switch: true, value: 0}, 'HTML5': {switch: true, value: 1}, 'APK': {switch: true, value: 2}}
     })
   }
 
-  getUrl (state) {
+  getUrl () {
     let appKind = '',
       switchList = this.state.switchList;
     for (let item in switchList) {
@@ -65,7 +53,7 @@ class SDKDownload extends React.Component {
     let apiUrl = getDomain('/app/v1/bo/v1/public/sdk/address');
     fetchUtil.getJSON(
       apiUrl, {
-        'platform':(state.AndroidOrIOS?'1':'2'),
+        'platform':(this.state.AndroidOrIOS?'1':'2'),
         'appKind':appKind.substr(0,appKind.length - 1)
       }).then(data => {
       this.setState({
@@ -139,7 +127,7 @@ class SDKDownload extends React.Component {
                 </div>
               </li>
             </ul>
-            <span className={`btn-primary ${s.action}`} onClick={() => this.getUrl(this.state)}>点击获取</span>
+            <span className={`btn-primary ${s.action}`} onClick={() => this.getUrl()}>点击获取</span>
             <div className={cx(`${s.copyLink}`, {[s.active]: showAddress})}>
               <input type="text" className={s.link} value={address} ref="address"/>
               <span className={s.copy} onClick={() => this.onCopy(address)}>复制</span>
