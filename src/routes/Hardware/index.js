@@ -20,7 +20,9 @@ export default (store) => ({
     require.ensure([], (require) => {
       cb(null, [
         require('./routes/Store')(store),
-        require('./routes/Detail')(store)
+        require('./routes/Detail')(store),
+        require('./routes/Goods')(store),
+        require('./routes/Order')(store)
       ])
     })
   }

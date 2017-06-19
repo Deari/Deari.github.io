@@ -1,0 +1,13 @@
+@import 'src/styles/v/base.scss';
+.tabNav {
+  padding: 8px 15px !important;
+  .item-text {
+    line-height: 18px;
+    display: block;
+    text-align: center;
+  }
+}
+
+.tabs{
+  margin-bottom: 20px;
+}

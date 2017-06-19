@@ -7,7 +7,9 @@ export const PageTypes = {
 export const HardwareLinks = {
   doc: 'http://iotdev.ffan.net/zh-cn/developer/document/1',
   list: 'http://iotdev.ffan.net/zh-cn/developer/product/all',
-  create: 'http://iotdev.ffan.net/zh-cn/developer/product/create'
+  create: 'http://iotdev.ffan.net/zh-cn/developer/product/create',
+  goods:'/hardware/goodsmanage',
+  order:'/hardware/ordermanage'
 }
 
 export const getPageLinks = (type) => [{
