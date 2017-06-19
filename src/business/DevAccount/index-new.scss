@@ -58,7 +58,7 @@
 			}
 			.value {
 				flex: 1;
-				@include word-break;
+				word-break: break-all;
 			}
 		}
 	}

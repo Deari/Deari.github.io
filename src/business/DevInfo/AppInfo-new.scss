@@ -28,7 +28,7 @@
             flex: 1;
             padding: 12px 0;
             line-height: 24px;
-            @include word-break;
+            word-break: break-all;
         }
     }
 }

@@ -1,9 +1,9 @@
 /*将要废弃 start*/
 .row-radio {
-	margin-right: 4px;
 	position: relative;
 	display: inline-block;
 	vertical-align: middle;
+	cursor: pointer;
 	.input-radio {
 		position: absolute;
 		left: 0;
@@ -53,7 +53,6 @@
     display: inline-block;
     vertical-align: middle;
     font-size: 20px;
-    margin-right: 5px;
   }
 
   .icon-radio, .icon-checkbox

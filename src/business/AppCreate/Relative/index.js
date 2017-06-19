@@ -155,7 +155,7 @@ class Relative extends React.Component {
                       "icon-radio": v.unfold,
                       "icon-radio1": !v.unfold
                     })}></i>
-                    <label className={s['text-con']} >{v.text}</label>
+                    <span className={s['text-con']} >{v.text}</span>
                   </div>
                 </div>
 

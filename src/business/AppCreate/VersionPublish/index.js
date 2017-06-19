@@ -49,7 +49,7 @@ class VersionPublish extends React.Component {
                     'icon-radio1': +v.value !== current,
                     'icon-radio': +v.value === current,
                   })}></i>
-                  <label htmlFor={v.id} className={s['text-con']}>{v.text}</label>
+                  <span htmlFor={v.id} className={s['text-con']}>{v.text}</span>
                 </span>
               </div>
             ))}

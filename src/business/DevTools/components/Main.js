@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import SideBar from 'business/SideBar'
 import DevInfo from 'business/DevInfo'
+import SDKDownload from 'business/SDKDownload'
 import s from './index-new.scss'
 import { PageTypes, getPageLinks } from 'config/index'
 import cx from 'classnames'
@@ -28,6 +29,23 @@ class DevTools extends Component {
             <dl className={s.detail}>
               <dt className={s.img} />
               <dd className={s.main}>
+                <h3 className={s.name}>SDK下载</h3>
+                <p className={s.text}>
+                    查看工程示例，根据开发需求和使用场景下载SDK。
+                  </p>
+              </dd>
+            </dl>
+            <div className={s['tool-btn']}>
+              <span className={`btn-primary ${s.action}`}>点击{showDevInfo ? '收起':'查看'}</span>
+            </div>
+            <div className={cx(s.key, s.SDkActive)}>
+              <SDKDownload />
+            </div>
+          </div>
+          <div className={s.tool}>
+            <dl className={s.detail}>
+              <dt className={s.img} />
+              <dd className={s.main}>
                 <h3 className={s.name}>开发者文档</h3>
                 <p className={s.text}>
                     开发者在创建应用、组件后，可阅读开发者文档帮助完成接入及功能开发。
@@ -49,7 +67,7 @@ class DevTools extends Component {
             <div className={s['tool-btn']}>
               <span onClick={::this.handleClick} className={`btn-primary ${s.action}`}>点击{showDevInfo ? '收起':'查看'}</span>
             </div>
-            <div className={cx(s.key, { [s.active]: showDevInfo })}>
+            <div className={cx(s.key, { [s.InfoActive]: showDevInfo })}>
               <DevInfo />
             </div>
           </div>
