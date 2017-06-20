@@ -100,7 +100,7 @@ class SDKDownload extends React.Component {
         <div className={s.content}>
           <div className={s.download}>
             <h2 className={s.title}>1、示例工程下载</h2>
-            <a href="#" className={`btn-primary ${s.action}`}>点击下载</a>
+            <a href={AndroidOrIOS?'http://static.ffan.com/bo/ffoap_android_demo.zip':'http://static.ffan.com/bo/ffoap_ios_demo.zip'} className={`btn-primary ${s.action}`}>点击下载</a>
           </div>
           <div className={s.download}>
             <h2 className={s.title}>2、SDK下载(请先选择SDK需要<span>xxxx</span>)</h2>
