@@ -111,6 +111,13 @@ class DevAccount extends Component {
     })
   }
 
+  applyForm () {
+    this.setState({
+      hasAccount: false,
+      allowGetCode: true
+    })
+  }
+
   submitHandler () {
     const phone = findDOMNode(this.refs.phone).value.trim()
     const code = findDOMNode(this.refs.code).value.trim()
@@ -135,6 +142,7 @@ class DevAccount extends Component {
   render () {
     const { type } = this.props
     const { hasAccount, account, allowGetCode, allowGetCodeTime, downloadUrl } = this.state
+    const deprecated = +account.userType === 2;
 
     let Account = (
       <div className={s.applyForm}>
@@ -173,7 +181,7 @@ class DevAccount extends Component {
     if (hasAccount) {
       Account = <div className={s.account}>
         <h3 className={s['account-title']}>商家测试账号 
-          { +account.userType === 2 ? <span className={s.deprecated}>已废弃</span> : null }
+          { deprecated ? <span className={s.deprecated}>已废弃</span> : null }
         </h3>
         <div className={s.item}>
           <label className={s.key}>wid：</label>
@@ -187,6 +195,10 @@ class DevAccount extends Component {
           <label className={s.key}>默认密码：</label>
           <span className={s.value}>{account.password}</span>
         </div>
+        { deprecated ? <div className={s.item}>
+          <label className={s.key}></label>
+          <button className={`btn-primary ${s.action}`} onClick={::this.applyForm}>重新申请测试账号</button>
+        </div> : null }
       </div>
     }
 
@@ -198,7 +210,9 @@ class DevAccount extends Component {
           <div className={s.main}>
             {hasAccount ? <p className={s.success}>
 	            您已获得商家测试账号
-	          </p> : <p className={s.fail}>您还没有获得商家测试账号</p>}
+	          </p> : <p className={s.fail}>
+              {deprecated ? '重新申请商家测试账号' : '您还没有获得商家测试账号'}
+            </p>}
             <div className={s.desc}>
               <dl>
                 <dt>获得商家测试账号后，你将可以使用API市场中的接口，在你自身服务器上接受商家的信息。
