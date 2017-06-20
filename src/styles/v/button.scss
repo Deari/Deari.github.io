@@ -21,9 +21,12 @@ button {
 }
 .btn-default {
 	@include btn;
+	color: #666;
 	background: #fff;
   border-color: #d7d7d7;
   transition: all 0.2s ease-in-out;
+  &:active,
+  &:focus,
   &:hover {
     background: #2692fb;
     border-color: #2692fb;
@@ -37,6 +40,8 @@ button {
   background: #2692fb;
   border-color: #2692fb;
   transition: all 0.2s ease-in-out;
+  &:active,
+  &:focus,
   &:hover {
     color: #fff;
     background: #2a89dd;
@@ -48,6 +53,8 @@ button {
 	color: #fff;
 	background: #5cb85c;
 	border-color: #5cb85c;
+	&:active,
+  &:focus,
 	&:hover{
 		color: #fff;
 		background: #449d44;
@@ -59,6 +66,8 @@ button {
 	color: #fff;
 	background: #f0ad4e;
 	border-color: #f0ad4e;
+	&:active,
+  &:focus,
 	&:hover{
 		color: #fff;
 		background: #ec971f;
@@ -70,6 +79,8 @@ button {
 	color: #fff;
 	background: #d9534f;
 	border-color: #d9534f;
+	&:active,
+  &:focus,
 	&:hover{
 		color: #fff;
 		background: #c9302c;
