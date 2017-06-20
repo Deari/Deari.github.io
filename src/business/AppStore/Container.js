@@ -90,7 +90,7 @@ class Container extends React.Component {
       link: <a href={`${HardwareLinks.list}`}><i className={`iconfont icon-application`} />我的硬件</a>
     },{
       link: <a href={`${HardwareLinks.doc}`}><i className={`iconfont icon-file`} />开发者文档</a>
-    }/* 隐藏商品管理以及订单管理入口,{
+    },/*/!*隐藏商品管理以及订单管理入口*!/{
       to:'/hardware/goodsmanage',icon:'application',label:'商品管理'
     },{
       to:'/hardware/ordermanage',icon:'file',label:'订单管理'

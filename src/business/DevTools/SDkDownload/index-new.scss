@@ -35,21 +35,21 @@
 				padding: 20px 25px 14px;
 				background: #eee;
         display: flex;
+        user-select: none;
 				.item{
 					text-align: center;
 					flex: 1;
 					.typeImg{
 						width: 100px;
 						height: 100px;
-            margin:0 auto 10px;
+            margin:0 auto;
 						display: block;
 					}
 					.name{
 						cursor: pointer;
 				    display: inline-block;
-				    vertical-align: middle;
 				    margin-left: 5px;
-				    margin-top: -4px;
+				    line-height: 28px;
 					}
 				}
 			}

@@ -35,24 +35,12 @@ class SDKDownload extends React.Component {
     }
     this.setState({
       AndroidOrIOS: AndroidOrIOS,
-      switchList: {
-        'FAP': {
-          switch: true,
-          value: 0
-        },
-        'HTML5': {
-          switch: true,
-          value: 1
-        },
-        'APK': {
-          switch: true,
-          value: 2
-        }
-      }
+      showAddress: false,
+      switchList: {'FAP': {switch: true, value: 0}, 'HTML5': {switch: true, value: 1}, 'APK': {switch: AndroidOrIOS, value: 2}}
     })
   }
 
-  getUrl (state) {
+  getUrl () {
     let appKind = '',
       switchList = this.state.switchList;
     for (let item in switchList) {
@@ -65,7 +53,7 @@ class SDKDownload extends React.Component {
     let apiUrl = getDomain('/app/v1/bo/v1/public/sdk/address');
     fetchUtil.getJSON(
       apiUrl, {
-        'platform':(state.AndroidOrIOS?'1':'2'),
+        'platform':(this.state.AndroidOrIOS?'1':'2'),
         'appKind':appKind.substr(0,appKind.length - 1)
       }).then(data => {
       this.setState({
@@ -112,7 +100,7 @@ class SDKDownload extends React.Component {
         <div className={s.content}>
           <div className={s.download}>
             <h2 className={s.title}>1、示例工程下载</h2>
-            <a href="#" className={`btn-primary ${s.action}`}>点击下载</a>
+            <a href={AndroidOrIOS?'http://static.ffan.com/bo/ffoap_android_demo.zip':'http://static.ffan.com/bo/ffoap_ios_demo.zip'} className={`btn-primary ${s.action}`}>点击下载</a>
           </div>
           <div className={s.download}>
             <h2 className={s.title}>2、SDK下载(请先选择SDK需要<span>xxxx</span>)</h2>
@@ -139,7 +127,7 @@ class SDKDownload extends React.Component {
                 </div>
               </li>
             </ul>
-            <span className={`btn-primary ${s.action}`} onClick={() => this.getUrl(this.state)}>点击获取</span>
+            <span className={`btn-primary ${s.action}`} onClick={() => this.getUrl()}>点击获取</span>
             <div className={cx(`${s.copyLink}`, {[s.active]: showAddress})}>
               <input type="text" className={s.link} value={address} ref="address"/>
               <span className={s.copy} onClick={() => this.onCopy(address)}>复制</span>
