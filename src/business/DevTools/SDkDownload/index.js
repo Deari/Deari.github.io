@@ -36,7 +36,7 @@ class SDKDownload extends React.Component {
     this.setState({
       AndroidOrIOS: AndroidOrIOS,
       showAddress: false,
-      switchList: {'FAP': {switch: true, value: 0}, 'HTML5': {switch: true, value: 1}, 'APK': {switch: true, value: 2}}
+      switchList: {'FAP': {switch: true, value: 0}, 'HTML5': {switch: true, value: 1}, 'APK': {switch: AndroidOrIOS, value: 2}}
     })
   }
 
