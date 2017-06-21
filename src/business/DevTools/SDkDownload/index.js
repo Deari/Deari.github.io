@@ -94,7 +94,7 @@ class SDKDownload extends React.Component {
               onClick={() => this.handleClick(0)}>Android
           </li>
           <li className={cx(`tabs-item ${s.tabsStatus}`, {[s.active]: !AndroidOrIOS})}
-              onClick={() => this.handleClick(1)}>ios
+              onClick={() => this.handleClick(1)}>iOS
           </li>
         </ul>
         <div className={s.content}>
@@ -103,7 +103,7 @@ class SDKDownload extends React.Component {
             <a href={AndroidOrIOS?'http://static.ffan.com/bo/ffoap_android_demo.zip':'http://static.ffan.com/bo/ffoap_ios_demo.zip'} className={`btn-primary ${s.action}`}>点击下载</a>
           </div>
           <div className={s.download}>
-            <h2 className={s.title}>2、SDK下载(请先选择SDK需要<span>xxxx</span>)</h2>
+            <h2 className={s.title}>2、SDK下载</h2>
             <ul className={s.list}>
               <li className={s.item}>
                 <img src="http://timg.ffan.com/convert/resize/url_T1jBhTBvCb1RCvBVdK/tfs/1.png" className={s.typeImg}/>

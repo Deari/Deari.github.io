@@ -52,8 +52,19 @@ Toc.defaultProps = {
   tocList: []
 }
 
-export const Markdown = ({ html }) => {
-  return <div id='github' dangerouslySetInnerHTML={{ __html: html || '' }} />
+export class Markdown extends Component {
+  componentDidMount() {
+    this.props.initViewPort && this.props.initViewPort();
+  }
+
+  componentDidUpdate() {
+    this.props.initViewPort && this.props.initViewPort();
+  }
+
+  render () {
+    const { html } = this.props;
+    return <div id='github' dangerouslySetInnerHTML={{ __html: html || '' }} />
+  }
 }
 
 Markdown.defaultProps = {
