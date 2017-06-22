@@ -96,7 +96,7 @@ class Main extends React.Component {
         />
 
         <div className='form-actions'>
-          <button onClick={ handleSubmit(this.props.save)} className={cx('btn-primary', s.saveBtn)}>保存</button>
+          <button onClick={ handleSubmit(this.props.save)} className={cx('btn-default', s.saveBtn)}>保存</button>
           <button onClick={ handleSubmit(this.props.publish)} className={cx('btn-primary', s.saveBtn)}>提交审核</button>
         </div>
       </form>
