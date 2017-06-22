@@ -7,12 +7,12 @@ import AppsTable from './AppsTable'
 import Tips from '../Tips'
 
 class Relative extends React.Component {
-    constructor(props) {
+  constructor (props) {
     super(props)
     const value = props.input.value || {
       apps: [],
       widgets: []
-    };
+    }
     this.state = {
       value,
       list: {

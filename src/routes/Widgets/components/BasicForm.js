@@ -100,7 +100,7 @@ const Form = (props) => {
       />
 
       <div className='form-actions'>
-        <button type="submit" className={cx('btn-primary', s.saveBtn)}>保存</button>
+        <button type="submit" className={cx('btn-default', s.saveBtn)}>保存</button>
         { isEditMode ? <button onClick={ handleSubmit((values)=>{
             onSubmit(values, 1)
           }) } className={cx('btn-primary', s.saveBtn)}>保存并编辑版本信息</button> : null

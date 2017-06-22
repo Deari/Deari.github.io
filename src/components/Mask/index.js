@@ -19,6 +19,11 @@ class Mask extends Component {
     }
   }
 
+  componentWillUnmount() {
+    document.querySelector('html').style.overflow = this.bodyOverflow || null
+    document.body.style.overflow = this.bodyOverflow || null
+  }
+
   render () {
     const { active, className, children, onOverlayClick, styles } = this.props
     const _className = classnames('overlay overlay-container', {

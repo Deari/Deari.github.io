@@ -16,8 +16,6 @@ class TabelItem extends React.Component {
           <span className={s.name}>{appName}</span>
           <i className={`iconfont ${_appKindClassName}`} />
           <span className={s.desc}>{appDesc}</span>
-          {/*<span className={s.appId}>AppID: {appId}</span>*/}
-          <Link className={s.link} to={`/${type}/detail/${appId}`}>在{PageTypes[type]}市场中查看<i className="iconfont icon-look"></i></Link>
         </td>
 
         <td className={s.price}>

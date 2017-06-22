@@ -126,7 +126,6 @@ class AppsTable extends React.Component {
             </tbody>
           </table>
         </div>
-        {/*<Pagination onChange={::this.onPagination} total={this.state.total} />*/}
       </div>
     )
   }
