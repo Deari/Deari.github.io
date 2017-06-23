@@ -1,0 +1,52 @@
+
+.detail-container {
+  width: 874px;
+  margin-top: 10px;
+  float: right;
+}
+
+.search {
+  overflow: hidden;
+}
+
+.search-input {
+  margin: 0;
+  float: right;
+}
+
+.table {
+  margin-top: 10px;
+  background-color: #ffffff;
+  padding: 10px 8px;
+}
+
+.noHardware {
+  height: 800px;
+  width: 100%;
+  background: #ffffff url('http://timg.ffan.com/convert/resize/url_T1U3bTBCCs1RCvBVdK/tfs/1.png') no-repeat center 16%;
+  background-size: 50%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  p {
+    text-align: center;
+    color: rgb(123, 141, 160);
+    font-size: 16px;
+    margin-bottom:13px;
+  }
+  button {
+    line-height: 26px;
+    font-size:16px;
+    border:2px solid rgb(38, 146, 251);
+    background-color: #ffffff;
+    font-weight: 600;
+    border-radius: 5px;
+    padding:0 30px;
+    box-sizing: border-box;
+    cursor: pointer;
+    a{
+      color: rgb(38, 146, 251);
+    }
+  }
+
+}

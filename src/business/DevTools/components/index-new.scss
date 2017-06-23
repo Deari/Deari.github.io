@@ -1,0 +1,82 @@
+@import 'src/styles/v/base.scss';
+.tool {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 32px 14px 84px;
+    &:first-of-type {
+        .img {
+            background: url("http://timg.ffan.com/convert/resize/url_T1Z3xTBmAb1RCvBVdK/tfs/1.png") no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+    &:nth-of-type(2) {
+        .img {
+            background: url("http://timg.ffan.com/convert/resize/url_T1TDbTBmWj1RCvBVdK/tfs/1.png") no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+    &:nth-of-type(3) {
+        .img {
+            background: url("http://timg.ffan.com/convert/resize/url_T12hbTBsWg1RCvBVdK/tfs/1.png") no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+    &:nth-of-type(4) {
+        .img {
+            background: url("http://timg.ffan.com/convert/resize/url_T1e_LTB_Yv1RCvBVdK/tfs/1.png") no-repeat;
+            background-size: 100% 100%;
+        }
+    }
+    .detail {
+        display: flex;
+        align-items: flex-start;
+        .img {
+            width: 52px;
+            height: 52px;
+            margin-right: 30px;
+        }
+        .main {
+            width: 632px;
+            .name {
+                color: #000;
+                font-size: 20px;
+                line-height: 24px;
+                word-break: break-all;
+            }
+            .text {
+                font-size: 14px;
+                color: #666;
+                margin-top: 8px;
+                line-height: 18px;
+                word-break: break-all;
+            }
+        }
+    }
+    .tool-btn {
+        margin-top: 8px;
+        cursor: pointer;
+        .action {
+						width: 102px;
+						height: 35px;
+						line-height: 1.8;
+            display: block;
+        }
+    }
+    .key {
+      width: 642px;
+      height: 0;
+      margin-left: 70px;
+      transition: all .5s ease;
+      overflow: hidden;
+      &.InfoActive {
+        height: 175px;
+        margin-top: 20px;
+      }
+      &.SDkActive{
+      	height: 478px;
+        margin-top: 20px;
+      }
+    }
+}

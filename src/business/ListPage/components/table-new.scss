@@ -1,0 +1,102 @@
+@import 'src/styles/v/base.scss';
+.tableWrapper {
+	border: 1px solid #eee;
+    color: #000;
+    th {
+        color: #666;
+        border-right: 1px solid #fff;
+        &:last-child {
+            border: 0;
+        }
+    }
+    tbody {
+        tr {
+            border-bottom: 1px solid #eee;
+            td {
+                text-align: center;
+                &.imgWrap {
+                    width: 122px;
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        display: block;
+                        margin: auto;
+                        overflow: hidden;
+                        border-radius: 8px;
+                    }
+                }
+                &.appInfo {
+                    width: 342px;
+                    text-align: left;
+                    .name {
+                        color: #000;
+                        width: 282px;
+                        display: inline-block;
+                        vertical-align: middle;
+                        @include text-overflow;
+                    }
+                    & > i {
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                    .desc {
+                        color: #666;
+                        width: 332px;
+                        max-height: 35px;
+                        font-size: 12px;
+                        line-height: 1.5;
+                        margin-top: 10px;
+                        text-align: justify;
+                        @include multiple-text-overflow;
+                    }
+                    .appId {
+                        color: #999;
+                        font-size: 12px;
+                        width: 332px;
+                        margin-top: 10px;
+                        display: block;
+                        @include text-overflow;
+                    }
+                }
+                &.price {
+                	width:88px;
+                    .name {
+                        font-size: 14px;
+                    }
+                }
+                .vStatus {
+                    margin-top: 8px;
+                    font-size: 14px;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    .version, .text {
+                      display: inline-block;
+                      vertical-align: middle;
+                    }
+                    .version {
+                      margin-right: 10px;
+                    }
+                    .round {
+                        width: 8px;
+                        height: 8px;
+                        margin: 0 5px;
+                        border-radius: 50%;
+                        display: inline-block;
+                        vertical-align: middle;
+                    }
+                }
+                &.btn-group {
+                	width: 112px;
+                    .action {
+                        color: #666;
+                        width: 85px;
+                        height: 30px;
+                        display: block;
+                        margin: 5px auto;
+                    }
+                }
+            }
+        }
+    }
+}

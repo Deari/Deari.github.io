@@ -1,0 +1,49 @@
+.title {
+	color: #999;
+	font-size: 12px;
+	line-height: 30px;
+}
+.list {
+	display: flex;
+	justify-content: flex-start;
+	.item {
+		display: inline-block;
+    vertical-align: top;
+		text-align: center;
+    width: 150px;
+		cursor: pointer;
+		.img {
+			width: 103px;
+			height: 90px;
+			display: inline-block;
+			margin: 40px 0 30px;
+      cursor: pointer;
+			&-small{
+				background: url("http://timg.ffan.com/convert/resize/url_T1TDVTBmdg1RCvBVdK/tfs/1.png") no-repeat center center;
+				background-size: auto 100%;
+			}
+			&-middle{
+				background: url("http://timg.ffan.com/convert/resize/url_T1fh_TB5CQ1RCvBVdK/tfs/1.png") no-repeat center center;
+				background-size: 100% auto;
+			}
+			&-large{
+				background: url("http://timg.ffan.com/convert/resize/url_T1F_LTB4L_1RCvBVdK/tfs/1.png") no-repeat center center;
+				background-size: 100%;
+			}
+		}
+		.size-text {
+			font-size: 12px;
+			.screen {
+				display: block;
+			}
+			.advice {
+				color: #999;
+				margin-top: 6px;
+				display: block;
+			}
+		}
+		.radioBtn {
+			margin-top: 12px;
+		}
+	}
+}
